@@ -148,6 +148,66 @@ body {
 }
 
 /* ------------------------------------------------------------------------
+ * Battle action menu (T085)
+ * --------------------------------------------------------------------- */
+
+.hud .action-menu {
+  margin: 12px 0 0;
+}
+
+.hud .action-menu h3 {
+  margin: 0 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.hud .action-menu ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.action-menu__button {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  text-align: left;
+  background: rgba(184, 137, 31, 0.14);
+  border: 1px solid rgba(140, 108, 40, 0.4);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.action-menu__button:hover:not(:disabled) {
+  background: rgba(184, 137, 31, 0.3);
+}
+
+.action-menu__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-menu__name {
+  font-weight: 600;
+}
+
+.action-menu__cost {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------------
  * Orders Tempo tray (T083)
  * --------------------------------------------------------------------- */
 

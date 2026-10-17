@@ -59,7 +59,15 @@ const IRREGULAR_STATS: StatBlock = {
 export const DEMO_ACTIONS: readonly ActionSpec[] = [
   { id: asAbilityId("musket-fire"), mpCost: 4, chargeTime: 0, range: 5, power: 100 },
   { id: asAbilityId("bayonet-charge"), mpCost: 0, chargeTime: 0, range: 1, power: 90 },
-  { id: asAbilityId("dress-ranks"), mpCost: 3, chargeTime: 0, range: 3, power: 60 },
+  {
+    id: asAbilityId("dress-ranks"),
+    mpCost: 3,
+    chargeTime: 0,
+    range: 3,
+    power: 60,
+    aoeShape: "cross",
+    aoeSize: 1,
+  },
 ];
 
 /**

@@ -665,7 +665,7 @@ deterministic.
 - done: Main, company, post, equipment, abilities, depot, mess and campaign-map menus.
 
 ### T085 — Targeting UX
-- status: todo
+- status: failed
 - deps: [T028, T030]
 - files: src/render/overlay.ts
 - verify: npm run test:e2e
