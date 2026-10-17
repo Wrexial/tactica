@@ -320,7 +320,7 @@ deterministic.
 - done: Hit chance with front/side/rear facing modifiers, seeded.
 
 ### T038 — Elements
-- status: todo
+- status: done
 - deps: [T033]
 - files: src/engine/rules/elements.ts, src/data/elements.ts
 - verify: npm run test -- --run tests/unit/elements.test.ts
