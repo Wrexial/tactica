@@ -468,7 +468,7 @@ deterministic.
 - done: 1st offence = Reprimand; 2nd or illegal KO = Court-Martial.
 
 ### T058 — Court-martial removal + commander game over
-- status: todo
+- status: done
 - deps: [T057]
 - files: src/engine/rules/articles.ts
 - verify: npm run test -- --run tests/unit/articles.test.ts

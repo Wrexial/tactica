@@ -12,11 +12,12 @@
  *
  * This module owns **generation** (which Articles are in force on day N?),
  * **violation detection** (T056: given the facts of a resolved action, which
- * active Articles did it break or earn commendation for?) and the pure
+ * active Articles did it break or earn commendation for?), the pure
  * **escalation policy** (T057: does a breach earn a Reprimand or a
- * Court-Martial?). The follow-on mechanics — removing court-martialled
- * soldiers (T058), Commissions (T059), the Honour economy (T060) and the
- * Provost itself (T066) — stay separate and live elsewhere in
+ * Court-Martial?) and the **removal** a Red Card causes (T058: the soldier
+ * leaves the field, and a commander's removal ends the action in defeat). The
+ * remaining mechanics — Commissions (T059), the Honour economy (T060) and the
+ * Provost unit itself (T066) — stay separate and live elsewhere in
  * `src/engine/rules/`.
  *
  * ```text
@@ -44,6 +45,11 @@
  *                 └─ FFTA's card escalation: a first, non-lethal breach draws a
  *                    Reprimand (Yellow); a second breach or one that causes a
  *                    knockout draws a Court-Martial (Red)
+ *
+ *   applyCourtMartial(context, request) ──► { units, events, outcome }
+ *                 │
+ *                 └─ a Red Card removes the soldier from the field; removing
+ *                    the company commander ends the action in defeat (T058)
  * ```
  *
  * ## The frequency model
@@ -81,9 +87,10 @@ import type {
   ElementKey,
   WeaponType,
 } from "../../data/schema";
-import type { CardSeverity } from "../events";
-import { asArticleId, type ArticleId, type RegionId } from "../ids";
+import type { BattleEvent, BattleOutcome, CardSeverity } from "../events";
+import { asArticleId, type ArticleId, type RegionId, type UnitId } from "../ids";
 import { Rng, type Seed } from "../rng";
+import type { Unit } from "../unit";
 
 /* --------------------------------------------------------------------------
  * Frequency model
@@ -624,6 +631,126 @@ export function escalateBreach(article: ArticleDef, record: ArticleRecord): Card
 }
 
 /* --------------------------------------------------------------------------
+ * Court-martial removal (T058)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * The field as the Provost Marshal sees it when a Red Card is enforced: the
+ * deployed soldiers, the Orders Tempo tick to stamp events with, and — when the
+ * action has one — the company commander.
+ *
+ * Following {@link import("./shove").ShoveContext}, this is a small structural
+ * view rather than the whole `BattleState`, so the rules layer stays free of the
+ * state machine (`agents.md` §7) and the battle layer folds the returned roster
+ * and events back into its own state.
+ */
+export interface CourtMartialContext {
+  /** Every soldier currently on the field. */
+  readonly units: readonly Unit[];
+  /** Orders Tempo tick the removal resolves on; defaults to `0`. */
+  readonly tick?: number;
+  /**
+   * The company commander's soldier id. A Court-Martial that removes this
+   * soldier ends the action in **defeat** (`companyDefeat`), mirroring FFTA's
+   * "clan leader Red Card = Game Over"
+   * (`docs/wiki/pages/Law_system_(Tactics_Advance).md`). Omit it for a detached
+   * skirmish with no commander on the field.
+   */
+  readonly commanderId?: UnitId;
+}
+
+/** What the Provost Marshal orders: remove this soldier for this Article. */
+export interface CourtMartialRequest {
+  /** The soldier found guilty of the breach. */
+  readonly unitId: UnitId;
+  /** The Article of War the Court-Martial is issued for. */
+  readonly articleId: ArticleId;
+}
+
+/** The result of enforcing one Court-Martial (a Red Card). */
+export interface CourtMartialResult {
+  /**
+   * The field after the soldier left it: a new array in the original order with
+   * the convicted soldier omitted. The input roster is never mutated.
+   */
+  readonly units: readonly Unit[];
+  /**
+   * Ordered events: `courtMartialIssued`, then `unitRemoved`, followed by a
+   * closing `battleEnded` **only** when the commander was removed.
+   */
+  readonly events: readonly BattleEvent[];
+  /** The soldier who left the field. */
+  readonly removed: Unit;
+  /** `true` when the removed soldier was the company commander. */
+  readonly commander: boolean;
+  /** `companyDefeat` when the commander was removed; otherwise `null`. */
+  readonly outcome: BattleOutcome | null;
+  /** `true` when the ruling concluded the action. */
+  readonly finished: boolean;
+}
+
+/**
+ * Enforce a **Court-Martial** (FFTA's Red Card, mapping §9): the convicted
+ * soldier is removed from the field, emitting `courtMartialIssued` and
+ * `unitRemoved`. When the soldier is the company commander the action ends at
+ * once in defeat (`companyDefeat`), exactly as a clan leader's Red Card is
+ * instant Game Over in FFTA
+ * (`docs/wiki/pages/Law_system_(Tactics_Advance).md`).
+ *
+ * Pure and deterministic: the context and request are read, never written; a
+ * new roster and event list are returned (structural sharing is fine). Throws a
+ * `RangeError` when the tick is malformed or the named soldier is not on the
+ * field — those are stale-command/programmer faults, not in-world outcomes,
+ * matching `resolveShove` (T044).
+ *
+ * ```ts
+ * const ruling = escalateBreach(noFire, { reprimands: 0 });
+ * if (ruling.severity === "courtMartial") {
+ *   const { units, events, outcome } = applyCourtMartial(
+ *     { units: battle.units, commanderId, tick: battle.tempo.tick },
+ *     { unitId: offender.id, articleId: noFire.id },
+ *   );
+ * }
+ * ```
+ */
+export function applyCourtMartial(
+  context: CourtMartialContext,
+  request: CourtMartialRequest,
+): CourtMartialResult {
+  const tick = context.tick ?? 0;
+  assertTick(tick);
+
+  const removed = context.units.find((unit) => unit.id === request.unitId);
+  if (removed === undefined) {
+    throw new RangeError(`no soldier ${request.unitId} is on the field to court-martial`);
+  }
+
+  const units = context.units.filter((unit) => unit.id !== request.unitId);
+  const commander = context.commanderId !== undefined && context.commanderId === request.unitId;
+
+  const events: BattleEvent[] = [
+    { kind: "courtMartialIssued", tick, unitId: removed.id, articleId: request.articleId },
+    { kind: "unitRemoved", tick, unitId: removed.id, reason: "courtMartial" },
+  ];
+
+  if (!commander) {
+    return { units, events, removed, commander: false, outcome: null, finished: false };
+  }
+
+  // A commander's Red Card is an immediate, irrecoverable defeat: no further
+  // order can be given, so the closing `battleEnded` travels with the removal.
+  events.push({ kind: "battleEnded", tick, outcome: "companyDefeat" });
+  return {
+    units,
+    events,
+    removed,
+    commander: true,
+    outcome: "companyDefeat",
+    finished: true,
+  };
+}
+
+/* --------------------------------------------------------------------------
  * Internals
  * ------------------------------------------------------------------------ */
 
@@ -705,6 +832,15 @@ function assertBreachable(article: ArticleDef, record: ArticleRecord): void {
 function assertCampaignDay(day: number): void {
   if (!Number.isInteger(day) || day < 1) {
     throw new RangeError(`campaign day must be a positive integer, received ${String(day)}`);
+  }
+}
+
+/** Orders Tempo ticks are non-negative integers (`agents.md` §2). */
+function assertTick(tick: number): void {
+  if (!Number.isInteger(tick) || tick < 0) {
+    throw new RangeError(
+      `court-martial tick must be a non-negative integer, received ${String(tick)}`,
+    );
   }
 }
 

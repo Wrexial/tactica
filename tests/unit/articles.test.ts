@@ -27,10 +27,15 @@ import {
   type ArticleDef,
   type ArticleTarget,
 } from "../../src/data/schema";
-import { asRegionId } from "../../src/engine/ids";
+import { asArticleId, asPostId, asRegionId, asUnitId } from "../../src/engine/ids";
+import { isBattleEvent } from "../../src/engine/events";
+import { coord } from "../../src/engine/grid";
 import { Rng } from "../../src/engine/rng";
+import { createUnit, type Unit, type UnitSide } from "../../src/engine/unit";
+import type { StatBlock } from "../../src/data/schema";
 import {
   DEFAULT_ARTICLE_FREQUENCY,
+  applyCourtMartial,
   articleFactsOf,
   articleSubjectOfAction,
   buildArticlePool,
@@ -755,5 +760,176 @@ describe("card escalation (T057)", () => {
     );
     expect(() => escalateBreach(noFire, { reprimands: -1 })).toThrow(RangeError);
     expect(() => escalateBreach(noFire, { reprimands: 1.5 })).toThrow(RangeError);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T058 — Court-martial removal + commander game over
+ *
+ * Pins the task's "done when": **court-martialled units leave the field; the
+ * commander's court-martial ends the battle in defeat.** The removal lives in
+ * `src/engine/rules/articles.ts` and consumes the T057 ruling, staying pure and
+ * deterministic (`agents.md` §2). The tests cover removal, event order, the
+ * commander game-over rule, input immutability and the validation boundary.
+ * ------------------------------------------------------------------------ */
+
+const BASE_STATS: StatBlock = {
+  hp: 60,
+  mp: 20,
+  atk: 12,
+  def: 8,
+  mag: 4,
+  res: 6,
+  spd: 10,
+  move: 4,
+  jump: 2,
+};
+
+/** Minimal valid soldier fixture for the removal tests. */
+function soldier(id: string, x: number, y: number, side: UnitSide = "company"): Unit {
+  return createUnit({
+    id: asUnitId(id),
+    name: `Soldier ${id}`,
+    power: "france",
+    postId: asPostId("fusilier"),
+    side,
+    level: 1,
+    at: coord(x, y),
+    stats: { ...BASE_STATS },
+  });
+}
+
+describe("court-martial removal (T058)", () => {
+  it("removes a convicted soldier from the field", () => {
+    const offender = soldier("offender", 1, 1);
+    const ally = soldier("ally", 2, 1);
+    const articleId = asArticleId("no-fire");
+
+    const result = applyCourtMartial(
+      { units: [offender, ally], tick: 5 },
+      { unitId: offender.id, articleId },
+    );
+
+    expect(result.units.map((unit) => unit.id)).toEqual([ally.id]);
+    expect(result.removed).toBe(offender);
+    expect(result.commander).toBe(false);
+    expect(result.finished).toBe(false);
+    expect(result.outcome).toBeNull();
+    expect(result.events).toEqual([
+      { kind: "courtMartialIssued", tick: 5, unitId: offender.id, articleId },
+      { kind: "unitRemoved", tick: 5, unitId: offender.id, reason: "courtMartial" },
+    ]);
+  });
+
+  it("never mutates the input roster and keeps the surviving order", () => {
+    const a = soldier("a", 0, 0);
+    const b = soldier("b", 1, 0);
+    const c = soldier("c", 2, 0);
+    const units = [a, b, c];
+
+    const result = applyCourtMartial({ units }, { unitId: b.id, articleId: asArticleId("no-fire") });
+
+    expect(units).toEqual([a, b, c]);
+    expect(result.units.map((unit) => unit.id)).toEqual([a.id, c.id]);
+    expect(result.units[0]).toBe(a);
+    expect(result.units[1]).toBe(c);
+  });
+
+  it("ends the action in defeat when the commander is court-martialled", () => {
+    const commander = soldier("commander", 1, 1);
+    const ally = soldier("ally", 2, 1);
+
+    const result = applyCourtMartial(
+      { units: [commander, ally], commanderId: commander.id, tick: 9 },
+      { unitId: commander.id, articleId: asArticleId("no-poison") },
+    );
+
+    expect(result.commander).toBe(true);
+    expect(result.finished).toBe(true);
+    expect(result.outcome).toBe("companyDefeat");
+    expect(result.events.map((event) => event.kind)).toEqual([
+      "courtMartialIssued",
+      "unitRemoved",
+      "battleEnded",
+    ]);
+    expect(result.events[2]).toEqual({
+      kind: "battleEnded",
+      tick: 9,
+      outcome: "companyDefeat",
+    });
+  });
+
+  it("keeps the battle running when a subordinate is removed", () => {
+    const commander = soldier("commander", 1, 1);
+    const subordinate = soldier("subordinate", 2, 1);
+
+    const result = applyCourtMartial(
+      { units: [commander, subordinate], commanderId: commander.id, tick: 2 },
+      { unitId: subordinate.id, articleId: asArticleId("no-fire") },
+    );
+
+    expect(result.commander).toBe(false);
+    expect(result.finished).toBe(false);
+    expect(result.outcome).toBeNull();
+    expect(result.events.map((event) => event.kind)).toEqual([
+      "courtMartialIssued",
+      "unitRemoved",
+    ]);
+  });
+
+  it("emits only well-formed battle events", () => {
+    const commander = soldier("commander", 1, 1);
+    const { events } = applyCourtMartial(
+      { units: [commander], commanderId: commander.id, tick: 1 },
+      { unitId: commander.id, articleId: asArticleId("no-dark") },
+    );
+    expect(events).not.toHaveLength(0);
+    for (const event of events) {
+      expect(isBattleEvent(event), JSON.stringify(event)).toBe(true);
+    }
+  });
+
+  it("defaults the tick to zero and rejects a malformed tick", () => {
+    const offender = soldier("offender", 1, 1);
+    const result = applyCourtMartial({ units: [offender] }, {
+      unitId: offender.id,
+      articleId: asArticleId("no-fire"),
+    });
+    expect(result.events[0]?.tick).toBe(0);
+    expect(() =>
+      applyCourtMartial(
+        { units: [offender], tick: -1 },
+        { unitId: offender.id, articleId: asArticleId("no-fire") },
+      ),
+    ).toThrow(RangeError);
+    expect(() =>
+      applyCourtMartial(
+        { units: [offender], tick: 1.5 },
+        { unitId: offender.id, articleId: asArticleId("no-fire") },
+      ),
+    ).toThrow(RangeError);
+  });
+
+  it("refuses a soldier who is not on the field", () => {
+    const offender = soldier("offender", 1, 1);
+    expect(() =>
+      applyCourtMartial(
+        { units: [offender] },
+        { unitId: asUnitId("ghost"), articleId: asArticleId("no-fire") },
+      ),
+    ).toThrow(RangeError);
+  });
+
+  it("follows the T057 ruling into removal only on a Court-Martial", () => {
+    const offender = soldier("offender", 1, 1);
+    const article = ARTICLES["no-poison"];
+    const ruling = escalateBreach(article, { reprimands: 0 });
+    expect(ruling.severity).toBe("courtMartial");
+
+    const result = applyCourtMartial(
+      { units: [offender] },
+      { unitId: offender.id, articleId: asArticleId(article.id) },
+    );
+    expect(result.units).toEqual([]);
   });
 });
