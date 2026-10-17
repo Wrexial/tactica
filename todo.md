@@ -771,7 +771,7 @@ deterministic.
 - done: Optional AI control for allied units.
 
 ### T099 — Difficulty tiers + perf
-- status: todo
+- status: done
 - deps: [T095]
 - files: src/ai/difficulty.ts
 - verify: npm run test -- --run tests/unit/ai.test.ts

@@ -26,6 +26,18 @@ import {
   projectedMorale,
 } from "../../src/ai/heuristics";
 import {
+  DECISION_BUDGET_MS,
+  DEFAULT_DIFFICULTY,
+  DIFFICULTY_TIERS,
+  chooseTurnWithDifficulty,
+  createDifficultyRng,
+  difficultySeed,
+  difficultyWeights,
+  makeDifficulty,
+  resolveDifficulty,
+  rollBlunder,
+} from "../../src/ai/difficulty";
+import {
   AutoBattleError,
   DEFAULT_CONTROL_POLICY,
   autoBattleAllies,
@@ -1124,5 +1136,203 @@ describe("runAutoBattle (T098)", () => {
       [PLAYER_ID]: 100,
     });
     expect(() => runAutoBattle(battle, { maxTurns: -1 })).toThrow(AutoBattleError);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T099 — Difficulty tiers + decision budget
+ *
+ * Difficulty is a data-driven policy over the T095 scorer: an **aggression**
+ * axis bends the utility weights, a seeded **mistake** roll makes a soldier
+ * take a worse (but still legal) plan, and a per-tier search limit keeps one
+ * decision inside the frame budget. The roll is derived from the battle seed,
+ * so the same battle and command log always replay identically.
+ * ------------------------------------------------------------------------ */
+
+const FLAWLESS = makeDifficulty({ id: "flawless", aggression: 50, mistakeChance: 0 });
+const CLUMSY = makeDifficulty({ id: "clumsy", aggression: 50, mistakeChance: 1, mistakeDepth: 1 });
+
+/** A four-strong skirmish used by the difficulty tests. */
+function difficultyBattle(): BattleState {
+  return makeBattle([
+    makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+    makeUnit(WEAK_ID, coord(2, 0), "enemy", ENEMY_STATS, { hp: 10 }),
+    makeUnit(TOUGH_ID, coord(2, 2), "enemy", ENEMY_STATS),
+    makeUnit(FAR_ID, coord(7, 7), "enemy", ENEMY_STATS),
+  ]);
+}
+
+describe("difficulty tiers (T099)", () => {
+  it("resolves a named tier and defaults to regular", () => {
+    expect(DEFAULT_DIFFICULTY).toBe("regular");
+    expect(resolveDifficulty()).toBe(DIFFICULTY_TIERS.regular);
+    expect(resolveDifficulty("elite")).toBe(DIFFICULTY_TIERS.elite);
+    expect(resolveDifficulty("recruit").aggression).toBeLessThan(
+      DIFFICULTY_TIERS.regular.aggression,
+    );
+  });
+
+  it("clamps a bespoke definition into a sane range", () => {
+    const custom = makeDifficulty({
+      id: "wild",
+      aggression: 500,
+      mistakeChance: 2,
+      mistakeDepth: 0,
+      searchLimit: 0,
+    });
+    expect(custom.aggression).toBe(100);
+    expect(custom.mistakeChance).toBe(1);
+    expect(custom.mistakeDepth).toBe(1);
+    expect(custom.searchLimit).toBe(1);
+    expect(resolveDifficulty(custom)).toBe(custom);
+  });
+
+  it("scales aggression into the utility weights", () => {
+    const recruit = difficultyWeights("recruit");
+    const elite = difficultyWeights("elite");
+
+    expect(elite.kill).toBeGreaterThan(recruit.kill);
+    expect(elite.threat).toBeGreaterThanOrEqual(recruit.threat);
+    expect(elite.advance).toBeGreaterThan(recruit.advance);
+    // A cautious tier values its skin and its ground more.
+    expect(recruit.exposure).toBeGreaterThanOrEqual(elite.exposure);
+    expect(recruit.brace).toBeGreaterThan(elite.brace);
+  });
+
+  it("composes over an authored troop temperament", () => {
+    const base = weightsFromProfile(AI_PROFILES.aggressive);
+    const tuned = difficultyWeights("veteran", base);
+    expect(tuned.kill).toBe(base.kill + Math.round(15 * 0.75));
+    expect(tuned.damage).toBe(base.damage);
+  });
+
+  it("derives a deterministic, tier-and-unit specific mistake stream", () => {
+    const battle = difficultyBattle();
+
+    const seed = difficultySeed(battle, ACTOR_ID, "regular");
+    expect(seed).toBe(difficultySeed(battle, ACTOR_ID, "regular"));
+    expect(seed).not.toBe(difficultySeed(battle, ACTOR_ID, "elite"));
+    expect(seed).not.toBe(difficultySeed(battle, WEAK_ID, "regular"));
+
+    const first = createDifficultyRng(battle, ACTOR_ID, "regular");
+    const second = createDifficultyRng(battle, ACTOR_ID, "regular");
+    const third = createDifficultyRng(battle, ACTOR_ID, "elite");
+    expect([first.nextInt(1000), first.nextInt(1000)]).toEqual([
+      second.nextInt(1000),
+      second.nextInt(1000),
+    ]);
+    expect([third.nextInt(1000), third.nextInt(1000)]).not.toEqual([
+      second.nextInt(1000),
+      second.nextInt(1000),
+    ]);
+  });
+
+  it("never blunders when mistakes are off and always when maxed", () => {
+    const battle = difficultyBattle();
+
+    const flawless = createDifficultyRng(battle, ACTOR_ID, FLAWLESS);
+    for (let i = 0; i < 25; i++) {
+      expect(rollBlunder(flawless, FLAWLESS)).toEqual({ blundered: false, rank: 0 });
+    }
+
+    const clumsy = createDifficultyRng(battle, ACTOR_ID, CLUMSY);
+    for (let i = 0; i < 25; i++) {
+      const roll = rollBlunder(clumsy, CLUMSY);
+      expect(roll.blundered).toBe(true);
+      expect(roll.rank).toBeGreaterThanOrEqual(1);
+      expect(roll.rank).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it("is pure and deterministic under every tier", () => {
+    const battle = difficultyBattle();
+    const before = JSON.stringify(battle);
+
+    for (const tier of ["recruit", "regular", "veteran", "elite"] as const) {
+      const first = chooseTurnWithDifficulty(battle, ACTOR_ID, tier);
+      const second = chooseTurnWithDifficulty(battle, ACTOR_ID, tier);
+      expect(second).toEqual(first);
+
+      let working = battle;
+      for (const command of first.commands) {
+        const result = step(working, command);
+        expect(result.rejection).toBeUndefined();
+        working = result.state;
+      }
+    }
+
+    expect(JSON.stringify(battle)).toBe(before);
+  });
+
+  it("still fights for the objective rather than freezing", () => {
+    const battle = difficultyBattle();
+    const plan = chooseTurnWithDifficulty(battle, ACTOR_ID, "elite");
+    expect(plan.abilityId).not.toBeNull();
+    expect(plan.target).not.toBeNull();
+    expect(plan.difficulty.tier).toBe("elite");
+    expect(plan.difficulty.blundered).toBe(false);
+    expect(plan.difficulty.rank).toBe(0);
+  });
+
+  it("takes a worse but still legal plan on a forced blunder", () => {
+    const battle = difficultyBattle();
+    const best = chooseTurnWithDifficulty(battle, ACTOR_ID, FLAWLESS);
+    const blunder = chooseTurnWithDifficulty(battle, ACTOR_ID, CLUMSY);
+
+    expect(best.difficulty.blundered).toBe(false);
+    expect(blunder.difficulty.blundered).toBe(true);
+    expect(blunder.difficulty.rank).toBe(1);
+    // Identical weights, so the second-ranked plan cannot score higher.
+    expect(blunder.score.total).toBeLessThanOrEqual(best.score.total);
+
+    let working = battle;
+    for (const command of blunder.commands) {
+      const result = step(working, command);
+      expect(result.rejection).toBeUndefined();
+      working = result.state;
+    }
+  });
+
+  it("bounds the search with the tier's destination limit", () => {
+    const battle = difficultyBattle();
+    const wide = chooseTurnWithDifficulty(
+      battle,
+      ACTOR_ID,
+      makeDifficulty({ id: "wide", mistakeChance: 0, searchLimit: 64 }),
+    );
+    const narrow = chooseTurnWithDifficulty(
+      battle,
+      ACTOR_ID,
+      makeDifficulty({ id: "narrow", mistakeChance: 0, searchLimit: 2 }),
+    );
+
+    expect(narrow.considered).toBeLessThan(wide.considered);
+    expect(narrow.difficulty.searchLimit).toBe(2);
+    expect(narrow.difficulty.considered).toBe(narrow.considered);
+  });
+
+  it("keeps a typical decision inside the frame budget", () => {
+    const battle = makeBattle(
+      [
+        makeUnit(asUnitId("c1"), coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(asUnitId("c2"), coord(1, 1), "company", ACTOR_STATS),
+        makeUnit(asUnitId("c3"), coord(2, 2), "company", ACTOR_STATS),
+        makeUnit(asUnitId("e1"), coord(6, 6), "enemy", ENEMY_STATS),
+        makeUnit(asUnitId("e2"), coord(7, 5), "enemy", ENEMY_STATS),
+        makeUnit(asUnitId("e3"), coord(5, 7), "enemy", ENEMY_STATS),
+      ],
+      [MUSKET, BAYONET, CANISTER],
+    );
+
+    // Warm the JIT before timing, then average many identical decisions.
+    chooseTurnWithDifficulty(battle, asUnitId("c1"), "elite");
+    const runs = 40;
+    const start = performance.now();
+    for (let i = 0; i < runs; i++) {
+      chooseTurnWithDifficulty(battle, asUnitId("c1"), "elite");
+    }
+    const perDecision = (performance.now() - start) / runs;
+
+    expect(perDecision).toBeLessThan(DECISION_BUDGET_MS);
   });
 });

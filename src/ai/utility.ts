@@ -318,6 +318,23 @@ export interface UtilityOptions {
    * may break standing orders freely; everyone else avoids them.
    */
   readonly commissions?: Commissions;
+  /**
+   * Hard cap on the number of destination tiles explored for a plan (T099).
+   * Reachable tiles are explored cheapest-first, so a budget keeps a decision
+   * within a frame on a large battlefield. Omit it (or pass a non-positive
+   * value) for no cap. `DifficultyDef.searchLimit` sets this per difficulty
+   * tier.
+   */
+  readonly maxDestinations?: number;
+  /**
+   * Which-ranked candidate to return, best first (T099). `0` or omitted returns
+   * the best plan; `1` the second-best, and so on. A seeded difficulty tier
+   * (`chooseTurnWithDifficulty`) uses this to model a **mistake** as taking a
+   * worse option from the *same* legal, scored candidate set — so a blunder is
+   * always a valid but inferior plan. Out-of-range values clamp to the
+   * best/worst candidate.
+   */
+  readonly rank?: number;
 }
 
 /** Merge profile/default weights with any explicit override. */
@@ -672,11 +689,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
 
   const cover = blocksSightAt(state.map, destination) ? 1 : 0;
   const engaged =
-    expectedDamage > 0 ||
-    healing > 0 ||
-    buffValue > 0 ||
-    cleanseValue > 0 ||
-    reviveValue > 0;
+    expectedDamage > 0 || healing > 0 || buffValue > 0 || cleanseValue > 0 || reviveValue > 0;
   const proximity = engaged ? 0 : nearestHostileDistance(state, actor, destination);
 
   const total =
@@ -785,10 +798,38 @@ function destinationsFor(state: BattleState, actor: Unit): { at: Coord; cost: nu
   }).map((tile) => ({ at: { x: tile.at.x, y: tile.at.y }, cost: tile.cost }));
 }
 
-/** Keep the better of two candidates: strictly higher total, ties to `next`. */
-function betterOf(best: UtilityCandidate | null, next: UtilityCandidate): UtilityCandidate {
-  if (best === null || next.score.total > best.score.total) return next;
-  return best;
+/**
+ * Cap a cheapest-first destination list to at most `limit` tiles (T099). A
+ * non-positive or absent limit means **no cap**, so the existing behaviour is
+ * unchanged unless a difficulty tier asks for a budget.
+ */
+function boundDestinations(
+  destinations: readonly { at: Coord; cost: number }[],
+  limit: number | undefined,
+): { at: Coord; cost: number }[] {
+  if (limit === undefined || !Number.isFinite(limit) || limit <= 0) return [...destinations];
+  const cap = Math.max(1, Math.floor(limit));
+  return destinations.slice(0, cap);
+}
+
+/**
+ * Choose the winning candidate at `rank` (0 = best). Candidates are ranked by
+ * descending score, with the first-seen candidate winning a tie — so rank `0`
+ * is exactly the plan the AI used to keep and rank `n` stoops to successively
+ * worse (but still legal) plans. A rank beyond the shortlist clamps to the
+ * worst candidate; a negative rank is treated as `0`. Pure and deterministic.
+ */
+function selectCandidate(
+  candidates: readonly UtilityCandidate[],
+  rank: number | undefined,
+): UtilityCandidate | null {
+  if (candidates.length === 0) return null;
+  const wanted = rank === undefined || !Number.isFinite(rank) ? 0 : Math.floor(rank);
+  const target = Math.max(0, Math.min(wanted, candidates.length - 1));
+  const ranked = candidates
+    .map((candidate, index) => ({ candidate, index }))
+    .sort((a, b) => b.candidate.score.total - a.candidate.score.total || a.index - b.index);
+  return ranked[target]?.candidate ?? null;
 }
 
 /* --------------------------------------------------------------------------
@@ -963,7 +1004,7 @@ export function chooseTurn(
   // Reprimands freely, so the breach filter is bypassed for it (T059/T096).
   const commissioned = isCommissioned(options.commissions, actor.id);
 
-  const destinations = destinationsFor(state, actor);
+  const destinations = boundDestinations(destinationsFor(state, actor), options.maxDestinations);
   const origin: Coord = { x: actor.at.x, y: actor.at.y };
 
   const candidates: UtilityCandidate[] = [];
@@ -1078,12 +1119,10 @@ export function chooseTurn(
     }),
   });
 
-  // `betterOf` keeps the first candidate on a tie. The hold candidate above is
-  // always considered, so the fallback exists only to satisfy the type checker.
-  let winner: UtilityCandidate | null = null;
-  for (const candidate of candidates) {
-    winner = betterOf(winner, candidate);
-  }
+  // `selectCandidate` keeps the first candidate on a tie and clamps an
+  // out-of-range `rank`. The hold candidate above is always considered, so the
+  // fallback exists only to satisfy the type checker.
+  let winner = selectCandidate(candidates, options.rank);
   if (winner === null) {
     winner = {
       unitId: actor.id,
