@@ -6,10 +6,14 @@ import {
   ConditionDefSchema,
   ContractDefSchema,
   DataBundleSchema,
+  ELEMENT_KEYS,
+  EQUIP_SLOTS,
   ElementDefSchema,
   EnemyDefSchema,
   EquipmentDefSchema,
+  POWER_KEYS,
   PostDefSchema,
+  WEAPON_TYPES,
 } from "../../src/data/schema";
 import type { DataBundle } from "../../src/data/schema";
 import {
@@ -27,7 +31,13 @@ import {
   postActionSet,
 } from "../../src/data/abilities";
 import { ARTICLE_LIST } from "../../src/data/articles";
-import { EQUIPMENT_LIST } from "../../src/data/equipment";
+import { CONDITION_KEYS } from "../../src/data/conditions";
+import {
+  EQUIPMENT,
+  EQUIPMENT_KEYS,
+  EQUIPMENT_LIST,
+  equipmentForSlot,
+} from "../../src/data/equipment";
 import { POSTS, POST_LIST } from "../../src/data/posts";
 import { REACTION_IDS } from "../../src/engine/reactions";
 import {
@@ -806,6 +816,118 @@ describe("authored abilities (data/abilities, T089)", () => {
       .toLowerCase();
     for (const marker of FFTA_MARKERS) {
       expect(text, `ability text must not contain "${marker}"`).not.toContain(marker);
+    }
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T090 — Equipment tables
+ *
+ * Pins the task's "done when": *full weapon/armour/accessory tables with Drill
+ * costs and taught abilities*. The kit lives under `src/data/equipment/` (one
+ * module per slot). These tests check that every slot is substantially filled,
+ * every weapon family has real choice, and every Drill binding resolves to an
+ * authored ability with a sane, positive cost.
+ * ------------------------------------------------------------------------ */
+
+/** A floor for each slot's table, so a slot cannot silently be emptied. */
+const SLOT_MINIMUMS: Readonly<Record<string, number>> = {
+  weapon: 20,
+  offhand: 4,
+  armour: 8,
+  head: 6,
+  accessory: 8,
+};
+
+describe("authored equipment (data/equipment, T090)", () => {
+  it("authors a unique, validated full kit catalogue in canonical order", () => {
+    expect(EQUIPMENT_LIST).toHaveLength(EQUIPMENT_KEYS.length);
+    expect(Object.keys(EQUIPMENT)).toHaveLength(EQUIPMENT_KEYS.length);
+    expect(new Set(EQUIPMENT_KEYS).size).toBe(EQUIPMENT_KEYS.length);
+    expect(EQUIPMENT_LIST.map((item) => item.id)).toEqual([...EQUIPMENT_KEYS]);
+    for (const id of EQUIPMENT_KEYS) {
+      expect(EquipmentDefSchema.parse(EQUIPMENT[id])).toEqual(EQUIPMENT[id]);
+    }
+  });
+
+  it("fills every equip slot with a substantial table", () => {
+    for (const slot of EQUIP_SLOTS) {
+      expect(equipmentForSlot(slot).length, `${slot} table`).toBeGreaterThanOrEqual(
+        SLOT_MINIMUMS[slot] ?? 1,
+      );
+    }
+  });
+
+  it("covers every weapon family with more than one real option", () => {
+    for (const weaponType of WEAPON_TYPES) {
+      const options = EQUIPMENT_LIST.filter((item) => item.weaponType === weaponType);
+      expect(options.length, `weapon family ${weaponType}`).toBeGreaterThanOrEqual(2);
+      expect(options.every((item) => item.slot === "weapon" || item.slot === "offhand")).toBe(true);
+    }
+  });
+
+  it("represents all five powers with depot-discount kit", () => {
+    for (const power of POWER_KEYS) {
+      expect(
+        EQUIPMENT_LIST.some((item) => item.power === power),
+        `no kit carries the ${power} discount`,
+      ).toBe(true);
+    }
+  });
+
+  it("gives every taught ability a positive, bounded Drill cost", () => {
+    let authored = 0;
+    for (const item of EQUIPMENT_LIST) {
+      const seen = new Set<string>();
+      for (const teach of item.teaches) {
+        expect(teach.abilityId, item.id).not.toMatch(/\s/);
+        expect(Number.isInteger(teach.ap), `${item.id} → ${teach.abilityId}`).toBe(true);
+        expect(teach.ap, `${item.id} → ${teach.abilityId}`).toBeGreaterThan(0);
+        expect(teach.ap, `${item.id} → ${teach.abilityId}`).toBeLessThanOrEqual(400);
+        expect(seen.has(teach.abilityId), `${item.id} teaches ${teach.abilityId} twice`).toBe(
+          false,
+        );
+        seen.add(teach.abilityId);
+        authored += 1;
+      }
+    }
+    expect(authored).toBeGreaterThanOrEqual(20);
+  });
+
+  it("resolves every taught ability to the authored catalogue", () => {
+    const abilityIds = new Set(ABILITY_LIST.map((ability) => ability.id));
+    for (const item of EQUIPMENT_LIST) {
+      for (const teach of item.teaches) {
+        expect(abilityIds.has(teach.abilityId), `${item.id} → ${teach.abilityId}`).toBe(true);
+      }
+    }
+  });
+
+  it("uses only known elements and on-hit conditions", () => {
+    for (const item of EQUIPMENT_LIST) {
+      if (item.element !== undefined) {
+        expect(ELEMENT_KEYS, item.id).toContain(item.element);
+      }
+      for (const conditionId of item.inflicts) {
+        expect(
+          (CONDITION_KEYS as readonly string[]).includes(conditionId),
+          `${item.id} inflicts unknown condition ${conditionId}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("passes the display-integrity sweep", () => {
+    const bundle = DataBundleSchema.parse({ equipment: EQUIPMENT_LIST });
+    expect(() => assertDisplayIntegrity(bundle)).not.toThrow();
+  });
+
+  it("carries no FFTA trademarks in equipment display text", () => {
+    const text = EQUIPMENT_LIST.flatMap((item) => [item.name, item.description, item.flavour])
+      .join(" ")
+      .toLowerCase();
+    for (const marker of FFTA_MARKERS) {
+      expect(text, `equipment text must not contain "${marker}"`).not.toContain(marker);
     }
   });
 });

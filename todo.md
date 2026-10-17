@@ -704,7 +704,7 @@ deterministic.
 - done: Every post has a complete, validated action set.
 
 ### T090 — Equipment tables
-- status: todo
+- status: done
 - deps: [T050, T088]
 - files: src/data/equipment/*.ts
 - verify: npm run test -- --run tests/unit/data.test.ts

@@ -14,7 +14,9 @@ holds the authored definitions and the Zod schemas that validate them.
 | `schema.ts` | Zod schemas + inferred types for every content kind. **Start here.**    |
 | `index.ts`  | Re-exports the schema surface for consumers.                            |
 | `maps/`     | Locations + battle maps (schemas, layout expander, authored tables).    |
-| `*.ts`      | Content collections, added in later phases (posts, equipment, ...).     |
+| `equipment/`| Authored kit split by slot (weapons, armour, accessories) + registry.    |
+| `abilities/`| Authored action/reaction/trait/volley catalogue per power.               |
+| `*.ts`      | Content collections, added in later phases (posts, enemies, ...).        |
 
 Later tasks populate the collections named in the schema bundle:
 
