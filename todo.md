@@ -239,7 +239,7 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - done: Single/AoE/self/ally/enemy target predicates with range and LoS.
 
 ### T029 — PixiJS isometric renderer (grid + camera)
-- status: todo
+- status: done
 - deps: [T007, T013]
 - files: src/render/scene.ts, src/render/tiles.ts
 - verify: npm run build

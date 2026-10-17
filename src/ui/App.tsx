@@ -4,8 +4,8 @@ import { createScene } from "../render/scene";
 
 /**
  * Application shell: a full-bleed battlefield canvas with a DOM HUD overlaid.
- * The canvas is a placeholder until the deterministic engine (Phase 1) and the
- * PixiJS renderer (Phase 2) land.
+ * The canvas is driven by the PixiJS isometric renderer (T029); the HUD still
+ * shows placeholder data until the battle controller is wired in.
  */
 export function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,7 +24,7 @@ export function App() {
           <p className="kicker">A Napoleonic small-squad tactics RPG</p>
           <h1>Lines of Glory</h1>
         </div>
-        <span className="badge">Prototype · Phase 0</span>
+        <span className="badge">Prototype · Phase 2</span>
       </header>
 
       <main className="stage">
