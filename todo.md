@@ -394,9 +394,9 @@ deterministic.
 - done: All five powers and their role trees authored (≥ 25 posts, names from the mapping doc).
 
 ### T048 — Drill learning from kit
-- status: todo
+- status: done
 - deps: [T046, T050]
-- files: src/engine/progression/drill.ts
+- files: src/engine/progression/drill.ts, tests/unit/drill.test.ts
 - verify: npm run test -- --run tests/unit/drill.test.ts
 - done: Abilities are bound to equipment; battle awards Drill distributed to equipped unmastered abilities; mastery is permanent.
 
@@ -901,7 +901,7 @@ deterministic.
 - [ ] Physical/magical damage formulas — documented (see `Attack_(command).md`, `Magic_(command).md`); only the ambiguous secondary line and the healing formula need decisions (T033/T036).
 - [ ] FFTA MP regeneration — `MP_(stat).md` FFTA section is a stub; T040 authored a default schedule (`ELAN_REGEN_AMOUNT` every `ELAN_REGEN_INTERVAL_TICKS`) and morale thresholds, still pending the Phase 13 balance pass.
 - [ ] Exact Orders Tempo charge values, per-action tempo and Speed scaling (T019).
-- [ ] Drill-to-mastery thresholds per ability (T048).
+- [x] Drill-to-mastery thresholds per ability — authored as `EquipmentDef.teaches[].ap` and resolved by `src/engine/progression/drill.ts` (T048); a Phase 13 pass may retune the per-item costs.
 - [ ] Post-unlock thresholds (T046).
 - [ ] Article generation frequency/pool and commended-action weighting (T055).
 - [ ] Volley damage scaling with Honour and number of linkers (T061).
