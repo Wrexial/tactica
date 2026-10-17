@@ -524,7 +524,7 @@ deterministic.
 - done: No Provost or Articles; no Honour; KO is permanent; commander KO ends the campaign.
 
 ### T066 — Provost entity
-- status: todo
+- status: done
 - deps: [T057]
 - files: src/engine/provost.ts
 - verify: npm run test -- --run tests/unit/provost.test.ts
