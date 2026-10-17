@@ -496,7 +496,7 @@ deterministic.
 - done: Initiator spends Honour; adjacent allies chain in; damage scales with Honour spent.
 
 ### T062 — Guard Sorties
-- status: todo
+- status: done
 - deps: [T060]
 - files: src/engine/actions/guardSortie.ts, src/data/guards.ts
 - verify: npm run test -- --run tests/unit/guardSortie.test.ts
