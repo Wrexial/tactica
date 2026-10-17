@@ -757,7 +757,7 @@ deterministic.
 - done: Avoids Article violations except for Commissioned units.
 
 ### T097 — Ability/item heuristics
-- status: todo
+- status: done
 - deps: [T095]
 - files: src/ai/heuristics.ts
 - verify: npm run test -- --run tests/unit/ai.test.ts

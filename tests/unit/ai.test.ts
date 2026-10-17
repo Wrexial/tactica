@@ -12,6 +12,19 @@ import {
   weightsFromProfile,
   type UtilityAbilitySpec,
 } from "../../src/ai/utility";
+import {
+  ELAN_ROUTED_PENALTY,
+  ELAN_SHAKEN_PENALTY,
+  classifyAbility,
+  consumableScarcity,
+  effectiveHeal,
+  elanBudget,
+  elanCostPenalty,
+  evaluateAbility,
+  healNeed,
+  healUrgencyBonus,
+  projectedMorale,
+} from "../../src/ai/heuristics";
 import { ARTICLES } from "../../src/data/articles";
 import { AI_PROFILES } from "../../src/data/enemies/profiles";
 import type { StatBlock } from "../../src/data/schema";
@@ -19,10 +32,11 @@ import { createBattleOrders } from "../../src/engine/actions/orders";
 import type { ActionSpec } from "../../src/engine/actions/resolve";
 import { createBattle, step, type BattleState } from "../../src/engine/battle";
 import { coord, type Coord } from "../../src/engine/grid";
-import { asAbilityId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
+import { asAbilityId, asConditionId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
 import { commission } from "../../src/engine/rules/articles";
 import { createTerrainMap } from "../../src/engine/terrain";
 import { createUnit, type Unit, type UnitInit } from "../../src/engine/unit";
+import { forecastAbility } from "../../src/ui/battleForecast";
 
 /* --------------------------------------------------------------------------
  * T095 — Utility-based AI
@@ -585,5 +599,299 @@ describe("articleSubjectForCandidate", () => {
       [],
     );
     expect(articleBreaches(orders, articleSubjectForCandidate(actor, null, true))).toEqual([]);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T097 — Ability/item heuristics
+ *
+ * Support actions need their own judgement: a bandage is worth more on a dying
+ * soldier than on a healthy one; a buff the ally already carries is redundant;
+ * a one-shot item is kit to be rationed; and spending the last Élan can break
+ * a soldier's nerve. These tests pin that reasoning both through the pure
+ * heuristics and through `chooseTurn`.
+ * ------------------------------------------------------------------------ */
+
+const HEAL: UtilityAbilitySpec = {
+  id: asAbilityId("surgical-dressing"),
+  mpCost: 0,
+  chargeTime: 0,
+  range: 3,
+  power: 80,
+  target: "ally",
+  effects: [{ kind: "heal", power: 80 }],
+};
+
+const HEAL_ITEM: UtilityAbilitySpec = {
+  ...HEAL,
+  id: asAbilityId("field-dressing-kit"),
+  consumable: true,
+  charges: 1,
+};
+
+const BUFF: UtilityAbilitySpec = {
+  id: asAbilityId("form-square"),
+  mpCost: 0,
+  chargeTime: 0,
+  range: 3,
+  power: 0,
+  target: "ally",
+  effects: [{ kind: "condition", conditionId: asConditionId("protect") }],
+};
+
+const REVIVE: UtilityAbilitySpec = {
+  id: asAbilityId("revive-casualty"),
+  mpCost: 0,
+  chargeTime: 0,
+  range: 2,
+  power: 70,
+  target: "ally",
+  effects: [{ kind: "revive", power: 70 }],
+};
+
+const CLEANSE: UtilityAbilitySpec = {
+  id: asAbilityId("cleanse-ailment"),
+  mpCost: 0,
+  chargeTime: 0,
+  range: 3,
+  power: 0,
+  target: "ally",
+  effects: [{ kind: "cleanse", conditionId: asConditionId("poison") }],
+};
+
+const DEBUFF: UtilityAbilitySpec = {
+  id: asAbilityId("delay-the-enemy"),
+  mpCost: 0,
+  chargeTime: 0,
+  range: 5,
+  power: 0,
+  target: "enemy",
+  effects: [{ kind: "condition", conditionId: asConditionId("slow") }],
+};
+
+const STRIKE: UtilityAbilitySpec = {
+  id: asAbilityId("free-shot"),
+  mpCost: 0,
+  chargeTime: 0,
+  range: 5,
+  power: 100,
+  effects: [{ kind: "steel", power: 100 }],
+};
+
+const COSTLY_STRIKE: UtilityAbilitySpec = {
+  ...STRIKE,
+  id: asAbilityId("costly-shot"),
+  mpCost: 5,
+};
+
+/** A battle whose catalogue is the given support orders. */
+function supportBattle(
+  units: readonly Unit[],
+  abilities: readonly UtilityAbilitySpec[],
+): BattleState {
+  return createBattle(1815, { map: MAP, units, abilities });
+}
+
+/**
+ * The rich action catalogue to hand the AI: `createBattle` stores only the
+ * minimal `ActionSpec`, so target rules and effects are supplied to the
+ * planner through {@link UtilityOptions.abilities} (exactly as authored
+ * content will).
+ */
+function supportOptions(
+  ...specs: readonly UtilityAbilitySpec[]
+): { abilities: Record<string, UtilityAbilitySpec> } {
+  const abilities: Record<string, UtilityAbilitySpec> = {};
+  for (const spec of specs) abilities[spec.id] = spec;
+  return { abilities };
+}
+
+const PROTECT_CONDITION = {
+  conditionId: asConditionId("protect"),
+  duration: 10,
+} as const;
+
+describe("classifyAbility (T097)", () => {
+  it("recognises the role an order plays", () => {
+    expect(classifyAbility(STRIKE).role).toBe("damage");
+    expect(classifyAbility(HEAL).role).toBe("heal");
+    expect(classifyAbility(REVIVE).role).toBe("revive");
+    expect(classifyAbility(BUFF).role).toBe("buff");
+    expect(classifyAbility(DEBUFF).role).toBe("debuff");
+    expect(classifyAbility(CLEANSE).role).toBe("cleanse");
+  });
+
+  it("collects conditions and elements from effects", () => {
+    const classification = classifyAbility({
+      ...BUFF,
+      element: "holy",
+      effects: [{ kind: "condition", conditionId: asConditionId("regen") }],
+    });
+    expect(classification.inflicts).toEqual(["regen"]);
+    expect(classification.elements).toEqual(["holy"]);
+  });
+
+  it("marks a spent consumable unusable", () => {
+    const stocked = classifyAbility(HEAL_ITEM);
+    expect(stocked.isConsumable).toBe(true);
+    expect(stocked.charges).toBe(1);
+    expect(stocked.usable).toBe(true);
+
+    const spent = classifyAbility({ ...HEAL_ITEM, charges: 0 });
+    expect(spent.charges).toBe(0);
+    expect(spent.usable).toBe(false);
+  });
+
+  it("rations scarcer consumables more heavily", () => {
+    expect(consumableScarcity(1)).toBeGreaterThan(consumableScarcity(3));
+    expect(consumableScarcity(null)).toBe(0);
+  });
+});
+
+describe("healNeed & effectiveHeal (T097)", () => {
+  it("raises urgency as a soldier weakens and caps the restore", () => {
+    const healthy = makeUnit(WEAK_ID, coord(0, 0), "company", ENEMY_STATS);
+    const hurt = makeUnit(WEAK_ID, coord(0, 0), "company", ENEMY_STATS, { hp: 7 });
+
+    expect(healNeed(healthy).urgency).toBe(0);
+    expect(healNeed(hurt).urgency).toBeGreaterThan(50);
+    expect(healNeed(hurt).urgency).toBeGreaterThan(healNeed(healthy).urgency);
+
+    expect(effectiveHeal(hurt, 100)).toBe(43); // 50 max − 7 current
+    expect(effectiveHeal(healthy, 100)).toBe(0);
+    expect(healUrgencyBonus(hurt, 20)).toBeGreaterThan(healUrgencyBonus(healthy, 20));
+  });
+});
+
+describe("Élan management (T097)", () => {
+  it("reports the safe Élan budget above the Shaken threshold", () => {
+    const unit = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS, { mp: 15 });
+    // ACTOR_STATS has 20 max Élan; the Shaken threshold is 10.
+    expect(elanBudget(unit)).toBe(5);
+  });
+
+  it("penalises spending that crosses into Shaken or Routed", () => {
+    const steady = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS, { mp: 11 });
+
+    expect(elanCostPenalty(steady, 0)).toBe(0);
+    expect(projectedMorale(steady, 1)).toBe("shaken");
+    expect(elanCostPenalty(steady, 1)).toBe(1 + ELAN_SHAKEN_PENALTY);
+
+    expect(projectedMorale(steady, 11)).toBe("routed");
+    expect(elanCostPenalty(steady, 11)).toBe(11 + ELAN_ROUTED_PENALTY);
+  });
+
+  it("does not double-penalise an already-shaken soldier", () => {
+    const shaken = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS, { mp: 5 });
+    expect(projectedMorale(shaken, 2)).toBe("shaken");
+    expect(elanCostPenalty(shaken, 2)).toBe(2); // thrift cost only
+  });
+});
+
+describe("chooseTurn — support heuristics (T097)", () => {
+  it("heals the soldier who needs it most", () => {
+    const battle = supportBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(WEAK_ID, coord(0, 1), "company", ENEMY_STATS, { hp: 7 }),
+        makeUnit(TOUGH_ID, coord(1, 0), "company", ENEMY_STATS),
+      ],
+      [HEAL],
+    );
+
+    const plan = chooseTurn(battle, ACTOR_ID, supportOptions(HEAL));
+    expect(plan.abilityId).toBe(HEAL.id);
+    expect(plan.target).toEqual({ kind: "unit", unitId: WEAK_ID });
+    expect(plan.score.healing).toBeGreaterThan(0);
+    expect(plan.score.healUrgency).toBeGreaterThan(0);
+  });
+
+  it("places a fresh buff on an ally", () => {
+    const battle = supportBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS, {
+          conditions: [PROTECT_CONDITION],
+        }),
+        makeUnit(WEAK_ID, coord(0, 1), "company", ENEMY_STATS),
+      ],
+      [BUFF],
+    );
+
+    const plan = chooseTurn(battle, ACTOR_ID, supportOptions(BUFF));
+    expect(plan.abilityId).toBe(BUFF.id);
+    expect(plan.target).toEqual({ kind: "unit", unitId: WEAK_ID });
+    expect(plan.score.buffValue).toBeGreaterThan(0);
+    expect(plan.score.redundantBuffs).toBe(0);
+  });
+
+  it("scores a buff as redundant when the ally already carries it", () => {
+    const actor = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS);
+    const ally = makeUnit(WEAK_ID, coord(0, 1), "company", ENEMY_STATS, {
+      conditions: [PROTECT_CONDITION],
+    });
+    const battle = supportBattle([actor, ally], [BUFF]);
+
+    const forecast = forecastAbility(battle, actor, BUFF, { kind: "unit", unitId: WEAK_ID });
+    const evaluation = evaluateAbility(battle, BUFF, forecast);
+    expect(evaluation.role).toBe("buff");
+    expect(evaluation.buffValue).toBe(0);
+    expect(evaluation.redundantBuffs).toBe(1);
+  });
+
+  it("prefers a renewable heal to an equal one-shot item", () => {
+    const battle = supportBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(WEAK_ID, coord(0, 1), "company", ENEMY_STATS, { hp: 7 }),
+      ],
+      [HEAL, HEAL_ITEM],
+    );
+
+    const plan = chooseTurn(battle, ACTOR_ID, supportOptions(HEAL, HEAL_ITEM));
+    expect(plan.abilityId).toBe(HEAL.id);
+    expect(plan.score.consumablePenalty).toBe(0);
+  });
+
+  it("spends a consumable when it is the only way to treat a wound", () => {
+    const battle = supportBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(WEAK_ID, coord(0, 1), "company", ENEMY_STATS, { hp: 7 }),
+      ],
+      [HEAL_ITEM],
+    );
+
+    const plan = chooseTurn(battle, ACTOR_ID, supportOptions(HEAL_ITEM));
+    expect(plan.abilityId).toBe(HEAL_ITEM.id);
+    expect(plan.score.consumablePenalty).toBe(consumableScarcity(1));
+  });
+
+  it("never orders an out-of-stock consumable", () => {
+    const spent: UtilityAbilitySpec = { ...HEAL_ITEM, charges: 0 };
+    const battle = supportBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(WEAK_ID, coord(0, 1), "company", ENEMY_STATS, { hp: 7 }),
+      ],
+      [spent],
+    );
+
+    const plan = chooseTurn(battle, ACTOR_ID, supportOptions(spent));
+    expect(plan.abilityId).toBeNull();
+    expect(plan.commands.some((command) => command.kind === "act")).toBe(false);
+  });
+
+  it("avoids an Élan spend that would break the soldier's nerve", () => {
+    const battle = supportBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS, { mp: 5 }),
+        makeUnit(WEAK_ID, coord(0, 1), "enemy", ENEMY_STATS),
+      ],
+      [STRIKE, COSTLY_STRIKE],
+    );
+
+    const plan = chooseTurn(battle, ACTOR_ID, supportOptions(STRIKE, COSTLY_STRIKE));
+    expect(plan.abilityId).toBe(STRIKE.id);
+    expect(plan.score.elanPenalty).toBe(0);
   });
 });

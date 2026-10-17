@@ -72,6 +72,18 @@
  * filter. With no posting supplied the AI is entirely law-agnostic, exactly as
  * before.
  *
+ * ## Support, consumables & Élan (T097)
+ *
+ * Damage is not the whole turn. The `./heuristics` module supplies the
+ * judgements the raw terms cannot: medicine is valued by what it *actually*
+ * restores (no overheal) and by how close the patient is to falling; a fresh
+ * buff is worth a priority, a duplicate one nothing; a **consumable** carries
+ * a scarcity penalty so limited kit is rationed until the need is urgent; and
+ * an order that would spend the soldier down into **Shaken** or **Routed**
+ * (Élan is morale, mapping §5, decision D4) is penalised. Each candidate's
+ * forecast is run through {@link evaluateAbility}, and the resulting
+ * priorities are folded into {@link CandidateScore} under their own weights.
+ *
  * Reference: `docs/wiki/pages/Final_Fantasy_Tactics_Advance_jobs.md` (job/AI
  * behaviour is largely emergent), `docs/wiki/pages/Law_system_(Tactics_
  * Advance).md` (forbidden acts, the Boss Medal), mapping §9 and §11–§12. The
@@ -106,6 +118,12 @@ import {
   type ForecastAbilitySpec,
   type ForecastOptions,
 } from "../ui/battleForecast";
+import {
+  classifyAbility,
+  elanCostPenalty,
+  evaluateAbility,
+  type HeuristicEvaluation,
+} from "./heuristics";
 
 /* --------------------------------------------------------------------------
  * Errors
@@ -140,8 +158,20 @@ export interface UtilityWeights {
   readonly kill: number;
   /** Value per point of threat represented by every hostile the blow damages. */
   readonly threat: number;
-  /** Value per point of medicine restored to an ally. */
+  /** Value per point of medicine actually restored to an ally. */
   readonly healing: number;
+  /** Value per point of the urgency bonus on a heal (T097). */
+  readonly healUrgency: number;
+  /** Value per point of fresh buff priority placed on an ally (T097). */
+  readonly buff: number;
+  /** Value per point of harmful conditions lifted from an ally (T097). */
+  readonly cleanse: number;
+  /** Value per point of revive priority for a fallen ally (T097). */
+  readonly revive: number;
+  /** Penalty per point of consumable scarcity — rationing limited kit (T097). */
+  readonly consumable: number;
+  /** Penalty per point of the Élan/morale cost of an order (T097). */
+  readonly elan: number;
   /** Penalty per point of hit-weighted damage the order would deal an ally. */
   readonly friendlyFire: number;
   /** Value per elevation layer held over an engaged target. */
@@ -170,6 +200,12 @@ export const DEFAULT_UTILITY_WEIGHTS: UtilityWeights = {
   kill: 25,
   threat: 3,
   healing: 3,
+  healUrgency: 2,
+  buff: 3,
+  cleanse: 5,
+  revive: 8,
+  consumable: 1,
+  elan: 1,
   friendlyFire: 40,
   elevation: 2,
   flank: 4,
@@ -234,6 +270,15 @@ export interface UtilityAbilitySpec extends ForecastAbilitySpec {
   readonly weaponType?: WeaponType;
   /** Conditions the action inflicts (`AbilityDef.inflicts`). */
   readonly inflicts?: readonly string[];
+  /** Conditions the action removes (`AbilityDef.cleanses`). */
+  readonly cleanses?: readonly string[];
+  /**
+   * A single-use item (T097): using it spends limited stores rather than only
+   * Élan, so the AI rations it against the urgency of the need.
+   */
+  readonly consumable?: boolean;
+  /** Remaining charges for a consumable; omitted treats it as in stock. */
+  readonly charges?: number;
 }
 
 /**
@@ -492,8 +537,22 @@ export interface CandidateScore {
   readonly killThreat: number;
   /** Summed {@link targetThreat} of every hostile the order would damage. */
   readonly engagedThreat: number;
-  /** Hit-weighted medicine restored to allies. */
+  /** Medicine actually restored to allies (no overheal, T097). */
   readonly healing: number;
+  /** Urgency-weighted bonus on top of {@link healing} (T097). */
+  readonly healUrgency: number;
+  /** Priority for fresh buffs placed on allies (T097). */
+  readonly buffValue: number;
+  /** Priority for harmful conditions lifted from allies (T097). */
+  readonly cleanseValue: number;
+  /** Priority for reviving fallen allies (T097). */
+  readonly reviveValue: number;
+  /** Buffs that would duplicate a condition the ally already carries (T097). */
+  readonly redundantBuffs: number;
+  /** Scarcity penalty for spending a limited consumable (T097). */
+  readonly consumablePenalty: number;
+  /** Élan/morale penalty for the order's cost (T097). */
+  readonly elanPenalty: number;
   /** Hit-weighted damage the order would deal to allies (area fire). */
   readonly friendlyFire: number;
   /** Summed elevation advantage (layers) over engaged targets. */
@@ -548,6 +607,10 @@ interface ScoreInputs {
   readonly forecast: ReturnType<typeof forecastAbility> | null;
   readonly breaches: readonly ArticleMatch[];
   readonly weights: UtilityWeights;
+  /** Support/consumable priorities from T097, or `null` for a pure march. */
+  readonly evaluation: HeuristicEvaluation | null;
+  /** T097 Élan/morale penalty for the order's cost (`0` for a march). */
+  readonly elanPenalty: number;
 }
 
 /**
@@ -557,13 +620,23 @@ interface ScoreInputs {
  * tunable and testable.
  */
 function scoreCandidate(inputs: ScoreInputs): CandidateScore {
-  const { state, actor, destination, moveCost, exposure, intent, forecast, breaches, weights } =
-    inputs;
+  const {
+    state,
+    actor,
+    destination,
+    moveCost,
+    exposure,
+    intent,
+    forecast,
+    breaches,
+    weights,
+    evaluation,
+    elanPenalty,
+  } = inputs;
 
   let expectedDamage = 0;
   let killThreat = 0;
   let engagedThreat = 0;
-  let healing = 0;
   let friendlyFire = 0;
   let elevation = 0;
   let flank = 0;
@@ -581,21 +654,42 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
         if (target.facing === "side") flank += 1;
         else if (target.facing === "rear") flank += 2;
       } else {
-        healing += target.healing;
+        // Medicine and buffs are valued from the T097 evaluation below, which
+        // caps the restore at the target's missing HP and scores duplicates.
         friendlyFire += target.expectedDamage;
       }
     }
   }
 
+  // Support priorities (T097). A pure march has no evaluation and scores none.
+  const healing = evaluation?.effectiveHealing ?? 0;
+  const healUrgency = evaluation?.healUrgency ?? 0;
+  const buffValue = evaluation?.buffValue ?? 0;
+  const cleanseValue = evaluation?.cleanseValue ?? 0;
+  const reviveValue = evaluation?.reviveValue ?? 0;
+  const redundantBuffs = evaluation?.redundantBuffs ?? 0;
+  const consumablePenalty = evaluation?.consumablePenalty ?? 0;
+
   const cover = blocksSightAt(state.map, destination) ? 1 : 0;
-  const engaged = expectedDamage > 0 || healing > 0;
+  const engaged =
+    expectedDamage > 0 ||
+    healing > 0 ||
+    buffValue > 0 ||
+    cleanseValue > 0 ||
+    reviveValue > 0;
   const proximity = engaged ? 0 : nearestHostileDistance(state, actor, destination);
 
   const total =
     weights.damage * expectedDamage +
     weights.kill * killThreat +
     weights.threat * engagedThreat +
-    weights.healing * healing -
+    weights.healing * healing +
+    weights.healUrgency * healUrgency +
+    weights.buff * buffValue +
+    weights.cleanse * cleanseValue +
+    weights.revive * reviveValue -
+    weights.consumable * consumablePenalty -
+    weights.elan * elanPenalty -
     weights.friendlyFire * friendlyFire +
     weights.elevation * elevation +
     weights.flank * flank +
@@ -610,6 +704,13 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     killThreat,
     engagedThreat,
     healing,
+    healUrgency,
+    buffValue,
+    cleanseValue,
+    reviveValue,
+    redundantBuffs,
+    consumablePenalty,
+    elanPenalty,
     friendlyFire,
     elevation,
     flank,
@@ -878,6 +979,8 @@ export function chooseTurn(
 
     for (const spec of specs) {
       if (!canAfford(placedActor, spec)) continue;
+      // A consumable with no charges left cannot be ordered at all (T097).
+      if (!classifyAbility(spec).usable) continue;
       // Judge the order (and the march to reach it) before aiming it, so an
       // unlawful action is never even targeted at a foe.
       const breaches = articleBreaches(
@@ -888,6 +991,10 @@ export function chooseTurn(
       for (const target of targetSelections(placedState, placedActor, spec)) {
         const forecast = forecastAbility(placedState, placedActor, spec, target, options.forecast);
         if (!forecast.ok || forecast.targets.length === 0) continue;
+        // Support/consumable priorities (T097) and the Élan morale cost of
+        // committing the order, judged against the placed soldier.
+        const evaluation = evaluateAbility(placedState, spec, forecast);
+        const elanPenalty = elanCostPenalty(placedActor, spec.mpCost);
         consider({
           unitId: actor.id,
           destination: destination.at,
@@ -905,6 +1012,8 @@ export function chooseTurn(
             forecast,
             breaches,
             weights,
+            evaluation,
+            elanPenalty,
           }),
         });
       }
@@ -936,6 +1045,8 @@ export function chooseTurn(
             forecast: null,
             breaches,
             weights,
+            evaluation: null,
+            elanPenalty: 0,
           }),
         });
       }
@@ -962,6 +1073,8 @@ export function chooseTurn(
       forecast: null,
       breaches: [],
       weights,
+      evaluation: null,
+      elanPenalty: 0,
     }),
   });
 
@@ -989,6 +1102,8 @@ export function chooseTurn(
         forecast: null,
         breaches: [],
         weights,
+        evaluation: null,
+        elanPenalty: 0,
       }),
     };
   }
