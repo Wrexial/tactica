@@ -33,12 +33,33 @@ import {
 import { ARTICLE_LIST } from "../../src/data/articles";
 import { CONDITION_KEYS } from "../../src/data/conditions";
 import {
+  AI_PROFILES,
+  AI_PROFILE_KEYS,
+  AI_PROFILE_LIST,
+  ENEMIES,
+  ENEMY_KEYS,
+  ENEMY_LIST,
+  EnemyAiProfileDefSchema,
+  capturableEnemies,
+  dropsFor,
+  enemyFamilies,
+  enemiesAtLevel,
+  enemiesForAiProfile,
+  enemiesForFamily,
+  enemiesUpToLevel,
+  findEnemy,
+  getEnemy,
+  isAiProfileKey,
+  isEnemyKey,
+} from "../../src/data/enemies";
+import {
   EQUIPMENT,
   EQUIPMENT_KEYS,
   EQUIPMENT_LIST,
   equipmentForSlot,
 } from "../../src/data/equipment";
 import { POSTS, POST_LIST } from "../../src/data/posts";
+import { irregularDefOf } from "../../src/engine/barracks";
 import { REACTION_IDS } from "../../src/engine/reactions";
 import {
   cleanWikiText,
@@ -928,6 +949,138 @@ describe("authored equipment (data/equipment, T090)", () => {
       .toLowerCase();
     for (const marker of FFTA_MARKERS) {
       expect(text, `equipment text must not contain "${marker}"`).not.toContain(marker);
+    }
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T091 — Enemy roster + drops
+ *
+ * Pins the task's "done when": *irregular/auxiliary troop roster with stats,
+ * actions, drops and AI profiles*. The roster lives under `src/data/enemies/`
+ * (one module per mapping §11 archetype plus the AI temperaments). These tests
+ * check the roster is complete and validated, that every action and drop
+ * resolves to authored content, that every AI profile resolves, and that the
+ * engine's barracks seam can project an authored troop without complaint.
+ * ------------------------------------------------------------------------ */
+
+/** The mapping §11 archetype families the roster must cover. */
+const REQUIRED_ENEMY_FAMILIES = [
+  "militia",
+  "guerrilla",
+  "petard",
+  "battery",
+  "cavalry",
+  "observer",
+  "command",
+] as const;
+
+describe("authored enemies (data/enemies, T091)", () => {
+  it("authors a unique, validated roster in canonical order", () => {
+    expect(ENEMY_LIST).toHaveLength(ENEMY_KEYS.length);
+    expect(Object.keys(ENEMIES)).toHaveLength(ENEMY_KEYS.length);
+    expect(new Set(ENEMY_KEYS).size).toBe(ENEMY_KEYS.length);
+    expect(ENEMY_LIST.map((enemy) => enemy.id)).toEqual([...ENEMY_KEYS]);
+    expect(ENEMY_LIST.length).toBeGreaterThanOrEqual(20);
+    for (const id of ENEMY_KEYS) {
+      expect(EnemyDefSchema.parse(ENEMIES[id])).toEqual(ENEMIES[id]);
+      expect(ENEMIES[id].stats.hp, `${id} must have hit points`).toBeGreaterThan(0);
+      expect(ENEMIES[id].stats.spd, `${id} must have speed`).toBeGreaterThan(0);
+    }
+  });
+
+  it("covers every mapping §11 archetype family", () => {
+    const families = enemyFamilies();
+    for (const family of REQUIRED_ENEMY_FAMILIES) {
+      expect(families, `no troop in family ${family}`).toContain(family);
+      expect(enemiesForFamily(family).length, family).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it("resolves every troop action to an authored action ability", () => {
+    for (const enemy of ENEMY_LIST) {
+      expect(enemy.abilities.length, `${enemy.id} has no actions`).toBeGreaterThanOrEqual(1);
+      for (const abilityId of enemy.abilities) {
+        const ability = findAbility(abilityId);
+        expect(ability, `${enemy.id} → ${abilityId}`).toBeDefined();
+        expect(ability?.abilityClass, `${enemy.id} → ${abilityId}`).toBe("action");
+      }
+    }
+  });
+
+  it("resolves every drop to authored kit with a positive weight", () => {
+    for (const enemy of ENEMY_LIST) {
+      for (const drop of dropsFor(enemy.id)) {
+        expect(
+          EQUIPMENT[drop.itemId as keyof typeof EQUIPMENT],
+          `${enemy.id} → ${drop.itemId}`,
+        ).toBeDefined();
+        expect(Number.isInteger(drop.weight), `${enemy.id} → ${drop.itemId}`).toBe(true);
+        expect(drop.weight, `${enemy.id} → ${drop.itemId}`).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("resolves every AI profile and keeps the fallback first", () => {
+    for (const enemy of ENEMY_LIST) {
+      expect(isAiProfileKey(enemy.aiProfile), `${enemy.id} → ${enemy.aiProfile}`).toBe(true);
+    }
+    expect(AI_PROFILE_LIST.length).toBeGreaterThanOrEqual(8);
+    expect(AI_PROFILE_KEYS[0]).toBe("default");
+    for (const key of AI_PROFILE_KEYS) {
+      expect(EnemyAiProfileDefSchema.parse(AI_PROFILES[key])).toEqual(AI_PROFILES[key]);
+    }
+  });
+
+  it("fields both capturable irregulars and troops that never surrender", () => {
+    expect(capturableEnemies().length).toBeGreaterThan(0);
+    expect(capturableEnemies().length).toBeLessThan(ENEMY_LIST.length);
+    expect(ENEMY_LIST.some((enemy) => !enemy.capturable)).toBe(true);
+  });
+
+  it("looks troops up by id and rejects unknown ones", () => {
+    const first = ENEMY_KEYS[0];
+    expect(isEnemyKey(first)).toBe(true);
+    expect(isEnemyKey("not-a-troop")).toBe(false);
+    expect(getEnemy(first).id).toBe(first);
+    expect(() => getEnemy("missing" as never)).toThrow(RangeError);
+    expect(findEnemy(first)?.id).toBe(first);
+    expect(findEnemy("missing")).toBeUndefined();
+  });
+
+  it("queries by family, level and profile", () => {
+    const level = ENEMY_LIST[0].level;
+    expect(enemiesAtLevel(level).every((enemy) => enemy.level === level)).toBe(true);
+    expect(enemiesUpToLevel(level).every((enemy) => enemy.level <= level)).toBe(true);
+    const family = enemyFamilies()[0];
+    expect(enemiesForFamily(family).every((enemy) => enemy.family === family)).toBe(true);
+    expect(enemiesForAiProfile("default").every((enemy) => enemy.aiProfile === "default")).toBe(
+      true,
+    );
+  });
+
+  it("projects an authored troop through the engine barracks seam", () => {
+    const enemy = ENEMY_LIST.find((candidate) => candidate.capturable);
+    expect(enemy, "the roster needs at least one capturable troop").toBeDefined();
+    if (enemy === undefined) return;
+    const band = irregularDefOf(enemy);
+    expect(band.id).toBe(enemy.id);
+    expect(band.level).toBe(enemy.level);
+    expect(band.abilities).toEqual(enemy.abilities);
+    expect(band.capturable).toBe(true);
+  });
+
+  it("passes the display-integrity sweep", () => {
+    const bundle = DataBundleSchema.parse({ enemies: ENEMY_LIST });
+    expect(() => assertDisplayIntegrity(bundle)).not.toThrow();
+  });
+
+  it("carries no FFTA trademarks in troop display text", () => {
+    const text = ENEMY_LIST.flatMap((enemy) => [enemy.name, enemy.description, enemy.flavour])
+      .join(" ")
+      .toLowerCase();
+    for (const marker of FFTA_MARKERS) {
+      expect(text, `enemy text must not contain "${marker}"`).not.toContain(marker);
     }
   });
 });

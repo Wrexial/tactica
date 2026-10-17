@@ -711,7 +711,7 @@ deterministic.
 - done: Full weapon/armour/accessory tables with Drill costs and taught abilities.
 
 ### T091 — Enemy roster + drops
-- status: todo
+- status: done
 - deps: [T008, T047]
 - files: src/data/enemies/*.ts
 - verify: npm run test -- --run tests/unit/data.test.ts
