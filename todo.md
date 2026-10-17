@@ -327,9 +327,9 @@ deterministic.
 - done: Eight reflavoured elements with weak/resist/absorb and damage modification.
 
 ### T039 — Condition (status) engine
-- status: todo
+- status: done
 - deps: [T017, T024]
-- files: src/engine/rules/conditions.ts, tests/unit/conditions.test.ts
+- files: src/engine/rules/conditions.ts, src/data/conditions.ts, src/data/schema.ts, tests/unit/conditions.test.ts
 - verify: npm run test -- --run tests/unit/conditions.test.ts
 - done: Apply/stack/expire/tick for all mapped conditions (Bleeding, Dazed, Deafened, Pinned, Formed, Braced...).
 

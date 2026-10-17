@@ -159,6 +159,24 @@ export const ConditionDefSchema = z.object({
   removedOnHit: z.boolean().default(false),
   /** Conditions this one replaces or cancels (Haste ↔ Slow, Regen...). */
   cancels: z.array(IdSchema).default([]),
+  /** Pins its bearer in place (Immobilize → Pinned). */
+  blocksMove: z.boolean().default(false),
+  /** Stops every order, movement and action (Stop, Sleep, Petrify, KO). */
+  blocksAct: z.boolean().default(false),
+  /** Bars action abilities but still allows move/basic attack (Silence, Addle). */
+  blocksAbilities: z.boolean().default(false),
+  /** Effective-stat modifiers while active (Protect, Shell, Boost, stat up/down). */
+  statMods: StatModsSchema.prefault({}),
+  /** Hit points lost each tempo tick (Poison → Bleeding). */
+  tickDamage: z.number().int().nonnegative().default(0),
+  /** Hit points restored each tempo tick (Regen → Steadied). */
+  tickHealing: z.number().int().nonnegative().default(0),
+  /** Counts down each tick and knocks the bearer out at zero (Doom). */
+  countdown: z.boolean().default(false),
+  /** Added to the bearer's to-hit term while active (Blind → Dazed). */
+  hitModifier: z.number().int().default(0),
+  /** Added to the bearer's critical-hit term while active (Advice → Counsel). */
+  critModifier: z.number().int().default(0),
 });
 export type ConditionDef = z.infer<typeof ConditionDefSchema>;
 
