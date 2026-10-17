@@ -27,7 +27,13 @@ import {
   type ArticleDef,
   type ArticleTarget,
 } from "../../src/data/schema";
-import { asArticleId, asPostId, asRegionId, asUnitId } from "../../src/engine/ids";
+import {
+  asArticleId,
+  asPostId,
+  asRegionId,
+  asUnitId,
+  type RegionId,
+} from "../../src/engine/ids";
 import { isBattleEvent } from "../../src/engine/events";
 import { coord } from "../../src/engine/grid";
 import { Rng } from "../../src/engine/rng";
@@ -52,6 +58,30 @@ import {
   type ArticleFrequencyStep,
   type ArticleRecord,
 } from "../../src/engine/rules/articles";
+import {
+  canPlayOrderCard,
+  standingOrderCard,
+} from "../../src/engine/actions/orders";
+import { HONOUR_LEGAL_KO } from "../../src/engine/rules/honour";
+import {
+  BATTLEFIELD_REGIMES,
+  articlesInForce,
+  canEarnHonour,
+  commanderKoEndsCampaign,
+  createArticlesField,
+  createBattlefield,
+  createFieldOrders,
+  createNoMansLand,
+  hasProvost,
+  isBattlefieldRegime,
+  isNoMansLand,
+  isPermanentLoss,
+  koIsPermanent,
+  regimeOf,
+  resolveAftermath,
+  resolveFieldHonour,
+  resolveKnockout,
+} from "../../src/engine/rules/noMansLand";
 
 /* --------------------------------------------------------------------------
  * T054 — Article definition
@@ -1061,5 +1091,230 @@ describe("commissions (T059)", () => {
   it("rejects a malformed commissioned flag", () => {
     const malformed = { reprimands: 0, commissioned: "yes" } as unknown as ArticleRecord;
     expect(() => escalateBreach(noFire, malformed)).toThrow(RangeError);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T065 — No-Man's Land
+ *
+ * Pins the task's "done when": **no Provost or Articles; no Honour; KO is
+ * permanent; the commander's KO ends the campaign.** The rules live in
+ * `src/engine/rules/noMansLand.ts` and are the retheme of FFTA's lawless Jagds
+ * (mapping §9): a region value names the regime, and pure helpers answer what
+ * the rest of the engine must do differently there. The tests cover the field
+ * queries, the suppressed posting, the Honour gate, permanent losses at
+ * battle's end and the commander's campaign-ending KO.
+ * ------------------------------------------------------------------------ */
+
+describe("No-Man's Land (T065)", () => {
+  const jagd = createNoMansLand(asRegionId("jagd-dorsa"));
+  const field = createArticlesField(asRegionId("peninsula"));
+
+  describe("field regime", () => {
+    it("labels an ordinary field and a lawless one", () => {
+      expect(regimeOf(field)).toBe("articles");
+      expect(regimeOf(jagd)).toBe("noMansLand");
+      expect(isNoMansLand(jagd)).toBe(true);
+      expect(isNoMansLand(field)).toBe(false);
+      expect(BATTLEFIELD_REGIMES).toEqual(["articles", "noMansLand"]);
+      expect(isBattlefieldRegime("noMansLand")).toBe(true);
+      expect(isBattlefieldRegime("jagd")).toBe(false);
+    });
+
+    it("rejects a malformed region or lawless flag", () => {
+      expect(() => createNoMansLand("" as RegionId)).toThrow(RangeError);
+      expect(() =>
+        createBattlefield(asRegionId("peninsula"), "yes" as unknown as boolean),
+      ).toThrow(RangeError);
+    });
+  });
+
+  describe("no Provost or Articles", () => {
+    it("has no Provost and no Articles in a No-Man's Land", () => {
+      expect(hasProvost(jagd)).toBe(false);
+      expect(articlesInForce(jagd)).toBe(false);
+      expect(hasProvost(field)).toBe(true);
+      expect(articlesInForce(field)).toBe(true);
+    });
+
+    it("drops the day's posting in a No-Man's Land", () => {
+      const orders = createFieldOrders(jagd, ARTICLE_LIST);
+      expect(orders.lawless).toBe(true);
+      expect(orders.articles).toEqual([]);
+    });
+
+    it("posts the day's Articles on ordinary ground", () => {
+      const orders = createFieldOrders(field, [ARTICLES["no-fire"]]);
+      expect(orders.lawless).toBe(false);
+      expect(orders.articles).toEqual([ARTICLES["no-fire"]]);
+    });
+
+    it("refuses an order card in the lawless posting", () => {
+      const orders = createFieldOrders(jagd, ARTICLE_LIST);
+      expect(canPlayOrderCard(orders, standingOrderCard(ARTICLES["no-rifle"]))).toBe(
+        "lawless",
+      );
+    });
+  });
+
+  describe("no Honour", () => {
+    it("gates Honour off in a No-Man's Land", () => {
+      expect(canEarnHonour(field)).toBe(true);
+      expect(canEarnHonour(jagd)).toBe(false);
+    });
+
+    it("awards nothing for a legal KO in a No-Man's Land", () => {
+      const actor = soldier("actor", 0, 0);
+      const result = resolveFieldHonour(actor, jagd, { legalKo: true }, 3);
+      expect(result.unit).toBe(actor);
+      expect(result.amount).toBe(0);
+      expect(result.events).toEqual([]);
+    });
+
+    it("awards nothing for a commended act in a No-Man's Land", () => {
+      const actor = soldier("actor", 0, 0);
+      const result = resolveFieldHonour(actor, jagd, {
+        commended: [ARTICLES["commend-colours"]],
+      });
+      expect(result.amount).toBe(0);
+      expect(result.unit.judgePoints).toBe(0);
+      expect(result.events).toEqual([]);
+    });
+
+    it("still awards Honour on ordinary ground", () => {
+      const actor = soldier("actor", 0, 0);
+      const result = resolveFieldHonour(actor, field, { legalKo: true }, 3);
+      expect(result.amount).toBe(HONOUR_LEGAL_KO);
+      expect(result.unit.judgePoints).toBe(HONOUR_LEGAL_KO);
+      expect(result.events.map((event) => event.kind)).toEqual(["honourChanged"]);
+    });
+  });
+
+  describe("KO is permanent", () => {
+    it("reports permanence per field", () => {
+      expect(koIsPermanent(jagd)).toBe(true);
+      expect(koIsPermanent(field)).toBe(false);
+    });
+
+    it("marks a soldier lost only in a No-Man's Land", () => {
+      const standing = soldier("standing", 0, 0);
+      const downed = { ...soldier("downed", 1, 0), hp: 0 };
+
+      const jagdAfter = resolveAftermath(jagd, [standing, downed]);
+      expect(jagdAfter.survivors.map((unit) => unit.id)).toEqual([standing.id]);
+      expect(jagdAfter.lost.map((unit) => unit.id)).toEqual([downed.id]);
+      expect(jagdAfter.lostIds).toEqual([downed.id]);
+
+      const fieldAfter = resolveAftermath(field, [standing, downed]);
+      expect(fieldAfter.lost).toEqual([]);
+      expect(fieldAfter.survivors).toEqual([standing, downed]);
+    });
+
+    it("keeps a soldier revived before the battle ends", () => {
+      const revived = { ...soldier("revived", 1, 0), hp: 5 };
+      const after = resolveAftermath(jagd, [revived]);
+      expect(after.lost).toEqual([]);
+      expect(after.survivors).toEqual([revived]);
+      expect(isPermanentLoss(jagd, revived)).toBe(false);
+    });
+
+    it("treats an out-of-action soldier in a No-Man's Land as a permanent loss", () => {
+      const downed = { ...soldier("downed", 1, 0), hp: 0 };
+      expect(isPermanentLoss(jagd, downed)).toBe(true);
+      expect(isPermanentLoss(field, downed)).toBe(false);
+    });
+
+    it("never mutates the input roster", () => {
+      const units = [soldier("a", 0, 0), { ...soldier("b", 1, 0), hp: 0 }];
+      resolveAftermath(jagd, units);
+      expect(units[1]?.hp).toBe(0);
+      expect(units).toHaveLength(2);
+    });
+  });
+
+  describe("commander KO ends the campaign", () => {
+    it("ends the campaign when the commander falls in a No-Man's Land", () => {
+      const commander = { ...soldier("commander", 1, 1), hp: 0 };
+      const ally = soldier("ally", 2, 1);
+      const result = resolveKnockout(
+        { field: jagd, units: [commander, ally], commanderId: commander.id, tick: 5 },
+        { unitId: commander.id },
+      );
+
+      expect(result.commander).toBe(true);
+      expect(result.permanent).toBe(true);
+      expect(result.campaignOver).toBe(true);
+      expect(result.finished).toBe(true);
+      expect(result.outcome).toBe("companyDefeat");
+      expect(result.events).toEqual([
+        { kind: "outOfAction", tick: 5, unitId: commander.id },
+        { kind: "battleEnded", tick: 5, outcome: "companyDefeat" },
+      ]);
+    });
+
+    it("does not end the campaign for a subordinate in a No-Man's Land", () => {
+      const commander = soldier("commander", 1, 1);
+      const downed = { ...soldier("downed", 2, 1), hp: 0 };
+      const result = resolveKnockout(
+        { field: jagd, units: [commander, downed], commanderId: commander.id, tick: 2 },
+        { unitId: downed.id, sourceId: commander.id },
+      );
+
+      expect(result.commander).toBe(false);
+      expect(result.permanent).toBe(true);
+      expect(result.campaignOver).toBe(false);
+      expect(result.finished).toBe(false);
+      expect(result.outcome).toBeNull();
+      expect(result.events).toEqual([
+        { kind: "outOfAction", tick: 2, unitId: downed.id, sourceId: commander.id },
+      ]);
+    });
+
+    it("does not end the campaign for a commander KO on ordinary ground", () => {
+      const commander = { ...soldier("commander", 1, 1), hp: 0 };
+      const result = resolveKnockout(
+        { field, units: [commander], commanderId: commander.id, tick: 1 },
+        { unitId: commander.id },
+      );
+
+      expect(commanderKoEndsCampaign(field)).toBe(false);
+      expect(result.permanent).toBe(false);
+      expect(result.campaignOver).toBe(false);
+      expect(result.finished).toBe(false);
+      expect(result.outcome).toBeNull();
+      expect(result.events.map((event) => event.kind)).toEqual(["outOfAction"]);
+    });
+
+    it("emits only well-formed battle events", () => {
+      const commander = { ...soldier("commander", 1, 1), hp: 0 };
+      const { events } = resolveKnockout(
+        { field: jagd, units: [commander], commanderId: commander.id },
+        { unitId: commander.id },
+      );
+      expect(events).not.toHaveLength(0);
+      for (const event of events) {
+        expect(isBattleEvent(event), JSON.stringify(event)).toBe(true);
+      }
+    });
+
+    it("rejects a soldier who is not out of action", () => {
+      const standing = soldier("standing", 1, 1);
+      expect(() =>
+        resolveKnockout({ field: jagd, units: [standing] }, { unitId: standing.id }),
+      ).toThrow(RangeError);
+    });
+
+    it("rejects an unknown soldier and a malformed tick", () => {
+      const downed = { ...soldier("downed", 1, 1), hp: 0 };
+      expect(() =>
+        resolveKnockout({ field: jagd, units: [downed] }, { unitId: asUnitId("ghost") }),
+      ).toThrow(RangeError);
+      expect(() =>
+        resolveKnockout({ field: jagd, units: [downed], tick: -1 }, { unitId: downed.id }),
+      ).toThrow(RangeError);
+      expect(() =>
+        resolveKnockout({ field: jagd, units: [downed], tick: 1.5 }, { unitId: downed.id }),
+      ).toThrow(RangeError);
+    });
   });
 });

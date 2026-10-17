@@ -517,7 +517,7 @@ deterministic.
 - done: Company privilege nullifies one active Article.
 
 ### T065 — No-Man's Land
-- status: todo
+- status: done
 - deps: [T055, T022]
 - files: src/engine/rules/noMansLand.ts
 - verify: npm run test -- --run tests/unit/articles.test.ts
