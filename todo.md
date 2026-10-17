@@ -408,7 +408,7 @@ deterministic.
 - done: XP from actions/KOs; level-ups apply power/post stat growth.
 
 ### T050 — Equipment model
-- status: todo
+- status: done
 - deps: [T008]
 - files: src/data/equipment.ts
 - verify: npm run test -- --run tests/unit/equipment.test.ts
