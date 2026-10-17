@@ -14,6 +14,8 @@ node tools/todo.mjs show T014             # full task detail
 node tools/todo.mjs prompt T014           # the agent prompt for a task
 node tools/todo.mjs verify T014           # run the task's verify command
 node tools/todo.mjs mark T014 doing       # set a task's status
+node tools/todo.mjs commits               # audit: done tasks vs. their commits
+node tools/todo.mjs split                 # commit done-but-uncommitted work, one commit per task
 ```
 
 ### Running tasks sequentially
@@ -36,17 +38,41 @@ Options:
 | `--agent "<cmd>"` | Command template (or `TODO_AGENT` env var). Omit for dry run. |
 | `--from T0NN` | Start at this task (inclusive). |
 | `--until T0NN` | Stop after this task (inclusive). |
-| `--phase 3` | Restrict to a phase (substring match). |
+| `--phase 3` | Restrict to a phase (a bare number matches that phase exactly). |
 | `--limit N` | Run at most N tasks. |
 | `--dry-run` | Print prompts without executing. |
-| `--commit` | `git commit` each accepted task. |
+| `--no-commit` | Do not commit after each task. |
+| `--no-split` | Skip the pre-run commit of unfinished prior work. |
 | `--file todo.md` | Use a different task file. |
 
 **`run` loop per task:** mark `doing` → run the agent command → run `verify` →
-mark `done`, or mark `failed` and stop on the first failure. A task is only
-actionable when every dependency is `done`.
+mark `done` → **`git commit` (one commit per task, subject `feat(T0NN): title`)**.
+Use `--no-commit` to opt out. A task is only actionable when every dependency is
+`done`.
 
 Template placeholders: `{promptFile}`, `{id}`, `{title}`, `{file}`.
+
+### Commits
+
+Each completed task gets its own commit so history is task-granular.
+
+- `commits` — for every `done` task, show its dedicated commit (by matching
+  `feat(T0NN)` in the log) or flag it as missing.
+- `split` — take work a previous run left uncommitted and commit it **one task
+  at a time**. Files are attributed to tasks via each task's `files:` list; a
+  file owned by more than one task (or by none) goes into a trailing
+  `chore: project config and task board` commit. Runs automatically (dry-run
+  preview then commit) before a `run` unless `--no-split`.
+- `split --base <ref>` — rewrite `<ref>..HEAD` into one commit per task
+  (history rewrite; publish with `git push --force-with-lease`). Requires a
+  clean tree and `--yes`.
+
+```bash
+node tools/todo.mjs commits
+node tools/todo.mjs split --dry-run          # preview
+node tools/todo.mjs split --yes              # commit uncommitted done work
+node tools/todo.mjs split --base HEAD~5 --yes # rewrite a range (force-push after)
+```
 
 ### `todo.md` format
 
