@@ -725,7 +725,7 @@ deterministic.
 - done: 10–20 varied battle maps with objectives.
 
 ### T093 — Article & contract pools
-- status: todo
+- status: done
 - deps: [T054, T070]
 - files: src/data/articles/*.ts, src/data/contracts/*.ts
 - verify: npm run test -- --run tests/unit/data.test.ts

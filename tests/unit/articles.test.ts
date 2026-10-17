@@ -15,8 +15,9 @@ import {
   isArticleKey,
   type ArticleKey,
 } from "../../src/data/articles";
+import { ABILITY_KEYS } from "../../src/data/abilities";
 import { CONDITION_KEYS } from "../../src/data/conditions";
-import { EQUIPMENT_LIST } from "../../src/data/equipment";
+import { EQUIPMENT_KEYS } from "../../src/data/equipment";
 import { POST_KEYS } from "../../src/data/posts";
 import {
   ARTICLE_KINDS,
@@ -99,15 +100,16 @@ const REQUIRED_TARGETS = ["action", "element", "weapon", "post", "condition"] as
 
 /** The known-valid ids each target's `keys` may reference. */
 const TARGET_KEY_SETS: Record<ArticleTarget, ReadonlySet<string>> = {
-  // Actions are ability ids. The ability collection lands in Phase 8 (T089);
-  // until then the ids taught by authored kit (T050) are the known set.
-  action: new Set(EQUIPMENT_LIST.flatMap((item) => item.teaches.map((teach) => teach.abilityId))),
+  // Actions are ability ids from the authored catalogue (T089).
+  action: new Set(ABILITY_KEYS),
   element: new Set(ELEMENT_KEYS),
   weapon: new Set(WEAPON_TYPES),
   post: new Set(POST_KEYS),
   condition: new Set(CONDITION_KEYS),
-  move: new Set<string>(),
-  item: new Set<string>(),
+  // The engine reports any movement under the single `move` key (T056).
+  move: new Set(["move"]),
+  // Items are equipment ids used as consumables (T090).
+  item: new Set(EQUIPMENT_KEYS),
 };
 
 const PLACEHOLDER_RE = /\b(TBD|TBC|TODO|FIXME|XXX|placeholder)\b/i;
@@ -198,7 +200,9 @@ describe("Article enforcement fields", () => {
 
   it("uses a valid severity and only opens grave Articles at court-martial", () => {
     const courtMartial = ARTICLE_LIST.filter((a) => a.severity === "court-martial");
-    expect(courtMartial.map((a) => a.id).sort()).toEqual(["no-dark", "no-poison"]);
+    expect(courtMartial.map((a) => a.id).sort()).toEqual(
+      ["no-assassination", "no-dark", "no-pillage", "no-poison"].sort(),
+    );
   });
 
   it("gives every Article a positive draw weight", () => {
@@ -239,15 +243,28 @@ describe("Article lookups", () => {
       "no-rifle",
       "no-sabre",
       "no-gun",
+      "no-cold-steel",
+      "no-lance",
+      "no-bow",
       "commend-musket",
+      "commend-carbine",
     ]);
     expect(forbiddingArticles("weapon").map((a) => a.id)).toEqual([
       "no-rifle",
       "no-sabre",
       "no-gun",
+      "no-cold-steel",
+      "no-lance",
+      "no-bow",
     ]);
-    expect(commendingArticles("weapon").map((a) => a.id)).toEqual(["commend-musket"]);
-    expect(articlesForTarget("item")).toEqual([]);
+    expect(commendingArticles("weapon").map((a) => a.id)).toEqual([
+      "commend-musket",
+      "commend-carbine",
+    ]);
+    expect(articlesForTarget("item").map((a) => a.id)).toEqual([
+      "no-strong-drink",
+      "commend-field-kit",
+    ]);
   });
 });
 
@@ -369,8 +386,8 @@ describe("daily Article generation (T055)", () => {
 
   it("caps a draw at the eligible pool size", () => {
     const orders = generateDailyArticles("seed", 1, { frequency: { forbid: 999, commend: 999 } });
-    expect(orders.forbidden).toHaveLength(10); // authored forbidding Articles
-    expect(orders.commended).toHaveLength(6); // authored commended Articles
+    expect(orders.forbidden).toHaveLength(articlesOfKind("forbid").length);
+    expect(orders.commended).toHaveLength(articlesOfKind("commend").length);
   });
 
   it("draws the requested counts from a tiny custom pool", () => {

@@ -143,29 +143,37 @@ describe("contracts — lookups and filters (T070)", () => {
       "crossed-sabres",
       "the-rival-foragers",
       "pistols-at-dawn",
+      "the-roadside-ambush",
+      "the-deserters-camp",
+      "sabres-at-the-ford",
+      "the-foragers-quarrel",
     ]);
-    expect(contractsOfKind("detachment")).toHaveLength(3);
+    expect(contractsOfKind("detachment")).toHaveLength(7);
   });
 
   it("filters by region in canonical order", () => {
     expect(contractsForRegion("blackwood").map((c) => c.id)).toEqual([
       "storm-the-farmhouse",
+      "the-roadside-ambush",
       "clear-the-forest-bands",
     ]);
     expect(contractsForRegion("sainte-colombe").map((c) => c.id)).toEqual([
       "break-the-bridge",
       "hold-the-redoubt",
+      "take-the-mill",
+      "sabres-at-the-ford",
     ]);
     expect(contractsForRegion("nowhere")).toEqual([]);
   });
 
   it("unlocks ungated contracts plus those at or below the story chapter", () => {
-    // Eight contracts carry no chapter gate: three skirmishes, three detachments
-    // and the two ungated pacifications. Four are gated to chapters 1–5.
-    expect(contractsForChapter(0)).toHaveLength(8);
+    // The four story battles and the highland pacification are chapter-gated;
+    // every other contract is posted from the start.
+    const ungated = CONTRACT_LIST.filter((contract) => contract.chapter === undefined).length;
+    expect(contractsForChapter(0)).toHaveLength(ungated);
     expect(contractsForChapter(1).map((c) => c.id)).toContain("break-the-bridge");
-    expect(contractsForChapter(1)).toHaveLength(9);
-    expect(contractsForChapter(4)).toHaveLength(11);
+    expect(contractsForChapter(1)).toHaveLength(ungated + 1);
+    expect(contractsForChapter(4)).toHaveLength(CONTRACT_LIST.length - 1);
     expect(contractsForChapter(5)).toHaveLength(CONTRACT_LIST.length);
 
     expect(() => contractsForChapter(-1)).toThrow(RangeError);

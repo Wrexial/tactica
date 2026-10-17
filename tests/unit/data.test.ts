@@ -30,8 +30,30 @@ import {
   isKnownSkillset,
   postActionSet,
 } from "../../src/data/abilities";
-import { ARTICLE_LIST } from "../../src/data/articles";
+import {
+  ARTICLE_KEYS,
+  ARTICLE_LIST,
+  ARTICLES,
+  COMMEND_ARTICLE_LIST,
+  FORBID_ARTICLE_LIST,
+  articleCommends,
+  articleForbids,
+  articlesForTarget,
+  articlesOfKind,
+  getArticle,
+  isArticleKey,
+} from "../../src/data/articles";
 import { CONDITION_KEYS } from "../../src/data/conditions";
+import {
+  CONTRACT_KEYS,
+  CONTRACT_LIST,
+  CONTRACTS,
+  contractsForRegion,
+  contractsOfKind,
+  getContract,
+  isContractKey,
+  requirementsOf,
+} from "../../src/data/contracts";
 import {
   AI_PROFILES,
   AI_PROFILE_KEYS,
@@ -1081,6 +1103,227 @@ describe("authored enemies (data/enemies, T091)", () => {
       .toLowerCase();
     for (const marker of FFTA_MARKERS) {
       expect(text, `enemy text must not contain "${marker}"`).not.toContain(marker);
+    }
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T093 — Article & contract pools
+ *
+ * Pins the task's "done when": *full Article-of-War card pool and contract list
+ * (main + side + dispatch + pacification).* The Article pool lives under
+ * `src/data/articles/` (forbidding orders + commended acts) and the contract
+ * board under `src/data/contracts/` (battles, skirmishes, detachments,
+ * pacifications). These tests check the pools are complete and validated, that
+ * every named key resolves to an authored id of its target class, and that no
+ * cross-reference to a post, item, ability or campaign region dangles.
+ * ------------------------------------------------------------------------ */
+
+/** The five target classes the original T054 pool had to cover with both kinds. */
+const REQUIRED_ARTICLE_TARGETS = ["action", "element", "weapon", "post", "condition"] as const;
+
+/** The four FFTA mission kinds the board must fill (mapping §10). */
+const REQUIRED_CONTRACT_KINDS = ["battle", "skirmish", "detachment", "pacification"] as const;
+
+/** The known-valid ids an Article's `keys` may reference, by target class. */
+const ARTICLE_TARGET_KEYS: Readonly<Record<string, ReadonlySet<string>>> = {
+  action: new Set(ABILITY_KEYS),
+  element: new Set(ELEMENT_KEYS),
+  weapon: new Set(WEAPON_TYPES),
+  post: new Set(POST_LIST.map((post) => post.id)),
+  condition: new Set(CONDITION_KEYS),
+  move: new Set(["move"]),
+  item: new Set(EQUIPMENT_KEYS),
+};
+
+describe("authored Articles (data/articles, T093)", () => {
+  it("authors a unique, validated full card pool in canonical order", () => {
+    expect(ARTICLE_LIST).toHaveLength(ARTICLE_KEYS.length);
+    expect(Object.keys(ARTICLES)).toHaveLength(ARTICLE_KEYS.length);
+    expect(new Set(ARTICLE_KEYS).size).toBe(ARTICLE_KEYS.length);
+    expect(ARTICLE_LIST.map((article) => article.id)).toEqual([...ARTICLE_KEYS]);
+    expect(ARTICLE_LIST.length).toBeGreaterThanOrEqual(40);
+    expect(FORBID_ARTICLE_LIST.length).toBeGreaterThanOrEqual(20);
+    expect(COMMEND_ARTICLE_LIST.length).toBeGreaterThanOrEqual(12);
+    for (const id of ARTICLE_KEYS) {
+      expect(ArticleDefSchema.parse(ARTICLES[id])).toEqual(ARTICLES[id]);
+    }
+  });
+
+  it("orders every forbidding Article before every commended one", () => {
+    expect(ARTICLE_LIST).toEqual([...FORBID_ARTICLE_LIST, ...COMMEND_ARTICLE_LIST]);
+    expect(FORBID_ARTICLE_LIST.every((article) => article.kind === "forbid")).toBe(true);
+    expect(COMMEND_ARTICLE_LIST.every((article) => article.kind === "commend")).toBe(true);
+  });
+
+  it("covers every target class, with both kinds where the fiction warrants it", () => {
+    for (const target of REQUIRED_ARTICLE_TARGETS) {
+      expect(articlesForTarget(target).length, `${target} pool`).toBeGreaterThan(0);
+      expect(
+        articlesForTarget(target).some((article) => article.kind === "forbid"),
+        `forbid ${target}`,
+      ).toBe(true);
+      expect(
+        articlesForTarget(target).some((article) => article.kind === "commend"),
+        `commend ${target}`,
+      ).toBe(true);
+    }
+    // Movement and item use are observable too, so the pool covers them as well.
+    expect(articlesForTarget("move").length).toBeGreaterThan(0);
+    expect(articlesForTarget("item").length).toBeGreaterThan(0);
+  });
+
+  it("names only authored ids of the Article's own target class", () => {
+    for (const article of ARTICLE_LIST) {
+      const valid = ARTICLE_TARGET_KEYS[article.target];
+      expect(valid, `${article.id} target ${article.target}`).toBeDefined();
+      expect(article.keys.length, `${article.id} names no key`).toBeGreaterThan(0);
+      for (const key of article.keys) {
+        expect(valid?.has(key), `${article.id} names unknown ${article.target} "${key}"`).toBe(
+          true,
+        );
+      }
+    }
+  });
+
+  it("grants Honour only on commended Articles, with a positive draw weight", () => {
+    for (const article of ARTICLE_LIST) {
+      if (article.kind === "forbid") {
+        expect(article.honour, article.id).toBe(0);
+      } else {
+        expect(article.honour, article.id).toBeGreaterThan(0);
+      }
+      expect(article.weight, article.id).toBeGreaterThan(0);
+    }
+  });
+
+  it("matches forbids and commends through the data-side helpers", () => {
+    const noFire = ARTICLES["no-fire"];
+    expect(articleForbids(noFire, "element", "fire")).toBe(true);
+    expect(articleForbids(noFire, "element", "ice")).toBe(false);
+    expect(articleCommends(ARTICLES["commend-colours"], "element", "holy")).toBe(true);
+    expect(articleCommends(noFire, "element", "fire")).toBe(false);
+    expect(articlesOfKind("forbid").every((article) => article.kind === "forbid")).toBe(true);
+    expect(articlesOfKind("commend").every((article) => article.kind === "commend")).toBe(true);
+  });
+
+  it("looks Articles up and rejects unknown ids", () => {
+    const first = ARTICLE_KEYS[0] as (typeof ARTICLE_KEYS)[number];
+    expect(isArticleKey(first)).toBe(true);
+    expect(isArticleKey("not-an-article")).toBe(false);
+    expect(getArticle(first).id).toBe(first);
+    expect(() => getArticle("missing" as never)).toThrow(RangeError);
+  });
+
+  it("passes the display-integrity sweep and carries no FFTA trademarks", () => {
+    const bundle = DataBundleSchema.parse({ articles: ARTICLE_LIST });
+    expect(() => assertDisplayIntegrity(bundle)).not.toThrow();
+    const text = ARTICLE_LIST.flatMap((article) => [
+      article.name,
+      article.description,
+      article.flavour,
+    ])
+      .join(" ")
+      .toLowerCase();
+    for (const marker of FFTA_MARKERS) {
+      expect(text, `article text must not contain "${marker}"`).not.toContain(marker);
+    }
+  });
+});
+
+describe("authored contracts (data/contracts, T093)", () => {
+  it("authors a unique, validated board in canonical order", () => {
+    expect(CONTRACT_LIST).toHaveLength(CONTRACT_KEYS.length);
+    expect(Object.keys(CONTRACTS)).toHaveLength(CONTRACT_KEYS.length);
+    expect(new Set(CONTRACT_KEYS).size).toBe(CONTRACT_KEYS.length);
+    expect(CONTRACT_LIST.map((contract) => contract.id)).toEqual([...CONTRACT_KEYS]);
+    expect(CONTRACT_LIST.length).toBeGreaterThanOrEqual(24);
+    for (const id of CONTRACT_KEYS) {
+      expect(ContractDefSchema.parse(CONTRACTS[id])).toEqual(CONTRACTS[id]);
+      expect(CONTRACTS[id].reward.crowns, id).toBeGreaterThan(0);
+    }
+  });
+
+  it("fills all four mission kinds: main, side, dispatch and pacification", () => {
+    for (const kind of REQUIRED_CONTRACT_KINDS) {
+      expect(contractsOfKind(kind).length, kind).toBeGreaterThanOrEqual(6);
+    }
+  });
+
+  it("gates battles and pacifications to the campaign map", () => {
+    for (const kind of ["battle", "pacification"] as const) {
+      for (const contract of contractsOfKind(kind)) {
+        expect(contract.regionId, contract.id).toBeDefined();
+        expect(contractsForRegion(contract.regionId as string)).toContain(contract);
+      }
+    }
+  });
+
+  it("gives detachments a duration and no other kind one", () => {
+    for (const contract of CONTRACT_LIST) {
+      if (contract.kind === "detachment") {
+        expect(contract.duration, contract.id).toBeGreaterThan(0);
+      } else {
+        expect(contract.duration, contract.id).toBeUndefined();
+      }
+    }
+  });
+
+  it("resolves every requirement and reward reference", () => {
+    const posts = new Set(POST_LIST.map((post) => post.id));
+    const items = new Set<string>(EQUIPMENT_KEYS);
+    for (const contract of CONTRACT_LIST) {
+      expect(Number.isInteger(contract.fee) && contract.fee >= 0, contract.id).toBe(true);
+      for (const requirement of contract.requires) {
+        expect(requirement.count, `${contract.id} ${requirement.kind}`).toBeGreaterThan(0);
+        if (requirement.kind === "item") {
+          expect(items.has(requirement.id as string), `${contract.id} → ${requirement.id}`).toBe(
+            true,
+          );
+        }
+        if (requirement.kind === "post") {
+          expect(posts.has(requirement.id as string), `${contract.id} → ${requirement.id}`).toBe(
+            true,
+          );
+        }
+        if (requirement.kind === "unit" || requirement.kind === "honour") {
+          expect(requirement.id, `${contract.id} ${requirement.kind} has no id`).toBeUndefined();
+        }
+      }
+      for (const itemId of contract.reward.itemIds) {
+        expect(items.has(itemId), `${contract.id} → ${itemId}`).toBe(true);
+      }
+    }
+  });
+
+  it("exercises all four requirement kinds", () => {
+    const kinds = new Set(CONTRACT_LIST.flatMap((c) => c.requires.map((r) => r.kind)));
+    for (const kind of ["item", "post", "unit", "honour"] as const) {
+      expect(kinds.has(kind), `no contract requires a ${kind}`).toBe(true);
+    }
+  });
+
+  it("looks contracts up and rejects unknown ids", () => {
+    const first = CONTRACT_KEYS[0] as (typeof CONTRACT_KEYS)[number];
+    expect(isContractKey(first)).toBe(true);
+    expect(isContractKey(42)).toBe(false);
+    expect(getContract(first).id).toBe(first);
+    expect(() => getContract("missing" as never)).toThrow(RangeError);
+    expect(requirementsOf(first)).toEqual(getContract(first).requires);
+  });
+
+  it("passes the display-integrity sweep and carries no FFTA trademarks", () => {
+    const bundle = DataBundleSchema.parse({ contracts: CONTRACT_LIST });
+    expect(() => assertDisplayIntegrity(bundle)).not.toThrow();
+    const text = CONTRACT_LIST.flatMap((contract) => [
+      contract.name,
+      contract.description,
+      contract.flavour,
+    ])
+      .join(" ")
+      .toLowerCase();
+    for (const marker of FFTA_MARKERS) {
+      expect(text, `contract text must not contain "${marker}"`).not.toContain(marker);
     }
   });
 });
