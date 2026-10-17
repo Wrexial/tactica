@@ -531,7 +531,7 @@ deterministic.
 - done: A neutral, non-combatant unit that issues cards and moves casualties.
 
 ### T067 — Article system tests
-- status: todo
+- status: done
 - deps: [T055, T057, T058, T060, T061, T062]
 - files: tests/unit/law.test.ts
 - verify: npm run test -- --run tests/unit/law.test.ts
