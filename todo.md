@@ -422,7 +422,7 @@ deterministic.
 - done: Stats from primary post; skill set choice from any mastered post; reaction/trait/volley slots.
 
 ### T052 — Post-change screen
-- status: todo
+- status: done
 - deps: [T051]
 - files: src/ui/PostScreen.tsx
 - verify: npm run test:e2e

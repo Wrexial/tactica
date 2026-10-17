@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createBattleController, setCursor, type BattleController } from "../app/battleController";
 import { createDemoBattle } from "../app/demoScenario";
 import { createInputController, type InputController } from "../app/input";
+import { PostScreen } from "./PostScreen";
 import { createScene, type Scene } from "../render/scene";
 
 /** A controller for the demo action, with the cursor on the acting soldier. */
@@ -28,6 +29,7 @@ export function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
+  const [view, setView] = useState<"battle" | "posts">("battle");
   const controllerRef = useRef(controller);
 
   const applyController = useCallback((next: BattleController) => {
@@ -102,13 +104,34 @@ export function App() {
           <p className="kicker">A Napoleonic small-squad tactics RPG</p>
           <h1>Lines of Glory</h1>
         </div>
-        <span className="badge">Prototype · Phase 2</span>
+        <span className="badge">Prototype · Phase 4</span>
       </header>
+
+      <nav className="viewnav" aria-label="Screens">
+        <button
+          type="button"
+          className={view === "battle" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-battle"
+          aria-pressed={view === "battle"}
+          onClick={() => setView("battle")}
+        >
+          Field
+        </button>
+        <button
+          type="button"
+          className={view === "posts" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-posts"
+          aria-pressed={view === "posts"}
+          onClick={() => setView("posts")}
+        >
+          Barracks
+        </button>
+      </nav>
 
       <main className="stage">
         <canvas ref={canvasRef} className="battlefield" data-testid="battle-canvas" />
 
-        <aside className="hud">
+        <aside className="hud" hidden={view !== "battle"}>
           <h2>Field Orders</h2>
           <p className="muted">
             Arrows / WASD move the cursor · Enter confirms · Esc backs out · drag to pan, wheel to
@@ -148,6 +171,8 @@ export function App() {
             </p>
           )}
         </aside>
+
+        {view === "posts" && <PostScreen />}
       </main>
     </div>
   );
