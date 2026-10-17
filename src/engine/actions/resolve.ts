@@ -45,8 +45,9 @@ import type { Target } from "../commands";
 import type { BattleEvent } from "../events";
 import { inBounds, type Coord } from "../grid";
 import { isValidId, type AbilityId, type UnitId } from "../ids";
+import { spendElan } from "../rules/elan";
 import { scheduleCharge, type ResolvedCharge } from "../turn";
-import { withMp, type Unit } from "../unit";
+import type { Unit } from "../unit";
 
 /* --------------------------------------------------------------------------
  * Errors
@@ -262,16 +263,9 @@ export function declareOrResolveAction(
 
   let units = state.units;
   if (spec.mpCost > 0) {
-    const paid = withMp(actor, actor.mp - spec.mpCost);
-    units = replaceUnit(units, paid);
-    events.push({
-      kind: "mpChanged",
-      tick,
-      unitId: actor.id,
-      delta: -spec.mpCost,
-      mpAfter: paid.mp,
-      reason: "spent",
-    });
+    const spent = spendElan(actor, spec.mpCost, tick);
+    units = replaceUnit(units, spent.unit);
+    events.push(...spent.events);
   }
 
   if (spec.chargeTime > 0) {

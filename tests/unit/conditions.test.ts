@@ -77,10 +77,11 @@ function makeUnit(overrides: Partial<UnitInit> = {}): Unit {
  * ------------------------------------------------------------------------ */
 
 describe("authored conditions (data/conditions.ts)", () => {
-  it("authors the full mapped set", () => {
-    expect(CONDITION_KEYS).toHaveLength(41);
-    expect(CONDITION_LIST).toHaveLength(41);
-    expect(Object.keys(CONDITIONS)).toHaveLength(41);
+  it("authors the full mapped set plus the two Élan morale conditions", () => {
+    // 41 FFTA-mapped statuses (mapping §8) + Shaken/Routed from D4 (T040).
+    expect(CONDITION_KEYS).toHaveLength(43);
+    expect(CONDITION_LIST).toHaveLength(43);
+    expect(Object.keys(CONDITIONS)).toHaveLength(43);
     expect(CONDITION_LIST.map((def) => def.id)).toEqual([...CONDITION_KEYS]);
   });
 

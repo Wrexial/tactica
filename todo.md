@@ -334,7 +334,7 @@ deterministic.
 - done: Apply/stack/expire/tick for all mapped conditions (Bleeding, Dazed, Deafened, Pinned, Formed, Braced...).
 
 ### T040 — Élan resource + morale
-- status: todo
+- status: done
 - deps: [T017, T039]
 - files: src/engine/rules/elan.ts
 - verify: npm run test -- --run tests/unit/elan.test.ts
@@ -899,7 +899,7 @@ deterministic.
 ## Research & open questions
 
 - [ ] Physical/magical damage formulas — documented (see `Attack_(command).md`, `Magic_(command).md`); only the ambiguous secondary line and the healing formula need decisions (T033/T036).
-- [ ] FFTA MP regeneration — `MP_(stat).md` FFTA section is a stub; Élan regeneration is a tuning task (T040).
+- [ ] FFTA MP regeneration — `MP_(stat).md` FFTA section is a stub; T040 authored a default schedule (`ELAN_REGEN_AMOUNT` every `ELAN_REGEN_INTERVAL_TICKS`) and morale thresholds, still pending the Phase 13 balance pass.
 - [ ] Exact Orders Tempo charge values, per-action tempo and Speed scaling (T019).
 - [ ] Drill-to-mastery thresholds per ability (T048).
 - [ ] Post-unlock thresholds (T046).

@@ -55,9 +55,10 @@ import { ConditionDefSchema, type ConditionDef } from "./schema";
  * ------------------------------------------------------------------------ */
 
 /**
- * The canonical FFTA-shaped condition keys, in mapping §8 order. Typed as a
- * tuple so the compiler rejects a missing key in {@link CONDITION_DATA} and the
- * engine can iterate conditions in a stable order.
+ * The canonical FFTA-shaped condition keys, in mapping §8 order, followed by
+ * the two **morale** conditions that Élan drives (T040, decision D4). Typed as
+ * a tuple so the compiler rejects a missing key in {@link CONDITION_DATA} and
+ * the engine can iterate conditions in a stable order.
  */
 export const CONDITION_KEYS = [
   // Ailments (FFTA / mapping §8)
@@ -104,6 +105,9 @@ export const CONDITION_KEYS = [
   "wdefDown",
   "mresUp",
   "mresDown",
+  // Morale (T040, decision D4) — driven by Élan, not an FFTA status
+  "shaken",
+  "routed",
 ] as const;
 
 /** The FFTA-shaped id of every authored condition (mapping §8). */
@@ -466,6 +470,30 @@ const CONDITION_DATA = {
     duration: 12,
     statMods: { res: -20 },
     cancels: ["mresUp"],
+  },
+
+  /* ----- Morale (T040, decision D4) ------------------------------------ */
+
+  shaken: {
+    name: "Shaken",
+    description:
+      "Nerve worn thin by a low Élan pool: the soldier's aim wavers and their blows fall short.",
+    flavour: "The man beside you is looking at the road behind, not the enemy ahead.",
+    kind: "debuff",
+    duration: 0,
+    statMods: { atk: -10, res: -10 },
+    hitModifier: -15,
+  },
+  routed: {
+    name: "Routed",
+    description:
+      "Morale broken at zero Élan: the soldier cannot use actions and will not hold the line.",
+    flavour: "A broken company runs for the rear, and the colours go with it.",
+    kind: "special",
+    duration: 0,
+    blocksAbilities: true,
+    statMods: { atk: -20, def: -20, res: -20 },
+    hitModifier: -20,
   },
 } satisfies Record<ConditionKey, Omit<ConditionInput, "id">>;
 
