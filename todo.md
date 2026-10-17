@@ -482,7 +482,7 @@ deterministic.
 - done: Commissioned units are immune to Court-Martial and may break Articles freely.
 
 ### T060 — Honour economy
-- status: todo
+- status: done
 - deps: [T056, T017]
 - files: src/engine/rules/honour.ts
 - verify: npm run test -- --run tests/unit/honour.test.ts
