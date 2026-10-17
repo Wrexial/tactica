@@ -454,7 +454,7 @@ deterministic.
 - done: Seeded daily Articles per campaign day, with a pool and frequency model.
 
 ### T056 — Violation detection
-- status: todo
+- status: done
 - deps: [T055, T024]
 - files: src/engine/rules/articles.ts
 - verify: npm run test -- --run tests/unit/articles.test.ts

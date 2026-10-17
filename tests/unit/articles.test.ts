@@ -31,10 +31,15 @@ import { asRegionId } from "../../src/engine/ids";
 import { Rng } from "../../src/engine/rng";
 import {
   DEFAULT_ARTICLE_FREQUENCY,
+  articleFactsOf,
+  articleSubjectOfAction,
   buildArticlePool,
+  detectArticles,
   drawDailyArticles,
+  firstBreach,
   frequencyForDay,
   generateDailyArticles,
+  matchArticle,
   type ArticleFrequencyStep,
 } from "../../src/engine/rules/articles";
 
@@ -460,5 +465,217 @@ describe("Article pool & weighting (T055)", () => {
     expect(rng.calls).toBeGreaterThan(before);
     expect(orders.day).toBe(4);
     expect(orders.ids.length).toBeGreaterThan(0);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T056 — Violation detection
+ *
+ * Pins the task's "done when": **actions are checked against the active
+ * Articles at resolution time**. Detection lives in
+ * `src/engine/rules/articles.ts` and consumes the T054 pool plus the facts of a
+ * resolved action, staying pure and deterministic (`agents.md` §2). The tests
+ * cover every target class, the empty-key "any act" form, the split between
+ * broken and commended orders, and the fact-derivation helper the action
+ * executor (T041) will hand its data to.
+ * ------------------------------------------------------------------------ */
+
+describe("Article violation detection (T056)", () => {
+  it("detects a forbidden action by its ability id", () => {
+    const verdict = detectArticles([ARTICLES["no-canister-shot"]], {
+      actionId: "canister-shot",
+    });
+    expect(verdict.broken.map((match) => match.article.id)).toEqual(["no-canister-shot"]);
+    expect(verdict.broken[0]?.target).toBe("action");
+    expect(verdict.broken[0]?.key).toBe("canister-shot");
+    expect(verdict.commended).toEqual([]);
+    expect(verdict.unlawful).toBe(true);
+  });
+
+  it("detects each of the five authored target classes", () => {
+    expect(
+      detectArticles([ARTICLES["no-fire"]], { elements: ["fire"] }).broken.map((m) => m.article.id),
+    ).toEqual(["no-fire"]);
+    expect(
+      detectArticles([ARTICLES["no-rifle"]], { weaponTypes: ["rifle"] }).broken.map(
+        (m) => m.article.id,
+      ),
+    ).toEqual(["no-rifle"]);
+    expect(
+      detectArticles([ARTICLES["no-forager"]], { postId: "forager" }).broken.map(
+        (m) => m.article.id,
+      ),
+    ).toEqual(["no-forager"]);
+    expect(
+      detectArticles([ARTICLES["no-poison"]], { inflicts: ["poison"] }).broken.map(
+        (m) => m.article.id,
+      ),
+    ).toEqual(["no-poison"]);
+  });
+
+  it("does not match the wrong target class or an unrelated key", () => {
+    expect(detectArticles([ARTICLES["no-fire"]], { elements: ["ice"] }).broken).toEqual([]);
+    expect(detectArticles([ARTICLES["no-fire"]], { actionId: "volley-fire" }).broken).toEqual([]);
+    expect(detectArticles([ARTICLES["no-rifle"]], { weaponTypes: ["musket"] }).broken).toEqual([]);
+  });
+
+  it("treats an empty key list as 'any act of this target class'", () => {
+    const noWithdrawal = makeArticle({ id: "no-withdrawal", kind: "forbid", target: "move" });
+    expect(detectArticles([noWithdrawal], { moved: true }).broken.map((m) => m.article.id)).toEqual(
+      ["no-withdrawal"],
+    );
+    expect(detectArticles([noWithdrawal], { moved: false }).broken).toEqual([]);
+    expect(detectArticles([noWithdrawal], { actionId: "volley-fire" }).broken).toEqual([]);
+  });
+
+  it("detects item breaches by item id", () => {
+    const noLooting = makeArticle({
+      id: "no-looting",
+      kind: "forbid",
+      target: "item",
+      keys: ["loot-chest"],
+    });
+    expect(detectArticles([noLooting], { itemIds: ["loot-chest"] }).broken).toHaveLength(1);
+    expect(detectArticles([noLooting], { itemIds: ["field-dressing"] }).broken).toEqual([]);
+  });
+
+  it("separates broken orders from commended acts", () => {
+    const active = [ARTICLES["no-fire"], ARTICLES["commend-colours"]];
+    const verdict = detectArticles(active, { elements: ["fire", "holy"] });
+    expect(verdict.broken.map((m) => m.article.id)).toEqual(["no-fire"]);
+    expect(verdict.commended.map((m) => m.article.id)).toEqual(["commend-colours"]);
+    expect(verdict.unlawful).toBe(true);
+  });
+
+  it("can both break one order and earn another", () => {
+    const active = [ARTICLES["no-canister-shot"], ARTICLES["commend-volley-fire"]];
+    const verdict = detectArticles(active, { actionId: "canister-shot" });
+    expect(verdict.broken.map((m) => m.article.id)).toEqual(["no-canister-shot"]);
+    expect(verdict.commended).toEqual([]);
+
+    // A single action that matches both kinds is reported on both sides.
+    const both = makeArticle({
+      id: "commend-canister",
+      kind: "commend",
+      target: "action",
+      keys: ["canister-shot"],
+      honour: 1,
+    });
+    const combined = detectArticles([ARTICLES["no-canister-shot"], both], {
+      actionId: "canister-shot",
+    });
+    expect(combined.broken.map((m) => m.article.id)).toEqual(["no-canister-shot"]);
+    expect(combined.commended.map((m) => m.article.id)).toEqual(["commend-canister"]);
+  });
+
+  it("only considers the active Articles, not the whole pool", () => {
+    // `no-fire` is authored forbidden, but it is not in force today.
+    const verdict = detectArticles([ARTICLES["no-rifle"]], {
+      elements: ["fire"],
+      weaponTypes: ["rifle"],
+    });
+    expect(verdict.broken.map((m) => m.article.id)).toEqual(["no-rifle"]);
+  });
+
+  it("reports every matching Article in active order", () => {
+    const verdict = detectArticles(
+      [ARTICLES["no-dark"], ARTICLES["no-fire"], ARTICLES["no-rifle"]],
+      { elements: ["fire", "dark"], weaponTypes: ["rifle"] },
+    );
+    expect(verdict.broken.map((m) => m.article.id)).toEqual(["no-dark", "no-fire", "no-rifle"]);
+  });
+
+  it("exposes the first breach and its severity for the next card", () => {
+    const verdict = detectArticles([ARTICLES["no-poison"], ARTICLES["no-rifle"]], {
+      inflicts: ["poison"],
+    });
+    const breach = firstBreach(verdict);
+    expect(breach?.article.id).toBe("no-poison");
+    expect(breach?.article.severity).toBe("court-martial");
+    expect(firstBreach(detectArticles([], {}))).toBeUndefined();
+  });
+
+  it("flattens a subject into ordered facts", () => {
+    expect(
+      articleFactsOf({
+        actionId: "canister-shot",
+        elements: ["fire", "dark"],
+        weaponTypes: ["gun"],
+        postId: "artilleryman",
+        inflicts: ["blind"],
+        moved: true,
+        itemIds: ["six-pounder"],
+      }),
+    ).toEqual([
+      { target: "action", key: "canister-shot" },
+      { target: "element", key: "fire" },
+      { target: "element", key: "dark" },
+      { target: "weapon", key: "gun" },
+      { target: "post", key: "artilleryman" },
+      { target: "condition", key: "blind" },
+      { target: "move", key: "move" },
+      { target: "item", key: "six-pounder" },
+    ]);
+    expect(articleFactsOf({})).toEqual([]);
+  });
+
+  it("derives a subject from a resolved action", () => {
+    const subject = articleSubjectOfAction({
+      id: "canister-shot",
+      element: "fire",
+      weaponType: "gun",
+      postId: "artilleryman",
+      effects: [
+        { element: "lightning", inflicts: ["blind"] },
+        { element: "fire", inflicts: ["blind", "poison"] },
+      ],
+    });
+    expect(subject).toEqual({
+      actionId: "canister-shot",
+      elements: ["fire", "lightning"],
+      weaponTypes: ["gun"],
+      postId: "artilleryman",
+      inflicts: ["blind", "poison"],
+    });
+    expect(articleSubjectOfAction({ id: "wait" })).toEqual({ actionId: "wait" });
+  });
+
+  it("matches a single Article against facts and ignores the wrong kind", () => {
+    const noFire = ARTICLES["no-fire"];
+    expect(matchArticle(noFire, [{ target: "element", key: "fire" }])).toEqual({
+      article: noFire,
+      target: "element",
+      key: "fire",
+    });
+    expect(matchArticle(noFire, [{ target: "element", key: "ice" }])).toBeUndefined();
+
+    const colours = ARTICLES["commend-colours"];
+    expect(matchArticle(colours, [{ target: "element", key: "holy" }])).toBeDefined();
+    // A commended Article is never reported as a breach.
+    expect(matchArticle(colours, [{ target: "element", key: "dark" }])).toBeUndefined();
+  });
+
+  it("is pure and does not mutate its inputs", () => {
+    const active = [ARTICLES["no-fire"], ARTICLES["commend-colours"]];
+    const subject = { elements: ["fire", "holy"] as const };
+    const first = detectArticles(active, subject);
+    const second = detectArticles(active, subject);
+    expect(first).toEqual(second);
+    expect(active.map((a) => a.id)).toEqual(["no-fire", "commend-colours"]);
+    expect(subject.elements).toEqual(["fire", "holy"]);
+  });
+
+  it("checks a day's posting against an action", () => {
+    const orders = generateDailyArticles("waterloo-1815", 12);
+    const verdict = detectArticles(orders.articles, { actionId: "canister-shot" });
+    // Every reported breach really is one of the day's forbidding Articles.
+    for (const match of verdict.broken) {
+      expect(orders.forbidden.map((article) => article.id)).toContain(match.article.id);
+      expect(match.article.kind).toBe("forbid");
+    }
+    for (const match of verdict.commended) {
+      expect(orders.commended.map((article) => article.id)).toContain(match.article.id);
+      expect(match.article.kind).toBe("commend");
+    }
   });
 });

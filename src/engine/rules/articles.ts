@@ -1,5 +1,5 @@
 /**
- * Daily Articles of War (T055) — turn the authored pool
+ * Daily Articles of War (T055–T056) — turn the authored pool
  * (`src/data/articles.ts`, T054) into a small, *seeded* list of standing orders
  * for each campaign day (mapping §9, §10).
  *
@@ -10,10 +10,12 @@
  * Marshal posts a handful of **Articles of War** pulled from the pool, split
  * into **forbidding** orders and **commended** acts.
  *
- * This module owns only *generation*. It answers "which Articles are in force
- * on day N?" deterministically; checking an action against them (T056), issuing
- * Reprimands / Courts-Martial (T057–T058) and the Provost itself (T066) are
- * separate tasks and live elsewhere in `src/engine/rules/`.
+ * This module owns **generation** (which Articles are in force on day N?) and
+ * **violation detection** (T056): given the facts of a resolved action, which
+ * active Articles did it break or earn commendation for? The follow-on
+ * enforcement — issuing Reprimands / Courts-Martial (T057–T058), the Honour
+ * economy (T060) and the Provost itself (T066) — stays separate and lives
+ * elsewhere in `src/engine/rules/`.
  *
  * ```text
  *   buildArticlePool({ regionId }) ──► eligible forbid / commend Articles
@@ -28,6 +30,12 @@
  *                 │
  *                 └─ per-day Rng derived from `seed + day`, so the draw is pure,
  *                    repeatable and independent of call order
+ *
+ *   detectArticles(active, subject) ──► { facts, broken, commended, unlawful }
+ *                 │
+ *                 └─ a resolved action's facts (action / element / weapon /
+ *                    post / condition / move / item) tested against the day's
+ *                    standing orders at resolution time
  * ```
  *
  * ## The frequency model
@@ -57,8 +65,14 @@
  * laws ... Laws rotate by day").
  */
 
-import { ARTICLE_LIST } from "../../data/articles";
-import type { ArticleDef, ArticleKind } from "../../data/schema";
+import { ARTICLE_LIST, articleCommends, articleForbids } from "../../data/articles";
+import type {
+  ArticleDef,
+  ArticleKind,
+  ArticleTarget,
+  ElementKey,
+  WeaponType,
+} from "../../data/schema";
 import { asArticleId, type ArticleId, type RegionId } from "../ids";
 import { Rng, type Seed } from "../rng";
 
@@ -269,6 +283,240 @@ export function generateDailyArticles(
   assertCampaignDay(day);
   const rng = options.rng ?? new Rng(articleDaySeed(seed, day));
   return drawDailyArticles(rng, day, options);
+}
+
+/* --------------------------------------------------------------------------
+ * Violation detection (T056)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * One concrete thing a resolved action did, addressed the way an Article
+ * addresses it: a {@link ArticleTarget} class plus the specific `key` within
+ * that class (an ability id, an element, a weapon family, a post id, a
+ * condition id, ...).
+ *
+ * Facts are the narrow interface between the battle (which knows what an order
+ * actually did) and the standing orders (which know what is forbidden or
+ * commended). Detection therefore needs no per-Article special cases: every
+ * matcher is a `(target, key)` membership test.
+ */
+export interface ArticleFact {
+  readonly target: ArticleTarget;
+  readonly key: string;
+}
+
+/**
+ * The facts a resolved action exposes to the Articles. Every field is optional
+ * so a command supplies only what it did — a `wait` carries none, a musket shot
+ * carries its weapon family, a canister round carries its element and the
+ * conditions it inflicts.
+ *
+ * The plural fields let one action expose several facts of the same class (an
+ * ability with two elemental effects; a round that both wounds and dazes).
+ * Order is preserved, so a deterministic caller sees a deterministic match.
+ */
+export interface ArticleSubject {
+  /** Active ability id used (`act`), matched against `target: "action"`. */
+  readonly actionId?: string;
+  /** Elements the effect carries, matched against `target: "element"`. */
+  readonly elements?: readonly ElementKey[];
+  /** Weapon families in use, matched against `target: "weapon"`. */
+  readonly weaponTypes?: readonly WeaponType[];
+  /** The acting soldier's post, matched against `target: "post"`. */
+  readonly postId?: string;
+  /** Conditions the action inflicts, matched against `target: "condition"`. */
+  readonly inflicts?: readonly string[];
+  /** `true` when the order was a move, matched against `target: "move"`. */
+  readonly moved?: boolean;
+  /** Kit used, matched against `target: "item"`. */
+  readonly itemIds?: readonly string[];
+}
+
+/** The subset of an action effect (`AbilityEffect`, T041) that Articles key on. */
+export interface ArticleEffectView {
+  /** Element of the effect, if any. */
+  readonly element?: ElementKey;
+  /** Conditions the effect inflicts. */
+  readonly inflicts?: readonly string[];
+}
+
+/**
+ * A resolved action as the Articles see it — a structural subset of the
+ * authored `AbilitySpec` (T041) plus the facts an ability does not carry (the
+ * acting soldier's post and the weapon family in use). The rules layer depends
+ * on this shape rather than on the action executor, so the battle can map its
+ * abilities to it without introducing an import cycle.
+ */
+export interface ArticleActionView {
+  /** Ability id (mapped to {@link ArticleSubject.actionId}). */
+  readonly id: string;
+  /** The action's own element, when authored at the top level. */
+  readonly element?: ElementKey;
+  /** Weapon family the action strikes with, when it is a weapon attack. */
+  readonly weaponType?: WeaponType;
+  /** The acting soldier's post, when known. */
+  readonly postId?: string;
+  /** The action's effects (mapped to elements and inflicted conditions). */
+  readonly effects?: readonly ArticleEffectView[];
+}
+
+/**
+ * Derive the {@link ArticleSubject} facts from a resolved action. Elements and
+ * inflicted conditions are collected across the action's effects,
+ * deduplicated in first-seen order, so one action never reports the same fact
+ * twice.
+ *
+ * ```ts
+ * articleSubjectOfAction({
+ *   id: "canister-shot",
+ *   element: "fire",
+ *   weaponType: "gun",
+ *   postId: "artilleryman",
+ *   effects: [{ element: "lightning", inflicts: ["blind"] }],
+ * });
+ * ```
+ */
+export function articleSubjectOfAction(action: ArticleActionView): ArticleSubject {
+  const elements = new Set<ElementKey>();
+  if (action.element !== undefined) elements.add(action.element);
+  const inflicts = new Set<string>();
+  for (const effect of action.effects ?? []) {
+    if (effect.element !== undefined) elements.add(effect.element);
+    for (const condition of effect.inflicts ?? []) inflicts.add(condition);
+  }
+
+  return {
+    actionId: action.id,
+    ...(elements.size > 0 ? { elements: [...elements] } : {}),
+    ...(action.weaponType === undefined ? {} : { weaponTypes: [action.weaponType] }),
+    ...(action.postId === undefined ? {} : { postId: action.postId }),
+    ...(inflicts.size > 0 ? { inflicts: [...inflicts] } : {}),
+  };
+}
+
+/**
+ * Flatten a subject into the ordered {@link ArticleFact} list the matchers
+ * walk. The order follows the field order above and a fact is emitted only
+ * when present. An empty `keys` list on an Article matches every fact of its
+ * target class, so `moved: true` (key `"move"`) is enough for a "no
+ * withdrawal" order.
+ */
+export function articleFactsOf(subject: ArticleSubject): readonly ArticleFact[] {
+  const facts: ArticleFact[] = [];
+  if (subject.actionId !== undefined) {
+    facts.push({ target: "action", key: subject.actionId });
+  }
+  for (const element of subject.elements ?? []) {
+    facts.push({ target: "element", key: element });
+  }
+  for (const weaponType of subject.weaponTypes ?? []) {
+    facts.push({ target: "weapon", key: weaponType });
+  }
+  if (subject.postId !== undefined) {
+    facts.push({ target: "post", key: subject.postId });
+  }
+  for (const condition of subject.inflicts ?? []) {
+    facts.push({ target: "condition", key: condition });
+  }
+  if (subject.moved === true) {
+    facts.push({ target: "move", key: "move" });
+  }
+  for (const itemId of subject.itemIds ?? []) {
+    facts.push({ target: "item", key: itemId });
+  }
+  return facts;
+}
+
+/** A matched {@link ArticleDef} and the fact that matched it. */
+export interface ArticleMatch {
+  readonly article: ArticleDef;
+  /** Target class of the matching fact (`action`, `element`, ...). */
+  readonly target: ArticleTarget;
+  /** The specific key within {@link target} that matched. */
+  readonly key: string;
+}
+
+/**
+ * The first fact in `facts` that this Article forbids or commends, or
+ * `undefined` when the Article does not apply to the action. A forbidding
+ * Article is tested with {@link articleForbids} and a commended one with
+ * {@link articleCommends}; the two kinds are never mixed.
+ */
+export function matchArticle(
+  article: ArticleDef,
+  facts: readonly ArticleFact[],
+): ArticleMatch | undefined {
+  for (const fact of facts) {
+    const matched =
+      article.kind === "forbid"
+        ? articleForbids(article, fact.target, fact.key)
+        : articleCommends(article, fact.target, fact.key);
+    if (matched) {
+      return { article, target: fact.target, key: fact.key };
+    }
+  }
+  return undefined;
+}
+
+/** The outcome of checking one resolved action against the active Articles. */
+export interface ArticleDetection {
+  /** The action's facts, in {@link articleFactsOf} order. */
+  readonly facts: readonly ArticleFact[];
+  /** Active forbidding Articles the action broke, in active order. */
+  readonly broken: readonly ArticleMatch[];
+  /** Active commended Articles the action earned, in active order. */
+  readonly commended: readonly ArticleMatch[];
+  /** `true` when at least one forbidding Article was broken. */
+  readonly unlawful: boolean;
+}
+
+/**
+ * Check a resolved action against the Articles currently in force.
+ *
+ * `active` is the day's list — typically `daily.articles` from
+ * {@link generateDailyArticles}, or the Article ids stored on a battle. Every
+ * active Article is tested once, in order, against the action's facts: a
+ * forbidding Article that matches lands in {@link ArticleDetection.broken} and
+ * a commended one in {@link ArticleDetection.commended}. One action can both
+ * break an order and earn another (canister fire that violates a "no case
+ * shot" order still counts as commendable fire if the day says so).
+ *
+ * Pure and deterministic: the inputs are read, never written, and the result
+ * depends only on `(active, subject)` — so a replay detects the same breaches
+ * at the same resolution.
+ *
+ * ```ts
+ * const day = generateDailyArticles(campaign.seed, 12);
+ * const action = articleSubjectOfAction({ id: "canister-shot", element: "fire" });
+ * const verdict = detectArticles(day.articles, action);
+ * verdict.broken.map((match) => match.article.id); // e.g. ["no-canister-shot"]
+ * ```
+ */
+export function detectArticles(
+  active: readonly ArticleDef[],
+  subject: ArticleSubject,
+): ArticleDetection {
+  const facts = articleFactsOf(subject);
+  const broken: ArticleMatch[] = [];
+  const commended: ArticleMatch[] = [];
+
+  for (const article of active) {
+    const match = matchArticle(article, facts);
+    if (match === undefined) continue;
+    if (article.kind === "forbid") broken.push(match);
+    else commended.push(match);
+  }
+
+  return { facts, broken, commended, unlawful: broken.length > 0 };
+}
+
+/**
+ * The first (in active order) forbidding Article an action broke, or
+ * `undefined`. Convenience for callers that only need the next card to issue
+ * (T057); use {@link detectArticles} when the full verdict is required.
+ */
+export function firstBreach(detection: ArticleDetection): ArticleMatch | undefined {
+  return detection.broken[0];
 }
 
 /* --------------------------------------------------------------------------
