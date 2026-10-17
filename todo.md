@@ -369,7 +369,7 @@ deterministic.
 - done: Push/pull with collision and elevation handling.
 
 ### T045 — Combat tests
-- status: todo
+- status: done
 - deps: [T033, T041, T042, T043, T044]
 - files: tests/unit/combat.test.ts
 - verify: npm run test -- --run tests/unit/combat.test.ts
