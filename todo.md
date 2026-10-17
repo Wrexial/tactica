@@ -672,7 +672,7 @@ deterministic.
 - done: Range/AoE highlight, danger zones, elevation preview.
 
 ### T086 — Battle forecast
-- status: todo
+- status: done
 - deps: [T033, T037]
 - files: src/ui/Forecast.tsx
 - verify: npm run test -- --run tests/unit/forecast.test.ts

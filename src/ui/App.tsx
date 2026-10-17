@@ -17,6 +17,8 @@ import {
 import { actionSpecOf } from "../engine/actions/resolve";
 import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
+import { Forecast } from "./Forecast";
+import { targetForCursor } from "./battleForecast";
 import { Menus } from "./Menus";
 import { Mess } from "./Mess";
 import { PostScreen } from "./PostScreen";
@@ -97,6 +99,22 @@ export function App() {
         : null;
 
     return { areaTiles, areaHits, danger, elevation };
+  }, [controller]);
+
+  // Battle forecast (T086): the aim, once chosen, is projected through the
+  // engine's rules so the confirm prompt can show odds and reaction risk before
+  // the order is committed. Derived purely from the controller, like targeting.
+  const forecast = useMemo(() => {
+    if (controller.phase !== "target" && controller.phase !== "confirm") return null;
+    const actorId = controller.selectedUnitId;
+    if (actorId === null || controller.pendingActionId === null) return null;
+    const spec = actionSpecOf(controller.battle, controller.pendingActionId);
+    if (spec === undefined) return null;
+    const target =
+      controller.pendingTarget ??
+      (controller.cursor === null ? null : targetForCursor(controller.battle, controller.cursor));
+    if (target === null) return null;
+    return { actorId, spec, target };
   }, [controller]);
 
   // Scene + input lifecycle. The input binding waits for Pixi to be ready so
@@ -297,6 +315,14 @@ export function App() {
             <p className="rejection" data-testid="hud-rejection">
               {controller.lastRejection.message}
             </p>
+          )}
+          {forecast !== null && (
+            <Forecast
+              battle={controller.battle}
+              actorId={forecast.actorId}
+              spec={forecast.spec}
+              target={forecast.target}
+            />
           )}
           {controller.canAct &&
             (controller.phase === "command" || controller.phase === "move") &&
