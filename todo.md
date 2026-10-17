@@ -690,9 +690,9 @@ deterministic.
 ## Phase 8 — Content pipeline & data
 
 ### T088 — Wiki → data converter
-- status: todo
+- status: done
 - deps: [T008]
-- files: scripts/wiki_to_data.mjs
+- files: scripts/wiki_to_data.mjs, scripts/wiki_to_data.d.mts
 - verify: npm run test -- --run tests/unit/data.test.ts
 - done: Converts scraped wiki tables (weapons/armour/abilities) into validated data, re-authored as our own balance.
 

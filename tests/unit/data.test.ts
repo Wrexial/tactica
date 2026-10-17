@@ -12,6 +12,17 @@ import {
   PostDefSchema,
 } from "../../src/data/schema";
 import type { DataBundle } from "../../src/data/schema";
+import {
+  cleanWikiText,
+  convertWikiSources,
+  deriveCost,
+  deriveStats,
+  loadReferenceSources,
+  parseSkillLines,
+  parseWikiTable,
+  reauthorDrill,
+  validateConverted,
+} from "../../scripts/wiki_to_data.mjs";
 
 /** Every definition shares the same three display fields (mapping §14). */
 const display = {
@@ -448,5 +459,208 @@ describe("data schema — DataBundle", () => {
     });
     expect(parsed.elements).toHaveLength(1);
     expect(parsed.contracts[0].kind).toBe("battle");
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T088 — Wiki → data converter
+ *
+ * The converter reads the scraped mirror under `docs/wiki/raw/`, strips its
+ * markup, re-authors the mechanics as our own balance data and validates the
+ * result with the schemas above. These tests pin the parsing primitives, the
+ * end-to-end conversion, and the two contracts that matter most: the output
+ * passes Zod, and no reference prose or trademarked name leaks through
+ * (`agents.md` §3, §10).
+ * ------------------------------------------------------------------------ */
+
+/** A hand-written table exercising rowspan/colspan and element/flavour rows. */
+const TABLE_FIXTURE = `{| class="wikitable"
+|-
+! Name !! Atk !! Cost
+|-
+! rowspan="2" | Alpha
+| 10
+| 100
+|-
+| colspan="2" | flavour text
+|-
+! rowspan="2" | Beta
+| 20
+| 200
+|-
+| colspan="2" | '''Element:''' Fire
+|}`;
+
+/**
+ * A miniature reference file used to prove the legal contract: the reference's
+ * italic flavour line and its (trademarked) item name must never reach our data.
+ */
+const LEGAL_FIXTURE = `
+== Swords ==
+{| class="wikitable"
+|-
+! Sword
+! Atk
+! Cost
+! Skills (AP)
+|-
+! rowspan="2" | {{LA|Test Blade}}
+| 20
+| 400
+| Soldier: First Aid (100)
+|-
+| colspan="3" | '''Element:''' Fire<br/>''A stolen flavour line that must not ship.''
+|}
+`;
+
+/** Tokens that would betray a direct copy from the FFTA mirror. */
+const FFTA_MARKERS = [
+  "mythril",
+  "genji",
+  "chocobo",
+  "moogle",
+  "bangaa",
+  "viera",
+  "hume",
+  "ivalice",
+  "malboro",
+  "tonberry",
+  "ifrit",
+  "shiva",
+  "sephiroth",
+];
+
+describe("wiki → data converter — markup", () => {
+  it("strips templates, links, files and emphasis to plain text", () => {
+    expect(cleanWikiText("{{LA|Blood Sword (weapon)|Blood Sword}}<br/>[[File:FFTABloodsword.PNG]]")).toBe(
+      "Blood Sword",
+    );
+    expect(cleanWikiText("'''Element:''' Fire")).toBe("Element: Fire");
+    expect(cleanWikiText("[[Soldier (Tactics Advance)|Soldier]]")).toBe("Soldier");
+    expect(cleanWikiText("{{LA|Maintenance}}")).toBe("Maintenance");
+    expect(cleanWikiText("{{note|Mythril Sword gives +1 to Jump}}")).toBe("");
+  });
+
+  it("reads a MediaWiki table into a rowspan/colspan-aware grid", () => {
+    const table = parseWikiTable(TABLE_FIXTURE);
+    expect(table).not.toBeNull();
+    if (!table) return;
+    expect(table.headers).toEqual(["Name", "Atk", "Cost"]);
+    expect(table.rows).toEqual([
+      ["Alpha", "10", "100"],
+      ["Alpha", "flavour text", ""],
+      ["Beta", "20", "200"],
+      ["Beta", "Element: Fire", ""],
+    ]);
+    expect(table.cont).toEqual([false, true, false, true]);
+  });
+
+  it("parses skill lines with shared jobs, AP suffixes and 'None'", () => {
+    expect(parseSkillLines("Soldier/Warrior: First Aid (100)\nDragoon: Wyrmkiller (300)\nNone")).toEqual(
+      [
+        { jobs: ["Soldier", "Warrior"], name: "First Aid", ap: 100 },
+        { jobs: ["Dragoon"], name: "Wyrmkiller", ap: 300 },
+      ],
+    );
+  });
+});
+
+describe("wiki → data converter — re-authored balance", () => {
+  it("scales reference numerals down instead of copying them", () => {
+    const stats = deriveStats({ atk: 100, def: 100, mag: 0, res: 0, spd: 0, eva: 0, jump: 0, range: 0 });
+    expect(stats.atk).toBe(40);
+    expect(stats.def).toBe(40);
+    expect(stats.atk).toBeLessThan(100);
+  });
+
+  it("bounds the authored cost and Drill regardless of the reference values", () => {
+    expect(reauthorDrill(100)).toBe(40);
+    expect(reauthorDrill(300)).toBe(80);
+    expect(reauthorDrill(100000)).toBe(400);
+    const cost = deriveCost({ atk: 40, def: 40, mag: 0, res: 0, spd: 0 });
+    expect(cost).toBeGreaterThanOrEqual(40);
+    expect(cost).toBeLessThanOrEqual(2500);
+  });
+});
+
+describe("wiki → data converter — legal contract (agents.md §3)", () => {
+  const converted = convertWikiSources({ weapons: LEGAL_FIXTURE, armor: "" });
+  const serialized = JSON.stringify(converted);
+
+  it("emits one validated item and its ability", () => {
+    expect(converted.equipment).toHaveLength(1);
+    expect(converted.abilities).toHaveLength(1);
+    expect(() => validateConverted(converted)).not.toThrow();
+  });
+
+  it("never copies the reference flavour prose", () => {
+    expect(serialized).not.toContain("stolen flavour line");
+  });
+
+  it("never writes the FFTA item/ability name into our data", () => {
+    expect(serialized).not.toContain("Test Blade");
+    expect(converted.equipment[0].name).not.toContain("Test Blade");
+  });
+
+  it("still reads mechanical facts (element, weapon family, teaches)", () => {
+    expect(converted.equipment[0].weaponType).toBe("blade");
+    expect(converted.equipment[0].element).toBe("fire");
+    expect(converted.equipment[0].teaches).toHaveLength(1);
+    expect(converted.equipment[0].teaches[0].abilityId).toBe(converted.abilities[0].id);
+  });
+});
+
+describe("wiki → data converter — full mirror (T088)", () => {
+  const sources = loadReferenceSources();
+  const converted = convertWikiSources(sources);
+
+  it("converts the weapons and armour tables into a dataset", () => {
+    expect(converted.equipment.length).toBeGreaterThan(200);
+    expect(converted.abilities.length).toBeGreaterThan(100);
+  });
+
+  it("validates every converted item and ability with the content schemas", () => {
+    const validated = validateConverted(converted);
+    expect(validated.equipment).toHaveLength(converted.equipment.length);
+    expect(validated.abilities).toHaveLength(converted.abilities.length);
+  });
+
+  it("passes the display-integrity sweep (names, descriptions, flavours)", () => {
+    const bundle = DataBundleSchema.parse({
+      equipment: converted.equipment,
+      abilities: converted.abilities,
+    });
+    expect(() => assertDisplayIntegrity(bundle)).not.toThrow();
+  });
+
+  it("gives every item and ability a unique id", () => {
+    const equipmentIds = new Set(converted.equipment.map((item) => item.id));
+    const abilityIds = new Set(converted.abilities.map((ability) => ability.id));
+    expect(equipmentIds.size).toBe(converted.equipment.length);
+    expect(abilityIds.size).toBe(converted.abilities.length);
+  });
+
+  it("resolves every taught ability reference", () => {
+    const abilityIds = new Set(converted.abilities.map((ability) => ability.id));
+    for (const item of converted.equipment) {
+      for (const teach of item.teaches) {
+        expect(abilityIds.has(teach.abilityId), `${item.id} → ${teach.abilityId}`).toBe(true);
+      }
+    }
+  });
+
+  it("is deterministic: the same mirror always yields identical data", () => {
+    expect(JSON.stringify(convertWikiSources(sources))).toBe(JSON.stringify(converted));
+  });
+
+  it("contains no FFTA trademarks or copied prose", () => {
+    const text = [...converted.equipment, ...converted.abilities]
+      .flatMap((def) => [def.name, def.description, def.flavour])
+      .join(" ")
+      .toLowerCase();
+    for (const marker of FFTA_MARKERS) {
+      expect(text, `converted data must not contain "${marker}"`).not.toContain(marker);
+    }
+    expect(text).not.toContain("stained by the blood");
   });
 });
