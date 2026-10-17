@@ -13,6 +13,7 @@ holds the authored definitions and the Zod schemas that validate them.
 | ----------- | ----------------------------------------------------------------------- |
 | `schema.ts` | Zod schemas + inferred types for every content kind. **Start here.**    |
 | `index.ts`  | Re-exports the schema surface for consumers.                            |
+| `maps/`     | Locations + battle maps (schemas, layout expander, authored tables).    |
 | `*.ts`      | Content collections, added in later phases (posts, equipment, ...).     |
 
 Later tasks populate the collections named in the schema bundle:
@@ -27,6 +28,7 @@ Later tasks populate the collections named in the schema bundle:
 | `contracts`            | Phase 6/8   | T070+ |
 | `elements`             | Phase 3     | T038  |
 | `conditions`           | Phase 3     | T039  |
+| `locations` / `maps`   | Phase 6     | T074+ |
 
 ## Naming convention (the important part)
 
@@ -72,6 +74,19 @@ const bundle = DataBundleSchema.parse(loaded);
   content terse.
 - Ids are non-empty strings here; the engine brands them in `src/engine/ids.ts`
   (T012) so the data layer stays free of engine imports.
+
+## Collection-specific schemas
+
+Not every schema belongs in `schema.ts`. Collections that own a rich,
+self-contained shape keep their Zod schema beside their data (see
+`weapons.ts`, `guards.ts` and `maps/schema.ts`), importing only the shared
+primitives (`IdSchema`, `DisplayFields`, ...) from `./schema`. This keeps
+`schema.ts` focused on the cross-cutting vocabulary.
+
+One deliberate exception to "no duplicate vocabulary": `maps/schema.ts`
+restates the engine's terrain key set (`TERRAIN_KEYS`) because `src/data/` may
+not import `src/engine/`. `tests/unit/maps.test.ts` pins the two lists
+together, so the mirror cannot silently drift.
 
 ## Determinism & layering
 

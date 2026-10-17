@@ -584,7 +584,7 @@ deterministic.
 - done: Empty map grows as Campaign Markers are placed into slots; travel and treasure hunts; rewards depend on placement.
 
 ### T074 — Locations & battle maps data
-- status: todo
+- status: done
 - deps: [T013, T014]
 - files: src/data/maps/*.ts
 - verify: npm run test -- --run tests/unit/maps.test.ts
