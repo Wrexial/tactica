@@ -387,7 +387,7 @@ deterministic.
 - done: `PostDef` with power restriction, stat growth, usable kit, skill sets and unlock requirements.
 
 ### T047 — Author powers & role trees
-- status: todo
+- status: done
 - deps: [T046]
 - files: src/data/posts/*.ts
 - verify: npm run test -- --run tests/unit/posts.test.ts
