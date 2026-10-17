@@ -84,14 +84,14 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - done: A blank isometric-styled grid renders behind a DOM HUD shell.
 
 ### T008 — Data schema (rethemed) + Zod validation
-- status: todo
+- status: done
 - deps: [T001, T005]
 - files: src/data/schema.ts, src/data/README.md
 - verify: npm run test -- --run tests/unit/data.test.ts
 - done: Zod schemas define Post, Ability, Equipment, Enemy, Article, Contract, Element, Condition; keys are FFTA-shaped with `name`/`description`/`flavour` display fields.
 
 ### T009 — Data integrity test (no `TBD` names)
-- status: todo
+- status: done
 - deps: [T008]
 - files: tests/unit/data.test.ts
 - verify: npm run test -- --run tests/unit/data.test.ts
@@ -109,91 +109,91 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 ## Phase 1 — Deterministic engine foundation
 
 ### T011 — Seeded PRNG
-- status: todo
+- status: done
 - deps: [T001, T005]
 - files: src/engine/rng.ts, tests/unit/rng.test.ts
 - verify: npm run test -- --run tests/unit/rng.test.ts
 - done: Same seed + call sequence yields identical values; RNG state is serialisable. No `Math.random` anywhere in `src/engine`.
 
 ### T012 — Branded ID types
-- status: todo
+- status: done
 - deps: [T001]
 - files: src/engine/ids.ts
 - verify: npm run typecheck
 - done: `UnitId`, `PostId`, `AbilityId`, `ContractId`, etc. are branded strings with helpers.
 
 ### T013 — Coordinates & grid model
-- status: todo
+- status: done
 - deps: [T011, T012]
 - files: src/engine/grid.ts, tests/unit/grid.test.ts
 - verify: npm run test -- --run tests/unit/grid.test.ts
 - done: Square-isometric grid of tiles with bounds checks, neighbours and cardinal facing.
 
 ### T014 — Terrain & elevation
-- status: todo
+- status: done
 - deps: [T013]
 - files: src/engine/terrain.ts
 - verify: npm run test -- --run tests/unit/grid.test.ts
 - done: Tile terrain types (field, wood, village, river, redoubt...) and height with passability and move-cost data.
 
 ### T015 — Pathfinding (A*)
-- status: todo
+- status: done
 - deps: [T013, T014]
 - files: src/engine/pathfinding.ts, tests/unit/pathfinding.test.ts
 - verify: npm run test -- --run tests/unit/pathfinding.test.ts
 - done: A* returns least-cost paths honouring terrain cost, elevation climb limit and occupied tiles.
 
 ### T016 — Range & line of sight
-- status: todo
+- status: done
 - deps: [T013, T014]
 - files: src/engine/targeting.ts, tests/unit/targeting.test.ts
 - verify: npm run test -- --run tests/unit/targeting.test.ts
 - done: Range checks and LoS blocking by terrain/elevation verified by tests.
 
 ### T017 — Unit model
-- status: todo
+- status: done
 - deps: [T012, T013]
 - files: src/engine/unit.ts
 - verify: npm run test -- --run tests/unit/unit.test.ts
 - done: Units carry power, post, level, stats, HP, Élan, Honour, facing, conditions, equipment, learned abilities.
 
 ### T018 — Derived stats
-- status: todo
+- status: done
 - deps: [T017, T008]
 - files: src/engine/stats.ts, tests/unit/stats.test.ts
 - verify: npm run test -- --run tests/unit/stats.test.ts
 - done: Effective stats = base growth × level + post modifiers + equipment, fully data-driven.
 
 ### T019 — Orders Tempo (CTB scheduler)
-- status: todo
+- status: done
 - deps: [T017, T011]
 - files: src/engine/turn.ts, tests/unit/turn.test.ts
 - verify: npm run test -- --run tests/unit/turn.test.ts
 - done: Integer charge ticks; higher Speed acts sooner/more often; deterministic given a seed.
 
 ### T020 — Command types
-- status: todo
+- status: done
 - deps: [T012]
 - files: src/engine/commands.ts
 - verify: npm run typecheck
 - done: Discriminated-union Commands (move, act, wait, face, hold, use-volley, guard-sortie...) are serialisable.
 
 ### T021 — Event types
-- status: todo
+- status: done
 - deps: [T012]
 - files: src/engine/events.ts
 - verify: npm run typecheck
 - done: Events describe everything the renderer needs (moved, damaged, condition applied, article broken, ability learned...).
 
 ### T022 — Battle create/step
-- status: todo
+- status: done
 - deps: [T013, T017, T019, T020, T021]
 - files: src/engine/battle.ts, tests/unit/battle.test.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts
 - done: `createBattle(seed, setup)` and `step(state, command) -> {state, events}`; invalid commands are rejected without mutation.
 
 ### T023 — State serialise + hash + determinism test
-- status: todo
+- status: done
 - deps: [T022]
 - files: src/engine/serialize.ts, tests/unit/determinism.test.ts
 - verify: npm run test -- --run tests/unit/determinism.test.ts
@@ -204,35 +204,35 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 ## Phase 2 — Battle core + first render
 
 ### T024 — Action resolution pipeline
-- status: todo
+- status: done
 - deps: [T022]
 - files: src/engine/actions/resolve.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts
 - done: Declare → charge → resolve → end-turn → advance tempo, all via events.
 
 ### T025 — Move command
-- status: todo
+- status: done
 - deps: [T015, T024]
 - files: src/engine/actions/move.ts
 - verify: npm run test -- --run tests/unit/move.test.ts
 - done: Path validation, cost, elevation/jump, and movement events.
 
 ### T026 — Wait / Facing / Hold
-- status: todo
+- status: done
 - deps: [T024]
 - files: src/engine/actions/basic.ts
 - verify: npm run test -- --run tests/unit/move.test.ts
 - done: Wait, change facing, and Hold (brace) actions resolve correctly.
 
 ### T027 — Battle UI state machine
-- status: todo
+- status: done
 - deps: [T024]
 - files: src/app/battleController.ts
 - verify: npm run test -- --run tests/unit/battleController.test.ts
 - done: Select unit → show move range → move → choose action → target → confirm; state exposed to UI.
 
 ### T028 — Targeting system
-- status: todo
+- status: doing
 - deps: [T016, T020]
 - files: src/engine/targeting.ts
 - verify: npm run test -- --run tests/unit/targeting.test.ts
@@ -265,6 +265,20 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - files: tests/unit/movement.test.ts
 - verify: npm run test -- --run tests/unit/movement.test.ts
 - done: Edge cases for blocked paths, AoE shapes, and elevation in LoS.
+
+### T115 — Native move-and-act turn
+- status: todo
+- deps: [T024, T025]
+- files: src/engine/battle.ts, src/app/battleController.ts
+- verify: npm run test -- --run tests/unit/battle.test.ts
+- done: A turn may move and then act without spending Orders Tempo on the move, so the controller stops composing `applyMove` and the move stays a real command in the log.
+
+Today `step` ends the Orders Tempo turn for **every** command, so the battle UI
+controller (T027) has to compose the FFTA free move (`applyMove`) before
+committing the action through `step`. Promote that into the engine: let a `move`
+command leave the actor's turn open until an `act` / `wait` / `hold` order (or an
+explicit end-turn) closes it, keeping the command log replayable and
+deterministic.
 
 ---
 

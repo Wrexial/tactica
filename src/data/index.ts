@@ -1,6 +1,5 @@
 /**
- * Authored, data-driven content (posts, abilities, kit, enemies, articles,
- * contracts, maps). Keys stay FFTA-shaped; display fields carry the Napoleonic
- * fiction. Populated from Phase 4 / Phase 8 (T046+, T088+).
+ * Content re-exports. Content collections (posts, equipment, ...) are added in
+ * later phases; this module exposes the Zod schema surface to consumers.
  */
-export {};
+export * from "./schema";
