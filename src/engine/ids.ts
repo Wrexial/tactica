@@ -52,6 +52,7 @@ export type IdKind =
   | "enemy"
   | "mapToken"
   | "depot"
+  | "dispatch"
   | "guardSortie"
   | "generalOrder"
   | "aiProfile";
@@ -82,6 +83,8 @@ export type EnemyId = BrandedId<"enemy">;
 export type MapTokenId = BrandedId<"mapToken">;
 /** A quartermaster's depot (FFTA "shop"). */
 export type DepotId = BrandedId<"depot">;
+/** A detachment sent away for N days (FFTA "dispatch mission", mapping §10). */
+export type DispatchId = BrandedId<"dispatch">;
 /** A power's Guard Sortie (FFTA "Totema", mapping §4). */
 export type GuardSortieId = BrandedId<"guardSortie">;
 /** A company privilege (FFTA "Advanced Law", mapping §9). */
@@ -133,6 +136,8 @@ export const asEnemyId = (value: string): EnemyId => asId<"enemy">(value);
 export const asMapTokenId = (value: string): MapTokenId => asId<"mapToken">(value);
 /** Trusted cast to a {@link DepotId}. See {@link asId}. */
 export const asDepotId = (value: string): DepotId => asId<"depot">(value);
+/** Trusted cast to a {@link DispatchId}. See {@link asId}. */
+export const asDispatchId = (value: string): DispatchId => asId<"dispatch">(value);
 /** Trusted cast to a {@link GuardSortieId}. See {@link asId}. */
 export const asGuardSortieId = (value: string): GuardSortieId => asId<"guardSortie">(value);
 /** Trusted cast to a {@link GeneralOrderId}. See {@link asId}. */

@@ -598,7 +598,7 @@ deterministic.
 - done: Buy/sell with power-specific discounts and region gating.
 
 ### T076 — Calendar & daily orders
-- status: todo
+- status: done
 - deps: [T055, T068]
 - files: src/engine/calendar.ts
 - verify: npm run test -- --run tests/unit/calendar.test.ts
