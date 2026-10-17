@@ -137,6 +137,16 @@ body {
   font-weight: 600;
 }
 
+.hud .rejection {
+  margin: 12px 0 0;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #7a2418;
+  background: rgba(184, 60, 37, 0.12);
+  border: 1px solid rgba(184, 60, 37, 0.35);
+  border-radius: 6px;
+}
+
 @media (max-width: 640px) {
   .hud {
     left: 12px;

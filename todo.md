@@ -246,7 +246,7 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - done: Terrain, elevation and grid render isometrically with pan/zoom.
 
 ### T030 — Input controller + path preview
-- status: todo
+- status: done
 - deps: [T025, T029]
 - files: src/app/input.ts, src/render/overlay.ts
 - verify: npm run test:e2e

@@ -12,7 +12,9 @@
  * lifts a tile by half a tile height, matching `iso.ts`.
  */
 
-import type { TerrainType } from "../engine/terrain";
+import { allCoords, type Coord } from "../engine/grid";
+import { heightAt, type TerrainMap, type TerrainType } from "../engine/terrain";
+import { worldToScreen } from "./iso";
 
 /* --------------------------------------------------------------------------
  * Tile metrics
@@ -229,6 +231,55 @@ export function centerCameraOnBounds(
     x: viewWidth / 2 - centerX * zoom,
     y: viewHeight / 2 - centerY * zoom,
   };
+}
+
+/* --------------------------------------------------------------------------
+ * Screen ↔ world and tile picking
+ * ------------------------------------------------------------------------ */
+
+/**
+ * Convert a point in canvas pixels to **unzoomed world pixels** under `camera`.
+ * The inverse of applying the camera transform (`world.position` / `scale`) to
+ * a world point; pair with {@link pickTile} to turn a pointer into a tile.
+ */
+export function worldFromScreen(camera: Camera, screen: ScreenPoint): ScreenPoint {
+  return {
+    x: (screen.x - camera.x) / camera.scale,
+    y: (screen.y - camera.y) / camera.scale,
+  };
+}
+
+/**
+ * The tile under a point in **unzoomed world space**, or `null` when the point
+ * falls outside every tile.
+ *
+ * Elevation-aware: a tile's clickable diamond is its raised top face (the same
+ * diamond `scene.ts` draws), so the search walks tiles front to back — the
+ * draw order reversed — and returns the first diamond that contains the point.
+ * This is what lets mouse and touch input pick the correct tile on a stepped
+ * battlefield (T030). Pure and Pixi-free, so it is unit-testable in Node.
+ */
+export function pickTile(
+  map: TerrainMap,
+  world: ScreenPoint,
+  tileWidth: number = TILE_WIDTH,
+  tileHeight: number = TILE_HEIGHT,
+): Coord | null {
+  const halfW = tileWidth / 2;
+  const halfH = tileHeight / 2;
+  const frontToBack = allCoords(map.grid).sort((a, b) => {
+    const depth = b.x + b.y - (a.x + a.y); // larger depth (nearer) first
+    if (depth !== 0) return depth;
+    return a.y - b.y; // ties: the more northerly tile sits on top
+  });
+
+  for (const at of frontToBack) {
+    const center = worldToScreen(at.x, at.y, heightAt(map, at), tileWidth, tileHeight);
+    const dx = Math.abs(world.x - center.x) / halfW;
+    const dy = Math.abs(world.y - center.y) / halfH;
+    if (dx + dy <= 1) return { x: at.x, y: at.y };
+  }
+  return null;
 }
 
 /**

@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { TERRAIN_TYPES } from "../../src/engine/terrain";
+import { coord } from "../../src/engine/grid";
+import { createTerrainMap, TERRAIN_TYPES, withTile } from "../../src/engine/terrain";
+import { worldToScreen } from "../../src/render/iso";
 import {
   MAX_ZOOM,
   MIN_ZOOM,
@@ -14,8 +16,10 @@ import {
   diamondPoints,
   gridBounds,
   panCamera,
+  pickTile,
   shadeColor,
   terrainStyle,
+  worldFromScreen,
   zoomCameraAt,
 } from "../../src/render/tiles";
 
@@ -111,5 +115,44 @@ describe("camera", () => {
     expect(bounds.minY).toBeLessThan(bounds.maxY);
     // The east-most tile centre sits on the +x edge, one half-tile from maxX.
     expect(bounds.maxX).toBeCloseTo(TILE_WIDTH, 6);
+  });
+});
+
+describe("worldFromScreen", () => {
+  it("inverts the camera pan and zoom", () => {
+    const camera = { x: 40, y: 20, scale: 2 };
+    expect(worldFromScreen(camera, { x: 100, y: 60 })).toEqual({ x: 30, y: 20 });
+  });
+});
+
+describe("pickTile", () => {
+  it("finds the tile under its projected centre", () => {
+    const map = createTerrainMap(3, 3, "field");
+    const center = worldToScreen(1, 1, 0);
+    expect(pickTile(map, center)).toEqual(coord(1, 1));
+  });
+
+  it("returns null for a point outside the battlefield", () => {
+    const map = createTerrainMap(3, 3, "field");
+    expect(pickTile(map, { x: 9999, y: 9999 })).toBeNull();
+  });
+
+  it("picks a raised tile on its lifted top face", () => {
+    const map = withTile(createTerrainMap(3, 3, "field"), coord(1, 1), {
+      terrain: "field",
+      height: 2,
+    });
+    const raisedCenter = worldToScreen(1, 1, 2);
+    expect(pickTile(map, raisedCenter)).toEqual(coord(1, 1));
+    // The ground projection of the same tile is also inside its (raised) face?
+    // No — a raised tile is lifted up-screen, so the ground point is below it.
+    expect(pickTile(map, worldToScreen(1, 1, 0))).not.toEqual(coord(1, 1));
+  });
+
+  it("prefers the front-most tile when diamonds share a corner", () => {
+    const map = createTerrainMap(3, 3, "field");
+    // The point where (0,0) S, (1,0) W, (0,1) E and (1,1) N corners meet.
+    const corner = worldToScreen(0.5, 0.5, 0);
+    expect(pickTile(map, corner)).toEqual(coord(1, 1));
   });
 });

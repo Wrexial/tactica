@@ -27,6 +27,7 @@ import {
   type TerrainType,
 } from "../engine/terrain";
 import { worldToScreen } from "./iso";
+import { createOverlay, type BattleOverlay } from "./overlay";
 import {
   ELEVATION_STEP,
   TILE_HEIGHT,
@@ -47,6 +48,10 @@ import {
 export interface Scene {
   /** Resolves once Pixi is ready and the map is on screen (or has failed). */
   readonly ready: Promise<void>;
+  /** The interactive overlay (move range, path, cursor) parented to the world. */
+  readonly overlay: BattleOverlay;
+  /** The current camera transform, for unprojecting pointer input to tiles. */
+  readonly camera: Camera;
   /** Tear down the renderer, input listeners and observers. Idempotent. */
   dispose(): void;
 }
@@ -62,6 +67,7 @@ const sceneChains = new WeakMap<HTMLCanvasElement, Promise<void>>();
 export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createDemoMap()): Scene {
   const app = new Application();
   const world = new Container();
+  const overlay = createOverlay();
   let camera: Camera = createCamera();
   let destroyed = false;
   let appReady = false;
@@ -215,6 +221,7 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
         return;
       }
       drawMap();
+      world.addChild(overlay.container);
       observer.observe(canvas);
       resize();
     })
@@ -230,6 +237,10 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
 
   return {
     ready,
+    overlay,
+    get camera(): Camera {
+      return camera;
+    },
     dispose(): void {
       if (destroyed) return;
       destroyed = true;
