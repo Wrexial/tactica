@@ -556,7 +556,7 @@ deterministic.
 - done: Recruit by power at recruiting offices; dismiss; roster limits.
 
 ### T070 — Contract definitions
-- status: todo
+- status: done
 - deps: [T008]
 - files: src/data/contracts.ts
 - verify: npm run test -- --run tests/unit/contracts.test.ts
