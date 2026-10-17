@@ -605,7 +605,7 @@ deterministic.
 - done: Campaign date advances; Articles rotate daily; dispatch timers tick.
 
 ### T077 — Story spine
-- status: todo
+- status: done
 - deps: [T070, T073]
 - files: src/data/story.ts
 - verify: npm run test -- --run tests/unit/story.test.ts
