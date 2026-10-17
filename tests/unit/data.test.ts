@@ -13,6 +13,24 @@ import {
 } from "../../src/data/schema";
 import type { DataBundle } from "../../src/data/schema";
 import {
+  ABILITIES,
+  ABILITY_KEYS,
+  ABILITY_LIST,
+  SHARED_SKILLSET_IDS,
+  actionAbilitiesForSkillset,
+  abilitiesForPost,
+  abilitiesForSkillset,
+  findAbility,
+  getAbility,
+  isAbilityKey,
+  isKnownSkillset,
+  postActionSet,
+} from "../../src/data/abilities";
+import { ARTICLE_LIST } from "../../src/data/articles";
+import { EQUIPMENT_LIST } from "../../src/data/equipment";
+import { POSTS, POST_LIST } from "../../src/data/posts";
+import { REACTION_IDS } from "../../src/engine/reactions";
+import {
   cleanWikiText,
   convertWikiSources,
   deriveCost,
@@ -532,9 +550,9 @@ const FFTA_MARKERS = [
 
 describe("wiki → data converter — markup", () => {
   it("strips templates, links, files and emphasis to plain text", () => {
-    expect(cleanWikiText("{{LA|Blood Sword (weapon)|Blood Sword}}<br/>[[File:FFTABloodsword.PNG]]")).toBe(
-      "Blood Sword",
-    );
+    expect(
+      cleanWikiText("{{LA|Blood Sword (weapon)|Blood Sword}}<br/>[[File:FFTABloodsword.PNG]]"),
+    ).toBe("Blood Sword");
     expect(cleanWikiText("'''Element:''' Fire")).toBe("Element: Fire");
     expect(cleanWikiText("[[Soldier (Tactics Advance)|Soldier]]")).toBe("Soldier");
     expect(cleanWikiText("{{LA|Maintenance}}")).toBe("Maintenance");
@@ -556,18 +574,27 @@ describe("wiki → data converter — markup", () => {
   });
 
   it("parses skill lines with shared jobs, AP suffixes and 'None'", () => {
-    expect(parseSkillLines("Soldier/Warrior: First Aid (100)\nDragoon: Wyrmkiller (300)\nNone")).toEqual(
-      [
-        { jobs: ["Soldier", "Warrior"], name: "First Aid", ap: 100 },
-        { jobs: ["Dragoon"], name: "Wyrmkiller", ap: 300 },
-      ],
-    );
+    expect(
+      parseSkillLines("Soldier/Warrior: First Aid (100)\nDragoon: Wyrmkiller (300)\nNone"),
+    ).toEqual([
+      { jobs: ["Soldier", "Warrior"], name: "First Aid", ap: 100 },
+      { jobs: ["Dragoon"], name: "Wyrmkiller", ap: 300 },
+    ]);
   });
 });
 
 describe("wiki → data converter — re-authored balance", () => {
   it("scales reference numerals down instead of copying them", () => {
-    const stats = deriveStats({ atk: 100, def: 100, mag: 0, res: 0, spd: 0, eva: 0, jump: 0, range: 0 });
+    const stats = deriveStats({
+      atk: 100,
+      def: 100,
+      mag: 0,
+      res: 0,
+      spd: 0,
+      eva: 0,
+      jump: 0,
+      range: 0,
+    });
     expect(stats.atk).toBe(40);
     expect(stats.def).toBe(40);
     expect(stats.atk).toBeLessThan(100);
@@ -662,5 +689,123 @@ describe("wiki → data converter — full mirror (T088)", () => {
       expect(text, `converted data must not contain "${marker}"`).not.toContain(marker);
     }
     expect(text).not.toContain("stained by the blood");
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T089 — Ability sets per post
+ *
+ * Pins the task's "done when": *every post has a complete, validated action
+ * set*. The catalogue lives under `src/data/abilities/` (one module per power
+ * plus the shared Reaction/Trait/Volley sets). These tests check that the
+ * action sets are complete, that every ability is validated and well-keyed,
+ * and that the ids other content already binds to (equipment Drill, Articles
+ * of War, the engine's reaction ids) resolve.
+ * ------------------------------------------------------------------------ */
+
+describe("authored abilities (data/abilities, T089)", () => {
+  it("authors a unique, validated catalogue in the documented order", () => {
+    expect(ABILITY_LIST).toHaveLength(ABILITY_KEYS.length);
+    expect(ABILITY_LIST.length).toBeGreaterThanOrEqual(100);
+    expect(new Set(ABILITY_KEYS).size).toBe(ABILITY_KEYS.length);
+    for (const id of ABILITY_KEYS) {
+      expect(AbilityDefSchema.parse(ABILITIES[id])).toEqual(ABILITIES[id]);
+    }
+  });
+
+  it("gives every post a complete action set", () => {
+    for (const post of POST_LIST) {
+      const actions = postActionSet(post.id);
+      expect(actions.length, `${post.id} needs an action set`).toBeGreaterThanOrEqual(3);
+      for (const ability of actions) {
+        expect(ability.abilityClass, ability.id).toBe("action");
+        expect(ability.postId, ability.id).toBe(post.id);
+        expect(post.skillsetIds, `${ability.id} skillset`).toContain(ability.skillsetId);
+      }
+    }
+  });
+
+  it("binds every action ability to its post's skillset", () => {
+    for (const ability of ABILITY_LIST) {
+      if (ability.abilityClass !== "action") continue;
+      expect(ability.postId, `${ability.id} must name a post`).toBeDefined();
+      const post = POSTS[ability.postId as keyof typeof POSTS];
+      expect(post, `${ability.id} names an unknown post`).toBeDefined();
+      expect(post?.skillsetIds, `${ability.id} skillset mismatch`).toContain(ability.skillsetId);
+    }
+  });
+
+  it("assigns every ability to a known skillset", () => {
+    for (const ability of ABILITY_LIST) {
+      expect(isKnownSkillset(ability.skillsetId), `${ability.id} → ${ability.skillsetId}`).toBe(
+        true,
+      );
+    }
+  });
+
+  it("notes the three shared command sets explicitly", () => {
+    expect(SHARED_SKILLSET_IDS).toHaveLength(3);
+    for (const skillsetId of SHARED_SKILLSET_IDS) {
+      const shared = abilitiesForSkillset(skillsetId);
+      expect(shared.length, skillsetId).toBeGreaterThan(0);
+      expect(shared.every((ability) => ability.postId === undefined)).toBe(true);
+    }
+  });
+
+  it("authors the engine's reaction ids as reaction abilities", () => {
+    for (const id of Object.values(REACTION_IDS)) {
+      const ability = findAbility(id);
+      expect(ability, `reaction ${id} is not authored`).toBeDefined();
+      expect(ability?.abilityClass).toBe("reaction");
+    }
+  });
+
+  it("resolves every equipment-taught ability", () => {
+    for (const item of EQUIPMENT_LIST) {
+      for (const teach of item.teaches) {
+        expect(findAbility(teach.abilityId), `${item.id} → ${teach.abilityId}`).toBeDefined();
+      }
+    }
+  });
+
+  it("resolves every action key named by an Article of War", () => {
+    const actionArticles = ARTICLE_LIST.filter((article) => article.target === "action");
+    expect(actionArticles.length).toBeGreaterThan(0);
+    for (const article of actionArticles) {
+      for (const key of article.keys) {
+        expect(findAbility(key), `${article.id} → ${key}`).toBeDefined();
+      }
+    }
+  });
+
+  it("looks abilities up by id and rejects unknown ones", () => {
+    expect(isAbilityKey("volley-fire")).toBe(true);
+    expect(isAbilityKey("not-an-ability")).toBe(false);
+    expect(getAbility("volley-fire").name).toBe("Volley Fire");
+    expect(() => getAbility("missing" as never)).toThrow(RangeError);
+    expect(abilitiesForPost("fusilier").map((ability) => ability.id)).toContain("bayonet-charge");
+    expect(actionAbilitiesForSkillset("fusilier-kit").map((a) => a.id)).toEqual([
+      "volley-fire",
+      "bayonet-charge",
+      "close-order-drill",
+    ]);
+  });
+
+  it("passes the display-integrity sweep", () => {
+    const bundle = DataBundleSchema.parse({ abilities: ABILITY_LIST });
+    expect(() => assertDisplayIntegrity(bundle)).not.toThrow();
+  });
+
+  it("carries no FFTA trademarks in ability display text", () => {
+    const text = ABILITY_LIST.flatMap((ability) => [
+      ability.name,
+      ability.description,
+      ability.flavour,
+    ])
+      .join(" ")
+      .toLowerCase();
+    for (const marker of FFTA_MARKERS) {
+      expect(text, `ability text must not contain "${marker}"`).not.toContain(marker);
+    }
   });
 });

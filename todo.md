@@ -697,7 +697,7 @@ deterministic.
 - done: Converts scraped wiki tables (weapons/armour/abilities) into validated data, re-authored as our own balance.
 
 ### T089 — Ability sets per post
-- status: todo
+- status: done
 - deps: [T047, T088]
 - files: src/data/abilities/*.ts
 - verify: npm run test -- --run tests/unit/data.test.ts
