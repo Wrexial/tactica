@@ -380,7 +380,7 @@ deterministic.
 ## Phase 4 — Progression: posts, Drill, kit, leveling
 
 ### T046 — Post (job) definition
-- status: todo
+- status: done
 - deps: [T008]
 - files: src/data/posts.ts
 - verify: npm run test -- --run tests/unit/posts.test.ts

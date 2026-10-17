@@ -247,6 +247,8 @@ export const PostDefSchema = z.object({
   power: PowerKeySchema,
   /** Equip slots the post may fill. */
   equipSlots: z.array(EquipSlotSchema).default([]),
+  /** Weapon families the post is trained to use (FFTA job equipment list). */
+  weaponTypes: z.array(WeaponTypeSchema).default([]),
   /** Per-level stat growth (mapping §3 tables inspire these values). */
   growth: StatGrowthSchema,
   /** Skillsets usable from this post (primary or attached, T051). */
