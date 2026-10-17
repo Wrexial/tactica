@@ -1092,3 +1092,218 @@ body {
     width: 100%;
   }
 }
+
+/* --------------------------------------------------------------------------
+ * T075 — Quartermaster's Stores (Depot)
+ * ------------------------------------------------------------------------ */
+
+.depot-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: auto;
+  padding: 20px 24px 48px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #efe6cf, var(--parchment));
+}
+
+.depot-screen__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--gold);
+  margin-bottom: 16px;
+}
+
+.depot-screen__header h2 {
+  margin: 2px 0 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+}
+
+.depot-screen__header .muted {
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin: 0;
+  max-width: 52ch;
+}
+
+.depot-screen__company {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  min-width: 200px;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.depot-screen__company div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.depot-screen__company dt {
+  color: var(--ink-soft);
+}
+
+.depot-screen__company dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.depot-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.depot-chip {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.depot-chip.is-active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(180, 140, 60, 0.28);
+}
+
+.depot-chip__name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.depot-chip__power,
+.depot-chip__closed {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+}
+
+.depot-chip__closed {
+  color: var(--navy-2);
+  font-style: italic;
+}
+
+.depot-closed {
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  border: 1px dashed var(--line);
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.depot-screen__body {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(280px, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.depot-panel {
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.depot-panel h3 {
+  margin: 0 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+}
+
+.depot-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.depot-table th,
+.depot-table td {
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.depot-table thead th {
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.depot-table td:nth-child(3),
+.depot-table td:nth-child(4),
+.depot-table td:last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.depot-tier {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.depot-tier--favoured {
+  color: #1d4d24;
+  background: #d8efd6;
+}
+
+.depot-tier--standard {
+  color: var(--ink-soft);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.depot-tier--foreign {
+  color: #7a2f1d;
+  background: #f6ded4;
+}
+
+.depot-log {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .depot-screen__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .depot-screen__header {
+    flex-direction: column;
+  }
+
+  .depot-screen__company {
+    width: 100%;
+  }
+}

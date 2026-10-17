@@ -591,7 +591,7 @@ deterministic.
 - done: Location/terrain data and battle map definitions validate.
 
 ### T075 — Depots (shops)
-- status: todo
+- status: done
 - deps: [T050, T068]
 - files: src/ui/Depot.tsx
 - verify: npm run test -- --run tests/unit/depot.test.ts

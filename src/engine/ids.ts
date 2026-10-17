@@ -51,6 +51,7 @@ export type IdKind =
   | "region"
   | "enemy"
   | "mapToken"
+  | "depot"
   | "guardSortie"
   | "generalOrder"
   | "aiProfile";
@@ -79,6 +80,8 @@ export type RegionId = BrandedId<"region">;
 export type EnemyId = BrandedId<"enemy">;
 /** A placeable campaign-map token (FFTA "area token"). */
 export type MapTokenId = BrandedId<"mapToken">;
+/** A quartermaster's depot (FFTA "shop"). */
+export type DepotId = BrandedId<"depot">;
 /** A power's Guard Sortie (FFTA "Totema", mapping §4). */
 export type GuardSortieId = BrandedId<"guardSortie">;
 /** A company privilege (FFTA "Advanced Law", mapping §9). */
@@ -128,6 +131,8 @@ export const asRegionId = (value: string): RegionId => asId<"region">(value);
 export const asEnemyId = (value: string): EnemyId => asId<"enemy">(value);
 /** Trusted cast to a {@link MapTokenId}. See {@link asId}. */
 export const asMapTokenId = (value: string): MapTokenId => asId<"mapToken">(value);
+/** Trusted cast to a {@link DepotId}. See {@link asId}. */
+export const asDepotId = (value: string): DepotId => asId<"depot">(value);
 /** Trusted cast to a {@link GuardSortieId}. See {@link asId}. */
 export const asGuardSortieId = (value: string): GuardSortieId => asId<"guardSortie">(value);
 /** Trusted cast to a {@link GeneralOrderId}. See {@link asId}. */
