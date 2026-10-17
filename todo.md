@@ -743,7 +743,7 @@ deterministic.
 ## Phase 9 — AI
 
 ### T095 — Utility-based AI
-- status: todo
+- status: done
 - deps: [T028, T041]
 - files: src/ai/utility.ts
 - verify: npm run test -- --run tests/unit/ai.test.ts
