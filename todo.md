@@ -563,7 +563,7 @@ deterministic.
 - done: Battle, Skirmish, Detachment and Pacification contracts with fees, requirements and rewards.
 
 ### T071 — Officers' Mess UI
-- status: todo
+- status: done
 - deps: [T070, T068]
 - files: src/ui/Mess.tsx
 - verify: npm run test:e2e

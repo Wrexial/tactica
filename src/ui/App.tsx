@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createBattleController, setCursor, type BattleController } from "../app/battleController";
 import { createDemoBattle } from "../app/demoScenario";
 import { createInputController, type InputController } from "../app/input";
+import { Mess } from "./Mess";
 import { PostScreen } from "./PostScreen";
 import { createScene, type Scene } from "../render/scene";
 
@@ -29,7 +30,7 @@ export function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
-  const [view, setView] = useState<"battle" | "posts">("battle");
+  const [view, setView] = useState<"battle" | "posts" | "mess">("battle");
   const controllerRef = useRef(controller);
 
   const applyController = useCallback((next: BattleController) => {
@@ -126,6 +127,15 @@ export function App() {
         >
           Barracks
         </button>
+        <button
+          type="button"
+          className={view === "mess" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-mess"
+          aria-pressed={view === "mess"}
+          onClick={() => setView("mess")}
+        >
+          Officers' Mess
+        </button>
       </nav>
 
       <main className="stage">
@@ -173,6 +183,7 @@ export function App() {
         </aside>
 
         {view === "posts" && <PostScreen />}
+        {view === "mess" && <Mess />}
       </main>
     </div>
   );
