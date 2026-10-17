@@ -348,7 +348,7 @@ deterministic.
 - done: Executes data-defined actions: physical, ranged, artillery, medical, buffs, debuffs, drains, revival.
 
 ### T042 — Reaction abilities
-- status: todo
+- status: done
 - deps: [T041]
 - files: src/engine/reactions.ts
 - verify: npm run test -- --run tests/unit/reactions.test.ts
