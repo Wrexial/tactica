@@ -612,7 +612,7 @@ deterministic.
 - done: Chapter triggers gate story contracts and unlock Guard Sorties.
 
 ### T078 — Auxiliary Barracks
-- status: todo
+- status: done
 - deps: [T069]
 - files: src/engine/barracks.ts
 - verify: npm run test -- --run tests/unit/barracks.test.ts
