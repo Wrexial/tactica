@@ -22,6 +22,29 @@ import {
   WEAPON_TYPES,
   type PowerKey,
 } from "../../src/data/schema";
+import { asAbilityId, asPostId, asSkillsetId } from "../../src/engine/ids";
+import {
+  ABILITY_SLOT_CLASSES,
+  ABILITY_SLOT_KEYS,
+  assignActionSkillset,
+  availableSkillsets,
+  canUseSkillset,
+  clearSlot,
+  createPostAssignment,
+  derivePostStats,
+  emptySlotLoadout,
+  equipSlot,
+  isAbilityMastered,
+  isAbilitySlot,
+  masteredPosts,
+  primaryPostGrowth,
+  primaryPostOf,
+  attachedPostOf,
+  slotAbility,
+  usePrimarySkillset,
+  type PostAssignment,
+} from "../../src/engine/progression/posts";
+import { deriveStats } from "../../src/engine/stats";
 
 /* --------------------------------------------------------------------------
  * T046 / T047 — Post (job) definitions & the authored power role trees
@@ -518,5 +541,240 @@ describe("power typing", () => {
       const power: PowerKey = post.power;
       expect(POWER_KEYS).toContain(power);
     }
+  });
+});
+
+/* ==========================================================================
+ * T051 — Primary / attached post (engine/progression/posts.ts)
+ *
+ * Pins the task's "done when":
+ *   - **Stats from the primary post** (`derivePostStats`);
+ *   - **Skill set choice from any mastered post** (`availableSkillsets` /
+ *     `assignActionSkillset`);
+ *   - **Reaction / trait / volley slots** (`equipSlot`).
+ *
+ * The helpers are pure and deterministic: a post change is roster state, so an
+ * assignment is never mutated and the same inputs always produce the same
+ * result.
+ * ======================================================================== */
+
+const PRIMARY = asPostId("fusilier");
+const GRENADIER = asPostId("grenadier");
+
+const FUSILIER_KIT = asSkillsetId("fusilier-kit");
+const GRENADIER_KIT = asSkillsetId("grenadier-kit");
+const MARKSMAN_KIT = asSkillsetId("marksman-kit");
+
+/** A grenadier has been drilled enough to earn the attached command. */
+const GRENADIER_MASTERED: MasteredByPost = { grenadier: ["bayonet-charge"] };
+
+function baseAssignment(): PostAssignment {
+  return createPostAssignment({ primaryPostId: PRIMARY, power: "france" });
+}
+
+describe("post assignment creation", () => {
+  it("defaults to the primary post's own skillset and empty slots", () => {
+    const assignment = baseAssignment();
+    expect(assignment.primaryPostId).toBe(PRIMARY);
+    expect(assignment.attachedPostId).toBeNull();
+    expect(assignment.actionSkillsetId).toBe(FUSILIER_KIT);
+    expect(assignment.slots).toEqual(emptySlotLoadout());
+  });
+
+  it("looks up the primary and attached post definitions", () => {
+    expect(primaryPostOf(baseAssignment())).toBe(POSTS.fusilier);
+    expect(attachedPostOf(baseAssignment())).toBeNull();
+    expect(primaryPostGrowth(baseAssignment())).toEqual(POSTS.fusilier.growth);
+  });
+
+  it("rejects an unknown post or a skillset the posts do not own", () => {
+    expect(() => createPostAssignment({ primaryPostId: asPostId("soldier") })).toThrow(RangeError);
+    expect(() =>
+      createPostAssignment({ primaryPostId: PRIMARY, actionSkillsetId: GRENADIER_KIT }),
+    ).toThrow(RangeError);
+    expect(() =>
+      createPostAssignment({
+        primaryPostId: PRIMARY,
+        attachedPostId: GRENADIER,
+        actionSkillsetId: MARKSMAN_KIT,
+      }),
+    ).toThrow(RangeError);
+  });
+
+  it("honours the power restriction when one is supplied", () => {
+    expect(() => createPostAssignment({ primaryPostId: PRIMARY, power: "britain" })).toThrow(
+      RangeError,
+    );
+    // A common post is available to every school.
+    expect(() =>
+      createPostAssignment({ primaryPostId: asPostId("surgeon"), power: "britain" }),
+    ).not.toThrow();
+  });
+
+  it("carries a partial slot record through to a full loadout", () => {
+    const assignment = createPostAssignment({
+      primaryPostId: PRIMARY,
+      slots: { reaction: asAbilityId("riposte") },
+    });
+    expect(assignment.slots).toEqual({
+      reaction: asAbilityId("riposte"),
+      trait: null,
+      volley: null,
+    });
+  });
+});
+
+describe("stats from the primary post", () => {
+  it("is exactly deriveStats over the primary post's growth", () => {
+    const assignment = baseAssignment();
+    expect(derivePostStats({ level: 5, assignment })).toEqual(
+      deriveStats({ level: 5, growth: POSTS.fusilier.growth }),
+    );
+  });
+
+  it("passes flat post modifiers and equipment through", () => {
+    const assignment = baseAssignment();
+    const postMods = { hp: 50, move: 4, jump: 2 } as const;
+    const equipment = [{ atk: 10 }, { def: 6, spd: 2 }] as const;
+    expect(derivePostStats({ level: 5, assignment, postMods, equipment })).toEqual(
+      deriveStats({ level: 5, growth: POSTS.fusilier.growth, postMods, equipment }),
+    );
+  });
+
+  it("ignores the attached post — a secondary command never changes stats", () => {
+    const base = baseAssignment();
+    const attached = assignActionSkillset(base, GRENADIER_KIT, GRENADIER_MASTERED);
+    expect(attached.attachedPostId).toBe(GRENADIER);
+    expect(attached.slots).toEqual(base.slots);
+    expect(derivePostStats({ level: 7, assignment: attached })).toEqual(
+      derivePostStats({ level: 7, assignment: base }),
+    );
+  });
+});
+
+describe("skillset choice from any mastered post", () => {
+  it("lists the primary post's skillsets plus every mastered post's", () => {
+    const assignment = baseAssignment();
+    const skillsets = availableSkillsets(assignment, GRENADIER_MASTERED);
+    expect(skillsets).toEqual([FUSILIER_KIT, GRENADIER_KIT]);
+    expect(skillsets).not.toContain(MARKSMAN_KIT);
+  });
+
+  it("reports mastery and the mastered posts", () => {
+    expect(masteredPosts(GRENADIER_MASTERED).map((post) => post.id)).toEqual(["grenadier"]);
+    expect(isAbilityMastered(asAbilityId("bayonet-charge"), GRENADIER_MASTERED)).toBe(true);
+    expect(isAbilityMastered(asAbilityId("aim-vitals"), GRENADIER_MASTERED)).toBe(false);
+  });
+
+  it("gates availability on mastery", () => {
+    const assignment = baseAssignment();
+    expect(canUseSkillset(assignment, FUSILIER_KIT, {})).toBe(true);
+    expect(canUseSkillset(assignment, GRENADIER_KIT, GRENADIER_MASTERED)).toBe(true);
+    expect(canUseSkillset(assignment, GRENADIER_KIT, {})).toBe(false);
+  });
+
+  it("attaches a mastered post's skillset and names its owner", () => {
+    const attached = assignActionSkillset(baseAssignment(), GRENADIER_KIT, GRENADIER_MASTERED);
+    expect(attached.actionSkillsetId).toBe(GRENADIER_KIT);
+    expect(attached.attachedPostId).toBe(GRENADIER);
+  });
+
+  it("clears the attached post when the primary skillset is chosen", () => {
+    const attached = assignActionSkillset(baseAssignment(), GRENADIER_KIT, GRENADIER_MASTERED);
+    const back = assignActionSkillset(attached, FUSILIER_KIT, GRENADIER_MASTERED);
+    expect(back.attachedPostId).toBeNull();
+    expect(back.actionSkillsetId).toBe(FUSILIER_KIT);
+  });
+
+  it("rejects a skillset from an unmastered post", () => {
+    expect(() => assignActionSkillset(baseAssignment(), MARKSMAN_KIT, GRENADIER_MASTERED)).toThrow(
+      RangeError,
+    );
+  });
+
+  it("resets to the primary skillset via usePrimarySkillset", () => {
+    const attached = assignActionSkillset(baseAssignment(), GRENADIER_KIT, GRENADIER_MASTERED);
+    expect(usePrimarySkillset(attached)).toMatchObject({
+      attachedPostId: null,
+      actionSkillsetId: FUSILIER_KIT,
+    });
+  });
+});
+
+describe("reaction / trait / volley slots", () => {
+  it("exposes exactly the three slots with their expected classes", () => {
+    expect(ABILITY_SLOT_KEYS).toEqual(["reaction", "trait", "volley"]);
+    expect(ABILITY_SLOT_CLASSES).toEqual({
+      reaction: "reaction",
+      trait: "support",
+      volley: "combo",
+    });
+    expect(emptySlotLoadout()).toEqual({ reaction: null, trait: null, volley: null });
+  });
+
+  it("guards untrusted slot keys", () => {
+    expect(isAbilitySlot("reaction")).toBe(true);
+    expect(isAbilitySlot("support")).toBe(false);
+    for (const value of [null, 1, {}, undefined]) {
+      expect(isAbilitySlot(value)).toBe(false);
+    }
+  });
+
+  it("equips and clears a mastered ability in a slot", () => {
+    const riposte = asAbilityId("riposte");
+    const armed = equipSlot(baseAssignment(), "reaction", riposte, {
+      mastered: { fusilier: ["riposte"] },
+    });
+    expect(slotAbility(armed, "reaction")).toBe(riposte);
+    expect(slotAbility(baseAssignment(), "reaction")).toBeNull();
+
+    const cleared = clearSlot(armed, "reaction");
+    expect(slotAbility(cleared, "reaction")).toBeNull();
+  });
+
+  it("refuses an ability the soldier has not mastered", () => {
+    expect(() =>
+      equipSlot(baseAssignment(), "trait", asAbilityId("thrift"), { mastered: {} }),
+    ).toThrow(RangeError);
+  });
+
+  it("enforces the ability class when a lookup is supplied", () => {
+    const abilityClassOf = () => "support" as const;
+    expect(() =>
+      equipSlot(baseAssignment(), "reaction", asAbilityId("riposte"), {
+        mastered: { fusilier: ["riposte"] },
+        abilityClassOf,
+      }),
+    ).toThrow(RangeError);
+  });
+
+  it("rejects an unknown slot", () => {
+    expect(() => equipSlot(baseAssignment(), "weapon" as never, asAbilityId("riposte"))).toThrow(
+      RangeError,
+    );
+  });
+});
+
+describe("post assignment purity", () => {
+  it("never mutates its input and is deterministic", () => {
+    const assignment = baseAssignment();
+    const before = JSON.parse(JSON.stringify(assignment)) as PostAssignment;
+
+    const first = equipSlot(
+      assignActionSkillset(assignment, GRENADIER_KIT, GRENADIER_MASTERED),
+      "reaction",
+      asAbilityId("riposte"),
+      { mastered: { fusilier: ["riposte"] } },
+    );
+    const second = equipSlot(
+      assignActionSkillset(assignment, GRENADIER_KIT, GRENADIER_MASTERED),
+      "reaction",
+      asAbilityId("riposte"),
+      { mastered: { fusilier: ["riposte"] } },
+    );
+
+    expect(JSON.parse(JSON.stringify(assignment))).toEqual(before);
+    expect(first).not.toBe(assignment);
+    expect(first).toEqual(second);
   });
 });

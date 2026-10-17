@@ -415,7 +415,7 @@ deterministic.
 - done: Weapons, uniforms/armour and accessories with stat mods, taught abilities (Drill cost), elements and on-hit conditions.
 
 ### T051 — Primary / attached post
-- status: todo
+- status: done
 - deps: [T046, T050]
 - files: src/engine/progression/posts.ts
 - verify: npm run test -- --run tests/unit/posts.test.ts

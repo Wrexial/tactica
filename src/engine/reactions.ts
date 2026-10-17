@@ -53,9 +53,10 @@
  *   are exported balance constants, not literals buried in a branch; content
  *   may over-supply its own {@link AbilitySpec}s for the offensive reactions.
  * - **Equipped, not hard-coded** — which reaction a soldier carries arrives via
- *   {@link ReactionOptions}, mirroring FFTA's single R-Ability slot. The unit
- *   model gains that slot in T051; until then the caller (or a test) supplies a
- *   loadout.
+ *   {@link ReactionOptions}, mirroring FFTA's single R-Ability slot. The slot
+ *   itself lives on the roster's `PostAssignment`
+ *   (`src/engine/progression/posts.ts`, T051); the caller reads
+ *   `slotAbility(assignment, "reaction")` and passes it in `loadout` here.
  *
  * Reference: `docs/wiki/pages/Final_Fantasy_Tactics_Advance_reaction_abilities.md`
  * (the trigger table) and mapping §6/§12. Fiction follows
@@ -499,8 +500,9 @@ export const REACTIONS: Readonly<Record<ReactionKind, ReactionDef>> = {
 export interface ReactionOptions {
   /**
    * One equipped reaction per soldier, keyed by unit id (FFTA's single
-   * R-Ability slot). Until the unit model gains that slot (T051), the caller
-   * supplies it here.
+   * R-Ability slot). The roster reads it from the soldier's `PostAssignment`
+   * (`src/engine/progression/posts.ts`, T051); it may also be supplied directly
+   * (tests, scenario buffs).
    */
   readonly loadout?: Readonly<Record<string, AbilityId | ReactionKind>>;
   /** Alternative lookup; takes precedence over {@link loadout} when present. */

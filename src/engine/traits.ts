@@ -68,9 +68,10 @@
  * - **Integer in, integer out** — combat values stay whole numbers so a replay
  *   never drifts on floating point.
  * - **Equipped, not hard-coded** — which trait a soldier carries arrives via
- *   {@link TraitOptions}, mirroring FFTA's single S-Ability slot. The unit model
- *   gains that slot in T051; until then the caller (or a test) supplies a
- *   loadout.
+ *   {@link TraitOptions}, mirroring FFTA's single S-Ability slot. The slot
+ *   itself lives on the roster's `PostAssignment`
+ *   (`src/engine/progression/posts.ts`, T051); the caller reads
+ *   `slotAbility(assignment, "trait")` and passes it in `loadout` here.
  *
  * Reference: `docs/wiki/pages/Final_Fantasy_Tactics_Advance_support_abilities.md`
  * (the ability table) and mapping §6. Fiction follows
