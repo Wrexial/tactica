@@ -718,7 +718,7 @@ deterministic.
 - done: Irregular/auxiliary troop roster with stats, actions, drops and AI profiles.
 
 ### T092 — Battle maps
-- status: todo
+- status: done
 - deps: [T014, T074]
 - files: src/data/maps/*.json
 - verify: npm run test -- --run tests/unit/maps.test.ts

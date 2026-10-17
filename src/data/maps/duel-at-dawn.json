@@ -1,0 +1,39 @@
+{
+  "id": "duel-at-dawn",
+  "name": "Pistols at Dawn",
+  "description": "A misty meadow at first light, a brace of pistols, and a matter of honour between two companies that will not wait for the sun.",
+  "flavour": "The code is absurd, and every officer in the theatre will swear by it.",
+  "locationId": "the-duelling-ground",
+  "width": 9,
+  "height": 7,
+  "layout": [
+    ".........",
+    "...%%....",
+    "...%%....",
+    ".........",
+    "...%%....",
+    "...%%....",
+    "........."
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        { "x": 0, "y": 3 },
+        { "x": 0, "y": 2 },
+        { "x": 0, "y": 4 }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        { "x": 8, "y": 3 },
+        { "x": 8, "y": 2 },
+        { "x": 8, "y": 4 }
+      ]
+    }
+  ],
+  "objective": { "kind": "annihilation" },
+  "recommendedLevel": 2,
+  "contractId": "pistols-at-dawn"
+}

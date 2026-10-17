@@ -1,0 +1,41 @@
+{
+  "id": "ridge-reconnaissance",
+  "name": "Reconnoitre the Ridge",
+  "description": "A bare ridge crowned by a lookout post. Seize the height, read the enemy's camps, and hold it while the map is drawn.",
+  "flavour": "A ridge is worth ten squadrons to the man who stands on it first.",
+  "locationId": "the-ridge",
+  "width": 11,
+  "height": 9,
+  "layout": [
+    "....^^^^...",
+    "...^^^^^^..",
+    "..^^^^^^^..",
+    "..^^^O^^^..",
+    "..^^^^^^^..",
+    "...^^^^^^..",
+    "....^^^^...",
+    "...........",
+    "..........."
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        { "x": 4, "y": 7 },
+        { "x": 5, "y": 7 },
+        { "x": 6, "y": 7 }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        { "x": 4, "y": 0 },
+        { "x": 5, "y": 0 },
+        { "x": 6, "y": 0 }
+      ]
+    }
+  ],
+  "objective": { "kind": "defend", "at": { "x": 5, "y": 3 }, "turns": 4 },
+  "recommendedLevel": 4,
+  "contractId": "reconnoitre-the-ridge"
+}

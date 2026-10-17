@@ -1,0 +1,41 @@
+{
+  "id": "green-valley-forage",
+  "name": "The Green Valley Forage",
+  "description": "Wide fields around a tithe barn. Fill the wagons from the granary before the enemy pickets close the valley.",
+  "flavour": "An army marches on its stomach, and a hungry army marches on somebody else's.",
+  "locationId": "the-green-valley",
+  "width": 12,
+  "height": 9,
+  "layout": [
+    "....%%%.....",
+    "...%%%%%....",
+    "............",
+    "......####..",
+    "......####..",
+    "......####..",
+    "............",
+    "...%%%%%....",
+    "....%%%....."
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        { "x": 0, "y": 4 },
+        { "x": 1, "y": 4 },
+        { "x": 0, "y": 3 }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        { "x": 11, "y": 4 },
+        { "x": 10, "y": 4 },
+        { "x": 11, "y": 3 }
+      ]
+    }
+  ],
+  "objective": { "kind": "capture", "at": { "x": 8, "y": 4 } },
+  "recommendedLevel": 3,
+  "contractId": "forage-the-valley"
+}

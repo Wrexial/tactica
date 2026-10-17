@@ -1,0 +1,43 @@
+{
+  "id": "farmhouse-assault",
+  "name": "The Farmhouse Assault",
+  "description": "A stone farmhouse ringed by orchard walls. Sappers blow the gate and a party clears the yard; take the colours from the parlour.",
+  "flavour": "The farm looks quiet from the road. Farms held by desperate men always do.",
+  "locationId": "the-farmhouse",
+  "width": 12,
+  "height": 9,
+  "layout": [
+    "....%%%.....",
+    "...%%%%%....",
+    "..%%###%%...",
+    "..#######...",
+    "..#######...",
+    "..#######...",
+    "..%%###%%...",
+    "...%%%%%....",
+    "....%%%....."
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        { "x": 0, "y": 3 },
+        { "x": 1, "y": 3 },
+        { "x": 0, "y": 4 },
+        { "x": 1, "y": 4 }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        { "x": 11, "y": 3 },
+        { "x": 10, "y": 3 },
+        { "x": 11, "y": 4 },
+        { "x": 10, "y": 4 }
+      ]
+    }
+  ],
+  "objective": { "kind": "capture", "at": { "x": 6, "y": 4 } },
+  "recommendedLevel": 3,
+  "contractId": "storm-the-farmhouse"
+}

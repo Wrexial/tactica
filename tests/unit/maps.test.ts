@@ -7,6 +7,7 @@ import {
   BATTLE_MAPS,
   BattleMapDefSchema,
   ELEVATION_CHARS,
+  JSON_BATTLE_MAP_KEYS,
   LOCATION_KEYS,
   LOCATION_LIST,
   LOCATIONS,
@@ -435,6 +436,72 @@ describe("battle map schema rejection (T074)", () => {
     const missingFlavour: Record<string, unknown> = { ...base };
     delete missingFlavour.flavour;
     expect(BattleMapDefSchema.safeParse({ id: "test", ...missingFlavour }).success).toBe(false);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T092 — The battle map catalogue
+ *
+ * T074 laid down the schemas, the location table and a first handful of
+ * boards. T092 grows the catalogue to a full slate of 10–20 varied battle
+ * maps, adding JSON-authored grids for the larger fields. These tests pin the
+ * acceptance criteria: enough maps, objectives that cover every engine kind,
+ * boards that genuinely differ, and every JSON file loaded and validated.
+ * ------------------------------------------------------------------------ */
+
+describe("battle map catalogue (T092)", () => {
+  it("authors between 10 and 20 varied battle maps", () => {
+    expect(BATTLE_MAP_LIST.length).toBeGreaterThanOrEqual(10);
+    expect(BATTLE_MAP_LIST.length).toBeLessThanOrEqual(20);
+    expect(new Set(BATTLE_MAP_LIST.map((map) => map.id)).size).toBe(BATTLE_MAP_LIST.length);
+  });
+
+  it("covers every objective kind the engine can score", () => {
+    const kinds = new Set(BATTLE_MAP_LIST.map((map) => map.objective.kind));
+    expect([...kinds].sort()).toEqual(["annihilation", "capture", "defend", "rout", "survive"]);
+  });
+
+  it("varies board sizes and recommendations across the slate", () => {
+    const areas = new Set(BATTLE_MAP_LIST.map((map) => map.width * map.height));
+    expect(areas.size).toBeGreaterThanOrEqual(5);
+    expect(new Set(BATTLE_MAP_LIST.map((map) => map.recommendedLevel)).size).toBeGreaterThan(1);
+  });
+
+  it("loads every JSON-authored board and pins its id to its key", () => {
+    expect(JSON_BATTLE_MAP_KEYS.length).toBeGreaterThan(0);
+    for (const key of JSON_BATTLE_MAP_KEYS) {
+      const map = BATTLE_MAPS[key];
+      expect(map.id).toBe(key);
+      expect(BATTLE_MAP_KEYS).toContain(key);
+      expect(map.deployment.length).toBeGreaterThan(0);
+      expect(map.recommendedLevel).toBeGreaterThan(0);
+      expect(map.objective).toBeDefined();
+    }
+  });
+
+  it("keeps every JSON board on the engine's playable ground", () => {
+    for (const key of JSON_BATTLE_MAP_KEYS) {
+      const map = BATTLE_MAPS[key];
+      const terrain = battleMapToTerrainMap(map);
+      for (const zone of map.deployment) {
+        for (const tile of zone.tiles) {
+          expect(terrain.grid.width).toBe(map.width);
+          expect(terrain.grid.height).toBe(map.height);
+          expect(
+            getTerrainDef(terrainAt(terrain, coord(tile.x, tile.y))).passable,
+            `${map.id} deploy ${tile.x},${tile.y}`,
+          ).toBe(true);
+        }
+      }
+    }
+  });
+
+  it("gives each new map an authored location whose handle resolves", () => {
+    for (const key of JSON_BATTLE_MAP_KEYS) {
+      const map = BATTLE_MAPS[key];
+      expect(isLocationKey(map.locationId), `${map.id} → ${map.locationId}`).toBe(true);
+      expect(getLocation(map.locationId as never).battleMapIds).toContain(key);
+    }
   });
 });
 

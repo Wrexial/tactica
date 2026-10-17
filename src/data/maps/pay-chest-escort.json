@@ -1,0 +1,39 @@
+{
+  "id": "pay-chest-escort",
+  "name": "Escort the Pay Chest",
+  "description": "A turnpike between dune wood and salt marsh. Get the pay chest down the road and keep it moving for six turns.",
+  "flavour": "The pay chest is heavy, obvious, and the only thing the men will actually die for.",
+  "locationId": "the-pay-chest-road",
+  "width": 12,
+  "height": 7,
+  "layout": [
+    "....%%%%....",
+    "............",
+    "============",
+    "............",
+    ",,,,....,,,,",
+    "............",
+    "....%%%%...."
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        { "x": 0, "y": 3 },
+        { "x": 1, "y": 3 },
+        { "x": 0, "y": 2 }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        { "x": 11, "y": 3 },
+        { "x": 10, "y": 3 },
+        { "x": 11, "y": 2 }
+      ]
+    }
+  ],
+  "objective": { "kind": "survive", "turns": 6 },
+  "recommendedLevel": 3,
+  "contractId": "escort-the-pay-chest"
+}

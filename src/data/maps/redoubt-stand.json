@@ -1,0 +1,42 @@
+{
+  "id": "redoubt-stand",
+  "name": "The Redoubt Stand",
+  "description": "An earthwork crown on a bare hill. Man the parapet and hold the guns through the counter-attack.",
+  "flavour": "A redoubt is nothing but a promise. The battery is what keeps it.",
+  "locationId": "the-redoubt",
+  "width": 11,
+  "height": 9,
+  "layout": [
+    "^^^^^^^^^^^",
+    "^^^^...^^^^",
+    "^^^..O..^^^",
+    "^^...O...^^",
+    "...OOOOO...",
+    "^^...O...^^",
+    "^^^..x..^^^",
+    "^^^^...^^^^",
+    "^^^^^^^^^^^"
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        { "x": 4, "y": 6 },
+        { "x": 5, "y": 6 },
+        { "x": 6, "y": 6 }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        { "x": 4, "y": 1 },
+        { "x": 5, "y": 1 },
+        { "x": 6, "y": 1 },
+        { "x": 5, "y": 2 }
+      ]
+    }
+  ],
+  "objective": { "kind": "defend", "at": { "x": 5, "y": 4 }, "turns": 5 },
+  "recommendedLevel": 4,
+  "contractId": "hold-the-redoubt"
+}

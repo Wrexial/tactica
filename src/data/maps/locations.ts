@@ -55,6 +55,14 @@ export const LOCATION_KEYS = [
   "the-crossroads",
   "the-coast-road",
   "the-highlands",
+  "the-farmhouse",
+  "the-redoubt",
+  "the-orchard",
+  "the-duelling-ground",
+  "the-green-valley",
+  "the-pay-chest-road",
+  "the-ridge",
+  "the-millford",
 ] as const;
 
 /** The stable id of every authored location. */
@@ -119,6 +127,79 @@ const LOCATION_DATA = {
     battleMapIds: ["highland-pass"],
     isNoMansLand: true,
     chapter: 5,
+  },
+  "the-farmhouse": {
+    name: "The Farmhouse",
+    description:
+      "A stout stone farm at the edge of the Blackwood, its yard walled and its gate the only way in.",
+    flavour: "A farm is a fortress to anyone with nowhere left to run.",
+    regionId: "blackwood",
+    terrain: "village",
+    battleMapIds: ["farmhouse-assault"],
+    chapter: 3,
+  },
+  "the-redoubt": {
+    name: "The Redoubt",
+    description: "An earthwork crown on a bare rise, thrown up to cover the Sainte-Colombe road.",
+    flavour: "Earth and timber, and a battery behind them: the cheapest army ever raised.",
+    regionId: "sainte-colombe",
+    terrain: "redoubt",
+    battleMapIds: ["redoubt-stand"],
+    chapter: 4,
+  },
+  "the-orchard": {
+    name: "The Orchard",
+    description:
+      "Old fruit trees in ordered rows, their lanes open ground and their branches good cover for skirmishers.",
+    flavour: "An orchard is a gentleman's field and a skirmisher's dream.",
+    regionId: "crossroads",
+    terrain: "wood",
+    battleMapIds: ["orchard-skirmish"],
+  },
+  "the-duelling-ground": {
+    name: "The Duelling Ground",
+    description:
+      "A misty meadow beyond the Crossroads where officers settle affairs of honour at first light.",
+    flavour: "No seconds, no surgeon worth the name, and the whole company watching.",
+    regionId: "crossroads",
+    terrain: "field",
+    battleMapIds: ["duel-at-dawn"],
+  },
+  "the-green-valley": {
+    name: "The Green Valley",
+    description:
+      "Wide fields and a tithe barn, rich enough to feed a column and open enough to be a trap.",
+    flavour: "The valley has fed this war for three years and is beginning to notice.",
+    regionId: "the-green-valley",
+    terrain: "field",
+    battleMapIds: ["green-valley-forage"],
+  },
+  "the-pay-chest-road": {
+    name: "The Pay Chest Road",
+    description:
+      "The coast turnpike between the dunes and the salt marsh, the only road a strongbox can travel.",
+    flavour: "Every highwayman in the theatre knows what a pay wagon sounds like.",
+    regionId: "the-coast-road",
+    terrain: "road",
+    battleMapIds: ["pay-chest-escort"],
+  },
+  "the-ridge": {
+    name: "The Ridge",
+    description:
+      "A long bare height above the valley, swept by wind and worth more than the ground it overlooks.",
+    flavour: "From the crest you can count their campfires. They can count yours.",
+    regionId: "the-ridge",
+    terrain: "hill",
+    battleMapIds: ["ridge-reconnaissance"],
+  },
+  "the-millford": {
+    name: "The Millford",
+    description:
+      "A drowned ford and one stone bridge beside an old mill, the only crossing for ten miles.",
+    flavour: "Burn the mill and the crossing means nothing; hold it, and the road is yours.",
+    regionId: "sainte-colombe",
+    terrain: "bridge",
+    battleMapIds: ["millford-crossing"],
   },
 } satisfies Record<LocationKey, LocationData>;
 

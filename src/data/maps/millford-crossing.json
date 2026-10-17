@@ -1,0 +1,39 @@
+{
+  "id": "millford-crossing",
+  "name": "The Millford Crossing",
+  "description": "A drowned ford beside the old mill, crossed by planks and one stone bridge. Clear both banks before the enemy can burn the mill.",
+  "flavour": "Every river has one crossing worth fighting for, and this is the millford.",
+  "locationId": "the-millford",
+  "width": 11,
+  "height": 8,
+  "layout": [
+    "....~..###.",
+    "....~..###.",
+    "....~..###.",
+    "....B......",
+    "....~......",
+    "...x~......",
+    "....~......",
+    "..........."
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        { "x": 2, "y": 3 },
+        { "x": 2, "y": 4 },
+        { "x": 3, "y": 3 }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        { "x": 8, "y": 3 },
+        { "x": 8, "y": 4 },
+        { "x": 7, "y": 4 }
+      ]
+    }
+  ],
+  "objective": { "kind": "annihilation" },
+  "recommendedLevel": 4
+}

@@ -46,6 +46,14 @@
 
 import type { z } from "zod";
 
+import duelAtDawnJson from "./duel-at-dawn.json";
+import farmhouseAssaultJson from "./farmhouse-assault.json";
+import greenValleyForageJson from "./green-valley-forage.json";
+import millfordCrossingJson from "./millford-crossing.json";
+import orchardSkirmishJson from "./orchard-skirmish.json";
+import payChestEscortJson from "./pay-chest-escort.json";
+import redoubtStandJson from "./redoubt-stand.json";
+import ridgeReconnaissanceJson from "./ridge-reconnaissance.json";
 import { BattleMapDefSchema, type BattleMapDef, type BattleMapObjective } from "./schema";
 
 /* --------------------------------------------------------------------------
@@ -63,6 +71,14 @@ export const BATTLE_MAP_KEYS = [
   "crossroads-skirmish",
   "coast-road-ambush",
   "highland-pass",
+  "farmhouse-assault",
+  "redoubt-stand",
+  "orchard-skirmish",
+  "duel-at-dawn",
+  "green-valley-forage",
+  "pay-chest-escort",
+  "ridge-reconnaissance",
+  "millford-crossing",
 ] as const;
 
 /** The stable id of every authored battle map. */
@@ -73,6 +89,58 @@ type BattleMapInput = z.input<typeof BattleMapDefSchema>;
 
 /** A single map as authored, before {@link BattleMapDefSchema} stamps its id on. */
 export type BattleMapData = Omit<BattleMapInput, "id">;
+
+/**
+ * The board ids authored as standalone JSON files in this directory (T092).
+ * JSON keeps a large grid easier to diff and hand-edit than a TypeScript
+ * literal; the schema validates it exactly as it does the TS entries, so the
+ * two authoring styles are interchangeable.
+ */
+export const JSON_BATTLE_MAP_KEYS = [
+  "farmhouse-assault",
+  "redoubt-stand",
+  "orchard-skirmish",
+  "duel-at-dawn",
+  "green-valley-forage",
+  "pay-chest-escort",
+  "ridge-reconnaissance",
+  "millford-crossing",
+] as const;
+
+/** The stable id of a JSON-authored battle map. */
+export type JsonBattleMapKey = (typeof JSON_BATTLE_MAP_KEYS)[number];
+
+/**
+ * Validate a JSON-authored board and pin its `id` to the canonical key. The
+ * file name is the handle; a mismatch fails loudly at module load rather than
+ * silently registering the map under the wrong id.
+ */
+function parseJsonBattleMap(id: JsonBattleMapKey, raw: unknown): BattleMapDef {
+  const parsed = BattleMapDefSchema.parse(raw);
+  if (parsed.id !== id) {
+    throw new Error(
+      `battle map ${id} is authored in JSON with id "${parsed.id}"; the file name and id must match`,
+    );
+  }
+  return parsed;
+}
+
+/**
+ * The JSON-authored boards, parsed at module load. A {@link BattleMapDef} is
+ * assignable to {@link BattleMapData} (its fields are the schema's output, and
+ * a required field satisfies an optional one), so the table can merge both
+ * authoring styles without a cast.
+ */
+const JSON_BATTLE_MAP_DATA: Record<JsonBattleMapKey, BattleMapData> = {
+  "farmhouse-assault": parseJsonBattleMap("farmhouse-assault", farmhouseAssaultJson),
+  "redoubt-stand": parseJsonBattleMap("redoubt-stand", redoubtStandJson),
+  "orchard-skirmish": parseJsonBattleMap("orchard-skirmish", orchardSkirmishJson),
+  "duel-at-dawn": parseJsonBattleMap("duel-at-dawn", duelAtDawnJson),
+  "green-valley-forage": parseJsonBattleMap("green-valley-forage", greenValleyForageJson),
+  "pay-chest-escort": parseJsonBattleMap("pay-chest-escort", payChestEscortJson),
+  "ridge-reconnaissance": parseJsonBattleMap("ridge-reconnaissance", ridgeReconnaissanceJson),
+  "millford-crossing": parseJsonBattleMap("millford-crossing", millfordCrossingJson),
+};
 
 /**
  * Unparsed map data, keyed by the stable id. `satisfies` enforces that every
@@ -365,6 +433,11 @@ const BATTLE_MAP_DATA = {
     objective: { kind: "defend", at: { x: 4, y: 4 }, turns: 4 },
     recommendedLevel: 4,
   },
+
+  /* ----- JSON-authored boards (T092) ------------------------------------- */
+  // The grids large enough to be painful in TS live in sibling `*.json` files
+  // and are merged in here after validation; see {@link JSON_BATTLE_MAP_KEYS}.
+  ...JSON_BATTLE_MAP_DATA,
 } satisfies Record<BattleMapKey, BattleMapData>;
 
 /**
@@ -375,7 +448,9 @@ const BATTLE_MAP_DATA = {
 export const BATTLE_MAPS: Record<BattleMapKey, BattleMapDef> = Object.fromEntries(
   Object.entries(BATTLE_MAP_DATA).map(([id, def]) => [
     id,
-    BattleMapDefSchema.parse({ id, ...def }),
+    // The canonical key wins over any `id` inside the raw map, so a JSON file
+    // can be validated and registered without trusting its own handle.
+    BattleMapDefSchema.parse({ ...def, id }),
   ]),
 ) as Record<BattleMapKey, BattleMapDef>;
 
