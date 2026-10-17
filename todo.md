@@ -732,7 +732,7 @@ deterministic.
 - done: Full Article-of-War card pool and contract list (main + side + dispatch + pacification).
 
 ### T094 — Content integrity test
-- status: todo
+- status: done
 - deps: [T089, T090, T091, T092, T093]
 - files: tests/unit/content.test.ts
 - verify: npm run test -- --run tests/unit/content.test.ts
