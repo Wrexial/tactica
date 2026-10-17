@@ -61,12 +61,29 @@ export function App() {
     "battle",
   );
   const controllerRef = useRef(controller);
+  const viewRef = useRef(view);
+  viewRef.current = view;
 
   const applyController = useCallback((next: BattleController) => {
     // Update the ref synchronously so fast key sequences never read a stale
     // controller before React has re-rendered.
     controllerRef.current = next;
     setController(next);
+  }, []);
+
+  // Keyboard/gamepad navigation between the field and the camp (T087). These
+  // callbacks are stable so the scene + input effect never tears down on a view
+  // change; the input controller reads the live view through `viewRef`.
+  const returnToField = useCallback(() => {
+    setView((current) => (current === "battle" ? current : "battle"));
+    // Hand the grid back the cursor: drop focus from the camp control.
+    if (typeof document !== "undefined") {
+      (document.activeElement as HTMLElement | null)?.blur?.();
+    }
+  }, []);
+
+  const toggleCamp = useCallback(() => {
+    setView((current) => (current === "battle" ? "menus" : "battle"));
   }, []);
 
   // Targeting preview (T085): reach, area footprint, danger zone and elevation.
@@ -135,6 +152,9 @@ export function App() {
         getCamera: () => scene.camera,
         getController: () => controllerRef.current,
         onControllerChange: applyController,
+        getView: () => (viewRef.current === "battle" ? "battle" : "menu"),
+        onBack: returnToField,
+        onOpenMenu: toggleCamp,
       });
     });
 
@@ -144,7 +164,7 @@ export function App() {
       scene.dispose();
       sceneRef.current = null;
     };
-  }, [applyController]);
+  }, [applyController, returnToField, toggleCamp]);
 
   // Sync the scene (units), overlay and animations to the controller after
   // every transition. Animation cues are derived **only** from the engine
@@ -263,9 +283,9 @@ export function App() {
 
         <aside className="hud" hidden={view !== "battle"}>
           <h2>Field Orders</h2>
-          <p className="muted">
-            Arrows / WASD move the cursor · Enter confirms · Esc backs out · drag to pan, wheel to
-            zoom.
+          <p className="muted" data-testid="hud-controls">
+            Arrows / WASD / D-pad move the cursor · Enter / A confirms · O opens Orders · Esc / B
+            backs out · M / Start opens the camp · drag to pan, wheel to zoom.
           </p>
           <dl>
             <div>

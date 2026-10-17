@@ -679,7 +679,7 @@ deterministic.
 - done: Expected damage, hit chance and reaction risk before confirming.
 
 ### T087 — Keyboard & gamepad navigation
-- status: todo
+- status: done
 - deps: [T084]
 - files: src/app/input.ts
 - verify: npm run test:e2e

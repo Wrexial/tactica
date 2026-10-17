@@ -8,10 +8,19 @@ import {
 import {
   activateCursor,
   clickTile,
+  createGamepadEdge,
   defaultCursor,
+  directionForKey,
+  EMPTY_GAMEPAD_FRAME,
+  firstConnectedGamepad,
   isNavigationKey,
   moveCursor,
+  nextFocusIndex,
+  ordersAwait,
   pressKey,
+  readGamepad,
+  type FocusRect,
+  type GamepadFrame,
 } from "../../src/app/input";
 import { createBattle } from "../../src/engine/battle";
 import { coord, type Coord } from "../../src/engine/grid";
@@ -77,6 +86,15 @@ describe("key mapping", () => {
     expect(isNavigationKey("w")).toBe(true);
     expect(isNavigationKey("W")).toBe(true);
     expect(isNavigationKey("Enter")).toBe(false);
+  });
+
+  it("maps keys to cardinal directions", () => {
+    expect(directionForKey("ArrowLeft")).toBe("left");
+    expect(directionForKey("ArrowRight")).toBe("right");
+    expect(directionForKey("ArrowUp")).toBe("up");
+    expect(directionForKey("ArrowDown")).toBe("down");
+    expect(directionForKey("D")).toBe("right");
+    expect(directionForKey("Enter")).toBeNull();
   });
 });
 
@@ -183,5 +201,116 @@ describe("unhandled keys", () => {
   it("leaves the controller untouched", () => {
     const before = focused();
     expect(pressKey(before, "q")).toBe(before);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T087 — gamepad navigation and menu focus geometry
+ * ------------------------------------------------------------------------ */
+
+/** Build a fake rectangle at a grid position (100px cells). */
+function rect(col: number, row: number): FocusRect {
+  const left = col * 100;
+  const top = row * 100;
+  return { left, top, right: left + 80, bottom: top + 40 };
+}
+
+/** A 3x3 grid of focusable rects in row-major order. */
+const GRID: readonly FocusRect[] = [
+  rect(0, 0),
+  rect(1, 0),
+  rect(2, 0),
+  rect(0, 1),
+  rect(1, 1),
+  rect(2, 1),
+  rect(0, 2),
+  rect(1, 2),
+  rect(2, 2),
+];
+
+describe("nextFocusIndex", () => {
+  it("starts at the first control when nothing is focused", () => {
+    expect(nextFocusIndex(GRID, -1, "right")).toBe(0);
+  });
+
+  it("moves within a row and wraps to the next row", () => {
+    expect(nextFocusIndex(GRID, 0, "right")).toBe(1);
+    expect(nextFocusIndex(GRID, 1, "right")).toBe(2);
+    expect(nextFocusIndex(GRID, 0, "down")).toBe(3);
+    expect(nextFocusIndex(GRID, 4, "up")).toBe(1);
+    expect(nextFocusIndex(GRID, 4, "left")).toBe(3);
+  });
+
+  it("returns -1 when nothing lies in that direction", () => {
+    expect(nextFocusIndex(GRID, 0, "up")).toBe(-1);
+    expect(nextFocusIndex(GRID, 0, "left")).toBe(-1);
+    expect(nextFocusIndex(GRID, 8, "down")).toBe(-1);
+    expect(nextFocusIndex([rect(0, 0)], 0, "right")).toBe(-1);
+  });
+});
+
+describe("readGamepad", () => {
+  const buttons = (pressed: readonly number[]): { pressed: boolean }[] =>
+    Array.from({ length: 16 }, (_, index) => ({ pressed: pressed.includes(index) }));
+
+  it("reads the D-pad as a single direction", () => {
+    expect(readGamepad({ buttons: buttons([15]) }).direction).toBe("right");
+    expect(readGamepad({ buttons: buttons([12]) }).direction).toBe("up");
+    expect(readGamepad({ buttons: buttons([]) }).direction).toBeNull();
+  });
+
+  it("reads the left stick with a deadzone", () => {
+    expect(readGamepad({ buttons: buttons([]), axes: [0.9, 0] }).direction).toBe("right");
+    expect(readGamepad({ buttons: buttons([]), axes: [0, -0.9] }).direction).toBe("up");
+    expect(readGamepad({ buttons: buttons([]), axes: [0.3, 0.2] }).direction).toBeNull();
+  });
+
+  it("reads the action and menu buttons", () => {
+    const frame = readGamepad({ buttons: buttons([0, 2, 9]) });
+    expect(frame.confirm).toBe(true);
+    expect(frame.orders).toBe(true);
+    expect(frame.menu).toBe(true);
+    expect(frame.cancel).toBe(false);
+  });
+});
+
+describe("createGamepadEdge", () => {
+  const frame = (overrides: Partial<GamepadFrame>): GamepadFrame => ({
+    ...EMPTY_GAMEPAD_FRAME,
+    ...overrides,
+  });
+
+  it("fires a button once on the rising edge", () => {
+    const edge = createGamepadEdge();
+    edge.update(EMPTY_GAMEPAD_FRAME, 0);
+    expect(edge.update(frame({ confirm: true }), 16).confirm).toBe(true);
+    expect(edge.update(frame({ confirm: true }), 32).confirm).toBe(false);
+    expect(edge.update(EMPTY_GAMEPAD_FRAME, 48).confirm).toBe(false);
+    expect(edge.update(frame({ confirm: true }), 64).confirm).toBe(true);
+  });
+
+  it("fires a direction once, then repeats while held", () => {
+    const edge = createGamepadEdge({ initialDelayMs: 300, repeatMs: 100 });
+    edge.update(EMPTY_GAMEPAD_FRAME, 0);
+    expect(edge.update(frame({ direction: "right" }), 16).direction).toBe("right");
+    expect(edge.update(frame({ direction: "right" }), 200).direction).toBeNull();
+    expect(edge.update(frame({ direction: "right" }), 340).direction).toBe("right");
+    expect(edge.update(frame({ direction: "right" }), 400).direction).toBeNull();
+    expect(edge.update(frame({ direction: "right" }), 460).direction).toBe("right");
+  });
+});
+
+describe("firstConnectedGamepad", () => {
+  it("skips empty and disconnected pads", () => {
+    const pad = { connected: true } as Gamepad;
+    expect(firstConnectedGamepad([null, undefined])).toBeNull();
+    expect(firstConnectedGamepad([{ connected: false } as Gamepad, pad])).toBe(pad);
+  });
+});
+
+describe("ordersAwait", () => {
+  it("is false until an actor with an Orders menu is confirmed", () => {
+    expect(ordersAwait(focused(), coord(1, 1))).toBe(false);
+    expect(ordersAwait(activateCursor(focused()), null)).toBe(false);
   });
 });

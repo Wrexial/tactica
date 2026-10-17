@@ -2195,3 +2195,48 @@ body {
     margin-left: auto;
   }
 }
+
+/* ------------------------------------------------------------------------
+ * Responsive shell (T087)
+ *
+ * The top bar and view tabs wrap instead of overflowing, and the battlefield
+ * HUD reflows to the available width so the whole game — menus included — is
+ * playable on a phone-sized viewport with touch or a gamepad.
+ * --------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .topbar {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 14px;
+  }
+
+  .viewnav {
+    flex-wrap: wrap;
+    padding: 8px 14px;
+  }
+
+  .viewnav__button {
+    flex: 0 0 auto;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+
+  .hud {
+    width: min(260px, 46vw);
+    max-height: calc(100% - 150px);
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar .badge {
+    display: none;
+  }
+
+  .hud {
+    top: 8px;
+    right: 8px;
+    width: calc(100% - 16px);
+    max-height: 42%;
+  }
+}

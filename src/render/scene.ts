@@ -419,7 +419,13 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
   };
 
   const resize = (): void => {
-    const rect = canvas.getBoundingClientRect();
+    // Size from the canvas's container, not the canvas itself: Pixi's
+    // `autoDensity` writes an inline `width`/`height` in device pixels at init
+    // (its 800x600 default), which would otherwise beat the responsive CSS and
+    // pin the battlefield to 800px on narrow screens (T087). The container
+    // (`.stage`) keeps the layout's true size.
+    const container = canvas.parentElement ?? canvas;
+    const rect = container.getBoundingClientRect();
     const width = Math.max(1, Math.floor(rect.width));
     const height = Math.max(1, Math.floor(rect.height));
     app.renderer.resize(width, height);
