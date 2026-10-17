@@ -440,7 +440,7 @@ deterministic.
 ## Phase 5 — Articles of War & the Provost
 
 ### T054 — Article definition
-- status: todo
+- status: done
 - deps: [T008]
 - files: src/data/articles.ts
 - verify: npm run test -- --run tests/unit/articles.test.ts
