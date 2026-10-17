@@ -475,7 +475,7 @@ deterministic.
 - done: Court-martialled units leave the field; the commander's court-martial ends the battle in defeat.
 
 ### T059 — Commissions (hero medals)
-- status: todo
+- status: done
 - deps: [T057]
 - files: src/engine/rules/articles.ts
 - verify: npm run test -- --run tests/unit/articles.test.ts

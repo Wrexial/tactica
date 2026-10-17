@@ -14,9 +14,10 @@
  * **violation detection** (T056: given the facts of a resolved action, which
  * active Articles did it break or earn commendation for?), the pure
  * **escalation policy** (T057: does a breach earn a Reprimand or a
- * Court-Martial?) and the **removal** a Red Card causes (T058: the soldier
- * leaves the field, and a commander's removal ends the action in defeat). The
- * remaining mechanics — Commissions (T059), the Honour economy (T060) and the
+ * Court-Martial?), the **Commission** that shields a hero from that
+ * Court-Martial (T059) and the **removal** a Red Card causes (T058: the
+ * soldier leaves the field, and a commander's removal ends the action in
+ * defeat). The remaining mechanics — the Honour economy (T060) and the
  * Provost unit itself (T066) — stay separate and live elsewhere in
  * `src/engine/rules/`.
  *
@@ -45,6 +46,13 @@
  *                 └─ FFTA's card escalation: a first, non-lethal breach draws a
  *                    Reprimand (Yellow); a second breach or one that causes a
  *                    knockout draws a Court-Martial (Red)
+ *
+ *   isCommissioned(commissions, unitId) ──► does this soldier hold a hero medal?
+ *                 │
+ *                 └─ a Commission (FFTA "Boss Medal", T059) caps escalation at
+ *                    a Reprimand for as long as the soldier bears it, so the
+ *                    bearer may break Articles freely and bank Yellow Cards
+ *                    without ever leaving the field
  *
  *   applyCourtMartial(context, request) ──► { units, events, outcome }
  *                 │
@@ -557,6 +565,13 @@ export interface ArticleRecord {
    * (`docs/wiki/pages/Law_system_(Tactics_Advance).md` §"Forbidden actions").
    */
   readonly illegalKo?: boolean;
+  /**
+   * `true` when the soldier holds a **Commission** (FFTA "Boss Medal", T059):
+   * escalation stops at a Reprimand no matter how grave or repeated the breach,
+   * so the bearer never receives the Red Card that removes them. See
+   * {@link Commission}.
+   */
+  readonly commissioned?: boolean;
 }
 
 /** The Provost Marshal's ruling on one breach. */
@@ -595,6 +610,11 @@ export function cardForArticleSeverity(severity: ArticleDef["severity"]): CardSe
  * 3. the soldier already carries a Reprimand (`record.reprimands >= 1`) — the
  *    second offence, regardless of which Article it breaks.
  *
+ * A **Commission** (`record.commissioned`, T059) overrides all three: the
+ * bearer is immune to the Court-Martial and may break Articles freely,
+ * accumulating Reprimands without limit — FFTA's medal-bearers "can (and will)
+ * violate the law freely, acquiring an infinite amount of Yellow Cards".
+ *
  * Reference: `docs/wiki/pages/Law_system_(Tactics_Advance).md` — "By breaking
  * the law the first time, and as long as it does not result in a KO, the Judge
  * will ... issue a Yellow Card ... By breaking the law, and scoring a KO in the
@@ -608,14 +628,22 @@ export function cardForArticleSeverity(severity: ArticleDef["severity"]): CardSe
  * programmer error and throws.
  *
  * ```ts
- * escalateBreach(noFire, { reprimands: 0 });                 // Reprimand
- * escalateBreach(noFire, { reprimands: 1 });                 // Court-Martial
+ * escalateBreach(noFire, { reprimands: 0 });                  // Reprimand
+ * escalateBreach(noFire, { reprimands: 1 });                  // Court-Martial
  * escalateBreach(noFire, { reprimands: 0, illegalKo: true }); // Court-Martial
- * escalateBreach(noPoison, { reprimands: 0 });               // Court-Martial (grave)
+ * escalateBreach(noPoison, { reprimands: 0 });                // Court-Martial (grave)
+ * escalateBreach(noPoison, { reprimands: 0, commissioned: true }); // Reprimand
  * ```
  */
 export function escalateBreach(article: ArticleDef, record: ArticleRecord): CardDecision {
   assertBreachable(article, record);
+
+  // A Commission (T059) caps escalation at a Reprimand: the bearer may break
+  // Articles freely and bank Yellow Cards, but a Red Card can never remove
+  // them from the field (FFTA "Boss Medal").
+  if (record.commissioned === true) {
+    return { severity: "reprimand", reprimands: record.reprimands + 1 };
+  }
 
   const grave = article.severity === "court-martial";
   const illegalKo = record.illegalKo === true;
@@ -623,11 +651,66 @@ export function escalateBreach(article: ArticleDef, record: ArticleRecord): Card
 
   // A Reprimand records one more warning; a Court-Martial removes the soldier
   // rather than warning them, so it banks no new Reprimand (T058 handles the
-  // removal, T059 lets a Commission ignore the Red Card).
+  // removal).
   if (grave || illegalKo || repeatOffence) {
     return { severity: "courtMartial", reprimands: record.reprimands };
   }
   return { severity: "reprimand", reprimands: record.reprimands + 1 };
+}
+
+/* --------------------------------------------------------------------------
+ * Commissions / hero medals (T059)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * A soldier's **Commission** — FFTA's "Boss Medal", also called a "Hero
+ * Medal" (`docs/wiki/pages/Law_system_(Tactics_Advance).md`). It is the
+ * regimental Colours, awarded to the company's key officers and to named
+ * enemies, and it shields the bearer from the Provost Marshal's ultimate
+ * sanction.
+ *
+ * Mechanical effect (faithful to FFTA): while the Commission is held the
+ * soldier is **immune to the Court-Martial** (Red Card) and therefore cannot be
+ * removed from the field by the Articles. The bearer may still take
+ * Reprimands — FFTA's medal-bearers "violate the law freely, acquiring an
+ * infinite amount of Yellow Cards in the process" — so this is not impunity
+ * from the record, only from removal.
+ *
+ * A Commission is modelled as a tiny value carrying only the bearer's id, so a
+ * battle or camp roster can hold a `readonly Commission[]`, serialise it
+ * unchanged and pass it to {@link isCommissioned} / {@link applyCourtMartial}.
+ * The rules layer stays free of any roster type (`agents.md` §7).
+ */
+export interface Commission {
+  /** The soldier who bears the Commission. */
+  readonly unitId: UnitId;
+}
+
+/** A collection of held {@link Commission}s (one per bearer). */
+export type Commissions = readonly Commission[];
+
+/**
+ * Award a Commission to `unitId`. Pure sugar for building a roster, kept here
+ * so callers never hand-build the object shape.
+ *
+ * ```ts
+ * const commissions = [commission(hero.id), commission(officer.id)];
+ * ```
+ */
+export function commission(unitId: UnitId): Commission {
+  return { unitId };
+}
+
+/**
+ * Whether `unitId` holds a Commission in `commissions`. Accepts `undefined`
+ * (no Commissions recorded) and the empty list alike, so a battle that predates
+ * the award needs no special case.
+ */
+export function isCommissioned(
+  commissions: Commissions | undefined,
+  unitId: UnitId,
+): boolean {
+  return commissions?.some((held) => held.unitId === unitId) ?? false;
 }
 
 /* --------------------------------------------------------------------------
@@ -657,6 +740,13 @@ export interface CourtMartialContext {
    * skirmish with no commander on the field.
    */
   readonly commanderId?: UnitId;
+  /**
+   * Soldiers holding a **Commission** (T059). A commissioned soldier is
+   * immune to the Court-Martial, so {@link applyCourtMartial} refuses to remove
+   * them and returns the field unchanged. Omit it when nobody holds a medal
+   * (the default).
+   */
+  readonly commissions?: Commissions;
 }
 
 /** What the Provost Marshal orders: remove this soldier for this Article. */
@@ -671,22 +761,26 @@ export interface CourtMartialRequest {
 export interface CourtMartialResult {
   /**
    * The field after the soldier left it: a new array in the original order with
-   * the convicted soldier omitted. The input roster is never mutated.
+   * the convicted soldier omitted, or the input roster untouched when a
+   * Commission (T059) stayed the removal. The input roster is never mutated.
    */
   readonly units: readonly Unit[];
   /**
    * Ordered events: `courtMartialIssued`, then `unitRemoved`, followed by a
-   * closing `battleEnded` **only** when the commander was removed.
+   * closing `battleEnded` **only** when the commander was removed. Empty when a
+   * Commission blocked the removal (no card is issued).
    */
   readonly events: readonly BattleEvent[];
-  /** The soldier who left the field. */
-  readonly removed: Unit;
+  /** The soldier who left the field; `undefined` when a Commission shielded them. */
+  readonly removed: Unit | undefined;
   /** `true` when the removed soldier was the company commander. */
   readonly commander: boolean;
   /** `companyDefeat` when the commander was removed; otherwise `null`. */
   readonly outcome: BattleOutcome | null;
   /** `true` when the ruling concluded the action. */
   readonly finished: boolean;
+  /** `true` when a Commission (T059) made the soldier immune to removal. */
+  readonly immune: boolean;
 }
 
 /**
@@ -702,6 +796,10 @@ export interface CourtMartialResult {
  * `RangeError` when the tick is malformed or the named soldier is not on the
  * field — those are stale-command/programmer faults, not in-world outcomes,
  * matching `resolveShove` (T044).
+ *
+ * A soldier holding a **Commission** (T059) is immune: the function returns
+ * `immune: true` with the field unchanged and no events, so even a caller that
+ * skips {@link escalateBreach} cannot remove a hero by mistake.
  *
  * ```ts
  * const ruling = escalateBreach(noFire, { reprimands: 0 });
@@ -725,6 +823,20 @@ export function applyCourtMartial(
     throw new RangeError(`no soldier ${request.unitId} is on the field to court-martial`);
   }
 
+  // A Commission (T059) is a hero medal: it prevents the Red Card and the
+  // removal entirely, so no card is issued and the field is left untouched.
+  if (isCommissioned(context.commissions, request.unitId)) {
+    return {
+      units: context.units,
+      events: [],
+      removed: undefined,
+      commander: false,
+      outcome: null,
+      finished: false,
+      immune: true,
+    };
+  }
+
   const units = context.units.filter((unit) => unit.id !== request.unitId);
   const commander = context.commanderId !== undefined && context.commanderId === request.unitId;
 
@@ -734,7 +846,15 @@ export function applyCourtMartial(
   ];
 
   if (!commander) {
-    return { units, events, removed, commander: false, outcome: null, finished: false };
+    return {
+      units,
+      events,
+      removed,
+      commander: false,
+      outcome: null,
+      finished: false,
+      immune: false,
+    };
   }
 
   // A commander's Red Card is an immediate, irrecoverable defeat: no further
@@ -747,6 +867,7 @@ export function applyCourtMartial(
     commander: true,
     outcome: "companyDefeat",
     finished: true,
+    immune: false,
   };
 }
 
@@ -825,6 +946,11 @@ function assertBreachable(article: ArticleDef, record: ArticleRecord): void {
   if (!Number.isInteger(record.reprimands) || record.reprimands < 0) {
     throw new RangeError(
       `article record reprimands must be a non-negative integer, received ${String(record.reprimands)}`,
+    );
+  }
+  if (record.commissioned !== undefined && typeof record.commissioned !== "boolean") {
+    throw new RangeError(
+      `article record commissioned must be a boolean when present, received ${String(record.commissioned)}`,
     );
   }
 }

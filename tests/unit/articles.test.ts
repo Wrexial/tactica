@@ -40,14 +40,17 @@ import {
   articleSubjectOfAction,
   buildArticlePool,
   cardForArticleSeverity,
+  commission,
   detectArticles,
   drawDailyArticles,
   escalateBreach,
   firstBreach,
   frequencyForDay,
   generateDailyArticles,
+  isCommissioned,
   matchArticle,
   type ArticleFrequencyStep,
+  type ArticleRecord,
 } from "../../src/engine/rules/articles";
 
 /* --------------------------------------------------------------------------
@@ -931,5 +934,132 @@ describe("court-martial removal (T058)", () => {
       { unitId: offender.id, articleId: asArticleId(article.id) },
     );
     expect(result.units).toEqual([]);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T059 — Commissions (hero medals)
+ *
+ * Pins the task's "done when": **Commissioned units are immune to
+ * Court-Martial and may break Articles freely.** A Commission maps FFTA's
+ * "Boss Medal" / "Hero Medal"
+ * (`docs/wiki/pages/Law_system_(Tactics_Advance).md`): it prevents a Red Card
+ * while the bearer still banks Yellow Cards without limit. The rule lives in
+ * `src/engine/rules/articles.ts`, builds on the T057 escalation and the T058
+ * removal, and stays pure and deterministic (`agents.md` §2).
+ * ------------------------------------------------------------------------ */
+
+describe("commissions (T059)", () => {
+  const noFire = ARTICLES["no-fire"];
+  const noPoison = ARTICLES["no-poison"];
+
+  it("recognises a commissioned soldier by id", () => {
+    const hero = asUnitId("hero");
+    const other = asUnitId("other");
+    const commissions = [commission(hero)];
+
+    expect(commissions).toEqual([{ unitId: hero }]);
+    expect(isCommissioned(commissions, hero)).toBe(true);
+    expect(isCommissioned(commissions, other)).toBe(false);
+    expect(isCommissioned(undefined, hero)).toBe(false);
+    expect(isCommissioned([], hero)).toBe(false);
+  });
+
+  it("caps a second offence at a Reprimand for a commissioned soldier", () => {
+    expect(escalateBreach(noFire, { reprimands: 1, commissioned: true })).toEqual({
+      severity: "reprimand",
+      reprimands: 2,
+    });
+    // The record may run arbitrarily high; it never escalates to a Red Card.
+    expect(escalateBreach(noFire, { reprimands: 9, commissioned: true }).severity).toBe(
+      "reprimand",
+    );
+  });
+
+  it("caps an illegal KO at a Reprimand for a commissioned soldier", () => {
+    expect(
+      escalateBreach(noFire, { reprimands: 0, illegalKo: true, commissioned: true }),
+    ).toEqual({ severity: "reprimand", reprimands: 1 });
+  });
+
+  it("caps a grave Article at a Reprimand for a commissioned soldier", () => {
+    expect(escalateBreach(noPoison, { reprimands: 0, commissioned: true })).toEqual({
+      severity: "reprimand",
+      reprimands: 1,
+    });
+  });
+
+  it("banks Reprimands without limit (FFTA's infinite Yellow Cards)", () => {
+    let record: ArticleRecord = { reprimands: 0, commissioned: true };
+    for (let i = 1; i <= 5; i++) {
+      const ruling = escalateBreach(noFire, record);
+      expect(ruling.severity).toBe("reprimand");
+      expect(ruling.reprimands).toBe(i);
+      record = { ...record, reprimands: ruling.reprimands };
+    }
+  });
+
+  it("leaves a non-commissioned soldier's escalation unchanged", () => {
+    // Regression: without a Commission the T057 policy still applies.
+    expect(escalateBreach(noFire, { reprimands: 1 }).severity).toBe("courtMartial");
+    expect(escalateBreach(noPoison, { reprimands: 0 }).severity).toBe("courtMartial");
+  });
+
+  it("refuses to remove a commissioned soldier from the field", () => {
+    const hero = soldier("hero", 1, 1);
+    const ally = soldier("ally", 2, 1);
+    const commissions = [commission(hero.id)];
+
+    const result = applyCourtMartial(
+      { units: [hero, ally], commissions, tick: 4 },
+      { unitId: hero.id, articleId: asArticleId("no-poison") },
+    );
+
+    expect(result.immune).toBe(true);
+    expect(result.removed).toBeUndefined();
+    expect(result.units.map((unit) => unit.id)).toEqual([hero.id, ally.id]);
+    expect(result.units[0]).toBe(hero);
+    expect(result.events).toEqual([]);
+    expect(result.commander).toBe(false);
+    expect(result.finished).toBe(false);
+    expect(result.outcome).toBeNull();
+  });
+
+  it("does not end the battle when a commissioned commander is spared", () => {
+    const commander = soldier("commander", 1, 1);
+
+    const result = applyCourtMartial(
+      {
+        units: [commander],
+        commanderId: commander.id,
+        commissions: [commission(commander.id)],
+        tick: 7,
+      },
+      { unitId: commander.id, articleId: asArticleId("no-fire") },
+    );
+
+    expect(result.immune).toBe(true);
+    expect(result.commander).toBe(false);
+    expect(result.finished).toBe(false);
+    expect(result.outcome).toBeNull();
+    expect(result.events).toEqual([]);
+  });
+
+  it("still removes a soldier whose Commission is not recorded", () => {
+    const offender = soldier("offender", 1, 1);
+
+    const result = applyCourtMartial(
+      { units: [offender], commissions: [commission(asUnitId("someone-else"))] },
+      { unitId: offender.id, articleId: asArticleId("no-fire") },
+    );
+
+    expect(result.immune).toBe(false);
+    expect(result.removed).toBe(offender);
+    expect(result.units).toEqual([]);
+  });
+
+  it("rejects a malformed commissioned flag", () => {
+    const malformed = { reprimands: 0, commissioned: "yes" } as unknown as ArticleRecord;
+    expect(() => escalateBreach(noFire, malformed)).toThrow(RangeError);
   });
 });
