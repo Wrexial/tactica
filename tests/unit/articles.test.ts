@@ -24,8 +24,19 @@ import {
   ArticleDefSchema,
   ELEMENT_KEYS,
   WEAPON_TYPES,
+  type ArticleDef,
   type ArticleTarget,
 } from "../../src/data/schema";
+import { asRegionId } from "../../src/engine/ids";
+import { Rng } from "../../src/engine/rng";
+import {
+  DEFAULT_ARTICLE_FREQUENCY,
+  buildArticlePool,
+  drawDailyArticles,
+  frequencyForDay,
+  generateDailyArticles,
+  type ArticleFrequencyStep,
+} from "../../src/engine/rules/articles";
 
 /* --------------------------------------------------------------------------
  * T054 — Article definition
@@ -233,5 +244,221 @@ describe("Article matching", () => {
     expect(articleCoversKey(anyMove, "sabre")).toBe(true);
     expect(articleForbids(anyMove, "move", "anything")).toBe(true);
     expect(articleForbids(anyMove, "action", "anything")).toBe(false);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T055 — Daily orders generation
+ *
+ * Pins the task's "done when": **seeded daily Articles per campaign day, with
+ * a pool and frequency model**. The generation lives in
+ * `src/engine/rules/articles.ts`; it consumes the T054 pool above and stays
+ * pure/deterministic (`agents.md` §2). The tests cover determinism, the
+ * day-based frequency schedule, weighted selection, region scoping and the
+ * validation boundary.
+ * ------------------------------------------------------------------------ */
+
+/** Minimal, valid Article factory for pool/weight/region edge cases. */
+function makeArticle(
+  overrides: Partial<ArticleDef> & Pick<ArticleDef, "id" | "kind" | "target">,
+): ArticleDef {
+  return ArticleDefSchema.parse({
+    name: `Order ${overrides.id}`,
+    description: "A standing order.",
+    flavour: "The Provost has spoken.",
+    ...overrides,
+  });
+}
+
+describe("daily Article generation (T055)", () => {
+  it("is deterministic for the same seed and campaign day", () => {
+    const a = generateDailyArticles("waterloo-1815", 12);
+    const b = generateDailyArticles("waterloo-1815", 12);
+    expect(a).toEqual(b);
+    expect(a.ids).toEqual(b.ids);
+  });
+
+  it("derives each day independently of generation order", () => {
+    const day3First = generateDailyArticles(42, 3);
+    generateDailyArticles(42, 7);
+    const day7Later = generateDailyArticles(42, 7);
+    const day7First = generateDailyArticles(42, 7);
+    generateDailyArticles(42, 3);
+    const day3Later = generateDailyArticles(42, 3);
+    expect(day3Later).toEqual(day3First);
+    expect(day7Later).toEqual(day7First);
+  });
+
+  it("varies the posting across days", () => {
+    const postings = new Set(
+      Array.from({ length: 12 }, (_, i) => generateDailyArticles("campaign", i + 1).ids.join(",")),
+    );
+    expect(postings.size).toBeGreaterThan(1);
+  });
+
+  it("varies the posting across campaign seeds", () => {
+    const differs = Array.from({ length: 40 }, (_, i) => i + 1).some(
+      (day) =>
+        generateDailyArticles("alpha", day).ids.join(",") !==
+        generateDailyArticles("bravo", day).ids.join(","),
+    );
+    expect(differs).toBe(true);
+  });
+
+  it("draws exactly the frequency's forbid and commend counts", () => {
+    const orders = generateDailyArticles("seed", 12);
+    expect(orders.day).toBe(12);
+    expect(orders.frequency).toEqual(frequencyForDay(12));
+    expect(orders.forbidden).toHaveLength(orders.frequency.forbid);
+    expect(orders.commended).toHaveLength(orders.frequency.commend);
+    expect(orders.articles).toHaveLength(orders.frequency.forbid + orders.frequency.commend);
+    expect(orders.forbidden.every((a) => a.kind === "forbid")).toBe(true);
+    expect(orders.commended.every((a) => a.kind === "commend")).toBe(true);
+  });
+
+  it("returns articles and their branded ids in the same order", () => {
+    const orders = generateDailyArticles("seed", 5);
+    expect(orders.ids).toEqual(orders.articles.map((a) => a.id));
+    expect(orders.articles).toEqual([...orders.forbidden, ...orders.commended]);
+  });
+
+  it("caps a draw at the eligible pool size", () => {
+    const orders = generateDailyArticles("seed", 1, { frequency: { forbid: 999, commend: 999 } });
+    expect(orders.forbidden).toHaveLength(10); // authored forbidding Articles
+    expect(orders.commended).toHaveLength(6); // authored commended Articles
+  });
+
+  it("draws the requested counts from a tiny custom pool", () => {
+    const pool: ArticleDef[] = [
+      makeArticle({ id: "no-a", kind: "forbid", target: "action" }),
+      makeArticle({ id: "no-b", kind: "forbid", target: "weapon" }),
+      makeArticle({ id: "commend-a", kind: "commend", target: "action", honour: 1 }),
+    ];
+    const orders = generateDailyArticles("seed", 1, {
+      pool,
+      frequency: { forbid: 1, commend: 1 },
+    });
+    expect(orders.forbidden).toHaveLength(1);
+    expect(orders.commended).toHaveLength(1);
+    expect(orders.articles.every((a) => pool.includes(a))).toBe(true);
+  });
+
+  it("rejects invalid campaign days and malformed frequencies", () => {
+    expect(() => generateDailyArticles("seed", 0)).toThrow(RangeError);
+    expect(() => generateDailyArticles("seed", -3)).toThrow(RangeError);
+    expect(() => generateDailyArticles("seed", 1.5)).toThrow(RangeError);
+    expect(() =>
+      generateDailyArticles("seed", 1, { frequency: { forbid: -1, commend: 0 } }),
+    ).toThrow(RangeError);
+    expect(() =>
+      generateDailyArticles("seed", 1, { frequency: { forbid: 0, commend: 1.5 } }),
+    ).toThrow(RangeError);
+  });
+});
+
+describe("daily Article frequency model (T055)", () => {
+  it("escalates the counts over the campaign by default", () => {
+    expect(frequencyForDay(1)).toEqual({ forbid: 1, commend: 1 });
+    expect(frequencyForDay(7)).toEqual({ forbid: 1, commend: 1 });
+    expect(frequencyForDay(8)).toEqual({ forbid: 2, commend: 1 });
+    expect(frequencyForDay(16)).toEqual({ forbid: 2, commend: 2 });
+    expect(frequencyForDay(32)).toEqual({ forbid: 3, commend: 2 });
+    expect(frequencyForDay(999)).toEqual({ forbid: 3, commend: 2 });
+  });
+
+  it("never decreases a count as the campaign advances", () => {
+    let previous = { forbid: 0, commend: 0 };
+    for (let day = 1; day <= 64; day++) {
+      const current = frequencyForDay(day);
+      expect(current.forbid).toBeGreaterThanOrEqual(previous.forbid);
+      expect(current.commend).toBeGreaterThanOrEqual(previous.commend);
+      previous = current;
+    }
+  });
+
+  it("starts the default schedule at day 1", () => {
+    expect(DEFAULT_ARTICLE_FREQUENCY[0]?.fromDay).toBe(1);
+  });
+
+  it("accepts a custom schedule and ignores steps not yet reached", () => {
+    const schedule: readonly ArticleFrequencyStep[] = [
+      { fromDay: 1, forbid: 0, commend: 3 },
+      { fromDay: 10, forbid: 1, commend: 3 },
+    ];
+    expect(frequencyForDay(1, schedule)).toEqual({ forbid: 0, commend: 3 });
+    expect(frequencyForDay(9, schedule)).toEqual({ forbid: 0, commend: 3 });
+    expect(frequencyForDay(10, schedule)).toEqual({ forbid: 1, commend: 3 });
+  });
+
+  it("rejects an empty, unsorted or malformed schedule", () => {
+    expect(() => frequencyForDay(1, [])).toThrow(RangeError);
+    expect(() =>
+      frequencyForDay(1, [
+        { fromDay: 5, forbid: 1, commend: 0 },
+        { fromDay: 3, forbid: 1, commend: 0 },
+      ]),
+    ).toThrow(RangeError);
+    expect(() => frequencyForDay(1, [{ fromDay: 0, forbid: 1, commend: 0 }])).toThrow(RangeError);
+    expect(() => frequencyForDay(1, [{ fromDay: 5, forbid: 1, commend: 0 }])).toThrow(RangeError);
+    expect(() => frequencyForDay(1, [{ fromDay: 1, forbid: -1, commend: 0 }])).toThrow(RangeError);
+  });
+});
+
+describe("Article pool & weighting (T055)", () => {
+  it("scopes region Articles to their region and keeps global ones", () => {
+    const global = makeArticle({ id: "no-global", kind: "forbid", target: "action" });
+    const peninsula = makeArticle({
+      id: "no-peninsula",
+      kind: "forbid",
+      target: "weapon",
+      regionId: "peninsula",
+    });
+    const steppe = makeArticle({
+      id: "no-steppe",
+      kind: "forbid",
+      target: "element",
+      regionId: "steppe",
+    });
+    const source = [global, peninsula, steppe];
+
+    expect(buildArticlePool({ articles: source }).all).toEqual([global]);
+    expect(buildArticlePool({ articles: source, regionId: asRegionId("peninsula") }).all).toEqual([
+      global,
+      peninsula,
+    ]);
+    expect(buildArticlePool({ articles: source, regionId: asRegionId("steppe") }).all).toEqual([
+      global,
+      steppe,
+    ]);
+  });
+
+  it("splits the pool by kind", () => {
+    const pool = buildArticlePool();
+    expect(pool.all).toEqual(ARTICLE_LIST);
+    expect(pool.forbid).toEqual(ARTICLE_LIST.filter((a) => a.kind === "forbid"));
+    expect(pool.commend).toEqual(ARTICLE_LIST.filter((a) => a.kind === "commend"));
+  });
+
+  it("never draws a zero-weight Article while weighted ones remain", () => {
+    const pool: ArticleDef[] = [
+      makeArticle({ id: "no-never", kind: "forbid", target: "action", weight: 0 }),
+      makeArticle({ id: "no-always", kind: "forbid", target: "weapon", weight: 1 }),
+    ];
+    for (let day = 1; day <= 50; day++) {
+      const orders = generateDailyArticles("weighted", day, {
+        pool,
+        frequency: { forbid: 1, commend: 0 },
+      });
+      expect(orders.ids).toEqual(["no-always"]);
+    }
+  });
+
+  it("uses the supplied generator and advances it", () => {
+    const rng = new Rng("external");
+    const before = rng.calls;
+    const orders = drawDailyArticles(rng, 4);
+    expect(rng.calls).toBeGreaterThan(before);
+    expect(orders.day).toBe(4);
+    expect(orders.ids.length).toBeGreaterThan(0);
   });
 });

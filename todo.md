@@ -447,7 +447,7 @@ deterministic.
 - done: `ArticleDef` forbids/commends actions, elements, weapon types, posts and conditions.
 
 ### T055 — Daily orders generation
-- status: todo
+- status: done
 - deps: [T054, T011]
 - files: src/engine/rules/articles.ts
 - verify: npm run test -- --run tests/unit/articles.test.ts
