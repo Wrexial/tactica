@@ -355,7 +355,7 @@ deterministic.
 - done: Trigger hooks for Riposte, Return Fire, Dodge, Field Dressing.
 
 ### T043 — Support traits
-- status: todo
+- status: done
 - deps: [T041]
 - files: src/engine/traits.ts
 - verify: npm run test -- --run tests/unit/traits.test.ts
