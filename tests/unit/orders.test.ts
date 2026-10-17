@@ -21,7 +21,20 @@ import {
   type BattleOrders,
   type OrderCard,
 } from "../../src/engine/actions/orders";
-import { asArticleId } from "../../src/engine/ids";
+import { asArticleId, asGeneralOrderId } from "../../src/engine/ids";
+import {
+  DEFAULT_GENERAL_ORDER_USES,
+  GENERAL_ORDER_FAIL_REASONS,
+  canInvokeGeneralOrder,
+  createGeneralOrders,
+  findGeneralOrder,
+  grantGeneralOrder,
+  hasGeneralOrder,
+  invokeGeneralOrder,
+  isGeneralOrderFailReason,
+  remainingUses,
+  type GeneralOrder,
+} from "../../src/engine/rules/generalOrders";
 
 /* --------------------------------------------------------------------------
  * T063 — Standing / Counter-Orders
@@ -363,5 +376,225 @@ describe("authored Articles", () => {
     expect(result.change?.card).toBe("counterOrder");
     expect(result.change?.article).toBe(COMMEND_MUSKET);
     expect(result.orders.articles).toEqual([NO_FIRE]);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T064 — General Orders (company privileges)
+ *
+ * Pins the task's "done when": **company privilege nullifies one active
+ * Article.** A General Order is FFTA's Advanced Law, rethemed as an earned
+ * Regimental Honour the company may invoke to waive one standing order
+ * (mapping §9). The executor lives in `src/engine/rules/generalOrders.ts` and
+ * composes the T063 counter-order mechanic, so nullification keeps its one
+ * definition. It stays pure and deterministic (`agents.md` §2).
+ * ------------------------------------------------------------------------ */
+
+const ROYAL_WARRANT: GeneralOrder = {
+  id: asGeneralOrderId("royal-warrant"),
+  name: "Royal Warrant",
+  description: "The company's charter waives one standing order.",
+  flavour: "The colonel's seal carries more weight than the provost's ledger.",
+};
+
+const COLONELS_DISCRETION: GeneralOrder = {
+  id: asGeneralOrderId("colonels-discretion"),
+  name: "Colonel's Discretion",
+  description: "A trusted colonel may waive two standing orders in an action.",
+  flavour: "A good colonel knows which orders win the day and which lose it.",
+  uses: 2,
+};
+
+describe("general order board", () => {
+  it("starts empty", () => {
+    const board = createGeneralOrders();
+    expect(board.holdings).toEqual([]);
+    expect(DEFAULT_GENERAL_ORDER_USES).toBe(1);
+  });
+
+  it("grants each privilege its full uses, defaulting to one", () => {
+    const board = createGeneralOrders([ROYAL_WARRANT, COLONELS_DISCRETION]);
+    expect(remainingUses(board, ROYAL_WARRANT.id)).toBe(1);
+    expect(remainingUses(board, COLONELS_DISCRETION.id)).toBe(2);
+    expect(hasGeneralOrder(board, ROYAL_WARRANT.id)).toBe(true);
+    expect(findGeneralOrder(board, ROYAL_WARRANT.id)?.order).toBe(ROYAL_WARRANT);
+  });
+
+  it("reports an unheld privilege as zero uses", () => {
+    const board = createGeneralOrders();
+    expect(hasGeneralOrder(board, ROYAL_WARRANT.id)).toBe(false);
+    expect(remainingUses(board, ROYAL_WARRANT.id)).toBe(0);
+    expect(findGeneralOrder(board, ROYAL_WARRANT.id)).toBeUndefined();
+  });
+
+  it("rejects malformed privileges at the boundary", () => {
+    expect(() =>
+      createGeneralOrders([{ id: "" } as unknown as GeneralOrder]),
+    ).toThrow(/non-empty id/);
+    expect(() =>
+      createGeneralOrders([{ ...ROYAL_WARRANT, uses: 1.5 }]),
+    ).toThrow(/positive integer/);
+    expect(() =>
+      createGeneralOrders([{ ...ROYAL_WARRANT, uses: 0 }]),
+    ).toThrow(/positive integer/);
+    expect(() => createGeneralOrders([ROYAL_WARRANT, ROYAL_WARRANT])).toThrow(/duplicate/);
+  });
+
+  it("grants a further privilege to an existing board without mutation", () => {
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    const withSecond = grantGeneralOrder(board, COLONELS_DISCRETION);
+    expect(board.holdings).toHaveLength(1);
+    expect(withSecond.holdings).toHaveLength(2);
+    expect(() => grantGeneralOrder(withSecond, ROYAL_WARRANT)).toThrow(/already held/);
+  });
+});
+
+describe("general order invocation", () => {
+  it("nullifies one active Article via a company privilege", () => {
+    const orders = createBattleOrders([NO_FIRE, NO_RIFLE]);
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    const result = invokeGeneralOrder(board, orders, ROYAL_WARRANT.id);
+
+    expect(result.ok).toBe(true);
+    expect(result.orders.articles).toEqual([NO_RIFLE]);
+    expect(result.change).toEqual({
+      orderId: ROYAL_WARRANT.id,
+      action: "nullified",
+      article: NO_FIRE,
+      articleId: asArticleId("no-fire"),
+      activeCount: 1,
+      remainingUses: 0,
+    });
+    expect(remainingUses(result.generalOrders, ROYAL_WARRANT.id)).toBe(0);
+  });
+
+  it("waives the first Article when no target is named", () => {
+    const orders = createBattleOrders([NO_FIRE, NO_RIFLE, NO_SABRE]);
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    const result = invokeGeneralOrder(board, orders, ROYAL_WARRANT.id);
+    expect(result.change?.articleId).toBe(asArticleId("no-fire"));
+    expect(result.orders.articles).toEqual([NO_RIFLE, NO_SABRE]);
+  });
+
+  it("waives a named Article, preserving the rest", () => {
+    const orders = createBattleOrders([NO_FIRE, NO_RIFLE, NO_SABRE]);
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    const result = invokeGeneralOrder(
+      board,
+      orders,
+      ROYAL_WARRANT.id,
+      asArticleId("no-rifle"),
+    );
+    expect(result.ok).toBe(true);
+    expect(result.change?.article).toBe(NO_RIFLE);
+    expect(result.orders.articles).toEqual([NO_FIRE, NO_SABRE]);
+  });
+
+  it("spends one use per invocation and honors a larger pool", () => {
+    let orders = createBattleOrders([NO_FIRE, NO_RIFLE], { maxArticles: 3 });
+    let board = createGeneralOrders([COLONELS_DISCRETION]);
+
+    const first = invokeGeneralOrder(board, orders, COLONELS_DISCRETION.id);
+    expect(first.ok).toBe(true);
+    expect(remainingUses(first.generalOrders, COLONELS_DISCRETION.id)).toBe(1);
+    orders = first.orders;
+    board = first.generalOrders;
+
+    const second = invokeGeneralOrder(board, orders, COLONELS_DISCRETION.id);
+    expect(second.ok).toBe(true);
+    expect(second.orders.articles).toEqual([]);
+    expect(remainingUses(second.generalOrders, COLONELS_DISCRETION.id)).toBe(0);
+  });
+
+  it("refuses once the privilege is exhausted", () => {
+    const orders = createBattleOrders([NO_FIRE, NO_RIFLE]);
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    const first = invokeGeneralOrder(board, orders, ROYAL_WARRANT.id);
+    const second = invokeGeneralOrder(first.generalOrders, first.orders, ROYAL_WARRANT.id);
+    expect(second.ok).toBe(false);
+    expect(second.reason).toBe("exhausted");
+    expect(second.orders).toBe(first.orders);
+    expect(second.generalOrders).toBe(first.generalOrders);
+  });
+
+  it("refuses a privilege the company does not hold", () => {
+    const orders = createBattleOrders([NO_FIRE]);
+    const board = createGeneralOrders();
+    expect(canInvokeGeneralOrder(board, orders, ROYAL_WARRANT.id)).toBe("unknown-order");
+    const result = invokeGeneralOrder(board, orders, ROYAL_WARRANT.id);
+    expect(result.ok).toBe(false);
+    expect(result.reason).toBe("unknown-order");
+  });
+
+  it("refuses when no Article is in force", () => {
+    const orders = createBattleOrders();
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    expect(canInvokeGeneralOrder(board, orders, ROYAL_WARRANT.id)).toBe("no-target");
+  });
+
+  it("refuses a named Article that is not active", () => {
+    const orders = createBattleOrders([NO_FIRE]);
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    const reason = canInvokeGeneralOrder(
+      board,
+      orders,
+      ROYAL_WARRANT.id,
+      asArticleId("no-rifle"),
+    );
+    expect(reason).toBe("not-active");
+  });
+
+  it("refuses in a lawless No-Man's Land", () => {
+    const orders = createBattleOrders([NO_FIRE], { lawless: true });
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    expect(canInvokeGeneralOrder(board, orders, ROYAL_WARRANT.id)).toBe("lawless");
+    const result = invokeGeneralOrder(board, orders, ROYAL_WARRANT.id);
+    expect(result.ok).toBe(false);
+    expect(result.reason).toBe("lawless");
+    expect(result.orders).toBe(orders);
+  });
+
+  it("exposes the failure reasons and their runtime guard", () => {
+    expect(GENERAL_ORDER_FAIL_REASONS).toEqual([
+      "lawless",
+      "unknown-order",
+      "exhausted",
+      "no-target",
+      "not-active",
+    ]);
+    for (const reason of GENERAL_ORDER_FAIL_REASONS) {
+      expect(isGeneralOrderFailReason(reason)).toBe(true);
+    }
+    expect(isGeneralOrderFailReason("at-capacity")).toBe(false);
+  });
+});
+
+describe("general order purity and determinism", () => {
+  it("never mutates the board or the posting", () => {
+    const source = [NO_FIRE, NO_RIFLE];
+    const orders = createBattleOrders(source);
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    invokeGeneralOrder(board, orders, ROYAL_WARRANT.id);
+
+    expect(source).toEqual([NO_FIRE, NO_RIFLE]);
+    expect(orders.articles).toEqual([NO_FIRE, NO_RIFLE]);
+    expect(board.holdings[0]?.remaining).toBe(1);
+  });
+
+  it("returns equal results for the same input", () => {
+    const orders = createBattleOrders([NO_FIRE, NO_RIFLE]);
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    const first = invokeGeneralOrder(board, orders, ROYAL_WARRANT.id);
+    const second = invokeGeneralOrder(board, orders, ROYAL_WARRANT.id);
+    expect(first).toEqual(second);
+    expect(first.orders.articles).toEqual(second.orders.articles);
+  });
+
+  it("does not change state while previewing", () => {
+    const orders = createBattleOrders([NO_FIRE, NO_RIFLE]);
+    const board = createGeneralOrders([ROYAL_WARRANT]);
+    expect(canInvokeGeneralOrder(board, orders, ROYAL_WARRANT.id)).toBeNull();
+    expect(orders.articles).toEqual([NO_FIRE, NO_RIFLE]);
+    expect(remainingUses(board, ROYAL_WARRANT.id)).toBe(1);
   });
 });

@@ -510,7 +510,7 @@ deterministic.
 - done: Cards add or nullify an Article mid-battle; max Articles enforced.
 
 ### T064 — General Orders
-- status: todo
+- status: done
 - deps: [T063]
 - files: src/engine/rules/generalOrders.ts
 - verify: npm run test -- --run tests/unit/orders.test.ts

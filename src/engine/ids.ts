@@ -52,6 +52,7 @@ export type IdKind =
   | "enemy"
   | "mapToken"
   | "guardSortie"
+  | "generalOrder"
   | "aiProfile";
 
 /** The player's free company / roster (FFTA "clan"). */
@@ -80,6 +81,8 @@ export type EnemyId = BrandedId<"enemy">;
 export type MapTokenId = BrandedId<"mapToken">;
 /** A power's Guard Sortie (FFTA "Totema", mapping §4). */
 export type GuardSortieId = BrandedId<"guardSortie">;
+/** A company privilege (FFTA "Advanced Law", mapping §9). */
+export type GeneralOrderId = BrandedId<"generalOrder">;
 /** A key into the AI profiles in `src/ai` (T095). */
 export type AiProfileId = BrandedId<"aiProfile">;
 
@@ -127,6 +130,8 @@ export const asEnemyId = (value: string): EnemyId => asId<"enemy">(value);
 export const asMapTokenId = (value: string): MapTokenId => asId<"mapToken">(value);
 /** Trusted cast to a {@link GuardSortieId}. See {@link asId}. */
 export const asGuardSortieId = (value: string): GuardSortieId => asId<"guardSortie">(value);
+/** Trusted cast to a {@link GeneralOrderId}. See {@link asId}. */
+export const asGeneralOrderId = (value: string): GeneralOrderId => asId<"generalOrder">(value);
 /** Trusted cast to an {@link AiProfileId}. See {@link asId}. */
 export const asAiProfileId = (value: string): AiProfileId => asId<"aiProfile">(value);
 
