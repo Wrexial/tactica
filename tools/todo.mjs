@@ -288,12 +288,13 @@ function runVerify(task) {
   return { ok: res.status === 0, skipped: false, code: res.status };
 }
 
-function git(args) {
+function git(args, { trim = true } = {}) {
   const res = spawnSync("git", args, { cwd: ROOT, encoding: "utf8" });
+  const raw = res.stdout ?? "";
   return {
     ok: res.status === 0,
     code: res.status ?? 1,
-    out: (res.stdout ?? "").trim(),
+    out: trim ? raw.trim() : raw,
     err: (res.stderr ?? "").trim(),
   };
 }
@@ -315,7 +316,8 @@ function findTaskCommit(id) {
 
 function dirtyFiles() {
   const files = new Set();
-  const r = git(["status", "--porcelain", "-uall"]);
+  // Do NOT trim: porcelain's leading status space is significant.
+  const r = git(["status", "--porcelain", "-uall"], { trim: false });
   if (!r.ok) return files;
   for (const line of r.out.split("\n")) {
     if (line.trim().length < 4) continue;
@@ -329,8 +331,17 @@ function dirtyFiles() {
 
 function commitPaths(paths, message) {
   if (!paths.length) return false;
-  if (!git(["add", "--", ...paths]).ok) return false;
-  return git(["commit", "-m", message]).ok;
+  const add = git(["add", "--", ...paths]);
+  if (!add.ok) {
+    console.error(`  ! git add failed: ${add.err || add.out}`);
+    return false;
+  }
+  const commit = git(["commit", "-m", message]);
+  if (!commit.ok) {
+    console.error(`  ! git commit failed: ${commit.err || commit.out}`);
+    return false;
+  }
+  return true;
 }
 
 function commitAll(task) {
