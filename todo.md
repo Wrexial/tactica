@@ -489,7 +489,7 @@ deterministic.
 - done: Honour from legal KOs and commended acts; cap 10; no stacking for one event.
 
 ### T061 — Volleys (combos)
-- status: todo
+- status: done
 - deps: [T060, T041]
 - files: src/engine/actions/volley.ts
 - verify: npm run test -- --run tests/unit/volley.test.ts
