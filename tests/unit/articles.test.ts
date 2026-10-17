@@ -34,8 +34,10 @@ import {
   articleFactsOf,
   articleSubjectOfAction,
   buildArticlePool,
+  cardForArticleSeverity,
   detectArticles,
   drawDailyArticles,
+  escalateBreach,
   firstBreach,
   frequencyForDay,
   generateDailyArticles,
@@ -677,5 +679,81 @@ describe("Article violation detection (T056)", () => {
       expect(orders.commended.map((article) => article.id)).toContain(match.article.id);
       expect(match.article.kind).toBe("commend");
     }
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T057 — Reprimand / Court-Martial escalation
+ *
+ * Pins the task's "done when": **1st offence = Reprimand; 2nd or illegal KO =
+ * Court-Martial.** The ruling lives in `src/engine/rules/articles.ts` and
+ * consumes the T056 breach plus the soldier's record, staying pure and
+ * deterministic (`agents.md` §2). The tests cover the first/second offence, an
+ * illegal KO, the grave Article override, the severity mapping and the
+ * validation boundary. Removal (T058) and Commissions (T059) are out of scope.
+ * ------------------------------------------------------------------------ */
+
+describe("card escalation (T057)", () => {
+  const noFire = ARTICLES["no-fire"];
+
+  it("issues a Reprimand on a first, non-lethal offence", () => {
+    expect(escalateBreach(noFire, { reprimands: 0 })).toEqual({
+      severity: "reprimand",
+      reprimands: 1,
+    });
+  });
+
+  it("issues a Court-Martial on a second offence", () => {
+    expect(escalateBreach(noFire, { reprimands: 1 })).toEqual({
+      severity: "courtMartial",
+      reprimands: 1,
+    });
+  });
+
+  it("escalates every offence after the first, not just the second", () => {
+    // A Commissioned soldier may keep accumulating warnings (T059), so the
+    // record can exceed one and any repeat offence is still a Court-Martial.
+    expect(escalateBreach(noFire, { reprimands: 3 }).severity).toBe("courtMartial");
+  });
+
+  it("issues a Court-Martial when the breach causes an illegal KO", () => {
+    expect(escalateBreach(noFire, { reprimands: 0, illegalKo: true })).toEqual({
+      severity: "courtMartial",
+      reprimands: 0,
+    });
+    // An illegal KO is a Court-Martial even on top of an earlier Reprimand.
+    expect(escalateBreach(noFire, { reprimands: 1, illegalKo: true }).severity).toBe(
+      "courtMartial",
+    );
+  });
+
+  it("opens a grave Article at Court-Martial even on a clean record", () => {
+    expect(escalateBreach(ARTICLES["no-poison"], { reprimands: 0 })).toEqual({
+      severity: "courtMartial",
+      reprimands: 0,
+    });
+    expect(escalateBreach(ARTICLES["no-dark"], { reprimands: 0 }).severity).toBe("courtMartial");
+  });
+
+  it("keeps the record on a first offence and banks no warning on removal", () => {
+    let record = { reprimands: 0 };
+    const first = escalateBreach(noFire, record);
+    expect(first).toEqual({ severity: "reprimand", reprimands: 1 });
+    record = { reprimands: first.reprimands };
+    const second = escalateBreach(noFire, record);
+    expect(second).toEqual({ severity: "courtMartial", reprimands: 1 });
+  });
+
+  it("maps an Article's authored severity to its opening card", () => {
+    expect(cardForArticleSeverity("reprimand")).toBe("reprimand");
+    expect(cardForArticleSeverity("court-martial")).toBe("courtMartial");
+  });
+
+  it("refuses a commended Article or a malformed record", () => {
+    expect(() => escalateBreach(ARTICLES["commend-musket"], { reprimands: 0 })).toThrow(
+      RangeError,
+    );
+    expect(() => escalateBreach(noFire, { reprimands: -1 })).toThrow(RangeError);
+    expect(() => escalateBreach(noFire, { reprimands: 1.5 })).toThrow(RangeError);
   });
 });

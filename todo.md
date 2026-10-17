@@ -461,7 +461,7 @@ deterministic.
 - done: Actions are checked against active Articles at resolution time.
 
 ### T057 — Reprimand / Court-Martial escalation
-- status: todo
+- status: done
 - deps: [T056]
 - files: src/engine/rules/articles.ts
 - verify: npm run test -- --run tests/unit/articles.test.ts

@@ -10,12 +10,14 @@
  * Marshal posts a handful of **Articles of War** pulled from the pool, split
  * into **forbidding** orders and **commended** acts.
  *
- * This module owns **generation** (which Articles are in force on day N?) and
- * **violation detection** (T056): given the facts of a resolved action, which
- * active Articles did it break or earn commendation for? The follow-on
- * enforcement — issuing Reprimands / Courts-Martial (T057–T058), the Honour
- * economy (T060) and the Provost itself (T066) — stays separate and lives
- * elsewhere in `src/engine/rules/`.
+ * This module owns **generation** (which Articles are in force on day N?),
+ * **violation detection** (T056: given the facts of a resolved action, which
+ * active Articles did it break or earn commendation for?) and the pure
+ * **escalation policy** (T057: does a breach earn a Reprimand or a
+ * Court-Martial?). The follow-on mechanics — removing court-martialled
+ * soldiers (T058), Commissions (T059), the Honour economy (T060) and the
+ * Provost itself (T066) — stay separate and live elsewhere in
+ * `src/engine/rules/`.
  *
  * ```text
  *   buildArticlePool({ regionId }) ──► eligible forbid / commend Articles
@@ -36,6 +38,12 @@
  *                 └─ a resolved action's facts (action / element / weapon /
  *                    post / condition / move / item) tested against the day's
  *                    standing orders at resolution time
+ *
+ *   escalateBreach(article, record) ──► { severity, reprimands }
+ *                 │
+ *                 └─ FFTA's card escalation: a first, non-lethal breach draws a
+ *                    Reprimand (Yellow); a second breach or one that causes a
+ *                    knockout draws a Court-Martial (Red)
  * ```
  *
  * ## The frequency model
@@ -73,6 +81,7 @@ import type {
   ElementKey,
   WeaponType,
 } from "../../data/schema";
+import type { CardSeverity } from "../events";
 import { asArticleId, type ArticleId, type RegionId } from "../ids";
 import { Rng, type Seed } from "../rng";
 
@@ -520,6 +529,101 @@ export function firstBreach(detection: ArticleDetection): ArticleMatch | undefin
 }
 
 /* --------------------------------------------------------------------------
+ * Card escalation (T057)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * A soldier's record when a breach is judged: how many **Reprimands** (FFTA
+ * Yellow Cards) they already carry, and whether the action that broke the
+ * Article knocked a soldier out of action.
+ *
+ * The record is the only per-soldier state escalation needs. It stays a plain
+ * number so it is trivially serialisable into the battle (and the campaign
+ * roster) and so a replay reproduces the same cards.
+ */
+export interface ArticleRecord {
+  /** Reprimands already on the soldier's record (`>= 0`). */
+  readonly reprimands: number;
+  /**
+   * `true` when the breach also caused a knockout — FFTA's "illegal KO", which
+   * draws a Court-Martial on the spot regardless of the soldier's record
+   * (`docs/wiki/pages/Law_system_(Tactics_Advance).md` §"Forbidden actions").
+   */
+  readonly illegalKo?: boolean;
+}
+
+/** The Provost Marshal's ruling on one breach. */
+export interface CardDecision {
+  /** Card issued: a **Reprimand** (Yellow) or a **Court-Martial** (Red). */
+  readonly severity: CardSeverity;
+  /**
+   * Reprimands on the soldier's record **after** the ruling. A Reprimand adds
+   * one to the record; a Court-Martial leaves it where it was, because the
+   * soldier is being removed rather than warned.
+   */
+  readonly reprimands: number;
+}
+
+/**
+ * Map an Article's authored opening `severity` (`"reprimand"` |
+ * `"court-martial"`) onto the enforcement card the events layer uses
+ * ({@link CardSeverity}: `"reprimand"` | `"courtMartial"`). Most Articles open
+ * at a Reprimand; a few grave ones (poisoned shot, deliberate terror) open at a
+ * Court-Martial even on a clean record.
+ */
+export function cardForArticleSeverity(severity: ArticleDef["severity"]): CardSeverity {
+  return severity === "court-martial" ? "courtMartial" : "reprimand";
+}
+
+/**
+ * Decide the card a breach earns — the FFTA escalation, kept pure and
+ * data-driven (mapping §9).
+ *
+ * A **first**, non-lethal breach of an ordinary Article draws a **Reprimand**
+ * (Yellow Card). The soldier is Court-Martialled (Red Card) when any of these
+ * is true:
+ *
+ * 1. the Article is authored `severity: "court-martial"` (a grave order), or
+ * 2. the breach caused a knockout (`record.illegalKo`), or
+ * 3. the soldier already carries a Reprimand (`record.reprimands >= 1`) — the
+ *    second offence, regardless of which Article it breaks.
+ *
+ * Reference: `docs/wiki/pages/Law_system_(Tactics_Advance).md` — "By breaking
+ * the law the first time, and as long as it does not result in a KO, the Judge
+ * will ... issue a Yellow Card ... By breaking the law, and scoring a KO in the
+ * process, the Judge will issue a Red Card ... Breaking the law twice in one
+ * battle ... will have the Judge issuing a Yellow and Red Card, one after
+ * another."
+ *
+ * Pure and deterministic: the inputs are read, never written, and the ruling
+ * depends only on `(article, record)`. Only a **forbidding** Article can be
+ * breached, so passing a `commend` Article (or a negative `reprimands`) is a
+ * programmer error and throws.
+ *
+ * ```ts
+ * escalateBreach(noFire, { reprimands: 0 });                 // Reprimand
+ * escalateBreach(noFire, { reprimands: 1 });                 // Court-Martial
+ * escalateBreach(noFire, { reprimands: 0, illegalKo: true }); // Court-Martial
+ * escalateBreach(noPoison, { reprimands: 0 });               // Court-Martial (grave)
+ * ```
+ */
+export function escalateBreach(article: ArticleDef, record: ArticleRecord): CardDecision {
+  assertBreachable(article, record);
+
+  const grave = article.severity === "court-martial";
+  const illegalKo = record.illegalKo === true;
+  const repeatOffence = record.reprimands >= 1;
+
+  // A Reprimand records one more warning; a Court-Martial removes the soldier
+  // rather than warning them, so it banks no new Reprimand (T058 handles the
+  // removal, T059 lets a Commission ignore the Red Card).
+  if (grave || illegalKo || repeatOffence) {
+    return { severity: "courtMartial", reprimands: record.reprimands };
+  }
+  return { severity: "reprimand", reprimands: record.reprimands + 1 };
+}
+
+/* --------------------------------------------------------------------------
  * Internals
  * ------------------------------------------------------------------------ */
 
@@ -585,6 +689,19 @@ function positiveWeight(weight: number): number {
  * ------------------------------------------------------------------------ */
 
 /** Campaign days are 1-based, matching the FFTA calendar. */
+function assertBreachable(article: ArticleDef, record: ArticleRecord): void {
+  if (article.kind !== "forbid") {
+    throw new RangeError(
+      `only forbidding Articles can be breached, but "${article.id}" is ${article.kind}`,
+    );
+  }
+  if (!Number.isInteger(record.reprimands) || record.reprimands < 0) {
+    throw new RangeError(
+      `article record reprimands must be a non-negative integer, received ${String(record.reprimands)}`,
+    );
+  }
+}
+
 function assertCampaignDay(day: number): void {
   if (!Number.isInteger(day) || day < 1) {
     throw new RangeError(`campaign day must be a positive integer, received ${String(day)}`);
