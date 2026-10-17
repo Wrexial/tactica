@@ -341,7 +341,7 @@ deterministic.
 - done: Élan is spent by actions and regenerates on a tunable schedule; low Élan applies Shaken and zero applies Routed.
 
 ### T041 — Action executor
-- status: todo
+- status: done
 - deps: [T033, T034, T038, T039]
 - files: src/engine/actions/ability.ts
 - verify: npm run test -- --run tests/unit/ability.test.ts
