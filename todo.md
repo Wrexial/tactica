@@ -764,7 +764,7 @@ deterministic.
 - done: Sensible heal/buff/consumable and Élan management.
 
 ### T098 — Ally auto-battle
-- status: todo
+- status: done
 - deps: [T095]
 - files: src/app/autoBattle.ts
 - verify: npm run test -- --run tests/unit/ai.test.ts

@@ -3,4 +3,4 @@
  * place presentation layers may touch engine state. Populated from Phase 2
  * (T027+).
  */
-export {};
+export * from "./autoBattle";

@@ -25,6 +25,19 @@ import {
   healUrgencyBonus,
   projectedMorale,
 } from "../../src/ai/heuristics";
+import {
+  AutoBattleError,
+  DEFAULT_CONTROL_POLICY,
+  autoBattleAllies,
+  controlOwnerOf,
+  isAiControlled,
+  isPlayerControlled,
+  makeControlPolicy,
+  runAutoBattle,
+  runAutoTurn,
+  withSideControl,
+  withUnitControl,
+} from "../../src/app/autoBattle";
 import { ARTICLES } from "../../src/data/articles";
 import { AI_PROFILES } from "../../src/data/enemies/profiles";
 import type { StatBlock } from "../../src/data/schema";
@@ -698,9 +711,9 @@ function supportBattle(
  * planner through {@link UtilityOptions.abilities} (exactly as authored
  * content will).
  */
-function supportOptions(
-  ...specs: readonly UtilityAbilitySpec[]
-): { abilities: Record<string, UtilityAbilitySpec> } {
+function supportOptions(...specs: readonly UtilityAbilitySpec[]): {
+  abilities: Record<string, UtilityAbilitySpec>;
+} {
   const abilities: Record<string, UtilityAbilitySpec> = {};
   for (const spec of specs) abilities[spec.id] = spec;
   return { abilities };
@@ -893,5 +906,223 @@ describe("chooseTurn — support heuristics (T097)", () => {
     const plan = chooseTurn(battle, ACTOR_ID, supportOptions(STRIKE, COSTLY_STRIKE));
     expect(plan.abilityId).toBe(STRIKE.id);
     expect(plan.score.elanPenalty).toBe(0);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T098 — Ally auto-battle
+ *
+ * The controller that decides **who the AI fights for**: the enemy by default,
+ * and any company soldier the player delegates. Ownership is a pure per-unit /
+ * per-side policy; running a turn plans with `chooseTurn` and commits the
+ * commands through `step`, so an auto-battled ally is as replayable as a
+ * hand-played one. `runAutoBattle` loops AI-held turns and stops the moment the
+ * turn belongs to a player-controlled soldier.
+ * ------------------------------------------------------------------------ */
+
+const PLAYER_ID = asUnitId("unit-player");
+const AUTO_ALLY_ID = asUnitId("unit-auto-ally");
+const FOE_ID = asUnitId("unit-foe");
+
+/** A battle whose opening charge is pinned, so the turn order is exact. */
+function tempoBattle(
+  units: readonly Unit[],
+  initialCharge: Readonly<Record<string, number>>,
+  abilities: readonly ActionSpec[] = [MUSKET],
+): BattleState {
+  return createBattle(1815, { map: MAP, units, abilities, initialCharge });
+}
+
+describe("control policy (T098)", () => {
+  const playerSoldier = makeUnit(PLAYER_ID, coord(0, 0), "company", ACTOR_STATS);
+  const autoSoldier = makeUnit(AUTO_ALLY_ID, coord(1, 0), "company", ACTOR_STATS);
+  const foe = makeUnit(FOE_ID, coord(0, 4), "enemy", ENEMY_STATS);
+
+  it("leaves the company to the player and the enemy to the AI by default", () => {
+    expect(controlOwnerOf(playerSoldier)).toBe("player");
+    expect(isPlayerControlled(playerSoldier)).toBe(true);
+    expect(isAiControlled(playerSoldier)).toBe(false);
+    expect(controlOwnerOf(foe)).toBe("ai");
+    expect(isAiControlled(foe)).toBe(true);
+  });
+
+  it("hands named allies to the AI without touching the rest of the company", () => {
+    const policy = autoBattleAllies(DEFAULT_CONTROL_POLICY, [AUTO_ALLY_ID]);
+    expect(isAiControlled(autoSoldier, policy)).toBe(true);
+    expect(isPlayerControlled(playerSoldier, policy)).toBe(true);
+    expect(isAiControlled(foe, policy)).toBe(true); // enemies stay AI-held
+    // The default policy was not mutated.
+    expect(DEFAULT_CONTROL_POLICY.units[AUTO_ALLY_ID]).toBeUndefined();
+  });
+
+  it("can hand the whole company to the AI", () => {
+    const policy = autoBattleAllies(DEFAULT_CONTROL_POLICY, "all");
+    expect(controlOwnerOf(playerSoldier, policy)).toBe("ai");
+    expect(controlOwnerOf(autoSoldier, policy)).toBe("ai");
+  });
+
+  it("resolves a per-soldier override over the side default", () => {
+    const policy = makeControlPolicy({ sides: { company: "ai" } });
+    expect(controlOwnerOf(playerSoldier, policy)).toBe("ai");
+
+    const lead = withUnitControl(policy, PLAYER_ID, "player");
+    expect(controlOwnerOf(playerSoldier, lead)).toBe("player");
+    expect(controlOwnerOf(autoSoldier, lead)).toBe("ai");
+    expect(policy.units[PLAYER_ID]).toBeUndefined();
+  });
+
+  it("changes a whole side with withSideControl", () => {
+    const policy = withSideControl(DEFAULT_CONTROL_POLICY, "enemy", "player");
+    expect(isPlayerControlled(foe, policy)).toBe(true);
+  });
+});
+
+describe("runAutoTurn (T098)", () => {
+  it("takes an AI-controlled ally's turn and targets the enemy", () => {
+    const battle = tempoBattle(
+      [
+        makeUnit(AUTO_ALLY_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(FOE_ID, coord(0, 1), "enemy", ENEMY_STATS),
+        makeUnit(PLAYER_ID, coord(4, 4), "company", ACTOR_STATS),
+      ],
+      { [AUTO_ALLY_ID]: 100 },
+    );
+    expect(battle.currentActorId).toBe(AUTO_ALLY_ID);
+
+    const before = JSON.stringify(battle);
+    const turn = runAutoTurn(battle, AUTO_ALLY_ID);
+
+    expect(turn.rejection).toBeNull();
+    expect(turn.commands.length).toBeGreaterThan(0);
+    // The ally takes the enemy as its mark, not a friendly soldier.
+    expect(turn.plan.target).toEqual({ kind: "unit", unitId: FOE_ID });
+    expect(
+      turn.events.some((event) => event.kind === "abilityUsed" && event.targetId === FOE_ID),
+    ).toBe(true);
+    // The turn closed and advanced Orders Tempo.
+    expect(
+      turn.events.some((event) => event.kind === "turnEnded" && event.unitId === AUTO_ALLY_ID),
+    ).toBe(true);
+    // Purity: the input battle is untouched.
+    expect(JSON.stringify(battle)).toBe(before);
+    expect(turn.state.tempo.tick).toBeGreaterThan(battle.tempo.tick);
+  });
+
+  it("refuses a turn that is not the soldier's", () => {
+    const battle = tempoBattle(
+      [
+        makeUnit(PLAYER_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(FOE_ID, coord(0, 4), "enemy", ENEMY_STATS),
+      ],
+      { [PLAYER_ID]: 100 },
+    );
+    expect(() => runAutoTurn(battle, FOE_ID)).toThrow(AutoBattleError);
+    expect(() => runAutoTurn(battle, asUnitId("ghost"))).toThrow(AutoBattleError);
+  });
+});
+
+describe("runAutoBattle (T098)", () => {
+  it("runs AI-held turns and stops at the player's soldier", () => {
+    const battle = tempoBattle(
+      [
+        makeUnit(FOE_ID, coord(0, 0), "enemy", { ...ENEMY_STATS, spd: 10 }),
+        makeUnit(PLAYER_ID, coord(4, 4), "company", { ...ACTOR_STATS, spd: 30 }),
+        makeUnit(AUTO_ALLY_ID, coord(2, 2), "company", ACTOR_STATS),
+      ],
+      { [FOE_ID]: 100, [PLAYER_ID]: 99 },
+    );
+    expect(battle.currentActorId).toBe(FOE_ID);
+
+    const run = runAutoBattle(battle);
+
+    expect(run.stop).toBe("player-turn");
+    expect(run.nextActorId).toBe(PLAYER_ID);
+    expect(run.turns).toHaveLength(1);
+    expect(run.turns[0]?.unitId).toBe(FOE_ID);
+    // Opening events are included even when the player acts next.
+    expect(run.events.some((event) => event.kind === "battleStarted")).toBe(true);
+  });
+
+  it("auto-battles a delegated ally", () => {
+    const battle = tempoBattle(
+      [
+        makeUnit(AUTO_ALLY_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(FOE_ID, coord(0, 1), "enemy", ENEMY_STATS),
+        makeUnit(PLAYER_ID, coord(4, 4), "company", { ...ACTOR_STATS, spd: 42 }),
+      ],
+      { [AUTO_ALLY_ID]: 100, [PLAYER_ID]: 99 },
+    );
+
+    const run = runAutoBattle(battle, {
+      policy: autoBattleAllies(DEFAULT_CONTROL_POLICY, [AUTO_ALLY_ID]),
+    });
+
+    expect(run.stop).toBe("player-turn");
+    expect(run.nextActorId).toBe(PLAYER_ID);
+    expect(run.turns.map((turn) => turn.unitId)).toContain(AUTO_ALLY_ID);
+    const allyTurn = run.turns.find((turn) => turn.unitId === AUTO_ALLY_ID);
+    expect(allyTurn?.plan.target).toEqual({ kind: "unit", unitId: FOE_ID });
+    expect(
+      run.events.some((event) => event.kind === "abilityUsed" && event.targetId === FOE_ID),
+    ).toBe(true);
+  });
+
+  it("returns control immediately when the player acts first", () => {
+    const battle = tempoBattle(
+      [
+        makeUnit(PLAYER_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(FOE_ID, coord(0, 4), "enemy", ENEMY_STATS),
+      ],
+      { [PLAYER_ID]: 100 },
+    );
+
+    const run = runAutoBattle(battle);
+
+    expect(run.stop).toBe("player-turn");
+    expect(run.turns).toHaveLength(0);
+    expect(run.nextActorId).toBe(PLAYER_ID);
+    expect(run.state.currentActorId).toBe(PLAYER_ID);
+  });
+
+  it("caps a full auto-battle at maxTurns", () => {
+    const battle = tempoBattle(
+      [makeUnit(AUTO_ALLY_ID, coord(0, 0), "company", { ...ACTOR_STATS, spd: 1 })],
+      { [AUTO_ALLY_ID]: 100 },
+    );
+
+    const run = runAutoBattle(battle, {
+      policy: autoBattleAllies(DEFAULT_CONTROL_POLICY, "all"),
+      maxTurns: 3,
+    });
+
+    expect(run.stop).toBe("limit");
+    expect(run.turns).toHaveLength(3);
+  });
+
+  it("is deterministic across identical battles", () => {
+    const build = (): BattleState =>
+      tempoBattle(
+        [
+          makeUnit(FOE_ID, coord(0, 0), "enemy", ENEMY_STATS),
+          makeUnit(AUTO_ALLY_ID, coord(0, 3), "company", ACTOR_STATS),
+          makeUnit(PLAYER_ID, coord(4, 4), "company", { ...ACTOR_STATS, spd: 42 }),
+        ],
+        { [FOE_ID]: 100 },
+      );
+
+    const options = { policy: autoBattleAllies(DEFAULT_CONTROL_POLICY, "all"), maxTurns: 40 };
+    const first = runAutoBattle(build(), options);
+    const second = runAutoBattle(build(), options);
+
+    expect(JSON.stringify(second.state)).toBe(JSON.stringify(first.state));
+    expect(JSON.stringify(second.events)).toBe(JSON.stringify(first.events));
+    expect(second.stop).toBe(first.stop);
+  });
+
+  it("rejects a malformed turn cap", () => {
+    const battle = tempoBattle([makeUnit(PLAYER_ID, coord(0, 0), "company", ACTOR_STATS)], {
+      [PLAYER_ID]: 100,
+    });
+    expect(() => runAutoBattle(battle, { maxTurns: -1 })).toThrow(AutoBattleError);
   });
 });
