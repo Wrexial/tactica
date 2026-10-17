@@ -401,7 +401,7 @@ deterministic.
 - done: Abilities are bound to equipment; battle awards Drill distributed to equipped unmastered abilities; mastery is permanent.
 
 ### T049 — XP & level growth
-- status: todo
+- status: done
 - deps: [T018, T046]
 - files: src/engine/progression/level.ts
 - verify: npm run test -- --run tests/unit/level.test.ts
