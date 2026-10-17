@@ -71,17 +71,19 @@ export function App() {
     };
   }, [applyController]);
 
-  // Sync the overlay to the controller after every transition.
+  // Sync the scene (units) and overlay to the controller after every
+  // transition.
   useEffect(() => {
-    const overlay = sceneRef.current?.overlay;
-    if (!overlay) return;
+    const scene = sceneRef.current;
+    if (!scene) return;
     const map = controller.battle.map;
-    overlay.setMoveRange(
+    scene.setUnits(controller.battle.units);
+    scene.overlay.setMoveRange(
       controller.moveRange.map((tile) => tile.at),
       map,
     );
-    overlay.setPath(controller.pendingPath ?? [], map);
-    overlay.setCursor(controller.cursor, map);
+    scene.overlay.setPath(controller.pendingPath ?? [], map);
+    scene.overlay.setCursor(controller.cursor, map);
   }, [controller]);
 
   const actor = useMemo(() => {

@@ -637,7 +637,7 @@ deterministic.
 - done: All terrain types and elevations render distinctly (fields, woods, villages, rivers, redoubts).
 
 ### T081 — Unit presentation
-- status: todo
+- status: done
 - deps: [T029, T017]
 - files: src/render/units.ts
 - verify: npm run build

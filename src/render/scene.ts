@@ -21,13 +21,16 @@ import { Application, Container, Graphics } from "pixi.js";
 import { allCoords } from "../engine/grid";
 import {
   createTerrainMap,
+  heightAt,
   terrainTileAt,
   withTile,
   type TerrainMap,
   type TerrainType,
 } from "../engine/terrain";
+import type { Unit } from "../engine/unit";
 import { worldToScreen } from "./iso";
 import { createOverlay, type BattleOverlay } from "./overlay";
+import { unitDrawOps, type UnitDrawOp } from "./units";
 import {
   ELEVATION_STEP,
   TILE_HEIGHT,
@@ -56,6 +59,12 @@ export interface Scene {
   readonly overlay: BattleOverlay;
   /** The current camera transform, for unprojecting pointer input to tiles. */
   readonly camera: Camera;
+  /**
+   * Replace the soldiers drawn on the field. The scene reads the units only;
+   * it never mutates engine state (`agents.md` §7). Passing an empty list
+   * clears the field.
+   */
+  setUnits(units: readonly Unit[]): void;
   /** Tear down the renderer, input listeners and observers. Idempotent. */
   dispose(): void;
 }
@@ -76,6 +85,38 @@ function strokeLine(
     graphics.lineTo(points[index] + center.x, points[index + 1] + center.y);
   }
   graphics.stroke(style);
+}
+
+/**
+ * Draw one unit's Pixi-free {@link unitDrawOps} description (the soldier, its
+ * status bars and condition icons) offset by its tile's top-face centre. The
+ * shape mirrors `drawDecorations` so the render layer keeps one drawing pattern
+ * for both terrain and units.
+ */
+function drawUnitOps(graphics: Graphics, ops: readonly UnitDrawOp[], center: ScreenPoint): void {
+  for (const op of ops) {
+    if (op.kind === "circle") {
+      graphics
+        .circle(center.x + op.x, center.y + op.y, op.radius)
+        .fill({ color: op.color, alpha: op.alpha });
+    } else if (op.kind === "rect") {
+      graphics
+        .rect(center.x + op.x, center.y + op.y, op.width, op.height)
+        .fill({ color: op.color, alpha: op.alpha });
+    } else if (op.kind === "poly") {
+      const points: number[] = [];
+      for (let index = 0; index < op.points.length; index += 2) {
+        points.push(op.points[index] + center.x, op.points[index + 1] + center.y);
+      }
+      graphics.poly(points).fill({ color: op.color, alpha: op.alpha });
+    } else {
+      strokeLine(graphics, op.points, center, {
+        width: op.width,
+        color: op.color,
+        alpha: op.alpha,
+      });
+    }
+  }
 }
 
 /**
@@ -120,6 +161,8 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
   const app = new Application();
   const world = new Container();
   const overlay = createOverlay();
+  const unitLayer = new Container();
+  let units: readonly Unit[] = [];
   let camera: Camera = createCamera();
   let destroyed = false;
   let appReady = false;
@@ -191,8 +234,27 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
     }
 
     world.addChild(graphics);
+    // Units sit on the terrain but under the interactive overlay (which is
+    // parented later, once Pixi is ready).
+    world.addChild(unitLayer);
     app.stage.addChild(world);
     applyCamera();
+  };
+
+  /** Repaint every soldier, back-to-front so nearer units overlap farther ones. */
+  const drawUnits = (): void => {
+    for (const child of unitLayer.removeChildren()) child.destroy();
+    const ordered = [...units].sort((a, b) => {
+      const depth = a.at.x + a.at.y - (b.at.x + b.at.y);
+      if (depth !== 0) return depth;
+      return a.at.y - b.at.y;
+    });
+    for (const unit of ordered) {
+      const center = worldToScreen(unit.at.x, unit.at.y, heightAt(map, unit.at));
+      const graphics = new Graphics();
+      drawUnitOps(graphics, unitDrawOps(unit), center);
+      unitLayer.addChild(graphics);
+    }
   };
 
   const resize = (): void => {
@@ -297,6 +359,10 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
     overlay,
     get camera(): Camera {
       return camera;
+    },
+    setUnits(next: readonly Unit[]): void {
+      units = next;
+      drawUnits();
     },
     dispose(): void {
       if (destroyed) return;
