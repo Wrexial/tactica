@@ -750,7 +750,7 @@ deterministic.
 - done: Scores targets by expected damage, kill potential, threat and positioning; issues only legal commands.
 
 ### T096 — Article-aware AI
-- status: todo
+- status: done
 - deps: [T095, T056]
 - files: src/ai/utility.ts
 - verify: npm run test -- --run tests/unit/ai.test.ts

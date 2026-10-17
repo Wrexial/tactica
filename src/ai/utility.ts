@@ -53,19 +53,52 @@
  * - **No mutation** — the input state is only read; planning returns a fresh
  *   value and leaves the battle byte-identical.
  *
+ * ## Articles of War (T096)
+ *
+ * A soldier fights under the day's **Articles of War** (mapping §9): the
+ * Provost Marshal issues a **Reprimand** (Yellow) or **Court-Martial** (Red)
+ * for a forbidden act, and a Red Card removes the offender from the field. A
+ * competent AI therefore refuses to plan a turn that would breach a standing
+ * order — unless the soldier holds a **Commission** (the Colours, FFTA's Boss
+ * Medal), which caps escalation at a Reprimand and makes violations free of
+ * consequence.
+ *
+ * Callers pass the battle's posting ({@link UtilityOptions.orders}, a
+ * {@link BattleOrders} value) and any held medals ({@link
+ * UtilityOptions.commissions}). Each candidate's action and march are projected
+ * into the same {@link ArticleSubject} facts the Provost rules on (reusing the
+ * tested T056 {@link detectArticles}), and a breach 	extbf{disqualifies} the
+ * candidate for an uncommissioned soldier. A commissioned soldier skips that
+ * filter. With no posting supplied the AI is entirely law-agnostic, exactly as
+ * before.
+ *
  * Reference: `docs/wiki/pages/Final_Fantasy_Tactics_Advance_jobs.md` (job/AI
- * behaviour is largely emergent), mapping §11–§12. The scoring shape is
- * **authored balance data**, not scraped gospel (`agents.md` §3, §10).
+ * behaviour is largely emergent), `docs/wiki/pages/Law_system_(Tactics_
+ * Advance).md` (forbidden acts, the Boss Medal), mapping §9 and §11–§12. The
+ * scoring shape is **authored balance data**, not scraped gospel (`agents.md`
+ * §3, §10).
  */
 
+import type { ElementKey, WeaponType } from "../data/schema";
 import type { EnemyAiProfileDef } from "../data/enemies/profiles";
+import type { BattleOrders } from "../engine/actions/orders";
 import { canAfford, type ActionSpec } from "../engine/actions/resolve";
 import { findUnit, step, type BattleState } from "../engine/battle";
 import type { Command, Target } from "../engine/commands";
 import { coordEquals, manhattanDistance, type Coord } from "../engine/grid";
-import type { AbilityId, UnitId } from "../engine/ids";
+import { asArticleId, type AbilityId, type ArticleId, type UnitId } from "../engine/ids";
 import { findPath, reachableWithin } from "../engine/pathfinding";
 import { blocksSightAt, heightAt } from "../engine/terrain";
+import {
+  articleSubjectOfAction,
+  detectArticles,
+  isCommissioned,
+  type ArticleActionView,
+  type ArticleEffectView,
+  type ArticleMatch,
+  type ArticleSubject,
+  type Commissions,
+} from "../engine/rules/articles";
 import { areHostile, isAllyTarget, isEnemyTarget, type TargetActor } from "../engine/targeting";
 import { isOutOfAction, type Unit } from "../engine/unit";
 import {
@@ -187,6 +220,23 @@ export function weightsFromProfile(profile: EnemyAiProfileDef): UtilityWeights {
 }
 
 /**
+ * An action the AI may consider: the T086 {@link ForecastAbilitySpec} plus the
+ * Article-bearing fields the battle's minimal catalogue omits — an explicit
+ * `element`, the weapon family an attack is made with, and any top-level
+ * `inflicts` conditions. A full authored `AbilityDef` (T089) is structurally
+ * assignable, so content can hand the AI its real definitions and the AI will
+ * see exactly the facts the Provost Marshal would judge (T056).
+ */
+export interface UtilityAbilitySpec extends ForecastAbilitySpec {
+  /** Elemental property declared at the action level (`AbilityDef.element`). */
+  readonly element?: ElementKey;
+  /** Weapon family an attack is made with (`AbilityDef` omits it; content adds it). */
+  readonly weaponType?: WeaponType;
+  /** Conditions the action inflicts (`AbilityDef.inflicts`). */
+  readonly inflicts?: readonly string[];
+}
+
+/**
  * Options for the utility AI.
  *
  * Everything is optional: with no options the AI uses {@link
@@ -203,13 +253,26 @@ export interface UtilityOptions {
   readonly profile?: EnemyAiProfileDef;
   /**
    * Richer action data than the battle's minimal catalogue. Content can pass
-   * full {@link ForecastAbilitySpec}s here to expose target rules and effects
+   * full {@link UtilityAbilitySpec}s here to expose target rules and effects
    * (heals, buffs, AoE) the catalogue may omit. Falls back to
    * `state.abilities`.
    */
-  readonly abilities?: Readonly<Record<string, ForecastAbilitySpec>>;
+  readonly abilities?: Readonly<Record<string, UtilityAbilitySpec>>;
   /** Hooks passed straight to the T086 forecast (affinities, evasion, reactions). */
   readonly forecast?: ForecastOptions;
+  /**
+   * The Articles of War in force today (T055/T063). When supplied, the AI
+   * rules out any candidate that would breach a forbidding Article, unless the
+   * acting soldier holds a **Commission** ({@link commissions}). Omit it — the
+   * default — for a law-agnostic AI or a lawless No-Man's Land.
+   */
+  readonly orders?: BattleOrders;
+  /**
+   * Soldiers holding a **Commission** (FFTA's Boss Medal, T059), immune to the
+   * Court-Martial. A commissioned soldier is not filtered for breaches, so it
+   * may break standing orders freely; everyone else avoids them.
+   */
+  readonly commissions?: Commissions;
 }
 
 /** Merge profile/default weights with any explicit override. */
@@ -236,6 +299,90 @@ export function targetThreat(unit: Unit): number {
   return Math.max(0, unit.stats.atk) + Math.max(0, unit.stats.mag);
 }
 
+/* --------------------------------------------------------------------------
+ * Articles of War
+ * ------------------------------------------------------------------------ */
+
+/**
+ * Project one action into the {@link ArticleActionView} the T056 rules read.
+ * Elements, weapon family and inflicted conditions are gathered from the
+ * action-level fields and from every authored effect, so an ability that both
+ * strikes with a rifle and inflicts Bleeding exposes both facts. A `condition`
+ * effect contributes the condition it applies, matching how resolution will
+ * judge it.
+ */
+function articleActionViewOf(actor: Unit, spec: UtilityAbilitySpec): ArticleActionView {
+  const effects: ArticleEffectView[] = [];
+  if (spec.inflicts !== undefined && spec.inflicts.length > 0) {
+    effects.push({ inflicts: spec.inflicts });
+  }
+  for (const effect of spec.effects ?? []) {
+    switch (effect.kind) {
+      case "steel":
+      case "powder":
+      case "weapon":
+        effects.push({
+          ...(effect.element === undefined ? {} : { element: effect.element }),
+          ...(effect.inflicts === undefined ? {} : { inflicts: effect.inflicts }),
+        });
+        break;
+      case "condition":
+        effects.push({ inflicts: [effect.conditionId] });
+        break;
+      default:
+        break;
+    }
+  }
+
+  return {
+    id: spec.id,
+    ...(spec.element === undefined ? {} : { element: spec.element }),
+    ...(spec.weaponType === undefined ? {} : { weaponType: spec.weaponType }),
+    ...(actor.postId === undefined ? {} : { postId: actor.postId }),
+    ...(effects.length > 0 ? { effects } : {}),
+  };
+}
+
+/**
+ * The Article facts a candidate exposes: the action's own facts (id, element,
+ * weapon family, inflicted conditions and the actor's post) plus the `move`
+ * fact when the plan includes a march. A march with no follow-up order exposes
+ * only `move` — a hold or wait exposes nothing, so an idle soldier can never be
+ * judged as if it had acted.
+ *
+ * Pure: the soldier and spec are only read. Exported so callers can preview why
+ * a plan would be refused (AI traces, a debug overlay).
+ */
+export function articleSubjectForCandidate(
+  actor: Unit,
+  spec: UtilityAbilitySpec | null,
+  moved: boolean,
+): ArticleSubject {
+  const base: ArticleSubject =
+    spec === null ? {} : articleSubjectOfAction(articleActionViewOf(actor, spec));
+  return moved ? { ...base, moved: true } : base;
+}
+
+/**
+ * The active forbidding Articles a subject would break, in posting order. An
+ * absent posting or a **lawless** No-Man's Land (no Provost, mapping §9) yields
+ * an empty list — there is no one to judge and nothing to avoid. Reuses the
+ * tested T056 {@link detectArticles}, so the AI and the Provost Marshal agree
+ * on what a breach is.
+ */
+export function articleBreaches(
+  orders: BattleOrders | undefined,
+  subject: ArticleSubject,
+): readonly ArticleMatch[] {
+  if (orders === undefined || orders.lawless) return [];
+  return detectArticles(orders.articles, subject).broken;
+}
+
+/** The branded ids of the Articles in a breach list, in posting order. */
+function breachedArticleIds(breaches: readonly ArticleMatch[]): ArticleId[] {
+  return breaches.map((match) => asArticleId(match.article.id));
+}
+
 /** Replace one soldier in the deployed list, preserving order. */
 function withUnitAt(state: BattleState, unit: Unit, at: Coord): BattleState {
   const placed: Unit = { ...unit, at: { ...at } };
@@ -250,10 +397,10 @@ function occupiedByOthers(state: BattleState, mover: Unit): Coord[] {
 }
 
 /** The actions the AI may consider, richest source first. */
-function abilitySpecs(state: BattleState, options: UtilityOptions): readonly ForecastAbilitySpec[] {
-  const source: Readonly<Record<string, ActionSpec | ForecastAbilitySpec>> =
+function abilitySpecs(state: BattleState, options: UtilityOptions): readonly UtilityAbilitySpec[] {
+  const source: Readonly<Record<string, ActionSpec | UtilityAbilitySpec>> =
     options.abilities ?? state.abilities;
-  return Object.values(source) as readonly ForecastAbilitySpec[];
+  return Object.values(source) as readonly UtilityAbilitySpec[];
 }
 
 /** The soldier named by `unitId`, or a loud failure (the AI must know its world). */
@@ -361,6 +508,10 @@ export interface CandidateScore {
   readonly moveCost: number;
   /** Tiles to the nearest hostile (advance plans only; `0` when engaged). */
   readonly proximity: number;
+  /** Active forbidding Articles the plan would break, in posting order. */
+  readonly breaches: readonly ArticleId[];
+  /** `true` when at least one active forbidding Article would be broken. */
+  readonly unlawful: boolean;
   /** The weighted total the AI maximises. */
   readonly total: number;
 }
@@ -395,6 +546,7 @@ interface ScoreInputs {
   readonly exposure: number;
   readonly intent: UtilityIntent;
   readonly forecast: ReturnType<typeof forecastAbility> | null;
+  readonly breaches: readonly ArticleMatch[];
   readonly weights: UtilityWeights;
 }
 
@@ -405,7 +557,8 @@ interface ScoreInputs {
  * tunable and testable.
  */
 function scoreCandidate(inputs: ScoreInputs): CandidateScore {
-  const { state, actor, destination, moveCost, exposure, intent, forecast, weights } = inputs;
+  const { state, actor, destination, moveCost, exposure, intent, forecast, breaches, weights } =
+    inputs;
 
   let expectedDamage = 0;
   let killThreat = 0;
@@ -464,6 +617,8 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     exposure,
     moveCost,
     proximity,
+    breaches: breachedArticleIds(breaches),
+    unlawful: breaches.length > 0,
     total,
   };
 }
@@ -661,6 +816,8 @@ export interface TurnPlan {
   readonly intent: UtilityIntent;
   /** The winning candidate's full scoring breakdown. */
   readonly score: CandidateScore;
+  /** Active forbidding Articles the plan would break (empty for a clean plan). */
+  readonly breaches: readonly ArticleId[];
   /** How many candidates were evaluated (for prompt traces and perf checks). */
   readonly considered: number;
 }
@@ -677,9 +834,13 @@ export interface TurnPlan {
  *    the T086 forecast.
  *
  * A march with no follow-up and a brace are also considered, so a soldier with
- * no shot still advances or holds good ground rather than freezing. The winner
- * is converted to real commands and replayed through `step` before it is
- * returned ({@link ensureLegal}), so the AI issues only legal orders.
+ * no shot still advances or holds good ground rather than freezing. When the
+ * caller supplies the day's posting ({@link UtilityOptions.orders}), every
+ * candidate is judged against it and one that would break a forbidding Article
+ * is discarded — unless the soldier holds a {@link UtilityOptions.commissions
+ * Commission}, in which case it is free to violate. The winner is converted to
+ * real commands and replayed through `step` before it is returned
+ * ({@link ensureLegal}), so the AI issues only legal orders.
  *
  * ```ts
  * const plan = chooseTurn(battle, battle.currentActorId!);
@@ -697,6 +858,9 @@ export function chooseTurn(
   const actor = requireUnit(state, unitId, "soldier");
   const weights = resolveWeights(options);
   const specs = abilitySpecs(state, options);
+  // A commissioned soldier answers to no standing order: it may bank
+  // Reprimands freely, so the breach filter is bypassed for it (T059/T096).
+  const commissioned = isCommissioned(options.commissions, actor.id);
 
   const destinations = destinationsFor(state, actor);
   const origin: Coord = { x: actor.at.x, y: actor.at.y };
@@ -710,9 +874,17 @@ export function chooseTurn(
     const placedState = withUnitAt(state, actor, destination.at);
     const placedActor = requireUnit(placedState, actor.id, "soldier");
     const exposure = exposureAt(state, actor, destination.at, options);
+    const moved = !coordEquals(destination.at, origin);
 
     for (const spec of specs) {
       if (!canAfford(placedActor, spec)) continue;
+      // Judge the order (and the march to reach it) before aiming it, so an
+      // unlawful action is never even targeted at a foe.
+      const breaches = articleBreaches(
+        options.orders,
+        articleSubjectForCandidate(placedActor, spec, moved),
+      );
+      if (!commissioned && breaches.length > 0) continue;
       for (const target of targetSelections(placedState, placedActor, spec)) {
         const forecast = forecastAbility(placedState, placedActor, spec, target, options.forecast);
         if (!forecast.ok || forecast.targets.length === 0) continue;
@@ -731,6 +903,7 @@ export function chooseTurn(
             exposure,
             intent: "act",
             forecast,
+            breaches,
             weights,
           }),
         });
@@ -738,30 +911,40 @@ export function chooseTurn(
     }
 
     // A pure advance: evaluate the ground without an order, so a soldier with
-    // no shot still closes on the enemy (or avoids an exposed field).
+    // no shot still closes on the enemy (or avoids an exposed field). A march
+    // alone can still breach a "no movement" order, so it is judged too.
     if (!state.hasMovedThisTurn && destination.cost > 0) {
-      consider({
-        unitId: actor.id,
-        destination: destination.at,
-        moveCost: destination.cost,
-        abilityId: null,
-        target: null,
-        intent: "advance",
-        score: scoreCandidate({
-          state: placedState,
-          actor: placedActor,
+      const breaches = articleBreaches(
+        options.orders,
+        articleSubjectForCandidate(placedActor, null, true),
+      );
+      if (commissioned || breaches.length === 0) {
+        consider({
+          unitId: actor.id,
           destination: destination.at,
           moveCost: destination.cost,
-          exposure,
+          abilityId: null,
+          target: null,
           intent: "advance",
-          forecast: null,
-          weights,
-        }),
-      });
+          score: scoreCandidate({
+            state: placedState,
+            actor: placedActor,
+            destination: destination.at,
+            moveCost: destination.cost,
+            exposure,
+            intent: "advance",
+            forecast: null,
+            breaches,
+            weights,
+          }),
+        });
+      }
     }
   }
 
-  // Brace in place — the fallback when no attack presents itself.
+  // Brace in place — the fallback when no attack presents itself. Standing on
+  // the spot and doing nothing can never breach an Article, so it is always
+  // available to an uncommissioned soldier.
   consider({
     unitId: actor.id,
     destination: origin,
@@ -777,6 +960,7 @@ export function chooseTurn(
       exposure: exposureAt(state, actor, origin, options),
       intent: "hold",
       forecast: null,
+      breaches: [],
       weights,
     }),
   });
@@ -803,6 +987,7 @@ export function chooseTurn(
         exposure: 0,
         intent: "wait",
         forecast: null,
+        breaches: [],
         weights,
       }),
     };
@@ -819,6 +1004,7 @@ export function chooseTurn(
     target: winner.target,
     intent: winner.intent,
     score: winner.score,
+    breaches: winner.score.breaches,
     considered: candidates.length,
   };
 }
