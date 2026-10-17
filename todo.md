@@ -260,7 +260,7 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - done: Annihilation, rout, survive-N, capture/defend objectives; battle-end event.
 
 ### T032 — Movement & targeting tests
-- status: todo
+- status: done
 - deps: [T025, T028]
 - files: tests/unit/movement.test.ts
 - verify: npm run test -- --run tests/unit/movement.test.ts
