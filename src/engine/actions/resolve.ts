@@ -40,6 +40,7 @@
  * scheduler (mapping §12).
  */
 
+import { AOE_SHAPES, type AoeShape } from "../../data/schema";
 import type { BattleState } from "../battle";
 import type { Target } from "../commands";
 import type { BattleEvent } from "../events";
@@ -88,6 +89,14 @@ export interface ActionSpec {
   readonly range: number;
   /** Formula power term (used by T033/T034). */
   readonly power: number;
+  /**
+   * Area-of-effect footprint shape (mapping §12). Omitted means a
+   * single-target action; the targeting overlay (T085) reads this to preview
+   * the footprint under the cursor.
+   */
+  readonly aoeShape?: AoeShape;
+  /** Area-of-effect radius in tiles. Defaults to `0` (the centre tile only). */
+  readonly aoeSize?: number;
 }
 
 /** An id-keyed catalogue of the actions a battle can resolve. */
@@ -109,13 +118,22 @@ export function buildActionCatalogue(specs: readonly ActionSpec[] = []): ActionC
     if (!Number.isInteger(spec.power)) {
       throw new RangeError(`action ${spec.id} power must be an integer`);
     }
-    // Copy so callers cannot alias a spec back into battle state.
+    if (spec.aoeShape !== undefined && !(AOE_SHAPES as readonly string[]).includes(spec.aoeShape)) {
+      throw new RangeError(`action ${spec.id} aoeShape is invalid: ${String(spec.aoeShape)}`);
+    }
+    if (spec.aoeSize !== undefined) {
+      assertNonNegativeInteger(spec.aoeSize, `action ${spec.id} aoeSize`);
+    }
+    // Copy so callers cannot alias a spec back into battle state. Optional AoE
+    // fields are copied only when authored, keeping old specs byte-identical.
     catalogue[spec.id] = {
       id: spec.id,
       mpCost: spec.mpCost,
       chargeTime: spec.chargeTime,
       range: spec.range,
       power: spec.power,
+      ...(spec.aoeShape === undefined ? {} : { aoeShape: spec.aoeShape }),
+      ...(spec.aoeSize === undefined ? {} : { aoeSize: spec.aoeSize }),
     };
   }
   return catalogue;
