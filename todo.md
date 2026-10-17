@@ -285,7 +285,7 @@ deterministic.
 ## Phase 3 — Combat, actions, conditions
 
 ### T033 — Steel (physical) damage
-- status: todo
+- status: done
 - deps: [T024, T018]
 - files: src/engine/rules/damage.ts, tests/unit/damage.test.ts
 - verify: npm run test -- --run tests/unit/damage.test.ts
