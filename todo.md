@@ -619,7 +619,7 @@ deterministic.
 - done: Capture/cajole irregulars and deploy them; Foreign Drill learns enemy actions.
 
 ### T079 — Campaign tests
-- status: todo
+- status: done
 - deps: [T070, T072, T073, T075, T076]
 - files: tests/unit/campaign.test.ts
 - verify: npm run test -- --run tests/unit/campaign.test.ts
