@@ -3,13 +3,17 @@ import { describe, expect, it } from "vitest";
 import {
   applyPower,
   computeBaseDamage,
+  computeHealing,
   computePowderDamage,
   computeSteelDamage,
   computeWeaponDamage,
   computeWeaponOffense,
+  HEALING_FORMULA,
   POWDER_FORMULA,
   STEEL_FORMULA,
   type DamageFormula,
+  type HealingFormula,
+  type HealingInput,
   type PowderDamageInput,
   type SteelDamageInput,
   type WeaponFormula,
@@ -491,5 +495,105 @@ describe("WEAPON_FAMILIES (T035 data)", () => {
         powerDivisor: 100,
       });
     }
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T036 — Healing / Medicine
+ *
+ * Pins the task's "done when": an **authored** healing formula, because the
+ * wiki lists White Magic ability Power values but documents no formula
+ * (`docs/wiki/pages/White_Magic_(Tactics_Advance).md`; `agents.md` §10 flags
+ * the gap). The shape is `flatHeal + floor(MedicalPower × Power / 100)`, with
+ * the same `Power/100` tuning convention as Steel and Powder but **no defence
+ * term** — nothing opposes a bandage. The result must be a non-negative integer
+ * fit for a `HealedEvent`, deterministic, and free of input mutation.
+ * ------------------------------------------------------------------------ */
+
+function healingInput(overrides: Partial<HealingInput> = {}): HealingInput {
+  return { medicalPower: 30, power: 40, ...overrides };
+}
+
+describe("computeHealing", () => {
+  it("computes flatHeal + floor(MedicalPower × Power / powerDivisor)", () => {
+    // 10 + floor(30 × 40 / 100) = 10 + 12 = 22.
+    expect(computeHealing(healingInput())).toBe(22);
+  });
+
+  it("scales with the caster's Medical Power", () => {
+    // 10 + floor(60 × 40 / 100) = 10 + 24 = 34.
+    expect(computeHealing(healingInput({ medicalPower: 60 }))).toBe(34);
+    // 10 + floor(0 × 40 / 100) = 10 — the flat bandage effect still lands.
+    expect(computeHealing(healingInput({ medicalPower: 0 }))).toBe(10);
+  });
+
+  it("scales with the ability's Power term", () => {
+    // Cure 40 → 22; Cura 60 → 10 + 18 = 28; Curaga 80 → 10 + 24 = 34.
+    expect(computeHealing(healingInput({ power: 40 }))).toBe(22);
+    expect(computeHealing(healingInput({ power: 60 }))).toBe(28);
+    expect(computeHealing(healingInput({ power: 80 }))).toBe(34);
+  });
+
+  it("truncates the scaled term (no rounding up)", () => {
+    // 10 + floor(35 × 33 / 100) = 10 + floor(11.55) = 21.
+    expect(computeHealing(healingInput({ medicalPower: 35, power: 33 }))).toBe(21);
+  });
+
+  it("treats a zero Power as the flat base only", () => {
+    expect(computeHealing(healingInput({ power: 0 }))).toBe(10);
+  });
+
+  it("floors at zero for a negative Power term", () => {
+    // 10 + floor(30 × −50 / 100) = 10 − 15 = −5 → 0.
+    expect(computeHealing(healingInput({ power: -50 }))).toBe(0);
+  });
+
+  it("returns a non-negative integer for every valid input", () => {
+    for (const medicalPower of [0, 1, 7, 15, 30, 99]) {
+      for (const power of [0, 25, 40, 60, 80, 175]) {
+        const heal = computeHealing({ medicalPower, power });
+        expect(Number.isInteger(heal)).toBe(true);
+        expect(heal).toBeGreaterThanOrEqual(0);
+      }
+    }
+  });
+
+  it("is deterministic and does not mutate its input", () => {
+    const input: HealingInput = healingInput({ medicalPower: 42, power: 77 });
+    const snapshot = { ...input };
+
+    const first = computeHealing(input);
+    const second = computeHealing(input);
+
+    expect(first).toBe(second);
+    expect(input).toEqual(snapshot);
+  });
+
+  it("honours an authored formula supplied by content", () => {
+    // A field-hospital variant with a bigger flat base and Power/10 scaling.
+    const variant: HealingFormula = { flatHeal: 25, powerDivisor: 10 };
+    // 25 + floor(30 × 40 / 10) = 25 + 120 = 145.
+    expect(computeHealing(healingInput(), variant)).toBe(145);
+  });
+
+  it("rejects malformed inputs at the boundary", () => {
+    expect(() => computeHealing(healingInput({ medicalPower: -1 }))).toThrow(RangeError);
+    expect(() => computeHealing(healingInput({ medicalPower: 1.5 }))).toThrow(RangeError);
+    expect(() => computeHealing(healingInput({ power: 1.5 }))).toThrow(RangeError);
+  });
+
+  it("rejects a malformed formula", () => {
+    expect(() => computeHealing(healingInput(), { flatHeal: -1, powerDivisor: 100 })).toThrow(
+      RangeError,
+    );
+    expect(() => computeHealing(healingInput(), { flatHeal: 10, powerDivisor: 0 })).toThrow(
+      RangeError,
+    );
+  });
+});
+
+describe("HEALING_FORMULA", () => {
+  it("encodes our authored flat base and the shared Power/100 scaling", () => {
+    expect(HEALING_FORMULA).toEqual({ flatHeal: 10, powerDivisor: 100 });
   });
 });

@@ -4,10 +4,10 @@
  * The retheme renames FFTA's physical/magical split to **Steel** and **Powder**
  * (mapping §12, `docs/NAPOLEONIC_MAPPING.md`): Steel is sabre, lance, bayonet
  * and small-arms fire; Powder is artillery, medicine and signals (T034). The
- * maths is unchanged. This module owns both the **Steel** (T033) and **Powder**
- * (T034) formulas; weapon-family variants arrive with T035, reusing the
- * {@link DamageFormula} shape and the {@link computeBaseDamage} /
- * {@link applyPower} kernel defined here.
+ * maths is unchanged. This module owns the **Steel** (T033), **Powder** (T034),
+ * weapon-family variant (T035) and authored **Medicine / healing** (T036)
+ * formulas; the damage channels reuse the {@link DamageFormula} shape and the
+ * {@link computeBaseDamage} / {@link applyPower} kernel defined here.
  *
  * ## The formula
  *
@@ -89,6 +89,20 @@
  * taken verbatim. The coefficients still live in {@link POWDER_FORMULA} as our
  * re-authored balance data, so it can diverge from Steel later without touching
  * the arithmetic.
+ *
+ * ## Medicine (healing) (T036)
+ *
+ * FFTA's White Magic tables list an ability `Power` per heal — `Cure` 40,
+ * `Cura` 60, `Curaga` 80 (`docs/wiki/pages/White_Magic_(Tactics_Advance).md`)
+ * — but no formula, and the mirror offers none elsewhere (`agents.md` §10 flags
+ * this gap). Healing is therefore an **authored** formula, in the retheme's
+ * Medicine channel (bandages, splints, tonics, dressing stations; mapping §9,
+ * D9: "magic" = medicine). It keeps the `Power/100` scaling convention of the
+ * damage channels so the whole game tunes the same way, but it substitutes the
+ * caster's **Medical Power** for the attack stat and drops the defense
+ * subtraction entirely — nothing opposes a bandage. A small flat base ensures
+ * even a low-power action is worth a turn. See {@link computeHealing} and
+ * {@link HEALING_FORMULA}.
  *
  * Reference: `docs/wiki/pages/Attack_(command).md` (Steel),
  * `docs/wiki/pages/Magic_(command).md` (Powder). Fiction:
@@ -499,4 +513,123 @@ export function computeWeaponDamage(input: WeaponDamageInput, formula: WeaponFor
   const { targetWeaponDef, power, ...offense } = input;
   const weaponAtk = computeWeaponOffense(offense, formula);
   return computeSteelDamage({ weaponAtk, targetWeaponDef, power }, formula);
+}
+
+/* --------------------------------------------------------------------------
+ * Medicine / healing (T036)
+ *
+ * The wiki lists a `Power` for every White Magic heal but no formula
+ * (`docs/wiki/pages/White_Magic_(Tactics_Advance).md`), so the retheme authors
+ * one. It is deliberately **not** a reflected damage formula: healing has no
+ * defense stat to subtract, and its only hard requirement is that it produce a
+ * non-negative integer fit for a `HealedEvent`. It keeps the same `Power/100`
+ * scaling convention as Steel and Powder so content tunes uniformly.
+ * ------------------------------------------------------------------------ */
+
+/**
+ * The two coefficients that shape the authored healing formula:
+ *
+ * ```text
+ * heal = flatHeal + floor(MedicalPower × Power / powerDivisor)
+ * ```
+ *
+ * `flatHeal` is a flat bandage effect so a low-power action still matters, and
+ * `powerDivisor` mirrors the `Power/100` convention of {@link DamageFormula}.
+ * Both are **authored balance data** (mapping §9, D9: "magic" = medicine), not
+ * a scraped reference value.
+ */
+export interface HealingFormula {
+  /** Flat hit points restored before power scaling. `>= 0`. */
+  readonly flatHeal: number;
+  /**
+   * Divisor applied to `MedicalPower × Power`. Mirrors the `Power/100`
+   * convention of {@link DamageFormula.powerDivisor}. `>= 1`.
+   */
+  readonly powerDivisor: number;
+}
+
+/**
+ * The authored healing coefficients. Unlike {@link STEEL_FORMULA} and
+ * {@link POWDER_FORMULA} this is **not** taken from a scraped reference — the
+ * wiki documents no healing formula, only the ability `Power` values (Cure 40,
+ * Cura 60, Curaga 80). The flat base keeps the weakest dressing useful; the
+ * `powerDivisor` keeps the scaling identical to the damage channels. Content
+ * may re-author it without touching the arithmetic (`agents.md` §3, §10).
+ */
+export const HEALING_FORMULA: HealingFormula = {
+  flatHeal: 10,
+  powerDivisor: 100,
+};
+
+/**
+ * Input to {@link computeHealing}: the caster's Medical Power and the ability's
+ * `Power` term. Both are plain integers; the action executor (T041) resolves
+ * them from the derived stat block (`stats.ts`, T018) and the authored ability
+ * data (`AbilityDef.power`).
+ */
+export interface HealingInput {
+  /**
+   * The caster's effective Medical Power (the `mag` stat after equipment and
+   * conditions) — the retheme's stand-in for FFTA's Magic Power. `>= 0`.
+   */
+  readonly medicalPower: number;
+  /**
+   * The ability's authored `Power` term. May be negative for unusual actions;
+   * the result is still floored at zero.
+   */
+  readonly power: number;
+}
+
+function assertHealingFormula(formula: HealingFormula): void {
+  if (!Number.isInteger(formula.flatHeal) || formula.flatHeal < 0) {
+    throw new RangeError(
+      `healing formula flatHeal must be a non-negative integer, received ${String(
+        formula.flatHeal,
+      )}`,
+    );
+  }
+  if (!Number.isInteger(formula.powerDivisor) || formula.powerDivisor < 1) {
+    throw new RangeError(
+      `healing formula powerDivisor must be an integer >= 1, received ${String(
+        formula.powerDivisor,
+      )}`,
+    );
+  }
+}
+
+/**
+ * Compute the hit points restored by a **Medicine** action (bandages, splints,
+ * tonics, a dressing station): `flatHeal + floor(MedicalPower × Power / 100)`.
+ * The wiki documents White Magic `Power` values but no healing formula, so the
+ * shape is **authored** here — see the module header.
+ *
+ * There is deliberately **no defense term**: nothing opposes healing. Overshoot
+ * past max HP is not clamped here; the action executor applies the result via
+ * `withHp` (`unit.ts`), which caps it. The **Fevered** (FFTA Zombie) inversion
+ * — where medicine harms and harm mends — is likewise an executor/element
+ * concern (mapping §8), not part of this arithmetic.
+ *
+ * ```ts
+ * // Cure-like: 10 + floor(30 × 40 / 100) = 22.
+ * computeHealing({ medicalPower: 30, power: 40 }); // 22
+ * // A caster with no Medical Power still lands the flat bandage effect.
+ * computeHealing({ medicalPower: 0, power: 40 });  // 10
+ * ```
+ *
+ * Throws a `RangeError` when `medicalPower` is not a non-negative integer,
+ * `power` is not an integer, or the formula is malformed. The result is always
+ * a non-negative integer, so it can be placed straight into a `HealedEvent`
+ * (`events.ts`).
+ */
+export function computeHealing(
+  input: HealingInput,
+  formula: HealingFormula = HEALING_FORMULA,
+): number {
+  const { medicalPower, power } = input;
+  assertNonNegativeInteger(medicalPower, "healing.medicalPower");
+  assertInteger(power, "healing.power");
+  assertHealingFormula(formula);
+
+  const scaled = Math.floor((medicalPower * power) / formula.powerDivisor);
+  return Math.max(0, formula.flatHeal + scaled);
 }

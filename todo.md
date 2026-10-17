@@ -306,7 +306,7 @@ deterministic.
 - done: Variant formulas (sabre, lance, rifle, gun, instrument...) from `Attack_(command).md`.
 
 ### T036 — Healing formula
-- status: todo
+- status: done
 - deps: [T033]
 - files: src/engine/rules/damage.ts
 - verify: npm run test -- --run tests/unit/damage.test.ts
