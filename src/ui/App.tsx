@@ -7,6 +7,7 @@ import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
 import { Mess } from "./Mess";
 import { PostScreen } from "./PostScreen";
+import { TempoTray } from "./TempoTray";
 import { animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
 
@@ -229,6 +230,18 @@ export function App() {
             </ol>
           </section>
         </aside>
+
+        {view === "battle" && (
+          <TempoTray
+            battle={controller.battle}
+            onSelect={(unitId) => {
+              const unit = controllerRef.current.battle.units.find((u) => u.id === unitId);
+              if (unit !== undefined) {
+                applyController(setCursor(controllerRef.current, unit.at));
+              }
+            }}
+          />
+        )}
 
         {view === "posts" && <PostScreen />}
         {view === "mess" && <Mess />}

@@ -651,9 +651,9 @@ deterministic.
 - done: Movement, volleys, artillery and condition popups animate from engine events only.
 
 ### T083 — Orders Tempo tray
-- status: todo
+- status: done
 - deps: [T019, T081]
-- files: src/ui/TempoTray.tsx
+- files: src/ui/TempoTray.tsx, src/ui/tempoOrder.ts
 - verify: npm run test:e2e
 - done: Upcoming turn order is visualised.
 
