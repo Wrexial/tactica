@@ -1,21 +1,35 @@
 import { describe, expect, it } from "vitest";
 
 import { coord, type Coord } from "../../src/engine/grid";
+import { asUnitId } from "../../src/engine/ids";
 import { createTerrainMap, heightAt, terrainAt, withTile } from "../../src/engine/terrain";
 import {
   ELEVATION_RANGE_PER_LEVEL,
   MAX_ELEVATION_RANGE_DELTA,
+  aoeTiles,
+  areHostile,
   canTarget,
+  canTargetUnit,
   effectiveRange,
   elevationRangeModifier,
+  filterTargets,
   hasLineOfSight,
+  isAllyTarget,
+  isEnemyTarget,
+  isSelfTarget,
   lineOfSight,
+  matchesTargetFilter,
   rangeBetween,
+  resolveTargeting,
   tilesInRange,
   tilesOnLine,
+  unitsInAoe,
   withinRange,
+  type AbilityTargeting,
+  type PositionedTarget,
   type RangeProfile,
 } from "../../src/engine/targeting";
+import type { UnitSide } from "../../src/engine/unit";
 
 /* --------------------------------------------------------------------------
  * T016 — Range & line of sight
@@ -346,5 +360,292 @@ describe("purity and determinism", () => {
     const first = tilesInRange(map, coord(0, 0), { min: 0, max: 8 });
     const second = tilesInRange(map, coord(0, 0), { min: 0, max: 8 });
     expect(second).toEqual(first as Coord[]);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T028 — Targeting system
+ *
+ * These tests pin the task's "done when": single / AoE / self / ally / enemy
+ * target predicates, each combined with the T016 range and line-of-sight
+ * checks. They also pin determinism and the neutral-arbiter rule (the Provost
+ * is never a valid enemy, mapping §9).
+ * ------------------------------------------------------------------------ */
+
+/** Build a positioned combatant; `(x, y)` defaults to the north-west corner. */
+function actor(id: string, side: UnitSide, x = 0, y = 0): PositionedTarget {
+  return { id: asUnitId(id), side, at: coord(x, y) };
+}
+
+const HERO = actor("unit-hero", "company", 0, 0);
+const ALLY = actor("unit-ally", "company", 2, 3);
+const FOE = actor("unit-foe", "enemy", 2, 2);
+const PROVOST = actor("unit-provost", "neutral", 4, 4);
+
+const OPEN = createTerrainMap(6, 6, "field");
+
+describe("target predicates (T028)", () => {
+  it("treats only company vs. enemy as hostile", () => {
+    expect(areHostile("company", "enemy")).toBe(true);
+    expect(areHostile("enemy", "company")).toBe(true);
+    expect(areHostile("company", "company")).toBe(false);
+    expect(areHostile("enemy", "enemy")).toBe(false);
+    expect(areHostile("company", "neutral")).toBe(false);
+    expect(areHostile("neutral", "enemy")).toBe(false);
+  });
+
+  it("matches the self rule only against the actor", () => {
+    expect(isSelfTarget(HERO, HERO)).toBe(true);
+    expect(matchesTargetFilter("self", HERO, HERO)).toBe(true);
+    expect(matchesTargetFilter("self", HERO, ALLY)).toBe(false);
+  });
+
+  it("treats the same side — including the actor — as an ally", () => {
+    expect(isAllyTarget(HERO, ALLY)).toBe(true);
+    expect(isAllyTarget(HERO, HERO)).toBe(true);
+    expect(matchesTargetFilter("ally", HERO, ALLY)).toBe(true);
+    expect(matchesTargetFilter("ally", HERO, HERO)).toBe(true);
+    expect(matchesTargetFilter("ally", HERO, FOE)).toBe(false);
+    expect(matchesTargetFilter("ally", HERO, PROVOST)).toBe(false);
+  });
+
+  it("treats only the hostile side as an enemy, never a neutral arbiter", () => {
+    expect(isEnemyTarget(HERO, FOE)).toBe(true);
+    expect(matchesTargetFilter("enemy", HERO, FOE)).toBe(true);
+    expect(matchesTargetFilter("enemy", FOE, HERO)).toBe(true);
+    expect(matchesTargetFilter("enemy", HERO, ALLY)).toBe(false);
+    expect(matchesTargetFilter("enemy", HERO, PROVOST)).toBe(false);
+    expect(matchesTargetFilter("enemy", PROVOST, HERO)).toBe(false);
+  });
+
+  it("treats any as ally-or-enemy and never as ground", () => {
+    expect(matchesTargetFilter("any", HERO, ALLY)).toBe(true);
+    expect(matchesTargetFilter("any", HERO, FOE)).toBe(true);
+    expect(matchesTargetFilter("any", HERO, PROVOST)).toBe(false);
+    expect(matchesTargetFilter("tile", HERO, FOE)).toBe(false);
+  });
+
+  it("filters a roster while preserving field order", () => {
+    const roster = [HERO, FOE, ALLY, PROVOST];
+    expect(filterTargets(roster, "ally", HERO).map((unit) => unit.id)).toEqual([
+      HERO.id,
+      ALLY.id,
+    ]);
+    expect(filterTargets(roster, "enemy", HERO).map((unit) => unit.id)).toEqual([FOE.id]);
+    expect(filterTargets(roster, "any", HERO)).toHaveLength(3);
+  });
+});
+
+describe("aoeTiles (T028)", () => {
+  it("covers only the centre for a single-target area", () => {
+    expect(aoeTiles(OPEN, coord(2, 2), "single", 0)).toEqual([coord(2, 2)]);
+  });
+
+  it("builds a plus for a cross", () => {
+    expect(aoeTiles(OPEN, coord(2, 2), "cross", 1)).toEqual([
+      coord(2, 1),
+      coord(1, 2),
+      coord(2, 2),
+      coord(3, 2),
+      coord(2, 3),
+    ]);
+    expect(aoeTiles(OPEN, coord(2, 2), "cross", 2)).toHaveLength(9);
+  });
+
+  it("builds a block for a square", () => {
+    const tiles = aoeTiles(OPEN, coord(2, 2), "square", 1);
+    expect(tiles).toHaveLength(9);
+    expect(tiles).toContainEqual(coord(1, 1));
+    expect(tiles).toContainEqual(coord(3, 3));
+  });
+
+  it("draws a horizontal line when no origin is given", () => {
+    expect(aoeTiles(OPEN, coord(2, 2), "line", 2)).toEqual([
+      coord(0, 2),
+      coord(1, 2),
+      coord(2, 2),
+      coord(3, 2),
+      coord(4, 2),
+    ]);
+  });
+
+  it("orients a line along the dominant axis from the origin", () => {
+    expect(aoeTiles(OPEN, coord(2, 2), "line", 1, coord(0, 2))).toEqual([
+      coord(1, 2),
+      coord(2, 2),
+      coord(3, 2),
+    ]);
+    expect(aoeTiles(OPEN, coord(2, 2), "line", 1, coord(2, 0))).toEqual([
+      coord(2, 1),
+      coord(2, 2),
+      coord(2, 3),
+    ]);
+  });
+
+  it("covers the whole battlefield for a field effect", () => {
+    const small = createTerrainMap(2, 2, "field");
+    expect(aoeTiles(small, coord(0, 0), "field", 0)).toEqual([
+      coord(0, 0),
+      coord(1, 0),
+      coord(0, 1),
+      coord(1, 1),
+    ]);
+  });
+
+  it("clips an area at the map edge instead of wrapping", () => {
+    expect(aoeTiles(OPEN, coord(0, 0), "cross", 1)).toEqual([
+      coord(0, 0),
+      coord(1, 0),
+      coord(0, 1),
+    ]);
+  });
+
+  it("is deterministic and rejects malformed input", () => {
+    const first = aoeTiles(OPEN, coord(3, 3), "square", 2);
+    expect(aoeTiles(OPEN, coord(3, 3), "square", 2)).toEqual(first);
+    expect(() => aoeTiles(OPEN, coord(3, 3), "cross", -1)).toThrow(RangeError);
+    expect(() => aoeTiles(OPEN, coord(3, 3), "cross", 1.5)).toThrow(RangeError);
+    expect(() => aoeTiles(OPEN, coord(6, 0), "single", 0)).toThrow(RangeError);
+  });
+});
+
+describe("unitsInAoe (T028)", () => {
+  it("returns occupants in field order and ignores everyone else", () => {
+    const roster = [HERO, FOE, ALLY, PROVOST];
+    const footprint = [coord(0, 0), coord(2, 2), coord(2, 3)];
+    expect(unitsInAoe(roster, footprint).map((unit) => unit.id)).toEqual([
+      HERO.id,
+      FOE.id,
+      ALLY.id,
+    ]);
+    expect(unitsInAoe(roster, [coord(5, 5)])).toEqual([]);
+  });
+});
+
+describe("canTargetUnit (T028)", () => {
+  const rifle: RangeProfile = { min: 1, max: 5 };
+
+  it("accepts a visible enemy in range", () => {
+    const result = canTargetUnit(OPEN, HERO, FOE, "enemy", rifle);
+    expect(result.ok).toBe(true);
+    expect(result.filterOk).toBe(true);
+    expect(result.tile.distance).toBe(4);
+    expect(result.reason).toBeUndefined();
+  });
+
+  it("rejects a friendly or the actor as an enemy before range matters", () => {
+    const friendly = canTargetUnit(OPEN, HERO, ALLY, "enemy", rifle);
+    expect(friendly.ok).toBe(false);
+    expect(friendly.reason).toBe("wrong-affiliation");
+    expect(canTargetUnit(OPEN, HERO, HERO, "enemy", rifle).reason).toBe("wrong-affiliation");
+  });
+
+  it("never treats the neutral Provost as an enemy", () => {
+    const result = canTargetUnit(OPEN, HERO, PROVOST, "enemy", rifle);
+    expect(result.filterOk).toBe(false);
+    expect(result.reason).toBe("wrong-affiliation");
+  });
+
+  it("reports range and sight failures for a legal affiliation", () => {
+    const far = canTargetUnit(OPEN, HERO, actor("unit-far", "enemy", 5, 5), "enemy", rifle);
+    expect(far.ok).toBe(false);
+    expect(far.reason).toBe("out-of-range");
+
+    let map = createTerrainMap(6, 6, "field");
+    map = withTile(map, coord(1, 1), "wood");
+    const blocked = canTargetUnit(map, HERO, FOE, "enemy", rifle);
+    expect(blocked.ok).toBe(false);
+    expect(blocked.reason).toBe("blocked-terrain");
+  });
+
+  it("allows a self-buff to target the actor's own tile", () => {
+    const result = canTargetUnit(OPEN, HERO, HERO, "self", { min: 0, max: 0 });
+    expect(result.ok).toBe(true);
+    expect(result.tile.distance).toBe(0);
+  });
+});
+
+describe("resolveTargeting (T028)", () => {
+  const squad = [HERO, FOE, ALLY, PROVOST];
+
+  const selfBuff: AbilityTargeting = { target: "self", range: { min: 0, max: 0 } };
+  const fire: AbilityTargeting = {
+    target: "enemy",
+    range: { min: 1, max: 5 },
+    aoeShape: "cross",
+    aoeSize: 1,
+  };
+
+  it("resolves a self action on the actor's tile", () => {
+    const result = resolveTargeting(OPEN, HERO, squad, { kind: "self" }, selfBuff);
+    expect(result.ok).toBe(true);
+    expect(result.center).toEqual(coord(0, 0));
+    expect(result.tiles).toEqual([coord(0, 0)]);
+    expect(result.matched.map((unit) => unit.id)).toEqual([HERO.id]);
+  });
+
+  it("resolves an enemy AoE, splitting splash from matched targets", () => {
+    const result = resolveTargeting(OPEN, HERO, squad, { kind: "unit", unitId: FOE.id }, fire);
+    expect(result.ok).toBe(true);
+    // FOE at (2,2) and ALLY at (2,3) both sit in the plus; PROVOST does not.
+    expect(result.affected.map((unit) => unit.id)).toEqual([FOE.id, ALLY.id]);
+    expect(result.matched.map((unit) => unit.id)).toEqual([FOE.id]);
+    expect(result.tiles).toHaveLength(5);
+  });
+
+  it("is illegal when the chosen unit is the wrong affiliation", () => {
+    const result = resolveTargeting(OPEN, HERO, squad, { kind: "unit", unitId: ALLY.id }, fire);
+    expect(result.ok).toBe(false);
+    expect(result.reason).toBe("wrong-affiliation");
+  });
+
+  it("accepts a ground target for a tile rule and reports every occupant", () => {
+    const ground: AbilityTargeting = {
+      target: "tile",
+      range: { min: 0, max: 5 },
+      aoeShape: "single",
+      aoeSize: 0,
+    };
+    const result = resolveTargeting(OPEN, HERO, squad, { kind: "tile", at: coord(2, 2) }, ground);
+    expect(result.ok).toBe(true);
+    expect(result.filterOk).toBe(true);
+    expect(result.affected.map((unit) => unit.id)).toEqual([FOE.id]);
+    expect(result.matched).toEqual([]);
+  });
+
+  it("rejects a ground target for a unit-only rule", () => {
+    const result = resolveTargeting(OPEN, HERO, squad, { kind: "tile", at: coord(2, 2) }, fire);
+    expect(result.ok).toBe(false);
+    expect(result.reason).toBe("wrong-affiliation");
+  });
+
+  it("returns unknown-target for an undeployed id and still previews the area", () => {
+    const result = resolveTargeting(
+      OPEN,
+      HERO,
+      squad,
+      { kind: "unit", unitId: asUnitId("unit-ghost") },
+      fire,
+    );
+    expect(result.ok).toBe(false);
+    expect(result.reason).toBe("unknown-target");
+    expect(result.tiles).toEqual([]);
+    expect(result.affected).toEqual([]);
+  });
+
+  it("reports a blocked line while still exposing the footprint", () => {
+    let map = createTerrainMap(6, 6, "field");
+    map = withTile(map, coord(1, 1), "wood");
+    const result = resolveTargeting(map, HERO, squad, { kind: "unit", unitId: FOE.id }, fire);
+    expect(result.ok).toBe(false);
+    expect(result.reason).toBe("blocked-terrain");
+    expect(result.tiles).toHaveLength(5);
+  });
+
+  it("does not mutate the map or the roster", () => {
+    const roster = [HERO, FOE, ALLY];
+    const before = roster.map((unit) => ({ ...unit.at }));
+    resolveTargeting(OPEN, HERO, roster, { kind: "unit", unitId: FOE.id }, fire);
+    expect(roster.map((unit) => unit.at)).toEqual(before);
   });
 });

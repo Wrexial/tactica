@@ -1,15 +1,21 @@
 /**
- * Range & line of sight (T016).
+ * Range, line of sight & target predicates (T016, T028).
  *
  * Abilities in *Lines of Glory* preserve FFTA's targeting model (mapping §12
  * "Range / Line of Sight"): every action names a **minimum** and **maximum**
  * reach, measured in tiles, and most actions must be able to **see** the target
  * along a clear line. This module turns the geometry (`grid.ts`) and the ground
- * layer (`terrain.ts`) into the two questions every ability, the AI and the
+ * layer (`terrain.ts`) into the questions every ability, the AI and the
  * threat-range overlay ask:
  *
  * - *Is the target within reach?* — {@link withinRange} / {@link canTarget}.
  * - *Is the target visible from here?* — {@link lineOfSight}.
+ *
+ * T028 layers the **targeting rules** on that geometry: who an action may name
+ * (self / ally / enemy / any / tile), how its **area of effect** spreads from
+ * the chosen tile, and whether a specific soldier is a legal target once
+ * affiliation, range and sight are all considered. See
+ * {@link matchesTargetFilter}, {@link aoeTiles} and {@link resolveTargeting}.
  *
  * Which tiles lie on a firing line ({@link tilesOnLine}) comes from a
  * deterministic Bresenham walk; nothing here samples randomness, touches the
@@ -41,15 +47,20 @@
  * fire its roundshot into an adjacent tile (canister is a separate action).
  */
 
+import type { AbilityTarget, AoeShape } from "../data/schema";
 import {
   allCoords,
   assertInBounds,
   chebyshevDistance,
   coordEquals,
+  coordKey,
+  inBounds,
   manhattanDistance,
   type Coord,
 } from "./grid";
+import type { UnitId } from "./ids";
 import { blocksSightAt, heightAt, type TerrainMap } from "./terrain";
+import type { UnitSide } from "./unit";
 
 /* --------------------------------------------------------------------------
  * Constants (all tunable balance lives here, per agents.md §9)
@@ -448,4 +459,389 @@ export function tilesInRange(map: TerrainMap, from: Coord, profile: RangeProfile
 
   results.sort((a, b) => a.distance - b.distance || a.at.y - b.at.y || a.at.x - b.at.x);
   return results.map((entry) => entry.at);
+}
+
+/* --------------------------------------------------------------------------
+ * Target predicates (T028)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * The minimal shape the affiliation predicates need: any combatant with a
+ * branded id and a side. A full `Unit` (T017) satisfies it structurally, so
+ * callers pass deployed soldiers directly while the AI (T095) can score
+ * hypothetical ones without building a whole unit.
+ */
+export interface TargetActor {
+  /** The combatant's stable identity. */
+  readonly id: UnitId;
+  /** Which side it fights for (company / enemy / neutral). */
+  readonly side: UnitSide;
+}
+
+/** A {@link TargetActor} that also stands on a tile, as every deployed unit does. */
+export interface PositionedTarget extends TargetActor {
+  readonly at: Coord;
+}
+
+/**
+ * Whether two sides are *hostile* under the retheme. Only the free company and
+ * the hostile irregulars fight each other; the **Provost Marshal** and other
+ * arbiters are `"neutral"` and hostile to no one (mapping §9), so a combat
+ * action may never name them as an enemy.
+ */
+export function areHostile(a: UnitSide, b: UnitSide): boolean {
+  return (a === "company" && b === "enemy") || (a === "enemy" && b === "company");
+}
+
+/** Whether `candidate` *is* `actor` (FFTA Self-target). */
+export function isSelfTarget(actor: TargetActor, candidate: TargetActor): boolean {
+  return candidate.id === actor.id;
+}
+
+/**
+ * Whether `candidate` stands on the actor's side (FFTA ally target). The actor
+ * itself counts as an ally — as in FFTA, a Surgeon's bandage can be applied to
+ * the one holding it.
+ */
+export function isAllyTarget(actor: TargetActor, candidate: TargetActor): boolean {
+  return candidate.side === actor.side;
+}
+
+/** Whether `candidate` is a hostile combatant (FFTA enemy target). */
+export function isEnemyTarget(actor: TargetActor, candidate: TargetActor): boolean {
+  return areHostile(actor.side, candidate.side);
+}
+
+/**
+ * Whether `candidate` satisfies an action's authored target rule
+ * (`AbilityTarget` in `src/data/schema.ts`).
+ *
+ * `"tile"` actions are aimed at ground, so they never match a *unit*; use
+ * {@link canTarget} for the tile geometry. `"any"` is the union of `"ally"`
+ * and `"enemy"`, which is why it still excludes a neutral arbiter.
+ */
+export function matchesTargetFilter(
+  filter: AbilityTarget,
+  actor: TargetActor,
+  candidate: TargetActor,
+): boolean {
+  switch (filter) {
+    case "self":
+      return isSelfTarget(actor, candidate);
+    case "ally":
+      return isAllyTarget(actor, candidate);
+    case "enemy":
+      return isEnemyTarget(actor, candidate);
+    case "any":
+      return isAllyTarget(actor, candidate) || isEnemyTarget(actor, candidate);
+    case "tile":
+      return false;
+  }
+}
+
+/**
+ * Keep only the soldiers that satisfy `filter` for `actor`, preserving field
+ * order. A convenience over {@link matchesTargetFilter} for the AI and the
+ * action executor (T041).
+ */
+export function filterTargets<T extends TargetActor>(
+  units: readonly T[],
+  filter: AbilityTarget,
+  actor: TargetActor,
+): T[] {
+  return units.filter((unit) => matchesTargetFilter(filter, actor, unit));
+}
+
+/* --------------------------------------------------------------------------
+ * Areas of effect (T028)
+ * ------------------------------------------------------------------------ */
+
+/** Assert an authored AoE size is a non-negative integer. */
+function assertAoeSize(size: number): void {
+  if (!Number.isInteger(size) || size < 0) {
+    throw new RangeError(`aoe size must be a non-negative integer, received ${String(size)}`);
+  }
+}
+
+/**
+ * Unit direction for a `"line"` area: the dominant axis from `origin` to
+ * `center`. Equidistant (or a missing origin) falls back to the horizontal
+ * (`+x`) axis, so the shape is always defined and deterministic.
+ */
+function aoeLineDirection(center: Coord, origin?: Coord): Coord {
+  if (origin === undefined) return { x: 1, y: 0 };
+  const dx = center.x - origin.x;
+  const dy = center.y - origin.y;
+  if (Math.abs(dx) >= Math.abs(dy)) {
+    return dx === 0 ? { x: 1, y: 0 } : { x: dx > 0 ? 1 : -1, y: 0 };
+  }
+  return { x: 0, y: dy > 0 ? 1 : -1 };
+}
+
+/**
+ * Enumerate the tiles an area effect covers when centred on `center`, in a
+ * stable order (south→north, then west→east). Tiles outside the battlefield
+ * are simply dropped, so an area at a map edge is clipped rather than wrapping.
+ *
+ * The shapes are authored data (`AoeShape`, `src/data/schema.ts`):
+ *
+ * - `"single"` — the centre tile only.
+ * - `"cross"` — the centre plus four orthogonal arms of length `size` (a plus).
+ * - `"line"` — a straight line of `size` tiles either side of the centre along
+ *   the axis from `origin` (the actor's tile) to `center`; horizontal when no
+ *   origin is supplied.
+ * - `"square"` — every tile within Chebyshev distance `size` (a block).
+ * - `"field"` — the entire battlefield (Guard Sorties, mapping §4).
+ *
+ * This is pure geometry: it applies **no** line-of-sight or affiliation test.
+ * Check the centre with {@link canTarget} (or use {@link resolveTargeting}) and
+ * filter the occupants with {@link matchesTargetFilter}.
+ */
+export function aoeTiles(
+  map: TerrainMap,
+  center: Coord,
+  shape: AoeShape,
+  size: number,
+  origin?: Coord,
+): Coord[] {
+  assertInBounds(map.grid, center, "center");
+  assertAoeSize(size);
+
+  const seen = new Set<string>();
+  const tiles: Coord[] = [];
+  const push = (at: Coord): void => {
+    if (!inBounds(map.grid, at)) return;
+    const key = coordKey(at);
+    if (seen.has(key)) return;
+    seen.add(key);
+    tiles.push({ x: at.x, y: at.y });
+  };
+
+  switch (shape) {
+    case "single":
+      push(center);
+      break;
+    case "cross":
+      for (let d = -size; d <= size; d++) {
+        push({ x: center.x + d, y: center.y });
+        push({ x: center.x, y: center.y + d });
+      }
+      break;
+    case "square":
+      for (let dy = -size; dy <= size; dy++) {
+        for (let dx = -size; dx <= size; dx++) {
+          push({ x: center.x + dx, y: center.y + dy });
+        }
+      }
+      break;
+    case "line": {
+      const direction = aoeLineDirection(center, origin);
+      for (let d = -size; d <= size; d++) {
+        push({ x: center.x + direction.x * d, y: center.y + direction.y * d });
+      }
+      break;
+    }
+    case "field":
+      for (const at of allCoords(map.grid)) push(at);
+      break;
+  }
+
+  tiles.sort((a, b) => a.y - b.y || a.x - b.x);
+  return tiles;
+}
+
+/**
+ * Every unit standing on one of `tiles`, in the order `units` were supplied
+ * (so the result is as deterministic as the deployment list). Occupancy is by
+ * tile identity, not distance — a `Map` keyed on {@link coordKey} keeps the
+ * lookup `O(1)` per unit.
+ */
+export function unitsInAoe<T extends PositionedTarget>(
+  units: readonly T[],
+  tiles: readonly Coord[],
+): T[] {
+  const keys = new Set(tiles.map((at) => coordKey(at)));
+  return units.filter((unit) => keys.has(coordKey(unit.at)));
+}
+
+/* --------------------------------------------------------------------------
+ * Combined unit targeting (T028)
+ * ------------------------------------------------------------------------ */
+
+/** Why {@link canTargetUnit} or {@link resolveTargeting} rejected a target. */
+export type TargetingFailReason =
+  | TargetFailReason
+  | "wrong-affiliation"
+  | "unknown-target";
+
+/** The detailed outcome of a single-soldier target check. */
+export interface UnitTargetResult {
+  /** `true` only when both affiliation and range/sight allow the target. */
+  readonly ok: boolean;
+  /** Whether `filter` admits the candidate (`false` for `"tile"` actions). */
+  readonly filterOk: boolean;
+  /** The underlying tile check — range, metric and line of sight. */
+  readonly tile: TargetResult;
+  /** The rejection reason, when {@link ok} is `false`. */
+  readonly reason?: TargetingFailReason;
+}
+
+/**
+ * Whether `actor` may name `candidate` as the target of an action: the
+ * authored affiliation rule (`filter`) **and** the reach/sight check on the
+ * candidate's tile. Affiliation is decided first, so a friendly never reports
+ * `out-of-range`; the full tile check is still returned in `tile` so a caller
+ * can display the geometry that would have applied.
+ *
+ * ```ts
+ * canTargetUnit(map, rifleman, irregular, "enemy", { min: 1, max: 6 }).ok;
+ * ```
+ */
+export function canTargetUnit(
+  map: TerrainMap,
+  actor: PositionedTarget,
+  candidate: PositionedTarget,
+  filter: AbilityTarget,
+  profile: RangeProfile,
+): UnitTargetResult {
+  const filterOk = matchesTargetFilter(filter, actor, candidate);
+  const tile = canTarget(map, actor.at, candidate.at, profile);
+  let reason: TargetingFailReason | undefined;
+  if (!filterOk) reason = "wrong-affiliation";
+  else if (!tile.ok) reason = tile.reason;
+  return { ok: filterOk && tile.ok, filterOk, tile, ...(reason ? { reason } : {}) };
+}
+
+/* --------------------------------------------------------------------------
+ * Full resolution (T028)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * An action's targeting data, mirroring the authored `AbilityDef` fields the
+ * engine needs. `aoeShape`/`aoeSize` default to `"single"` / `0`.
+ */
+export interface AbilityTargeting {
+  /** Who the action may legally include (self / ally / enemy / any / tile). */
+  readonly target: AbilityTarget;
+  /** Reach and line-of-sight profile. */
+  readonly range: RangeProfile;
+  /** Footprint applied around the chosen centre. Defaults to `"single"`. */
+  readonly aoeShape?: AoeShape;
+  /** Footprint radius in tiles. Defaults to `0`. */
+  readonly aoeSize?: number;
+}
+
+/**
+ * What an action was aimed at. Mirrors the command layer's `Target` (T020) but
+ * stays engine-local so targeting can be resolved without importing
+ * `commands.ts` (and thus without a cycle when the executor reuses it).
+ */
+export type TargetSelection =
+  | { readonly kind: "self" }
+  | { readonly kind: "tile"; readonly at: Coord }
+  | { readonly kind: "unit"; readonly unitId: UnitId };
+
+/**
+ * Everything a caller needs to apply an action: whether the aim was legal, the
+ * centre tile, the area footprint, and who it catches.
+ *
+ * `affected` is *everyone* in the footprint (FFTA areas hit friend and foe
+ * alike), while `matched` narrows that to units satisfying the action's target
+ * rule. A tile-targeted area therefore reports its full occupant list in
+ * `affected` even though `matched` is empty.
+ */
+export interface TargetingResolution<T extends PositionedTarget> {
+  /** `true` only when affiliation and the centre's range/sight check pass. */
+  readonly ok: boolean;
+  /** The resolved centre tile the effect lands on. */
+  readonly center: Coord;
+  /** Whether the action's target rule admits the primary target. */
+  readonly filterOk: boolean;
+  /** The centre tile's range/sight check. */
+  readonly tile: TargetResult;
+  /** The area footprint (see {@link aoeTiles}). */
+  readonly tiles: readonly Coord[];
+  /** Every unit standing in the footprint, in field order. */
+  readonly affected: readonly T[];
+  /** Occupants that also satisfy the action's target rule. */
+  readonly matched: readonly T[];
+  /** The rejection reason, when {@link ok} is `false`. */
+  readonly reason?: TargetingFailReason;
+}
+
+/**
+ * Resolve an action's full targeting: affiliation, range, line of sight and
+ * area of effect, in one deterministic pass.
+ *
+ * - `"self"` centres on the actor and requires a rule that admits the actor.
+ * - `"tile"` centres on the named ground tile; legal for `"tile"`/`"any"`
+ *   rules.
+ * - `"unit"` centres on that soldier and applies the rule to them; an id that
+ *   is not deployed returns `unknown-target` rather than throwing (the command
+ *   layer validates ids at its own boundary).
+ *
+ * The area footprint is always computed, even on rejection, so the targeting
+ * overlay (T030/T085) can preview an area before the player commits.
+ */
+export function resolveTargeting<T extends PositionedTarget>(
+  map: TerrainMap,
+  actor: PositionedTarget,
+  units: readonly T[],
+  selection: TargetSelection,
+  targeting: AbilityTargeting,
+): TargetingResolution<T> {
+  const shape = targeting.aoeShape ?? "single";
+  const size = targeting.aoeSize ?? 0;
+
+  let center: Coord;
+  let filterOk: boolean;
+
+  switch (selection.kind) {
+    case "self":
+      center = { x: actor.at.x, y: actor.at.y };
+      filterOk = matchesTargetFilter(targeting.target, actor, actor);
+      break;
+    case "tile":
+      center = { x: selection.at.x, y: selection.at.y };
+      filterOk = targeting.target === "tile" || targeting.target === "any";
+      break;
+    case "unit": {
+      const found = units.find((unit) => unit.id === selection.unitId);
+      if (found === undefined) {
+        return {
+          ok: false,
+          center: { x: actor.at.x, y: actor.at.y },
+          filterOk: false,
+          tile: canTarget(map, actor.at, actor.at, targeting.range),
+          tiles: [],
+          affected: [],
+          matched: [],
+          reason: "unknown-target",
+        };
+      }
+      center = { x: found.at.x, y: found.at.y };
+      filterOk = matchesTargetFilter(targeting.target, actor, found);
+      break;
+    }
+  }
+
+  const tile = canTarget(map, actor.at, center, targeting.range);
+  let reason: TargetingFailReason | undefined;
+  if (!filterOk) reason = "wrong-affiliation";
+  else if (!tile.ok) reason = tile.reason;
+
+  const footprint = aoeTiles(map, center, shape, size, actor.at);
+  const affected = unitsInAoe(units, footprint);
+  const matched = affected.filter((unit) => matchesTargetFilter(targeting.target, actor, unit));
+
+  return {
+    ok: filterOk && tile.ok,
+    center,
+    filterOk,
+    tile,
+    tiles: footprint,
+    affected,
+    matched,
+    ...(reason ? { reason } : {}),
+  };
 }

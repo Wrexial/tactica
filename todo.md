@@ -232,7 +232,7 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - done: Select unit → show move range → move → choose action → target → confirm; state exposed to UI.
 
 ### T028 — Targeting system
-- status: doing
+- status: done
 - deps: [T016, T020]
 - files: src/engine/targeting.ts
 - verify: npm run test -- --run tests/unit/targeting.test.ts
