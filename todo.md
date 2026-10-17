@@ -313,7 +313,7 @@ deterministic.
 - done: A documented healing formula (authored, since the wiki does not specify one).
 
 ### T037 — Hit, evasion & facing
-- status: todo
+- status: done
 - deps: [T033, T013]
 - files: src/engine/rules/hit.ts
 - verify: npm run test -- --run tests/unit/hit.test.ts
