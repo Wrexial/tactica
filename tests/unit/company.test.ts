@@ -7,20 +7,30 @@ import {
   CROWNS_MIN,
   CompanyError,
   HONOURS_MIN,
+  RECRUIT_BASE_FEE,
+  RECRUIT_FEE_PER_LEVEL,
+  RECRUIT_LEVEL_MIN,
   ROSTER_MAX,
+  ROSTER_MIN,
   addCrowns,
   addMember,
   advanceDay,
   awardHonours,
   canAfford,
+  canRecruit,
   createCompany,
+  createRecruitingOffice,
   createRosterMember,
   createTheatre,
+  dismissMember,
   hasMember,
   isCompany,
   isRosterFull,
   memberOf,
   parseCompany,
+  recruitBlockers,
+  recruitFee,
+  recruitSoldier,
   removeMember,
   rosterSize,
   spendCrowns,
@@ -31,6 +41,9 @@ import {
   withTheatre,
   type Company,
   type CompanyInit,
+  type RecruitingOffice,
+  type RecruitingOfficeInit,
+  type RecruitRequest,
   type RosterMemberInit,
 } from "../../src/engine/company";
 import { coord } from "../../src/engine/grid";
@@ -346,5 +359,169 @@ describe("parseCompany — the save boundary (T101)", () => {
     expect(() => parseCompany([])).toThrow(CompanyError);
     expect(() => parseCompany({ id: "", name: "x" })).toThrow(CompanyError);
     expect(isCompany({ id: "company-1" })).toBe(false);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T069 — Recruit & dismiss
+ *
+ * Pins the task's "done when": a company recruits a soldier **by power** at a
+ * **recruiting office** in its current region, pays the office's fee, and can
+ * **dismiss** a soldier without emptying the roster. The roster cap and the
+ * recruit fee are the policy; the tests pin both the blockers a recruit screen
+ * shows and the pure, deterministic recruit/dismiss transitions.
+ * ------------------------------------------------------------------------ */
+
+function makeOffice(overrides: Partial<RecruitingOfficeInit> = {}): RecruitingOffice {
+  return createRecruitingOffice({
+    power: "france",
+    regionId: asRegionId("sainte-colombe"),
+    ...overrides,
+  });
+}
+
+function makeRequest(overrides: Partial<RecruitRequest> = {}): RecruitRequest {
+  return {
+    unitId: asUnitId("unit-9"),
+    name: "Cpl. Voss",
+    postId: asPostId("fusilier"),
+    ...overrides,
+  };
+}
+
+describe("Recruiting office — signing soldiers by power (T069)", () => {
+  it("builds an office with a default fee and validates its inputs", () => {
+    const office = makeOffice();
+    expect(office.power).toBe("france");
+    expect(office.regionId).toBe("sainte-colombe");
+    expect(office.fee).toBe(RECRUIT_BASE_FEE);
+
+    expect(
+      createRecruitingOffice({ power: "britain", regionId: asRegionId("x"), fee: 0 }).fee,
+    ).toBe(0);
+    expect(() =>
+      createRecruitingOffice({ power: "spain" as never, regionId: asRegionId("x") }),
+    ).toThrow(RangeError);
+    expect(() => createRecruitingOffice({ power: "france", regionId: "" as never })).toThrow(
+      IdError,
+    );
+    expect(() =>
+      createRecruitingOffice({ power: "france", regionId: asRegionId("x"), fee: -1 }),
+    ).toThrow(RangeError);
+  });
+
+  it("scales the recruit fee with level", () => {
+    const office = makeOffice({ fee: 200 });
+    expect(RECRUIT_LEVEL_MIN).toBe(1);
+    expect(recruitFee(office)).toBe(200);
+    expect(recruitFee(office, 1)).toBe(200);
+    expect(recruitFee(office, 4)).toBe(200 + 3 * RECRUIT_FEE_PER_LEVEL);
+    expect(() => recruitFee(office, 0)).toThrow(RangeError);
+    expect(() => recruitFee(office, 1.5)).toThrow(RangeError);
+  });
+
+  it("lists every reason a recruit cannot be signed", () => {
+    const office = makeOffice();
+    const request = makeRequest();
+    const present = travelTo(makeCompany({ crowns: 1000 }), office.regionId);
+    expect(recruitBlockers(present, office, request)).toEqual([]);
+    expect(canRecruit(present, office, request)).toBe(true);
+
+    // Not at the office's region.
+    const away = makeCompany({ crowns: 1000 });
+    expect(recruitBlockers(away, office, request)).toContain("wrong-region");
+
+    // Roster at capacity.
+    const full = makeCompany({
+      crowns: 1000,
+      roster: makeMembers(ROSTER_MAX),
+      theatre: { regionId: office.regionId },
+    });
+    expect(recruitBlockers(full, office, request)).toContain("roster-full");
+
+    // Unit id already in the company.
+    const duplicate = makeCompany({
+      crowns: 1000,
+      roster: [makeMember("unit-9")],
+      theatre: { regionId: office.regionId },
+    });
+    expect(recruitBlockers(duplicate, office, request)).toContain("duplicate-unit");
+
+    // War chest too small.
+    const poor = makeCompany({ crowns: 10, theatre: { regionId: office.regionId } });
+    expect(recruitBlockers(poor, office, request)).toContain("insufficient-crowns");
+
+    // A post barred to the office's power, and an unknown post.
+    expect(
+      recruitBlockers(present, office, makeRequest({ postId: asPostId("rifleman") })),
+    ).toContain("post-not-available");
+    expect(recruitBlockers(present, office, makeRequest({ postId: asPostId("nope") }))).toContain(
+      "post-not-available",
+    );
+  });
+
+  it("signs a soldier of the office's power and pays the fee", () => {
+    const office = makeOffice({ power: "britain", fee: 200 });
+    const company = travelTo(makeCompany({ crowns: 1000, theatre: { day: 5 } }), office.regionId);
+    const recruited = recruitSoldier(
+      company,
+      office,
+      makeRequest({ name: "Rfm. Hale", postId: asPostId("rifleman") }),
+    );
+
+    const member = memberOf(recruited, asUnitId("unit-9"));
+    expect(rosterSize(recruited)).toBe(1);
+    expect(member?.unit.power).toBe("britain");
+    expect(member?.unit.postId).toBe("rifleman");
+    expect(member?.unit.level).toBe(RECRUIT_LEVEL_MIN);
+    expect(member?.assignment.primaryPostId).toBe("rifleman");
+    expect(member?.recruitedOnDay).toBe(5);
+    expect(recruited.crowns).toBe(1000 - 200);
+
+    // Pure: the source company and its war chest are untouched.
+    expect(company.crowns).toBe(1000);
+    expect(rosterSize(company)).toBe(0);
+  });
+
+  it("charges for the level and allows a common post for any power", () => {
+    const office = makeOffice({ power: "prussia", fee: 100 });
+    const company = travelTo(makeCompany({ crowns: 1000 }), office.regionId);
+    const recruited = recruitSoldier(
+      company,
+      office,
+      makeRequest({ name: "Dr. Meyer", postId: asPostId("surgeon"), level: 3 }),
+    );
+
+    expect(memberOf(recruited, asUnitId("unit-9"))?.unit.power).toBe("prussia");
+    expect(recruited.crowns).toBe(1000 - (100 + 2 * RECRUIT_FEE_PER_LEVEL));
+  });
+
+  it("refuses to recruit when a blocker applies", () => {
+    const office = makeOffice();
+    const away = makeCompany({ crowns: 1000 });
+    expect(() => recruitSoldier(away, office, makeRequest())).toThrow(/wrong-region/);
+
+    const poor = makeCompany({ theatre: { regionId: office.regionId } });
+    expect(() => recruitSoldier(poor, office, makeRequest())).toThrow(/insufficient-crowns/);
+  });
+});
+
+describe("Dismissal — releasing a soldier (T069)", () => {
+  it("removes a soldier and leaves the rest of the company intact", () => {
+    const company = makeCompany({ roster: [makeMember("unit-1"), makeMember("unit-2")] });
+    const dismissed = dismissMember(company, asUnitId("unit-1"));
+
+    expect(hasMember(dismissed, asUnitId("unit-1"))).toBe(false);
+    expect(hasMember(dismissed, asUnitId("unit-2"))).toBe(true);
+    expect(rosterSize(company)).toBe(2); // pure: the original is untouched
+  });
+
+  it("refuses to dismiss an absent soldier, the last one, or a bad id", () => {
+    const company = makeCompany({ roster: [makeMember("unit-1")] });
+    expect(ROSTER_MIN).toBe(1);
+    expect(() => dismissMember(company, asUnitId("unit-9"))).toThrow(RangeError);
+    expect(() => dismissMember(company, asUnitId("unit-1"))).toThrow(RangeError);
+    expect(() => dismissMember(makeCompany(), asUnitId("unit-1"))).toThrow(RangeError);
+    expect(() => dismissMember(company, "" as never)).toThrow(IdError);
   });
 });

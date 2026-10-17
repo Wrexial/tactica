@@ -549,7 +549,7 @@ deterministic.
 - done: Company holds roster, Crowns, Regimental Honours and current theatre state.
 
 ### T069 — Recruit & dismiss
-- status: todo
+- status: done
 - deps: [T068]
 - files: src/engine/company.ts
 - verify: npm run test -- --run tests/unit/company.test.ts

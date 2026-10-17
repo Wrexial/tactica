@@ -35,6 +35,10 @@
  *   {@link addCrowns}, {@link spendCrowns}, {@link awardHonours},
  *   {@link addMember}, {@link removeMember}, {@link advanceDay},
  *   {@link travelTo}.
+ * - The **recruiting office** loop (T069): {@link createRecruitingOffice},
+ *   {@link recruitFee}, {@link recruitBlockers}, {@link canRecruit},
+ *   {@link recruitSoldier} and {@link dismissMember}, so a garrison town can
+ *   sign a soldier of a given **power** and the company can release one.
  *
  * ## Contract (`agents.md` §2, §3, §7, §9)
  *
@@ -49,9 +53,9 @@
  *   every member through the authored factories (`createUnit`, T017;
  *   `createPostAssignment`, T051), so a corrupt save or a bad fixture fails
  *   loudly instead of poisoning the campaign.
- * - **Data-driven** — the roster cap and the starting economy live here as
- *   named constants; the recruiting *policy* (fees, offices, gating) waits for
- *   T069.
+ * - **Data-driven** — the roster cap, the starting economy and the recruiting
+ *   *policy* (offices, fees, dismissal limits) live here as named constants and
+ *   plain value objects, so T069 tunes them in one place.
  *
  * Reference: mapping §1 (Clan → Company, Gil → Crowns, clan title →
  * Regimental Honours, world map → The Theatre), §5 (resources) and §10
@@ -59,9 +63,12 @@
  * not a port of FFTA's clan records.
  */
 
-import { assertId, type CompanyId, type RegionId, type UnitId } from "./ids";
-import { createPostAssignment, type PostAssignment } from "./progression/posts";
-import { createUnit, type Unit } from "./unit";
+import { canTakePost, isPostKey } from "../data/posts";
+import type { PowerKey } from "../data/schema";
+import { coord } from "./grid";
+import { assertId, type CompanyId, type PostId, type RegionId, type UnitId } from "./ids";
+import { createPostAssignment, derivePostStats, type PostAssignment } from "./progression/posts";
+import { createUnit, isPowerKey, type Unit } from "./unit";
 
 /* --------------------------------------------------------------------------
  * Tunables (Phase 13 owns the final balance pass)
@@ -82,6 +89,25 @@ export const CAMPAIGN_DAY_MIN = 1;
  * policy (fees, offices, dismissals) against this cap.
  */
 export const ROSTER_MAX = 24;
+
+/**
+ * Fewest soldiers a company may keep. The colours do not march without at
+ * least one stand under them, so {@link dismissMember} refuses to leave the
+ * company empty.
+ */
+export const ROSTER_MIN = 1;
+
+/** Lowest level a recruiting office will sign a fresh soldier at. */
+export const RECRUIT_LEVEL_MIN = 1;
+
+/**
+ * Default Crowns a recruiting office charges to sign a level-1 recruit. T069
+ * policy (Phase 13 rebalances); an office may override it.
+ */
+export const RECRUIT_BASE_FEE = 200;
+
+/** Added to a recruit's fee for every level above {@link RECRUIT_LEVEL_MIN}. */
+export const RECRUIT_FEE_PER_LEVEL = 150;
 
 /** Longest a company name may be, so the UI never has to truncate mid-word. */
 export const COMPANY_NAME_MAX = 40;
@@ -214,6 +240,13 @@ function assertCampaignDay(value: number, label: string): void {
     throw new RangeError(
       `${label} must be an integer >= ${CAMPAIGN_DAY_MIN}, received ${String(value)}`,
     );
+  }
+}
+
+/** Any integer at or above `min` (recruit levels, counts). */
+function assertIntegerAtLeast(value: number, min: number, label: string): void {
+  if (!Number.isInteger(value) || value < min) {
+    throw new RangeError(`${label} must be an integer >= ${min}, received ${String(value)}`);
   }
 }
 
@@ -515,12 +548,210 @@ export function addMember(company: Company, member: RosterMemberInit): Company {
 
 /**
  * Remove the soldier with `unitId` from the roster, returning the same company
- * unchanged when it is not present. Dismissal policy (costs, penalties) belongs
- * to T069; this is the mechanical primitive it builds on.
+ * unchanged when it is not present. This is the mechanical primitive;
+ * {@link dismissMember} layers the player-facing dismissal policy on top.
  */
 export function removeMember(company: Company, unitId: UnitId): Company {
   assertId(unitId, "unitId");
   const roster = company.roster.filter((member) => member.unit.id !== unitId);
   if (roster.length === company.roster.length) return company;
   return { ...company, roster };
+}
+
+/* --------------------------------------------------------------------------
+ * Recruiting offices (mapping §10 — FFTA "recruit by race in towns")
+ * ------------------------------------------------------------------------ */
+
+/**
+ * A **recruiting office** (mapping §10): a garrison-town post that signs new
+ * soldiers of one great-power school. FFTA opens a roster slot at each town's
+ * recruit screen; here the office names the **power** it draws from, the
+ * **region** it stands in and the Crowns **fee** it charges for a level-1
+ * recruit (higher levels scale by {@link RECRUIT_FEE_PER_LEVEL}).
+ *
+ * The office is a plain value so the campaign map (T073) can author offices as
+ * data and the engine only enforces the policy.
+ */
+export interface RecruitingOffice {
+  /** The military school whose recruits this office signs (FFTA race). */
+  readonly power: PowerKey;
+  /** The region the office stands in; the company must be present to recruit. */
+  readonly regionId: RegionId;
+  /** Base Crowns to sign a level-1 recruit; `0` is a free (pressed) recruit. */
+  readonly fee: number;
+}
+
+/** Authoring input for {@link createRecruitingOffice}; `fee` defaults to {@link RECRUIT_BASE_FEE}. */
+export interface RecruitingOfficeInit {
+  readonly power: PowerKey;
+  readonly regionId: RegionId;
+  readonly fee?: number;
+}
+
+/**
+ * Validate and normalise a recruiting office, so a bad fixture or save fails at
+ * the boundary rather than at the recruit screen.
+ *
+ * @throws RangeError when the power is unknown, the region id is malformed or
+ *   the fee is not a non-negative integer.
+ */
+export function createRecruitingOffice(init: RecruitingOfficeInit): RecruitingOffice {
+  if (!isPowerKey(init.power)) {
+    throw new RangeError(
+      `office.power must be a great-power school, received ${String(init.power)}`,
+    );
+  }
+  assertId(init.regionId, "office.regionId");
+  const fee = init.fee ?? RECRUIT_BASE_FEE;
+  assertNonNegativeInteger(fee, "office.fee");
+  return { power: init.power, regionId: init.regionId, fee };
+}
+
+/**
+ * The Crowns to sign a recruit of `level` at `office`. A level-1 soldier costs
+ * the office's base fee; each level above adds {@link RECRUIT_FEE_PER_LEVEL}.
+ */
+export function recruitFee(office: RecruitingOffice, level: number = RECRUIT_LEVEL_MIN): number {
+  assertNonNegativeInteger(office.fee, "office.fee");
+  assertIntegerAtLeast(level, RECRUIT_LEVEL_MIN, "level");
+  return office.fee + (level - RECRUIT_LEVEL_MIN) * RECRUIT_FEE_PER_LEVEL;
+}
+
+/**
+ * The soldier a recruiting office is asked to sign. The office supplies the
+ * **power**; the request supplies the identity and the primary **post** (FFTA
+ * job). The post must be one the power may take (its own school or a common
+ * post). Level defaults to {@link RECRUIT_LEVEL_MIN}.
+ */
+export interface RecruitRequest {
+  /** The new soldier's unit id (the roster key). */
+  readonly unitId: UnitId;
+  /** Player-facing name (the fiction layer). */
+  readonly name: string;
+  /** The post supplying the recruit's stats and kit. */
+  readonly postId: PostId;
+  /** Starting level, an integer `>= 1`; defaults to 1. */
+  readonly level?: number;
+}
+
+/** Why a recruiting office cannot sign a request right now (empty ⇒ it can). */
+export type RecruitBlocker =
+  "wrong-region" | "roster-full" | "duplicate-unit" | "insufficient-crowns" | "post-not-available";
+
+/**
+ * Every reason `request` cannot be signed at `office`, in a stable order. An
+ * empty array means {@link canRecruit} is `true` and {@link recruitSoldier}
+ * will succeed.
+ *
+ * The checks, in order, are the same ones the recruit screen shows an officer:
+ *
+ * | Blocker                 | Rule                                              |
+ * | ----------------------- | ------------------------------------------------- |
+ * | `wrong-region`          | the company is not in the office's region          |
+ * | `roster-full`           | the roster is at {@link ROSTER_MAX}                |
+ * | `duplicate-unit`        | the unit id is already on the roster               |
+ * | `insufficient-crowns`   | the war chest cannot cover {@link recruitFee}      |
+ * | `post-not-available`    | the post is unknown or barred to the office's power |
+ *
+ * @throws RangeError when `request.level` is not an integer `>= 1`.
+ */
+export function recruitBlockers(
+  company: Company,
+  office: RecruitingOffice,
+  request: RecruitRequest,
+): readonly RecruitBlocker[] {
+  const blockers: RecruitBlocker[] = [];
+  const level = request.level ?? RECRUIT_LEVEL_MIN;
+  // Validates the level and the office fee before anything else.
+  const fee = recruitFee(office, level);
+
+  if (company.theatre.regionId !== office.regionId) blockers.push("wrong-region");
+  if (isRosterFull(company)) blockers.push("roster-full");
+  if (hasMember(company, request.unitId)) blockers.push("duplicate-unit");
+  if (!isPostKey(request.postId) || !canTakePost(request.postId, office.power)) {
+    blockers.push("post-not-available");
+  }
+  if (!canAfford(company, fee)) blockers.push("insufficient-crowns");
+
+  return blockers;
+}
+
+/** `true` when {@link recruitSoldier} would sign `request` at `office`. */
+export function canRecruit(
+  company: Company,
+  office: RecruitingOffice,
+  request: RecruitRequest,
+): boolean {
+  return recruitBlockers(company, office, request).length === 0;
+}
+
+/**
+ * Recruit a fresh soldier at a **recruiting office** (mapping §10). The office
+ * decides the power, the request the identity and post, and the fee is paid
+ * from the war chest. The new member joins the roster immediately at the
+ * company's current campaign day.
+ *
+ * ```ts
+ * const office = createRecruitingOffice({
+ *   power: "france",
+ *   regionId: asRegionId("sainte-colombe"),
+ * });
+ * const company = travelTo(funded, office.regionId);
+ * recruitSoldier(company, office, {
+ *   unitId: asUnitId("unit-9"),
+ *   name: "Cpl. Voss",
+ *   postId: asPostId("fusilier"),
+ * });
+ * ```
+ *
+ * @throws RangeError when any {@link RecruitBlocker} applies, or the recruit's
+ *   assignment/unit data is malformed.
+ */
+export function recruitSoldier(
+  company: Company,
+  office: RecruitingOffice,
+  request: RecruitRequest,
+): Company {
+  const blockers = recruitBlockers(company, office, request);
+  if (blockers.length > 0) {
+    throw new RangeError(`cannot recruit: ${blockers.join(", ")}`);
+  }
+
+  const level = request.level ?? RECRUIT_LEVEL_MIN;
+  const assignment = createPostAssignment({
+    primaryPostId: request.postId,
+    power: office.power,
+  });
+  const stats = derivePostStats({ level, assignment });
+  const unit = createUnit({
+    id: request.unitId,
+    name: request.name,
+    power: office.power,
+    postId: request.postId,
+    level,
+    at: coord(0, 0),
+    stats,
+  });
+
+  const joined = addMember(company, { unit, assignment });
+  return spendCrowns(joined, recruitFee(office, level));
+}
+
+/**
+ * Dismiss the soldier with `unitId` from the company (FFTA "release a clan
+ * member", mapping §10). A companion leaves without a fee, but the last soldier
+ * may never be dismissed ({@link ROSTER_MIN}), and dismissing someone who is
+ * not on the roster is a caller bug rather than a silent no-op.
+ *
+ * @throws RangeError when the soldier is not on the roster or is the last one.
+ */
+export function dismissMember(company: Company, unitId: UnitId): Company {
+  assertId(unitId, "unitId");
+  if (!hasMember(company, unitId)) {
+    throw new RangeError(`unit ${unitId} is not on the roster`);
+  }
+  if (company.roster.length <= ROSTER_MIN) {
+    throw new RangeError(`company must keep at least ${ROSTER_MIN} soldier(s)`);
+  }
+  return removeMember(company, unitId);
 }
