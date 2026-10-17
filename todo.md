@@ -362,7 +362,7 @@ deterministic.
 - done: Passive modifiers (Thrift, Drilled Guards, Two-Handed Grip...) via composable hooks.
 
 ### T044 — Shove (knockback)
-- status: todo
+- status: done
 - deps: [T015, T033]
 - files: src/engine/rules/shove.ts
 - verify: npm run test -- --run tests/unit/shove.test.ts
