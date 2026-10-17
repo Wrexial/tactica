@@ -788,3 +788,307 @@ body {
     width: 100%;
   }
 }
+
+/* ------------------------------------------------------------------------
+ * Campaign Map — Markers, travel and treasure hunts (T073)
+ * --------------------------------------------------------------------- */
+
+.map-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: auto;
+  padding: 20px 24px 48px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #efe6cf, var(--parchment));
+}
+
+.map-screen__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--gold);
+  margin-bottom: 16px;
+}
+
+.map-screen__header h2 {
+  margin: 2px 0 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+}
+
+.map-screen__header .muted {
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin: 0;
+  max-width: 52ch;
+}
+
+.map-screen__company {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  min-width: 220px;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.map-screen__company div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.map-screen__company dt {
+  color: var(--ink-soft);
+}
+
+.map-screen__company dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.map-screen__body {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(260px, 340px);
+  gap: 18px;
+  align-items: start;
+}
+
+.map-board h3,
+.map-panel h3 {
+  margin: 0 0 10px;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+.map-grid {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(20, 27, 40, 0.06);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.map-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-height: 74px;
+  padding: 8px;
+  font: inherit;
+  color: var(--ink);
+  text-align: left;
+  background: var(--card);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.map-cell:hover {
+  border-color: var(--gold);
+}
+
+.map-cell--empty {
+  align-items: center;
+  color: rgba(91, 102, 120, 0.55);
+  background: rgba(255, 250, 240, 0.5);
+}
+
+.map-cell--empty .map-cell__empty {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.map-cell--placed {
+  border-style: solid;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-cell.is-placeable {
+  border-color: #2c5a2c;
+  background: rgba(60, 130, 60, 0.12);
+}
+
+.map-cell.is-selected {
+  outline: 2px solid var(--navy-2);
+  outline-offset: 1px;
+}
+
+.map-cell.is-hunted {
+  border-left-color: #8a7a4a;
+}
+
+.map-cell__name {
+  font-family: Georgia, serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.map-cell__terrain {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.map-cell__flag {
+  margin-top: 2px;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7a5a18;
+}
+
+.map-side {
+  display: grid;
+  gap: 14px;
+}
+
+.map-panel {
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.map-panel .muted {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.marker-palette {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.marker-chip {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  text-align: left;
+  background: #f3ecd9;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.marker-chip:hover {
+  border-color: var(--gold);
+}
+
+.marker-chip.is-active {
+  color: var(--parchment);
+  background: var(--navy-2);
+  border-color: var(--navy-2);
+}
+
+.marker-chip.is-active .marker-chip__terrain {
+  color: var(--gold-soft);
+}
+
+.marker-chip__name {
+  font-family: Georgia, serif;
+  font-weight: 600;
+}
+
+.marker-chip__terrain {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.location-card__name {
+  margin: 0 0 8px;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.location-card__meta {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 12px;
+  font-size: 12.5px;
+}
+
+.location-card__meta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.location-card__meta dt {
+  color: var(--ink-soft);
+}
+
+.location-card__meta dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.location-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.button--ghost {
+  color: var(--navy-2);
+  background: transparent;
+  border-color: var(--navy-2);
+}
+
+.button--ghost:hover:not(:disabled) {
+  color: var(--parchment);
+  background: var(--navy-2);
+}
+
+.dispatch-log {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .map-screen__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .map-screen__header {
+    flex-direction: column;
+  }
+
+  .map-screen__company {
+    width: 100%;
+  }
+}

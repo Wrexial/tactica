@@ -577,7 +577,7 @@ deterministic.
 - done: Send unit(s) away for N days; resolve on return.
 
 ### T073 — Campaign Map + markers
-- status: todo
+- status: done
 - deps: [T068]
 - files: src/engine/campaignMap.ts, src/ui/CampaignMap.tsx
 - verify: npm run test -- --run tests/unit/campaignMap.test.ts
