@@ -32,6 +32,7 @@ import {
   ELEVATION_STEP,
   TILE_HEIGHT,
   TILE_WIDTH,
+  blockLevelLines,
   blockSideFaces,
   centerCameraOnBounds,
   createCamera,
@@ -39,9 +40,12 @@ import {
   panCamera,
   shadeColor,
   terrainStyle,
+  terrainVariant,
+  tileDecorations,
   zoomCameraAt,
   type Bounds,
   type Camera,
+  type ScreenPoint,
 } from "./tiles";
 
 /** A live battlefield scene. Initialise asynchronously; always `dispose`. */
@@ -58,6 +62,54 @@ export interface Scene {
 
 /** Serialise Pixi init/destroy per canvas so remounts don't race (StrictMode). */
 const sceneChains = new WeakMap<HTMLCanvasElement, Promise<void>>();
+
+/** Stroke an open polyline of flat `[x, y, ...]` points, offset by `center`. */
+function strokeLine(
+  graphics: Graphics,
+  points: readonly number[],
+  center: ScreenPoint,
+  style: { width: number; color: number; alpha: number },
+): void {
+  if (points.length < 4) return;
+  graphics.moveTo(points[0] + center.x, points[1] + center.y);
+  for (let index = 2; index < points.length; index += 2) {
+    graphics.lineTo(points[index] + center.x, points[index + 1] + center.y);
+  }
+  graphics.stroke(style);
+}
+
+/**
+ * Draw one tile's terrain details (trees, houses, ripples, earthworks...) from
+ * the Pixi-free {@link tileDecorations} description. Details are painted after
+ * the top face so they sit on the tile; back-to-front painting handles overlap
+ * with neighbouring blocks.
+ */
+function drawDecorations(
+  graphics: Graphics,
+  type: TerrainType,
+  variant: number,
+  center: ScreenPoint,
+): void {
+  for (const op of tileDecorations(type, { variant })) {
+    if (op.kind === "circle") {
+      graphics
+        .circle(center.x + op.x, center.y + op.y, op.radius)
+        .fill({ color: op.color, alpha: op.alpha });
+    } else if (op.kind === "poly") {
+      const points: number[] = [];
+      for (let index = 0; index < op.points.length; index += 2) {
+        points.push(op.points[index] + center.x, op.points[index + 1] + center.y);
+      }
+      graphics.poly(points).fill({ color: op.color, alpha: op.alpha });
+    } else {
+      strokeLine(graphics, op.points, center, {
+        width: op.width,
+        color: op.color,
+        alpha: op.alpha,
+      });
+    }
+  }
+}
 
 /**
  * Create the battlefield scene on `canvas`. When `map` is omitted, a small
@@ -125,12 +177,17 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
         const [left, right] = blockSideFaces(center, tile.height * ELEVATION_STEP);
         graphics.poly(left).fill({ color: style.side });
         graphics.poly(right).fill({ color: shadeColor(style.side, 0.82) });
+        for (const band of blockLevelLines(center, tile.height)) {
+          strokeLine(graphics, band, center, { width: 1, color: style.edge, alpha: 0.35 });
+        }
       }
 
       graphics
         .poly(diamondPoints(center))
         .fill({ color: style.top })
         .stroke({ width: 1, color: style.edge, alpha: 0.55 });
+
+      drawDecorations(graphics, tile.terrain, terrainVariant(coord.x, coord.y), center);
     }
 
     world.addChild(graphics);

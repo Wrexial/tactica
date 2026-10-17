@@ -8,6 +8,7 @@ import {
   MIN_ZOOM,
   TILE_HEIGHT,
   TILE_WIDTH,
+  blockLevelLines,
   blockSideFaces,
   centerCameraOnBounds,
   clampZoom,
@@ -19,6 +20,8 @@ import {
   pickTile,
   shadeColor,
   terrainStyle,
+  terrainVariant,
+  tileDecorations,
   worldFromScreen,
   zoomCameraAt,
 } from "../../src/render/tiles";
@@ -154,5 +157,78 @@ describe("pickTile", () => {
     // The point where (0,0) S, (1,0) W, (0,1) E and (1,1) N corners meet.
     const corner = worldToScreen(0.5, 0.5, 0);
     expect(pickTile(map, corner)).toEqual(coord(1, 1));
+  });
+});
+
+describe("terrain decoration", () => {
+  it("renders a distinct detail set for every terrain type", () => {
+    const signatures = new Set(TERRAIN_TYPES.map((type) => JSON.stringify(tileDecorations(type))));
+    expect(signatures.size).toBe(TERRAIN_TYPES.length);
+  });
+
+  it("gives every terrain finite geometry with positive sizes", () => {
+    for (const type of TERRAIN_TYPES) {
+      const ops = tileDecorations(type);
+      expect(ops.length).toBeGreaterThan(0);
+      for (const op of ops) {
+        if (op.kind === "circle") {
+          expect(Number.isFinite(op.x)).toBe(true);
+          expect(Number.isFinite(op.y)).toBe(true);
+          expect(op.radius).toBeGreaterThan(0);
+        } else {
+          expect(op.points.length).toBeGreaterThanOrEqual(op.kind === "poly" ? 6 : 4);
+          for (const value of op.points) {
+            expect(Number.isFinite(value)).toBe(true);
+          }
+        }
+      }
+    }
+  });
+
+  it("covers the terrain landmarks called out by T080", () => {
+    const kinds = (type: (typeof TERRAIN_TYPES)[number]): Set<string> =>
+      new Set(tileDecorations(type).map((op) => op.kind));
+    // Fields and roads are flat; woods and villages add raised props; rivers
+    // run as ripples; redoubts are earthworks.
+    expect(kinds("wood").has("circle")).toBe(true);
+    expect(kinds("village").has("poly")).toBe(true);
+    expect(kinds("river").has("line")).toBe(true);
+    expect(kinds("redoubt").has("poly")).toBe(true);
+    expect(kinds("redoubt").has("circle")).toBe(true);
+  });
+
+  it("varies deterministically with the variant index", () => {
+    expect(tileDecorations("wood", { variant: 0 })).toEqual(
+      tileDecorations("wood", { variant: 0 }),
+    );
+    expect(tileDecorations("wood", { variant: 0 })).not.toEqual(
+      tileDecorations("wood", { variant: 1 }),
+    );
+  });
+
+  it("hashes tile coordinates into a stable 0–3 variation range", () => {
+    for (let y = 0; y < 5; y++) {
+      for (let x = 0; x < 5; x++) {
+        const variant = terrainVariant(x, y);
+        expect(variant).toBeGreaterThanOrEqual(0);
+        expect(variant).toBeLessThan(4);
+        expect(variant).toBe(terrainVariant(x, y));
+      }
+    }
+  });
+});
+
+describe("blockLevelLines", () => {
+  it("draws an internal band per elevation step above the ground", () => {
+    const bands = blockLevelLines({ x: 0, y: 0 }, 4);
+    expect(bands).toHaveLength(3);
+    for (const band of bands) {
+      expect(band).toHaveLength(6);
+    }
+  });
+
+  it("is empty for flat and single-level tiles", () => {
+    expect(blockLevelLines({ x: 0, y: 0 }, 0)).toEqual([]);
+    expect(blockLevelLines({ x: 0, y: 0 }, 1)).toEqual([]);
   });
 });

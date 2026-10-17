@@ -630,7 +630,7 @@ deterministic.
 ## Phase 7 — Rendering, UI & UX (Beta)
 
 ### T080 — Terrain rendering
-- status: todo
+- status: done
 - deps: [T029, T014]
 - files: src/render/tiles.ts
 - verify: npm run build

@@ -83,6 +83,286 @@ export function shadeColor(color: number, factor: number): number {
 }
 
 /* --------------------------------------------------------------------------
+ * Terrain decoration
+ * ------------------------------------------------------------------------ */
+
+/**
+ * A Pixi-free drawing primitive for one terrain detail, positioned relative to
+ * a tile's **top-face centre** in unzoomed world pixels. `scene.ts` translates
+ * these into Pixi calls; tests inspect them directly in Node. Keeping details
+ * as plain data (rather than Pixi objects) preserves the render layer's split
+ * between geometry (`tiles.ts`) and drawing (`scene.ts`).
+ */
+export type TileDrawOp =
+  | {
+      readonly kind: "circle";
+      readonly x: number;
+      readonly y: number;
+      readonly radius: number;
+      readonly color: number;
+      readonly alpha: number;
+    }
+  | {
+      readonly kind: "poly";
+      readonly points: readonly number[];
+      readonly color: number;
+      readonly alpha: number;
+    }
+  | {
+      readonly kind: "line";
+      readonly points: readonly number[];
+      readonly width: number;
+      readonly color: number;
+      readonly alpha: number;
+    };
+
+/**
+ * Re-authored detail colours (mapping §14, D6). These sit on top of the flat
+ * {@link TERRAIN_STYLE} fills to give each surface a readable silhouette:
+ * trees, houses, water ripples, earthworks and so on.
+ */
+const DECO = {
+  grass: 0x4f7a34,
+  grassLight: 0x8fb45a,
+  rut: 0xc9b184,
+  trunk: 0x5b3f27,
+  canopy: 0x2f5d2c,
+  canopyLight: 0x52863f,
+  house: 0xd8c9a8,
+  roof: 0x9c4a3c,
+  roofRidge: 0x6e3329,
+  water: 0x9fd8ec,
+  waterDeep: 0x5a9cc0,
+  mud: 0x6b6244,
+  reed: 0x6f8a3f,
+  earth: 0x7a5c3a,
+  earthLight: 0x9a7a4f,
+  gabion: 0xb59a6a,
+  wallStone: 0x9a9a9a,
+  wallStoneDark: 0x6b6b6b,
+  plank: 0xb08c58,
+  plankDark: 0x7d6236,
+  tile: 0xb5614d,
+  tileDark: 0x823f30,
+  smoke: 0x8a8a8a,
+} as const;
+
+function circle(x: number, y: number, radius: number, color: number, alpha = 1): TileDrawOp {
+  return { kind: "circle", x, y, radius, color, alpha };
+}
+
+function poly(points: readonly number[], color: number, alpha = 1): TileDrawOp {
+  return { kind: "poly", points, color, alpha };
+}
+
+function line(points: readonly number[], width: number, color: number, alpha = 1): TileDrawOp {
+  return { kind: "line", points, width, color, alpha };
+}
+
+/** Open ground: a scatter of grass tufts, varied by {@link terrainVariant}. */
+function fieldDecorations(variant: number): TileDrawOp[] {
+  const spots: ReadonlyArray<readonly [number, number]> = [
+    [-16, 2],
+    [-4, -5],
+    [8, 4],
+    [18, -2],
+    [-9, 8],
+  ];
+  const ops: TileDrawOp[] = [];
+  spots.forEach(([x, y], index) => {
+    if ((index + variant) % 2 !== 0) return;
+    ops.push(circle(x, y, 2, index % 2 === 0 ? DECO.grass : DECO.grassLight, 0.85));
+  });
+  return ops;
+}
+
+/** A road: paired cart ruts running across the tile. */
+function roadDecorations(variant: number): TileDrawOp[] {
+  const offset = variant % 2 === 0 ? 0 : 2;
+  return [
+    line([-22 - offset, 2, -8, -1, 6, 2, 20, -1], 1.5, DECO.rut, 0.7),
+    line([-20 - offset, 8, -6, 5, 8, 8, 22, 5], 1.5, DECO.rut, 0.55),
+  ];
+}
+
+/** A wood: a small stand of trees (trunk, canopy and canopy highlight). */
+function woodDecorations(variant: number): TileDrawOp[] {
+  const trees: ReadonlyArray<readonly [number, number, number]> = [
+    [-12, 2, 7],
+    [8, -6, 8],
+    [16, 8, 6],
+  ];
+  const ops: TileDrawOp[] = [];
+  trees.forEach(([x, y, r], index) => {
+    if ((index + variant) % 3 === 0) return;
+    ops.push(line([x, y, x, y - r], 2.5, DECO.trunk, 0.95));
+    ops.push(circle(x, y - r - 1, r, DECO.canopy, 0.95));
+    ops.push(circle(x - r * 0.3, y - r - 1 - r * 0.25, r * 0.45, DECO.canopyLight, 0.6));
+  });
+  return ops;
+}
+
+/** A village: a gabled house with a chimney plume. */
+function villageDecorations(): TileDrawOp[] {
+  return [
+    poly([-11, 2, 0, -5, 11, 2, 0, 9], DECO.house, 1),
+    poly([-11, 2, 0, -5, 0, -13, -11, -4], DECO.roof, 1),
+    poly([11, 2, 0, -5, 0, -13, 11, -4], DECO.roofRidge, 1),
+    line([0, -13, 0, 9], 1, DECO.roofRidge, 0.55),
+    circle(6, 4, 1.6, DECO.smoke, 0.4),
+  ];
+}
+
+/** A river: ripple lines and a deeper channel patch. */
+function riverDecorations(variant: number): TileDrawOp[] {
+  const shift = variant % 2 === 0 ? 0 : 2;
+  return [
+    line([-18, -2 + shift, -6, 1 + shift, 4, -2 + shift, 16, 1 + shift], 1.5, DECO.water, 0.7),
+    line([-14, 5 - shift, -2, 8 - shift, 8, 5 - shift, 18, 8 - shift], 1.5, DECO.water, 0.5),
+    circle(2, 2, 3, DECO.waterDeep, 0.35),
+  ];
+}
+
+/** A marsh: muddy patches with reed clusters. */
+function marshDecorations(variant: number): TileDrawOp[] {
+  const ops: TileDrawOp[] = [circle(-8, 2, 5, DECO.mud, 0.5), circle(10, -3, 4, DECO.mud, 0.45)];
+  const blade = (x: number, y: number): void => {
+    ops.push(line([x, y, x - 1, y - 7], 1.2, DECO.reed, 0.9));
+    ops.push(line([x, y, x + 2, y - 6], 1.2, DECO.reed, 0.8));
+  };
+  if (variant % 2 === 0) {
+    blade(-8, 5);
+    blade(8, 4);
+    blade(12, 8);
+  } else {
+    blade(-12, 3);
+    blade(4, 6);
+  }
+  return ops;
+}
+
+/** Rising ground: contour lines reading as a slope. */
+function hillDecorations(): TileDrawOp[] {
+  return [
+    line([-22, 6, -8, 1, 6, 6, 20, 1], 1.4, DECO.earthLight, 0.6),
+    line([-16, 11, -4, 7, 8, 11, 18, 7], 1.4, DECO.earthLight, 0.45),
+  ];
+}
+
+/** A redoubt: an earthen parapet across the front with gabion baskets. */
+function redoubtDecorations(): TileDrawOp[] {
+  return [
+    poly([-20, 6, 0, 13, 20, 6, 20, 10, 0, 17, -20, 10], DECO.earth, 0.95),
+    line([-20, 6, 0, 13, 20, 6], 2, DECO.earthLight, 0.8),
+    circle(-12, 0, 3, DECO.gabion, 0.9),
+    circle(12, 0, 3, DECO.gabion, 0.9),
+  ];
+}
+
+/** Stone wall: a course of masonry with joint ticks. */
+function wallDecorations(): TileDrawOp[] {
+  const ops: TileDrawOp[] = [line([-24, 2, 24, 2], 5, DECO.wallStone, 1)];
+  for (let x = -20; x <= 20; x += 8) {
+    ops.push(line([x, -1, x, 5], 1, DECO.wallStoneDark, 0.7));
+  }
+  return ops;
+}
+
+/** Rubble: scattered broken blocks. */
+function rubbleDecorations(variant: number): TileDrawOp[] {
+  const chunks: ReadonlyArray<readonly [number, number, number]> = [
+    [-12, 2, 5],
+    [-2, -5, 4],
+    [8, 4, 6],
+    [16, -1, 4],
+    [2, 9, 5],
+  ];
+  const ops: TileDrawOp[] = [];
+  chunks.forEach(([x, y, r], index) => {
+    if ((index + variant) % 2 === 0) return;
+    ops.push(poly([x, y - r, x + r, y, x, y + r, x - r, y], DECO.wallStoneDark, 0.9));
+  });
+  return ops;
+}
+
+/** A bridge: plank seams between two rails. */
+function bridgeDecorations(): TileDrawOp[] {
+  const ops: TileDrawOp[] = [];
+  for (let x = -24; x <= 24; x += 8) {
+    ops.push(line([x, -10, x, 10], 1, DECO.plankDark, 0.5));
+  }
+  ops.push(line([-26, -12, 26, -12], 2, DECO.plank, 0.9));
+  ops.push(line([-26, 12, 26, 12], 2, DECO.plank, 0.9));
+  return ops;
+}
+
+/** A rooftop: shingles and a chimney, so it reads above the wall line. */
+function rooftopDecorations(): TileDrawOp[] {
+  return [
+    poly([-18, 0, 0, -9, 18, 0, 0, 9], DECO.tile, 0.9),
+    line([-9, 4.5, 0, -4.5, 9, 4.5], 1.5, DECO.tileDark, 0.8),
+    line([-18, 0, 0, 9, 18, 0], 1.5, DECO.tileDark, 0.6),
+    poly([6, -6, 10, -8, 12, -4, 8, -2], DECO.wallStoneDark, 0.9),
+  ];
+}
+
+/** Options for {@link tileDecorations}. */
+export interface TileDecorationOptions {
+  /** Stable variation selector, e.g. from {@link terrainVariant}. */
+  readonly variant?: number;
+}
+
+/**
+ * Detail primitives for one terrain surface, positioned relative to the tile's
+ * top-face centre. Every surface renders something distinct, so a battlefield
+ * reads at a glance: fields have tufts, woods have trees, villages houses,
+ * rivers ripples, redoubts earthworks. `variant` (0–3) breaks up repetition
+ * deterministically; no randomness is used (mapping §14, D12, `agents.md` §2).
+ */
+export function tileDecorations(
+  type: TerrainType,
+  options: TileDecorationOptions = {},
+): readonly TileDrawOp[] {
+  const variant = Math.abs(Math.trunc(options.variant ?? 0)) % 4;
+  switch (type) {
+    case "field":
+      return fieldDecorations(variant);
+    case "road":
+      return roadDecorations(variant);
+    case "wood":
+      return woodDecorations(variant);
+    case "village":
+      return villageDecorations();
+    case "river":
+      return riverDecorations(variant);
+    case "marsh":
+      return marshDecorations(variant);
+    case "hill":
+      return hillDecorations();
+    case "redoubt":
+      return redoubtDecorations();
+    case "wall":
+      return wallDecorations();
+    case "rubble":
+      return rubbleDecorations(variant);
+    case "bridge":
+      return bridgeDecorations();
+    case "rooftop":
+      return rooftopDecorations();
+    default:
+      return [];
+  }
+}
+
+/**
+ * Stable, seed-free variation index (0–3) for a tile. Uses integer mixing only
+ * so the same map always renders identically (`agents.md` §2).
+ */
+export function terrainVariant(x: number, y: number): number {
+  return Math.abs((x * 73856093) ^ (y * 19349663)) % 4;
+}
+
+/* --------------------------------------------------------------------------
  * Tile geometry
  * ------------------------------------------------------------------------ */
 
@@ -155,6 +435,28 @@ export function blockSideFaces(
     south.y + heightPixels,
   ];
   return [left, right];
+}
+
+/**
+ * Horizontal band lines marking each internal elevation level on a block's
+ * visible faces. Returns one flat `[west, south, east]` chevron per level above
+ * the ground, so a stepped tile reads as stacked layers rather than one tall
+ * slab. `levels` is the tile's elevation; each level is {@link ELEVATION_STEP}
+ * pixels tall. Returns an empty list for flat or single-level tiles.
+ */
+export function blockLevelLines(
+  center: ScreenPoint,
+  levels: number,
+  tileWidth: number = TILE_WIDTH,
+  tileHeight: number = TILE_HEIGHT,
+): number[][] {
+  const [, east, south, west] = diamondCorners(center, tileWidth, tileHeight);
+  const lines: number[][] = [];
+  for (let level = 1; level < levels; level++) {
+    const lift = level * ELEVATION_STEP;
+    lines.push([west.x, west.y + lift, south.x, south.y + lift, east.x, east.y + lift]);
+  }
+  return lines;
 }
 
 /* --------------------------------------------------------------------------
