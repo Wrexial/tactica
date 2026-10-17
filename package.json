@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "todo": "node tools/todo.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",
