@@ -542,7 +542,7 @@ deterministic.
 ## Phase 6 — Campaign: company, contracts, map, depots
 
 ### T068 — Company model
-- status: todo
+- status: done
 - deps: [T017, T046]
 - files: src/engine/company.ts
 - verify: npm run test -- --run tests/unit/company.test.ts
