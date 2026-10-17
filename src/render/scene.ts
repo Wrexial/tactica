@@ -16,9 +16,10 @@
  *   onto one canvas.
  */
 
-import { Application, Container, Graphics } from "pixi.js";
+import { Application, Container, Graphics, Text } from "pixi.js";
 
-import { allCoords } from "../engine/grid";
+import { allCoords, type Coord } from "../engine/grid";
+import type { UnitId } from "../engine/ids";
 import {
   createTerrainMap,
   heightAt,
@@ -28,6 +29,7 @@ import {
   type TerrainType,
 } from "../engine/terrain";
 import type { Unit } from "../engine/unit";
+import { artilleryColor, type BattleAnimation, type MoveAnimation } from "./animations";
 import { worldToScreen } from "./iso";
 import { createOverlay, type BattleOverlay } from "./overlay";
 import { unitDrawOps, type UnitDrawOp } from "./units";
@@ -65,12 +67,35 @@ export interface Scene {
    * clears the field.
    */
   setUnits(units: readonly Unit[]): void;
+  /**
+   * Queue animation cues built from an engine event stream (T082). The cues come
+   * only from `render/animations.ts`, i.e. from engine events, never from a
+   * state diff. Playback is driven by the Pixi ticker.
+   */
+  playAnimations(animations: readonly BattleAnimation[]): void;
   /** Tear down the renderer, input listeners and observers. Idempotent. */
   dispose(): void;
 }
 
 /** Serialise Pixi init/destroy per canvas so remounts don't race (StrictMode). */
 const sceneChains = new WeakMap<HTMLCanvasElement, Promise<void>>();
+
+/** Milliseconds one Orders Tempo tick maps to when pacing an animation. */
+const ANIMATION_TICK_MS = 180;
+
+/** How far (world pixels) a combat popup rises over its life. */
+const POPUP_RISE = 34;
+
+/** One in-flight animation cue and its runtime drawing state. */
+interface ActiveCue {
+  readonly animation: BattleAnimation;
+  /** Elapsed milliseconds; negative while the cue waits for its tempo slot. */
+  elapsed: number;
+  /** Transient drawing for popups / volleys / artillery (movement uses units). */
+  container?: Container;
+  /** Screen-space anchor the cue was spawned at. */
+  origin?: ScreenPoint;
+}
 
 /** Stroke an open polyline of flat `[x, y, ...]` points, offset by `center`. */
 function strokeLine(
@@ -162,6 +187,10 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
   const world = new Container();
   const overlay = createOverlay();
   const unitLayer = new Container();
+  const effectsLayer = new Container();
+  const unitGraphics = new Map<UnitId, Graphics>();
+  const unitCenters = new Map<UnitId, ScreenPoint>();
+  let activeCues: ActiveCue[] = [];
   let units: readonly Unit[] = [];
   let camera: Camera = createCamera();
   let destroyed = false;
@@ -235,8 +264,10 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
 
     world.addChild(graphics);
     // Units sit on the terrain but under the interactive overlay (which is
-    // parented later, once Pixi is ready).
+    // parented later, once Pixi is ready). Transient animations sit above the
+    // soldiers so volley flashes and popups read on top.
     world.addChild(unitLayer);
+    world.addChild(effectsLayer);
     app.stage.addChild(world);
     applyCamera();
   };
@@ -244,6 +275,8 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
   /** Repaint every soldier, back-to-front so nearer units overlap farther ones. */
   const drawUnits = (): void => {
     for (const child of unitLayer.removeChildren()) child.destroy();
+    unitGraphics.clear();
+    unitCenters.clear();
     const ordered = [...units].sort((a, b) => {
       const depth = a.at.x + a.at.y - (b.at.x + b.at.y);
       if (depth !== 0) return depth;
@@ -253,8 +286,136 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
       const center = worldToScreen(unit.at.x, unit.at.y, heightAt(map, unit.at));
       const graphics = new Graphics();
       drawUnitOps(graphics, unitDrawOps(unit), center);
+      unitGraphics.set(unit.id, graphics);
+      unitCenters.set(unit.id, center);
       unitLayer.addChild(graphics);
     }
+  };
+
+  /* ------------------------------------------------------------------------
+   * Event-driven animations (T082)
+   * ---------------------------------------------------------------------- */
+
+  /** Projected centre of a tile, lifted by its elevation (matches the map). */
+  const worldOf = (at: Coord): ScreenPoint => worldToScreen(at.x, at.y, heightAt(map, at));
+
+  /** Position a marching / shoved soldier along its route at progress `t`. */
+  const applyMove = (animation: MoveAnimation, t: number): void => {
+    const graphics = unitGraphics.get(animation.unitId);
+    const center = unitCenters.get(animation.unitId);
+    if (graphics === undefined || center === undefined) return;
+    const points = animation.path.map(worldOf);
+    if (points.length < 2) return;
+    const scaled = t * (points.length - 1);
+    const segment = Math.min(points.length - 2, Math.floor(scaled));
+    const local = scaled - segment;
+    const a = points[segment];
+    const b = points[segment + 1];
+    graphics.position.set(
+      a.x + (b.x - a.x) * local - center.x,
+      a.y + (b.y - a.y) * local - center.y,
+    );
+  };
+
+  /** Build the transient drawing for one non-movement cue. */
+  const createCue = (animation: BattleAnimation, elapsed: number): ActiveCue | null => {
+    if (animation.kind === "move") {
+      // The soldier was just redrawn at its destination; snap it back to the
+      // route origin so the tween reads as a march.
+      applyMove(animation, 0);
+      return { animation, elapsed };
+    }
+
+    if (animation.kind === "popup") {
+      if (animation.at === undefined) return null;
+      const origin = worldOf(animation.at);
+      const container = new Container();
+      container.position.set(origin.x, origin.y);
+      const text = new Text({
+        text: animation.text,
+        style: {
+          fontFamily: "monospace",
+          fontSize: animation.critical ? 16 : 13,
+          fontWeight: "bold",
+          fill: animation.color,
+          stroke: { color: 0x101418, width: 3 },
+        },
+      });
+      text.anchor.set(0.5, 1);
+      container.addChild(text);
+      effectsLayer.addChild(container);
+      return { animation, elapsed, container, origin };
+    }
+
+    const origin = worldOf(animation.at);
+    const graphics = new Graphics();
+    if (animation.kind === "volley") {
+      const from = unitCenters.get(animation.unitId) ?? origin;
+      graphics.moveTo(from.x, from.y);
+      graphics.lineTo(origin.x, origin.y);
+      graphics.stroke({
+        width: animation.role === "start" ? 3 : 2,
+        color: 0xffd25a,
+        alpha: 0.9,
+      });
+      graphics.circle(origin.x, origin.y, 6).fill({ color: 0xffd25a, alpha: 0.6 });
+    } else {
+      const color = artilleryColor(animation.element);
+      graphics.circle(0, 0, 14).fill({ color, alpha: 0.7 });
+      graphics.circle(0, 0, 24).stroke({ width: 3, color, alpha: 0.9 });
+      graphics.position.set(origin.x, origin.y);
+    }
+    effectsLayer.addChild(graphics);
+    return { animation, elapsed, container: graphics, origin };
+  };
+
+  /** Advance one transient cue at progress `t` in `[0, 1]`. */
+  const applyEffect = (cue: ActiveCue, t: number): void => {
+    const container = cue.container;
+    if (container === undefined) return;
+    switch (cue.animation.kind) {
+      case "popup": {
+        const origin = cue.origin;
+        if (origin === undefined) return;
+        container.position.y = origin.y - t * POPUP_RISE;
+        container.alpha = t < 0.7 ? 1 : Math.max(0, 1 - (t - 0.7) / 0.3);
+        break;
+      }
+      case "volley":
+        container.alpha = 1 - t;
+        break;
+      case "artillery":
+        container.scale.set(0.5 + t * 1.6);
+        container.alpha = Math.max(0, 1 - t);
+        break;
+      case "move":
+        break;
+    }
+  };
+
+  /** Per-frame ticker: tween moves and age / retire transient effects. */
+  const updateAnimations = (): void => {
+    if (activeCues.length === 0) return;
+    const delta = app.ticker.deltaMS;
+    const remaining: ActiveCue[] = [];
+    for (const cue of activeCues) {
+      cue.elapsed += delta;
+      if (cue.elapsed < 0) {
+        remaining.push(cue);
+        continue;
+      }
+      const duration = Math.max(1, cue.animation.duration) * ANIMATION_TICK_MS;
+      const t = Math.min(1, cue.elapsed / duration);
+      if (cue.animation.kind === "move") {
+        applyMove(cue.animation, t);
+        if (t < 1) remaining.push(cue);
+        continue;
+      }
+      applyEffect(cue, t);
+      if (t >= 1) cue.container?.destroy({ children: true });
+      else remaining.push(cue);
+    }
+    activeCues = remaining;
   };
 
   const resize = (): void => {
@@ -318,6 +479,8 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
   const destroyApp = (): void => {
     if (!appReady) return;
     appReady = false;
+    app.ticker.remove(updateAnimations);
+    activeCues = [];
     app.destroy(true, { children: true });
   };
 
@@ -342,6 +505,7 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
       drawMap();
       world.addChild(overlay.container);
       observer.observe(canvas);
+      app.ticker.add(updateAnimations);
       resize();
     })
     .catch((error: unknown) => {
@@ -363,6 +527,16 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
     setUnits(next: readonly Unit[]): void {
       units = next;
       drawUnits();
+    },
+    playAnimations(animations: readonly BattleAnimation[]): void {
+      if (!appReady || animations.length === 0) return;
+      // Stagger by engine tempo: cues that happened later start later, so the
+      // playback order is the event order even when several share a dispatch.
+      const baseTick = animations[0].tick;
+      for (const animation of animations) {
+        const cue = createCue(animation, -(animation.tick - baseTick) * ANIMATION_TICK_MS);
+        if (cue !== null) activeCues.push(cue);
+      }
     },
     dispose(): void {
       if (destroyed) return;

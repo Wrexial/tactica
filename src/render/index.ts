@@ -4,3 +4,4 @@ export * from "./iso";
 export * from "./tiles";
 export * from "./overlay";
 export * from "./units";
+export * from "./animations";

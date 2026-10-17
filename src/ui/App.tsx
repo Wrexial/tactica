@@ -7,6 +7,7 @@ import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
 import { Mess } from "./Mess";
 import { PostScreen } from "./PostScreen";
+import { animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
 
 /** A controller for the demo action, with the cursor on the acting soldier. */
@@ -32,6 +33,7 @@ export function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
+  const [animations, setAnimations] = useState<readonly BattleAnimation[]>([]);
   const [view, setView] = useState<"battle" | "posts" | "mess" | "map" | "depot">("battle");
   const controllerRef = useRef(controller);
 
@@ -71,19 +73,29 @@ export function App() {
     };
   }, [applyController]);
 
-  // Sync the scene (units) and overlay to the controller after every
-  // transition.
+  // Sync the scene (units), overlay and animations to the controller after
+  // every transition. Animation cues are derived **only** from the engine
+  // events the last order emitted (`lastEvents`), never from a state diff.
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene) return;
     const map = controller.battle.map;
-    scene.setUnits(controller.battle.units);
+    const units = controller.battle.units;
+    const unitById = new Map(units.map((unit) => [unit.id, unit] as const));
+    scene.setUnits(units);
     scene.overlay.setMoveRange(
       controller.moveRange.map((tile) => tile.at),
       map,
     );
     scene.overlay.setPath(controller.pendingPath ?? [], map);
     scene.overlay.setCursor(controller.cursor, map);
+
+    const cues = animationsForEvents(controller.lastEvents, {
+      unitAt: (unitId) => unitById.get(unitId)?.at,
+      unitName: (unitId) => unitById.get(unitId)?.name,
+    });
+    scene.playAnimations(cues);
+    setAnimations(cues);
   }, [controller]);
 
   const actor = useMemo(() => {
@@ -202,6 +214,20 @@ export function App() {
               {controller.lastRejection.message}
             </p>
           )}
+          <section className="animation-log" aria-label="Battle animations">
+            <h3>Battle log</h3>
+            <ol data-testid="animation-log">
+              {animations.map((animation, index) => (
+                <li
+                  key={`${animation.kind}-${index}`}
+                  data-testid={`animation-${index}`}
+                  data-kind={animation.kind}
+                >
+                  {animation.label}
+                </li>
+              ))}
+            </ol>
+          </section>
         </aside>
 
         {view === "posts" && <PostScreen />}

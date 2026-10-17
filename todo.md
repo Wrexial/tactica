@@ -644,7 +644,7 @@ deterministic.
 - done: Placeholder soldier sprites by power/post, facing, HP/Élan bars, condition icons, Honour indicator.
 
 ### T082 — Event-driven animations
-- status: todo
+- status: done
 - deps: [T021, T081]
 - files: src/render/animations.ts
 - verify: npm run test:e2e
