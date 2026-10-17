@@ -4,9 +4,10 @@
  * The retheme renames FFTA's physical/magical split to **Steel** and **Powder**
  * (mapping §12, `docs/NAPOLEONIC_MAPPING.md`): Steel is sabre, lance, bayonet
  * and small-arms fire; Powder is artillery, medicine and signals (T034). The
- * maths is unchanged. This module owns the **Steel** formula only; Powder
- * arrives with T034 and weapon-family variants with T035, both reusing the
- * {@link DamageFormula} shape defined here.
+ * maths is unchanged. This module owns both the **Steel** (T033) and **Powder**
+ * (T034) formulas; weapon-family variants arrive with T035, reusing the
+ * {@link DamageFormula} shape and the {@link computeBaseDamage} /
+ * {@link applyPower} kernel defined here.
  *
  * ## The formula
  *
@@ -67,7 +68,30 @@
  *   or fractional inputs are rejected at the boundary rather than silently
  *   rounded.
  *
- * Reference: `docs/wiki/pages/Attack_(command).md`. Fiction:
+ * ## Powder (magical) damage (T034)
+ *
+ * The same shape with different named stats. Per
+ * `docs/wiki/pages/Magic_(command).md` (FFTA section):
+ *
+ * ```text
+ * base   = Caster's Magic Power − floor(Target's Magic Resistance / 2)
+ * damage = base × Power / 100
+ * ```
+ *
+ * Here `Caster's Magic Power` is the attacker's effective `mag` stat and
+ * `Target's Magic Resistance` is the target's effective `res` stat (both from
+ * `stats.ts`, T018). Powder covers artillery, medicine, signals and morale
+ * (mapping §7, §12) — the mundane causes behind FFTA's "magic". The `Power`
+ * term follows the same rule as Steel: the equipment `EqAtt` bonus for
+ * weapon-based actions, otherwise the ability's `power` field.
+ *
+ * The wiki gives no ambiguous secondary line for the magical formula, so it is
+ * taken verbatim. The coefficients still live in {@link POWDER_FORMULA} as our
+ * re-authored balance data, so it can diverge from Steel later without touching
+ * the arithmetic.
+ *
+ * Reference: `docs/wiki/pages/Attack_(command).md` (Steel),
+ * `docs/wiki/pages/Magic_(command).md` (Powder). Fiction:
  * `docs/NAPOLEONIC_MAPPING.md` §12 ("Physical and magical damage formulas from
  * the wiki become Steel and Powder formulas").
  */
@@ -106,6 +130,17 @@ export const STEEL_FORMULA: DamageFormula = {
 };
 
 /**
+ * The authored Powder (magical) formula coefficients. Structurally identical to
+ * {@link STEEL_FORMULA} — the FFTA magical formula also halves the defence stat
+ * and scales by `Power/100` — but kept as separate balance data so the two
+ * damage channels can be tuned independently (`agents.md` §3, §10).
+ */
+export const POWDER_FORMULA: DamageFormula = {
+  defenseDivisor: 2,
+  powerDivisor: 100,
+};
+
+/**
  * Input to {@link computeSteelDamage}: the two combat stats and the ability's
  * power term. All three are plain integers; the caller (the action executor,
  * T041) resolves them from the derived stat blocks and the authored ability /
@@ -122,6 +157,31 @@ export interface SteelDamageInput {
    * equipment and conditions. `>= 0`.
    */
   readonly targetWeaponDef: number;
+  /**
+   * The ability's Power term (FFTA "Power"): the equipment `EqAtt` bonus for
+   * weapon-based actions, otherwise the ability's own `power` field. May be
+   * negative for unusual actions; the result is still floored at zero.
+   */
+  readonly power: number;
+}
+
+/**
+ * Input to {@link computePowderDamage}: the two magical combat stats and the
+ * ability's power term. All three are plain integers; the caller (the action
+ * executor, T041) resolves them from the derived stat blocks and the authored
+ * ability / equipment data.
+ */
+export interface PowderDamageInput {
+  /**
+   * The attacker's effective Magic Power (FFTA "Caster's Magic Power"): the
+   * `mag` stat after equipment and conditions. `>= 0`.
+   */
+  readonly magicPower: number;
+  /**
+   * The target's effective Magic Resistance (FFTA "Target's Magic
+   * Resistance"): the `res` stat after equipment and conditions. `>= 0`.
+   */
+  readonly targetMagicRes: number;
   /**
    * The ability's Power term (FFTA "Power"): the equipment `EqAtt` bonus for
    * weapon-based actions, otherwise the ability's own `power` field. May be
@@ -234,5 +294,36 @@ export function computeSteelDamage(
   assertFormula(formula);
 
   const base = computeBaseDamage(weaponAtk, targetWeaponDef, formula);
+  return applyPower(base, power, formula);
+}
+
+/**
+ * Compute Powder (magical) damage: `MagicPower − TargetMagicRes/2`, then
+ * `× Power/100`, truncated and floored at zero. See the module header for the
+ * formula's reference. Powder covers artillery, medicine, signals and morale
+ * (mapping §7, §12).
+ *
+ * ```ts
+ * computePowderDamage({ magicPower: 30, targetMagicRes: 12, power: 100 }); // 24
+ * computePowderDamage({ magicPower: 30, targetMagicRes: 12, power: 50 });  // 12
+ * computePowderDamage({ magicPower: 4,  targetMagicRes: 20, power: 100 }); // 0
+ * ```
+ *
+ * Throws a `RangeError` when `magicPower`/`targetMagicRes` are not
+ * non-negative integers or `power` is not an integer. The result is always a
+ * non-negative integer, so it can be placed straight into a `DamagedEvent`
+ * (`events.ts`).
+ */
+export function computePowderDamage(
+  input: PowderDamageInput,
+  formula: DamageFormula = POWDER_FORMULA,
+): number {
+  const { magicPower, targetMagicRes, power } = input;
+  assertNonNegativeInteger(magicPower, "powder damage.magicPower");
+  assertNonNegativeInteger(targetMagicRes, "powder damage.targetMagicRes");
+  assertInteger(power, "powder damage.power");
+  assertFormula(formula);
+
+  const base = computeBaseDamage(magicPower, targetMagicRes, formula);
   return applyPower(base, power, formula);
 }

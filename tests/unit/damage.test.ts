@@ -3,9 +3,12 @@ import { describe, expect, it } from "vitest";
 import {
   applyPower,
   computeBaseDamage,
+  computePowderDamage,
   computeSteelDamage,
+  POWDER_FORMULA,
   STEEL_FORMULA,
   type DamageFormula,
+  type PowderDamageInput,
   type SteelDamageInput,
 } from "../../src/engine/rules/damage";
 
@@ -29,6 +32,15 @@ function steelInput(overrides: Partial<SteelDamageInput> = {}): SteelDamageInput
   return {
     weaponAtk: 20,
     targetWeaponDef: 10,
+    power: 100,
+    ...overrides,
+  };
+}
+
+function powderInput(overrides: Partial<PowderDamageInput> = {}): PowderDamageInput {
+  return {
+    magicPower: 30,
+    targetMagicRes: 12,
     power: 100,
     ...overrides,
   };
@@ -125,6 +137,106 @@ describe("computeSteelDamage", () => {
   });
 });
 
+/* --------------------------------------------------------------------------
+ * T034 — Powder (magical) damage
+ *
+ * Pins the task's "done when": the FFTA magical formula
+ * `MagicPower − TargetMagicRes/2`, then `× Power/100` (from
+ * `docs/wiki/pages/Magic_(command).md`), modelled as data via the same
+ * `DamageFormula` kernel as Steel. Powder is the retheme's channel for
+ * artillery, medicine, signals and morale (mapping §7, §12).
+ * ------------------------------------------------------------------------ */
+
+describe("computePowderDamage", () => {
+  it("computes MagicPower − TargetMagicRes/2, then × Power/100", () => {
+    // base = 30 − floor(12 / 2) = 24; 24 × 100 / 100 = 24.
+    expect(computePowderDamage(powderInput())).toBe(24);
+  });
+
+  it("scales linearly with the ability's Power term", () => {
+    // base 24, then × 50 / 100 = 12.
+    expect(computePowderDamage(powderInput({ power: 50 }))).toBe(12);
+    // base 24, then × 200 / 100 = 48.
+    expect(computePowderDamage(powderInput({ power: 200 }))).toBe(48);
+  });
+
+  it("truncates the final Power multiplication (no rounding up)", () => {
+    // base 24, then × 33 / 100 = 7.92 → 7.
+    expect(computePowderDamage(powderInput({ power: 33 }))).toBe(7);
+  });
+
+  it("truncates the halved Magic Resistance before subtracting", () => {
+    // base = 30 − floor(11 / 2) = 30 − 5 = 25; × 100 / 100 = 25.
+    expect(computePowderDamage(powderInput({ targetMagicRes: 11 }))).toBe(25);
+    // base = 20 − floor(7 / 2) = 20 − 3 = 17; × 33 / 100 = 5.61 → 5.
+    expect(
+      computePowderDamage(powderInput({ magicPower: 20, targetMagicRes: 7, power: 33 })),
+    ).toBe(5);
+  });
+
+  it("floors at zero when the defender's Magic Resistance exceeds the attack", () => {
+    expect(computePowderDamage(powderInput({ magicPower: 4, targetMagicRes: 20 }))).toBe(0);
+    // Exactly resistant: 10 − floor(10/2) = 5, still a positive hit.
+    expect(computePowderDamage(powderInput({ magicPower: 10, targetMagicRes: 10 }))).toBe(5);
+  });
+
+  it("deals zero when Power is zero", () => {
+    expect(computePowderDamage(powderInput({ power: 0 }))).toBe(0);
+  });
+
+  it("clamps a negative Power contribution to zero", () => {
+    // base 24, then × −50 / 100 = −12 → floored and clamped to 0.
+    expect(computePowderDamage(powderInput({ power: -50 }))).toBe(0);
+  });
+
+  it("returns a non-negative integer for every valid input", () => {
+    for (const magicPower of [0, 1, 7, 13, 30, 99]) {
+      for (const targetMagicRes of [0, 1, 8, 11, 20, 99]) {
+        for (const power of [0, 25, 50, 100, 175, 300]) {
+          const damage = computePowderDamage({ magicPower, targetMagicRes, power });
+          expect(Number.isInteger(damage)).toBe(true);
+          expect(damage).toBeGreaterThanOrEqual(0);
+        }
+      }
+    }
+  });
+
+  it("is deterministic and does not mutate its input", () => {
+    const input: PowderDamageInput = powderInput({ power: 175 });
+    const snapshot = { ...input };
+
+    const first = computePowderDamage(input);
+    const second = computePowderDamage(input);
+
+    expect(first).toBe(second);
+    expect(input).toEqual(snapshot);
+  });
+
+  it("honours an authored formula supplied by content", () => {
+    // A variant that defends four times as hard and scales Power by 10.
+    const variant: DamageFormula = { defenseDivisor: 4, powerDivisor: 10 };
+    // base = 30 − floor(12 / 4) = 30 − 3 = 27; × 50 / 10 = 135.
+    expect(computePowderDamage(powderInput({ power: 50 }), variant)).toBe(135);
+  });
+
+  it("rejects malformed combat stats at the boundary", () => {
+    expect(() => computePowderDamage(powderInput({ magicPower: -1 }))).toThrow(RangeError);
+    expect(() => computePowderDamage(powderInput({ magicPower: 1.5 }))).toThrow(RangeError);
+    expect(() => computePowderDamage(powderInput({ targetMagicRes: -3 }))).toThrow(RangeError);
+    expect(() => computePowderDamage(powderInput({ targetMagicRes: 2.5 }))).toThrow(RangeError);
+    expect(() => computePowderDamage(powderInput({ power: 1.5 }))).toThrow(RangeError);
+  });
+
+  it("rejects a malformed formula", () => {
+    expect(() =>
+      computePowderDamage(powderInput(), { defenseDivisor: 0, powerDivisor: 100 }),
+    ).toThrow(RangeError);
+    expect(() =>
+      computePowderDamage(powderInput(), { defenseDivisor: 2, powerDivisor: 0 }),
+    ).toThrow(RangeError);
+  });
+});
+
 describe("computeBaseDamage", () => {
   it("subtracts the truncated half of the defender's Weapon Def", () => {
     expect(computeBaseDamage(20, 10)).toBe(15);
@@ -162,5 +274,11 @@ describe("applyPower", () => {
 describe("STEEL_FORMULA", () => {
   it("encodes the scraped FFTA coefficients as our authored balance data", () => {
     expect(STEEL_FORMULA).toEqual({ defenseDivisor: 2, powerDivisor: 100 });
+  });
+});
+
+describe("POWDER_FORMULA", () => {
+  it("encodes the scraped FFTA magical coefficients as our authored balance data", () => {
+    expect(POWDER_FORMULA).toEqual({ defenseDivisor: 2, powerDivisor: 100 });
   });
 });

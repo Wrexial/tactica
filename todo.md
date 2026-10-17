@@ -292,7 +292,7 @@ deterministic.
 - done: `WeaponAtk − TargetWeaponDef/2`, then × `Power/100`, data-driven; ambiguous secondary line from the wiki resolved and documented.
 
 ### T034 — Powder (magical) damage
-- status: todo
+- status: done
 - deps: [T033]
 - files: src/engine/rules/damage.ts
 - verify: npm run test -- --run tests/unit/damage.test.ts
