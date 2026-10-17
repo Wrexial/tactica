@@ -24,8 +24,11 @@
  * declare → charge → resolve) via `./actions/resolve.ts`, T025 adds the
  * **Move** command via `./actions/move.ts` (path validation against terrain,
  * elevation/Climb, occupancy and the Move budget), and T026 adds the basic
- * **Wait / Face / Hold** commands via `./actions/basic.ts`. The remaining
- * commands (`volley`, `guardSortie`) are still refused with a
+ * **Wait / Face / Hold** commands via `./actions/basic.ts`. T115 makes the
+ * turn **native move-and-act**: a `move` leaves the actor's Orders Tempo turn
+ * open (recording {@link BattleState.hasMovedThisTurn}), so an `act`, `wait`
+ * or `hold` closes it without the caller composing the free move by hand. The
+ * remaining commands (`volley`, `guardSortie`) are still refused with a
  * {@link BattleRejection} until their tasks land (T061–T062), so a caller can
  * never mistake "not implemented" for a silent success.
  *
@@ -112,6 +115,7 @@ export const BATTLE_REJECTION_REASONS = [
   "insufficient-elan",
   "invalid-target",
   "illegal-move",
+  "already-moved",
 ] as const;
 export type BattleRejectionReason = (typeof BATTLE_REJECTION_REASONS)[number];
 
@@ -188,6 +192,13 @@ export interface BattleState {
   readonly pendingActions: readonly PendingAction[];
   /** Whose turn it is, or `null` before the first turn / once nobody can act. */
   readonly currentActorId: UnitId | null;
+  /**
+   * Whether the current actor has already spent this turn's **Move**. A `move`
+   * command leaves the actor's Orders Tempo turn open so it can be followed by
+   * an `act` (the FFTA free-move turn, T115); this flag blocks a second march
+   * and is cleared when the turn ends.
+   */
+  readonly hasMovedThisTurn: boolean;
   /** `active` while fighting; `finished` once a win/lose rule fires (T031). */
   readonly phase: BattlePhase;
   /** Set when {@link phase} is `finished`; otherwise `null`. */
@@ -343,6 +354,7 @@ export function createBattle(seed: Seed, setup: BattleSetup): BattleState {
     abilities,
     pendingActions: [],
     currentActorId: null,
+    hasMovedThisTurn: false,
     phase: "active",
     outcome: null,
     objective:
@@ -419,6 +431,12 @@ export function validateCommand(state: BattleState, command: unknown): BattleRej
   }
 
   if (command.kind === "move") {
+    if (state.hasMovedThisTurn) {
+      return {
+        reason: "already-moved",
+        message: `${unit.name} has already marched this turn`,
+      };
+    }
     const validation = validateMove(state, unit, command.path);
     if (!validation.valid) {
       return { reason: "illegal-move", message: validation.rejection.message };
@@ -514,22 +532,40 @@ interface EndTurnResult {
  * actor. `spendTurn` keeps any charge overshoot as progress toward the next
  * turn (`docs/wiki/pages/Charge_time.md`). Any charges that elapse while the
  * clock runs are returned so the caller can resolve them (`next.resolved`).
+ *
+ * The next actor starts a fresh turn, so `hasMovedThisTurn` is cleared here —
+ * the only place the flag is reset.
  */
 function endTurn(state: BattleState, actorId: UnitId): EndTurnResult {
   const spent = spendTurn(state.tempo, actorId);
   const next = advanceToNextTurn(spent, battleSpeedOf(state));
   if (next === null) {
     return {
-      state: { ...state, tempo: spent, currentActorId: null },
+      state: { ...state, tempo: spent, currentActorId: null, hasMovedThisTurn: false },
       actorId: null,
       resolved: [],
     };
   }
   return {
-    state: { ...state, tempo: next.state, currentActorId: next.actorId },
+    state: {
+      ...state,
+      tempo: next.state,
+      currentActorId: next.actorId,
+      hasMovedThisTurn: false,
+    },
     actorId: next.actorId,
     resolved: next.resolved,
   };
+}
+
+/**
+ * Whether a command closes the actor's Orders Tempo turn. A native **move**
+ * keeps the turn open so the soldier may follow it with an `act` (the FFTA
+ * move-and-act turn, T115); every other order ends the turn. `wait` is the
+ * explicit way to close a move-only turn.
+ */
+function commandEndsTurn(kind: Command["kind"]): boolean {
+  return kind !== "move";
 }
 
 /**
@@ -593,9 +629,11 @@ export interface BattleStepResult {
  * 1. on the very first step, announce `battleStarted`, every `unitDeployed`
  *    and the opening `turnStarted`;
  * 2. resolve the command's effect (for `act`, declare → charge → resolve,
- *    T024);
- * 3. `turnEnded` for the actor, then advance Orders Tempo — resolving any
- *    charges that elapse while waiting — and `turnStarted` for the next
+ *    T024); then
+ * 3. either **keep the turn open** — a `move` records that the march is spent
+ *    and returns so a later `act` / `wait` / `hold` can close it (T115) — or
+ *    end the turn: `turnEnded` for the actor, advance Orders Tempo (resolving
+ *    any charges that elapse while waiting) and `turnStarted` for the next
  *    soldier; if a win/lose objective is met (T031) the battle instead emits a
  *    single `battleEnded`, freezes and admits no further commands.
  *
@@ -629,6 +667,13 @@ export function step(state: BattleState, command: Command): BattleStepResult {
 
   const tick = working.tempo.tick;
   working = resolveCommand(working, command, actor, events);
+
+  if (!commandEndsTurn(command.kind)) {
+    // A native free move leaves the actor's Orders Tempo turn open: record the
+    // spent march and return, so an `act` / `wait` / `hold` closes the turn and
+    // the move stays a real command in the replay log (T115).
+    return { state: { ...working, hasMovedThisTurn: true }, events };
+  }
 
   events.push({ kind: "turnEnded", tick, unitId: actor.id });
   const next = endTurn(working, actor.id);

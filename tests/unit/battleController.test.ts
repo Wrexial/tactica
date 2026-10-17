@@ -235,6 +235,9 @@ describe("move planning", () => {
       expect(command.unitId).toBe(ACTOR);
       expect(command.path.at(-1)).toEqual(coord(2, 0));
     }
+    // A move-only plan leaves the engine turn open, so the controller closes it
+    // with an explicit `wait` rather than composing `applyMove` (T115).
+    expect(controller.lastCommands.map((entry) => entry.kind)).toEqual(["move", "wait"]);
     const kinds = controller.lastEvents.map((event) => event.kind);
     expect(kinds).toContain("moved");
     expect(kinds).toContain("turnEnded");
@@ -343,7 +346,9 @@ describe("the full turn flow", () => {
     expect(kinds).toContain("turnEnded");
     // The march animates before the action lands.
     expect(kinds.indexOf("moved")).toBeLessThan(kinds.indexOf("abilityUsed"));
+    // Both halves are real engine commands, and the act closes the turn.
     expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move", "act"]);
+    expect(controller.battle.hasMovedThisTurn).toBe(false);
   });
 });
 

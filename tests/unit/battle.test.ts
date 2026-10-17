@@ -587,6 +587,95 @@ describe("step — action resolution pipeline", () => {
   });
 });
 
+/* --------------------------------------------------------------------------
+ * T115 — native move-and-act turn
+ *
+ * A `move` no longer ends the Orders Tempo turn: it records that the march is
+ * spent and leaves the actor to follow up with an `act` (or close the turn with
+ * `wait` / `hold`). The move remains a real command in the replay log.
+ * ------------------------------------------------------------------------ */
+
+describe("step — native move-and-act turn (T115)", () => {
+  it("leaves the turn open after a move so an act can follow", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+
+    const moved = step(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    });
+    expect(moved.rejection).toBeUndefined();
+    expect(moved.state.currentActorId).toBe(actor);
+    expect(moved.state.hasMovedThisTurn).toBe(true);
+    // The free move emits only `moved`; it does not spend the turn.
+    expect(moved.events.map((event) => event.kind)).toEqual([
+      "battleStarted",
+      "unitDeployed",
+      "unitDeployed",
+      "turnStarted",
+      "moved",
+    ]);
+
+    const acted = step(moved.state, actCommand(moved.state));
+    expect(acted.rejection).toBeUndefined();
+    expect(acted.events.map((event) => event.kind)).toContain("turnEnded");
+    expect(acted.events.map((event) => event.kind)).toContain("abilityResolved");
+    expect(acted.state.hasMovedThisTurn).toBe(false);
+  });
+
+  it("closes a move-only turn with an explicit wait", () => {
+    const state = createBattle(1815, makeSetup());
+    const actor = state.currentActorId as UnitId;
+
+    const moved = step(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    });
+    expect(moved.state.hasMovedThisTurn).toBe(true);
+
+    const waited = step(moved.state, wait(moved.state));
+    expect(waited.rejection).toBeUndefined();
+    expect(waited.state.hasMovedThisTurn).toBe(false);
+    expect(waited.events.map((event) => event.kind)).toEqual(["turnEnded", "turnStarted"]);
+  });
+
+  it("refuses a second march in the same turn without mutation", () => {
+    const state = createBattle(1815, makeSetup());
+    const actor = state.currentActorId as UnitId;
+    const moved = step(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    });
+
+    const again = step(moved.state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(2, 1), coord(3, 1)],
+    });
+    expect(again.rejection?.reason).toBe("already-moved");
+    expect(again.state).toBe(moved.state);
+    expect(again.events).toEqual([]);
+  });
+
+  it("replays a move-then-act log deterministically", () => {
+    const play = (): string => {
+      let state = createBattle("trafalgar", makeActionSetup([INSTANT_ACTION]));
+      const actor = state.currentActorId as UnitId;
+      state = step(state, {
+        kind: "move",
+        unitId: actor,
+        path: [coord(1, 1), coord(2, 1)],
+      }).state;
+      state = step(state, actCommand(state)).state;
+      return JSON.stringify(state);
+    };
+    expect(play()).toBe(play());
+  });
+});
+
 describe("buildActionCatalogue", () => {
   it("indexes specs by id and copies them", () => {
     const catalogue = buildActionCatalogue([INSTANT_ACTION]);
@@ -733,12 +822,18 @@ describe("step — win/lose objectives (T031)", () => {
     const start = makeObjectiveBattle({ kind: "capture", at: coord(3, 1) });
     const actor = start.currentActorId as UnitId;
 
-    const result = step(start, {
+    // A native move leaves the turn open (T115), so the objective is scored
+    // only once the turn is closed with an explicit wait.
+    const moved = step(start, {
       kind: "move",
       unitId: actor,
       path: [coord(1, 1), coord(2, 1), coord(3, 1)],
     });
-    expect(result.rejection).toBeUndefined();
+    expect(moved.rejection).toBeUndefined();
+    expect(moved.state.phase).toBe("active");
+    expect(moved.state.hasMovedThisTurn).toBe(true);
+
+    const result = step(moved.state, wait(moved.state));
     expect(result.state.phase).toBe("finished");
     expect(result.state.outcome).toBe("companyVictory");
     expect(result.events[result.events.length - 1]?.kind).toBe("battleEnded");

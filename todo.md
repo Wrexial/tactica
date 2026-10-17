@@ -267,7 +267,7 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - done: Edge cases for blocked paths, AoE shapes, and elevation in LoS.
 
 ### T115 — Native move-and-act turn
-- status: todo
+- status: done
 - deps: [T024, T025]
 - files: src/engine/battle.ts, src/app/battleController.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts

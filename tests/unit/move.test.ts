@@ -375,7 +375,7 @@ describe("applyMove", () => {
  * ------------------------------------------------------------------------ */
 
 describe("step — move command", () => {
-  it("resolves a march, moves the soldier and runs the turn", () => {
+  it("resolves a march and leaves the turn open for an act", () => {
     const state = makeState(defaultUnits());
     const actor = state.currentActorId as UnitId;
     expect(actor).toBe(MARCHER);
@@ -390,10 +390,16 @@ describe("step — move command", () => {
       "unitDeployed",
       "turnStarted",
       "moved",
-      "turnEnded",
-      "turnStarted",
     ]);
     expect(findUnit(result.state, MARCHER)?.at).toEqual(coord(3, 0));
+    // The free move keeps the Orders Tempo turn open (T115); a wait closes it.
+    expect(result.state.currentActorId).toBe(actor);
+    expect(result.state.hasMovedThisTurn).toBe(true);
+
+    const closed = step(result.state, { kind: "wait", unitId: actor });
+    expect(closed.rejection).toBeUndefined();
+    expect(closed.state.hasMovedThisTurn).toBe(false);
+    expect(closed.events.map((event) => event.kind)).toEqual(["turnEnded", "turnStarted"]);
     expect(result.events.every(isBattleEvent)).toBe(true);
   });
 

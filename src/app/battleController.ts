@@ -27,15 +27,14 @@
  *                                                                                     select
  * ```
  *
- * A unit's Orders Tempo turn is the FFTA **move + act** pair: the validated
- * march (`./actions/move.ts`) is composed for the free-move half, then the
- * action is committed through `step` so the engine owns the turn bookkeeping
- * (declare → charge → resolve → end-turn → advance tempo). A plan with only a
- * move, or only an action, is dispatched through `step` as a normal single
- * command. (Engine note: `step` currently ends the turn for *every* command, so
- * the free-move half cannot itself be routed through `step` without forfeiting
- * the action; when the engine grows a native move-then-act turn this composition
- * moves into `step`.)
+ * A unit's Orders Tempo turn is the FFTA **move + act** pair, and the engine
+ * now models it natively (T115): a `move` command leaves the actor's turn open,
+ * so a move-then-act plan is committed as the two real commands `[move, act]`
+ * through `step`. A plan with only a move closes the turn with an explicit
+ * `wait` (FFTA "end turn"), while a plan with only an action is a single `act`.
+ * Either way the engine owns the turn bookkeeping (declare → charge → resolve →
+ * end-turn → advance tempo) and every intent is a replayable command in the
+ * log.
  *
  * ## What the UI gets
  *
@@ -60,7 +59,6 @@
  * `docs/wiki/pages/Charge_time.md` (whose turn it is).
  */
 
-import { applyMove, validateMove } from "../engine/actions/move";
 import { actionSpecOf, type ActionSpec } from "../engine/actions/resolve";
 import {
   beginBattle,
@@ -450,9 +448,10 @@ export function act(
  * ------------------------------------------------------------------------ */
 
 /**
- * Commit the planned order. A `move` plan, or an `act` plan, is dispatched as a
- * normal command through `step`; a move **and** an act together resolve as one
- * FFTA turn (free move, then the action, which spends the Orders Tempo charge).
+ * Commit the planned order as real engine commands. A move-then-act plan is
+ * dispatched as `[move, act]` and resolves as one FFTA turn (the free move
+ * leaves the Orders Tempo turn open, T115); a move-only plan dispatches
+ * `[move, wait]` to close it; an action-only plan is a single `act`.
  *
  * On success the machine returns to `select` for the next soldier and records
  * the commands and events for the renderer. A rejected order leaves the battle
@@ -502,9 +501,11 @@ function dispatchCommands(
 }
 
 /**
- * Resolve the staged turn plan. See the module header for why a move+act turn
- * composes the validated free move (`applyMove`) before committing the action
- * through `step`.
+ * Resolve the staged turn plan into a replayable command log and dispatch it
+ * through `step`. A move-then-act turn is committed as `[move, act]` — the
+ * engine's native free move keeps the turn open (T115) — while a move-only plan
+ * closes the turn with an explicit `wait`. An action-only plan is a single
+ * `act`.
  */
 function dispatchPlan(controller: BattleController): BattleController {
   const actorId = controller.selectedUnitId;
@@ -517,76 +518,29 @@ function dispatchPlan(controller: BattleController): BattleController {
   }
 
   const commands: Command[] = [];
-  let battle = controller.battle;
-  let events: BattleEvent[] = [];
-  let rejection: BattleRejection | null = null;
-
-  const path = controller.pendingPath;
-  const actionId = controller.pendingActionId;
-
-  if (path !== null && actionId !== null) {
-    // FFTA turn: free move, then act. Validate and apply the march without
-    // spending the Orders Tempo charge, then let `step` own the action's turn
-    // bookkeeping.
-    const validation = validateMove(battle, actor, path);
-    if (!validation.valid) {
-      return withRejection(controller, "illegal-move", validation.rejection.message);
-    }
+  if (controller.pendingPath !== null) {
     commands.push({
       kind: "move",
       unitId: actorId,
-      path: path.map((at) => ({ x: at.x, y: at.y })),
+      path: controller.pendingPath.map((at) => ({ x: at.x, y: at.y })),
     });
-    battle = applyMove(battle, actor, path, events);
-
-    const command: Command = {
+  }
+  if (controller.pendingActionId !== null) {
+    commands.push({
       kind: "act",
       unitId: actorId,
-      abilityId: actionId,
+      abilityId: controller.pendingActionId,
       target: controller.pendingTarget ?? { kind: "self" },
-    };
-    commands.push(command);
-    const result = step(battle, command);
-    if (result.rejection !== undefined) {
-      rejection = result.rejection;
-    } else {
-      battle = result.state;
-      events = [...events, ...result.events];
-    }
-  } else if (path !== null) {
-    const command: Command = {
-      kind: "move",
-      unitId: actorId,
-      path: path.map((at) => ({ x: at.x, y: at.y })),
-    };
-    commands.push(command);
-    const result = step(battle, command);
-    if (result.rejection !== undefined) {
-      rejection = result.rejection;
-    } else {
-      battle = result.state;
-      events = [...result.events];
-    }
-  } else if (actionId !== null) {
-    const command: Command = {
-      kind: "act",
-      unitId: actorId,
-      abilityId: actionId,
-      target: controller.pendingTarget ?? { kind: "self" },
-    };
-    commands.push(command);
-    const result = step(battle, command);
-    if (result.rejection !== undefined) {
-      rejection = result.rejection;
-    } else {
-      battle = result.state;
-      events = [...result.events];
-    }
+    });
+  } else if (controller.pendingPath !== null) {
+    // The engine's free move leaves the actor's Orders Tempo turn open, so a
+    // move-only plan must close it explicitly. `wait` is the FFTA "end turn".
+    commands.push({ kind: "wait", unitId: actorId });
   } else {
     return withRejection(controller, "unsupported", "no order is ready to confirm");
   }
 
-  return afterDispatch(controller, battle, commands, events, rejection);
+  return dispatchCommands(controller, commands);
 }
 
 /* --------------------------------------------------------------------------
