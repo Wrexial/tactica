@@ -570,7 +570,7 @@ deterministic.
 - done: Mission board with fee, requirements (item/post/unit) and reward preview.
 
 ### T072 — Detachments
-- status: todo
+- status: done
 - deps: [T070, T076]
 - files: src/engine/detach.ts
 - verify: npm run test -- --run tests/unit/detach.test.ts
