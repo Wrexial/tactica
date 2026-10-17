@@ -1,0 +1,184 @@
+{{DISPLAYTITLE:Warrior (''Tactics Advance'')}}
+{{infobox job
+|name=Warrior
+|release=FFTA
+|japanese=ウォリアー
+|romaji=Woriā
+|image=Ffta-bangaa-warrior.jpg
+|portrait=[[File:ffta-job-warrior.png|50px|Player]] [[File:Ffta-job-warrior-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-warrior.gif|20px|Player]] [[File:Ffta-job-warrior-enemy-sprite.png|20px|Enemy]]
+|obtained=Default
+|characters=[[Bangaa]]
+|stats=*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 50
+*Stat growth: good HP and Attack, but low Magic and Speed
+|weapons=[[Final Fantasy Tactics Advance weapons#Swords|Swords]] and [[Final Fantasy Tactics Advance weapons#Broadswords|broadswords]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Helms|helms]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]], [[Final Fantasy Tactics Advance armor#Heavy Armor|heavy armor]] and [[Final Fantasy Tactics Advance armor#Shields|shields]]
+|command abilities=*[[Battle Tech (Tactics Advance)|Battle Tech]]
+*[[#Combat Combo|Combat Combo]]
+|support abilities=*[[#Monkey Grip|Monkey Grip]]
+*[[Shieldbearer (ability)|Shieldbearer]]
+|boss page=
+|recurring appearance=Warrior (job)
+}}
+{{Quote|Bangaa fighter that uses 1 and 2-handed weapons.|Description}}
+'''Warriors''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' exclusive to [[bangaa]]. It is the basic melee unit with great HP and Attack growth, but low Magic and Speed. Warriors can use their Battle Techs to heal themselves, or alter the stats of their opponents.
+
+Warriors are only useful in the beginning as they quickly become outclassed by the more advanced jobs. The [[Soldier (Tactics Advance)|Soldier]] class is the [[Human|hume]] version of the Warrior class, but with a slightly altered moveset.
+
+==Growth==
+Warriors, like hume Soldiers, have excellent HP, Attack and Defense, while their MP, Magic Power, and Resistance are low. Their Speed is average for a bangaa.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|9.2 S
+|2.1 D
+|9.2 B+
+|8.4 B
+|6.2 D-
+|6.8 D+
+|0.9 D-
+|}
+
+==Abilities==
+===[[Battle Tech (Tactics Advance)|Battle Tech]]===
+{{Quote|Soldier & warrior command. Soften up enemy defenses.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:8%"|Name
+!style="width:10%"|Equipment
+!style="width:5%"|AP
+!style="width:5%"|MP
+!style="width:5%"|Range
+|-
+! rowspan=2|{{LA|First Aid (ability)|First Aid}}
+|[[Final Fantasy Tactics Advance weapons#Shortsword|Shortsword]]
+|100
+|—
+|Self
+|-
+|colspan=4 style="text-align:left"|''Disinfects wounds to heal HP and remedy status.''
+|-
+! rowspan=2|{{LA|Power Break (ability)|Powerbreak}}
+|[[Final Fantasy Tactics Advance weapons#Samson Sword|Samson Sword]]
+|200
+|—
+|Weapon range
+|-
+|colspan=4 style="text-align:left"|''Weakens a target's weapon attacks.''
+|-
+! rowspan=2|{{LA|Mind Break|Mindbreak}}
+|[[Final Fantasy Tactics Advance weapons#Buster Sword|Buster Sword]]
+|200
+|—
+|Weapon range
+|-
+|colspan=4 style="text-align:left"|''Reduces target's magic power.''
+|-
+! rowspan=2|{{LA|Magic Break (ability)|Magicbreak}}
+|[[Final Fantasy Tactics Advance weapons#Falchion|Falchion]]
+|200
+|—
+|Weapon range
+|-
+|colspan=4 style="text-align:left"|''Deals damage to MP.''
+|-
+! rowspan=2|{{LA|Rend Speed|Speedbreak}}
+|[[Final Fantasy Tactics Advance weapons#Silver Sword|Silver Sword]]
+|200
+|—
+|Weapon range
+|-
+|colspan=4 style="text-align:left"|''Reduces target's speed.''
+|-
+! rowspan=2|{{LA|Greased Lightning (ability)|Greased Bolt}}
+|[[Final Fantasy Tactics Advance weapons#Gale Sword|Gale Sword]]
+|300
+|—
+|Weapon range
+|-
+|colspan=4 style="text-align:left"|''Attacks so fast that target cannot react.''<br>Nullifies R-abilities.
+|-
+! rowspan=2|{{LA|Body Slam}}
+|[[Final Fantasy Tactics Advance weapons#Striborg|Striborg]]
+|300
+|—
+|1
+|-
+|colspan=4 style="text-align:left"|''Powerful slam. Damages attacking unit as well.''
+|-
+! rowspan=2|{{A|Downsize}}
+|[[Final Fantasy Tactics Advance weapons#Restorer|Restorer]]
+|300
+|24
+|1
+|-
+|colspan=4 style="text-align:left"|''Reduces target HP by 1/2.''
+|-
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Monkey Grip}}
+|[[Claymore (weapon)|Claymore]]
+|style="text-align:left"|''Enables holding a two-handed weapon in one hand.''
+|300
+|-
+!{{LA|Shieldbearer (ability)|Shieldbearer}}
+|[[Final Fantasy Tactics Advance armor#Bronze Shield|Bronze Shield]]<br>[[Final Fantasy Tactics Advance armor#Opal Shield|Opal Shield]]
+|style="text-align:left"|''Enables holding a shield-wielding, regardless of job.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Combat Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Sword|Mythril Sword]]
+|style="text-align:left"|''Failproof combo ability for warriors.''
+|100
+|}
+
+== Overview ==
+Warrior is arguably the worst class in the game, tied with [[Soldier (Tactics Advance)|Soldier]]. Like their hume counterparts, Warriors have excellent HP and high attack, but their MP, magic power, and resistance are all very low. Their ability set is slightly different than the Soldier's, having a few more damaging abilities rather than support. Warriors have no ranged abilities and lack significant reaction or support abilities. Their four break abilities are only useful in theory, but in reality wasted on such a poor class. Warriors are worse than [[White Monk (Tactics Advance)|White Monks]], the other basic bangaa job, in nearly every way. Overall, Warrior is a poor class unable to provide support and attack from a range, being only useful in the very beginning of the game.
+
+Enemy Warriors are easy to dispatch, being only marginally more difficult than Soldiers due to having higher HP and attack. Warriors can do decent damage should they get into melee range, but should not happen as they are slow. Warriors are easily defeated by ranged units, mages, and fast units.
+
+==Gallery==
+<gallery>
+FFTA First Aid.png|First Aid.
+FFTA Powerbreak.png|Powerbreak.
+FFTA Mindbreak.png|Mindbreak.
+FFTA Magicbreak.png|Magicbreak.
+FFTA Speedbreak.png|Speedbreak.
+FFTA Body Slam.png|Body Slam.
+FFTA Greased Bolt.png|Greased Bolt.
+FFTA Downsize.png|Downsize.
+</gallery>{{Gallery incomplete|Combat Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Guerrero (Final Fantasy Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

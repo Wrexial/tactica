@@ -1,0 +1,48 @@
+[[File:Nubswood.png|thumb|right|250px|An engagement taking place in Nubswood.]]
+{{Quote|Deep, dark forest. Popular hideout for thieves.|Description}}
+The '''Nubswood''' {{J|ヌーベスの森|Nūbesu no mori}} is a deep, dark forest from ''[[Final Fantasy Tactics Advance]]''. It can be freed after "Mission #006: Antilaws" and "Mission #070: Raven's Oath" are completed.
+
+==Missions==
+*"Mission #003: The Cheetahs"
+{{Quote|There's a price on the heads of the band of conmen calling themselves the "Cheetahs." Word is they were seen in the Nubswood!|Bratt, Streetear}}
+*"Mission #025: Wanted!"
+{{Quote|This Month's Wanted! Black Mage Dolce: 4600 gil<br/>Dangerous magic use<br/>Eating and running<br/>Assorted misdemeanors<br/>Last spotted in forest}}
+*"Mission #071: Nubswood Base"
+{{Quote|We've discovered a Borzoi Base in the Nubswood. Help us root this evil out of our lands forever!|Sprohm Town Watch}}
+*"Mission #086: Last Stand"
+{{Quote|I sense... a life-force possessing unfathomable magic powers! It would be folly to let it roam wild. Kill it! Kill it!|Shaton, Diviner}}
+*"Mission #242: The Nubswood"
+{{Quote|Rock turtles have been attacking travelers in the Nubswood. Use this "shellout" to get rid of them, please.|Hoelik, Townsperson}}
+
+==Encounters==
+===Rangers===
+{{Quote|Preservationists. Radical clan that doesn't like others coming into the woods.|Description}}
+Members:
+*[[White Mage (Tactics Advance)|White Mage]] (Viera)
+*[[Animist (Tactics Advance)|Animist]] (Moogle)
+*[[Elementalist (Tactics Advance)|Elementalist]] (Viera)
+*[[Archer (Tactics Advance)|Archer]] (Viera)
+*[[Fencer (Tactics Advance)|Fencer]] (Viera)
+This clan will only stay in their territory and not move to other areas, befitting their preservationist status.
+
+==Turf Defense==
+===Help Nubs!===
+{{Quote|Rockbeasts are nesting in the Nubswood. If they move in for good, we're finished! I hope Clan [Nutsy] can help us!|Town rumor}}
+*[[Beastmaster (Tactics Advance)|Beastmaster]]
+*[[Blade Biter (Tactics Advance)|Blade Biter]]
+*[[Toughskin (Tactics Advance)|Toughskin]] x2
+
+==Gallery==
+<gallery>
+Nubswood 1.PNG|Nubswood.
+Nubswood 2.PNG|Nubswood.
+Nubswood 3.PNG|Nubswood.
+Nubswood 4.PNG|Nubswood.
+Nubswood 5.PNG|Nubswood.
+Forest-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Forests]]

@@ -1,0 +1,645 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' elements}}
+The following is a list of all elements in ''[[Final Fantasy Tactics Advance]]''.
+
+{{See|Element (term)}}
+
+==[[Fire (element)|Fire]]==
+{|class="full-width FFTA article-table"
+|-
+!width="150px"|Game Element
+!width="100px"|Type
+!Effect
+|-
+![[Ashura (weapon)|Ashura]]
+|Katana
+|Fire-elemental weapon.
+|-
+!Backdraft
+|Fighter Tech
+|Sacrifice HP to deal increased Fire-elemental damage to the target.
+|-
+![[Black Robe]]
+|Robe
+|Increases power of Fire-elemental abilities.
+|-
+![[Flame equipment|Blaze Robe]]
+|Robe
+|Absorbs Fire attacks
+|-
+![[Self-Destruct|Blowup]]
+|Blue Magic
+|Inflicts Fire-elemental damage to adjacent units. KO's the caster.
+|-
+!Bomb Soul
+|Soul
+|Fire-elemental weapon. Halves Fire attacks.
+|-
+![[Dragon Mail]]
+|Heavy Armor
+|Halves Fire attacks.
+|-
+!Explode
+|Rune
+|Inflicts Fire-elemental damage.
+|-
+![[Fira (ability)|Fira]]
+|Black Magic/Melt
+|Inflicts moderate Fire-elemental damage on the target and on units one tile away.
+|-
+![[Firaga (ability)|Firaga]]
+|Black Magic/Melt
+|Inflicts major Fire-elemental damage on the target and on units one tile away.
+|-
+![[Fire (ability)|Fire]]
+|Black Magic/Red Magic/Melt
+|Inflicts minor Fire-elemental damage on the target and on units one tile away.
+|-
+![[Molotov Cocktail (ability)|Firebomb]]
+|Stunt
+|Inflicts Fire-elemental damage and [[Berserk (status)|Berserk]].
+|-
+![[Fire Breath]]
+|Dragon Tech/Dragonblaze
+|Inflicts Fire-elemental damage to units in a T-area in front of the user.
+|-
+!Fire Mitts
+|Gloves
+|Nullifies Fire attacks.
+|-
+!Fireshot
+|Gunmanship
+|Inflicts Fire-elemental damage.
+|-
+![[Flametongue (weapon)|Fire Sword]]
+|Spellblade Tech
+|Inflicts increased Fire-elemental damage.
+|-
+![[Katon|Fire Veil]]
+|Ninja Tech
+|Inflicts Fire-elemental damage and [[Confuse (status)|Confuse]].
+|-
+![[Flame equipment|Firewheel Rod]]
+|Rod
+|Fire-elemental weapon.
+|-
+!Fire Whip
+|Spirit Magic
+|Inflicts Fire-elemental damage and [[Disable (status)|Disable]].
+|-
+!Flame Attack
+|Blaze
+|Inflicts Fire-elemental damage.
+|-
+![[Flame Rod]]
+|Rod
+|Fire-elemental weapon. Increases power of Fire-elemental abilities.
+|-
+![[Flame Shield]]
+|Shield
+|Absorbs Fire attacks.
+|-
+![[Flametongue (weapon)|Flametongue]]
+|Blade
+|Fire-elemental weapon.
+|-
+!Helje Key
+|Mission Item
+|Increases power of Fire-elemental abilities.
+|-
+!Iceprism
+|[[Greatsword (weapon type)|Greatsword]]
+|Nullifies Fire attacks.
+|-
+![[Ice Shield]]
+|Shield
+|Halves Fire attacks.
+|-
+![[Ifrit]]
+|Summon Magic
+|Inflicts Fire-elemental damage on the target and on units up to two tiles away.
+|-
+![[Flame equipment|Lava Spear]]
+|Spear
+|Fire-elemental weapon.
+|-
+!Lotus Mace
+|Mace
+|Fire-elemental weapon. Increases power of Fire-elemental abilities.
+|-
+!Prominence
+|Phantasm Tech
+|Inflicts Fire-elemental damage to all enemy units.
+|-
+![[Rising Sun]]
+|Knuckle
+|Fire-elemental weapon.
+|-
+!Scarlette
+|Rapier
+|Fire-elemental weapon.
+|-
+![[Soul Sabre|Soulsaber]]
+|Saber
+|Fire-elemental weapon.
+|-
+!Venus Blade
+|Blade
+|Fire-elemental weapon. Absorbs Fire attacks.
+|-
+!White Flame
+|Spirit Magic
+|Heals HP using Fire-elemental.
+|-
+![[White Robe]]
+|Robe
+|Halves Fire attacks.
+|-
+!Wyrmstone
+|Mission Item
+|Increases power of Fire-elemental abilities.
+|}
+
+==[[Ice (element)|Ice]]==
+{|class="full-width FFTA article-table"
+|-
+!width="150px"|Game Element
+!width="100px"|Type
+!Effect
+|-
+![[Blizzard (ability)|Blizzard]]
+|Black Magic
+|Weak Ice damage.
+|-
+![[Blizzara (ability)|Blizzara]]
+|Black Magic
+|Average Ice damage.
+|-
+![[Blizzaga (ability)|Blizzaga]]
+|Black Magic 
+|Strong Ice damage.
+|-
+![[Ice equipment|Chill Rod]]
+|Rod
+|Enhance Ice elemental damage.
+|-
+!Goblin Soul
+|Morph
+|Halves Ice elemental damage.
+|-
+![[Icebrand (weapon)|Ice Brand]]
+|Blade
+|Inflicts Ice elemental damage when attacking physically.
+|-
+![[Ice Breath]]
+|Dragon Tech
+|Inflict Ice elemental damage.
+|-
+![[Ice Lance]]
+|Spear
+|Pierce: 2
+|-
+![[Ice equipment|Iceprism]]
+|Greatsword
+|Nullifies Fire and Ice elemental damage.
+|-
+!Iceshot
+|Gunmanship
+|Deal Physical Ice damage.
+|-
+!Ice Sword
+|Spellblade Tech
+|Inflicts Ice elemental damage when attacking physically.
+|-
+![[Ice equipment|Laglace Sword]]
+|Sword
+|Inflicts Ice elemental damage when attacking physically.
+|-
+![[Ice Shield]]
+|Shield
+|Absorb Ice, halves Fire, weak against lightning.
+|-
+!Shiva
+|Summon Magic
+|Ice-elemental summon.
+|-
+![[Ice equipment|Sleet Rod]]
+|Rod
+|Ice elemental weapon.
+|-
+![[Ice equipment|White Fangs]]
+|Knuckles
+|Ice-elemental weapon.
+|}
+
+==[[Lightning (element)|Lightning]]==
+{|class="full-width FFTA article-table"
+|-
+!width="150px"|Game Element
+!width="100px"|Type
+!Effect
+|-
+!Atmos Blade
+|Blade
+|Lightning-elemental weapon.
+|-
+![[Thunder Breath|Bolt Breath]]
+|Dragon Tech
+|Deals Lightning-elemental damage.
+|-
+![[Thunder Blade (ability)|Bolt Sword]]
+|Spellblade Tech
+|Deals Lightning-elemental damage.
+|-
+!Boltshot
+|Gunsmanship
+|Deals Lightning-elemental damage.
+|-
+!Flan Soul
+|Soul
+|Halves Lightning damage.
+|-
+![[Gae Bolg (weapon)|Gae Bolg]]
+|Spear
+|Lightning-elemental weapon; teaches [[Thunder Breath|Bolt Breath]].
+|-
+![[Judgment Staff (weapon)|Judge Staff]]
+|Staff
+|Lightning-elemental weapon; teaches Ramuh.
+|-
+!Nike Bow
+|Greatbow
+|Lightning-elemental weapon.
+|-
+![[Ramuh]]
+|Summon Magic
+|Deals Lightning-elemental damage.
+|-
+![[Rubber Suit]]
+|Clothing
+|Nullifies Lightning damage (female only).
+|-
+![[Tempest (ability)|Tempest]]
+|Phantasm Tech
+|Deals Lightning-elemental damage to all foes.
+|-
+![[lightning equipment|Thor Rod]]
+|Rod
+|Lightning-elemental weapon; teaches Thundaga.
+|-
+![[Thundaga (ability)|Thundaga]]
+|Black magic 
+|Strong Lightning damage.
+|-
+![[Thundara (ability)|Thundara]]
+|Black magic
+|Average Lightning damage.
+|-
+![[Thunder (ability)|Thunder]]
+|Black/Red magic
+|Weak Lightning damage.
+|-
+![[lightning equipment|Thunder Robe]]
+|Robe
+|Absorbs Lightning damage.
+|-
+![[Thunder Rod]]
+|Rod
+|Lightning-elemental weapon; teaches Thundara and Tempest.
+|-
+![[Tiger Fangs]]
+|Knuckles
+|Lightning-elemental weapon.
+|-
+![[Vajra (weapon)|Vajra]]
+|Broadsword
+|Lightning-elemental weapon; enhances Lightning damage.
+|}
+
+==[[Earth (element)|Earth]]==
+{|class="full-width FFTA article-table"
+|-
+!width="150px"|Game Element
+!width="100px"|Type
+!Effect
+|-
+!Mandragora
+|Weapon
+|Absorbs Earth-elemental damage and nullifies Poison.
+|-
+!Terre Rod
+|Weapon
+|Enhance Earth-elemental damage.
+|-
+![[Ranger Bow]]
+|Weapon
+|Inflicts Earth-elemental damage.
+|-
+![[Arbalest]]
+|Weapon
+|Inflicts Earth-elemental damage.
+|-
+!Samson Sword
+|Weapon
+|Inflicts Earth-elemental damage.
+|-
+![[Earth Bell]]
+|Weapon
+|Absorbs Earth-elemental damage.
+|-
+!Bug Soul
+|Weapon
+|Nullifies Earth-elemental damage.
+|-
+![[Gaia Gear]]
+|Armor
+|Absorbs Earth-elemental damage.
+|}
+
+==[[Water (element)|Water]]==
+{|class="full-width article-table FFTA"
+|-
+!width=25%|Game Element
+!width=20%|Type
+!width=55%|Effect
+|-
+![[Aqua Saber (weapon)|Aqua Saber]]
+|Saber
+|Water-elemental weapon.
+|-
+![[Deluge]]
+|Phantasm Tech
+|Deals Water-elemental damage to all enemies.
+|-
+!Lamia Soul
+|Soul
+|Water-elemental weapon.
+|-
+![[Murasame]]
+|Katana
+|Water-elemental weapon; teaches Water Veil.
+|-
+!Princess Rod
+|Rod
+|Enhances Water, Wind, and Earth-elemental damage.
+|-
+!Sliprain
+|Spirit Magic
+|Deals Water-elemental damage and inflicts Slow.
+|-
+!Spring Staff
+|Staff
+|Water-elemental weapon; absorbs Water-elemental damage and teaches Water.
+|-
+![[Suiton (ability)|Water Veil]]
+|Ninja Tech
+|Deals Water-elemental damage and inflicts Silence.
+|}
+
+==[[Holy (element)|Holy]]==
+{|class="full-width FFTA article-table"
+|-
+!width="150px"|Game Element
+!width="100px"|Type
+!Effect
+|-
+![[Aegis Shield]]
+|Shield
+|Holy-elemental armor; nullifies Petrify status.
+|-
+![[Angel Whisper (ability)|Angel Whisper]]
+|Blue Magic
+|Restores HP and grants Auto-Life status.
+|-
+![[Reraise (ability)|Auto-Life]]
+|White Magic
+|Grants Auto-Life status.
+|-
+![[Cura]]
+|White Magic/Prayer
+|Restores a moderate amount of HP.
+|-
+![[Curaga]]
+|White Magic
+|Restores a large amount of HP.
+|-
+![[Cure (ability)|Cure]]
+|White/Red Magic
+|Restores a small amount of HP.
+|-
+!Epiprism
+|Rapier
+|Halves Holy and Dark damage.
+|-
+![[Excalibur (weapon)|Excalibur]]
+|Knightsword
+|Holy-elemental weapon; absorbs and enhances Holy damages and teaches Holy Blade.
+|-
+!Exorcise
+|Monk Tech
+|Attempts to remove an undead unit from battle.
+|-
+![[Arise|Full-Life]]
+|White Magic
+|Revives a fallen ally with all of their maximum HP.
+|-
+![[Godhand (weapon)|Godhand]]
+|Knuckles
+|Holy-elemental weapon.
+|-
+!Heal Chime
+|Instrument
+|Holy-elemental weapon.
+|-
+![[Ame no Murakumo (weapon)|Heaven's Cloud]]
+|Katana
+|Holy-elemental weapon; absorbs Holy damage.
+|-
+![[Holy (ability)|Holy]]
+|Prayer
+|Deals Holy-elemental damage.
+|-
+![[Holy Blade (ability)|Holy Blade]]
+|Chivalry
+|Deals Holy-elemental damage.
+|-
+![[Level ? Holy|LV?D Holy]]
+|Fluoresce
+|Deals Holy-elemental damage to all units whose level is equal to the current day.
+|-
+![[Raise (Life 1)|Life]]
+|White Magic
+|Revives a fallen ally with half of their maximum HP.
+|-
+![[Madeen]]
+|Summon Magic
+|Deals Holy damage.
+|-
+![[Mirage Vest]]
+|Clothing
+|Holy-elemental armor.
+|-
+![[Chameleon Robe|Mistle Robe]]
+|Robe
+|Absorbs holy damage; nullifies KO status.
+|-
+![[Nirvana|Nirvana Staff]]
+|Staff
+|Holy-elemental weapon; teaches Holy.
+|-
+![[Phoenix]]
+|Summon Magic
+|Revives fallen allies with all of their maximum HP.
+|-
+!Sacri Shield
+|Shield
+|Holy-elemental armor; nullifies Dark, Disable, Doom, Frog, Immobilize, Poison, Silence, Slow, and Zombie status.
+|-
+![[Saint Cross]]
+|Arch Sword
+|Deals Holy damage to surrounding units.
+|-
+![[Save the Queen]]
+|Knightsword
+|Holy-elemental weapon; enhances Holy damage.
+|-
+![[Seventh Heaven (weapon)|Seventh Heaven]]
+|Greatbow
+|Holy-elemental weapon.
+|-
+!Starcross
+|Phantasm Tech
+|Deals Holy-elemental damage to all enemies.
+|-
+![[Unicorn (creature)|Unicorn]]
+|Summon Magic
+|Restores HP and cures status ailments.
+|-
+!Vitanova
+|Sword
+|Holy-elemental weapon; absorbs Holy damage.
+|-
+![[Zanmato (weapon)|Zanmato]]
+|Katana
+|Holy-elemental weapon; enhances Holy damage.
+|}
+
+==[[Dark (element)|Dark]]==
+{|class="full-width article-table FFTA"
+|-
+!width="150px"|Game Element
+!width="100px"|Type
+!Effect
+|-
+!Diabolique
+|Weapon
+|Nullifies Dark elemental damage.
+|-
+!Heretic Rod
+|Weapon
+|Inflicts Dark elemental damage.
+|-
+!Hades Bow
+|Weapon
+|Inflicts Dark elemental damage.
+|-
+!Max's Oathbow
+|Weapon
+|Inflicts Dark elemental damage.
+|-
+!Ebon Blade
+|Weapon
+|Inflicts Dark elemental damage.
+|-
+!Death Claws
+|Weapon
+|Inflicts Dark elemental damage.
+|-
+![[Apocalypse (weapon)|Apocalypse]]
+|Weapon
+|Inflicts Dark elemental damage.
+|-
+![[Black Quena]]
+|Weapon
+|Inflicts Dark elemental damage.
+|-
+!Dark Fiddle
+|Weapon
+|Nullifies Silence.
+|-
+!Eye Soul
+|Weapon
+|Nullifies Doom.
+|-
+!Bone Plate
+|Cloth
+|Absorbs Dark elemental damage.
+|-
+!Reaper Cloak
+|Robe
+|Absorbs Dark elemental damage.
+|-
+![[LV? S-Flare]]
+|Blue Magic
+|Inflicts Dark elemental damage to all units with the same last digit's level (for example, a 29 lvl character would hit any other characters with 9, 19, 29, 39, 49 in their levels)
+|-
+!Evil Gaze
+|Spirit Magic
+|Dark damage and may inflict [[Confuse (status)|Confuse]]
+|}
+
+==[[Wind (element)|Wind]]==
+{|class="full-width FFTA article-table"
+|-
+!width="150px"|Game Element
+!width="100px"|Type
+!Effect
+|-
+!Aerial Hole
+|Rapier
+|Wind-elemental weapon.
+|-
+![[Aero (ability)|Aero]]
+|Sagacity Skill
+|Deals Wind-elemental damage.
+|-
+![[Kazekiri|Air Blade]]
+|Blade
+|Wind-elemental weapon; nullifies Wind damage and teaches Air Blast.
+|-
+![[Air Blast]]
+|Fighter Tech
+|Deals Wind-elemental damage in a T-shaped area in front of the unit.
+|-
+!Djinn Flyssa
+|Rapier
+|Wind-elemental weapon; enhances and nullifies Wind damage and teaches Shining Air.
+|-
+![[Elfin Bow|Fey Bow]]
+|Greatbow
+|Wind-elemental weapon.
+|-
+!Gale Sword
+|Sword
+|Wind-elemental weapon.
+|-
+!Princess Rod
+|Rod
+|Enhances Wind, Water, and Earth-elemental damage.
+|-
+!Shining Air
+|Spirit Magic
+|Deals Wind-elemental damage and may inflict Blind.
+|-
+![[Tornado (ability)|Wild Tornado]]
+|Phantasm Tech
+|Deals Wind-elemental damage to all enemies.
+|-
+![[Windslash Bow]]
+|Greatbow
+|Wind-elemental weapon.
+|}
+
+{{navbox elements}}
+{{navbox FFTA}}
+[[Category:Elements in Final Fantasy Tactics Advance]]
+[[Category:Element lists]]

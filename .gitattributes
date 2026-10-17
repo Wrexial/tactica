@@ -1,0 +1,13 @@
+# Normalise line endings so the generated wiki mirror and code stay stable
+# across platforms (the scraper runs on Windows and may write CRLF).
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary

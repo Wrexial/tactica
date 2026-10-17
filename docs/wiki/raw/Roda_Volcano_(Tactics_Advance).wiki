@@ -1,0 +1,49 @@
+{{DISPLAYTITLE:Roda Volcano (''Tactics Advance'')}}
+[[File:FFTA-Roda.png|right|thumb|250px|The Roda Volcano in ''Final Fantasy Tactics Advance''.]]
+'''Roda Volcano''' {{J|ローダ火山|Rōda Kazan}} is a mountain location in ''[[Final Fantasy Tactics Advance]]''. It is one of the two locations in [[Ivalice (Tactics Advance)|Ivalice]] with flowing magma.
+
+==Story==
+When [[Marche Radiuju|Marche]] investigates the Roda Volcano he is sucked into in one of the world seams and must fight the [[Totema]] [[Ultima (Tactics Advance)|Ultima]]. The Totema herself does not appear, but instead several Ultima Crystals appear as her Avatars. After all of the Ultima Crystals are destroyed the second [[Crystal (term)|Crystal]] shatters and a vision of [[Mewt Randell|Mewt]] appears and berates Marche for attempting to destroy "his world".
+
+Roda Volcano is also the spawn location for "Mission #102: Wyrms Awaken". It can be freed in "Mission #246: Roda Volcano" after "Mission #010: Emerald Keep" is completed.
+
+==Missions==
+*"Mission #008: Hot Awakening"
+{{Quote|The Roda Volcano has been active lately. The Royal Mage Academy wants to hire researchers. No experience needed, must like heat.|Ramda, Geologist}}
+*"Mission #047: Hot Recipe"
+{{Quote|I need to make a super hot dish to compete with the restaurant across the street! Please get the "stuff" at Roda Volcano.|Rolana, The Chocobo's Kweh}}
+*"Mission #076: Fire Sigil"
+{{Quote|Marilith Serpent, Falgabird of fire and brimstone, has been seen at Roda Volcano. Your duty is clear! Godspeed.|The Mysterious Minstrel}}
+*"Mission #088: The Worldwyrm"
+{{Quote|The ley lines that run through Ivalice have gone awry—the World Wyrm, Ogma is come again! Defeat him or Ivalice is doomed!|Jemingo, Geomancer}}
+*"Mission #246: Roda Volcano"
+{{Quote|Roda Volcano's been active lately. Someone needs to go to the road at the base of the cone and clean off the chunks of lava.|Naricys, Geologist}}
+
+==Encounters==
+===Roda Dragons===
+{{Quote|Firewyrm sleeping in the Roda Volcano. Leaves the cone for occasional raids.|Description}}
+*[[Firewyrm]] x2
+*[[Bomb (Tactics Advance)|Bomb]]
+*[[Jelly (Tactics Advance)|Jelly]]
+*[[Toughskin (Tactics Advance)|Toughskin]]
+
+==Turf Defense==
+===Help Roda!===
+{{Quote|The Roda Dragon's awoken! I've never seen so much lava, and the bombs are everywhere! Things look pretty grim.|Town rumor}}
+*[[Bomb (Tactics Advance)|Bomb]] x2
+*[[Firewyrm]]
+*[[Grenade (Tactics Advance)|Grenade]]
+
+==Gallery==
+<gallery>
+Roda Volcano 1.PNG|Roda Volcano.
+Roda Volcano 2.PNG|Roda Volcano.
+Roda Volcano 3.PNG|Roda Volcano.
+Roda Volcano 4.PNG|Roda Volcano.
+Roda Volcano 5.PNG|Roda Volcano.
+Mountain-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]

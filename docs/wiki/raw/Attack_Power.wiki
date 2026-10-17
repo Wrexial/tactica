@@ -1,0 +1,91 @@
+'''Attack Power''' {{J|攻撃|Kougeki|Attack}}, also known as '''Attack''', '''AP''', '''Battle Power''', '''Bat.Pwr''', '''Weapon Power''', and '''P-Attack''', is a recurring [[Stats|stat]] in the series that boosts the strength of physical attacks. It is typically associated with [[Strength]], and is often a counterpart which is boosted by [[weapon (equipment)|weapons]] rather than [[level]]s.
+
+== Appearances ==
+=== ''[[Final Fantasy II]]'' ===
+Attack varies based on the character's Strength statistic, as well as which hand a weapon is equipped in, and the weapon the character is using.
+* Weapons (including bows) equipped in the character's main hand (with a shield/nothing in other hand) will give bonus Attack equal to <math>\frac{\mbox{1}}{2} * \mbox{Str}</math>, rounded down, while a weapon in the off-hand slot (with a shield/nothing in main hand) will use the same formula, except the value is halved.
+* Dual-wielded weapons will each have the same bonus Attack as the above formula, although it will be halved for each weapon.
+* [[Unarmed (weapon)#Final Fantasy II|Unarmed]] has its own formula: for a main-handed 'Hands' with a shield in the off-hand slot, Attack Power is equal to <math>(\mbox{4} * {Lv}) + \mbox{Base}</math>, where Base is the product of the first formula; if 'Hands' is in the off-hand slot and a shield in the main-hand, the same formula is used, although the end value is halved. 'Hands' in both slots results in a different formula: <math>(\mbox{8} * {Lv}) + (\frac{\mbox{1}}{2} * \mbox{Str})</math>
+
+
+=== ''[[Final Fantasy IV]]'' ===
+
+[[Final Fantasy IV stats#Attack|Attack]] is boosted by [[Final Fantasy IV weapons|weapons]] and the [[Final Fantasy IV stats#Strength|Strength]] stat.
+
+Formula for Attack:
+* Given by (where, if two weapons are equipped, the first term is doubled and "WpAtk" becomes the sum of both):
+:<math>\frac{\mbox{Lv}+\mbox{Str}}{4} + \mbox{WpAtk}</math>
+* Bows are an exception (where WpAtk is the sum of the bow and arrows, multiplied by 0.8 if the bow is held in the dominant hand instead of the arrows):
+:<math>\mbox{WpAtk} + \frac{\mbox{Str}}{4}</math>
+* Attack for Yang:
+:<math>2( \mbox{Lv}+1 ) + \frac{\mbox{Str}}{4}</math>
+
+Formula for Attack Multiplier:
+* The highest amount for Multiplier any character can have is 19.
+:<math>1 + \frac{2\mbox{Str} + \mbox{Agi}}{16}</math>
+
+==== ''[[Final Fantasy IV -Interlude-]]'' ====
+
+[[Final Fantasy IV -Interlude- stats#Attack|Attack]] works identically to how it works in ''Final Fantasy IV''.
+
+==== ''[[Final Fantasy IV: The After Years]]'' ====
+
+[[Final Fantasy IV: The After Years stats#Attack|Attack]] works identically to how it works in ''Final Fantasy IV''.
+
+=== ''[[Final Fantasy V]]'' ===
+
+[[Final Fantasy V stats#Attack|Attack]] is boosted by [[Final Fantasy V weapons|weapons]], while the [[Final Fantasy V stats#Strength|Strength]] stat is boosted by [[Final Fantasy V jobs|job]] growth and other factors.
+
+=== ''[[Final Fantasy VI]]'' ===
+
+Also known as Bat.Pwr, [[Final Fantasy VI stats#Attack|Attack]] is easier to increase than [[Final Fantasy VI stats#Strength|Strength]] as it can be boosted with [[Final Fantasy VI weapons|weapons]] instead of purely [[Magicite (Final Fantasy VI)|magicite]] and [[Relic (Final Fantasy VI)|relic]] boosts. It is added with Strength before other factors are taken into account when determining damage.
+
+=== ''[[Final Fantasy VII]]'' ===
+
+Unlike other games, [[Final Fantasy VII stats#Attack|Attack]] is determined by the [[Final Fantasy VII weapons|weapon]] power added with [[Final Fantasy VII stats#Strength|Strength]]. However, both stats add to the damage dealt independently.
+
+The formula for base damage from a physical attack is as follows, where Att = Str + Weapon Power:
+:<math>\mbox{Base Damage} = \mbox{Att} + \frac{(\mbox{Att} + \mbox{Lv})}{32} * \frac{\mbox{Att} * \mbox{Lv}}{32}</math>
+
+=== ''[[Final Fantasy IX]]'' ===
+
+[[Final Fantasy IX stats#Attack|Attack]] is the power of the [[Final Fantasy IX weapons|weapon]], [[Final Fantasy IX stats#Strength|Strength]] is the power of the character, and both are required for attack power. The following is the formula for damage dealt:
+:<math>Base Damage = [Attack - Target Defence] * [[Strength + Level / 8] + Strength]</math>
+
+=== ''[[Final Fantasy XII]]'' ===
+
+[[Final Fantasy XII stats#Attack Power|Attack Power]] is boosted by [[Final Fantasy XII weapons|weapons]], and is the most important physical damage stat, as it comes into all damage calculations. Each weapon has a different damage calculation based on a different [[Final Fantasy XII stats|stat]], which allows for weapons to be more useful for certain characters and for certain roles. Attack Power consistently factors into this equation the following way:
+
+:<math>DMG = [Attack Power * Random(1~1.125) - Defense] * [Additional]</math>
+
+Where "Additional" refers to the weapon calculation usually involves two different stats of the attacker. In the case of [[Final Fantasy XII weapons#Guns|guns]] and [[Final Fantasy XII weapons#Measures|measures]], this equation is simply squared and Attack Power is the only stat of the attacker that factors into the equation.
+
+=== ''[[Final Fantasy XIV]]'' ===
+
+[[Final Fantasy XIV stats#Attack Power|Attack power]] increases damage dealt by physical attacks, and is increased by either [[Final Fantasy XIV stats#Strength|strength]] or [[Final Fantasy XIV#Dexterity|dexterity]] depending on the [[Final Fantasy XIV disciplines|discipline]].
+
+=== ''[[Final Fantasy Mystic Quest]]'' ===
+
+The higher the number, the more damage the equipped weapon will deal. All weapons increase attack power.
+
+The damage formula for physical attacks:
+:<math>\frac{(\mbox{Attack}*4-\mbox{Defense})*\mbox{weakness}}{\mbox{split}}</math>
+
+=== ''[[Final Fantasy Adventure]]'' ===
+
+[[Final Fantasy Adventure stats#AP|AP]] stands for Attack Power, it is the strength of physical and magical attack.
+
+=== ''[[Final Fantasy Legend III]]'' ===
+
+The [[Final Fantasy Legend III stats#Attack|Attack]] stat affects the degree of damage inflicted upon enemies. Attack can be boosted by equipping weapons. The cap for Attack is 99, but equipment can make this stat exceed 99. So, the real cap is 99 + equipment bonuses.
+
+All weapons and shields increases the [[Cyborg]]'s Attack when equipped.
+
+===''[[Final Fantasy Explorers]]''===
+
+P-Attack: might of physical attacks. Strength is reflected in P-Attack.
+{{Section|Final Fantasy Explorers}}
+
+{{navbox stats}}
+
+[[Category:Recurring stats]]

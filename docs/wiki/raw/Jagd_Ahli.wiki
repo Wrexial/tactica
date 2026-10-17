@@ -1,0 +1,43 @@
+[[File:JagdAhli.png|thumb|right|250px|Bloodthirsters in Jagd Ahli.]]
+{{Quote|Lawless "jagd" destroyed by its own wild magic.|Description}}
+'''Jagd Ahli''' {{j|ヤクトアーリー|Yakuto ārī}} is a [[jagd]] location from ''[[Final Fantasy Tactics Advance]]'' and can be placed after "Mission #065: Exploration" is cleared. It is the second of the three jagds accessible by [[Clan Nutsy]]. It can be freed in "Mission #259: Jagd Ahli" after the main game is cleared.
+
+==Missions==
+*"Mission #030: Wanted!"
+{{Quote|This Month's Wanted! Dark Duke Lodion: 22600 gil [Warning: Very Dangerous!]<br/>Powerful Magic<br/>Numerous followers<br/>Active in Jagd Ahli}}
+*"Mission #096: Shadow Clan".
+{{Quote|[Clan Nutsy]! If you truly believe you are the strongest clan in Ivalice, we ShadowClan, challenge you!|Hanzo, ShadowClan Boss}}
+*"Mission #259: Jagd Ahli"
+{{Quote|I'm thinking of building a gladitorial arena in Jagd Ahli. A lawless sport in a lawless zone! Help me find a good spot.|Pakanon, Architect}}
+
+==Encounters==
+===Bloodthirsters===
+{{Quote|Dark beings from the lawless jagds, come to drag the living down into darkness.|Description}}
+Members:
+*[[Masterberry]]
+*[[Assassin (Tactics Advance)|Assassin]] (Viera)
+*[[Vampire (Tactics Advance)|Vampire]]
+*Vampire
+*[[Juggler (Tactics Advance)|Juggler]] (Moogle)
+*[[Ahriman (Tactics Advance)|Ahriman]]
+
+==Turf Defense==
+===Help Ahli!===
+{{Quote|Undead creatures walk in the night here in this jagd... A lot of people got scared and left. You should leave too...|Town rumor}}
+*Vampire
+*[[Zombie (Tactics Advance)|Zombie]] x3
+
+==Gallery==
+<gallery>
+Jagd Alhi 1.PNG|Jagd Ahli (1).
+Jagd Alhi 2.PNG|Jagd Ahli (2).
+Jagd Alhi 3.PNG|Jagd Ahli (3).
+Dungeon-ffta-icon.png|Icon.
+</gallery>
+
+==Etymology==
+The word ''ahli'' can mean "member", "someone who knows something" and "someone in a certain group/organization/association" in Indonesian and Malay languages, but the use of the word varies greatly with different terms and grammar systems.
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]

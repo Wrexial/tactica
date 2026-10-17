@@ -1,0 +1,42 @@
+[[File:Muscadet.png|right|thumb|200px|Clan Belmia in Muscadet.]]
+{{Quote|Mainly viera town hidden deep in the woods|Description}}
+'''Muscadet''' {{j|隠れ里ミュスカデ|Kakurezato Myusukade|Isolated Village Muscadet}} is a mostly [[viera]] town in ''[[Final Fantasy Tactics Advance]]''. It is a town built above ground within the cover of the trees. It is also the location where the [[clan]], Brown Rabbits, the third clan fought in the Clan League, spawns.
+
+==Locations==
+===Spina Lodge===
+The local tavern where guests would flock at night to listen to the trichord.
+
+===Ellen's Place===
+The item shop, owned by the flirtatious viera, [[Ellen]]. Gives good deals on greatswords.
+
+==Story==
+A battle occurs here between [[Marche Radiuju]] and forces sent to arrest him in "Mission #015: Scouring Time". As a Judge attempts to arrest an innocent moogle for no reason, Marche intervenes and causes the Judge to call in several palace guards to accost him.
+
+After Marche is victorious, [[Cid Randell|Judgemaster Cid]] and [[Babus Swain]] arrive and take him to the [[Sprohm]] prison. There, the Judgemaster attempts to interrogate Marche, but the portal opens to the domain of the viera [[Totema]] [[Exodus (Tactics Advance)|Exodus]]. The other mission that occurs in Muscadet is "Mission #039: The Wanderer". Muscadet can be freed in "Mission #082: Free Muscadet!" after the "Weird Minstrel" rumor is read at a pub.
+
+==Missions==
+*"Mission #015: Scouring Time"
+{{Quote|By Order of Her Majesty Queen Remedi we will be searching each town for the boy wanted by the palace.|Bervenia Palace & Judges}}
+*"Mission #039: The Wanderer"
+{{Quote|The body of a viera was found last night with several knife wounds. Anyone with information should contact us.|Meiral, Palace Guard}}
+*"Mission #082: Free Muscadet!"
+{{Quote|Some Clan Borzoi leftovers have turned up in the town of Muscadet. Help us beat some sense into them!|Muscadet Town Watch}}
+
+==Encounters==
+===Clan Belmia===
+{{Quote|This clan prefers to work indoors. Easily angered when outside. Best to avoid.|Description}}
+*Assassin (viera)
+*Thief (human)
+*Sniper (viera)
+*Ninja (human)
+*Gunner (moogle)
+
+==Gallery==
+<gallery>
+Muscadet 1.PNG|Muscadet.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Towns]]

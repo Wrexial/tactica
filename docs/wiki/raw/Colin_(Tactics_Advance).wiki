@@ -1,0 +1,63 @@
+{{DISPLAYTITLE:Colin (''Tactics Advance'')}}
+{{infobox character
+|name=Colin
+|release=FFTA
+|japanese=コリン
+|romaji=Korin
+|image=FFTA-Colin por.gif
+|sprite=[[File:FFTA Colin.png]]
+|home=[[St. Ivalice]]
+|race=[[Human]]
+|gender=Male
+|type=npc
+}}
+{{dialogue|Lyle|Hey, no running away Mewt!|Colin|But that's what Mewt does best! Hah hah!|context=Lyle and Colin, bullying Mewt}}
+'''Colin''' is a character from ''[[Final Fantasy Tactics Advance]]''. A resident of [[St. Ivalice]], Colin attends the same school where [[Marche Radiuju]] enrolled after moving into town, where he is the PE Head—a student, usually a boy, who cleans up the place after PE.
+
+==Story==
+[[File:StIvaliceSchool.png|left|thumb|Colin and the other students in a snowball fight.]]
+Colin is in cohorts with two other kids, [[Guinness]] and [[Lyle]]. The three kids are school bullies who enjoy taunting and bullying [[Mewt Randell]] and other kids at school. During the snowball "fight", the bullies ganged up upon Mewt, throwing snowballs and constantly berating him. Colin made the situation worse by throwing a rock at Mewt, causing the timid boy to bleed. Mr. Leslaie saw this and stopped the "fight" immediately, sending them off to his office.
+
+It is unknown what happened to them when St. Ivalice was transformed by the [[Gran Grimoire]], until Marche and [[Clan Nutsy]] accepted the quest "Prof in Trouble" to save the [[nu mou]] Professor [[Professor Auggie|Auggie]] in [[Lutia Pass]]. Here, they found out that the three bullies have been turned into [[Zombie (Tactics Advance)|Zombies]] and attacking passersby. Marche and the clan defeated them with ease.
+
+When St. Ivalice was reverted to its initial state, so did the three bullies, although Marche and Mewt have gathered much courage to go against them. After the game, Lyle, Guinness, and himself will also be [[Vampire (Tactics Advance)|Vampires]] in the mission "Mortal Snow", where the clan will recruit [[Ritz Malheur]].
+
+==Stats==
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!width="25%"|Move Rate
+!width="25%"|Jump Rate
+!width="25%"|Evade Rate
+|-
+|3
+|2
+|50
+|}
+
+==Growth==
+Like the other school children, Colin's PE Head job class has its own unique stat growth rate programmed into the game, though it cannot be accessed without a cheat device. However, because it is only used in a tutorial, its stats are quite low and has no abilities.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="10%"|HP
+!width="10%"|MP
+!width="10%"|Attack
+!width="10%"|Defense
+!width="10%"|Magic Power
+!width="10%"|Magic Resistance
+!width="10%"|Speed
+|-
+|4.2 E
+|0.0 E
+|2.5 E
+|3.3 E
+|0.0 E
+|0.0 E
+|1.0 D
+|}
+
+==Etymology==
+"Colin" is Irish, Scottish, and Gaelic for "young creature".
+
+{{navbox characters FFTA}}
+[[Category:Characters in Final Fantasy Tactics Advance]]

@@ -1,0 +1,232 @@
+{{DISPLAYTITLE:Archer (''Tactics Advance'')}}
+{{infobox job
+|name=Archer
+|release=FFTA
+|japanese=弓使い
+|romaji=Yumi Tsukai
+|image=<gallery>Ffta-h-archer.jpg|Hume
+Viera.jpg|Viera
+</gallery>
+|portrait=[[File:ffta-job-human-archer.png|50px|Player hume]] [[File:Ffta-job-human-archer-enemy.png|50px|Enemy hume]]<br/>[[File:ffta-job-viera-archer.png|50px|Player viera]] [[File:Ffta-job-viera-archer-enemy.png|50px|Enemy viera]]
+|sprite=[[File:FFTA-job-archerH.gif|20px|Player hume.]] [[File:Ffta-job-human-archer-enemy-sprite.png|Enemy hume|20px]] [[File:FFTA-job-archerV.gif|20px|Player viera.]] [[File:Ffta-job-viera-archer-enemy-sprite.png|Enemy viera|20px]]
+|obtained=Default
+|required=Default
+|characters=[[Human|Hume]] and [[viera]]
+|stats=
+*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 50
+*Stat growth: focuses on Resistance
+|weapons=[[Final Fantasy Tactics Advance weapons#Bows|Bows]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=
+*[[Aim (Tactics Advance)|Aim]]
+*[[#Bow Combo|Bow Combo]] (combo)
+|support abilities=*[[Concentrate (ability)|Concentrate]]
+* [[Archer's Bane|Block Arrows]] (reaction)
+|recurring appearance=Archer (job)
+}}
+{{Quote|Archers are essential for long-range combat.|Description}}
+The '''Archer''' [[Final Fantasy Tactics jobs|job]] is available to [[Human|humes]] and [[viera]] as a basic job in ''[[Final Fantasy Tactics Advance]]''. Archers are known for their ranged combat via bow and arrows. The range of their attack depends on their bow.
+
+When humes master two Archery abilities they can become [[Hunter (Tactics Advance)|Hunters]]. When viera master two Archery abilities they can become [[Sniper (Tactics Advance)|Snipers]]. Archer is one of two jobs that can ward off the [[undead]] for good, the other being the [[White Monk (Tactics Advance)|White Monk]].
+
+==Growth==
+===Hume===
+Hume Archers are almost completely outclassed by [[Soldier (Tactics Advance)|Soldiers]] and [[Thief (Tactics Advance)|Thieves]], the other two basic physical-damage hume jobs. The only stat that isn't outclassed is the Archer's Resistance, which—combined with their long ranged physical damage—makes them useful for an anti-mage job early on.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.2 B-
+|1.1 E
+|7.2 C-
+|7.2 C-
+|6.4 D
+|8.1 B-
+|1.4 C
+|}
+
+===Viera===
+Viera Archers are inferior to [[Fencer (Tactics Advance)|Fencers]], the Archer being only a tenth of a point faster, having slightly better Resistance, and having marginally higher MP, while the rest of their stats are noticeably lower. Although viera Archers may seem superior to hume Archers, Fencers are even better than either of them. Viera Archers could be used for an anti-mage job, but the difference in Resistance between the viera Archer and Fencer is negligible.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.2 B-
+|1.6 D
+|8.1 B-
+|6.8 D+
+|7.2 C-
+|7.6 C
+|1.6 B
+|}
+
+==Abilities==
+===[[Aim (Tactics Advance)|Aim]]===
+{{Quote|Archer command. Shoot a well-aimed arrow.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:5%"|Skill
+!style="width:10%"|Equipment
+!style="width:5%"|AP
+!style="width:5%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Focus (ability)|Boost}}
+|[[Final Fantasy Tactics Advance weapons#Longbow|Longbow]]
+|100
+|—
+|Self
+|-
+|colspan=4 style="text-align:left"|''Focuses energy to increase damage on next weapon atk.''
+|-
+! rowspan=2|{{LA|Leg Shot|Aim: Legs}}
+|[[Final Fantasy Tactics Advance weapons#Thorn Bow|Thorn Bow]]
+|200
+|—
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Shot aimed at legs to immobilize target.''
+|-
+! rowspan=2|{{LA|Arm Shot|Aim: Arm}}
+|[[Final Fantasy Tactics Advance weapons#Nail Bow|Nail Bow]]
+|200
+|—
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Shot aimed at arms to disable target.''
+|-
+! rowspan=2|{{A|Cupid}}
+|[[Final Fantasy Tactics Advance weapons#Artemis Bow|Artemis Bow]]
+|200
+|—
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Shot through the heart. Charms enemy.''
+|-
+! rowspan=2|{{A|Burial}}
+|[[Final Fantasy Tactics Advance weapons#Silver Bow|Silver Bow]]
+|300
+|—
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Buries zombified units immediately.''
+|-
+! rowspan=2|{{A|Take Aim}}
+|[[Final Fantasy Tactics Advance weapons#Yoichi Bow|Yoichi Bow]]
+|300
+|As Weapon
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Carefully aimed shot. Good hit rate, low damage.''
+|-
+! rowspan=2|{{LA|Swift Switch|Faster}}
+|[[Final Fantasy Tactics Advance weapons#Perseus Bow|Perseus Bow]]
+|300
+|As Weapon
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Blurringly fast attack. Nullifies R-abilities.''
+|-
+! rowspan=2|{{A|Blackout}}
+|[[Final Fantasy Tactics Advance weapons#Char Bow|Char Bow]]
+|200
+|—
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Closes target's eyes, inflicting darkness.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Archer's Bane|Block Arrows}}
+|[[Final Fantasy Tactics Advance armor#Green Beret|Green Beret]]
+|style="text-align:left"|''Dodge bow and longbow attacks.''<br>Does not activate against counterattacks.
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Concentrate}}
+|[[Final Fantasy Tactics Advance weapons#Target Bow|Target Bow]]
+|style="text-align:left"|''Focuses mind to increase attack hit rate.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Bow Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Bow|Mythril Bow]]
+|style="text-align:left"|''Long-ranged combo ability for archers.''
+|100
+|}
+
+== Overview ==
+Archer is the basic ranged unit for humes and viera. They are best for attacking enemies from a distance and some bows have a very long range, with most bows having six or even seven tile range. Archer has decently useful abilities, most for inflicting status effects from afar. It is one of two classes able to kill off the undead for good, but that is where most of the Archer's benefits end. 
+
+The Archer's stats are unremarkable and both humes and viera have average to sub-par attack. It can deal decent damage against frail mages, but the Hunter and Sniper do that job better. Archer has a good selection of status ailments to inflict, but other jobs like [[Juggler (Tactics Advance)|Juggler]] and [[Ninja (Tactics Advance)|Ninja]] have an equal or even larger selection of status effects at their disposal. Tough units, like [[Defender (Tactics Advance)|Defender]] and [[Templar (Tactics Advance)|Templar]], are nigh invulnerable to Archers' damage. Archer has above average Speed, but its downsides far outweigh whatever else they have. 
+
+Overall, the Archer is not a player's top priority, and not something to [[level]] up a character as. Other classes have equal or better range, status effects, and [[stat growth]]. The main benefit of an Archer is their support ability, Concentrate, but otherwise Archer is outclassed by almost any other class.
+
+Enemy Archers often amount to no threat, dealing negligible damage to even mages. Archers can inflict status effects, but none target multiple people and so are easily cured. Physical tanks need not worry against Archers whose attacks will deal insignificant damage except in the most unusual situations. Being ranged units themselves, Archers are vulnerable to other ranged units and spellcasters.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+Archer appears in ''Final Fantasy Trading Card Game'' as Wind-elemental Backup cards.
+
+<gallery>
+Archer TCG.png|Archer [6-039C] Chapter series card.
+Archer 4-070C from FFTCG Opus.jpg|Archer [4-070C] Opus series card.
+</gallery>
+
+==Gallery==
+<gallery>
+FFTA Boost.png|Boost.
+FFTA Aim Legs.png|Aim: Legs.
+FFTA Arm Aim.png|Aim: Arm.
+FFTA Cupid.png|Cupid.
+FFTA Take Aim.png|Take Aim.
+FFTA Faster.png|Faster.
+FFTA Blackout.png|Blackout.
+</gallery>{{Gallery incomplete|Burial|Bow Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Arquero (Final Fantasy Tactics Advance)]]
+[[it:Arciere (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

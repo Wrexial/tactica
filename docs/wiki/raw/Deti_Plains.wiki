@@ -1,0 +1,36 @@
+[[File:DetiPlains.png|thumb|right|250px|An engagement with an enemy clan.]]
+{{Quote|Flatlands of yellow sand and red earth.|Description}}
+'''Deti Plains''' {{J|ディーテ平原|Dīte heigen}} is a location in ''[[Final Fantasy Tactics Advance]]''. It can be placed after completing "Mission #021: Hidden Vein" and is the site of "Mission #022: To Ambervale". In this mission, [[Cid Randell|Judgemaster Cid]] asks [[Marche Radiuju|Marche]] to meet him at Deti Plains, however, a horde of monsters must be cleared out of the area first.
+
+After the battle, Cid offers his help in working with [[Ezel Berbier]] in making the ultimate Antilaw. Deti Plains is also the site of "Mission #059: Sketchy Thief", "Mission #067: Missing Meow", and "Mission #094: Sorry, Friend". It can be freed in "Mission #257: Deti Plains" after "Mission #022: To Ambervale" is completed.
+
+==Encounters==
+===Ramble Band===
+{{Quote|Mountain bandits. Famous for staging a jail-break to free their leader, Berk.|Description}}
+*[[Alchemist (Tactics Advance)|Alchemist]] (Nu Mou)
+*[[Fighter (Tactics Advance)|Fight]] (Human)
+*[[Ninja (Tactics Advance)|Ninja]] (Human)
+*[[Sniper (Tactics Advance)|Sniper]] (Viera)
+*[[Thief (Tactics Advance)|Thief]] (Moogle)
+
+==Turf Defense==
+===Help Deti!===
+{{Quote|The Ramble Band's back together, making a base on the plains. They'll start charging travelers fees again any day now.|Town rumor}}
+*Alchemist
+*Fighter
+*Ninja
+*Thief
+
+==Gallery==
+<gallery>
+Deti Plains 1.PNG|Deti Plains.
+Deti Plains 2.PNG|Deti Plains.
+Deti Plains 3.PNG|Deti Plains.
+Deti Plains 4.PNG|Deti Plains.
+Plain-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Plains]]
+[[Category:Locations in Final Fantasy Tactics Advance]]

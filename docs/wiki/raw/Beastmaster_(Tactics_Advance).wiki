@@ -1,0 +1,206 @@
+{{DISPLAYTITLE:Beastmaster (''Tactics Advance'')}}
+{{infobox job
+|name=Beastmaster
+|release=FFTA
+|japanese=魔獣使い
+|romaji=Majūtsukai
+|image=Ffta-nu-mou-beastmaster.jpg
+|portrait=[[File:ffta-job-beastmaster.png|50px|Player]] [[File:ffta-job-beastmaster-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-beastmaster.gif|20px|Player]] [[File:ffta-job-beastmaster-enemy-sprite.png|Enemy|20px]]
+|obtained=Default
+|required=Default
+|characters=[[Nu mou]]
+|stats=
+*Move Rate: 4
+*Jump Rate: 3
+*Evade Rate:55
+*Stat growth: Attack-oriented
+|weapons=[[Final Fantasy Tactics Advance weapons#Instruments|Instruments]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Control (Tactics Advance)|Control]]
+*[[#Beast Combo|Beast Combo]] (combo)
+|support abilities=*[[#Immunity|Immunity]]
+*[[Critical: Haste|Last Haste]] (reaction)
+|recurring appearance=Beastmaster (job)
+}}
+{{Quote|These nu mou can control enemies at will.|Description}}
+The '''Beastmaster''' is a [[Final Fantasy Tactics Advance jobs|job]] available to the [[nu mou]] in ''[[Final Fantasy Tactics Advance]]''. They control various monsters and use bells and other musical instruments in battle. The success rate for controlling a monster varies from monster to monster. A whip appears above the Beastmaster's head (similar to status ailments/enhancements) when they are in control of a monster. Players lose control of the monster when it becomes the Beastmaster's turn again and have to use the "Control" command again to resume control. The Beastmaster cannot control the five races.
+
+A common strategy is to use the Beastmaster in conjunction with a [[Blue Mage (Tactics Advance)|Blue Mage]] when learning monster abilities, as the Beastmaster can "force" the monster to use the ability on the Blue Mage.
+
+Like [[Animist (Tactics Advance)|Animists]], Beastmasters are shown holding a [[Whip (weapon type)|Whip]] in their official artwork despite it not being a weapon type in ''Final Fantasy Tactics Advance''. This could allude to the icon of a whip that appears over their head when in the process of controlling animals.
+
+==Growth==
+The Beastmaster is the closest the nu mou get to an Attack-oriented job. Its Attack and Defense are the highest out nu mou jobs, and it has respectable HP, Resistance and Speed. The Beastmaster's MP and Magic Power are the lowest available to the nu mou, but those aren't necessary for such an Attack-oriented job.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.4 B
+|2.1 D
+|8.8 B+
+|8.8 B+
+|6.8 D+
+|8.4 B
+|1.2 D+
+|}
+
+==Abilities==
+===[[Control (Tactics Advance)|Control]]===
+{{Quote|Beastmaster command. Control various monsters.|Description}}
+Reactions do not work while using Control and all abilities have a range of 4 tiles.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|Success rate
+!style="width:5%"|AP
+|-
+!{{A|Goblin}}
+|[[Final Fantasy Tactics Advance weapons#Demon Bell|Demon Bell]]<br>[[Final Fantasy Tactics Advance weapons#War Trumpet|War Trumpet]]
+|style="text-align:left"|''Control goblins and red caps.''
+|50%-70%
+|200
+|-
+!{{A|Flan}}
+|[[Final Fantasy Tactics Advance weapons#Demon Bell|Demon Bell]]<br>[[Final Fantasy Tactics Advance weapons#Glass Bell|Glass Bell]]
+|style="text-align:left"|''Control ice flans, jellies, and creams.''
+|40%-60%
+|200
+|-
+!{{A|Bomb}}
+|[[Final Fantasy Tactics Advance weapons#Demon Bell|Demon Bell]]<br>[[Final Fantasy Tactics Advance weapons#Aona Flute|Aona Flute]]
+|style="text-align:left"|''Control bombs and grenades.''
+|35%-55%
+|200
+|-
+!{{A|Dragon}}
+|[[Final Fantasy Tactics Advance weapons#Earth Bell|Earth Bell]]
+|style="text-align:left"|''Control firewyrms, icedrakes, and thundrakes.''
+|40%-60%
+|200
+|-
+!{{A|Lamia}}
+|[[Final Fantasy Tactics Advance weapons#Glass Bell|Glass Bell]]
+|style="text-align:left"|''Control lamias and liliths.''
+|30%-50%
+|200
+|-
+!{{A|Bug}}
+|[[Final Fantasy Tactics Advance weapons#Fairy Harp|Fairy Harp]]
+|style="text-align:left"|''Control antlions and jawbreakers.''
+|50%-70%
+|200
+|-
+!{{A|Tonberry}}
+|[[Final Fantasy Tactics Advance weapons#Blood String|Blood Strings]]
+|style="text-align:left"|''Control tonberries and masterberries.''
+|10%-30%
+|200
+|-
+!{{A|Panther}}
+|[[Final Fantasy Tactics Advance weapons#War Trumpet|War Trumpet]]
+|style="text-align:left"|''Control red panthers and coeurls.''
+|50%-70%
+|200
+|-
+!{{A|Malboro}}
+|[[Final Fantasy Tactics Advance weapons#Aona Flute|Aona Flute]]
+|style="text-align:left"|''Control malboros and big malboros.''
+|60%-80%
+|200
+|-
+!{{A|Floateye}}
+|[[Final Fantasy Tactics Advance weapons#Black Quena|Black Quena]]
+|style="text-align:left"|''Control floateyes and ahrimans.''
+|30%-50%
+|200
+|-
+!{{A|Undead}}
+|[[Final Fantasy Tactics Advance weapons#Black Quena|Black Quena]]
+|style="text-align:left"|''Control zombies and vampires.''
+|20%-40%
+|200
+|-
+!{{A|Fairy}}
+|[[Final Fantasy Tactics Advance weapons#Fairy Harp|Fairy Harp]]
+|style="text-align:left"|''Control sprites and titanias.''
+|20%-40%
+|200
+|-
+!{{A|Rockbeast}}
+|[[Final Fantasy Tactics Advance weapons#Conch Shell|Conch Shell]]
+|style="text-align:left"|''Control blade biters and toughskins.''
+|70%-90%
+|200
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Critical: Haste|Last Haste}}
+|[[Final Fantasy Tactics Advance armor#Ninja Gear|Ninja Gear]]
+|style="text-align:left"|''Become hasted if severely wounded.''
+|300
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Immunity}}
+|[[Final Fantasy Tactics Advance armor#Survival Vest|Survival Vest]]
+|style="text-align:left"|''Confers resistance to some status ailments.''
+|300
+|}
+
+===Combo===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Beast Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Bell|Mythril Bell]]
+|style="text-align:left"|''Failproof combo ability for beastmasters.''
+|100
+|}
+
+== Gameplay ==
+[[File:FFTA Control.png|thumb|A Beastmaster using the Control command on a Bomb.]]
+Beastmasters are ill-suited for combat and their only real use is to help train Blue Mages. The instruments they wield barely qualify as weapons and the Control abilities don't have any effect on the five races. Beastmasters can significantly improve situations involving monsters, but have little to no usefulness in the late game.
+
+Enemy Beastmasters are easy to take down since their Control abilities are useless against the player's clan. Their attack power, although unusually high, is still nothing to worry about, especially since they only use instruments.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Beastmaster TCG.png|right|100px]]
+Beastmaster appears on a card.
+{{clear}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Adiestrador (Final Fantasy Tactics Advance)]]
+[[it:Domatore (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

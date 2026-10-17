@@ -1,0 +1,673 @@
+# Stat growth
+
+> Source: https://finalfantasy.fandom.com/wiki/Stat_growth
+> Group: Gameplay
+
+Stat growth refers to the permanent improvement of the stats of the player characters.
+
+See also: Min-maxing
+
+## Appearances
+
+### *Final Fantasy*
+
+See also: Final Fantasy stats
+
+The majority of stats for characters are class-dependent. Stats can only be increased by levelling up. On level up:
+
+- The character gains a bonus to HP equal to FLOOR [ Vitality ÷ 4 ].
+- The character's Hit % and Magic Defense are increased by amounts determined by the character's class.
+  - Advanced classes grow Accuracy and Magic Defense at the same rate as their base class. The exception is the Magic Defense of the Monk (+4 per level) and Master (+1 per level), where the Master grows slower due to a programming error.
+- Each level has a set of guaranteed stats increased, including "strong" HP boosts, which are decided by the class of the character. For example, a Warrior attaining level 2 will always gain a point in Strength and a "strong" HP up; a Warrior attaining level 3 will always gain a point in Agility and a point in Vitality. There are also levels with no guaranteed stat increases.
+  - "Strong" HP ups are an additional 20–25 HP on top of the usual HP increase amount.
+- For each of the stats that were not guaranteed on level up, the character has a 1 in 4 chance of increasing those stats.
+  - "Strong" HP ups are not included, and do not have this 1 in 4 chance. "Strong" HP ups only occur on the guaranteed set levels as determined by class.
+
+#### *Final Fantasy I & II: Dawn of Souls* and onward
+
+Level ups are the primary method of gaining stat increases.
+
+- Base stats
+  - Increments
+    - "standard" HP increase is equal to FLOOR [ Stamina ÷ 4 ] + 1
+      - If "strong", an additional 20 – 25 (24 in the Pixel Remaster).
+    - "standard" MP increase is equal to FLOOR [ Intelligence ÷ 4 ] + 1 (does not apply to Pixel Remaster, uses the spell charge system for casting capacity)
+      - If "strong", an additional 10 – 12 MP.
+    - Stats increase (Strength, Agility, Stamina, Intellect, Luck) by 1 point
+    - Accuracy and Magic Defense increase by a set amount in accordance to the character's job. Advanced jobs usually gain more Accuracy and/or Magic Defense when compared to their base job. The only exception is the Red Wizard/Red Mage, which grow both equally.
+    - If Agility was increased (whether guaranteed or bonus), the character gains 1 Evasion and 1 Accuracy on top of their usual growth values.
+  - Guaranteed Increases
+    - Each level up, characters always gain a "standard" amount of HP (and MP if they have access to magic).
+    - Each level up, a set of stats (incl. "strong" HP/MP increases) determined by job, will increase.
+    - Each level up, a character will always gain Accuracy and Magic Defense in accordance to their job.
+      - A Warrior attaining level 2 will always gain:
+        - a point in Strength
+        - a "strong" HP increase
+      - A Warrior attaining level 3 will always gain:
+        - a point in Agility
+        - a point in Stamina
+      - There are levels with no guaranteed stat increases.
+  - Extra/Bonus Increases
+    - Each level up, stats not guaranteed to increase EACH have a 1 in 8 extra/bonus chance to increase.
+      - A Black Mage attaining level 2 will always gain:
+        - a point in Intellect
+        - a "strong" MP increase
+      - In that same level up, the Black Mage also has a 1 in 8 chance of gaining:
+        - EACH a point in the stats not guaranteed (Strength, Agility, Stamina, Luck), and a "strong" HP increase.
+
+Stat increasing consumable items were introduced in Dawn of Souls, and remained in all subsequent game versions until Pixel Remaster which removed them. They grant permanent stat increases for one character after use:
+
+- Golden Apple - Raise max HP by 10.
+- Silver Apple - Raise max HP by 5.
+- Soma Drop - Raise max MP by 5.
+- Power Plus - Raise Strength by 1-3.
+- Speed Plus - Raise Agility by 1-3. This item does not increase the character's base Accuracy or Evasion, unlike Agility increases from level ups.
+- Mind Plus - Raise Intelligence by 1-3.
+- Stamina Plus - Raise Stamina by 1-3.
+- Luck Plus - Raise Luck by 1-3.
+
+An infinite supply of these items can be acquired by repeatedly running through the Soul of Chaos bonus dungeons.
+
+### *Final Fantasy II*
+
+A character's stat attributes are individually increased based on player actions during battle:
+
+| Attribute | Action | Maximum | Algorithm |
+| --- | --- | --- | --- |
+| HP | Have HP reduced in battle. | 9999 | Pixel Remaster: Increases if HP lost > 0 and RANDOM(0,8) >= TRUNCATE(Max HP ÷ HP Lost)<br>Prior versions: Increases if (HP at battle start - HP at battle end) > 0 and RANDOM(0,8) >= TRUNCATE(Max HP ÷ (HP at battle start - HP at battle end)) |
+| MP | Have MP reduced in battle. | 999 | Pixel Remaster: Increases if MP lost > 0 and RANDOM(0,8) >= TRUNCATE (Max MP ÷ MP Lost)<br>Prior versions: Increases if (MP at battle start - MP at battle end) > 0 and RANDOM(0,8) >= TRUNCATE(Max MP ÷ (MP at battle start - MP at battle end)) |
+| Strength | Use the Attack command in battle. | 99 | If at least one Attack was selected, increases if RANDOM(0,45) < Number of times Attack was selected |
+| Spirit | Cast White Magic spells in battle. | 99 | If at least one White Magic spell was selected, increases if RANDOM(0,15) < Number of times White Magic was selected |
+| Intellect | Cast Black Magic spells in battle. | 99 | If at least one Black Magic spell was selected, increases if RANDOM(0,25) < Number of times Black Magic was selected |
+| Stamina | Have HP reduced in battle. | 99 | Pixel Remaster: Increases if HP lost > 0 and RANDOM(0,9) > TRUNCATE(Max HP ÷ HP Lost)<br>Prior versions: Increases if (HP at battle start - HP at battle end) > 0 and RANDOM(0,9) > TRUNCATE(Max HP ÷ (HP at battle start - HP at battle end)) |
+| Agility | Have a high Evasion-% (via light armor, shields, weapons, Agility). | 99 | Increases if RANDOM(0,255) <= Evasion ÷ 4 |
+| Magic | Have MP reduced in battle. | 99 | Pixel Remaster: Increases if MP lost > 0 and RANDOM(0,9) > TRUNCATE (Max MP ÷ MP Lost)<br>Prior versions: Increases if (MP at battle start - MP at battle end) > 0 and RANDOM(0,9) > TRUNCATE(Max MP ÷ (MP at battle start - MP at battle end)) |
+
+For HP, MP, Stamina and Magic, the distinction between Pixel Remaster and prior releases is that Pixel Remaster tracks HP and MP lost over the course of the entire battle, whereas prior releases only calculate the difference between the starting and ending HP and MP. This means beginning from Pixel Remaster, it is possible to heal HP/MP after significant losses during battle and still improve the chance of HP, MP, Stamina and/or Magic stat increases when the battle ends.
+
+Aside from HP and MP, each stat can increase by 1 point per battle. HP increases are equal to the character's Stamina stat at the time of level up. Similarly, MP increases are equal to the character's Magic stat at the time of level up.
+
+For Origins and earlier versions, some stats may decrease by 1 point when another is increased.
+
+- When Strength increases, Intelligence may decrease.
+- When Intelligence increases, Stamina may decrease.
+- When Spirit increases, Strength may decrease.
+
+The chance of a stat decrease occurring is 1/6. In the original Famicom release, due to how random numbers are determined, the effective chance is closer to 1/2. Stat decreases can still occur even if the corresponding stat is maximized (for example, a 99 Strength character may still lose Intelligence after a battle if they performed a physical attack). All stats have a minimum value of 1. Stat decreases were removed in their entirety from Dawn of Souls onward.
+
+Also starting from Dawn of Souls, max HP will automatically increase every 10 battles that the character survives. In Pixel Remaster, it is possible to disable automatic HP leveling.
+
+A character's individual weapon skills, individual magic spells, Evasion and Magic Defense are all given their own levels with their own experience points. Each of these can be a minimum of level 1 and raised to a maximum of 16.
+
+In all releases, every level up of Evasion and Magic Defense requires 100 experience points. In the original Famicom release, each level up for weapon skills and magic spells also require 100 experience points. In later releases, the amount of experience needed for weapons and spells curves gradually upward so that earlier level ups occur much quicker.
+
+| Rank | Points (NES) | Points (Ports) |
+| --- | --- | --- |
+| 1 | 0 | 0 |
+| 2 | 100 | 20 |
+| 3 | 100 | 25 |
+| 4 | 100 | 25 |
+| 5 | 100 | 30 |
+| 6 | 100 | 35 |
+| 7 | 100 | 40 |
+| 8 | 100 | 45 |
+| 9 | 100 | 50 |
+| 10 | 100 | 60 |
+| 11 | 100 | 70 |
+| 12 | 100 | 80 |
+| 13 | 100 | 90 |
+| 14 | 100 | 90 |
+| 15 | 100 | 100 |
+| 16 | 100 | 100 |
+
+Experience points earned from a single battle is calculated as follows:
+
+EXP = Uses + Average Rank of Encounter + Modifier - Current Level
+
+Where each term's meaning is as follows:
+
+- Uses is the number of times the given skill was used. Versions prior to Pixel Remaster have usage count capped to 100 for one battle.
+  - For weapons, this is how many times Attack was selected. The weapon classes that earn experience are decided based on what weapon types are equipped on each hand at the end of the battle. For instance, having a sword and shield equipped will gain experience for both sword and shield mastery. A given weapon type can earn double experience if both hands are equipped with the same weapon type.
+  - For spells, it is how many times that spell was selected. The number of targets does not alter experience earned (choosing a single target versus targeting all enemies/allies are both counted as one use). Later versions double the usage count of magic to make it easier to level.
+  - For Evasion, it is how many times the character was selected as the target of a normal physical attack.
+  - For Magic Defense, it is how many times the character was selected as the target of an offensive magic spell.
+    - In the Famicom version, only single target spells are counted for Magic Defense leveling. Spells that target the whole party instead raise Firion's Spirit stat due to a programming error.
+- Average Rank of Encounter is the average of the ranks of the monsters defeated in the battle, rounded down. Monsters that fled the battle do not count toward the average.
+- Modifier is a set value based on which skill is being leveled.
+  - For weapons, it is +1.
+  - For spells, it is +3.
+  - For Evasion, it is -2.
+  - For Magic Defense, it is +5.
+- Current Level is the current level of the skill being leveled. For example, a character leveling swords with their swords at level 10 has 10 subtracted from the EXP earned in the battle.
+
+Experience earned in battle can not go below 0. A given skill or spell can only be leveled up once from a single battle. Excess experience points do not carry over into the next level.
+
+The level of weapon skills and magic spells determines their maximum hit counts. For example, level 10 in swords means that character can strike up to a maximum of 10 times per one sword swing. Conversely, the level of Evasion and Magic Defense determines the maximum number of hits the character can dodge from physical attacks or offensive spells, respectively. For example, 10 Evasion means that character can dodge a maximum of 10 hits from a single monster's physical attack.
+
+In Origins and earlier versions, the target-cancel bug exists where actions only need to be selected to increase the usage counts for experience and stat gaining. This allows the player to select and cancel actions repeatedly to inflate their usage counts, increasing the experience gained for weapons and spells and raising the probability of stat gains out of a single turn of battle. In subsequent versions, the usage count only increases once all actions for every party member are selected and the turn actually begins.
+
+### *Final Fantasy III*
+
+A character's HP is the only stat to persist between job changes. Whenever a character levels up, their maximum HP increases by a random amount.
+
+The Famicom version uses the following formula:
+
+NewLevel × 2 + Vitality + Random(0 ... FLOOR(Vitality/2))
+
+There is no overflow protection, meaning that if the HP gain surpasses 255, it is possible for level up to only give single digit maximum HP gains. At higher levels, it is advised to level up with jobs that have lower Vitality values to avoid this, or making sure to save before each level up so that the player can reset if the HP-gain is low.
+
+The 3D remake uses the following formula:
+
+Level + Stamina + (0% to 50% of Stamina)
+
+To maximize HP growth, it is beneficial to switch to high Stamina jobs, such as Monk, Knight, Viking, or Black Belt, before gaining levels.
+
+In the Pixel Remaster version, the formula is slightly adjusted to:
+
+Level + Stamina + (0% to 50% of Stamina) - 1
+
+In the 3D versions the earliest possible one can reach the HP cap (assuming maximum possible growth each level) is as a Black Belt at level 90.
+
+| Level | Vitality | HP |
+| --- | --- | --- |
+| 1 | 5 | 32 |
+| 2 | 5 | 40 |
+| 3 | 5 | 49 |
+| 4 | 6 | 59 |
+| 5 | 7 | 72 |
+| 6 | 8 | 87 |
+| 7 | 9 | 105 |
+| 8 | 10 | 125 |
+| 9 | 11 | 148 |
+| 10 | 11 | 173 |
+| 11 | 12 | 199 |
+| 12 | 13 | 228 |
+| 13 | 14 | 259 |
+| 14 | 15 | 293 |
+| 15 | 16 | 329 |
+| 16 | 16 | 368 |
+| 17 | 17 | 408 |
+| 18 | 18 | 450 |
+| 19 | 19 | 495 |
+| 20 | 20 | 542 |
+| 21 | 21 | 592 |
+| 22 | 22 | 644 |
+| 23 | 23 | 699 |
+| 24 | 24 | 756 |
+| 25 | 25 | 816 |
+| 26 | 26 | 878 |
+| 27 | 27 | 943 |
+| 28 | 28 | 1010 |
+| 29 | 29 | 1080 |
+| 30 | 30 | 1152 |
+| 31 | 31 | 1227 |
+| 32 | 32 | 1304 |
+| 33 | 33 | 1384 |
+| 34 | 34 | 1466 |
+| 35 | 35 | 1551 |
+| 36 | 36 | 1638 |
+| 37 | 37 | 1728 |
+| 38 | 38 | 1820 |
+| 39 | 39 | 1915 |
+| 40 | 40 | 2012 |
+| 41 | 41 | 2112 |
+| 42 | 42 | 2214 |
+| 43 | 43 | 2319 |
+| 44 | 44 | 2426 |
+| 45 | 45 | 2536 |
+| 46 | 46 | 2648 |
+| 47 | 47 | 2763 |
+| 48 | 48 | 2880 |
+| 49 | 49 | 3000 |
+| 50 | 50 | 3122 |
+| 51 | 51 | 3247 |
+| 52 | 52 | 3374 |
+| 53 | 53 | 3504 |
+| 54 | 54 | 3636 |
+| 55 | 55 | 3771 |
+| 56 | 56 | 3908 |
+| 57 | 57 | 4048 |
+| 58 | 58 | 4190 |
+| 59 | 59 | 4335 |
+| 60 | 60 | 4482 |
+| 61 | 61 | 4632 |
+| 62 | 62 | 4784 |
+| 63 | 63 | 4939 |
+| 64 | 64 | 5096 |
+| 65 | 65 | 5256 |
+| 66 | 66 | 5418 |
+| 67 | 67 | 5583 |
+| 68 | 68 | 5750 |
+| 69 | 69 | 5920 |
+| 70 | 70 | 6092 |
+| 71 | 71 | 6267 |
+| 72 | 72 | 6444 |
+| 73 | 73 | 6624 |
+| 74 | 74 | 6806 |
+| 75 | 75 | 6991 |
+| 76 | 76 | 7178 |
+| 77 | 77 | 7368 |
+| 78 | 78 | 7560 |
+| 79 | 79 | 7755 |
+| 80 | 80 | 7952 |
+| 81 | 81 | 8152 |
+| 82 | 82 | 8354 |
+| 83 | 83 | 8559 |
+| 84 | 84 | 8766 |
+| 85 | 85 | 8976 |
+| 86 | 86 | 9188 |
+| 87 | 87 | 9403 |
+| 88 | 88 | 9620 |
+| 89 | 89 | 9840 |
+| 90 | N/A | 10062 (9999) |
+
+In the Pixel Remaster, the earliest possible one can reach the HP cap (assuming maximum possible growth each level) is as a Viking at level 83. If the growth is average every level, they will reach 9999 HP at Lv89, but if the growth is the minimum possible every level, they will still reach the HP cap at Lv95.
+
+| Level | Stamina | Max HP<br>(Min Roll) | Max HP<br>(Avg Roll) | Max HP<br>(Max Roll) |
+| --- | --- | --- | --- | --- |
+| 1 | 5 | 32 | 32 | 32 |
+| 2 | 25 | 37 | 38 | 39 |
+| 3 | 26 | 63 | 70 | 77 |
+| 4 | 27 | 91 | 104 | 118 |
+| 5 | 28 | 121 | 140 | 161 |
+| 6 | 29 | 153 | 179 | 207 |
+| 7 | 29 | 187 | 220 | 255 |
+| 8 | 30 | 222 | 262 | 304 |
+| 9 | 31 | 259 | 306 | 356 |
+| 10 | 32 | 298 | 352 | 410 |
+| 11 | 32 | 339 | 401 | 467 |
+| 12 | 33 | 381 | 451 | 525 |
+| 13 | 34 | 425 | 503 | 585 |
+| 14 | 35 | 471 | 557 | 648 |
+| 15 | 35 | 519 | 613 | 713 |
+| 16 | 36 | 568 | 670 | 779 |
+| 17 | 37 | 619 | 730 | 848 |
+| 18 | 38 | 672 | 792 | 919 |
+| 19 | 38 | 727 | 856 | 993 |
+| 20 | 39 | 783 | 921 | 1068 |
+| 21 | 40 | 841 | 988 | 1145 |
+| 22 | 41 | 901 | 1058 | 1225 |
+| 23 | 41 | 963 | 1130 | 1307 |
+| 24 | 42 | 1026 | 1203 | 1390 |
+| 25 | 43 | 1091 | 1278 | 1476 |
+| 26 | 44 | 1158 | 1355 | 1564 |
+| 27 | 44 | 1227 | 1435 | 1655 |
+| 28 | 45 | 1297 | 1516 | 1747 |
+| 29 | 46 | 1369 | 1599 | 1841 |
+| 30 | 47 | 1443 | 1684 | 1938 |
+| 31 | 47 | 1519 | 1771 | 2037 |
+| 32 | 48 | 1596 | 1859 | 2137 |
+| 33 | 49 | 1675 | 1950 | 2240 |
+| 34 | 50 | 1756 | 2043 | 2345 |
+| 35 | 50 | 1839 | 2138 | 2453 |
+| 36 | 51 | 1923 | 2234 | 2562 |
+| 37 | 52 | 2009 | 2332 | 2673 |
+| 38 | 53 | 2097 | 2433 | 2787 |
+| 39 | 53 | 2187 | 2536 | 2903 |
+| 40 | 54 | 2278 | 2640 | 3020 |
+| 41 | 55 | 2371 | 2746 | 3140 |
+| 42 | 56 | 2466 | 2854 | 3262 |
+| 43 | 56 | 2563 | 2965 | 3387 |
+| 44 | 57 | 2661 | 3077 | 3513 |
+| 45 | 58 | 2761 | 3191 | 3641 |
+| 46 | 59 | 2863 | 3307 | 3772 |
+| 47 | 59 | 2967 | 3425 | 3905 |
+| 48 | 60 | 3072 | 3544 | 4039 |
+| 49 | 61 | 3179 | 3666 | 4176 |
+| 50 | 62 | 3288 | 3790 | 4315 |
+| 51 | 62 | 3399 | 3916 | 4457 |
+| 52 | 63 | 3511 | 4043 | 4600 |
+| 53 | 64 | 3625 | 4172 | 4745 |
+| 54 | 65 | 3741 | 4304 | 4893 |
+| 55 | 65 | 3859 | 4438 | 5043 |
+| 56 | 66 | 3978 | 4573 | 5194 |
+| 57 | 67 | 4099 | 4710 | 5348 |
+| 58 | 68 | 4222 | 4849 | 5504 |
+| 59 | 68 | 4347 | 4991 | 5663 |
+| 60 | 69 | 4473 | 5134 | 5823 |
+| 61 | 70 | 4601 | 5279 | 5985 |
+| 62 | 71 | 4731 | 5426 | 6150 |
+| 63 | 71 | 4863 | 5575 | 6317 |
+| 64 | 72 | 4996 | 5725 | 6485 |
+| 65 | 73 | 5131 | 5878 | 6656 |
+| 66 | 74 | 5268 | 6033 | 6829 |
+| 67 | 74 | 5407 | 6190 | 7005 |
+| 68 | 75 | 5547 | 6348 | 7182 |
+| 69 | 76 | 5689 | 6508 | 7361 |
+| 70 | 77 | 5833 | 6671 | 7543 |
+| 71 | 77 | 5979 | 6836 | 7727 |
+| 72 | 78 | 6126 | 7002 | 7912 |
+| 73 | 79 | 6275 | 7170 | 8100 |
+| 74 | 80 | 6426 | 7340 | 8290 |
+| 75 | 80 | 6579 | 7513 | 8483 |
+| 76 | 81 | 6733 | 7687 | 8677 |
+| 77 | 82 | 6889 | 7863 | 8873 |
+| 78 | 83 | 7047 | 8041 | 9072 |
+| 79 | 83 | 7207 | 8221 | 9273 |
+| 80 | 84 | 7368 | 8402 | 9475 |
+| 81 | 85 | 7531 | 8586 | 9680 |
+| 82 | 86 | 7696 | 8772 | 9887 |
+| 83 | 86 | 7863 | 8960 | 9999 (10097) |
+| 84 | 87 | 8031 | 9149 | — |
+| 85 | 88 | 8201 | 9340 | — |
+| 86 | 89 | 8373 | 9534 | — |
+| 87 | 89 | 8547 | 9730 | — |
+| 88 | 90 | 8722 | 9927 | — |
+| 89 | 91 | 8899 | 9999 (10126) | — |
+| 90 | 92 | 9078 | — | — |
+| 91 | 92 | 9259 | — | — |
+| 92 | 93 | 9441 | — | — |
+| 93 | 94 | 9625 | — | — |
+| 94 | 95 | 9811 | — | — |
+| 95 | 95 | 9999 | — | — |
+
+Strength, Agility, Vitality, Intellect, Mind, and MP are determined by a character's current level and job. For example, a level 20 Knight who previously leveled as a Thief would have the exact same Strength, Agility, Vitality, Intellect, Mind, and MP / spell slots as a level 20 Knight who previously leveled as a Warrior or White Mage.
+
+Other stats are generally calculated based on level, job, job level, various base stats (like Strength or Agility), or a combination of the above.
+
+Some basic stat calculation formulas for the Famicom version are as follows:
+
+- Every 16 levels gained adds +1 to a character's Attack Multiplier.
+- Every 16 levels gained adds +1 to a character's Magic Multiplier.
+- Every 16 levels gained adds +1 to a character's Defense Multiplier, or half that if they are not using a shield.
+- Every 32 job levels gained adds +1 to a character's Magic Multiplier.
+- Every 4 job levels gained adds +1% to a character's Accuracy.
+- When a character gains a level, their maximum HP increases based on their current Vitality, which is in turn based on their current job.
+- A character gains a bonus to Attack Power equal to 1/4 of their Strength.
+- A character gains a bonus to Accuracy equal to 1/4 of their Agility.
+- A character gains a bonus to Attack Multiplier equal to 1/16 of their Agility.
+- A character gains a bonus to Defense Multiplier equal to 1/16 of their Agility, or half that if they are not using a shield.
+- A character gains a bonus to Evasion equal to 1/2 of their Agility.
+- A character gains a bonus to Magic Defense Multiplier equal to 1/32 of their Agility.
+- A character gains a bonus to Defense equal to 1/2 of their Vitality.
+- A character gains a bonus to Black Magic Power equal to 1/2 of their Intelligence.
+- A character gains a bonus to Black Magic Multiplier equal to 1/16 of their Intelligence.
+- A character gains a bonus to Black Magic Accuracy equal to 1/2 of their Intelligence.
+- A character gains a bonus to Magic Defense Multiplier equal to 1/32 of their Intelligence.
+- A character gains a bonus to Magic Resistance equal to 1/2 of their Intelligence.
+- A character gains a bonus to White Magic Power for non-healing spells equal to 1/2 of their Mind.
+- A character gains a bonus to White Magic Multiplier equal to 1/16 of their Mind.
+- A character gains a bonus to White Magic Accuracy equal to 1/2 of their Mind.
+- A character gains a bonus to Magic Defense Multiplier equal to 1/32 of their Mind.
+- A character gains a bonus to Magic Resistance equal to 1/2 of their Mind.
+
+### *Final Fantasy IV*
+
+Stat growth is static and character-dependent until they reach level 70; after this, the stat growth of specific characters is determined by the Augments they have equipped (in the 3D versions), or is picked at random from one of the eight statistics (in the 2D versions). Certain Augments provide certain stat bonuses at level up; for example, the Kick augment provides a bonus to Strength.
+
+### *Final Fantasy V*
+
+Each job has a static stat modifier compared to the Freelancer. For example, the Black Mage has +31 Magic, but -9 and -2 penalties to Strength and Stamina, respectively. While these bonuses do not "grow", mastering a job will transfer the bonuses to the Freelancer and Mime, but none of the penalties. These bonuses do not stack, and the highest acquired bonus will be applied. Mastering a Black Mage will grant Freelancer and Mime the aforementioned +31 to Magic, but if the character then masters Oracle, it will be replaced by the Oracle's +36 to Magic. To gain the highest possible bonus in all stats, a character has to master Gladiator or Monk for Strength, Thief for Agility, Monk for Stamina, and Oracle for Magic (Summoner in versions that lack the Oracle job).
+
+### *Final Fantasy VI*
+
+Each character has unique base stats that do not grow naturally, but the player can boost them once they gain access to magicite, as most confer a stat bonus to the character who levels up with that magicite equipped. For example, leveling with the Ifrit magicite equipped grants a permanent +1 to Strength, while leveling with Midgardsormr equipped increases the max HP gained at level up by 30% (that is, if the character were to gain 100 HP at level up, they would gain 130 instead; this applies to MP as well).
+
+The rate at which health is gained per level up increases slowly, but steadily, all the way up to level 70, which caps out at +162 Max HP. After level 70, the additions to the player's Max HP diminish. If the player plans on using Bahamut's or Diabolos's bonuses, the increases from 68 to 69, 69 to 70, and 70 to 71 are the best choices.
+
+A character's gear and level have a bigger impact than the permanent stat boosts gained from equipping magicite. Only one stat, when modified, makes a meaningful contribution: Magic Power. Small differences in Vigor hardly have any effect, and boosting Vigor with magicites' stat boosts pales in comparison to simply equipping a better weapon. Stamina improves a character's chance to evade status attacks, but a Ribbon would guarantee it. Investing meaningfully in the Speed stat would require for that a character to eschew all other stats and the effect could be replicated with a simple cast of Haste. HP and MP investments do not make a character that much more durable overall, although having more of each is still useful.
+
+The mobile versions use post-battle quicksaves, meaning that if one accidentally levels up with the wrong magicite equipped, the player can get a do-over.
+
+### *Final Fantasy VII*
+
+Stats can be permanently boosted by either leveling up or by using stat boosting items. When a character gains a level, they earn increases to all primary stats as well as HP and MP, but the amount they increase is random, and depends on the stat, the character and their current level.
+
+A character like Cloud is designed to be an all-around good character with high stat growth in all his stats, whereas Aeris gains big boost in her Magic when leveling up, but has little Strength, and Barret has high Vitality but less Dexterity. Although individual stat boosts gained by a level up are randomized, they are fixed in a way that the player can never stray too far from the intended average. A character's primary stats are capped at 255; using Sources or wearing equipment and accessories does not increase a character's base stat from where the stat bonuses are calculated at a level up, and thus does not affect the rate the character gains stat increases through leveling.
+
+In addition to stats increasing as a character levels up, there are several items which, when used, permanently increase a given stat by one point. These are: the Power Source, which increases Strength; Guard Source, which increases Vitality; Magic Source, which increases Magic; Mind Source, which increases Spirit; Speed Source, which increases Dexterity; and Luck Source, which increases Luck. Sunken Gelnika is notable as a location where every monster can be morphed into a Source. It is possible to duplicate the Sources with the W-Item duplication bug for quick stat boosts. No more than 255 sources of the same type can be used on a single character.
+
+#### *Crisis Core -Final Fantasy VII-*
+
+The player can permanently boost the Materia's stats through Materia Fusion. The Materia can be fused with various items that grant stat boosts and the boosts carry over to different Materia during fusion. The Materia can then be equipped to Zack. Zack also gains minor stat boosts himself by leveling up.
+
+### *Final Fantasy VIII*
+
+While character stats are already highly customizable with the junction system, these changes are not permanent. Some Guardian Forces have abilities that grant a permanent level up bonus upon the character who equips them. For example, Leviathan learns the Spr Bonus ability, which when equipped grants a permanent +1 to Spirit upon the wearer's level up. An easy way to attain permanently high stats is to stay on a low level until acquiring the GF Cactuar, as it has every stat bonus ability.
+
+Stats can also be permanently boosted by devouring certain high-level enemies.
+
+- HP: Ruby Dragon.
+- Strength: T-Rexaur
+- Magic: Behemoth
+- Vitality: Adamantoise
+- Spirit: Malboro
+- Speed: PuPu
+
+Items that give permanent boosts are rare. They can be manufactured with certain GF abilities, though they require obtaining ingredients through Card Mod, rare enemy drops, or expensive purchases. The following method requires Doomtrain, Eden and Tonberry. The abilities needed are Doomtrain's Forbid Med-RF, Eden's GFAbl Med-RF, and Tonberry's Familiar and Call Shop. One must have visited all of Esthar's shops for them to be accessible through Call Shop.
+
+One must buy either Giant's Rings, Power Wrists, Force Armlets, or Hypno Crowns from Esthar's pet shop and refine them with GFAbl Med-RF into their next form:
+
+- Giant's Ring x10 to Gaea's Ring x1
+- Power Wrist x10 to Hyper Wrist x1
+- Force Armlet x10 to Magic Armlet x1
+- Hypno Crown x10 to Royal Crown x1
+
+And use the Forbid Med-RF to turn them into status-ups:
+
+- Gaea's Ring x1 to HP Up x1
+- Hyper Wrist x10 to Str Up x1
+- Magic Armlet x10 to Spr Up x1
+- Royal Crown x10 to Mag Up x1
+
+It takes 150,000,000 gil to get 100 of the status ups, each.
+
+To get Vitality, one can refine Vit Ups by buying Vit-J Scrolls and using the GFAbl Med-RF to refine 10 into 1 Orihalcon and refine 10 of those into an Adamantine, then use Forbid Med-RF to turn 5 of those into 1 Vit Up.
+
+To get Speed one can refine Spd Ups by fighting Cactuars on Cactuar Island, and collecting 100 Cactus Thorns to refine them with GFAbl Med-RF to 1 Hundred Needles and refine that using Forbid Med-RF, into 1 Spd Up.
+
+Ingredients for Str Up, Vit Up, and HP Up can be farmed much more efficiently near the end of the game by repeatedly modding rare cards and winning them back from members of the Card Club on the Ragnarok. This requires completing the CC quest before the point of no return.
+
+### *Final Fantasy IX*
+
+Each character has a fixed stat growth, but some equipment pieces provide permanent stat growth when a character levels up while wearing them. The best stat-boosting equipment can be purchased after the party has the Blue Narciss in shops, the Treno Auction House, found in Chocographs, and in some treasures on disc 3 and 4. Some examples are the Black Belt, Dark Matter, Pearl Rouge, Ribbon, Genji Armor, Venetia Shield, and N-Kai Armlet, Orichalcon, Masamune, Stardust Rod, and Magic Racket.
+
+For those interested in maximizing stats, it is recommended to keep the party's level as low as possible, and then start to level up with stat-boosting equipment at the end of the game. It is possible to keep levels low until Amarant joins so that the additional characters will not receive more stat penalties. This is because the higher the initial levels for Freya, Quina, Eiko, and Amarant when they join the party, the more stat penalties they suffer. This explains why, for example, Freya's max HP on player A's save file can be lower than Freya's max HP on player B's save file, even if Freya is at the same level on both.
+
+The stats that can be manipulated via equipment are Speed, Strength, Magic, and Spirit. Speed and Spirit max at 50, while Strength and Magic max at 99.
+
+The stats that increase by leveling are as follows:
+
+`Spd=SpdBase+[Level\times 1/10]+[SpdBonus/32]`
+
+  `Str=StrBase+[Level\times 3/10]+[StrBonus/32]`
+
+  `Mag=MagBase+[Level\times 3/10]+[MagBonus/32]`
+
+  `Spr=SprBase+[Level\times 3/20]+[SprBonus/32]`
+
+  `MSt=MStBase+[Level\times 4/10]+[MStBonus/32]`
+
+  `HP=[Str\times HPMod(Level)/50]`
+
+  `MP=[Mag\times MPMod(Level)/100]`
+
+- HPMod and MPMod begin at 250 and 200, respectively and increase irregularly with level.
+- Each character has a different Stat Base.
+- Values in square brackets round down.
+
+The StatBonus values start at 0. When a character gains a level, StrBonus and MagBonus increase by 3, SprBonus increases by 1 and MStBonus increases by 5. In addition to these automatic increases, the Bonus values also increases based on the stat bonuses given by equipment. There is no equipment that gives MStBonus.
+
+For example, if a character has a Bone Wrist equipped, it gives +1 Strength. If that character levels up while it is equipped, that character will gain 1 StrBonus when they level up. If one save file has Zidane equip nothing from 1 to 99, and another has just the Bone Wrist equipped, the Zidane with the Bone Wrist equipped will have 3 more Strength by level 99 (1 StrBonus x 98 level ups / 32 = 3.0625.)
+
+Due to the Marcus/Eiko stat bug, all of Marcus's StatBonus values transfer over to Eiko, while not affecting her level.
+
+### *Final Fantasy X*
+
+Characters are highly customizable using the Sphere Grid system. As a character gains experience in battle, they acquire Sphere Levels allowing them to move within the grid. When a character lands at a given node they can use spheres acquired through the game to activate a node and receive the node's attributes, such as HP or MP boost, Strength, or Luck. Some spheres let the character learn another character's abilities, like the White and Black Magic Spheres, and other spheres let the character move into another node on the Sphere Grid, like a Return Sphere and Teleport Sphere.
+
+Each character begins at a certain point in the Sphere Grid, giving them a path for most of the game. For instance, Yuna is a White Mage, so her progression mostly boosts her Magic stat and teaches her curative spells. Later in the game, the player can go on other characters' paths and increase in the stat that they mostly specialize in. The player can also nigh-completely remake the Sphere Grid using Clear Spheres, which blank the current node allowing the player to fill it with a stat of their choosing.
+
+Lock spheres can be opened with key spheres that match the level of the lock. Many special abilities are behind locked spheres, but since all the characters share the same Sphere Grid, any lock only needs to be unlocked once to make the path available for all characters.
+
+#### *Final Fantasy X-2*
+
+Each dressphere has different stats on each level, but stat growth is not dependent on the dresspheres themselves. If Yuna levels up wearing exclusively the Gunner dressphere, she will have the same stats as a level 25 Gun Mage as she would if she leveled up with a different dressphere. Stat values can be changed by equipping certain accessories or Garment Grids.
+
+### *Final Fantasy XI*
+
+The jobs have stat modifiers and penalties, but are tied to the job in question and disappear upon changing jobs. Different races also have stat modifiers, but they are small enough to be mostly insignificant at higher levels. Since a character can freely switch between jobs, and there is a fee to have more than one character, picking a race that is "perfect" for a job is not possible or practical. A Galka may make the ideal Warrior, but cannot match a Tarutaru as a Black Mage, and the player cannot have both without paying for the extra character, for whom they would have to redo much of the game's content.
+
+Upon reaching level 75 and higher with a job, any experience gained can optionally go towards limit points. Limit points can be cashed in for Merit Points, which can be used to customize the character. Among the many options are permanent stat bonuses up to 120 HP/MP, and +8 in other stats. Experience points are forced into limit points should the level of the job caps at the maximum experience point limit at level 99.
+
+### *Final Fantasy XII*
+
+Stat growth is character-specific. Each character gets stat boosts by leveling up. HP can be permanently boosted by unlocking augments on the License Board, and MP can be permanently doubled, and finally tripled, of the original value, by learning Quickenings in the original version (in the Zodiac versions, Quickenings use a separate gauge rather than MP).
+
+Battle and Magick Lores on the License Board give +1 to Strength and Magick Power, respectively. In the original version, all characters share the same License Board. In the Zodiac versions, the player chooses a job and different jobs have different amounts of Battle and Magick Lores, giving the player a little customisation over a character's stats. In The Zodiac Age versions, the player can choose two boards for each character.
+
+There are also other augments that affect battle performance, like Swiftness, but do not themselves grant stat boosts.
+
+#### *Final Fantasy XII: Revenant Wings*
+
+The only way to boost stats permanently is by leveling up. Every character has their unique pre-programmed stat growth.
+
+### *Final Fantasy XIII*
+
+Characters earn Crystogen Points (CP) to spend on the Crystarium to gain permanent stat boosts in HP, Strength, and Magic power. Everybody's Crystarium tree is unique and every character has six roles, each with its own section in the Crystarium. Defense cannot be permanently boosted, but is only affected by accessories. The player can instead permanently boost the accessories' attributes through equipment upgrades.
+
+The maximum stats attainable only by fully advancing through Crystaria for each character are:
+
+| Name | HP | Strength | Magic |
+| --- | --- | --- | --- |
+| Lightning | 20,000 | 1,700 | 1,700 |
+| Sazh | 27,000 | 1,000 | 1,000 |
+| Snow | 30,000 | 1,500 | 1,200 |
+| Hope | 18,000 | 1,100 | 1,900 |
+| Vanille | 21,050 | 1,400 | 1,700 |
+| Fang | 24,000 | 2,005 | 1,300 |
+
+#### *Final Fantasy XIII-2*
+
+Each role can now attain level 99 and the Crystaria for Serah and Noel have twenty-two stages at each a bonus is selected. Serah has the superior Magic growth and Noel has the superior HP and Strength growth.
+
+There are two types of nodes: small and large. Small spheres in the same positions give similar stat bonuses on each playthrough, while the large are role-sensitive.
+
+Leveling a role on a large Crystarium node increases certain stat by certain amount:
+
+| Role | Leveling on level | Stat increased | Growth bonus |
+| --- | --- | --- | --- |
+| Commando | Independent | Strength | 2 |
+| Ravager | Independent | Magic | 2 |
+| Sentinel | Independent | HP | 6 |
+| Saboteur | Even | Strength | 2 |
+| Odd | Magic | 2 |  |
+| Synergist | Even | HP | 6 |
+| Odd | Magic | 2 |  |
+| Medic | Independent | HP | 6 |
+
+1. ↑   2, 4, 6, etc.)
+2. ↑   3, 5, 7, etc.
+
+These stats can also be improved by equipping various weapons and accessories.
+
+Each Paradigm Pack monster has only one role that is developed via expending materials. Materials are divided into Potent; which slightly raises HP, Strength, and Magic altogether; Vitality, which raises HP better than Potent; Power, which raises Strength better than Potent; and Mana, which raises Magic better than Potent. Materials are further divided into Biological which are used by Feral Creatures and Mechanical, which are used to develop mechanical monsters.
+
+### *Final Fantasy XIV*
+
+In both "Legacy" and A Realm Reborn players gain a flat amount of stats every level, as well as one stat point every level which they can freely distribute to a single stat. The player may reassign already spent points by using one copy of the "Keeper's Hymn" item. Distributed stats were removed with the Final Fantasy XIV: Stormblood expansion.
+
+A character's base stats are tied to their race and job, and a character can freely change jobs, making finding the optimal race and job combination impractical. Additional characters do not have a fee limiting the player from having several "perfect" combination characters, but there is several hours of content the player would have to repeat to unlock the game's content for new characters.
+
+### *Final Fantasy Tactics*
+
+See also: Stat growth mechanics in Final Fantasy Tactics
+
+Each job has a specific stat growth. For example, thieves have higher speed stat growth, while mimes have the highest MA growth. Arithmeticians have the lowest stat growth. The best way to grow stats is to level up in a job with good growth, then de-level through the degenerator trap or enemy abilities as an arithmetician, then re-level as a good stat growth job.
+
+### *Final Fantasy Tactics Advance*
+
+![Impresario-ffvi-ios]This section in Final Fantasy Tactics Advance is empty or needs to be expanded. You can help the Final Fantasy Wiki by expanding it.
+
+#### *Final Fantasy Tactics A2: Grimoire of the Rift*
+
+Final Fantasy Tactics A2: Grimoire of the Rift features a wide array of races and job classes, each with unique stat growth rates. The main attributes of each character are hit points (HP), mist points (MP), attack (Atk), defense (Def), magick (Mgk), resistance (Res) and speed (Spd). Their growth is controlled by a series of formulas within the game. All stats, except for Spd, rise when the player levels up, by an amount predetermined by the following formula: ((growth*4)+9)/10. The "growth" is a number dependent on class that ranges from 1.50 to 3.00 in increments of 0.25 for the four passive stats (Atk, Def, Mgk and Res), from 5 to 9 in whole integers for HP, and from 1 to 8 for MP. Speed works differently; each unit has a percentage chance for their speed to rise by 0.25 points when they level up.
+
+With these figures in mind, ratings can be assigned to each attribute. HP ranks from A-E, MP from A-H, and the other stats from A-G. These are the stats featured in each of the classes' pages.
+
+For player perspective, B ratings are rare, and A more so. Just because a class does not have anything that high, it does not mean the class is weak. Typically, a good array is considered to, ignoring HP and MP, have two poor stats (G-F), one moderate (E-D), and one good (C+).
+
+- A-Ranked HP: Warrior
+- A-Ranked MP: Arcanist
+- A-Ranked Atk: Berserker, Gladiator, Dragoon, Master Monk, Parivir, Ranger, Sniper
+- A-Ranked Def: Defender, Geomancer, Moogle Knight
+- A-Ranked Mgk: Black Mage (Nu mou), Summoner
+- A-Ranked Res: Alchemist, Geomancer, Seer, Tinker, Viking
+
+The Trickster job has a Res growth of 1.86, making it the only example of a stat that does not have a growth rate divisible by 0.25. This is the only "E+" rating.
+
+### *Final Fantasy Type-0*
+
+*Stat promotion.*
+
+Characters' stats are raised by equipment and leveling up, but to otherwise permanently boost them, the player needs to use stat enhancement items in the Promotion menu at relic terminals. Stat boost items are rare. Surrendering Supersoldiers and Heavy Gunners may yield HP Enhancers or ATK Enhancers. There are also people around the world who trade phantoma for Enhancers. During the "Escaping the Imperial Capital" mission, the player can find an HP Enhancer from the end of the train they board. Enhancers are also rewards for some tasks and the superboss Nox Suzaku yields them. Stats max out at 255.
+
+### *Final Fantasy Adventure*
+
+Defeating monsters yields Experience and GP, the former's accumulation leveling up the player and asking what type of stat they want to boost. Players can create a powerful character in terms of physical attacks, a powerful magician with strong magic attacks, or anything in between.
+
+The stat they choose will be the primary stat that will be boosted. Some stats will also boost a different stat, but to a lesser degree. No matter what the player chooses, Stamina and Will will always go up by at least one point each if not capped.
+
+- Power: This will increase the Power rating of Sumo by 2 points. This will raise the attack power of Sumo making it easier to defeat enemies. This will also increase the Stamina and Will stat by 1 point.
+- Stamina: This will increase the Stamina rating of Sumo by 2 points. This raises the HP and also concentrates on the character's defense. He will now have less damage dealt to him by enemy attacks. This will also increase the Power and Will ratings by 1 point.
+- Wisdom: This will increase the Wisdom rating of Sumo by 2 points. This will give him additional MP and raise the damage caused by magic attacks to the enemies. This will also increase the Stamina and Will ratings by 1 point.
+- Will: This will increase the Will rating of Sumo by 2 points. This will increase the speed of the gauge allowing the Will Bar to fill up quicker. This will also increase the Stamina and Wisdom ratings by 1 point.
+
+### *Final Fantasy Legend III*
+
+The human and mutant classes produce the highest HP by far because of how the other classes have fix base stats. Unfortunately, the cap for all stats (Attack/Defense/Agility/Magic) is 99, but equipment makes all stats exceed 99. So, the real cap is 99 + equipment bonuses.
+
+The robot class produce the second highest HP and the cap for all characters is 1195 HP. Robots takes a pretty bad stat penalty, so 99 for all stats and 999 HP and anything over 999 is just calculated as 999, which is the reason robots fall way behind humans and mutants. However, robots also have robotic parts bonus cap of 99 for all stats and 999 hp that adds directly on to these stats, so the cap for robots becomes 1195 HP, 147 Attack, 107 Defense, and 144 Attack with 0 MP. And just like humans, equipment also adds directly on top of those caps, so the real cap for robots is penalized base stats + robotic parts bonuses + equipment bonuses.
+
+The rest of the classes have fixed base stats depending on what form they take, which are lower than 999 HP and 99 for stats, so they are all lower than humans, mutants and robots. Monsters cannot even wear equipment for equipment stat bonuses.
+
+All classes can additionally have Fast and Shell cast on them during battle to increase their stats even more. Each spell can be cast up to 9 times before having no more effect.
+
+### *Final Fantasy Crystal Chronicles: Ring of Fates*
+
+Character's stats increase through leveling up or by buying increases (eg: Hp Up, Atk Up) from moogles. Only a certain amount of each increase can be bought and they are very expensive.
+
+### *Dissidia Final Fantasy* (2008)
+
+The only way to permanently boost a character's stats is by leveling them up.
+
+#### *Dissidia 012 Final Fantasy*
+
+The system from the original Dissidia returns as the leveling up system; where EXP is gained and permanent stat boosts occur.
+
+### *World of Final Fantasy*
+
+Stat growth between characters appear static. A listing of "growth ratings" for each Mirage (playable or not) indicates the extent of which stats increase upon leveling up. Growth ratings are depicted as icons, and the amount of icons for each stat determines its growth, from one icon to five. A stat with only one icon indicates minimal increase for that Mirage, or none whatsoever.
+
+The player can permanently increase a Mirage's stats (and their transfigurations thereof, if any) by unlocking stat boost spaces within their Mirage Board, but this does not affect their stat growth.
+
+NewPP limit report
+Cached time: 20261015093636
+Cache expiry: 2592000
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.268 seconds
+Real time usage: 0.435 seconds
+Preprocessor visited node count: 1098/1000000
+Post‐expand include size: 41408/2097152 bytes
+Template argument size: 341/2097152 bytes
+Highest expansion depth: 7/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 1465/5000000 bytes
+Lua time usage: 0.035/7.000 seconds
+Lua memory usage: 1402968/104857600 bytes
+
+Transclusion expansion time report (%,ms,calls,template)
+100.00% 94.367 1 -total
+ 45.78% 43.201 3 Template:See
+ 20.95% 19.768 2 Template:Navbox
+ 16.43% 15.502 1 Template:Navbox_stats
+ 9.93% 9.368 1 Template:Navbox_character_growth
+ 8.54% 8.062 4 Template:Note
+ 8.05% 7.594 1 Template:Annotations
+ 6.17% 5.821 1 Template:Citations
+ 5.17% 4.882 1 Template:Section
+ 2.16% 2.034 6 Template:SL
+
+ Saved in parser cache with key 1.43.9_prod_finalfantasy:pcache:idhash:85471-0!sseVary=RegularPage!FandomDesktop!LegacyGalleries and timestamp 20261015093636 and revision id 4055045. Rendering was triggered because: api-parse

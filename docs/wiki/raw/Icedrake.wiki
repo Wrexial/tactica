@@ -1,0 +1,92 @@
+[[File:FFTA-Icedrake.jpg|200px|right]]
+[[File:FFTA-spr-Icedrake.gif|left]]
+{{Quote|Giant scaly monster. Breathes clouds of ice.|Description}}
+The '''Icedrake''' in ''[[Final Fantasy Tactics Advance]]'' is the [[Ice (element)|Ice]] variant of the powerful dragon family. Being the more defensively oriented dragon of the bunch, its [[Mighty Guard (ability)|Mighty Guard]] ability raises the Defense and Magic Resistance of itself or an adjacent unit. It tends to use this ability on itself, becoming even more durable. Mighty Guard can be learned by Blue Mages as Blue Magic.
+
+==Abilities==
+===Icewyrm===
+{{Quote|Ice drake command. Unleash icy death.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Mighty Guard (ability)|Mighty Guard}}
+|''Raises weapon def. and magic res. for one battle.''
+|8
+|-
+!{{LA|Ice Breath}}
+|''Icy cold breath. Deals damage.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Uladon!
+|The Icedrake is the most powerful enemy in this monster-based clan.
+|-
+!Mission #007: Diamond Rain
+|There are two Icedrakes here. Underleveled clans will have a tough time bringing down both of these beasts.
+|-
+!Mission #032: Tower Ruins
+|The Icedrake here starts off close to a [[Firewyrm]] cousin.
+|-
+!Mission #012: Pale Company
+|[[Adrammelech (Tactics Advance)|Adrammelech]] summons a Dragon of each element to assist him. The Icedrake is the closest to the party at the mission's start.
+|-
+!Mission #034: Magewyrm
+|The Icedrake here is one of the [[Thundrake]]'s cronies.
+|-
+!Mission #066: A Dragon's Aid
+|A Dragon of each element helps out the two [[Dragoon (Tactics Advance)|Dragoons]] in this mission.
+|-
+!Mission #102: Wyrms Awaken
+|Five Dragons intercept the party in this mission, and any one of them may be placed right next to the starting block.
+|-
+!Mission #031: Ruby Red
+|An Icedrake and Thundrake are controlled by the [[Beastmaster (Tactics Advance)|Beastmaster]] who has stolen the Wyrmstone.
+|-
+!Mission #063: Missing Professor
+|Four monsters, including an Icedrake, guard the statues of [[Tubola Cave]].
+|-
+!Mission #083: Free Bervenia!
+|The [[Vampire (Tactics Advance)|Vampire]] that has infested the [[Bervenia Palace|palace]] commands two Icedrakes.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Uladon Bog]]
+|style="text-align:center"|Roaming Naiads
+|The Icedrake and [[Ice Flan (Tactics Advance)|Ice Flan]] here may work in tandem, healing each other with Ice-based attacks.
+|-
+![[Gotor Sands]]
+|style="text-align:center"|Wild Monsters
+|The Icedrake and [[Grenade (Tactics Advance)|Grenade]] are two Ice-based monsters here.
+|}
+
+==Gallery==
+<gallery>
+FFTA Icedrake Portrait.gif|Portrait.
+</gallery>
+[[Category:Enemies in Final Fantasy Tactics Advance]]

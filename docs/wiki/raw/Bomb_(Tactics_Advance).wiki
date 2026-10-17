@@ -1,0 +1,107 @@
+{{DISPLAYTITLE:Bomb (''Tactics Advance'')}}
+[[File:FFTABomb.jpg|right|200px]]
+[[File:FFTABomb.png|left]]
+{{Quote|Fiery, explosive creature. Deals fire damage.|Description}}
+'''Bomb''' in ''[[Final Fantasy Tactics Advance]]'' is a flaming creature that can self-destruct to do massive damage. Being of the [[Fire (element)|Fire]] element, it is weak to [[Ice (element)|Ice]] and [[Water (element)|Water]]-based attacks. It is related to the Ice-elemental [[Grenade (Tactics Advance)|Grenade]] enemy.
+
+If [[Firewyrm]]s accompany Bombs, such as in "Mission #047: Hot Recipe", it is best to kill the wyrms because they may use their [[Fire Breath]] to deal damage to the party and heal an injured Bomb at the same time.
+
+{{See|Bomb (creature)}}
+
+==Abilities==
+===Blaze===
+{{Quote|Bomb command. Attack enemies with fire.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Self-Destruct|Blowup}}
+|''Self-KO. Deals massive damage to nearby enemies.''
+|2
+|-
+!{{A|Flame Attack}}
+|''Spews fire from within to deal fire damage.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Def+}}
+|''Reduces damage from weapon attacks.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Mission: Help Roda!
+|Two Bombs appear here, along with an icy Grenade. Make sure to not accidentally heal the Bombs with Fire spells when attempting to KO the Grenade.
+|-
+!Mission #038: Fire! Fire!
+|Four Bombs are attempting to set [[Cyril (Tactics Advance)|Cyril]] ablaze. To make this mission a snap, have two or more Black Mages with the [[Blizzard (ability)|Blizzard]] spell.
+|-
+!Mission #074: Cadoan Watch
+|Five bombs, including the Mom Bomb, are intercepted by the party on the outskirts of [[Cadoan]]. Be sure to have the higher-level Ice spells such as Freezeblink and [[Blizzara (ability)|Blizzara]].
+|-
+!Mission #007: Diamond Rain
+|The Bomb appears between the two [[Icedrake]]s in this mission.
+|-
+!Mission #047: Hot Recipe
+|[[Marche Radiuju|Marche]] has been sent by a cook to obtain several "ingredients" from the three Bombs in this mission.
+|-
+!Mission #032: Tower Ruins
+|A Bomb perches on the ramparts of the old [[Salikawood (Tactics Advance)|Salikawood]] Keep.
+|-
+!Mission #034: Delia Dunes
+|A Bomb is at the front of Magewyrm Gerland's forces.
+|-
+!Mission #107: Old Friends
+|The Blade Biter that [[Ritz Malheur|Ritz]] and Marche must fight together is allied with a Bomb.
+|-
+!Mission #063: Missing Professor
+|Professor Auggie has been cornered by various monsters, including a Bomb.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Eluut Sands]]
+|style="text-align:center"|Antlions
+|One Bomb is part of this monster Clan.
+|-
+![[Roda Volcano (Tactics Advance)|Roda Volcano]]
+|style="text-align:center"|Roda Dragons
+|Naturally, a clan that makes its home in a volcano would include a Bomb.
+|}
+
+==Gallery==
+<gallery>
+FFTA Bomb Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Bomb}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

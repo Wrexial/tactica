@@ -1,0 +1,599 @@
+[[File:FFX Luca.png|thumb|250px|A shop in ''Final Fantasy X''.]]
+'''Shops''' {{J|ショップ|Shoppu}} are a recurring feature in the [[Final Fantasy series|''Final Fantasy'' series]]. Appearing in every game, they provide the player with areas where items, weapons, armor and magic can be bought and sold for [[gil]].
+
+Not every game has the same kind of shops available, for example, in the original ''[[Final Fantasy]]'', there were shops for both [[Black Magic|Black]] and [[White Magic]], while in most games, there is no division. ''[[Final Fantasy VIII]]'' features two kinds of shops: the recurring item shops and the [[Junk shop (Final Fantasy VIII)|junk shop]], which acts as a weapon shop. In most games shops are physical locations the player should visit to commence commerce, but in some games shops are accessed from the [[menu]].
+
+==Appearances==
+===''[[Final Fantasy]]''===
+[[File:FFI-WeaponShop.PNG|thumb|175px|right|A weapon shop (''Dawn of Souls'').]]
+[[File:FF1 NES Shop.png|thumb|right|An [[item]] shop (NES).]]
+There are five types of shops: [[Final Fantasy weapons|weapon]], [[Final Fantasy armor|armor]], [[White Magic]], [[Black Magic]], and [[item]]. Shops are available in each [[town]]. In the [[Whisperwind Cove (Final Fantasy)|Whisperwind Cove]], a village of mages exists, where magic of all levels and magic-related equipment is sold.
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[Cornelia (Final Fantasy)|Cornelia]]
+*[[Pravoka]]
+*[[Elfheim]]
+*[[Melmond]]
+*[[Crescent Lake]]
+*[[Gaia (Final Fantasy)|Gaia]]
+*[[Onrac]]
+*[[Caravan (Final Fantasy)|Caravan]]
+*[[Lufenia (Final Fantasy)|Lufenia]]
+*[[Whisperwind Cove (Final Fantasy)|Whisperwind Cove]] (''[[Final Fantasy I & II: Dawn of Souls|Dawn of Souls]]'' and ''[[Final Fantasy#Final Fantasy 20th Anniversary Edition|Anniversary]]'' versions)
+|}
+
+<gallery>
+FFI NES Weapon Shop.png|Weapon shop keeper.
+FFI NES Armor Shop.png|Armor shop keeper.
+FFI NES Black Magic Shop.png|Black Magic shop keeper.
+FFI NES White Magic Shop.png|White Magic shop keeper.
+</gallery>
+
+===''[[Final Fantasy II]]''===
+[[File:FF2-ArmorShop.PNG|thumb|175px|right|An armor shop (''Dawn of Souls'')]]
+[[File:FF2 NES Shop.png|thumb|right|An armor shop (NES).]]
+Item, weapon, armor, and magic shops exist, the latter no longer being divided. All towns have one of each.
+
+Locations featuring shops:
+*[[Altair (Final Fantasy II)|Altair]]
+*[[Gatrea]]
+*[[Paloom]]
+*[[Poft]]
+*[[Bafsk]]
+*[[Salamand (Final Fantasy II)|Salamand]]
+*[[Fynn]]
+*[[Tropical Island]]
+*[[Mysidia (Final Fantasy II)|Mysidia]]
+*[[Jade Passage]]
+*[[Raqia|Unknown Cave]] (''[[Final Fantasy I & II: Dawn of Souls|Dawn of Souls]]'' and ''[[Final Fantasy II#PlayStation Portable|Anniversary]]'' versions)
+*[[Machanon]] (''[[Final Fantasy I & II: Dawn of Souls|Dawn of Souls]]'' and ''[[Final Fantasy II#PlayStation Portable|Anniversary]]'' versions)
+
+===''[[Final Fantasy III]]''===
+
+[[File:FFIII-MagicShop.jpg|thumb|right|A [[Magic (term)|magic]] shop (DS).]]
+Weapon, armor, item, and magic shops return. Unlike the previous games, not every town has at least one of these, such as in [[Saronia]] or [[Doga's Manor]]. [[Doga's Village]] has magic shops that sell all kinds of magic, except for level 8 spells, which can only be purchased at [[Eureka (Final Fantasy III)|Eureka]]. In this same area exists a shop that sells both armor and weapons.
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[Ur]]
+*[[Kazus]]
+*[[Canaan (Final Fantasy III)|Canaan]]
+*[[Tozus]]
+*[[Vikings' Cove]]
+*[[Village of the Ancients]]
+*[[Dwarven Hollows (Final Fantasy III)|Dwarven Hollows]]
+*[[Gysahl (Final Fantasy III)|Gysahl]]
+*[[Amur]]
+|valign="top" width="33%"|
+*[[Duster (Final Fantasy III)|Duster]]
+*[[Replito]]
+*[[Saronia]]
+*[[Doga's Manor]]
+*[[Doga's Village]]
+*[[Ancient Ruins]]
+*''[[Invincible (Final Fantasy III)|Invincible]]''
+*[[Falgabard (Final Fantasy III)|Falgabard]]
+*[[Eureka (Final Fantasy III)|Forbidden Land Eureka]]
+|}
+
+<gallery>
+FFIII NES Shop Signs.png|Shop signs.
+FF3 NES Shop.png|A magic shop (NES).
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy IV]]''===
+[[File:FFIV PSP Shop Signs.png|right]]
+[[File:FFIV-ItemShop.png|left|thumb|An [[item]] shop at [[Baron (Final Fantasy IV)|Baron]] (DS).]]
+[[File:Baron Shop GBA.png|left|thumb|An item shop at Baron (GBA).]]
+Magic shops are removed, as each character learns their spells individually by [[level]]ing. All towns have at least one armor, weapon, and item shop.
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[Baron (town)|Baron]]
+*[[Mist (Final Fantasy IV)|Mist]]
+*[[Kaipo]]
+*[[Fabul]]
+*[[Mysidia (Final Fantasy IV)|Mysidia]]
+*[[Troia (town)|Troia]]
+*[[Agart]]
+|valign="top" width="33%"|
+*[[Mythril (Final Fantasy IV)|Mythril]]
+*[[Dwarven Castle]]
+*[[Cave of Eblan]]
+*[[Tomra (Final Fantasy IV)|Tomra]]
+*[[Feymarch]]
+*[[Hummingway Home]]
+*[[Lunar Ruins]] (''[[Final Fantasy IV#Game Boy Advance|Advance]]'' & PSP version)
+|}
+{{clear}}
+
+====''[[Final Fantasy IV -Interlude-]]''====
+Due to the linearity and shortness of the interlude, there are few shops. There are shops in the [[Cave of Eblan]] and the [[Feymarch]]; the former doesn't have anyone living there anymore while in the case of the latter, nobody sells anything.
+
+Locations featuring shops:
+*[[Damcyan]]
+*[[Fabul]]
+*''[[Falcon (Final Fantasy IV)|Falcon]]''
+
+====''[[Final Fantasy IV: The After Years]]''====
+{{Section|Final Fantasy IV: The After Years}}
+
+===''[[Final Fantasy V]]''===
+{{Main|Final Fantasy V shops}}
+[[File:Castle Surgate Armory.png|thumb|175px|right|[[Surgate Castle]]'s armory.]]
+Shops are found in [[Tule]], [[Carwen]], [[Walse|Walse town]], [[Karnak|Karnak town]], [[Jachol]], [[Istory]], [[Lix]], [[Crescent (Final Fantasy V)|Crescent]], [[Regole]], the [[Castle of Bal]], [[Quelb]], [[Surgate Castle]], [[Moore (Final Fantasy V)|Moore]], [[Phantom Village]], and the [[Great Sea Trench]]. They can be subdivided into:
+
+* '''Item shops''' selling consumable [[Final Fantasy V items|items]].
+* '''Weapon shops''' selling equippable and [[Throw (Final Fantasy V)|throwable]] [[Final Fantasy V weapons|weapons]].
+* '''Armor shops''' selling equippable [[Final Fantasy V armor|armor]] and [[Final Fantasy V accessories|accessories]].
+* '''Magic shops''' selling [[White Magic (Final Fantasy V)|white spells]], [[Black Magic (Final Fantasy V)|black spells]], [[Time Magic (Final Fantasy V)|time spells]], and [[Summon (Final Fantasy V)|summoned creatures]].
+
+===''[[Final Fantasy VI]]''===
+
+[[File:FFVI Auction House iOS.png|thumb|175px|right|The auction house at Jidoor.]]
+Magic shops do not appear, and while armor and weapon shops can share the same building, item shops are always distinct. A new type of shop is introduced, the [[Auction House (Final Fantasy VI)|auction house]], only found at [[Jidoor]]. The [[Narshe]] weapon shop in the [[World of Ruin (Final Fantasy VI)|World of Ruin]], if opened with [[Locke Cole]], holds a secret where the player is able to get either the [[Ragnarok (Final Fantasy VI weapon)|Ragnarok]] weapon or the [[Ragnarok (summon)|Ragnarok]] [[Magicite (Final Fantasy VI)|magicite]].
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[Narshe]]
+*[[Figaro Castle]]
+*[[South Figaro]]
+*[[Returner Hideout]]
+*[[Gau's father's house]]
+*[[Phantom Train (Final Fantasy VI)|Phantom Train]]
+*[[Mobliz]]
+*[[Nikeah]]
+*[[Kohlingen]]
+|valign="top" width="33%"|
+*[[Jidoor]]
+*[[Zozo]]
+*[[Blackjack (Final Fantasy VI)|Blackjack]]
+*[[Albrook]]
+*[[Vector]]
+*[[Tzen]]
+*[[Maranda]]
+*[[Thamasa]]
+|}
+
+===''[[Final Fantasy VII]]''===
+{{See|Final Fantasy VII shops}}
+[[File:Icicle inn7.png|thumb|right|175px|The [[Icicle Inn (Final Fantasy VII field)|Icicle Inn]] Weapon Shop.]]
+The shops are of different style to the shops in previous installments. While there are general shops that sell all kinds of items, there is no distinction between armor and weapon shops, and the [[Materia (Final Fantasy VII equipment)|Materia]] shops serve as the magic shops. Shops that sell only accessories also exist.
+
+The [[Sector 7 Slums (Final Fantasy VII field)|Sector 7 Slums]] shops become unavailable early on, which makes certain early armor become unavailable if the player didn't buy them. In [[Junon (Final Fantasy VII field)|Junon]] the shops' inventory update after the party gains ''[[Highwind (Final Fantasy VII transportation)|Highwind]]'', all but for the Materia shop. Game data suggests the Materia shop's inventory was intended to update as well, and it not doing so is [[List of bugs and glitches|a glitch]]. This is notable as it would have sold the [[Magic Plus (Final Fantasy VII)|Magic Plus]] Materia that is not available from any shop in the retail version.
+
+In [[Wutai (Final Fantasy VII field)|Wutai]] the shops will not sell the items to the player if [[Yuffie Kisaragi|Yuffie]] is still hiding in the town; the player must complete the "[[Homecoming of a Miserable Daughter]]" sidequest of reuniting with her for the shops to open. In [[Mideel (field)|Mideel]], most of the shops close after an earthquake ravages the town, but the player can still buy the items for an increased price from a shopper with a [[white chocobo]].
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[Sector 7 Slums (Final Fantasy VII field)|Sector 7 Slums]]
+*[[Sector 5 Slum (Final Fantasy VII field)|Sector 5 Slum]]
+*[[Wall Market (Final Fantasy VII field)|Wall Market]]
+*[[Shinra Bldg. (Final Fantasy VII field)|Shinra Bldg.]]
+*[[Kalm (Final Fantasy VII field)|Kalm]]
+*[[Chocobo Farm (Final Fantasy VII field)|Chocobo Farm]]
+*[[Fort Condor (field)|Fort Condor]]
+*[[Junon (Final Fantasy VII field)|Junon]] and [[Under Junon (field)|Under Junon]]
+*[[Cargo Ship (Final Fantasy VII field)|Cargo Ship]]
+*[[Costa del Sol (Final Fantasy VII field)|Costa del Sol]]
+*[[North Corel (field)|North Corel]]
+|valign="top" width="33%"|
+*[[Gold Saucer (Final Fantasy VII field)|Gold Saucer]]
+*[[Gongaga, the Village of Sadness|Gongaga]]
+*[[Cosmo Canyon (Final Fantasy VII field)|Cosmo Canyon]]
+*[[Nibelheim (Final Fantasy VII field)|Nibelheim]]
+*[[Rocket Town (Final Fantasy VII field)|Rocket Town]]
+*[[Wutai (Final Fantasy VII field)|Wutai]]
+*[[Temple of the Ancients (field)|Temple of the Ancients]]
+*[[Bone Village (field)|Bone Village]]
+*[[Icicle Inn (Final Fantasy VII field)|Icicle Inn]]
+*[[Mideel (field)|Mideel]]
+|}
+
+====''[[Crisis Core -Final Fantasy VII-]]''====
+[[File:CCFFVII-Shop.png|thumb|left|The Shop menu.]]
+{{main|Shop (Crisis Core)}}
+[[Zack Fair|Zack]] can access an online shop feature of the [[Worldwide Network]], which the player uses from the [[Menu (Crisis Core)|menu]]. New shop online addresses can be obtained in story events or as [[Missions (Crisis Core)|mission rewards]] or in special story events. Zack can buy accessories or Materia.
+
+====''[[Dirge of Cerberus -Final Fantasy VII-]]''====
+The item shops resemble 1950's style jukeboxes, and are found in various places in each of the levels. They are also found at the end of each stage. They all sell the same items, and offer a range of [[Gun customization|gun upgrades]].
+{{clear}}
+
+===''[[Final Fantasy VII Remake]]''===
+[[File:Vending machine in Corkscrew Tunnel from FFVII Remake.jpg|thumb|Vending machine.]]
+{{Main|Final Fantasy VII Remake shops}}
+Vendors sell all kinds of items and equipment and materia and their wares may change depending on how far along the game the player is, and what [[:Category:Odd Jobs in Final Fantasy VII Remake|odd jobs]] they have completed. In dungeons, the player can use vending machines. There is also a special shop where the currency is [[Moogle Medal|moogle medals]].
+{{clear}}
+
+===''[[Final Fantasy VIII]]''===
+[[File:Deling Shop.png|right|thumb|[[Deling City]] Shopping Arcade.]]
+[[File:Esthar Shopping Mall.jpg|right|thumb|Esthar City Shopping Mall.]]
+There are no common equipment shops, instead [[Junk shop (Final Fantasy VIII)|Junk shop]]s where [[Final Fantasy VIII weapons|weapons]] can be remodeled. Shops can be accessed anywhere using the [[Guardian Force]] [[Tonberry (Final Fantasy VIII summon)|Tonberry's]] [[Call Shop]] ability, and junk shops can be accessed anywhere using the Guardian Force [[Doomtrain (Final Fantasy VIII)|Doomtrain]]'s Junk Shop ability. Shop prices and stock are affected by the menu abilities [[Haggle (Final Fantasy VIII)|Haggle]], [[Sell-High (Final Fantasy VIII)|Sell-High]], and [[Familiar (Final Fantasy VIII)|Familiar]].
+
+All regular shops have the same items. The exceptions are the shops in [[Esthar City]] with some unique shops, and the pet shop in [[Timber]]. Some shops in Esthar City are closed: Cheryl's Shop will give a [[Rosetta Stone (Final Fantasy VIII)|Rosetta Stone]] randomly when one tries to access the shop, and Johnny's Shop is initially closed but will open at a random time when the player tries to enter it. The player must open Johnny's Shop from the shopping arcade terminal in Esthar City to get it for Tonberry's Call Shop ability.
+
+There is a [[Dummied content|dummied shop]] that was intended to be found somewhere in [[Trabia]], but it didn't have any unique items.
+
+Locations featuring shops:
+*[[Balamb Garden]] (CC Joker appears randomly in Training Center)
+*[[Balamb Town]]
+*[[Timber]]
+*[[Dollet]]
+*[[Deling City]]
+*[[D-District Prison]]
+*[[Winhill]]
+*[[Fishermans Horizon]]
+*[[Esthar City]]
+*''[[Ragnarok (Final Fantasy XIII)|Ragnarok]]'' (CC Joker appears in ''Ragnarok'' in disc 4 to sell items and remodel weapons)
+
+===''[[Final Fantasy IX]]''===
+[[File:FFIX-Dali Shop.jpg|thumb|left|The shop at [[Dali]].]]
+Shops are commonly found in cities and towns, but some merchant [[Moogle (Final Fantasy IX)|moogles]] roam [[Gaia (Final Fantasy IX)|Gaia]], offering their services when spoken to in dungeons and other places that have no physical shops. The moogles sell various items and equipment but in towns equipment shops and item shops are usually separate. [[Zorn and Thorn]] sell items aboard the ''[[Hilda Garde#Hilda Garde I|Hilda Garde I]]'' when the player first ventures to the [[Forgotten Continent]], as there are no towns in the area.
+
+An [[Treno Auction House|auction house]] can be found at [[Treno]], and another type of shop is introduced: the [[Synthesis (Final Fantasy IX)|synthesis shops]] found at most towns. There is also a hidden synthesis shop that opens after the player defeats the optional boss [[Hades (Final Fantasy IX)|Hades]].
+
+The weapon shop in Treno is also a [[battle arena]]. The shops' inventories update later in the game and thus the player can miss out on some equipment if they didn't buy it in time.
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[Alexandria (Final Fantasy IX)|Alexandria]]
+*[[Evil Forest]]
+*[[Dali]]
+*[[Lindblum (Final Fantasy IX)|Lindblum]]
+*[[Aerbs Mountains]]
+*[[Treno]]
+*[[Cleyra]]
+*[[Conde Petie]]
+*[[Black Mage Village]]
+*[[Esto Gaza]]
+*[[Daguerreo]]
+|valign="top" width="33%"|List of locations that feature Mogshops:
+*[[Burmecia]]
+*[[Fossil Roo]]
+*[[Madain Sari]]
+*[[Desert Palace]]
+*[[Oeilvert]]
+*[[Ipsen's Castle]]
+*[[Bran Bal]]
+|}
+{{clear}}
+
+===''[[Final Fantasy X]]''===
+{{Main|Final Fantasy X shops}}
+[[File:FFX Shop Menu.png|thumb|right|Shop menu.]]
+Other than the common shops found at [[Rin's Travel Agency|travel agencies]] and [[Town#Final Fantasy X and Final Fantasy X-2|towns]], the wandering merchant [[O'aka XXIII]] and his brother [[Wantz]] provide the party their services along the journey. Their stock is varied. Most shops offer both equipment and items and so, the number of shops per area rarely surpasses the three (counting with O'aka).
+
+If the player meets with Wantz, he will sell weapons with empty ability slots in Macalania at the end of the game. The player can buy Clear Spheres from the [[Monster Arena]] to clear out nodes in the [[Sphere Grid]] to replace with more potent stat boosts to max out their stats.
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[Besaid Village]]
+*[[Kilika Port]]
+*[[Luca (Final Fantasy X)|Luca]]
+*[[Mi'ihen Highroad]]
+*[[Mushroom Rock Road]]
+*[[Djose Temple]]
+*[[Moonflow (Final Fantasy X)|Moonflow]]
+*[[Guadosalam]]
+*[[Thunder Plains (Final Fantasy X)|Thunder Plains]]
+*[[Macalania Woods]]
+**[[Lake Macalania]]
+|valign="top" width="33%"|
+*[[Bevelle]]
+*[[Calm Lands]]
+*[[Monster Arena]]
+*[[Mt. Gagazet]]
+*''[[Fahrenheit]]''
+|}
+
+====''[[Final Fantasy X-2]]''====
+
+[[File:Lake Macalania Shop.jpg|thumb|Shop at Lake Macalania.]]
+Shops appear in most of the locations within travel agencies and merchants. [[Barkeep]] has a shop on board the party's [[Airship (term)|airship]], the ''[[Celsius]]'', and if the player saves O'aka from his [[Al Bhed]] debtors, he will come onboard the airship as well and sell the player items to pay his debt. The player can no longer equip weapons, so the shops' inventories consist of [[Final Fantasy X-2 accessories|accessories]] and [[Final Fantasy X-2 items|items]].
+
+If the player saves the travel agency at [[Lake Macalania]] from [[Fiend (Final Fantasy X)|fiends]] and has O'aka reunite with his brother Wantz, they will find good accessories from their shop in Chapter 5. If the player has [[Clasko]] open a [[Calm Lands Ruins|Chocobo Ranch]] at the former [[Monster Arena]], he will balance the player's chocobo related items for catching [[Chocobo (Final Fantasy X-2 enemy)|chocobos]].
+
+{|
+|style="width:50%; vertical-align:top;"|Locations featuring shops:
+*[[Besaid Village]]
+*[[Kilika Port]]
+*[[Luca (Final Fantasy X)|Luca]]
+*[[Mi'ihen Highroad]]
+*[[Moonflow (Final Fantasy X)|Moonflow]]
+*[[Guadosalam]]
+*[[Thunder Plains (Final Fantasy X)|Thunder Plains]]
+|style="width:50%; vertical-align:top;"|
+*[[Macalania Woods]]
+**[[Lake Macalania]]
+*[[Calm Lands]]
+*[[Mt. Gagazet]]
+*[[Zanarkand]]
+*''[[Celsius]]''
+|}
+{{clear}}
+
+====''[[Final Fantasy X-2: Last Mission]]''====
+
+{{Section|Final Fantasy X-2: Last Mission}}
+
+===''[[Final Fantasy XI]]''===
+
+Every town and city in [[Vana'diel]] has at least one [[non-player character]] selling weapons, armor, items, and magic scrolls. The big cities (except [[Grand Duchy of Jeuno|Jeuno]]) also host the headquarters of crafting guilds and their guild shops can be found in their cities. Guild shops, unlike regular shops, have opening and closing hours and have a holiday on a specific day each week. Despite the existence of NPC merchants, players generally trade with each other through the use of [[Auction House (Final Fantasy XI)|auction house]] since they can get a better price and most of the best items are not sold by NPC merchants.
+
+===''[[Final Fantasy XII]]''===
+[[File:Westersand shop.jpg|thumb|175px|right|Lohen's shop at Dalmasca Westersand.]]
+{{Main|Final Fantasy XII shops|Bazaar (Final Fantasy XII)}}
+In the major towns of [[Ivalice (Final Fantasy XII)|Ivalice]], shops are divided into magick, weapons, armor, [[gambits]], [[technicks]], and items and in minor areas there are usually merchants selling base provisions. Many of the more remote shops update their stock late in the game to sell special magick and equipment not available from any other shop. [[Necrohol of Nabudis]] has a hidden shop the player can find by inspecting a corner of a room in an [[Hidden passage|area off the map]]. The [[Clan Centurio (Final Fantasy XII)|Clan Centurio]] shop in Muthru Bazaar in [[Rabanastre (Final Fantasy XII)|Rabanastre]] sells items based on the player's rank in the clan.
+
+A new kind of shop is the [[Bazaar (Final Fantasy XII)|bazaar]] that is available in every normal shop, but the items in the Bazaar only become available as the player sells specific [[Loot (Final Fantasy XII)|loot]] items in specific quantities to the shops. Many of the best equipment are only available through the bazaar. Visiting different types of shops a specific number of times (purchases are not needed) unlocks monographs at the bazaar.
+
+Maps can be purchased from [[Cartographers' Guild]] moogles. The only time a map can be purchased from a normal vendor is if the player missed the map of Rabanastre while they were there, in which case the map will be available in a shop in [[Old Archades]].
+
+The [[Skyferry|Skyferries]] also sell items, and different airship routes have slightly different stock.
+
+Shop prices were dropped and many shops now carry different items in the ''Zodiac'' versions.
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[Rabanastre (Final Fantasy XII)|Rabanastre]]
+*[[Lowtown]]
+*[[Giza Plains (Final Fantasy XII)|Giza Plains]]
+*[[Dalmasca Estersand (Final Fantasy XII)|Dalmasca Estersand]]
+*[[Dalmasca Westersand]]
+*[[Nalbina Fortress]]
+*[[Barheim Passage]]
+*[[Bhujerba]]
+*[[Dreadnought Leviathan|Dreadnought ''Leviathan'']]
+*[[Ogir-Yensa Sandsea]]
+|valign="top" width="33%"|
+*[[Nam-Yensa Sandsea]]
+*[[Tomb of Raithwall]]
+*[[Jahara]]
+*[[Eruyt Village]]
+*[[Mt Bur-Omisace]]
+*[[Mosphoran Highwaste]]
+*[[Phon Coast]]
+*[[Old Archades]]
+*[[Archades]]
+*[[Balfonheim Port]]
+*[[Skyferry|Skyferries]]
+*[[Necrohol of Nabudis]]
+|}
+
+====''[[Final Fantasy XII: Revenant Wings]]''====
+[[File:FFXIIRW-TomajShop.jpg|thumb|200px|right|Tomaj's shop.]]
+The only shops are [[Tomaj]]'s equipment shop, [[Cu Sith (Revenant Wings)|Cu Sith's]] smithy that forges equipment from materials, and [[Llyud]]'s material shop. They are on board the [[Sky Saloon]] of the ''[[Galbana]]''. Throughout the game the shops evolve from small shacks to buildings, and accommodate more items to sell.
+{{clear}}
+
+===''[[Final Fantasy XIII]]''===
+
+[[File:Save Point and Shop FFXIII.png|thumb|left|A Retail Network Shop.]]
+{{main|Retail Network}}
+Shops are accessed via [[Save point#Final Fantasy XIII|Save Stations]] and new shops are found and added to the shop list along the storyline. Certain shops are only opened after having completed certain [[Missions (Final Fantasy XIII)|missions]]. Most of the [[Final Fantasy XIII weapons|weapons]] in the game are found in [[Treasure chest (object)#Final Fantasy XIII|treasure spheres]] but the same weapons come available in the shops soon after in case the player missed them, or wants another copy of it.
+
+Some of the weapons with [[Final Fantasy XIII passive abilities|special abilities]] are only found in shops that are acquired after completing missions. Shops sell weapons, accessories, upgrade materials, items and there is also one shop that sells [[shroud]]s.
+{{clear}}
+
+====''[[Final Fantasy XIII-2]]''====
+
+[[File:Weapon shop ffxiii-2.jpg|thumb|Weapon shop.]]
+{{main|Chocolina}}
+The shopkeeper is Chocolina, who appears in numerous locations to sell wares. The further in the game the player progresses, the more items they can buy from her. The player can buy regular [[Final Fantasy XIII-2 items|battle items]], [[Final Fantasy XIII-2 adornments|adornments]] for [[Paradigm Pack]] monsters, and equipment for [[Serah Farron|Serah]] and [[Noel Kreiss|Noel]]. Some equipment requires the player to trade in items dropped by monsters to make.
+
+[[Serendipity (Final Fantasy XIII-2)|Serendipity]] also has a shop, where the player can trade their coins for prizes.
+{{clear}}
+
+====''[[Lightning Returns: Final Fantasy XIII]]''====
+
+[[File:LRXIII Shop.jpg|thumb|right|A shop.]]
+{{See|Lightning Returns: Final Fantasy XIII shops}}
+Shops are found in towns and they will sell more items as the time goes by, and more items will become available on [[Lightning Returns: Final Fantasy XIII days|days]] 6, 8, and 11. Some items are only available on the [[Difficulty level#Lightning Returns: Final Fantasy XIII|Hard]] difficulty, meaning it requires a [[New Game Plus|New Game+]]. Shops are usually available at any time, but there are exceptions.
+
+Available shop types:
+*General Stores sell various recovery [[Lightning Returns: Final Fantasy XIII items|items]]. Tenio, the Black Market Dealer found in the [[Patron's Palace]] at the beginning of the game, introduces players to the use of general stores and provides an item tutorial.
+*Adventuring Essentials sell notes on monsters that contain info on the enemies' weaknesses, HP, and so on, adding them to the [[Datalog (Final Fantasy XIII)|Datalog]]. On a second playthrough, Adventuring Essentials also sells basic materials to upgrade weapons and shields.
+*Outfitters sell [[Lightning Returns: Final Fantasy XIII garbs|garbs]] and [[Lightning Returns: Final Fantasy XIII adornments|adornments]].
+*Forges sell [[Lightning Returns: Final Fantasy XIII weapons|weapons]] and [[Lightning Returns: Final Fantasy XIII shields|shields]]. On a second playthrough, the Forge also allows the player to upgrade or downgrade weapons and shields.
+*Sorcery Shops synthesize and upgrade [[Lightning Returns: Final Fantasy XIII abilities|abilities]].
+*Restaurants serve three types of dishes. The most expensive ones recover Lightning's HP completely; the cheaper ones will recover only a certain amount of HP.
+*[[Soul seed]] merchants buy soul seeds, but the player will need to complete the quest "[[Soul Seeds (quest)|Soul Seeds]]" in [[Luxerion]] before they become available.
+*[[Forge (Rare)]] is a wandering merchant selling rare garbs and adornments.
+
+<gallery>
+OutfittersMap-lrffxiii-icon.png|Outfitters.
+SorceryMap-lrffxiii-icon.png|Sorcery Shop.
+GeneralStoreMap-lrffxiii-icon.png|General Store.
+RestaurantMap-lrffxiii-icon.png|Restaurant.
+</gallery>
+
+===''[[Final Fantasy XIV]]''===
+[[File:New Gridania Shop.jpg|thumb|A shop in New [[Gridania]].]]
+Shops can be found throughout [[Eorzea]]. Mostly in the three city-states and at [[Aetheryte|Aetheryte camps]]. Some shop may require other currency than gil to trade for items.
+{{clear}}
+
+===''[[Final Fantasy XV]]''===
+{{multiple image
+|image1 = Shop-ffxv-mapicon.png
+|alt1 = Shop icon.
+|image2 = ArmsVendor-ffxv-mapicon.png
+|alt2 = Arms vendor icon.
+|width = 50
+|align = right
+|footer = Shop icons}}
+{{Main|Final Fantasy XV shops}}
+Item shops sell recovery [[Final Fantasy XV items|items]], food [[Final Fantasy XV ingredients|Ingredients]], [[Auto Parts|parts]] for the [[Regalia (Final Fantasy XV)|Regalia]] (including music for the music player), fishing [[Final Fantasy XV lures|lures]] and gear, and [[Final Fantasy XV key items|key items]]. Shops are found at outposts and vending machines, and there are some temporary shops, such as the shop outside [[Steyliff Grove]] in Chapter 7. The player's car also has a shop in the menu that updates inventory as the player encounters new items in other shops.
+
+Equipment vendors sell [[Final Fantasy XV weapons|weapons]] and [[Final Fantasy XV accessories|accessories]]; [[attire]]s are not sold in shops. A recurring type of equipment shop is a black Culless van. Tackle shops sell [[Fishing (Final Fantasy XV)|fishing]] gear and are located at fishing spots.
+
+Some shops get new stock or change their prices as the player completes [[Quest (Final Fantasy XV)/Sidequests|sidequests]] for them. The player can sell items in their inventory bar key items to any shop. Most shops are open 24/7, but some tackle shops are only around during the [[Day and night cycle|daytime]].
+
+Some shop items' brand names [[Final Fantasy XV allusions|pay homage]] to a variety of ''Final Fantasy'' terms. For instance; Mama Edea's Potato Chips (referring to [[Edea Kramer]] from ''Final Fantasy VIII''), Regen Co. Refreshments (referring to the [[Regen (ability)|Regen]] spell), and Great Glacier Cola (referring to the [[Great Glacier (Final Fantasy VII)|Great Glacier]] from ''Final Fantasy VII''). Some shops advertise American Express Credit as [[product placement]].
+{{clear}}
+
+===''[[Final Fantasy Type-0]]''===
+[[File:FFType-0-Shop.png|thumb|Shopkeeper.]]
+{{See|Final Fantasy Type-0 shops}}
+Shops are indicated by the icon for "Shop" {{J|店|Mise}} above the shopkeeper's head. There are three main shops located within [[Akademeia]], which will sell more wares as the player earns [[Special Bounty|special bounties]] by fulfilling certain requirements, such as completing [[Missions (Type-0)|missions]] on increased [[difficulty level#Final Fantasy Type-0|difficulty levels]]. Other shops, which are found in towns on the world map, retain their set of wares throughout the game. Shops usually sell equipment, but gift shops also exist.
+
+In addition to the usual "Buy" and "Sell" options in shop menus, players can also access their equipment menu through shops, due to the Main Menu being available only at [[Save point#Final Fantasy Type-0|relic terminals]].
+{{clear}}
+
+===''[[Final Fantasy Tactics]]''===
+{{main|Outfitter}}
+[[File:FFT Shop.png|thumb|175px|right|An Outfitter.]]
+Shops are called Outfitters and exist in every town. There are differences in each town's outfitter stocks, as heavier armor and weapons like [[Sword (weapon type)|swords]] and [[Heavy armor (equipment)|heavy armor]] are sold in [[castle]]s, while a wider range of weapons, like [[Katana (weapon type)|katana]] and [[Rod (weapon type)|rods]], are sold at trading cities. The shops' inventories may update between [[chapter]]s.
+{{clear}}
+
+===''[[Final Fantasy Tactics Advance]]''===
+[[File:FFTA Shop.png|thumb|175px|left|The shop at [[Cyril (Tactics Advance)|Cyril]].]]
+Shops exist on every town that have their own set prices, giving discounts on weapons usable by the town's dominant race while other weapons are sold at higher prices. A good example is [[Spear (weapon type)|spears]] being cheaper in [[Sprohm]] than anywhere else, as they are usable by [[bangaa]]-only jobs, while [[Rapier (weapon)|Rapiers]], a [[viera]]-exclusive weapon, are cheaper in [[Muscadet]].
+
+Each town has their own shopkeeper, whose race is the dominant one in the town. The only shopkeeper whose name is known is [[Ellen]], a viera shopkeeper who sells at Muscadet. She's mentioned in the mission "No Answers" along with a member from [[Clan Ritz]].
+{{clear}}
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+[[File:FFTA2-Shop.JPG|right|thumb|The Shop screen.]]
+Shops can be found in any town of [[Jylland]], and all of them possess the same stock, which can be increased by using the [[Bazaar (Tactics A2)|Bazaar]]. The [[Cyril (Tactics Advance)|Cyril]] shopkeeper makes a reappearance here, selling items at every shop. [[Auction (Tactics A2)|auction houses]] also appear being an important feature. One exists on each region capital.
+
+Locations featuring auction houses:
+*[[Camoa]]
+*[[Graszton]]
+*[[Moorabella]]
+*[[Fluorgis]]
+*[[Goug (Tactics A2)|Goug]]
+
+===''[[Final Fantasy Mystic Quest]]''===
+Shops can be found in every town, except for [[Foresta]], though Seeds are not available for sale until Fireburg. The pricing for every shop is the same. They all sell Cure Potions for 25 GP, Seeds for 50 GP, and [[Ammo (weapon type)|Explosives]] for 10 GP.
+Locations featuring shops:
+*[[Aquaria]]
+*[[Fireburg]]
+*[[Windia]]
+*[[Mac's Ship]]
+
+===''[[Final Fantasy Adventure]]''===
+Both weapon and item shops appear. Weapon shops sells both weapons and armor. There are also numerous stores found on the overworld.
+
+Locations featuring shops:
+*[[Topple]]
+*[[Wendel]]
+*[[Watts (Adventure)|Watts]]
+*[[Dwarf Cave]]
+*[[Menos]]
+*[[Jadd]]
+*[[Ish]]
+*[[Glaive Castle]]
+*[[Store (Adventure)|Stores]]
+
+<gallery>
+FFA Item Shop Sign.png|Item Shop.
+FFA Weapon Shop Sign.png|Weapon Shop.
+FFA Shopkeeper Sprite.png|Shopkeeper.
+</gallery>
+
+===''[[The Final Fantasy Legend]]''===
+[[File:FFL Shop Icons.png|right]]
+Equipment and Item shops appear.
+
+Locations featuring shops:
+*[[Base Town]]
+*[[Town of Hero]]
+*[[South Town]]
+*[[Port Town (Legend)|Port Town]]
+*[[Northeast Town]]
+*[[Undersea Town]]
+*[[Sky Town]]
+*[[Hidden Town]]
+*[[Southwest Town]]
+*[[Ameyoko]]
+
+===''[[Final Fantasy Legend II]]''===
+Weapon and Item shops appear. Venus's City and Final Town are the only cities that have two shops of every type. The shops' signs are identical to those of ''Final Fantasy Legend III''.
+
+{|
+|valign="top" width="33%"|Locations featuring shops:
+*[[First Town]]
+*[[Second Town]]
+*[[Desert Town]]
+*[[Ashura's Town]]
+*[[Giant's Town]]
+*[[Lynn's Village]]
+*[[Port Town (Legend II)|Port Town]]
+*[[Guardian's Town]]
+|valign="top" width="33%"|
+*[[Venus' City]]
+*[[Race Circuit]]
+*[[Edo]]
+*[[Hana's Town]]
+*[[Final Town]]
+*[[Pillar of Sky]]
+*[[Traveling Merchant (Legend II)|Traveling Merchant]]
+|}
+
+===''[[Final Fantasy Legend III]]''===
+[[File:FFLIII Shop Signs.png|right]]
+Weapon, Armor, Item, and Magic shops appear. Knaya, a city located in Pureland is the only city that has four shops of every types.
+
+{|
+|valign="top" width="33%"|Locations that feature shops:
+*[[Dharm]]
+*[[Elan (Legend III)|Elan]]
+*[[Lae]]
+*[[Muu]]
+*[[New Dharm]]
+*[[Viper City]]
+*[[Floatland Town]]
+*[[Darius]]
+|valign="top" width="33%"|
+*[[Knaya]]
+*[[Zhakal]]
+*[[Porle]]
+*[[Cirrus]]
+*[[Dwelg Town]]
+*[[Donmac]]
+*''[[Talon (Legend III)|Talon]]'' ([[Talon crew|''Talon'' crew]] members)
+|}
+
+===''[[Final Fantasy Crystal Chronicles: Ring of Fates]]''===
+There are two areas that feature shops: [[Rebena Te Ra]] and the [[Kilanda Islands|Sinner's Island]]. The latter has a shop run by moogles.
+
+===''[[Final Fantasy Crystal Chronicles: Echoes of Time]]''===
+[[File:EoT Shop.jpg|thumb|The Equipment Shop.]]
+Shops can only be found in the [[Town]]. There is an Equipment shop and a Crafting shop, although there is no shop that sells Magicite nor Consumables, since magicite is obtained in the beginning of the game and infinite, while items are found in the field.
+{{clear}}
+
+===''[[Final Fantasy: The 4 Heroes of Light]]''===
+[[File:4 Heroes of Light Shop.jpg|left|150px|Artwork of Brandt in a shop.]]
+{{Section|Final Fantasy: The 4 Heroes of Light}}
+
+===''[[Dissidia Final Fantasy (2008)|Dissidia Final Fantasy]]'' (2008)===
+[[File:Dissidia Shop Menu.png|thumb|175px|right|The Shop menu.]]
+{{main|Shop (Dissidia 2008)}}
+The shop can be accessed in customize menu. It sells equipment and special abilities, like accessory slots or weapon usage abilities. Also, the [[PP Catalog (Dissidia)|PP Catalog]] is available in the main menu, and sells special game features, such as bonus tracks; characters, alternate costumes, in-battle voice samples, [[Dissidia Final Fantasy (2008) player icons|Player Icons]] and arenas.
+
+====''[[Dissidia 012 Final Fantasy]]''====
+{{main|Shop (Dissidia 012)}}
+The [[PP Catalog (Dissidia 012)|PP Catalog]] and [[Shop (Dissidia 2008)|shop]] functions the same as it did in the first ''Dissidia''. Also, while on the world map during the course of the story, the player will encounter [[Moogle Shop (Dissidia 012)|Moogle Shop]]s around the [[World B|world]]. These shops sell various special equipment and summons at the price of [[KP#Dissidia 012 Final Fantasy|KP]] or Kupo.
+
+===''[[Final Fantasy Dimensions]]''===
+{{Section|Final Fantasy Dimensions}}
+
+===''[[World of Final Fantasy]]''===
+{{Main|World of Final Fantasy shops}}
+
+{{Section|World of Final Fantasy}}
+
+==Etymology==
+Shop refers to a [[wikipedia:Retail|retail shop]] or [[wikipedia:Market (place)|market]].
+
+==References==
+{{citations}}
+
+{{navbox locations}}
+{{navbox recurring}}
+
+[[Category:Locations]]
+[[Category:Recurring gameplay components]]
+
+[[pl:Shop]]

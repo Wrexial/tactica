@@ -1,0 +1,131 @@
+{{infobox character
+|name=Ritz Malheur
+|release=FFTA
+|japanese=リッツ・マルール
+|romaji=Rittsu Marūru
+|image=Ritz.jpg
+|portrait=[[File:FFTA-Ritz1-por.png|Red dyed hair St. Ivalice portrait.]] [[File:FFTA-Ritz2-por.png|Fencer portrait.]] [[File:FFTA-Ritz3-por.png|White haired St. Ivalice portrait.]]
+|sprite=[[File:FFTA-Ritz1.png|Red dyed hair St. Ivalice sprite.]] [[File:FFTA ritz.gif|Fencer sprite.]] [[File:FFTA-Ritz3.png|White haired St. Ivalice sprite.]]
+|age=About 12-14
+|race=[[Human]] (Viera)
+|gender=Female
+|type=playable
+|job=Class Head/[[Fencer (Tactics Advance)|Fencer]]/[[Red Mage (Tactics Advance)|Red Mage]]/[[Elementalist (Tactics Advance)|Elementalist]]
+|japanese voice actor=[[Yumi Kakazu]] ([[Final Fantasy Tactics Advance Radio Edition|Radio Drama]])
+}}
+{{Quote|I know some "little girls" who can kick your butt!|Ritz}}
+'''Ritz Malheur''' is the female protagonist of ''[[Final Fantasy Tactics Advance]]'', and the leader of [[Clan Ritz]]. The headstrong class head, she appears bossy, but has a vulnerable side. [[Shara]] the [[viera]] is her partner, and comforts her many times during the game.
+
+==Profile==
+===Appearance===
+[[File:RitzArt.jpg|150px|left|thumb|Ritz Malheur.]]
+Ritz is a pale-skinned girl with green eyes and for most of the game she has pink hair. Her hair is naturally white, but she dyes it because she is ashamed of it. In [[St. Ivalice]] she wears a purple dress and a long white coat, brown boots, and a hairpin. In [[Ivalice (Tactics Advance)|Ivalice]] her attire is less winter-themed and she wears a pink dress with a belt of bags tied across the middle section. She wears an armored plate on her shoulders, chest, and her left arm in her artwork, while the right hand is exposed, and she wears brown shoes and socks above knee-length. Her official artwork also depicts her with a rod with a rounded tip. At the end of the game she appears in her original attire, albeit with her white hair.
+
+===Personality===
+{{Quote|Unlike her quiet friends, Ritz is outspoken and strong-minded. While she excels in both classes and in sports, her independent spirit and firm sense of right and wrong result in most other kids giving her a wide berth. She's the last person you'd expect to have a secret—one that troubles her more than anything else. When Ivalice changes, Ritz is nowhere to be found...|Online Description}}
+Ritz can be described as hot and cold. She is outspoken, bossy, and to some degree hostile. This conceals her frail and sensitive side as she decides to dye her hair out of being constantly teased. She has also shown to be kind, loyal, and supportive, as she decided to remain in Ivalice with red hair, mostly so her mother would not suffer, failing to see that she was suffering because of Ritz's own sorrow. While aware of [[Marche Radiuju|Marche's]] intentions, she nonetheless helps him a number of times, instead of turning him in. After a talk with Shara regarding her white hair, Ritz accepts herself and moves forward.
+
+==Story==
+
+{{spoiler}}
+Due to how she is teased about her hair color in the real world, Ritz has a strong desire to keep the world as it is. Marche first meets Ritz and Shara at [[Nubswood]], during the mission The Cheetahs. After the mission is completed, Ritz tells Marche that Ivalice was made based on ''[[Final Fantasy series|Final Fantasy]]'' and told Marche to not expect her to help him get out of it.
+
+Although she helps Marche Radiuju on a number of occasions, Marche makes significant progress toward reverting the world to normal, and Ritz attacks him in order to prevent this. Defeated, she agrees not to interfere in Marche's attempts to convince [[Mewt Randell|Mewt]] he no longer needs the world of Ivalice by saying that "a game has its end". Just before the world reverts, her viera comrade Shara tells her that white hair is considered a blessing by the viera, thus giving Ritz a more favorable view of her real world self as she thinks the white hair of the viera is beautiful.
+
+If Ritz and Shara are recruited after the main game's completion, a special cutscene can occur. During this scene Ritz asks Shara if she is "cute", feeling insecure. Shara suggests asking Marche, who arrives moments later, but Ritz quickly drops the subject. This suggests that Ritz may have feelings towards Marche.
+
+In ''[[Final Fantasy Tactics Advance Radio Edition]]'', Ritz's voice says "Final Fantasy Tactics Advance" at every beginning of each CD. Her arrival is shown in the radio drama, where she is found in the woods by Shara. Later, Ritz and Shara will join the party along with [[Doned Radiuju|Doned]]. When the party fights [[Remedi|Queen Remedi]], Ritz casts Fire Whip, which indicates that she has learned some [[Elementalist (Tactics Advance)#Spirit Magic|Spirit Magic]].
+{{endspoiler}}
+
+==Gameplay==
+===Race===
+[[File:FFTA-MarcheRitz.jpg|thumb|Ritz with Marche.]]
+Despite being a [[Human|hume]], the game treats Ritz as a viera, relating to [[Shara]]'s remark that she has the "gift of Viera". Ritz can only change into viera jobs, and the [[Totema]] she summons is [[Exodus (Tactics Advance)|Exodus]].
+
+However, in ''Final Fantasy Tactics Advance Radio Edition'', Ritz has summoned [[Mateus (Tactics Advance)|Mateus]], the human Totema. While having viera treatment, the Dmg2:Human will be broken if Ritz is attacked. The [[Final Fantasy Tactics Advance series merchandise#Guides|official guidebook]] also depicts Ritz as a "Human (Viera)".
+
+===Stats===
+Ritz's job at St. Ivalice is called "Class Head", and is described as a person who rings the school bell. When the town transforms into another world, her jobs during the storyline are Fencer, [[Red Mage (Tactics Advance)|Red Mage]], and [[Elementalist (Tactics Advance)|Elementalist]]. Interestingly, her artwork depicts her wielding a staff, despite all of her storyline jobs being tied to rapiers.
+
+Below are Ritz's stats at the snowball fight.
+{{Stats FFTA
+|level = 2
+|HP = 16
+|MP = 10
+|move = 3
+|jump = 2
+|evade = 55
+|attack = 19
+|defense = 26
+|power = 0
+|resistance = 8
+|speed = 120
+}}
+
+====As a playable character====
+Ritz can be recruited after successful completion of the "Mortal Snow" mission. If dismissed, she can be recruited through the mission "Ritz's Offer".
+
+Her equipment is:
+*Femme Fatale
+*Brint Set
+*Ribbon
+
+She joins as a [[Fencer (Tactics Advance)|Fencer]], and is able to change jobs, with the following abilities already learned:
+
+====Lunge Tech====
+*Swarmstrike - Damage and Poison.
+*Shadowstick - Reduces Speed.
+*Featherblow - Double Accuracy, half damage.
+*Manastrike - MP damage.
+*Piercethrough - Attacks two spaces in direction of attack.
+
+====Reaction====
+*Block Arrows - Avoid Bow and Greatbow attacks.
+
+==Musical themes==
+Ritz's musical theme name is "Ritz" according to ''[[Final Fantasy Tactics Advance: Original Soundtrack]]''. It is number 30 on disc one and number 22 on disc two. During the beginning of the song, it uses some of Marche's musical theme by a brass instrument. The song contains a soft feeling, despite of her strong-minded personality. "Ritz" is the only character theme that does not have a remix for ''[[White: Melodies of Final Fantasy Tactics Advance]]''.
+
+==Other appearances==
+===''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''===
+
+[[File:RitzFFTA2.PNG|150px|right|thumb|Screenshot of the girl.]]
+A drawing of a girl similar to Ritz can be seen at the beginning of the game, as the background to the quiz the player takes.
+{{clear}}
+
+===''[[Pictlogica Final Fantasy]]''===
+
+<gallery>
+PFF Ritz Illust.png|Illustration.
+PFF Ritz.png|Sprite.
+</gallery>
+{{Character section|Pictlogica Final Fantasy}}
+{{clear}}
+
+===''[[Final Fantasy Artniks]]''===
+
+<gallery>
+FFTA Ritz SR+ F Artniks.png|''Final Fantasy Artniks''.
+</gallery>
+{{Section|Final Fantasy Artniks}}
+{{clear}}
+
+===''[[Final Fantasy Trading Card Game]]''===
+Ritz appears in ''Final Fantasy Trading Card Game'' as Lightning- and Wind-elemental Forward cards.
+
+<gallery>
+FFTCG-Ritz.jpg|Ritz [6-070U] Chapter series card.
+Ritz 4-072H from FFTCG Opus.jpg|Ritz [4-072H] Opus series card.
+</gallery>
+
+==Etymology==
+{{Etym|Ritz}}
+
+{{Etym|Malheur}}
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Red Mages]]
+
+[[it:Ritz Malheur]]
+[[Category:Fencers]]

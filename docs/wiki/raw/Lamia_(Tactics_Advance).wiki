@@ -1,0 +1,115 @@
+{{DISPLAYTITLE:Lamia (''Tactics Advance'')}}
+[[File:FFTA-spr-Lamia.gif|left]]
+[[File:FFTALamia.jpg|right|250px]]
+{{Quote|Lamias lure prey with sweet songs...watch out!|Description}}
+The '''Lamia''' in ''[[Final Fantasy Tactics Advance]]'' is a red snake-like creature with similar qualities to Lamia from previous ''[[Final Fantasy series|Final Fantasy]]'' games. Its skills are notorious for inflicting a myriad of [[status effect]]s.
+
+{{See|Lamia}}
+
+==Abilities==
+===Song===
+{{Quote|Lamia command. Confuse enemy with beautiful song.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Night}}
+|''Call to the darkness. Puts all units but the caster to sleep.''
+|24
+|-
+!{{LA|Slap|Hand Slap}}
+|''Flat handed slap. Delays target's turn.''
+|—
+|-
+!{{LA|Poisonous Frog|Poison Frog}}
+|''Turns target into a frog and poisons them.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Atk+}}
+|''Improves weapon attacks to deal more damage.''
+|-
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Mission: Help Dorsa!
+|The Lamia is the only monster from Clan Hounds that help the Blue Mage, Elementalist, and Gunner in their takeover attempt.
+|-
+!Turf Defense Mission: Mission: Help Uladon!
+|The Lamia and Lilith return in this turf defense mission.
+|-
+!Turf Defense Mission: Mission: Help Helje!
+|Only monsters from the Jagd Emissaries are present in this mission.
+|-
+!Mission #049: A Lost Ring
+|Two Lamia appear here, one on the riverwalk and once on the riverbank.
+|-
+!Mission #062: Oasis Frogs
+|Three Lamia have been eating the frogs that inhabit [[Cadoan]].
+|-
+!Mission #007: Diamond Rain
+|A Lamia confronts [[Marche Radiuju|Marche]] under the paranormal weather conditions.
+|-
+!Mission #076: Fire Sigil
+|The Falgabird Marilis is a level 13 Lamia that controls three Mog Knights.
+|-
+!Mission #058: Royal Ruins
+|A Lamia guards the mysterious statues of [[Nargai Cave]].
+|-
+!Mission #083: Foreign Fiend
+|Clan Borzoi has imported a level 38 Queen Lamia from faraway lands, who attacks the party by herself.
+|-
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Jagd Dorsa]]
+|style="text-align:center"|Clan Hounds
+|A Lamia and a couple of other monsters assist this rugged Jagd clan.
+|-
+![[Uladon Bog]]
+|style="text-align:center"|Roaming Naiads
+|A Lamia and Lilith are members of this clan.
+|-
+![[Jagd Helje]]
+|style="text-align:center"|Jagd Emissaries
+|Lamia aid yet another Jagd clan.
+|}
+
+==Gallery==
+<gallery>
+FFTA Lamia Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Lamia}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

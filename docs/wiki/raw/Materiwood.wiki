@@ -1,0 +1,35 @@
+[[File:Materiwood.png|thumb|right|250px|Engaging Lost Monsters in Materiwood.]]
+{{Quote|Lush green forest famous for its materite ore.|Description}}
+The '''Materiwood''' {{J|マテリアの森|Materia no mori}} is a forest location in ''[[Final Fantasy Tactics Advance]]''. It can be placed after "Mission #018: Quiet Sands" is completed, and is the site of "Mission #019: Materite Now!". In this mission, [[Marche Radiuju|Marche]] heads to the Materiwood to gather some Materite for use as a gift during [[Bervenia Palace]]'s Present Day.
+
+However, his brother [[Doned Radiuju|Doned]] has informed a group of [[Viera]] bandits that Marche would be there, and they ambush Marche and his clan. After the viera are defeated, Doned steals Marche's materite and shatters it, because he does not want the world to revert back to its previous state. The Materiwood is also the site of "Mission #054: For a Song", "[[A Bride for Montblanc|Mission #089: Moogle Bride]]", and "Mission #107: Old Friends". It can be freed after "Mission #018: Quiet Sands" is completed in "Mission #255: Bugbusters".
+
+==Encounters==
+===Lost Monsters===
+{{Quote|Monsters usually found in the woods. Ornery. Use caution.|Description}}
+*[[Malboro (Tactics Advance)|Malboro]]
+*[[Big Malboro]]
+*[[Sprite (Tactics Advance)|Sprite]]
+*[[Floateye (Tactics Advance)|Floateye]]
+*[[Grenade (Tactics Advance)|Grenade]]
+
+==Turf Defense ==
+===Help M' wood!===
+{{Quote|Clan Rangers is back up to their old tricks, engaging anyone that comes near the Materiwood, trying to make it their turf.|Town rumor}}
+*[[Animist (Tactics Advance)|Animist]] ([[Moogle]])
+*[[Elementalist (Tactics Advance)|Elementalist]] (Viera)
+*[[Fencer (Tactics Advance)|Fencer]] (Viera)
+*[[White Mage (Tactics Advance)|White Mage]] (Viera)
+
+==Gallery==
+<gallery>
+Materiwood 1.PNG|Materiwood.
+Materiwood 2.PNG|Materiwood.
+Materiwood 3.PNG|Materiwood.
+Forest-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Forests]]

@@ -1,0 +1,172 @@
+[[File:Gilgamesh uses Excalipoor from FFV GBA.png|thumb|250px|Excalipoor in ''Final Fantasy V'' does 1 fixed damage.]]
+'''Fixed damage''' is a type of damage found throughout the [[Final Fantasy series|''Final Fantasy'' series]]. It is often inflicted by an attack that deals a set amount of damage regardless of what buffs the player has or what [[level]] they are, usually bypassing everything bar the [[Invincible (status)|Invincible]] status. Fixed damage differs from [[fractional damage]] by not depending on the target's [[HP (stat)|HP stat]], but is somewhat similar to [[HP to one ability|HP to one abilities]]. Some recurring attacks of this type are [[Gil Toss]], [[1000 Needles]], [[Karma (ability)|Karma]], and [[Lifebreak]].
+
+Fixed damage must not be confused with damage whose multiplier is so high that it consistently hits the damage cap under all circumstances (e.g. [[Penance (Final Fantasy X)|Penance]]'s Judgment Day in ''[[Final Fantasy X]]'').
+
+==Appearances==
+=== ''[[Final Fantasy IV]]'' ===
+[[Rydia (Final Fantasy IV party member)|Rydia]]'s [[Bomb (creature)#Final Fantasy IV|Bomb summon]] inflicts damage based on how much HP she has remaining.
+
+===''[[Final Fantasy V]]''===
+[[Blue Magic (Final Fantasy V)|The Blue Magic]] spell [[1000 Needles (Final Fantasy V)|1000 Needles]] deals exactly 1000 damage to a target.
+
+[[???? (Final Fantasy V)|????]] is an enemy ability used by [[Azulmagia (Final Fantasy V)|Azulmagia]], [[Kuza Beast (Final Fantasy V)|Kuza Beast]], [[Tyrannosaur (Final Fantasy V)|Tyrannosaur]], [[Wild Nakk (Final Fantasy V)|Wild Nakk]], [[Behemoth (Final Fantasy V)|Behemoth]], [[Gel Fish]], [[King Behemoth (Final Fantasy V)|King Behemoth]], [[Mecha Head]], [[Numb Blade (Final Fantasy V)|Numb Blade]], and [[Tunneller (Final Fantasy V)|Tunneller]]. It deals damage to one target equal to the difference in the user's Max HP and current HP at the cost of 3 MP. The player may also use this ability by [[Catch (Final Fantasy V)|catching]] and releasing a [[Reflect Mage]] or a Tunneller during a fight with a [[Zephyrus]].
+
+[[Excalipoor (Final Fantasy V)|Excalipoor]] always deals one damage when used as a weapon.
+
+[[Devil's Juice]] [[Mix (Final Fantasy V)|mix]] deals 666 fixed damage to a target.
+
+===''[[Final Fantasy VI]]''===
+[[Revenge Blast (Final Fantasy VI)|Revenge Blast]] is a [[Lore (Final Fantasy VI)|Lore]] spell for [[Strago (Final Fantasy VI party member)|Strago]] that could be learned from [[Dark Force (Final Fantasy VI)|Dark Force]], [[Dragon (Final Fantasy VI enemy)|Dragon]], [[Garm (Final Fantasy VI)|Garm]], [[Gigantos (Final Fantasy VI)|Gigantos]], [[Gilgamesh (Final Fantasy VI boss)|Gilgamesh]], [[Glasya Labolas (Final Fantasy VI)|Glasya Labolas]], [[Kaiser Dragon (Final Fantasy VI)|Kaiser Dragon]], and [[Pandora (Final Fantasy VI)|Pandora]], although Strago already starts with this spell. It deals non-elemental damage to one target equal to the difference in Strago's Max HP and current HP at the cost of 31 MP.
+
+[[Traveler (Final Fantasy VI)|Traveler]] is another of Strago's Lore spells, which deals damage to a target equal to the number of steps the party has taken divided by 32. It costs an amount of MP equal to the number of minutes the game has been played divided by 30, but not greater than 255. [[Gau (Final Fantasy VI party member)|Gau]] can also use Traveler as a [[Rage (Final Fantasy VI command)|Rage]], and it costs him 0 MP to use. To achieve the max damage of 9999, the player would have to walk 319,968 steps.
+
+[[10,000 Needles]] inflicts 1000 damage 10 times to random targets.
+
+===''[[Final Fantasy VII]]''===
+[[100 Needles (Final Fantasy VII)|100 Needles]] inflicts 100 damage, and [[1000 Needles (Final Fantasy VII)|1000 Needles]] used by [[Cactuer (Final Fantasy VII)|Cactuer]] does 1000 damage to a single target. [[Final Fantasy VII enemy abilities#Spiky Hell|Spiky Hell]] used by [[Bloatfloat (Final Fantasy VII)|Bloatfloat]] does 200 damage. [[Magic Hammer (Final Fantasy VII)|Magic Hammer]], used by [[Razor Weed (Final Fantasy VII)|Razor Weed]] and can be learned as an [[Enemy Skill (Final Fantasy VII)|enemy skill]], removes 100 MP from the enemy and adds it to the caster's. [[Final Fantasy VII enemy abilities#????|????]] is an enemy ability used by [[Jersey]] and [[Behemoth (Final Fantasy VII)|Behemoth]]. It inflicts damage equal to the difference of the user's maximum HP and their current HP at the cost of 3 MP. The player can use [[???? (Final Fantasy VII)|????]] as an enemy skill if attacked by the skill with the Enemy Skill Materia equipped. The ability is physical-based and thus is affected by [[Cover (Final Fantasy VII)|Cover]]. [[Chocobuckle (Final Fantasy VII)|Chocobuckle]] deals fixed damage determined by how many [[Final Fantasy VII battle system|battles]] the player has [[escape (command)#Final Fantasy VII|fled]] from, and [[Coin (Final Fantasy VII)|Coin]] deals fixed damage determined by the amount of [[gil]] the player throws.
+
+Should a [[party]] member land on 7777 HP, they will initiate [[All Lucky 7s]] status, forcing them to attack 64 times for 7777 damage each. Afterwards, they can still inflict 7777 damage with attacks. Enemies can fall under this effect as well.
+
+[[Tonberry (Final Fantasy VII)|Tonberries]] can counter with Time Attack, dealing damage based on how long the game has been played. [[Master Tonberry (Final Fantasy VII)|Master Tonberries]] attack with [[Everyone's Grudge (Final Fantasy VII)|Everyone's Grudge]], dealing damage based on the total number of enemies the target has killed multiplied by ten. [[Emerald Weapon (Final Fantasy VII)|Emerald Weapon's]] [[Aire Tam Storm]] inflicts 1111 damage to the party, multiplied by each [[Materia (Final Fantasy VII equipment)|Materia]] they have equipped.
+
+====''[[Crisis Core -Final Fantasy VII-]]''====
+1,000, 10,000, 100,000 Needles, 5-Gallon Can, Gungnir, Kettle, Power Lv. 1-8, Scatter Shot, Washbowl, and Wash Tub all deal fixed damage. [[Tonberry (Crisis Core enemy)|Tonberries]] use Karma to damage [[Zack (Crisis Core player character)|Zack]] based on how many enemies he has killed. In ''Reunion'', [[Minerva (boss)|Minerva's]] Ultima and Judgement Arrow attacks deal fixed damage.
+
+[[Cactuar#Crisis Core -Final Fantasy VII-|Cactuar's]] [[Limit Break (ability)|Limit Break]] on [[Digital Mind Wave#Chocobo Mode|Chocobo Mode]], 1000 Needles, deals 18 hits of fixed damage to all enemies. The damage dealt for each hit is as follows:
+{|class="half-width VIICC article-table" style="text-align:center"
+|-
+!style="width:20%"|Level 1
+!style="width:20%"|Level 2
+!style="width:20%"|Level 3
+!style="width:20%"|Level 4
+!style="width:20%"|Level 5
+|-
+!300
+!500
+!1000
+!1500
+!2000
+|-
+|}
+
+A [[Dud]] will also deal fixed damage to Zack, ranging from 1-1000.
+
+===''[[Final Fantasy VIII]]''===
+[[Cactuar (Final Fantasy VIII enemy)|Cactuars]] can use 1000 Needles, displayed with a barrage of "1's", while [[Jumbo Cactuar (Final Fantasy VIII)|Jumbo Cactuar's]] 10,000 needles always inflicts 10,000 damage and is displayed with a barrage of "10's". Everyone's Grudge, used by [[Tonberry (Final Fantasy VIII enemy)|Tonberry]], damages a party member based on the number of enemies they have slain multiplied by 20.
+
+[[Ultima Weapon (Final Fantasy VIII)|Ultima Weapon]] and [[Omega Weapon (Final Fantasy VIII)|Omega Weapon's]] [[Light Pillar (Final Fantasy VIII)|Light Pillar]] always inflicts 9999 damage to a target, while Omega Weapon's [[Megido Flame (Final Fantasy VIII)|Megido Flame]] deals 9998 damage to the entire party.
+
+When fighting Ultimecia's [[Ultimecia (Griever form)|Griever form]] and [[Ultimecia (final boss)|final form]], she can deal 9999 damage to a GF that is being summoned.
+
+The [[Cactuar (Final Fantasy VIII summon)|Cactuar]] [[Guardian Force]] deals fixed damage depending on his level*100, in multiples of 1000. [[Gilgamesh (Final Fantasy VIII)|Gilgamesh's]] [[Excalipoor (Final Fantasy VIII)|Excalipoor]] attack always inflicts 1 damage.
+
+The [[Kamikaze (Final Fantasy VIII)|Kamikaze]] command ability deals five times the user's maximum HP as fixed damage to one target, or double that with a critical hit, up to 60,000 HP damage. The [[Return Damage]] support ability returns a quarter of the enemy's damage sustained to the attacker.
+
+===''[[Final Fantasy IX]]''===
+[[Zidane (Final Fantasy IX party member)|Zidane's]] [[Thievery (Final Fantasy IX)|Thievery]] skill inflicts fixed damage based on the number of successful [[Steal (Final Fantasy IX)|steal]]s. His [[Lucky Seven (Final Fantasy IX)|Lucky Seven]] skill inflicts 7, 77, 777, or 7777 damage if Zidane's HP currently ends in 7. His [[Mug (Final Fantasy IX)|Mug]] makes his successful steals also hurt the target with fixed damage based on his and his target's levels.
+
+[[Freya (Final Fantasy IX party member)|Freya's]] [[Dragon's Crest (Final Fantasy IX)|Dragon's Crest]] inflicts fixed damage dependent on the number of [[Final Fantasy IX enemy types|dragons]] the player has killed. Her [[Dragon Breath (Final Fantasy IX)|Dragon Breath]] doubles the damage the party has already inflicted onto all enemies.
+
+[[Quina (Final Fantasy IX party member)|Quina's]] [[Frog Drop (Final Fantasy IX)|Frog Drop]] deals damage according to [[Frog catching|how many frogs the player has caught]], and their [[Limit Glove (Final Fantasy IX)|Limit Glove]] deals 9999 damage if they have exactly 1 HP remaining. [[Pumpkin Head (Final Fantasy IX)|Pumpkin Head]] is a Blue Magic spell that inflicts non-elemental damage to one target equal to the difference in Quina's Max HP and current HP at the cost of 12 MP. Quina can eat a [[Cactuar (Final Fantasy IX)|Cactuar]] to gain the Blue Magic move [[1,000 Needles (Final Fantasy IX)|1,000 Needles]].
+
+[[Minus Strike (Final Fantasy IX)|Minus Strike]] is an ability usable by [[Steiner (Final Fantasy IX gameplay)|Steiner]] that deals non-elemental damage equal to the difference in Steiner's Max HP and current HP at the cost of 8 MP.
+
+Using a [[Dark Matter (Final Fantasy IX)|Dark Matter]] in battle deals 9999 damage to a target. Using a [[Dead Pepper]] as an offensive item in battle deals fixed damage to a target depending on how many peppers the player is currently holding in their inventory.
+
+[[Cactuar (Final Fantasy IX)|Cactuars]] can counter with 1000 Needles. [[Tonberry (Final Fantasy IX)|Tonberries']] Chef's Knife deals 9999 damage to a party member, and Everyone's Grudge inflicts damage on the party based on how many Tonberries have been felled.
+
+===''[[Final Fantasy X]]''===
+[[Spare Change (Final Fantasy X)|Spare Change]] damages an enemy for the result of dividing the amount of [[gil]] spent by 10. [[Rikku (Final Fantasy X party member)|Rikku's]] [[Quartet of 9|Quartet of 9]] and [[Trio of 9999|Trio of 9999]] [[Mix (Final Fantasy X)|mixes]] set all healing and damage values to 9999, the former mix targeting a random party member and the latter targeting everyone. This only takes effect if the healing or damage would have been at least 1, and it is still possible to deal over 9999 damage with attacks that [[Break Damage Limit (Final Fantasy X)|break the damage limit]]. The [[Sunburst (Final Fantasy X)|Sunburst]] mix also deals exactly 19,998 damage to all enemies.
+
+[[Qactuar]]s attack with 1000 Needles, while [[Cactuar (Final Fantasy X)|Cactuars]] attack with 10,000 Needles, and the [[Cactuar King (Final Fantasy X)|Cactuar King]] attacks with 10,000 and 99,999 Needles. An [[Aeon (Final Fantasy X)|aeon's]] [[Shield (ability)#Final Fantasy X|Shield]] will reduce the damage of 1000 Needles and 10,000 Needles to 250 and 2,500 respectively, while [[Boost (ability)#Final Fantasy X|Boost]] will increase it 1,500 and 15,000 respectively. Although 99,999 Needles would actually deal 509,949 damage, it is inhibited by the 99,999 damage limit, though it is also too powerful to be mitigated.
+
+[[Self-Destruct]] deals fixed [[Fire (Final Fantasy X element)|fire-elemental]] damage when used by some enemies: [[Bomb (Final Fantasy X)|Bomb]] (600 or 1,000), [[Grenade (Final Fantasy X enemy)|Grenade]] (600) and [[Puroboros (Final Fantasy X)|Puroboros]] (2,500). With Shield, it is reduced to 150, 250, or 625, while Boost increases it to 900, 1,500, or 3,750.
+
+[[Abyss Worm (Final Fantasy X)|Abyss Worm]] and [[Geosgaeno]] can swallow a character. After swallowing a character and being targeted twice, Abyss Worm will use Regurgitate, dealing 10,000 damage to the swallowed character. If Geosgaeno is defeated while it swallowed a character, it will deal 9,999 points of damage to all party members.
+
+[[Tonberry (Final Fantasy X)|Tonberry]] and [[Master Tonberry (Final Fantasy X)|Master Tonberry]] use Karma, dealing damage equal to the number of enemies the target has slain times 10, whereas [[Don Tonberry (Final Fantasy X)|Don Tonberry's]] Karma is instead multiplied by 100. They use Voodoo against aeons, dealing 10,000 damage when used by Tonberry or Master Tonberry, though it effectively deals 9,999 damage as it does not break the damage limit. With Shield, the damage is reduced to 2,500.
+
+[[Zanmato (ability)|Zanmato]] in each of the boss fights against [[Yojimbo (Final Fantasy X boss)|Yojimbo]] functions similarly to Voodoo, though it can be used against the party and damages all targets.
+
+[[Yu Pagoda|Yu Pagodas]] use Power Wave on [[Braska's Final Aeon|the penultimate boss]] to heal it for 1,500 HP, but if afflicted by [[Zombie (Final Fantasy X)|Zombie]] it will take damage instead.
+
+====''[[Final Fantasy X-2]]''====
+[[Spare Change (Final Fantasy X-2)|Spare Change]] is unlocked on the [[Samurai (Final Fantasy X-2)|Samurai]] [[dressphere]], and [[Momentum (Final Fantasy X-2)|Momentum]] deals fixed damage based on the number of enemies the user has defeated. The [[Gunner (Final Fantasy X-2)|Gunner]]'s [[On the Level (Final Fantasy X-2)|On the Level]] attack deals damage dealt equal to the user's current level times 16. 1000 Needles can be obtained as a [[Blue Bullet]] spell, and [[Storm Cannon]] inflicts damage equal to the caster's level times 30. The [[Berserker (Final Fantasy X-2)|Berserker's]] [[Hurt (Final Fantasy X-2)|Hurt]] attack deals damage equal to 37.5% of the user's current HP.
+
+The [[Cat Nip (Final Fantasy X-2)|Cat Nip]] accessory sets all damage and healing to 9999 for the wielder when their HP is critical. In the ''[[Final Fantasy X/X-2 HD Remaster|HD Remaster]]'' versions, it also applies [[Berserk (Final Fantasy X-2 status)|Berserk]] and [[Slow (Final Fantasy X-2 status)|Slow]], meaning any action other than a basic attack will have to be queued before entering a critical state.
+
+1000 Needles, 3000-Needle Special, and 10000 Needles are enemy attacks. Blinding Meridian, Burning Meridian, Chilly Meridian, Maddening Meridian, Quiet Meridian, and Tingling Meridian all deal 100 damage and are used by [[Oversoul (Final Fantasy X-2)|Oversouled]] [[Cactuar (Final Fantasy X-2)|Cactuars]]. [[Detonator (Final Fantasy X-2)|Detonator]] and [[Volcano (Final Fantasy X-2)|Volcano]] can explode to deal 1800 and 2800 [[fire (Final Fantasy X-2 element)|fire-elemental]] damage. [[Nooj (boss)|Nooj's]] Lightfall deals 5,000 damage to the entire party.
+
+===''[[Final Fantasy XI]]''===
+Certain [[Gigas (Final Fantasy XI)|Gigas]] family [[Notorious Monster]]s use an attack called Mercurial Strike, which at random deals 111, 222, 333, 444, 555, 666, 777, 888, 999, or 1111 damage in an area of effect and has an additional effect that depends on which number was randomly chosen.
+
+1000 Needles appears. 2000 Needles makes an exclusive appearance. [[Cactrot Rapido]] uses 10000 Needles. Needles attacks are split between groups.
+
+===''[[Final Fantasy XII]]''===
+Several [[Technicks]] deal fixed damage: [[Traveler (Final Fantasy XII)|Traveler]] damages enemies in a radius based on how many steps the player has taken since last using it; [[Horology]] damages enemies in a radius based on the in-game clock's minute position and the user's level; [[Numerology]] deals 1 damage to enemies in a radius, which doubles with each successive use, and the counter resetting when it misses; [[1000 Needles (Final Fantasy XII)|1000 Needles]] is also a Technick that inflicts 1000 ranged damage to a single enemy.
+
+The [[Knot of Rust (Final Fantasy XII)|Knot of Rust]] item deals damage based on the user's max HP, and the [[Dark Matter (Final Fantasy XII)|Dark Matter]] item deals damage depending on the amount of Knot of Rusts used. [[Balance (Final Fantasy XII)|Balance]] is a magick spell that inflicts damage in an area based on the user's Max HP subtracted by their current HP. 
+
+[[Zodiark (Final Fantasy XII)|Zodiark's]] [[Final Eclipse]] inflicts 50,000 non-elemental damage to foes, or 60,000 in the ''Zodiac'' versions. [[Shemhazai (Final Fantasy XII)|Shemhazai]], [[Zeromus (Final Fantasy XII)|Zeromus]], and [[Exodus (Final Fantasy XII)|Exodus's]] abilities also deal fixed damage, as well as [[Zalera (Final Fantasy XII)|Zalera's]] Condemnation.
+
+The [[Flowering Cactoid]] can attack the party with 1000 Needles. The [[Feral Retriever]] can attack the party with Balance.
+
+=== ''[[Final Fantasy XIII]]'' ===
+[[Cactuar Prime]] uses 1000 Needles, while the [[Gigantuar (Final Fantasy XIII)|Gigantuar]] uses 10,000 Needles, though both attacks can be mitigated.
+
+The [[Dreadnought (Final Fantasy XIII)|Dreadnought]]'s Steam Clean will restore its HP by 1 when used.
+
+==== ''[[Final Fantasy XIII-2]]'' ====
+[[Giant Cactuar (Final Fantasy XIII-2)|Giant Cactuar]] and [[Gigantuar (Final Fantasy XIII-2)|Gigantuar]] use 1000 Needles, while [[Metal Gigantuar (Final Fantasy XIII-2)|Metal Gigantuar]] uses 10,000 Needles. [[Metallicactuar (Final Fantasy XIII-2)|Metallicactuar's]] Shadowbind attack deals 100 damage.
+
+[[Tonberry (Final Fantasy XIII-2)|Tonberries]] can use Ultimate Grudge to deal 66,666 damage to the party. [[Snow (Final Fantasy XIII-2 boss)|Snow's]] Sovereign Fist deals 99,999 damage to the party.
+
+[[Gahongas]]'s Delirious Dance deals 1 damage to each of its allies. [[Gilgamesh (Final Fantasy XIII-2)|Gilgamesh's]] Excalipoor attack will deal 1 damage to a party member.
+
+==== ''[[Lightning Returns: Final Fantasy XIII]]'' ====
+The [[Energy Points|EP]] ability [[Quake (Lightning Returns)|Quake]] deals 9,999 damage to all enemies. [[Cactair]]'s "Take this! 1,000 Needles!" attack deals 1,000 damage to [[Lightning (Lightning Returns party member)|Lightning]], and [[Cactuar (Lightning Returns)|Cactuars]] can use 1,000 Needles as well. Each of [[Ereshkigal (Lightning Returns)|Ereshkigal's]] Meteor attacks deal 3,000 damage per meteorite.
+
+The [[Warrior's Headband]] accessory increases damage dealt by 10. This can be upgraded to the Warrior's Headband+, increasing damage by 100, and the Rakshasa Ring, increasing damage by 1,000.
+
+Cactair and [[Last One]]s have a special damage threshold, which, if not surpassed, causes attacks to deal 1 damage. Of note, Cactair's is 65,535, causing most attacks to deal 1 damage.
+
+=== ''[[Final Fantasy XIV]]'' ===
+A variety of different Needles attacks are featured (100, 1000, 3000, 5000, 10,000, 20,000, 100,000), with damage usually split between targets.
+
+Many [[Enrage (term)|enrage]] attacks deal fixed damage, such as 99,999, 999,999, or even 9,999,999. Though these damage values can usually be mitigated, it does not make them survivable.
+
+=== ''[[Final Fantasy XV]]'' ===
+[[Cactuar (Final Fantasy XV)|Cactuars]]' and [[slactuar]]s' needles always deal 100 damage.
+
+In ''[[Final Fantasy XV: Episode Ardyn|Episode Ardyn]]'', [[Ardyn Izunia|Ardyn's]] Daemonifcation skill always inflicts 9999 damage to basic enemies when they are in a [[vulnerable]] state.
+
+===''[[Final Fantasy Tactics]]''===
+[[Invigoration (Tactics)|Invigoration]] (Drain) and [[Empowerment (Tactics)|Empowerment]] (Syphon) absorb a fixed amount against most enemies. [[Archaeodaemon (Tactics)|Archaeodaemons]] can use the Lifebreak ability. [[Beowulf Cadmus|Beowulf's]] [[Vengeance (Tactics)|Vengeance]] and [[Cloud Strife (Tactics)|Cloud's]] [[Blade Burst (Tactics)|Blade Burst]] also function the same way. [[Almagest (Tactics)|Almagest]] also has the same effect.
+
+[[Byblos (Tactics)|Byblos's]] Vengeance acts similar to the Lifebreak spell, dealing damage equal to the difference in the user's Max HP and current HP. Byblos already knows this ability when he joins [[Ramza's company]].
+
+Damage from [[Soulbind]] is fixed and unavoidable.
+
+===''[[Final Fantasy Tactics Advance]]''===
+The Gil Toss move used by [[Combo (Tactics Advance)|Jugglers]] deals 30 damage by spending 30 gil. [[Templar (Tactics Advance)|Templars]] can use Lifebreak learned for 300 AP from the [[Kain's Lance (Tactics Advance)|Kain's Lance]], and deals damage equal to the HP lost. It is [[Dark (element)|Dark]] elemental, and thus the damage will be reversed on undead enemies. The range of the ability is equal to the weapon currently equipped.
+
+[[Sniper (Tactics Advance)|Snipers]] can use Doom Archer. However, Doom Archer's damage is split between HP and MP.
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+Lifebreak deal dark damage equal to the amount of HP the user has lost. It can be learned from [[Kain's Lance (Tactics A2)|Kain's Lance]] for 400 AP by the [[Templar (Tactics A2)|Templar]].
+
+=== ''[[Final Fantasy Brave Exvius]]'' ===
+Fixed Damage was represented as 1 of 4 damage types, along with Physical, Magic, and Hybrid.
+
+10 Needles was featured as a joke move of sorts.
+
+===''[[Final Fantasy Dimensions II]]''===
+Revenge Blast is the summon attack of [[Wrieg]]'s [[Kaiser Dragon (Dimensions II)|Kaiser Dragon]] [[Eidolon (Dimensions II)|Eidolon]]. It deals neutral-elemental damage based on Wrieg's current HP and lowers the attack, speed, and magic of all enemies for three turns.
+
+===''[[Final Fantasy: The 4 Heroes of Light]]''===
+[[Dark Fencer#Eye for an Eye|Eye for an Eye]] is the level 3 ability of the [[Dark Fencer]] class. At the cost of 3 AP, [[Ruby (item)|Ruby]] x2, [[Emerald (item)|Emerald]] x6, [[Topaz (item)|Topaz]] x6, and [[Amethyst (item)|Amethyst]] x1, the user will deal damage to one target equal to the difference in their Max HP and current HP.
+
+{{navbox recurring}}
+[[Category:Recurring]]
+[[Category:Battle elements]]

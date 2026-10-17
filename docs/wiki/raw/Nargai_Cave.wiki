@@ -1,0 +1,35 @@
+[[File:NargaiCave.png|thumb|right|250px|Tribites in Nargai Cave.]]
+{{Quote|A cool wind blows from inside this cave. An ancient city is said to sleep in its depths.|Description}}
+'''Nargai Cave''' {{J|ナルガエ洞穴|Narugae dōketsu}} is a cave location in ''[[Final Fantasy Tactics Advance]]''.
+
+It is the site of "Mission 011: Pale Company". Rumors of ghosts in the cave lead [[Marche Radiuju|Marche]] to investigate. He then finds a seam and is teleported to the third shrine, where [[Adrammelech (Tactics Advance)|Adrammelech]], the [[Totema]] of the [[bangaa]], resides. Marche defeats the Totema and the third [[Crystal (term)|Crystal]] shatters. Nargai Cave is also the site of "Mission #058: Royal Ruins", "Mission #078: Water Sigil", and is the spawn location of "Mission #110: Revenge". It can be freed in "Mission #249: Nargai Cave" after "Mission #013: The Bounty".
+
+==Encounters==
+===Tribites===
+{{Quote|Cave monster. Stay clear of its teeth that can dish out multiple attacks.|Description}}
+*[[Blade Biter (Tactics Advance)|Blade Biter]]
+*[[Toughskin (Tactics Advance)|Toughskin]]
+*[[Coeurl (Tactics Advance)|Coeurl]]
+*[[Red Panther (Tactics Advance)|Red Panther]] x2
+
+==Turf Defense==
+===Help Nargai!===
+{{Quote|Ever heard of a tribite? That's what locals call the monster that's been raiding from Nargai Cave. Darn Nuisance, it is.|Town rumor}}
+*[[Blade Biter (Tactics Advance)|Blade Biter]]
+*[[Toughskin (Tactics Advance)|Toughskin]]
+*[[Coeurl (Tactics Advance)|Coeurl]]
+*[[Red Panther (Tactics Advance)|Red Panther]] 
+
+==Gallery==
+<gallery>
+Nargai Cave 1.PNG|Nargai Cave.
+Nargai Cave 2.PNG|Nargai Cave.
+Nargai Cave 3.PNG|Nargai Cave.
+Nargai Cave 4.PNG|Nargai Cave.
+Cave-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Caves]]

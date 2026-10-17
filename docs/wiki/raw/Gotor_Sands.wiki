@@ -1,0 +1,40 @@
+[[File:GotorSands.png|thumb|right|250px|Clan Nutsy in an engagement in Gotor Sands.]]
+{{Quote|Desert famous for its mirages and red chocobos.|Description}}
+'''Gotor Sands''' {{J|ゴドランゾ熱砂|Godoranzo Nessa}} is a desert location in ''[[Final Fantasy Tactics Advance]]''. It can be placed after completing "Mission #016: The Big Find" and is the site of "Mission #017: Desert Patrol".
+
+Gotor Sands is also the site of "Mission #051: Desert Rose" and "Mission #065: Exploration". It can can freed in "Mission #253: Gotor Sands" after "Mission #016: The Big Find" is completed.
+
+==Story==
+When [[Marche Radiuju|Marche]] arrives at the sands, he is overjoyed at seeing his brother [[Doned Radiuju|Doned]], who surprisingly is no longer in a wheelchair. Doned immediately calls the attention of an enemy [[clan]] that seeks to turn Marche in for the bounty placed on him by [[Remedi|Queen Remedi]]. Marche is forced to deal with the bounty-seekers while a silent Doned leaves the area.
+
+After the battle, Marche interrogates one of the enemy clan members, but is unable to find anything new, other than that Doned really wanted to have him turned in. Doned's reasons are later revealed: Doned does not want to return because he will not be able to walk, he will have to take his medicine, and in Ivalice he can cast magic and fight monsters. Doned eventually hugs Marche and ends up helping him.
+
+==Encounters==
+===Wild Monsters===
+{{Quote|Desert fiend. Usually harmless, except when hungry.|Description}}
+*[[Jelly (Tactics Advance)|Jelly]]
+*[[Coeurl (Tactics Advance)|Coeurl]]
+*[[Icedrake]]
+*[[Malboro (Tactics Advance)|Malboro]]
+*[[Grenade (Tactics Advance)|Grenade]]
+
+== Turf Defense ==
+{{Quote|These bandits who live at the oasis are hogging all the water, then selling it at inflated prices to poor travelers, the scum!|Town rumor}}
+* [[Warrior (Tactics Advance)|Warrior]]
+* [[Gladiator (Tactics Advance)|Gladiator]]
+* [[White Monk (Tactics Advance)|White Monk]]
+* [[Animist (Tactics Advance)|Animist]]
+
+==Gallery==
+<gallery>
+Gotor Sands 1.PNG|Gotor Sands.
+Gotor Sands 2.PNG|Gotor Sands.
+Gotor Sands 3.PNG|Gotor Sands.
+Gotor Sands 4.PNG|Gotor Sands.
+Desert-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Deserts]]

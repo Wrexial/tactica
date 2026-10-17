@@ -1,0 +1,134 @@
+{{infobox job
+|name=Biskmatar
+|release=FFTA
+|japanese=ビスクマータ
+|romaji=Bisukumāta
+|image=Llednar.jpg
+|portrait=[[File:FFTA-Llednar por.png|50px]]
+|sprite=[[File:FFTA llednar.png|20px]]
+|obtained=Exclusive to Llednar
+|characters=[[Llednar Twem]]
+|stats=
+*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 60
+*Stat growth: low speed, average HP, high Magic Resistance, above-average Attack, Defense and Magic Power
+|weapons=[[Final Fantasy Tactics Advance weapons#Swords|Knightswords]]
+|armor=[[Final Fantasy Tactics Advance armor#Helms|Helms]], [[Final Fantasy Tactics Advance armor#Heavy Armor|heavy armor]] and [[Final Fantasy Tactics Advance armor#Shields|shield]]
+|command abilities=*[[Dark Magic (Tactics Advance)|Dark Magic]]
+*[[Flair (Tactics Advance)|Flair]]
+|support abilities=
+|boss page=
+|recurring appearance=
+|gallery=
+}}
+{{Quote|Powerful mageknight that serves the prince.|Description}}
+'''Biskmatar''' is a special [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' belonging to [[Llednar Twem]]. A powerful mageknight, Llednar serves as personal bodyguard for [[Mewt Randell|Prince Mewt]]. Unlike other special jobs, such as [[Judgemaster (Tactics Advance)|Judgemaster]] and [[Hermetic]], the Biskmatar's [[stat growth|growth rate]] is unique and not based on another basic job.
+
+==Growth==
+Though not playable by normal means, the Biskmatar has a unique growth rate. It has low speed and only average HP, but high Magic Resistance and above-average Attack, Defense, and Magic Power, representing a middle ground between fighter and mage.
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.6 C
+|4.2 B-
+|8.8 B+
+|8.4 B
+|8.2 B-
+|9.6 A+
+|1.0 D
+|}
+
+==Abilities==
+===[[Dark Magic (Tactics Advance)|Dark Magic]]===
+{{Quote|Biskmatar command. Use negative powered magic.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Omega}}
+|10
+|As Weapon
+|As Weapon
+|-
+|colspan=3 style="text-align:left"|''As powerful as ultima. Deals massive damage.''
+|-
+! rowspan=2|{{A|Abyss}}
+|12
+|48
+|3
+|-
+|colspan=3 style="text-align:left"|''Calls forth decay to damage and poison target.''
+|-
+|}
+
+===[[Flair (Tactics Advance)|Flair]]===
+{{Quote|Biskmatar command. Use ancient sword techs.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:30%"|Effect
+!style="width:5%"|Power
+!style="width:5%"|Range
+|-
+!{{A|Life Render}}
+|style="text-align:left"|''Life-stealing attack. Damages and dooms target.''
+|As Weapon
+|As Weapon
+|-
+!{{A|Heart Render}}
+|style="text-align:left"|''Breaks heart with fear. Deals damage to MP.''
+|As Weapon
+|As Weapon
+|-
+!{{A|Ripcircle}}
+|style="text-align:left"|''Faster than light. Damages surrounding units.''
+|45
+|Self
+|-
+!{{A|Furycircle}}
+|style="text-align:left"|''Damages and knocks back surrounding units.''
+|50
+|Self
+|-
+|}
+
+== Overview ==
+[[File:FFTA Omega.png|Omega.|thumb]]
+Biskmatar is an enemy only job. The player fights Llednar three times and he is invincible during the first two encounters. Biskmatar has balanced stats with above-average evasion that make Llednar something of a mage-warrior. Its Flair ability set is powerful, containing a variety of damaging abilities. Omega is essentially an Ultima ability, while Abyss gives a degree of crowd control and status effects. The class is outfitted with the same types of equipment as [[Paladin (Tactics Advance)|Paladins]], except that it can only wield knightswords. The class's weakness is its low defensive capabilities, below-average HP and average defense, and it cannot support allies. Biskmatar can deal various types of high damage: single target, multi target, and ranged.
+
+The '''first fight''' is directly before a challenging [[boss]] battle against the [[Totema]] [[Mateus (Tactics Advance)|Mateus]]. Llednar shows off his power by using Omega, an Ultima ability that deals massive damage, likely killing or heavily damaging one of the player's units. Abyss deals area damage and poisoning. Llednar has some valuable [[Thief (Tactics Advance)|stealable]] equipment. Llednar is accompanied by several [[Templar (Tactics Advance)|Templars]] and [[Titania (Tactics Advance)|Titanias]] who can be an intimidating secondary threat. With the help of his [[SaveTheQueen (Tactics Advance)|Save the Queen]] and his naturally above-average attack power, Llednar can hit hard.
+
+The player is only required to survive, and one can run and play defensively. As long as the player stays away from Llednar's melee zone, the party should be able to survive even with the presence of Abyss. However, the player would lose out on some nice stealable equipment.
+
+The '''second encounter''' is critical, and potentially a major source of frustration, as the player faces Llednar alone as the main character right after having completed another battle, so getting a [[Game Over (term)|game over]] means returning all the way back to the previous mission. Omega is still Llednar's greatest source of power, easily dealing damage in the high 300s, but the player can equip holy-absorbent equipment to nullify the damage. Llednar uses Abyss to harass the player if they try to run away. Llednar still has same valuable stealable equipment, in case the main character has mastered some Thief abilities. Llednar's Biskmatar class is not all that fast, so it is again possible to play defensively.
+
+[[File:FFTA Life Render.png|Life Render.|thumb]]
+The '''final fight''' is Llednar's last stand, and the prelude to the [[final boss]]. Llednar has several minions, but the player can bring along teammates. The presence of [[Babus Swain|Babus]] counts as an ally, but in reality, the unit limit is four as he is unconscious. Llednar has different equipment this time around, but they are still valuable. Due to story circumstances, he no longer has invincibility and gains two new powerful abilities, called Life Render and Heart Render. This battle is rather easy, as the player can capitalize on Llednar's sub-par HP and average defense.
+
+==Gallery==
+<gallery>
+FFTA Abyss.png|Abyss.
+FFTA Ripcircle.png|Ripcircle.
+</gallery>{{Gallery incomplete|Heart Render|Furycircle}}
+
+==Etymology==
+The Japanese name ''Bisukumāta'' may be a compound of "bisque" (referring to bisque porcelain dolls) and auto'''mata''' (the plural of "automaton") referring to an automated doll, which fits the description of Llednar. It may also be based on a serbo-croation root "kismet" meaning "destiny." Biskmatar would then mean 'he without a destiny'.
+
+{{navbox abilities FFTA}}
+
+
+[[it:Biskmatar]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

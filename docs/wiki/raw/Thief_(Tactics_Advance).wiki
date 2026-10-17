@@ -1,0 +1,226 @@
+{{DISPLAYTITLE:Thief (''Tactics Advance'')}}
+{{infobox job
+|name=Thief
+|release=FFTA
+|japanese=シ－フ
+|romaji=Shīfu
+|image=<gallery>
+Ffta-h-thief.jpg|Hume
+Ffta-moogle-thief.jpg|Moogle
+</gallery>
+|portrait=[[File:ffta-job-human-thief-por.png|50px|Hume player]] [[File:Ffta-job-human-thief-enemy.png|Hume enemy|50px]]<br/>[[File:Ffta-job-moogle-thief.png|50px|Moogle player.]] [[File:Ffta-job-moogle-thief-enemy.png|Enemy moogle|50px]]
+|sprite=[[File:FFTA-job-thiefH.gif|20px|Hume player]] [[File:Ffta-job-human-thief-enemy-sprite.png|Enemy hume|20px]] [[File:FFTA-job-thiefM.gif|20px|Moogle player]] [[File:Ffta-job-moogle-thief-enemy-sprite.png|20px|Enemy moogle]]
+|obtained=Default
+|characters=[[Human|Humes]], [[moogle]]s
+|stats=*Move Rate: 4
+*Jump Rate: 3
+*Evade Rate: 65 (Hume), 70 (Moogle)
+*Stat growth: balanced but mediocre
+|weapons=[[Final Fantasy Tactics Advance weapons#Knives|Knives]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Steal (Tactics Advance)|Steal]]
+*[[#Thief Combo|Thief Combo]] (combo)
+|support abilities=*[[Safeguard|Maintenance]]
+*[[Counter (ability)|Counter]] (reaction)
+|boss page=
+|recurring appearance=Thief
+}}
+{{Quote|Takes enemy's items away and evades attacks|Description}}
+The '''Thief''' is available to [[Human|humes]] and [[moogle]]s as a basic [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]''. Thief is one of the most useful jobs because of its ability to [[steal]] any piece of equipment, or even JP and abilities. To take full advantage of this, players can examine every piece of equipment the opponents have before starting an engagement. Thieves are balanced with favorable [[stats]], but it is best to do not rely on their growth too much. [[Ninja (Tactics Advance)|Ninjas]] and [[Hunter (Tactics Advance)|Hunters]] have better [[stat growth]] and can therefore benefit from the Thief's abilities.
+
+==Growth==
+Thief is the only class whose Evade differs depending on race, with moogles having 5 more base evasion than humes.
+
+===Hume===
+Hume Thieves have average stat growth. They have balanced but mediocre stats all around, with the only notable exception being their slightly elevated Speed. One should refrain from [[level]]ing up as a Thief, as there are better options for stat growth.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.6 C
+|1.1 E
+|7.6 C+
+|7.6 C+
+|7.6 C+
+|6.4 D+
+|1.8 A-
+|}
+
+===Moogle===
+The moogle Thief is balanced but mediocre, similar to the hume Thief. Their only exceptional stat is their speed, which is the highest out of all moogle classes. One should refrain from leveling up as a Thief, as there are better options for stat growth.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.8 D
+|2.2 D
+|7.3 C-
+|8.4 B
+|6.8 D+
+|7.6 C
+|1.9 A+
+|}
+
+==Abilities==
+===[[Steal (Tactics Advance)|Steal]]===
+{{Quote|Thief command. Steal with nimble hands.|Description}}
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Steal: Armor}}
+|[[Final Fantasy Tactics Advance weapons#Rondell Dagger|Rondell Dagger]]
+|300
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals armor worn by enemy.''
+|-
+! rowspan=2|{{A|Steal: Shield}}
+|[[Final Fantasy Tactics Advance weapons#Scramasax|Scramasax]]
+|200
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals shield held by enemy.''
+|-
+! rowspan=2|{{A|Steal: Access.}}
+|[[Final Fantasy Tactics Advance weapons#Jambiya|Jambiya]]
+|300
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals accessory worn by enemy.''<br>Boots cannot be stolen.
+|-
+! rowspan=2|{{A|Steal: Helm}}
+|[[Final Fantasy Tactics Advance weapons#Kard|Kard]]
+|300
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals helmet or headwear worn by enemy.''
+|-
+! rowspan=2|{{A|Steal: Weapon}}
+|[[Final Fantasy Tactics Advance weapons#Sword Breaker|Sword Breaker]]
+|300
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals weapon held by enemy.''
+|-
+! rowspan=2|{{A|Steal Gil|Steal: Gil}}
+|[[Final Fantasy Tactics Advance weapons#Jack Knife|Jack Knife]]
+|100
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals gil from enemy.''
+|-
+! rowspan=2|{{A|Steal: EXP}}
+|[[Final Fantasy Tactics Advance weapons#Khukuri|Khukuri]]
+|100
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals experience points from enemy.''
+|-
+! rowspan=2|{{A|Steal: JP}}
+|[[Final Fantasy Tactics Advance weapons#Orichalcum|Orichalcum]]
+|200
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals judge points from enemy.''
+|-
+! rowspan=2|{{A|Steal: Ability}}
+|[[Final Fantasy Tactics Advance weapons#Cinquedea|Cinquedea]]
+|300
+|1
+|-
+|colspan=3 style="text-align:left"|''Steals enemy's A-ability for your use.''<br>The ability must be mastered and able to be learned by any job. Reaction and Support abilities cannot be stolen. Success rate is low.
+|}
+
+Steal: Gil steals a predicted amount of [[gil]] equal to the caster's Max HP. The actual amount of gil stolen varies as such:
+:<math>Gil Stolen = [Rand{128..384} * Caster's Max HP / 256]</math>
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Counter (ability)|Counter}}
+|[[Final Fantasy Tactics Advance armor#Brigandine|Brigandine]]
+|style="text-align:left"|''Follows up enemy attack with a counterattack.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Safeguard|Maintenance}}
+|[[Final Fantasy Tactics Advance armor#Adaman Vest|Adaman Vest]]
+|style="text-align:left"|''Ensures equipped items are not stolen or destroyed.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Thief Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Knife|Mythril Knife]]
+|style="text-align:left"|''Failproof combo ability for thieves.''
+|100
+|}
+
+== Overview ==
+[[File:FFTA Steal Armor.png|Steal: Armor.|thumb|Steal: Armor.]]
+The swift and elusive Thief is a basic class requiring no effort to unlock. The moogle Thief has the highest speed growth for a moogle. Thief has various stealing abilities that are highly exploitable. Steal: Exp can be used for [[level grinding]]. Steal: Weapon and Steal: Armor are valuable as there is a lot of top notch equipment found in the hands of enemies that are not easily obtained anywhere else. Thief is the first class to learn the reaction ability Counter. Thief has the highest evasion, surpassing even the [[Ninja (Tactics Advance)|Ninja]] and the [[Juggler (Tactics Advance)|Juggler]].
+
+The Thief is ill-suited for combat for its low HP and Atk. Most knives have unimpressive attack power, although some of the best ones can deal decent damage. Even the Thief's speed, while high, is beat by jobs with better physical stats. Steal: Weapon, Steal: Armor, and Steal: Ability are hard to come by, limiting the Thief's usefulness. Though the Thief rarely gets hit any half decent attacker will deal at least a considerable amount of damage to them.
+
+Overall, the Thief is a recommended class for stealing rather than fighting. Although its stats are mostly unremarkable, the stealing capabilities warrant having one and maybe equipping the stealing abilities on another class.
+
+Against enemy Thieves frontal attacks or reduced accuracy abilities are often futile. Their capability to steal will prove an annoyance. Thieves are fast, and thus it is a struggle for most units to outpace them. Ranged units can handle them nicely as long as they maintain distance. Mages can deal remarkable damage, but escape is nigh impossible should they put themselves into a Thief's range. Melee combat units, like [[Gladiator (Tactics Advance)|Gladiators]], [[Paladin (Tactics Advance)|Paladins]], and [[Dragoon (Tactics Advance)|Dragoons]], are prime counters to thieves as they take barely any damage from knives. Thieves are not lethal, but their stealing makes them a high priority target.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Thief TCG.png|right|100px]]
+Moogle Thief appears with a wind-elemental card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Steal Accessory.png|Steal: Access.
+FFTA Steal Gil.png|Steal: Gil.
+FFTA Steal EXP.png|Steal: EXP.
+FFTA Steal JP.png|Steal: JP.
+</gallery>{{Gallery incomplete|Steal: Shield|Steal: Helm|Steal: Weapon|Steal: Ability|Thief Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Ladrón (Final Fantasy Tactics Advance)]]
+[[it:Ladro (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

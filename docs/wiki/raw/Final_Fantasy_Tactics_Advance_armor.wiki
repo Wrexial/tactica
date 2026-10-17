@@ -1,0 +1,944 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' armor}}
+Below is a list of all the armor that appear in ''[[Final Fantasy Tactics Advance]]''.
+
+{{See|Final Fantasy Tactics Advance accessories}}
+
+== Headgear ==
+=== Helmets ===
+Helmets are sturdy metallic pieces of headgear can be equipped by [[Soldier (Tactics Advance)|Soldiers]], [[Paladin (Tactics Advance)|Paladins]], [[Warrior (Tactics Advance)|Warriors]], [[Templar (Tactics Advance)|Templars]], [[Defender (Tactics Advance)|Defenders]], [[Dragoon (Tactics Advance)|Dragoons]], and [[Mog Knight]]s.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Helmet
+!style="width:10%"|Cost
+!style="width:10%"|Defense
+!style="width:10%"|Mag Resis.
+!style="width:50%"|Special Effect
+|-
+! rowspan="2"|{{LA|Bronze Helm}}<br/>[[File:FFTA Bronze Helm.PNG]]
+|500
+|4
+|2
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''Helm of copper and leather.''
+|-
+! rowspan="2"|{{LA|Iron Helm}}<br/>[[File:FFTA Iron Helm.PNG]]
+|1200
+|5
+|3
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''Heavy, but very sturdy iron helmet.''
+|-
+! rowspan="2"|{{LA|Platinum Helm|Opal Helm}}<br/>[[File:FFTA Opal Helm.PNG]]
+|2500
+|7
+|3
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''Formal helm worn in ceremonies.''
+|-
+! rowspan="2"|{{LA|Close Helmet|Cross Helm}}<br/>[[File:FFTA Cross Helm.PNG]]
+|0
+|9
+|4
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''This helmet is made to cover the whole face.''
+|-
+! rowspan="2"|{{LA|Diamond Helm}}<br/>[[File:FFTA Diamond Helm.PNG]]
+|0
+|11
+|5
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''This helmet is pricey but very reliable.''
+|-
+! rowspan="2"|{{A|Parade Helm}}<br/>[[File:FFTA Parade Helm.PNG]]
+|0
+|13
+|4
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''Helm with a large crimson plume. Used in ceremonies.''
+|-
+! rowspan="2"|{{A|Hanya Helm}}<br/>[[File:FFTA Hanya Helm.PNG]]
+|0
+|12
+|8
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''Frightful helm in the shape of a demon.''
+|-
+! rowspan="2"|{{A|Bangaa Helm}}<br/>[[File:FFTA Bangaa Helm.PNG]]
+|0
+|16
+|6
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''Strong and sturdy helmet used by bangaa.''
+|-
+! rowspan="2"|{{LA|Genji Helm}}<br/>[[File:FFTA Genji Helm.PNG]]
+|0
+|15
+|6
+|style="text-align:left"|None
+|-
+|colspan="4" style="text-align:left"|''Foreign helm made with exquisite craftsmanship.''
+|}
+
+=== [[Female-exclusive equipment|Female-only ornament]] ===
+This set consists of delicate ornaments can be equipped only by [[viera]] job classes and [[Ritz Malheur]]. They tend to neutralize a large number of negative status effects.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Ornament
+!style="width:10%"|Cost
+!style="width:10%"|Defense
+!style="width:10%"|Mag Resis.
+!style="width:50%"|Special Effect
+|-
+! rowspan="2"|{{LA|Cachusha}}<br/>[[File:FFTA Cachusha.png]]
+|0
+|2
+|5
+|align="left"|[Null] KO/Petrify/Confuse/Berserk/Stop/Charm/Sleep
+|-
+|colspan="7" align="left"|''Words of blessing adorn this red women's ornament.''
+|-
+! rowspan="2"|{{LA|Barette (equipment)|Barette}}<br/>[[File:FFTA Barette.png]]
+|0
+|2
+|5
+|align="left"|[Null] Zombie/Dark/Silence/Frog/Poison/Slow/Immobilize/Disable/Doom
+|-
+|colspan="7" align="left"|''Women's hairpin adorned with good luck stones.''
+|-
+! rowspan="2"|{{LA|Ribbon (equipment)|Ribbon}}<br/>[[File:FFTA Ribbon.png]]
+|0
+|2
+|5
+|align="left"|[Null] All status ailments
+|-
+|colspan="7" align="left"|''This women's ribbon wards off all ailments.''
+|-
+! rowspan="2"|{{LA|Brass Coronet|Tiara}}
+[[File:FFTA Tiara.png]]
+|0
+|8
+|20
+|align="left"|None
+|-
+|colspan="7" align="left"|''Gilt tiara given to the most beautiful of women.''
+|}
+
+=== Hats ===
+Hats are lightweight headgear that all jobs can equip, except for the Paladin, Dragoon, Defender, and White Monk.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Hat
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Feathered Cap|Feather Cap}}<br/>[[File:FFTA Feather Cap.PNG]]
+|0
+|2
+|0
+|4
+|350
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|''Sturdy cap with a long feather.''
+|-
+! rowspan="2"|{{LA|Circlet}}<br/>[[File:FFTA Circlet.PNG]]
+|0
+|3
+|0
+|3
+|1800
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|''Ornament meant to protect the wearer from harmful magic.''
+|-
+! rowspan="2"|{{LA|Green Beret}}<br/>[[File:FFTA Green Beret.PNG]]
+|2
+|0
+|0
+|2
+|800
+|style="text-align:left"|Animist/Archer: Block Arrows (300)
+|-
+|colspan="6" style="text-align:left"|''This hat is given to those with a special mission.''
+|-
+! rowspan="2"|{{LA|Twist Headband|Headband}}<br/>[[File:FFTA Headband.PNG]]
+|5
+|6
+|0
+|2
+|3000
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|''This headband serves to focus the spirit.''
+|-
+! rowspan="2"|{{LA|Wizard's Hat|Wizard Hat}}<br/>[[File:FFTA Wizard Hat.PNG]]
+|0
+|3
+|1
+|10
+|0
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|''This pointed cap is a classic wizard's hat.''
+|-
+! rowspan="3"|{{LA|Gold Hairpin}}<br/>[[File:FFTA Gold Hairpin.PNG]]
+|0
+|4
+|2
+|12
+|0
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|'''Effect:''' [Null] [[Silence (status)|Silence]]
+|-
+|colspan="6" style="text-align:left"|''Hairpin with fine goldwork. Made by a sorceress.''
+|-
+! rowspan="3"|{{LA|Thief's Hat|Thief Hat}}<br/>[[File:FFTA Thief Hat.PNG]]
+|0
+|8
+|0
+|6
+|0
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|'''Effect:''' [Null] [[Immobilize (status)|Immobilize]] /[[Disable (status)|Disable]]<br>+7 to Evade
+|-
+|colspan="6" style="text-align:left"|''Hat said to have belonged to a notorious thief.''
+|-
+! rowspan="2"|{{A|Black Hat}}<br/>[[File:FFTA Black Hat.PNG]]
+|0
+|4
+|4
+|16
+|0
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|''Black pointy hat made of magical thread.''
+|-
+! rowspan="2"|{{LA|Cat-Ear Hood|White Hat}}<br/>[[File:Cat-Ear Hood.png]]
+|0
+|4
+|0
+|14
+|0
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|''White hat with furry ears. Made of magical thread.''
+|-
+! rowspan="3"|{{A|Acacia Hat}}<br/>[[File:FFTA Acacia Hat.PNG]]
+|0
+|2
+|5
+|2
+|0
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|'''Effect:''' +2 to Speed, +5 to Evade, +1 to Move, +1 to Jump
+Grows over time (Magic Resist +1) each time the player completes "'''''Mission: Swimming Meet'''''", up to a maximum of 255.
+|-
+|colspan="6" style="text-align:left"|''Odd, light yellow hat that grows with its wearer.''
+|}
+
+== Armor ==
+=== Heavy Armor ===
+This type of armor focuses mostly on Defense and can be equipped by the Soldier, Paladin, Warrior, Templar, Dragoon, Defender, and Mog Knight jobs.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Heavy Armor
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Rst.
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Linen Cuirass|Cuirass}}<br/>[[File:FFTA Cuirass.PNG]]
+|0
+|28
+|2
+|400
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Chestplate made of tightly woven fibers.''
+|-
+! rowspan="2"|{{LA|Bronze Armor}}<br/>[[File:FFTA Bronze Armor.PNG]]
+|0
+|30
+|6
+|1000
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Armor made of intertwined copper plates.''
+|-
+! rowspan="2"|{{LA|Iron Armor}}<br/>[[File:FFTA Iron Armor.PNG]]
+|0
+|34
+|3
+|1500
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Heavy armor with steel on the chest.''
+|-
+! rowspan="2"|{{LA|Plate Mail|Platemail}}<br/>[[File:FFTA Platemail.PNG]]
+|0
+|38
+|3
+|3000
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Full-body armor made of metal plates on chainmail.''
+|-
+! rowspan="2"|{{LA|Golden Armor|Gold Armor}}<br/>[[File:FFTA Gold Armor.PNG]]
+|0
+|42
+|6
+|6000
+|style="text-align:left"|Mog Knight: Last Haste (300)
+|-
+|colspan="5" style="text-align:left"|''Expensive armor plated in gold.''
+|-
+! rowspan="2"|{{LA|Diamond Armor}}<br/>[[File:FFTA Diamond Armor.PNG]]
+|0
+|40
+|3
+|0
+|style="text-align:left"|Paladin/Defender: Weapon Def+ (300)
+|-
+|colspan="5" style="text-align:left"|''This armor is set with sparkling diamonds.''
+|-
+! rowspan="2"|{{LA|Platinum Armor|Opal Armor}}<br/>[[File:FFTA Opal Armor.PNG]]
+|0
+|42
+|3
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Beautiful opal armor with exquisite curves.''
+|-
+! rowspan="2"|{{LA|Carabineer Mail|Carabini Mail}}<br/>[[File:FFTA Carabini Mail.PNG]]
+|0
+|38
+|8
+|0
+|style="text-align:left"|Templar: [[Bonecrusher]] (300)
+|-
+|colspan="5" style="text-align:left"|''Light armor made of iron fused with mythril.''
+|-
+! rowspan="3"|{{LA|Mirror Mail}}<br/>[[File:FFTA Mirror Mail.PNG]]
+|0
+|36
+|8
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [[Auto-Reflect]]
+|-
+|colspan="5" style="text-align:left"|''Lighter armor imbued with a magical reflection aura.''
+|-
+! rowspan="3"|{{LA|Dragon Mail}}<br/>[[File:FFTA Dragon Mail.PNG]]
+|0
+|40
+|8
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [Half] Fire
+|-
+|colspan="5" style="text-align:left"|''Armor made of metal fused with dragon scales.''
+|-
+! rowspan="2"|{{LA|Genji Armor}}<br/>[[File:FFTA Genji Armor.PNG]]
+|0
+|46
+|12
+|0
+|style="text-align:left"|Paladin: [[Reflex (evasion ability)|Reflex]] (300)
+|-
+|colspan="5" style="text-align:left"|''One-of-a-kind armor from a foreign land.''
+|-
+! rowspan="2"|{{LA|Maximillian}}<br/>[[File:FFTA Maximillian.PNG]]
+|3
+|46
+|10
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''This armor bears the crest of "The Last Knight."''
+|-
+! rowspan="2"|{{LA|Adamant Armor|Adaman Armor}}<br/>[[File:FFTA Adaman Armor.PNG]]
+|0
+|58
+|3
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Armor of beautifully tempered green adamantite.''
+|-
+! rowspan="2"|{{A|Materia Armor}}<br/>[[File:FFTA Materia Armor.PNG]]
+|0
+|52
+|16
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Extremely hard armor made of materite.''
+|-
+! rowspan="3"|{{A|Peytral}}<br/>[[File:FFTA Peytral.PNG]]
+|5
+|29
+|2
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' +5 to Magic Power, +2 to Speed, +5 to Evade, +1 to Move, +1 to Jump
+Grows over time (Weapon Defense +1) each time the player completes "'''''Mission: Clan League'''''", up to a maximum of 255.
+|-
+|colspan="5" style="text-align:left"|''Heavy, but sturdy armor. Made for war chocobo use.''
+|-
+|}
+
+=== Clothing ===
+The Clothing genre of body armor offers more of a balanced defenses against magic and weapon attacks compared to heavy armor. They are also the largest class of body armor and can be equipped by all jobs except for the Paladin, Dragoon, and Defender.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Clothing
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Rst.
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Leather Clothing|Leather Garb}}<br/>[[File:FFTA Leather Garb.PNG]]
+|0
+|14
+|4
+|300
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Sturdy clothing made of layered leather.''
+|-
+! rowspan="2"|{{LA|Chain Plate}}<br/>[[File:FFTA Chain Plate.PNG]]
+|0
+|28
+|4
+|900
+|style="text-align:left"|Juggler/Red Mage: [[Sticky Fingers (ability)|Catch]] (300)
+|-
+|colspan="5" style="text-align:left"|''Shirt of linked iron rings.''
+|-
+! rowspan="2"|{{LA|Adamant Vest|Adaman Vest}}<br/>[[File:FFTA Adaman Vest.PNG]]
+|0
+|30
+|3
+|2500
+|style="text-align:left"|Alchemist/Thief: [[Maintenance]] (300)
+|-
+|colspan="5" style="text-align:left"|''Shirt woven of adamantite alloy.''
+|-
+! rowspan="2"|{{LA|Survival Vest}}<br/>[[File:FFTA Survival Vest.PNG]]
+|0
+|34
+|6
+|2500
+|style="text-align:left"|Beastmaster/Blue Mage: Immunity (300)
+|-
+|colspan="5" style="text-align:left"|''Light cotton wear for absorbing shocks.''
+|-
+! rowspan="2"|{{LA|Brigandine}}<br/>[[File:FFTA Brigandine.PNG]]
+|0
+|37
+|6
+|3700
+|style="text-align:left"|Thief/White Monk: [[Counter (ability)|Counter]] (300)
+|-
+|colspan="5" style="text-align:left"|''Clothes made so the metal strips won't rub together.''
+|-
+! rowspan="3"|{{LA|Jujitsu Gi|Judo Uniform}}<br/>[[File:FFTA Judo Uniform.PNG]]
+|0
+|34
+|8
+|6000
+|style="text-align:left"|Blue Mage/Gadgeteer/Morpher: Damage > MP (300)
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [Null] [[Doom (status)|Doom]]
+|-
+|colspan="5" style="text-align:left"|''Fighting clothes preferred by monks.''
+|-
+! rowspan="2"|{{LA|Power Vest|Power Sash}}<br/>[[File:FFTA Power Sash.PNG]]
+|2
+|34
+|10
+|7000
+|style="text-align:left"|Assassin/Juggler: Return Fire (300)
+|-
+|colspan="5" style="text-align:left"|''Twisted rope for tying back loose clothing.''
+|-
+! rowspan="3"|{{LA|Gaia Gear}}<br/>[[File:FFTA Gaia Gear.PNG]]
+|0
+|24
+|12
+|0
+|style="text-align:left"|Gadgeteer/Hunter/Sniper: [[Auto-Regen]] (300)
+|-
+|colspan="5" style="text-align:left"|'''Element:''' [[Earth (element)|Earth]]<br/>'''Effect:''' [absb] Earth
+|-
+|colspan="5" style="text-align:left"|''These blue clothes have been blessed by the earth.''
+|-
+! rowspan="3"|{{LA|Minerva Bustier|Minerva Plate}}<br/>[[File:FFTA Minerva Plate.PNG]]
+|0
+|28
+|14
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [null] Dark<br/>Female-Only
+|-
+|colspan="5" style="text-align:left"|''Women's clothes worn by the goddess of victory.''
+|-
+! rowspan="3"|{{LA|Ninja Gear}}<br/>[[File:FFTA Ninja Gear.PNG]]
+|0
+|30
+|6
+|0
+|style="text-align:left"|Beastmaster/Ninja: [[Critical: Haste|Last Haste]] (300)<br/>Fighter: [[Bonecrusher]] (300)
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' +1 to Speed, +2 to Evade
+|-
+|colspan="5" style="text-align:left"|''Ninja clothes made using special secret techniques.''
+|-
+! rowspan="3"|{{LA|Black Garb|Dark Gear}}<br/>[[File:FFTA Dark Gear.PNG]]
+|0
+|32
+|3
+|0
+|style="text-align:left"|Sage: Weapon Def+ (300)
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [Null] [[Stop (status)|Stop]]<br/>+2 to Speed, +1 to Evade
+|-
+|colspan="5" style="text-align:left"|''Black clothes used for night operations.''
+|-
+! rowspan="3"|{{A|Wygar}}<br/>[[File:FFTA Wygar.PNG]]
+|0
+|35
+|10
+|0
+|style="text-align:left"|Fighter/Gladiator: Strikeback (300) (Fighter, Gladiator)
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [Null] [[Death (ability)|Death]]
+|-
+|colspan="5" style="text-align:left"|''Clothes worn by an ancient hero king.''
+|-
+! rowspan="3"|{{LA|Mirage Vest}}<br/>[[File:FFTA Mirage Vest.PNG]]
+|0
+|32
+|16
+|0
+|style="text-align:left"|White Monk/Sage/Fencer: Reflex (300)
+|-
+|colspan="5" style="text-align:left"|'''Element:''' [[Holy (element)|Holy]]
+|-
+|colspan="5" style="text-align:left"|''These clothes shimmer mystically in the light.''
+|-
+! rowspan="3"|{{LA|Rubber Suit}}<br/>[[File:FFTA Rubber Suit.PNG]]
+|0
+|28
+|16
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [Null] Lightning<br>Female-Only
+|-
+|colspan="5" style="text-align:left"|''Women's insulated clothing.''
+|-
+! rowspan="3"|{{LA|Bone Plate}}<br/>[[File:FFTA Bone Plate.PNG]]
+|0
+|42
+|8
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Element:''' [[Dark (element)|Dark]]<br>'''Effect:''' [absb] Dark
+|-
+|colspan="5" style="text-align:left"|''Clothing made of connected monster bones.''
+|-
+! rowspan="2"|{{A|Onlyone}}<br/>[[File:FFTA Onlyone.PNG]]
+|0
+|34
+|24
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Sturdy tunic. The only clothes you'll ever need.''
+|-
+! rowspan="2"|{{A|Brint Set}}<br/>[[File:FFTA Brint Set.PNG]]
+|0
+|28
+|16
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''The latest from the famed designer "Brint."''
+|-
+! rowspan="2"|{{A|Galmia Set}}<br/>[[File:FFTA Galmia Set.PNG]]
+|0
+|26
+|18
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Galmia's latest creation. Uses lavish chocobo hides.''
+|-
+! rowspan="2"|{{A|Judge Coat}}<br/>[[File:FFTA Judge Coat.PNG]]
+|0
+|38
+|28
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Every kid in Ivalice wants one of these judge coats.''
+|-
+! rowspan="3"|{{LA|Clothes|Temple Cloth}}<br/>[[File:FFTA Temple Cloth.PNG]]
+|2
+|36
+|16
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' +2 Magic Power
+|-
+|colspan="5" style="text-align:left"|''Uniform of a long-gone order of knights.''
+|}
+
+=== Robes ===
+Robes mostly focus on magic defense and are equippable by the Paladin, White Mage, Black Mage, Illusionist, Blue Mage, Defender, Bishop, Templar, Time Mage, Morpher, Sage, Elementalist, Red Mage, and Summoner jobs.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Robe
+!style="width:6%"|Def
+!style="width:6%"|Mag Atk
+!style="width:6%"|Mag Rst.
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Hempen Robe}}<br/>[[File:FFTA Hempen Robe.PNG]]
+|15
+|0
+|22
+|400
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Simple, hempen robe.''
+|-
+! rowspan="2"|{{LA|Silk Robe|Silken Robe}}<br/>[[File:FFTA Silken Robe.PNG]]
+|15
+|0
+|28
+|1000
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Smooth robe made of the finest silk.''
+|-
+! rowspan="2"|{{LA|Magus Robe}}<br/>[[File:FFTA Magus Robe.PNG]]
+|15
+|0
+|30
+|3000
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Hooded robe favored by mages.''
+|-
+! rowspan="3"|{{LA|Chameleon Robe|Mistle Robe}}<br/>[[File:FFTA Mistle Robe.PNG]]
+|19
+|0
+|30
+|5000
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [Null] KO, [absb] Holy
+|-
+|colspan="5" style="text-align:left"|''Good-luck robe dyed with mistletoe juice.''
+|-
+! rowspan="3"|{{LA|Flame equipment|Blaze Robe}}<br/>[[File:FFTA Blaze Robe.PNG]]
+|19
+|0
+|30
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [absb] Fire
+|-
+|colspan="5" style="text-align:left"|''This robe would not burn in the middle of a fire.''
+|-
+! rowspan="3"|{{LA|Lightning equipment|Thunder Robe}}<br/>[[File:FFTA Thunder Robe.PNG]]
+|19
+|0
+|30
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [absb] Lightning
+|-
+|colspan="5" style="text-align:left"|''This robe turns lightning into power for its wearer.''
+|-
+! rowspan="3"|{{LA|Ice equipment|Flurry Robe}}<br/>[[File:FFTA Flurry Robe.PNG]]
+|19
+|0
+|30
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [absb] Ice
+|-
+|colspan="5" style="text-align:left"|''Robe woven with a snow flurry.''
+|-
+! rowspan="3"|{{LA|White Robe}}<br/>[[File:FFTA White Robe.PNG]]
+|21
+|0
+|38
+|0
+|style="text-align:left"|White Mage: Turbo MP (300 AP)
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [half] Fire/Lightning/Ice
+|-
+|colspan="5" style="text-align:left"|''Pure white robe that protects from black magic.''
+|-
+! rowspan="3"|{{LA|Black Robe}}<br/>[[File:FFTA Black Robe.PNG]]
+|21
+|2
+|36
+|0
+|style="text-align:left"|Black Mage/Bishop: Return Magic (300 AP)
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [enhn] Fire/Lightning/Ice
+|-
+|colspan="5" style="text-align:left"|''Lacquer-hued robe that strengthens black magic.''
+|-
+! rowspan="2"|{{LA|Luminous Robe|Light Robe}}<br/>[[File:FFTA Light Robe.PNG]]
+|25
+|0
+|40
+|0
+|style="text-align:left"|Bishop/Summoner/Illusionist: Half MP (300 AP)
+|-
+|colspan="5" style="text-align:left"|''This beautiful robe prevents exhaustion.''
+|-
+! rowspan="2"|{{LA|Lordly Robes|Lordly Robe}}<br/>[[File:FFTA Lordly Robe.PNG]]
+|28
+|0
+|42
+|0
+|style="text-align:left"|Elementalist/Illusionist: Absorb MP (300 AP)<br>Time Mage: Last Quicken (300 AP)
+|-
+|colspan="5" style="text-align:left"|''Robe worn by all the leaders of old.''
+|-
+! rowspan="2"|{{LA|Red Robe}}<br/>[[File:FFTA Red Robe.PNG]]
+|22
+|0
+|31
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Stylish robe made for red mages.''
+|-
+! rowspan="2"|{{LA|Sage's Robe|Sage Robe}}<br/>[[File:FFTA Sage Robe.PNG]]
+|24
+|0
+|52
+|0
+|style="text-align:left"|Black Mage: Geomancy (300 AP)
+|-
+|colspan="5" style="text-align:left"|''Soft cloth robe given to accomplished sages.''
+|-
+! rowspan="2"|{{A|Magic Robe}}<br/>[[File:FFTA Magic Robe.PNG]]
+|24
+|6
+|36
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Sky-colored robe only worn by the honest and humble.''
+|-
+! rowspan="2"|{{LA|Samite Coat|Silver Coat}}<br/>[[File:FFTA Silver Coat.PNG]]
+|30
+|0
+|38
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''This coat has a mystical silvery shimmer.''
+|-
+! rowspan="3"|{{A|Reaper Cloak}}<br/>[[File:FFTA Reaper Cloak.PNG]]
+|32
+|0
+|36
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="5" style="text-align:left"|''Robe stained black with blood.''
+|}
+
+== Shields ==
+Shields are one-handed defensive equipment that can be used with a one-handed weapon (or a two-handed weapon with the ability Monkey Grip). They can be used by the Soldier, Paladin, Warrior, Sage, Fencer, and Mog Knight jobs, as well as anyone with the Shieldbearer S-Ability.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Shield
+!style="width:6%"|Def
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Evade
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Bronze Shield}}<br/>[[File:FFTA - Bronze Shield.png]]
+|0
+|2
+|4
+|400
+|style="text-align:left"|Soldier/Warrior/Fencer: Shieldbearer (300 AP)
+|-
+|colspan="5" style="text-align:left"|''Simple shield of worked copper.''
+|-
+! rowspan="2"|{{LA|Round Shield}}<br/>[[File:FFTA Round Shield.PNG]]
+|0
+|4
+|5
+|1000
+|style="text-align:left"|Sage/Fencer/Mog Knight: Shieldbearer (300 AP)
+|-
+|colspan="5" style="text-align:left"|''Attacks seem to slide off this rounded shield.''
+|-
+! rowspan="2"|{{LA|Platinum Shield|Opal Shield}}<br/>[[File:FFTA Opal Shield.PNG]]
+|2
+|6
+|7
+|2000
+|style="text-align:left"|Soldier/Warrior/Mog Knight: Shieldbearer (300 AP)
+|-
+|colspan="5" style="text-align:left"|''Opal shield with a brilliant white luster.''
+|-
+! rowspan="3"|{{LA|Ice Shield}}<br/>[[File:FFTA Ice Shield.PNG]]
+|0
+|6
+|9
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [absb] Ice, [half] Fire, [weak] Lightning
+|-
+|colspan="5" style="text-align:left"|''This magic shield gives off a thin, cold aura.''
+|-
+! rowspan="3"|{{LA|Flame Shield}}<br/>[[File:FFTA Flame Shield.PNG]]
+|0
+|6
+|9
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Effect:''' [absb] Fire, [half] Ice, [weak] Water
+|-
+|colspan="5" style="text-align:left"|''Magical symbols of fire cover this shield.''
+|-
+! rowspan="3"|{{LA|Aegis Shield}}<br/>[[File:FFTA Aegis Shield.PNG]]
+|5
+|5
+|10
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|'''Element:''' Holy<br/>'''Effect:''' [null] Petrify
+|-
+|colspan="5" style="text-align:left"|''Holy shield once used against a horrible foe.''
+|-
+! rowspan="2"|{{LA|Genji Shield}}<br/>[[File:FFTA Genji Shield.PNG]]
+|10
+|7
+|10
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Shield from a foreign land. Part of a set.''
+|-
+! rowspan="3"|{{A|Sacri Shield}}<br/>[[File:FFTA Sacri Shield.PNG]]
+|5
+|5
+|10
+|0
+|style="text-align:left"|None
+|-
+| colspan="5" style="text-align:left" |'''Element:''' Holy<br/>'''Effect:''' [null] Blind, Silence, Poison, Slow, Disable, Immobilize, Frog, Doom, and Zombie.
+|-
+|colspan="5" style="text-align:left"|''Shield borne by the knights of heaven.''
+|-
+! rowspan="2"|{{A|Shijin Shield}}<br/>[[File:FFTA Shijin Shield.PNG]]
+|0
+|10
+|7
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Mythril shield dedicated to the four shijin gods.''
+|-
+! rowspan="2"|{{LA|Chocobo Shield|Choco Shield}}<br/>[[File:FFTA Choco Shield.PNG]]
+|0
+|0
+|10
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Feathered shield made of tanned chocobo hide.''
+|-
+! rowspan="2"|{{A|La Seraphica}}<br/>[[File:FFTA La Seraphica.PNG]]
+|0
+|5
+|15
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''This shield of good luck was a gift from the gods.''
+|-
+! rowspan="2"|{{A|Reverie Shield}}<br/>[[File:FFTA Reverie Shield.PNG]]
+|5
+|10
+|10
+|0
+|style="text-align:left"|None
+|-
+|colspan="5" style="text-align:left"|''Shield that changes color depending on its angle.''
+|}
+
+==Other appearances==
+===''[[Final Fantasy Record Keeper]]''===
+
+<gallery>
+FFRK Bronze Helm FFTA.png|Bronze Helm.
+FFRK Circlet FFTA.png|Circlet.
+FFRK Linen Cuirass FFTA.png|Linen Cuirass.
+FFRK Mirage Vest FFT.png|Mirage Vest.
+FFRK Sacri Shield FFT.png|Sacri Shield.
+FFRK Samite Coat FFT.png|Silver Coat.
+FFRK Silken Robe FFTA.png|Silken Robe.
+</gallery>
+{{Equipment section|Final Fantasy Record Keeper}}
+
+{{navbox FFTA}}
+{{navbox armor}}
+[[Category:Armor in Final Fantasy Tactics Advance]]
+[[Category:Armor lists]]

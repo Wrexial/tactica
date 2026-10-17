@@ -1,0 +1,41 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' characters}}
+[[File:FFTAchara.jpg|thumb|Artwork of the main characters.]]
+The following is a list of characters from ''[[Final Fantasy Tactics Advance]]''.
+
+== Player characters ==
+<gallery expand="true">
+Ffta-marche.jpg|'''[[Marche Radiuju]]'''
+Ffta-montblanc.jpg|'''[[Montblanc]]'''
+Ffta-ezel.jpg|'''[[Ezel Berbier]]'''
+Ritz.jpg|'''[[Ritz Malheur]]'''
+Ffta-shara.jpg|'''[[Shara]]'''
+Ffta-babus.jpg|'''[[Babus Swain]]'''
+Ffta-cid.jpg |'''[[Cid Randell]]'''
+</gallery>
+
+=== Secret characters ===
+* '''[[Eldena]]'''
+* '''[[Lini]]'''
+* '''[[Cheney]]'''
+* '''[[Pallanza]]'''
+* '''[[Quin]]'''
+* '''[[Littlevili]]'''
+
+== Non-player characters ==
+=== Antagonists ===
+* '''[[Llednar Twem]]'''
+* '''[[Remedi|Queen Remedi]]'''
+* '''[[Lyle]]'''
+* '''[[Colin (Tactics Advance)|Colin]]'''
+* '''[[Guinness]]'''
+
+=== Other characters ===
+* '''[[Mewt Randell]]'''
+* '''[[Nono]]'''
+* '''[[Doned Radiuju]]'''
+
+{{navbox setting FFTA}}
+{{navbox characters}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Character lists]]

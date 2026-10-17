@@ -1,0 +1,614 @@
+{{Image needed|FFXIV|FFTA2}}
+[[File:Fighting wolf on estersand.jpg|thumb|200px|Party's actions charging in ''Final Fantasy XII''.]]
+{{Quote|The unit is readying an ability. Initiating another action will disrupt the effect.|''[[Final Fantasy Tactics]]'' description (PSP)}}
+'''Charge time''' {{J|チャージタイム|Chāji Taimu}}, also known as '''cast time''' and sometimes abbreviated as '''CT''', is the measure of time of how long certain abilities take to be performed. This game mechanic is often not named in-game and is a hidden stat.
+
+==Appearances==
+===''[[Final Fantasy IV]]'' series===
+[[File:FFIVCC Kain Charging Jump.png|right|thumb|Kain charging Jump.]]
+In the ''[[Final Fantasy IV: The Complete Collection|Complete Collection]]'' release, the charge time is indicated by the green bar overlapping the full yellow [[Battle system|ATB bar]] when a character charges for a spell or ability. In the 3D versions, a red bar fills up over the full yellow ATB bar.
+
+In the ''Easy Type'' version, the majority of spell casting times [[Final Fantasy IV version differences|were shortened]] from their original casting time.
+
+Charge time functions the same way in both ''[[Final Fantasy IV -Interlude-]]'' and ''[[Final Fantasy IV: The After Years]]''.
+
+===''[[Final Fantasy VI]]''===
+[[File:FFVI Charge Time.png|right|thumb|Cyan charging up to level 3 of his Bushido skill.]]
+{{Main|Bushido (Final Fantasy VI)}}
+When using [[Cyan (Final Fantasy VI party member)|Cyan's]] special command, the player must wait for a bar to charge. The longer the player charges, the better attack Cyan can execute. In the discontinued 2014 release, the player can choose the power of the attack outright and Cyan will charge it in the background allowing other attacks to be performed meanwhile.
+{{clear}}
+
+===''[[Final Fantasy VIII]]''===
+[[File:Edea uses Firaga from FFVIII Remastered.png|left|thumb|Squall charging up a summon.]]
+[[Summon (command)|Summoning]] a [[Guardian Force]] takes a moment to charge. The better the compatibility between the summoner and the GF, the faster the charge will be. After the GF command has been selected, the chosen GF's HP replaces the summoner's, and any damage the character receives during the charge is attributed to the GF, not the summoner.
+
+If the GF's HP is depleted to 0 during the charge period, the summon is cancelled. This can also be used for strategic advantage, to summon a GF before an opponent unleashes a strong attack, in order to sacrifice the GF to survive the attack.
+{{clear}}
+
+===''[[Final Fantasy X-2]]''===
+[[File:Ixion fought.jpg|thumb|right|Yuna's attack charging.]]
+After a character's ATB bar has filled and a command is selected, a purple "wait" time-bar will replace the green ATB bar, signifying the attack is charging. When the purple bar has filled, the character will execute the action. Once executed, the character gets another turn immediately, which will lead to another green recovery ATB bar if an instant action is used.
+
+The regular [[Attack (Final Fantasy X-2)|Attack]] command requires no charge time, but using most other abilities does. Each ability has its own charge time, with more powerful ones have longer waiting times. In particular, all [[Gunner (Final Fantasy X-2)|Gunner]] and [[Thief (Final Fantasy X-2)|Thief]] abilities (sans [[Flee (Final Fantasy X-2)|Flee]]) have no charge time. Some abilities, such as [[Trigger Happy (Final Fantasy X-2)|Trigger Happy]], [[Sentinel (Final Fantasy X-2)|Sentinel]], and [[Dance (Final Fantasy X-2)|Dances]], have their recovery time doubled to function more effectively.
+
+The [[Agility]] stat factors into the length of the ATB gauge; a low Agility stat can add a visible delay before the ATB gauge reappears after using a command, whereas a high Agility stat can result in almost instant actions. The charge time of specific skillsets can also be shortened by using certain [[Final Fantasy X-2 accessories|accessories]], mastering specific dressphere [[Final Fantasy X-2 auto-abilities|auto-abilities]], or through [[Garment Grid]]s. It is possible to remove charge time of these abilities.
+
+[[Dressphere#Special dresspheres|Special dresspheres]] have [[Limit Break (ability)|Limit Break]]-like abilities that require a full "charge" of the ATB gauge.
+{{clear}}
+
+===''[[Final Fantasy XI]]''===
+Ranged attacks, spells, [[Trust Magic]], [[Final Fantasy XI weapon skills|weapon skill]]s, and using items all have a time during which they are being cast or readied before taking effect. Moving during this time, whether voluntarily or involuntarily, will interrupt the effect being cast or readied.
+
+Ranged weapons' Delay stat determines the length of the readying time for a ranged attack. The effects of the [[Flurry (ability)|Flurry]] spells reduce ranged weapon delay, and the [[Snapshot (Final Fantasy XI)|Snapshot]] trait gives a chance of skipping this delay entirely. Delay varies considerably from weapon to weapon, but in general crossbows are the fastest, followed by bows, corsair guns such as hexaguns, long guns, and finally slowest of all cannons.
+
+Spells have their own individual cast times which are reduced by the [[Fast Cast]] trait. Taking damage during this time has a chance to interrupt spells being cast unless they are [[Bard (Final Fantasy XI)|Bard]] [[Songs (Final Fantasy XI)|songs]], with this [[Spell Interruption Rate]] being modified by equipment stats, status effects, [[Merit Points|merits]], the amount of damage taken, and the character's skill level in the appropriate magic type. Casting time can be cut by using the [[Scholar (Final Fantasy XI)|Scholar]] stratagems [[Alacrity]] or [[Celerity (ability)|Celerity]]. Casting time can also be removed entirely by the effects of the [[Red Mage (Final Fantasy XI)|Red Mage]] job abilities [[Dualcast (ability)#Final Fantasy XI|Chainspell]] and [[Spontaneity]]. On the other hand, the effects of [[Addle (Final Fantasy XI)|Addle]] and [[Pining Nocturne]] lengthen casting time, and the [[Manifestation]] and [[Accession]] stratagems double the casting time of the spell that they are applied to as a balancing cost to their effects.
+
+Weapon skills have their own individual readying times which are usually quite short. However, if they are interrupted during this time, the [[TP]] used by the weapon skill will be lost for no effect. Weapon skill readying times are not shortened by any trait or effect. Monster TP-based abilities work like weapon skills, although some of them have quite long charge times.
+
+Items have their own individual readying times which are not shortened by any trait or effect.
+
+===''[[Final Fantasy XII]]''===
+All actions have a Charge Time, which varies depending on the action. When a character performs an action, a bar next to their name in the battle menu fills up. After the bar has filled, the character will perform their action, whereupon the word "action" appears on the screen. An action's "action time" is always the same, but the Charge Time can be reduced via the Swiftness [[Augments (Final Fantasy XII)|Augments]] purchased on the [[License Board]], buffs like [[Haste (Final Fantasy XII status)|Haste]], and setting the [[Battle Speed]] to the fastest.
+
+[[Magnetize#Final Fantasy XII|Magnetize]] is a battle condition in the battle against [[Vinuskar]] in the [[Stilshrine of Miriam]], and [[Ultima (Final Fantasy XII boss)|Ultima]] in the [[Great Crystal (Final Fantasy XII)|Great Crystal]], where metallic equipment slow down the wearer, and even spells take longer to cast. If the party equip any swords, hammers, axes, and the like, they could take three times as long to dish out a single attack. Guns are unaffected.
+
+Most stronger enemies, including [[boss]]es, have 0 Charge Time as a [[Final Fantasy XII enemy abilities|passive ability]]. Against these enemies the player is best setting the Battle Speed to the fastest, as playing with slow Battle Speeds only hurts the player. When wearing the [[Battle Harness]], the character only [[Counter (ability)|counterattacks]] if they are attacked during the Charge Time stage, and countering halts the Charge Time bar for the duration of the counterattack.
+
+There are quite a few factors involved calculating the actual Charge Time:
+:<math>Charge~Time = (\text{CT} \times \text{CS-MOD} + \text{RAN0.5}) \times \text{L-MOD} \times \text{B-MOD} \times \text{ST-MOD} \times \text{M-MOD}</math><ref name=FF12>{{ref |id=FF12 |author=maltzsan|date=January 30, 2007|title=Final Fantasy XII Game Mechanics FAQ|url=https://www.neoseeker.com/final-fantasy-xii/faqs/142830-mech.html|platform=Neoseeker|access-date=4th September 2020}}</ref>
+
+:CT = Charge Time Factor (CT)
+:CS-MOD = Character's Speed Modifier
+:RAN0.5 = Random number between 0 and 0.5 (seconds)
+:L-MOD = License "Swiftness" Modifier
+:B-MOD = Battle Speed Modifier
+:ST-MOD = status effect Modifier
+:M-MOD = Metallic Modifier when [[Weather#Final Fantasy XII|magnetic field]] is active.
+
+====Charge Time Factor (CT)====
+All [[Final Fantasy XII weapons|weapons]] and [[Technicks]] have a Charge Time Factor (CT). The Charge Time Factor is directly proportionate to the actual charge time, so the tables below can be used to compare the speed of different weapons or Technicks.
+
+The Charge Time Factor for [[Magick (ability type)|magick]] is always 30 in the original version, or 23 in the ''Zodiac'' versions, regardless of the spell being cast. Using [[Final Fantasy XII items|item]]s, performing [[Quickening (ability)|Quickenings]], and summoning [[Esper (Final Fantasy XII)|Espers]] requires no Charge Time.
+
+;Original
+{|width="100%"
+|width="33%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|One-handed weapons
+|-
+!width="60%"|Weapon
+!width="40%"|CT
+|-
+![[Danjuro (Final Fantasy XII)|Danjuro]]
+|21
+|-
+![[Zwill Crossblade (Final Fantasy XII)|Zwill Crossblade]]
+|22
+|-
+![[Platinum Dagger (Final Fantasy XII)|Platinum Dagger]]<br>[[Orichalcum Dirk (Final Fantasy XII)|Orichalcum Dirk]]<br>[[Avenger (Final Fantasy XII weapon)|Avenger]]
+|23
+|-
+![[Gladius (Final Fantasy XII)|Gladius]]<br>[[Main Gauche (Final Fantasy XII)|Main Gauche]]<br>[[Chopper (Final Fantasy XII)|Chopper]]
+|24
+|-
+![[Assassin's Dagger (Final Fantasy XII)|Assassin's Dagger]]<br>[[Mage Masher (Final Fantasy XII)|Mage Masher]]<br>[[Dagger (Final Fantasy XII)|Dagger]]
+|25
+|-
+![[Final Fantasy XII weapons/Original#Axes and Hammers|Axe]]
+|29
+|-
+![[Final Fantasy XII weapons/Original#Axes and Hammers|Hammer]]
+|32
+|-
+![[Final Fantasy XII weapons/Original#Maces|Mace]]
+|32
+|-
+![[Final Fantasy XII weapons/Original#Measures|Measure]]
+|32
+|-
+![[Final Fantasy XII weapons/Original#Swords|Sword]]
+|35
+|}
+|width="33%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Ranged weapons
+|-
+!width="50%"|Weapon
+!width="50%"|CT
+|-
+![[Final Fantasy XII weapons/Original#Crossbows|Crossbow]]
+|28
+|-
+![[Final Fantasy XII weapons/Original#Hand-bombs|Hand-bomb]]
+|34
+|-
+![[Final Fantasy XII weapons/Original#Bows|Bow]]
+|36
+|-
+![[Final Fantasy XII weapons/Original#Guns|Gun]]
+|51
+|}
+|width="33%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Two-handed weapons
+|-
+!width="60%"|Weapon
+!width="40%"|CT
+|-
+![[Final Fantasy XII weapons/Original#Ninja Swords|Ninja Sword]]
+|24
+|-
+![[Final Fantasy XII weapons/Original#Spears|Spear]]
+|26
+|-
+![[Unarmed (Final Fantasy XII)|Unarmed]]
+|~26
+|-
+![[Final Fantasy XII weapons/Original#Katana|Katana]]
+|29
+|-
+![[Final Fantasy XII weapons/Original#Greatswords|Greatsword]]
+|30
+|-
+![[Wyrmhero Blade (Final Fantasy XII)|Wyrmhero Blade]]
+|99
+|-
+![[Final Fantasy XII weapons/Original#Poles|Pole]]
+|30
+|-
+![[Final Fantasy XII weapons/Original#Rods|Rod]]
+|33
+|-
+![[Final Fantasy XII weapons/Original#Staves|Staff]]
+|34
+|}
+|}
+
+{|width="100%"
+|width="30%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Defensive Technicks
+|-
+!width="50%"|Technick
+!width="50%"|CT
+|-
+![[Libra (Final Fantasy XII)|Libra]]
+|10
+|-
+![[First Aid (Final Fantasy XII)|First Aid]]
+|15
+|-
+![[Revive (Final Fantasy XII)|Revive]]
+|25
+|-
+![[Charge (Final Fantasy XII)|Charge]]
+|40
+|-
+![[Infuse (Final Fantasy XII)|Infuse]]
+|40
+|}
+|width="40%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Damaging Technicks
+|-
+!width="60%"|Technick
+!width="40%"|CT
+|-
+![[Numerology]]
+|25
+|-
+![[Sight Unseeing (Final Fantasy XII)|Sight Unseeing]]
+|25
+|-
+![[1000 Needles (Final Fantasy XII)|1000 Needles]]
+|30
+|-
+![[Souleater (Final Fantasy XII)|Souleater]]
+|35
+|-
+![[Horology]]
+|40
+|-
+![[Traveler (Final Fantasy XII)|Traveler]]
+|40
+|-
+![[Gil Toss (Final Fantasy XII)|Gil Toss]]
+|45
+|-
+![[Shades of Black (Final Fantasy XII)|Shades of Black]]
+|45
+|-
+![[Telekinesis (Final Fantasy XII)|Telekinesis]]
+|50
+|}
+|width="30%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Non-damaging Technicks
+|-
+!width="50%"|Technick
+!width="50%"|CT
+|-
+![[Steal (Final Fantasy XII)|Steal]]
+|30
+|-
+![[Charm (Final Fantasy XII)|Charm]]
+|35
+|-
+![[Expose (Final Fantasy XII)|Expose]]
+|45
+|-
+![[Shear]]
+|45
+|-
+![[Wither (Final Fantasy XII)|Wither]]
+|45
+|-
+![[Addle (Final Fantasy XII)|Addle]]
+|45
+|-
+![[Bonecrusher (Final Fantasy XII)|Bonecrusher]]
+|45
+|-
+![[Poach (Final Fantasy XII)|Poach]]
+|50
+|-
+![[Achilles (Final Fantasy XII)|Achilles]]
+|55
+|-
+![[Stamp (Final Fantasy XII)|Stamp]]
+|55
+|}
+
+|width="33%" valign="top"|
+|}
+
+;Zodiac
+{|width="100%"
+|width="33%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|One-handed weapons
+|-
+!width="50%"|Weapon
+!width="50%"|CT
+|-
+![[Final Fantasy XII weapons#Daggers|Dagger]]
+|21
+|-
+![[Final Fantasy XII weapons#Axes and Hammers|Axe]]
+|29
+|-
+![[Final Fantasy XII weapons#Maces|Mace]]
+|30
+|-
+![[Final Fantasy XII weapons#Axes and Hammers|Hammer]]
+|32
+|-
+![[Final Fantasy XII weapons#Measures|Measure]]
+|32
+|-
+![[Final Fantasy XII weapons#Swords|Sword]]
+|32
+|-
+![[Great Trango]]
+|25
+|-
+![[Mythril Sword (Final Fantasy XII)|Mythril Sword]]
+|30
+|-
+![[Mythril Blade (Final Fantasy XII)|Mythril Blade]]
+|30
+|-
+![[Kumbha]]
+|31
+|}
+|width="33%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Ranged weapons
+|-
+!width="50%"|Weapon
+!width="50%"|CT
+|-
+![[Final Fantasy XII weapons#Crossbows|Crossbow]]
+|24
+|-
+![[Final Fantasy XII weapons#Hand-bombs|Hand-bomb]]
+|33
+|-
+![[Final Fantasy XII weapons#Bows|Bow]]
+|36
+|-
+![[Seitengrat]]
+|10
+|-
+![[Final Fantasy XII weapons#Guns|Gun]]
+|50
+|}
+|width="33%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Two-handed weapons
+|-
+!width="60%"|Weapon
+!width="40%"|CT
+|-
+![[Final Fantasy XII weapons#Ninja Swords|Ninja Sword]]
+|22
+|-
+![[Final Fantasy XII weapons#Poles|Pole]]
+|25
+|-
+![[Final Fantasy XII weapons#Unequipped|Unarmed]]
+|~26
+|-
+![[Final Fantasy XII weapons#Spears|Spear]]
+|28
+|-
+![[Final Fantasy XII weapons#Katana|Katana]]
+|31
+|-
+![[Final Fantasy XII weapons#Rods|Rod]]
+|33
+|-
+![[Final Fantasy XII weapons#Staves|Staff]]
+|34
+|-
+![[Final Fantasy XII weapons#Greatswords|Greatsword]]
+|35
+|-
+![[Excalipur (Final Fantasy XII)|Excalipur]]
+|20
+|-
+![[Sword of Kings (Final Fantasy XII)|Sword of Kings]]
+|30
+|-
+![[Treaty-Blade (Final Fantasy XII)|Treaty-Blade]]
+|30
+|-
+![[Wyrmhero Blade (Final Fantasy XII)|Wyrmhero Blade]]
+|99
+|}
+
+|width="33%" valign="top"|
+|}
+
+{|width="100%"
+|width="30%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Defensive Technicks
+|-
+!width="50%"|Technick
+!width="50%"|CT
+|-
+![[Libra (Final Fantasy XII)|Libra]]
+|10
+|-
+![[First Aid (Final Fantasy XII)|First Aid]]
+|15
+|-
+![[Revive (Final Fantasy XII)|Revive]]
+|25
+|-
+![[Charge (Final Fantasy XII)|Charge]]
+|40
+|-
+![[Infuse (Final Fantasy XII)|Infuse]]
+|40
+|}
+|width="40%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Damaging Technicks
+|-
+!width="50%"|Technick
+!width="50%"|CT
+|-
+![[Numerology]]
+|20
+|-
+![[Sight Unseeing (Final Fantasy XII)|Sight Unseeing]]
+|25
+|-
+![[1000 Needles (Final Fantasy XII)|1000 Needles]]
+|25
+|-
+![[Souleater (Final Fantasy XII)|Souleater]]
+|30
+|-
+![[Horology]]
+|30
+|-
+![[Traveler (Final Fantasy XII)|Traveler]]
+|30
+|-
+![[Gil Toss (Final Fantasy XII)|Gil Toss]]
+|30
+|-
+![[Telekinesis (Final Fantasy XII)|Telekinesis]]
+|30
+|-
+![[Shades of Black (Final Fantasy XII)|Shades of Black]]
+|35
+|}
+|width="30%" valign="top"|
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="100%" colspan="2"|Non-damaging Technicks
+|-
+!width="50%"|Technick
+!width="50%"|CT
+|-
+![[Steal (Final Fantasy XII)|Steal]]
+|20
+|-
+![[Poach (Final Fantasy XII)|Poach]]
+|30
+|-
+![[Bonecrusher (Final Fantasy XII)|Bonecrusher]]
+|35
+|-
+![[Wither (Final Fantasy XII)|Wither]]
+|35
+|-
+![[Addle (Final Fantasy XII)|Addle]]
+|35
+|-
+![[Expose (Final Fantasy XII)|Expose]]
+|40
+|-
+![[Shear]]
+|40
+|-
+![[Achilles (Final Fantasy XII)|Achilles]]
+|40
+|-
+![[Stamp (Final Fantasy XII)|Stamp]]
+|40
+|-
+![[Charm (Final Fantasy XII)|Charm]]
+|60
+|}
+|}
+
+====Character's Speed Modifier (CS-MOD)====
+Character's Speed Modifier is determined by the character's [[Speed (stat)|Speed]] stat. The effect on the actual Charge Time is only obvious when Speed is low (below 46) and the bonus diminishes as Speed increases. The highest possible Speed of 99 only makes charging 21% faster compared to the lowest possible Speed of 23.
+
+====License "Swiftness" Modifier (L-MOD)====
+Each "Swiftness" License results in a 12% reduction in the Swiftness Modifier (L-MOD) up to a total of 36% reduction when all three have been bought. This differs slightly from the in-game description, which states a "10%" reduction.
+
+====Battle Speed Modifier (B-MOD)====
+One can choose between six battle speeds.
+
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="50%"|Battle Speed
+!width="50%"|B-MOD
+|-
+|1 (Slowest)
+|1/1.0 (100%)
+|-
+|2
+|1/1.2 (83%)
+|-
+|3
+|1/1.4 (71%)
+|-
+|4
+|1/1.6 (63%)
+|-
+|5
+|1/1.8 (56%)
+|-
+|6 (Fastest)
+|1/2.0 (50%)
+|}<ref name=FF12/>
+
+A fast Battle Speed (low B-MOD) reduces Charge Time while the Action Time stays the same. This means that setting the Battle Speed fast reduces the relative disadvantage of actions with long CTs, as the action stage stays the same. However, when the characters are [[Escape (command)#Final Fantasy XII|fleeing]], setting the Battle Speed to minimum makes the enemies get their turns slower, but the party will still keep running away at the same pace.
+
+====Status Modifier (ST-MOD)====
+Various [[Final Fantasy XII statuses|statuses]] affect the Charge Time speed. The effects can stack.
+
+Although [[Slow (Final Fantasy XII status)|Slow]] and [[Haste (Final Fantasy XII status)|Haste]] normally overwrite each other, they can coexist when a character equips the [[Ensanguined Shield (Final Fantasy XII)|Ensanguined Shield]] and/or [[Hermes Sandals (Final Fantasy XII)|Hermes Sandals]].
+
+{|class="FFXII article-table" style="text-align:center"
+|-
+!width="50%"|Status
+!width="50%"|ST-MOD
+|-
+|[[Berserk (Final Fantasy XII status)|Berserk]]
+|1/2.0 (50%)
+|-
+|[[Haste (Final Fantasy XII status)|Haste]]
+|1/1.5 (67%)
+|-
+|[[Slow (Final Fantasy XII status)|Slow]]
+|1/0.5 (200%)
+|-
+|Berserk + Haste
+|1/3.0 (33%)
+|-
+|Berserk + Haste + Slow
+|1/2.0 (50%)
+|-
+|Berserk + Slow
+|1/1.0 (100%)
+|-
+|Haste + Slow
+|1/1.0 (100%)
+|-
+|[[Sleep (Final Fantasy XII status)|Sleep]]
+|Paused
+|-
+|[[Stop (Final Fantasy XII status)|Stop]]
+|Paused
+|}<ref name=FF12/>
+
+====Metallic Modifier====
+{{See|Final Fantasy XII weapons|Final Fantasy XII armor}}
+The severity of the penalty is calculated using a modifier based on the total metal value of equipment worn by all party members.
+
+===''[[Final Fantasy XIV]]''===
+Various abilities have cast times, displayed on their descriptions. While charging an ability, players cannot move without canceling the cast. Originally, selecting the spell again would also cancel it, and using spells on a different class would incur an increase of roughly 50% on the cast time.
+
+If a Disciple of Magic is targeted by an attack when casting a spell, there is a chance for it to be cancelled with no MP loss. Charging an ability may also be cancelled by losing line of sight to the target, or by being stunned, petrified, silenced, put to sleep, paralyzed, KO'd, or inflicted with various other debilitating status effects. Certain spells have no charge time and will go off instantly.
+
+Many monsters also have abilities that need time to charge up, as shown by a smaller gauge filling up near the monster's HP gauge. If these gauges are flashing, the ability can be interrupted by either stunning them or using an interrupt skill such as [[Role action#Interject|Interject]].
+
+===''[[Final Fantasy Tactics]]''===
+[[File:FFT CTB.png|right|thumb|The turn order dictated by Charge Time.]]
+[[File:FFT Charge Time 2.png|right|thumb|[[Luso Clemens|Luso]] charging up for a spell.]]
+{{Quote|Indicates the amount of time a unit must wait between turns. The unit cannot take a turn until its CT reaches 100.|Description (PSP)}}
+All battle units and most spells and abilities have a Charge Time that determines when the battle units reach their active turn or the time it takes for a command ability to commence. Direct attack and other skills do not require charging time. [[Speed (stat)|Speed stat]] determines how fast the CT gauge fills. For instance, when there are two battle units, unit A has the Speed of 10 and B's is 5, unit A requires 100 ÷ 10 = 10 units of timespan to fill the CT gauge, while B requires 20 units, so A will act earlier than B and can act twice between B's active turns.
+
+After the unit takes a turn, its CT will be decremented depending on whether it has moved and/or acted. A unit that both moved and acted has its CT reduced by 100; a unit that moved or acted, but did not do both, has its CT reduced by 80; a unit that did not move or act will have its CT reduced by 60. In any event, the leftover CT caps at 60, and the unit's CT gauge will begin charging anew.
+
+While initiating the command ability that requires charging, an independent and hidden CT gauge will start charging based on the Speed of the ability itself. Except for [[Jump (Tactics)|Jump]], the Speed of the ability user, as well as under the status effect [[Haste (Tactics status)|Haste]] or [[Slow (Tactics status)|Slow]] has no effect on the charging speed of the ability. [[Stop (Tactics status)|Stop]] halts the charging of the ability until the effect wears off.
+
+If the Speed of the ability is lower than the user's so that the ability is not commenced before the user reaches its next active turn, player will need to choose "Wait" to continue charging, otherwise initiating another command will cancel the previous charging ability. Except for performing Jump attack, charging an ability will make the user unable to dodge and take roughly 50% extra damage from physical attacks.
+
+Certain spells, such as [[Haste (Tactics)|Haste]], increase a unit's Speed, thus fulfilling the CT gauge earlier, while other spells, like [[Quick (Tactics)|Quick]], instantly fill up a character's CT gauge. The support ability [[Fast Talker|Short Charge]] cuts CT of all magicks significantly. There is also the [[Dummied content|dummied out]] ability called CT 0 that removes the charge time from every ability. This ability appears more to be a debug tool than an ability intended to be in the game.
+
+CT is also a special command ability of [[Arithmetician (Tactics)|arithmetician]], which allows the unit to target magick based on the units' current CT gauge. This is useful to target most (if not all) of the units in the battlefield with magick.
+
+=== ''[[Final Fantasy Tactics Advance]]'' ===
+Charge Time has been greatly modified from the first game. No abilities have charge time, and how turn order is determined is slightly altered.
+
+Each tick, a unit's personal CT counter increases by their Speed (doubled under Haste, halved [rounded down] when under Slow). When a unit's CT reaches or exceeds 1000, they can take their turn, while at the same time lowering all other units' CT by the excess, storing it as a "reserve" value. If multiple units exceed 1000 CT, then the unit with the highest value takes their turn.
+
+After the unit's turn is taken, their CT is lowered to 500, lowered by 300 CT if they acted or 200 CT if they moved. The next tick, the "reserve" CT is added to everyone in addition to their normal CT gain. If this causes a unit's CT to reach or exceed 1000, then they take their turn, and the reserve process starts again. The revamped CT system both works as a more neutral tiebreaker (as the original game's CT system favored player units in case of a tie) and works to balance turns more, especially between units with similar Speed.
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+CT represents where in the Turn Order the unit is. [[Haste (status)|Haste]] will decrease the time between turns, whereas [[Slow (status)|Slow]] will increase it. Units with higher [[Speed (stat)|Speed]] will have more frequent turns, while units with lower Speed will have less frequent turns.
+
+Certain [[enemy abilities]], such as [[Illua]]'s Time Blade ability and the [[Lamia (Tactics A2)|Lamia's]] [[Slap]], have the special effect "CT 0", which will completely drain the target's CT, placing them at the bottom of the turn order.
+
+===''[[Final Fantasy Type-0]]''===
+There are no separate -ra/-ga spells and charge time represents focusing magic from level one to two and three by holding the relevant button while also evading attacks as necessary. Some higher-tier magic, such as the elemental-ROK and ROK-II and defensive magic, like Cure and Protect, require an initial charge time before the level one magic can be cast. Cast time can be reduced in the [[Altocrystarium]] by spending accrued [[phantoma]], usually with the effect of increasing MP cost.
+
+Some unique character abilities have a start up time before they hit during which they are vulnerable to enemy attacks. In some cases, an auto-ability can be purchased using [[Ability Points|AP]] that prevents flinching during the skill.
+
+===''[[Final Fantasy: The 4 Heroes of Light]]''===
+{{Quote|A little secret from meow to you… The more powerful an ability, the longer it takes to conjure.|Cat in Guera}}
+When using magic tomes, the ability takes longer to execute the more powerful it is ranked.
+
+===''[[Final Fantasy Record Keeper]]''===
+Most actions have a charge time before the action is executed. Charge times vary between ability types, with [[Celerity (Record Keeper)|Celerity]], [[Thief (Record Keeper ability type)|Thief]], and some [[Ninja (Record Keeper ability type)|Ninja]] abilities having shorter charge times while Full Charge and 5★ [[Witch (Record Keeper ability type)|Witch]] abilities having longer charge times. Some abilities, such as [[Defend (ability)|Defend]] or [[Quick Hit]], have a charge time of 0.01 seconds and thus execute instantly when selected.
+
+Certain abilities, [[Soul Break]]s, and [[Legend Materia]] reduce or eliminate the charge time for some or all actions, either for a fixed period of time or for a fixed number of actions after the effect is granted.
+
+==Citations==
+{{citations}}
+
+{{navbox stats}}
+{{navbox recurring}}
+[[Category:Battle elements]]
+[[Category:Recurring stats]]
+[[Category:Recurring status effects]]

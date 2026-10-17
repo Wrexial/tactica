@@ -1,0 +1,85 @@
+{{DISPLAYTITLE:Goblin (''Tactics Advance'')}}
+[[File:FFTA-spr-Goblin.gif|left]]
+[[File:FFTA Goblin.jpg|right]]
+{{Quote|Cretins with big ears and fangs. Strong and stupid.|Description}}
+'''Goblin''' in ''[[Final Fantasy Tactics Advance]]'' is the first race of enemies encountered. Goblins are blue, in contrast to their stronger counterparts, the [[Red Cap (Tactics Advance)|Red Caps]]. While they make for an interesting battle, Goblins are usually easy to defeat and are considered the weakest enemy in the game.
+
+Goblins are found in at least one mission in almost every one of the earlier locations, but cannot be encountered again after the early missions are completed ([[#Extinction|see below]]). Their attack, [[Goblin Punch]], misses often, but when it does hit the target, it usually inflicts only a small amount of damage. Goblin Punch is learnable as [[Blue Magic (Tactics Advance)|Blue Magic]], but due to its inconsistency and weakness, it is more of a trophy ability.
+
+{{See|Goblin}}
+
+==Abilities==
+===Punch===
+{{Quote|Goblin command. Hit foes with a powerful punch.}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Goblin Punch}}
+|''All-out punch. Damage varies.''
+|8
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Def+}}
+|''Reduces damage from weapon attacks''.
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:25%"|Prerequisites
+!style="width:70%"|Information
+|-
+!#001 Herb Picking
+|None
+|Located at Giza Plains and is the first mission. Because of this, the Goblins cannot be used for [[Hunter (Tactics Advance)|capturing]] or [[Blue Mage#Final Fantasy Tactics Advance|teaching]] Goblin Punch.
+|-
+!#032 Tower Ruins
+|Read the description of "The Hero Gaol", received after "#062 Oasis Frogs"
+|Located at Koringwood. The single Goblin here knows Goblin Punch.
+|-
+!#037 Village Hunt
+|Complete #003 The Cheetahs
+|Located in Eluut Sands. The single Goblin here knows Goblin Punch.
+|-
+!#044 Snow In Lutia
+|Complete #001 Herb Picking
+|Located at Lutia Pass. The Goblin here has Goblin Punch, however, it is still too early for capture or learning Goblin Punch.
+|-
+!#049 A Lost Ring
+|Complete #004 Desert Peril
+|Located at Ulei River. The single Goblin here knows Goblin Punch.
+|-
+!#055 White Flowers
+|Complete #003 Cheetahs
+|Located at Giza Plains. The single Goblin here knows Goblin Punch.
+|}
+
+==Extinction==
+[[File:FFTA Goblin Portrait.gif|Portrait.|right]]
+Fairly early on, Goblins will become "extinct", meaning they do not show up in any mission after the six listed above. Thus it is important to capture a Goblin and to teach all of the [[human]] members of the player's [[clan]] Goblin Punch as early as possible. This can be bypassed by simply avoiding to complete one of the missions, effectively letting players complete the storyline and still be able to battle Goblins afterwards. This can be a good idea, if one wishes to [[Level grinding|level up]] their characters, have them learn more abilities and possibly to have as many [[Hunter (Tactics Advance)|Hunters]] as possible, when trying to capture a Goblin.
+
+==Etymology==
+{{Etym|Goblin}}
+
+[[Category:Enemies in Final Fantasy Tactics Advance]]

@@ -1,0 +1,299 @@
+[[File:FFVIII Magic.png|thumb|250px|Squall using Magic in ''Final Fantasy VIII''.]]
+'''Magic''' {{j|まほう|Mahō}}, also known as '''Spell''', is a recurring command in the [[Final Fantasy series|''Final Fantasy'' series]] that usually appears in every [[Battle (term)|battle]] event. When selected, a menu will appear, listing all usable [[Magic (term)|magic spells]]. Magic is commonly cast by expending [[MP (stat)|MP]].
+
+When a player character is afflicted with the [[Silence (status)|Silence]] [[status effect]], the Magic command is inaccessible. Certain titles in the series also disable the Magic command when a player enters certain boss battles.
+
+An upgrade to the Magic command is the [[Dualcast (ability)|Dualcast]], which allows a character to cast two spells at once.
+
+==Appearances==
+===''[[Final Fantasy]]''===
+{{main|Magic (Final Fantasy)}}
+Magic has two categories; [[Magic (Final Fantasy)|White]] and [[Magic (Final Fantasy)#Black Magic|Black]]. Low level White Magic is usable by [[Warrior (Final Fantasy)#Knight|Knights]], and mid level White Magic is usable by the [[Red Mage (Final Fantasy)|Red Mage/Wizard]], while higher levels are restricted to the [[White Mage (Final Fantasy)|White Mage/Wizard]]. Low level Black Magic is usable by [[Thief (Final Fantasy)#Ninja|Ninjas]], and mid level Black Magic is usable by the Red Mage/Wizard, while higher levels are restricted to the [[Black Mage (Final Fantasy)|Black Mage/Wizard]]. Magic must be bought in [[shop]]s before it can be used.
+
+In the [[Nintendo Entertainment System|NES]] version Magic can only be cast for a limited number of times depending on their spell level, but since the ''[[Final Fantasy I & II: Dawn of Souls|Dawn of Souls]]'' version, spells have used the MP system instead.
+
+===''[[Final Fantasy II]]''===
+{{Main|Magic (Final Fantasy II)}}
+[[File:FFII DoS Magic Command.png|thumb|Magic command (GBA).]]
+There are 40 spells in total; 20 White and 20 Black. Anyone can learn any spell as it is not based on class. When the player teaches a character a new spell it starts at level 1 and rises in level the more it is used in battle. The max level a spell can be raised to is level 16.
+
+A trick to raise spells quickly is to get in battle with a weak enemy and cast the spells one wants to raise 100 times, as doing this will ensure the spell will rise a level. There is also a [[target-cancel bug]] in some versions that lets the player level up their spells by repeatedly selecting and cancelling the Magic command.
+
+In the iOS version, the "Magic Command" can cast a spell on a single target or on an entire group. When choosing who to cast the spell on the player must double-tap a target to select them. To select the entire group (of enemies or player party) the player must feather swipe from the bottom right to the top left of the group. This means a quick motion that starts and ends with the finger in the air.
+
+===''[[Final Fantasy III]]''===
+Magic is split into three categories; [[Summon (command)#Final Fantasy III|Summon Magic]], [[Black Magic (Final Fantasy III)|Black Magic]], and [[White Magic]]. Summon magic is usable by [[Evoker (Final Fantasy III)|Evoker]], [[Summoner (Final Fantasy III)|Summoner]], and [[Sage (Final Fantasy III)|Sage]] jobs.
+
+Black Magic is usable by [[Freelancer (Final Fantasy III)|Freelancer]], [[Black Mage (Final Fantasy III)|Black Mage]], [[Red Mage (Final Fantasy III)|Red Mage]], [[Magus (Final Fantasy III)|Magus]], Sage, and [[Onion Knight (Final Fantasy III)|Onion Knight]]. White Magic is usable by Freelancer, [[White Mage (Final Fantasy III)|White Mage]], Red Mage, [[Knight (Final Fantasy III)|Knight]], [[Devout (Final Fantasy III)|Devout]], Sage, and Onion Knight jobs.
+
+===''[[Final Fantasy IV]]''===
+[[File:Ability White Magic FFIVPSP.png|thumb|The party casts magic.]]
+Magic is divided into six categories, which include [[White Magic (Final Fantasy IV)|White Magic]], [[Black Magic (Final Fantasy IV)|Black Magic]], [[Summon (Final Fantasy IV)|Summon Magic]] ("Call" on the [[Super Nintendo Entertainment System|SNES]]), [[Twincast (Final Fantasy IV)|Twincast]], [[Item magic (Final Fantasy IV)|Item magic]], and a special type of offensive and support magic used by [[Edge (Final Fantasy IV party member)|Edge]] known as [[Ninjutsu (Final Fantasy IV)|Ninjutsu]] ("Ninja" on the SNES). Twincast uses spells that are not present in any other types of magic, while Item magic includes new spells along with existing spells found within the other types. Eight of the twelve playable characters can use magic (the exceptions being [[Kain (Final Fantasy IV party member)|Kain]], [[Edward (Final Fantasy IV party member)|Edward]], [[Yang (Final Fantasy IV party member)|Yang]], and [[Cid (Final Fantasy IV party member)|Cid]]), and they gain magic spells at pre-programmed experience [[level]]s or fixed story events. Recall is another type of magic used by [[Tellah (Final Fantasy IV party member)|Tellah]] that casts forgotten spells.
+
+In the 3D versions, [[Dualcast (ability)|Dualcast]] is an [[Augment (Final Fantasy IV)|Augment]] ability compatible with all forms of magic.
+
+====''[[Final Fantasy IV -Interlude-]]''====
+There are six magic categories: [[White Magic (Interlude)|White Magic]], [[Black Magic (Interlude)|Black Magic]], [[Summon (Interlude)|Summon Magic]], [[Ninjutsu (Interlude)|Ninjutsu]], [[Twincast (Interlude)|Twincast]], and [[Item magic (Interlude)|item magic]].
+
+====''[[Final Fantasy IV: The After Years]]''====
+There are five magic categories: [[White Magic (The After Years)|White Magic]], [[Black Magic (The After Years)|Black Magic]], [[Summon (The After Years)|Summon Magic]], [[Ninjutsu (The After Years)|Ninjutsu]], and [[Item magic (The After Years)|item magic]]. Twincast is not a skillset anymore, but a [[Band (The After Years)|Band]].
+
+=== ''[[Final Fantasy V]]'' ===
+[[File:Ff5White.gif|right|Bartz casts magic as a [[White Mage (Final Fantasy V)|White Mage]].]]
+Magic is divided into skillsets accessed by equipping the following [[Final Fantasy V command abilities|command abilities]]:
+* [[White Magic (Final Fantasy V)|!White Magic]]
+* [[Black Magic (Final Fantasy V)|!Black Magic]]
+* [[Summon (Final Fantasy V)|!Summon]] (or its [[Probabilistic event#Final Fantasy V|probabilistic]] equivalent [[Call (Final Fantasy V)|!Call]])
+* [[Red Magic (Final Fantasy V)|!Red Magic]]
+* [[Time Magic (Final Fantasy V)|!Time Magic]]
+* [[Blue Magic (Final Fantasy V)|!Blue Magic]]
+* [[Spellblade (Final Fantasy V)|!Spellblade]]
+* [[Sing (Final Fantasy V)|!Sing]]
+* [[Gaia (Final Fantasy V)|!Gaia]]
+* [[Animals|!Animals]]
+* [[Mix (Final Fantasy V)|!Mix]] (partially)
+* [[Dance (Final Fantasy V)|!Dance]] (partially)
+* [[Combine (Final Fantasy V)|!Combine]]
+* [[Predict|!Predict]]
+* [[Condemn (Final Fantasy V)|!Condemn]]
+* [[Dark Arts (Final Fantasy V)|!Dark Arts]]
+* [[Oath (ability)|!Oath]]
+
+The last five are only available in the ''Advance'' and discontinued 2013 mobile and Steam versions. Each skillset is native to a [[Final Fantasy V jobs|job]] (e.g. White Magic is native to the [[White Mage (Final Fantasy V)|White Mage]] job).
+
+Some command abilities have an internal tier system based on the job level of their associated job. While a job that natively uses a magic skillset can access the full spell list, characters using the corresponding command ability from another job can only cast spells up to the level unlocked by the native job's progression.
+
+White, Black, and Time Magic spells are purchased in various [[Final Fantasy V shops|shops]] throughout the game. Some can also be found earlier via treasure chests or environmental interactions. Level 1 Summon spells are also shop-bought, while stronger summons require either scripted events or defeating the corresponding boss in battle. Blue Magic is learned from enemies during combat. Red Magic and Spellblade spells are automatically acquired alongside their respective White and Black Magic counterparts. Songs are found by interacting with specific [[Non-player character|NPCs]] or field elements. Gaia and Animals spells become available as the character's level increases. Mix, Dance, Combine, Predict, and Condemn spells are all available as soon as the corresponding command abilities are learned. Dark Arts are unlocked by having a [[Necromancer (Final Fantasy V job)|Necromancer]] defeat specific enemies.
+
+Some spells can also be cast as [[Item magic#Final Fantasy V|item magic]] and/or [[Final Fantasy V added abilities|added abilities]] of certain weapons. The player does not need to have learned the original versions of such spells in order to cast them via item magic and added abilities.
+
+The [[Red Mage (Final Fantasy V)|Red Mage]] can learn [[Dualcast (Final Fantasy V)|Dualcast]], allowing the character to cast two spells in one turn. Dualcast works with the first five skillsets listed above, provided they are equipped. It also grants access to the first three levels of White and Black Magic by default.
+
+Spells either always hit or are subject to [[Final Fantasy V hit determination|hit determination]]. For these purposes, spells are classified as either [[Final Fantasy V hit determination#Magical attacks|magical spells]] or [[Final Fantasy V hit determination#Physical spells|physical spells]]. All spells are also assigned an [[Final Fantasy V action categories|action category]].
+
+Spells that deal damage fall into one of several categories:
+* [[Final Fantasy V damage formulas#Regular spells|Regular spells]]
+* [[Final Fantasy V damage formulas#Defense-piercing spells|Defense-piercing spells]]
+* [[Final Fantasy V damage formulas#Defense-ignoring spells|Defense-ignoring spells]]
+* [[Final Fantasy V damage formulas#Purely random spells|Purely random spells]]
+* [[Final Fantasy V damage formulas#Physical spells|Physical spells]]
+* [[Final Fantasy V damage formulas#Predict spells|Predict spells]]
+* [[Final Fantasy V damage formulas#Magical attacks based on Level|Level-based magical spells]]
+* [[Final Fantasy V damage formulas#Goblin Punch|Goblin Punch]]
+
+===''[[Final Fantasy VI]]''===
+{{main|Magic (Final Fantasy VI command)}}
+The Magic command is initially only available to [[Terra (Final Fantasy VI party member)|Terra]] and [[Celes (Final Fantasy VI party member)|Celes]]. After the party acquires their first [[Esper (Final Fantasy VI)|espers]], every playable character, except for [[Umaro (Final Fantasy VI party member)|Umaro]] and [[Gogo (Final Fantasy VI party member)|Gogo]], can learn magic by equipping espers. Gogo can still use the Magic command by [[Mimic (Final Fantasy VI)|mimicking]] other party members. [[Dualcast (Final Fantasy VI)|Dualcast]] can be used if a character is equipped with the [[Soul of Thamasa (Final Fantasy VI)|Soul of Thamasa]] relic; the only drawback is that the character cannot summon the esper he or she currently has equipped.
+
+===''[[Final Fantasy VII]]''===
+[[File:FFVII Magic.png|thumb|[[Cid (Final Fantasy VII party member)|Cid]] casting magic.]]
+{{main|Magic (Final Fantasy VII)}}
+The Magic command is available to anyone equipped with [[Magic Materia (Final Fantasy VII)|Magic Materia]], and enough [[Final Fantasy VII stats#MP|MP]] to cast at least one of the spells they know—for example, if a character knows a spell using 30 MP, and only has 20 MP, the Magic command is disabled. The Magic command can be changed to [[W-Magic (Final Fantasy VII)|W-Magic]] with the [[Command Materia (Final Fantasy VII)|Command Materia]] of same name. By linking Magic Materia with [[Support Materia (Final Fantasy VII)|Support Materia]] the player can get different results when using the command, such as using a spell that is linked to an [[All (Final Fantasy VII)|All]] Materia will result in the spell hitting all targets.
+
+The formula for magic damage is as follows:
+:<math>Base~Magic~Damage = 6 \times [Level + Magic]</math>
+
+====''[[Before Crisis -Final Fantasy VII-]]''====
+{{Ability section|Before Crisis -Final Fantasy VII-}}
+
+====''[[Dirge of Cerberus -Final Fantasy VII-]]''====
+{{main|Magic (Dirge of Cerberus)}}
+Magic can be used when the appropriate key is pressed with appropriate [[Gun customization#Pendants|equipment]] equipped. There are three varieties of Magic Materia that grant spells. [[Gun customization#Magic Boosters|Further equipment]] increase the level of spell, which makes them more effective for a greater MP cost.
+
+Though the spells are named after historically elemental spells, there is no element system and the spells function differently in regards to behavior, area of effect, damage, and MP cost.
+
+====''[[Crisis Core -Final Fantasy VII-]]''====
+While there is no Magic command, [[Zack (Crisis Core player character)|Zack]] can use magic in battle by equipping [[Magic materia (Crisis Core)|magic materia]] and expending MP to cast it. Abilities are not divided in skillsets, but different attacks/spells become available depending on which [[Materia (Crisis Core equipment)|Materia]] Zack has equipped.
+
+====''[[Final Fantasy VII Remake]]''====
+{{main|Magic (VII Remake)}}
+Spells are used with the Magic command, available to anyone with {{icon|FFVIIR|materia|magic}} equipped who is not incapacitated by [[Final Fantasy VII Remake statuses|spell-preventing statuses]]. Using spells requires MP and [[Final Fantasy VII Remake battle system|ATB charges]], stronger spells requiring more of both. Magic materia can be linked with various {{icon|FFVIIR|materia|support}} to enhance their effect. Spells cast on [[Arcane Ward (VII Remake)|Arcane Ward]] are cast twice. Spells that target an enemy's elemental weakness are typically excellent for [[Stagger (VII Remake)|pressuring]] foes.
+
+====''[[Final Fantasy VII Rebirth]]''====
+{{main|Magic (VII Rebirth)}}
+The Magic command returns, unchanged from ''Remake'', though the player has more {{icon|FFVIIR2|materia|magic}} and {{icon|FFVIIR2|materia|support}} at their disposal and some [[Summoning Materia (VII Rebirth)|summons]] can use the same spells the player gets from magic materia. Arcane Ward returns, and [[Yuffie Kisaragi (VII Rebirth party member)|Yuffie]] can additionally use [[Doppelgänger (VII Rebirth)|Doppelgänger]] to doublecast spells.
+
+===''[[Final Fantasy VIII]]''===
+{{main|Magic (Final Fantasy VIII)}}
+Magic is a [[Junction system|junction]] ability every [[Guardian Force]] has already mastered. It may be removed using the item [[Amnesia Greens (Final Fantasy VIII)|Amnesia Greens]], and later re-added using the [[Magic Scroll]] item bought from the pet shop in [[Timber]]. To use the command, the player must acquire some spells by [[Draw (Final Fantasy VIII)|drawing]] them from enemies and [[draw point]]s, or by [[Refine|refining]] from items. The game uses no MP and instead spells are stocked and used up individually. A total of thirty-two different spells can be stocked on a given character.
+
+Magic is not as powerful when used via Magic command, but is more useful for junctioning to [[stats]]. [[Selphie (Final Fantasy VIII party member)|Selphie's]] and [[Rinoa (Final Fantasy VIII gameplay)|Rinoa's]] [[Limit Break (Final Fantasy VIII)|Limit Breaks]] use the same magic as from the Magic command, but Selphie can cast multiple spells at once via [[Slot (Final Fantasy VIII)|Slot]] and Rinoa's [[Angel Wing (Final Fantasy VIII)|Angel Wing]] spells are four times as powerful as normal spells.
+
+===''[[Final Fantasy IX]]''===
+[[File:FFIX Garnet Magic.png|thumb|Dagger casting magic.]]
+Magic is divided into three categories: [[Blk Mag (Final Fantasy IX)|Black Magic]], [[Wht Mag (Final Fantasy IX)|White Magic]], and [[Blu Mag (Final Fantasy IX)|Blue Magic]]. [[Vivi (Final Fantasy IX party member)|Vivi]] has Black Magic, and [[Dagger (Final Fantasy IX gameplay)|Dagger]] and [[Eiko (Final Fantasy IX party member)|Eiko]], as well as the [[Guest|temporary character]] [[Beatrix (Final Fantasy IX gameplay)|Beatrix]], have White Magic, whereas [[Quina (Final Fantasy IX party member)|Quina]] learns Blue Magic. When [[Steiner (Final Fantasy IX gameplay)|Steiner]] and Vivi are in the active party, they can combine their powers in [[Swd Mag (Final Fantasy IX)|Sword Magic]] techniques.
+
+Magic is usually learned from equipment, but Quina learns Blue Magic by [[Eat (Final Fantasy IX)|eating]] enemies. During [[Trance (Final Fantasy IX)|Trance]], Vivi's Black Magic becomes Dbl Blk, and Eiko's White Magic becomes Dbl Wht.
+
+In the Japanese version, the [[SFX]] command is called "Magic" {{j|まほう|Mahō}} in hiragana (other magic commands use kanji, i.e. {{j|魔法|fmt=j}}). The abilities in this skillset are not actually flagged as magic, and always inflict 0 damage.
+
+Formula for Magic:
+:<math>Base = Spell~Power - Target's~Mag~Defense</math>
+:<math>Bonus  = Magic + Rnd MOD ([(Level + Magic) / 8] + 1)</math>
+:<math>Damage = Base \times Bonus</math>
+<ref>[https://gamefaqs.gamespot.com/ps/197338-final-fantasy-ix/faqs/44329 ''Final Fantasy IX'' Battle Mechanics Guide]</ref>
+
+===''[[Final Fantasy X]]''===
+[[File:Blk-Mag-FFX-HD.png|thumb|Lulu prepares to cast Ultima.]]
+{{See|Wht Magic (Final Fantasy X)|Blk Magic (Final Fantasy X)}}
+Anyone who has learned either a White or Black Magic spell via the [[Sphere Grid]] has the appropriate command added to their Command Menu to use the spell in battle. Most Black Magic is located on [[Lulu (Final Fantasy X party member)|Lulu's]] path on the Sphere Grid, and most White Magic is located on [[Yuna (Final Fantasy X party member)|Yuna's]] path, although [[Tidus (Final Fantasy X party member)|Tidus]] learns spells that manipulate the turn order.
+
+The formula for determining how much damage a Magic spell will do is as follows:
+:<math>Damage = Spell~Power \times ((Magic ^ 2 / 6) + Spell~Power) / 4</math>
+
+The formula for determining how much a spell will heal for is as follows:
+:<math>Healing = Spell~Power \times (Magic + Spell~Power) / 2</math>
+
+Magic can also be taught to [[Aeon (Final Fantasy X)|aeons]].
+
+====''[[Final Fantasy X-2]]''====
+{{See|Black Magic (Final Fantasy X-2)|White Magic (Final Fantasy X-2)|Blue Bullet|Arcana (Final Fantasy X-2)}}
+What commands a character has depends on which [[dressphere]] she is wearing and which [[Garment Grid]] she is equipping. [[Black Mage (Final Fantasy X-2)|Black Mage]] and [[White Mage (Final Fantasy X-2)|White Mage]] learn the Black and White Magic commands, respectively, and learn more spells by leveling up their individual dressphere.
+
+Certain spells, such as [[Holy (Final Fantasy X-2)|Holy]], can only be acquired through certain Garment Grids. It is also possible to use magic outside of their originating dressphere. For example: Equipping the accessory [[Black Lore]] allows the use of Black Magic spells learned as a Black Mage.
+
+Blue Bullet is the equivalent of Blue Magic. The Arcana skillset casts status ailments and is associated with the [[Dark Knight (Final Fantasy X-2)|Dark Knight]] dressphere.
+
+===''[[Final Fantasy XI]]''===
+There are seven main categories of spells that are executed using commands from the magic menu: [[Black Magic]], [[White Magic]], [[Bard (Final Fantasy XI)|Bard]] Songs, [[Ninjutsu (Final Fantasy XI)|Ninjutsu]], [[Avatar (Final Fantasy XI)|Summoning Magic]], [[Blue Magic (Final Fantasy XI)|Blue Magic]], and [[Geomancy]].
+
+All magic falls under a certain skill category: White Magic and Black Magic both include [[Enhancing Magic]] and [[Enfeebling Magic]]. Black Magic also includes [[Elemental Magic (Final Fantasy XI)|Elemental Magic]] and [[Dark Magic (Final Fantasy XI)|Dark Magic]], and White Magic also includes [[Divine Magic (Final Fantasy XI)|Divine Magic]] and [[Healing Magic]].
+
+All Blue Magic is attributed to the Blue Magic skill, all Ninjutsu is under the Ninjutsu skill category, and all summoning spells are under the Summoning Magic skill category. [[Bard (Final Fantasy XI)|Bard]] songs are broken down into three magic skill types: [[Sing (command)|Singing]], String Instrument, and Wind Instrument. Geomancy is attributed to Geomancy and Handbell skills.
+
+An eighth category known as [[Trust Magic]] also exists but is executed from its own command in the menu. It allows players to summon NPC allies to fight alongside them, and are only affected by a player's level.
+
+===''[[Final Fantasy XII]]''===
+{{See|White Magicks (Final Fantasy XII)|Black Magicks (Final Fantasy XII)|Green Magicks (Final Fantasy XII)|Time Magicks (Final Fantasy XII)|Arcane Magicks (Final Fantasy XII)}}
+[[File:FFXII Faith.PNG|thumb|[[Balthier (Final Fantasy XII party member)|Balthier]] casts Faith.]]
+Magicks and Technicks command opens a submenu listing the types of [[Magick (ability type)|magick]] spells or [[Technicks]] the player has obtained and unlocked on the [[License Board]]. Individual spells/technicks must be purchased in [[Final Fantasy XII shops|shops]]/found in [[Treasure (Final Fantasy XII)|treasures]] before they can be used. Anyone can use any spell after acquiring its license in the original PlayStation 2 version, but in the ''Zodiac'' versions, only certain jobs learn magick, such as [[Black Mage (Final Fantasy XII)|Black Mage]] and [[White Mage (Final Fantasy XII)|White Mage]]. Many spells were [[Final Fantasy XII version differences|switched to different skillsets]] in this version as well.
+
+Every spell has the same [[Charge Time]], but with the battle mode set to "Wait" no other action can take place while a spell animation is happening, thus using spells with longer animations slows the party down. Even if the battle mode is set to "Active", how many spells can overlap is determined by the [[Effect Capacity|effect capacity]]; when the capacity is full, other spells must "wait for their turn". The most powerful spells hog the whole capacity in the PlayStation 2 versions, so only one such spell can be cast at any one time. The effect capacity is much greater in ''The Zodiac Age'' versions, as the game is no longer being held back by the technical limitations of the PlayStation 2.
+
+The formula for damage is:
+:<math>DMG = [POW \times RANDOM(1~1.125) - MDEF] \times [2 + MAG \times (Lv+MAG)/256)] </math><ref name="FF12">{{ref |id=FF12 |author=Maltzsan|date=January 30, 2007|title=Final Fantasy XII Game Mechanics FAQ|url=https://www.neoseeker.com/final-fantasy-xii/faqs/142830-mech.html|platform=Neoseeker|access-date=1st September 2020}}</ref>
+
+The formula for healing is:
+:<math>HEAL = POW \times RANDOM(1~1.125) \times [2 + MAG \times (Lv+MAG)/256)]</math><ref name="FF12" />
+
+Healing does not consider the target's magick defense and the same formula applies when healing magicks are targeted to enemy creatures, such as the [[undead]]. The [[Syphon (Final Fantasy XII)|Syphon]] spell also applies the heal formula, which ignores enemy magick defense.
+
+The damage inflicted with magick is further affected by the character's status ([[Faith (Final Fantasy XII status)|Faith]] boosts magick power), what [[Augment (Final Fantasy XII)|augments]] they have purchased on the License Board, the [[Elemental Affinity#Final Fantasy XII|elemental affinity]] of their equipment and the enemies' possible [[Final Fantasy XII elements|elemental]] weaknesses, as well as the [[weather]] and terrain. Some [[Esper (Final Fantasy XII)|Espers]] can also use magick. After using a magick spell, there is a small delay until the caster's ATB bar starts to refill, which can compound during boss battles. The ''Zodiac'' versions' removal of the damage limit makes using magick more useful overall, and also the boosts to magick power earned from licenses and some [[Final Fantasy XII accessories|accessories]] worthwhile.
+
+The [[Sage's Ring (Final Fantasy XII)|Sage's Ring]] accessory halves the MP cost of spells for the wearer. The [[Turtleshell Choker]] makes the wearer expend gil rather than MP to use magick. After the original Japanese version, spells no longer consume MP if they do not connect with their target.
+
+====''[[Final Fantasy XII: Revenant Wings]]''====
+Magic is not a separate command, but every individual spell is its own command. New magick is unlocked by reaching pre-programmed level caps. [[Kytes (Revenant Wings party member)|Kytes]] learns offensive magick, such as [[Thundaga (ability)|Thundaga]] and [[Flare (ability)|Flare]], and [[Penelo (Revenant Wings party member)|Penelo]] learns healing magick such as [[Curaga]] and [[Esuna (ability)|Esuna]], and the one damage-dealing spell, [[Holy (ability)|Holy]].
+
+===''[[Final Fantasy XIII]]''===
+[[File:Ruin_FFXIII.png|thumb|Ruin spell cast by Commando.]]
+The characters don't have a separate Magic command, but all abilities are listed under the Abilities command. What magic a character can cast in battle depends on their current [[Paradigm|role]] and how far they have developed in their [[Crystarium system|Crystarium]]. Everybody's Crystarium development is unique, and one character never learns every skill.
+
+[[Commando (Final Fantasy XIII)|Commando]] learns only the [[non-elemental]] magic spells [[Ruin (Final Fantasy XIII)|Ruin]] and [[Ruinga (Final Fantasy XIII)]]. [[Ravager (Final Fantasy XIII)|Ravager]] learns [[Element (term)|elemental]] magic, such as [[Fire (Final Fantasy XIII)|Fire]] and [[Blizzard (Final Fantasy XIII)|Blizzard]]. [[Medic (Final Fantasy XIII)|Medic]] learns healing magic, such as [[Cure (Final Fantasy XIII)|Cure]] and [[Esuna (Final Fantasy XIII)|Esuna]]. [[Synergist (Final Fantasy XIII)|Synergist]] learns enhancing magic, such as [[Protect (Final Fantasy XIII)|Protect]] and [[Haste (Final Fantasy XIII)#Haste|Haste]]. [[Saboteur (Final Fantasy XIII)|Saboteur]] learns debilitating magic, such as [[Slow (Final Fantasy XIII)|Slow]] and [[Poison (Final Fantasy XIII)|Poison]]. The only role that has no magic is [[Sentinel (Final Fantasy XIII)|Sentinel]].
+
+Magic cannot be used outside of battle, and the party is healed after every battle. Spell "cost" is measured in [[Command Synergy Battle|ATB segments]]; low level spells take one ATB segment to execute, whereas powerful spells takes three segments.
+
+Formula for damaging spells:
+:<math>Damage = User's~ Magic \times Spell~Power</math>
+
+Formula for healing spells:
+:<math>Cure = (User's~Magic \times 0.2) + 100</math>
+:<math>Cura = (User's~Magic \times 0.18) + 100</math>
+:<math>Curasa = (Target's~Missing~HP \times 0.15) + ((Target's~Missing~HP \times User's~Magic) / 100,000)</math>
+:<math>Curaja = (Target's~Missing~HP \times 0.12) + ((Target's~Missing~HP \times User's~Magic) / 100,000)</math>
+
+====''[[Final Fantasy XIII-2]]''====
+The system is identical to ''Final Fantasy XIII'', but now the party has [[Paradigm Pack]] allies, each with a single role, and thus the third party member in a formation changes depending on the [[paradigm]] in use. [[Commando (Final Fantasy XIII-2)|Commando]] casts non-elemental magic. [[Ravager (Final Fantasy XIII-2)|Ravager]] casts elemental magic. [[Medic (Final Fantasy XIII-2)|Medic]] casts curative magic. [[Synergist (Final Fantasy XIII-2)|Synergist]] casts status enhancements. [[Saboteur (Final Fantasy XIII-2)|Saboteur]] casts status ailments. [[Sentinel (Final Fantasy XIII-2)|Sentinels]] don't use magic. [[Lightning (Final Fantasy XIII-2 party member)|Lightning]] has special roles in the ''[[Lightning's Story: Requiem of the Goddess]]'' DLC scenario.
+
+====''[[Lightning Returns: Final Fantasy XIII]]''====
+[[File:Fira from LRFFXIII.jpg|200px|right|thumb|Lightning casts Fira.]]
+{{See|Lightning Returns: Final Fantasy XIII abilities}}
+There is no distinction between magic and any other ability [[Lightning (Lightning Returns party member)|Lightning]] can use. Magic is cast by assigning different buttons from the right panel of the pad. Magic is [[item drop|dropped]] by enemies in the form of crystal or per-assigned to [[Lightning Returns: Final Fantasy XIII garbs|garbs]]. Synthesizing magic of the same element produces stronger magic spells, and after a certain [[Lightning Returns: Final Fantasy XIII days|day]], spells can be upgraded. Magic is often superior to physical attacks for [[Stagger (Lightning Returns)|stagger]]ing opponents.
+{{clear}}
+
+===''[[Final Fantasy XIV]]''===
+Magic abilities are categorized as [[Final Fantasy XIV actions#Categories|spells]]. Spells frequently consume MP, often have a cast time, and are disabled by the [[Silence (status)|Silence]] condition. They are primarily, but not exclusively, used by [[Final Fantasy XIV disciplines|Disciples of Magic]].
+
+Spells are found as part of combo chains less frequently than weaponskills. Instead, it is more common for spells to trigger an additional effect if certain conditions are met (or purely by random chance). For example, a [[Paladin (Final Fantasy XIV)|Paladin's]] Clemency spell triggers an additional healing effect on the Paladin if cast on another [[party]] member.
+
+===''[[Final Fantasy XV]]''===
+[[File:FFXV-Fire-Magic.jpg|thumb|Noctis casts a fire spell, setting the surrounding field ablaze.]]
+{{See|Elemancy|Ring of the Lucii}}
+There are two types of magic: one can only be used by [[Noctis (Final Fantasy XV party member)|Noctis]] via the [[Ring of the Lucii]], and is not available at the beginning, but will be unlocked throughout the story. The Ring of the Lucii allows Noctis to cast [[Death (ability)|Death]], [[Holy (ability)|Holy]], and [[Alterna]]. Depending on the spell used, differing amounts of [[Final Fantasy XV stats#MP|MP]] are consumed. The MP stat is exclusive to Noctis, who can also use it to [[Warp (Final Fantasy XV)|warp]].
+
+The other form of magic is [[elemancy]] that does not require MP, and is not exclusive to Noctis. Elemancy is crafted in [[Magic Flask]]s after collecting the ingredients from the environments, or by defeating enemies with certain weapons. Three uses of a spell can be equipped in a Magic Flask, which then needs to be equipped as a Primary Arm (for Noctis), or a Secondary Arm (for party members). To use different spells in battle, multiple flasks will need to be equipped. Spells can be crafted during battle.
+
+Casting spells has residual effects come into effect in real time. [[Weather]] has a tactical impact on battle conditions, with different types of magic having varying effects depending on the weather. This reinforces the tactical and situational use of magic, as party members are not immune to the residual effects, e.g. using fire spells on a clear day not only hurts monsters, but also ignites the surrounding area; monsters afraid of fire will be sent fleeing, but it can hurt party members as well, unless the [[Ring of Resistance (Final Fantasy XV)|Ring of Resistance]] is equipped. Fire is extinguished fast if it rains, but thunder magic is augmented during this time. Though magic can destroy the environment, the effects will be slowly restored. When Noctis uses elemancy, the player must manually aim it. When equipped to party members, the AI will use it at its own discretion, usually only against tougher foes.
+
+===''[[Final Fantasy Tactics]]''===
+Magicks are divided and associated in each of their corresponding [[Final Fantasy Tactics jobs|jobs]]: [[White Magicks (Tactics)|White Magicks]], [[Black Magicks (Tactics)|Black Magicks]], [[Time Magicks (Tactics)|Time Magicks]], and [[Summon (Tactics)|Summon]]. Spells are considered Action Abilities and must be purchased with JP, or earned from a deceased unit's [[Crystal (Tactics)|crystal]], before being able to be used in battle.
+
+===''[[Final Fantasy Tactics Advance]]''===
+The base damage formula for Magical abilities are as follows:
+:<math>Caster's~Magic~Power - (Target's~Magic~Resistance/2)</math>
+
+Afterwards, damage will be multiplied by Power/100, where Power is usually equal to the strength of the ability being used. For weapon-based abilities, this will be the EqAtt bonus the unit's equipment (minus secondary weapons) gives, For other abilities, this will be the Power stat of the ability itself.
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+Various Magic classes have their own set of commands for magic. The [[White Mage (Tactics A2)|White Mage]] has access to White Magick, [[Black Mage (Tactics A2)|Black Mage]] to Black Magick, [[Seer (Tactics A2)|Seer]] to High Magick, [[Red Mage (Tactics A2)|Red Mage]] to Red Magick, [[Green Mage (Tactics A2)|Green Mage]] to Green Magick, [[Blue Mage (Tactics A2)|Blue Mage]] to Blue Magick, [[Time Mage (Tactics A2)|Time Mage]] to Time Magick, [[Bishop (Tactics A2)|Bishop]] to Intercession, [[Alchemist (Tactics A2)|Alchemist]] for Alchemy, [[Sage (Tactics A2)|Sage]] for Sagacity, and [[Illusionist (Tactics A2)|Illusionist]] for Illusion.
+{{Magic section|Final Fantasy Tactics A2: Grimoire of the Rift}}<!-- Formula for damage? -->
+
+===''[[Final Fantasy Mystic Quest]]''===
+{{main|Spell (Mystic Quest)}}
+The command is called Spell. There are three classes of magic, White, Black, and Wizard. Each type has their own set amount of uses before the character cannot use anymore spells of that type, but all types are automatically restored when the character has his or her MP restored.
+
+White Magic includes [[Cure (ability)|Cure]], [[Teleport|Exit]], [[Esuna (ability)|Heal]], and [[Raise (Life 1)|Life]]. Black Magic spells include [[Quake (ability)|Quake]], [[Fire (ability)|Fire]], [[Blizzard (ability)|Blizzard]], and [[Aero (ability)|Aero]]. Wizard Magic includes the powerful spells [[Thunder (ability)|Thunder]], [[Holy (ability)|Holy]], [[Meteor (ability)|Meteor]], and [[Flare (ability)|Flare]].
+
+===''[[Final Fantasy Legend III]]''===
+The battle command is Magic, and all three types of magic can be found within this command. These three types of magic are [[White Magic]], [[Black Magic]], and Lost Magic. Up to 24 magic spells of any type can be equipped on a single character.
+
+==Gallery==
+<gallery>
+FFII Black Magic GBA.png|Black Magic in ''[[Final Fantasy II]]'' (GBA).
+FFII White Magic GBA.png|White Magic in ''[[Final Fantasy II]]'' (GBA).
+FFII PSP Black Magic.png|Black Magic in ''[[Final Fantasy II]]'' (PSP).
+FFII PSP White Magic.png|White Magic in ''[[Final Fantasy II]]'' (PSP).
+FFIIIDS Black Magic.png|Black Magic in ''[[Final Fantasy III]]'' (DS).
+FFIIIDS White Magic.png|White Magic in ''[[Final Fantasy III]]'' (DS).
+FFIV Black Magic.png|Black Magic in ''[[Final Fantasy IV]]''.
+FFIV Ninjutsu.png|Ninjutsu in ''[[Final Fantasy IV]]''.
+FFIV White Magic.png|White Magic in ''[[Final Fantasy IV]]''.
+FFIVDS Black Magic.png|Black Magic in ''[[Final Fantasy IV]]'' (DS).
+Ninjutsu.jpg|Ninjutsu in ''[[Final Fantasy IV]]'' (DS).
+FFIVDS White Magic.png|White Magic in ''[[Final Fantasy IV]]'' (DS).
+Ability White Magic FFIVPSP.png|White Magic in ''[[Final Fantasy IV]]'' (PSP).
+Ability Black Magic FFIVPSP.png|Black Magic in ''[[Final Fantasy IV]]'' (PSP).
+Black Magic from FFV Advance.png |Black Magic in ''[[Final Fantasy V]]''.
+Blue Magic from FFV Advance.png|Blue Magic in ''[[Final Fantasy V]]''.
+Time Magic from FFV Advance.png|Time Magic in ''[[Final Fantasy V]]''.
+White Magic from FFV Advance.png|White Magic in ''[[Final Fantasy V]]''.
+FFVI White & Effect Magic.png|White Magic and Effect in ''[[Final Fantasy VI]]'' (GBA).
+FFVI Black Magic.png|Black Magic in ''[[Final Fantasy VI]]'' (GBA).
+FFVI iOS Attack Magic.png|Attack Magic in ''[[Final Fantasy VI]]'' (iOS).
+FFVI iOS Healing Magic.png|Healing Magic in ''[[Final Fantasy VI]]'' (iOS).
+FFVI iOS Effect Magic.png|Effect Magic in ''[[Final Fantasy VI]]'' (iOS).
+VIIBC Magic.png|''[[Before Crisis -Final Fantasy VII-]]''.
+FFX Cure.png|Yuna casts Cure in ''[[Final Fantasy X]]''.
+FFX-2 Protect.PNG|Yuna casts Protect in ''[[Final Fantasy X-2]]''.
+FFXII Vox.png|''[[Final Fantasy XII]]''.
+Aero FFXIII.png|Vanille casts Aero in ''[[Final Fantasy XIII]]''.
+FFMQ Flare.png|Benjamin casts Flare in ''[[Final Fantasy Mystic Quest]]''.
+FFLIII Shake.png|Arthur casts Shake in ''[[Final Fantasy Legend III]]''.
+FFBE Magic.png|''[[Final Fantasy Brave Exvius]]''.
+</gallery>{{Gallery incomplete|Ninjutsu in ''[[Final Fantasy IV]]'' (PSP)}}
+
+==Etymology==
+{{Etym|Magic}}
+
+{{Etym|Spell}}
+
+==Citations==
+{{citations}}
+
+{{navbox command abilities}}
+{{navbox magic}}
+
+[[de:Magie]]
+[[ru:Магия (команда)]]
+[[Category:Abilities]]
+[[Category:Magic]]

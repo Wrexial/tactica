@@ -1,0 +1,109 @@
+{{infobox character
+|name=Nono
+|release=FFXII
+|japanese=ノノ
+|romaji=Nono
+|image=Nono1.png
+|occupation=[[Airship (term)|Airships]]
+|race=[[Moogle]]
+|gender=Male
+|ffxii type=npc
+|xiirw type=npc
+|ffta type=npc
+|ffta job=[[Gadgeteer]]
+|ffta2 type=npc
+|designer=[[Akihiko Yoshida]]
+}}
+{{Quote|From the Aerodrome to the desert wastes, I'll be there to keep the Strahl in tip-top shape, kupo!|Nono}}
+'''Nono''' is a recurring [[moogle]] in games set in [[Ivalice (Final Fantasy XII)|Ivalice]]. He is [[Montblanc]]'s younger brother, making him one of the [[six moogle siblings]]. Nono is involved with [[Airship (term)|airships]] and his outfit resembles a green color swap of the [[Tinker (Tactics A2)|Tinker]] job.
+
+== Appearances ==
+=== ''[[Final Fantasy XII]]'' ===
+
+[[File:Nono.jpg|thumb|left|Nono in ''Final Fantasy XII''.]]
+Nono is the head mechanic of the ''[[Strahl]]''. Whenever the ''Strahl'' is in port, he will maintain it. When [[Balthier]] first takes [[Vaan]] and the others to see his airship they are greeted by Nono in the hangar. After [[Dreadnought Leviathan|Dreadnought ''Leviathan'']] has fallen, Nono can be met in the [[Rabanastre (Final Fantasy XII)|Rabanastre]] aerodrome saying the ''Strahl'' was damaged in the [[Mist (Final Fantasy XII)|Mist]] explosion and will take a while to fix. It is Nono who installs the new skystone [[Reddas]] gives the party, and it can be assumed he is responsible for several of the other upgrades on the ''Strahl'' as well. After the party returns from [[Giruvegan]] Nono can be talked to at aerodromes' private flights sections to fly the ''Strahl''.
+{{clear}}
+
+==== ''[[Final Fantasy XII: Revenant Wings]]'' ====
+
+[[File:Mini Nono.PNG|left]]
+[[File:Nono RW.PNG|right|130px]]
+{{Quote|He makes nice with Master Tomaj, but I see through his web of deception!|Cu Sith about Nono}}
+Nono still maintains the ''Strahl'', but after the earthquake caused by [[Bahamut (Revenant Wings)|Bahamut]] at the [[Lemurés (Revenant Wings)#Muruc Cahuac Skysea|Muruc Cahuac Skysea]], the ''Strahl'' breaks down and lands near [[Heaven's Vigil]]. Unable to repair Balthier's airship before a swarm of monsters arrives, Nono seeks refuge on Vaan's airship, the ''[[Galbana]]''. He initially isn't too fond of one of their newest members, [[Cu Sith (Revenant Wings)|Cu Sith]], who accuses the moogle of currying favor with [[Tomaj]], but they set aside their differences for the good of the ''Galbana''.
+{{clear}}
+
+===''[[Final Fantasy XV]]''===
+
+Nono is a moogle doll as part of "The Brothers Kupomazov" quest at the [[Moogle Chocobo Carnival]].
+
+:''Fourth in the line is little Nono,''
+:''fond of putting on a show.''
+:''Entertainer of the night,''
+:''he dances on a stage of light.''
+
+=== ''[[Final Fantasy Tactics Advance]]'' ===
+
+[[File:ffta-nono.png|100px|left|150px]]
+[[File:Ffta cast illustration.jpg|thumb|Nono seen in the bottom right with his brother, Montblanc.]]
+Nono is an apprentice [[Gadgeteer]] who runs a store based out of an airship, called the ''Brilliante'' in the ''[[Final Fantasy Tactics Advance Radio Edition]]''. After his airship is attacked in a hit-and-run, [[Clan Nutsy]] meets with him at [[Baguba Port]] and agrees to confront the perpetrators at [[Jagd Dorsa]]. Later on, the mission is repeated when he is "hit again".
+
+He is mentioned by Montblanc for making a "lugaborg" made out of Materite, which was a gift for Audience Day.
+
+Nono's shop starts off with one set of Trade Items, and the list will replenish every time a game is played over a link cable.
+
+In ''Final Fantasy Tactics Advance Radio Edition'', Nono had already appeared in the beginning along with Montblanc, and was voiced by [[wikipedia:Masako Jō|Masako Jō]].
+{{clear}}
+
+==== ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]'' ====
+
+[[File:Nono ffta2sidestory.png|right|thumb|Artwork of Nono.]]
+Nono never appears physically, but he is mentioned by [[Hurdy (Final Fantasy XII)|Hurdy]] when he is talking to Vaan. Hurdy claims Nono left the ''Strahl'' and built his own airship called the ''Brilliante I'' with the [[gil]] he earned there.
+
+Nono appears as a golden statue at the bottom of the journal after [[Sorbet (Final Fantasy XII)|Sorbet]] and [[Horne (Final Fantasy XII)|Horne]] when a certain amount of missions are completed.
+
+In a side story "Chapter 4: Hurdy Heads for the Hills", Nono said that if Hurdy leaves later, he would offer him an airship, the almost-finished ''Brilliante I''. He requested Hurdy the Goug Consortium catalog, which could be found at [[Goug (Tactics A2)|Goug]].
+
+=== ''[[Final Fantasy Artniks]]'' ===
+
+<gallery>
+FFTA Nono R+ L Artniks.png|''Final Fantasy Artniks''.
+</gallery>
+{{Section|Final Fantasy Artniks}}
+{{clear}}
+
+=== ''[[Final Fantasy Trading Card Game]]'' ===
+Nono appears is ''Final Fantasy Trading Card Game'' as Wind-elemental Backup cards, possibly because Nono is associated with airships and flying.
+
+<gallery>
+4-042C.jpg|Nono [4-042C] Chapter series card.
+Nono TCG.png|Nono [6-038C] Chapter series card.
+Nono2 TCG.png|Nono [13-086U] Chapter series card.
+Nono 2-062C from FFTCG Opus.jpg|Nono [2-062C] Opus series card.
+Nono 4-066R from FFTCG Opus.jpg|Nono [4-066R] Opus series card.
+</gallery>
+
+===''[[Final Fantasy Portal App]]''===
+[[File:243a Nono.png|right|100px]]
+Nono appears as a [[Triple Triad (Portal App)|Triple Triad]] card.
+{{clear}}
+
+== Gallery ==
+<gallery>
+FF12 - Nono Model.png|''Final Fantasy XII'' character model.
+Nono RW CG.png|Nono in an FMV from ''Revenant Wings''.
+FFXII Manga Back Cover 1.jpg|Nono on the back cover of volume 1 of the manga.
+</gallery>
+
+== Etymology ==
+{{Etym|Nono}}
+
+{{navbox characters FFXII}}
+{{navbox XIIRW}}
+{{navbox characters FFTA}}
+{{navbox characters}}
+
+[[Category:Moogles]]
+[[Category:Recurring characters]]
+[[Category:Characters in Final Fantasy XII]]
+[[Category:Characters in Final Fantasy XII: Revenant Wings]]
+[[Category:Characters in Final Fantasy Tactics Advance]]

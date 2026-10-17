@@ -1,0 +1,187 @@
+{{DISPLAYTITLE:Dragoon (''Tactics Advance'')}}
+{{infobox job
+|name=Dragoon
+|release=FFTA
+|japanese=竜騎士
+|romaji=Ryuukishi
+|image=Ffta-bangaa-dragoon.jpg
+|portrait=[[File:ffta-job-dragoon.png|50px|Player]] [[File:Ffta-job-dragoon-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-dragoon.gif|20px|Player]] [[File:Ffta-job-dragoon-enemy-sprite.png|Enemy|20px]]
+|obtained=Master two [[Warrior (Tactics Advance)|Warrior]] abilities
+|required=[[Warrior (Tactics Advance)|Warrior]]
+|characters=[[Bangaa]]
+|stats=*Move Rate: 3
+*Jump Rate: 3
+*Evade Rate: 40
+*Stat growth: highest Attack, high HP and Defense, average Speed, lowest Magic Power and Resistance
+|weapons=[[Final Fantasy Tactics Advance weapons#Swords|Swords]] and [[Final Fantasy Tactics Advance weapons#Spears|spears]]
+|armor=[[Final Fantasy Tactics Advance armor#Helms|Helms]] and [[Final Fantasy Tactics Advance armor#Heavy Armor|heavy armor]]<br/>Can't equip shields
+|command abilities=*[[Dragon Tech]]
+*[[#Dragon Combo|Dragon Combo]] (combo)
+|support abilities=*[[Dragonheart]]
+|recurring appearance=Dragoon (job)
+}}
+{{Quote|Experts with the spear. Able to jump high.|Description}}
+The '''Dragoon''' [[Final Fantasy Tactics Advance jobs|job]] is available to [[bangaa]] after mastering two [[Warrior (Tactics Advance)|Warrior]] abilities. Along with Jump and Lancet, Dragoons can also use dragons' "breath" attacks. Dragoons wield a variety of weapons, such as swords and spears.
+
+==Growth==
+Dragoons are the most Attack-oriented bangaa job. They have the highest Attack, high HP and Defense, and average Speed. Their Magic Power and Resistance are the lowest.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|8.2 A-
+|1.2 E
+|9.6 A
+|8.4 B
+|5.6 E
+|6.4 D
+|1.1 D+
+|}
+
+==Abilities==
+===[[Dragon Tech]]===
+{{Quote|Dragoon command. Use techs learned from the dragons.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Jump (ability)|Jump}}
+|[[Javelin (Tactics Advance)|Javelin]]
+|100
+|As Weapon
+|4
+|-
+|colspan=4 style="text-align:left"|''Jump high into the sky to deliver a spear attack.''
+|-
+! rowspan=2|{{LA|Lancet}}
+|[[Restorer (Tactics Advance)|Restorer]]
+|300
+|35
+|1
+|-
+|colspan=5 style="text-align:left"|''Absorbs HP from target.''
+|-
+! rowspan=2|{{A|Wyrmtamer}}
+|[[Buster Sword (Tactics Advance)|Buster Sword]]
+|200
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Persuades dragon to leave the field of battle.''
+|-
+! rowspan=2|{{LA|Fire Breath}}
+|[[Lava Spear (Tactics Advance)|Lava Spear]]
+|300
+|40
+|Cone
+|-
+|colspan=5 style="text-align:left"|''Incendiary breath. Deals damage.''
+|-
+! rowspan=2|{{LA|Thunder Breath|Bolt Breath}}
+|[[Gae Bolg (Tactics Advance)|Gae Bolg]]
+|300
+|40
+|Cone
+|-
+|colspan=5 style="text-align:left"|''Electrically charged cloud. Deals damage.''
+|-
+! rowspan=2|{{LA|Ice Breath}}
+|[[Ice Lance (Tactics Advance)|Ice Lance]]
+|300
+|40
+|Cone
+|-
+|colspan=5 style="text-align:left"|''Icy cold breath. Deals damage.''
+|-
+! rowspan=2|{{LA|Dragon Killer (ability)|Wyrmkiller}}
+|[[Blood Sword (Tactics Advance)|Blood Sword]]
+|300
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Ancient dragoon-killing technique.''
+|-
+! rowspan=2|{{A|Bangaa Cry}}
+|[[Dragon Whisker (Tactics Advance)|Dragon Whisker]]
+|200
+|45
+|Cone
+|-
+|colspan=5 style="text-align:left"|''Bangaa warrior battle cry. Deals damage.''
+|}
+
+Wyrmtamer's chance of success depends on the number of KOs the caster has been responsible for, and the percentage of HP the target has left.
+
+The formula of success is as follows:
+:<math>MinHP\% = 50 - \text{Number of Units Caster has KO'd}</math>
+:<math>HP\% = [Target's Max HP \times MinHP\% / 100]</math>
+:<math>Hit\% = [(HP\% - Target's HP) \times 100 / HP\%]</math>
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Dragonheart}}
+|[[Final Fantasy Tactics Advance weapons#Vitanova|Vitanova]]
+|style="text-align:left"|''Auto-raises unit damaged by weapon.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Dragon Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Spear|Mythril Spear]]
+|style="text-align:left"|''Failproof combo ability for dragoons.''
+|100
+|}
+
+== Gameplay ==
+[[File:FFTA Jump.png|Jump.|thumb]]
+Concerned with nothing but offense, Dragoons boast the highest attack by far. Spears and Jump give them some useful ranged capabilities. Having access to three breath abilities allows them to selectively target any elemental weaknesses the opponent might have. Jump is a stable ranged attack, and is even able to be used by [[Templar (Tactics Advance)|Templars]]. Dragonheart is a potentially broken reaction ability, as the enemy AI usually uses normal attacks, giving Dragoons the potential to become nigh invincible. Lancet gives Dragoons some more survivability without having to concern other allies.
+
+Dragoons do have a few problems. Their average speed hurts their offensive abilities, as they are easily outpaced by units like [[Sniper (Tactics Advance)|Snipers]] and [[Ninja (Tactics Advance)|Ninjas]]. The class lacks healing, being unable to assist allies. As with most bangaa, the Dragoon has horrible MP and Magic Attack, although this is hardly an issue. Overall, Dragoons are strong, and though not fast, can defeat various enemies with few hits.
+
+Fast-acting mages are the best means of offense against enemy Dragoons, though they should remain wary as Dragoons can down them in one strike. Immobilizing or disabling Dragoons greatly limits their offensive potential.
+
+==Gallery==
+<gallery>
+FFTA Lancet.png|Lancet.
+FFTA Fire Breath.png|Fire Breath.
+FFTA Bolt Breath.png|Bolt Breath.
+FFTA Ice Breath.png|Ice Breath.
+FFTA Wyrmkiller.png|Wyrmkiller.
+FFTA Bangaa Cry.png|Bangaa Cry.
+</gallery>{{Gallery incomplete|Dragon Combo}}
+
+==Etymology==
+{{Etym|Dragoon}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Soldado dragón (Final Fantasy Tactics Advance)]]
+[[it:Dragone (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

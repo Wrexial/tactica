@@ -1,0 +1,89 @@
+[[File:FFTA Exodus.JPG|250px|thumb|Exodus, a Totema.]]
+{{Quote|Powerful guardians of the crystals. It is unknown which master they serve, if any.|Totema description}}
+{{Quote|A totema's alternate form.|Avatar description}}
+The '''totema''' {{J|神獣|Shinjū|Divine Beast}} are a group of five creatures in ''[[Final Fantasy Tactics Advance]]'' that guard the magic [[Crystal (term)#Final Fantasy Tactics Advance|crystals]] that prevent the world of [[Ivalice (Tactics Advance)|Ivalice]] from reverting to its original form.
+
+==Mechanics==
+Each totema represents a particular race from the world of Ivalice, and each one can be summoned by any member of that race able to accrue ten [[Judge Points]] once that totema has been defeated in battle. Each represents a [[final boss]] from another ''[[Final Fantasy series|Final Fantasy]]'' game, with the exception of Adrammelech.
+
+The five totema return as [[Esper (Final Fantasy XII)|Espers]] in ''[[Final Fantasy XII]]'' and ''[[Final Fantasy XII: Revenant Wings]]'', and as [[Scion (Ivalice)|Scions]] in ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''.
+
+While totema are powerful, they are hard to charge up, since a total of ten Judge Points must be accrued to summon them. The player can exploit the [[Hunter (Tactics Advance)|Hunter's]] [[Hunter (Tactics Advance)#Hunt|Hunt]] ability, which gives 10 JP upon the [[Knocked Out|KO]] of any fighting unit, to get lots of quick summons.
+
+On occasion, a Target All [[Law system (Tactics Advance)|law]] may be in place, effectively preventing the use of totema. In addition to having to fight them all one by one, [[Marche Radiuju|Marche]] must face copies of them, called [[Deph]]s, during the battle with the [[Remedi|Li-Grim]]. While in Battle Queen mode, Li-Grim is aided by a Deph of Famfrit and one of Adrammelech. While in her true form, Li-Grim is guarded by two Dephs of Mateus, and has the power [[Final Fantasy Tactics Advance enemy abilities|Descent]], which summons a random totema to launch an attack on the party.
+
+==Totema==
+*[[Famfrit (Tactics Advance)|Famfrit]] is the totema of the [[moogle]]s, and represents the ''[[Final Fantasy III]]'' final boss, the [[Cloud of Darkness (Final Fantasy III)|Cloud of Darkness]]. When summoned, he fires a cannon at the battleground which hits several times creating a large explosion.
+*[[Ultima (Tactics Advance)|Ultima]], the totema of the [[nu mou]], represents the High Seraph [[Ultima (Tactics)|Ultima]] from ''[[Final Fantasy Tactics]]''. When summoned she takes the form of a giant space cannon, and fires a shot at the battleground, attacking enemy units' [[MP (stat)|MP]].
+*[[Adrammelech (Tactics Advance)|Adrammelech]], the totema of the [[bangaa]], represents [[Adrammelech (Tactics)|Adrammelech]] the Wroth, also from ''Final Fantasy Tactics''. When summoned he gathers energy in his maw and unleashes a powerful beam on the battleground.
+*[[Exodus (Tactics Advance)|Exodus]] is the [[viera]]'s totema, and represents [[Exdeath]] from ''[[Final Fantasy V]]''. When summoned he roots into the ground and causes an energy drain on the battleground, consuming opponents' MP.
+*[[Mateus (Tactics Advance)|Mateus]] represents the [[human]] race and the evil [[Emperor Mateus]] from ''[[Final Fantasy II]]''. When summoned, Mateus distorts the battleground into a revolving sphere and shatters it with her spear, inflicting considerable harm to all enemies.
+
+==Missions==
+{{spoiler}}
+After about three storyline [[Missions (Tactics Advance)|missions]], a request at the [[pub]] regarding supernatural events will appear. As Marche and his [[clan]] investigate, they will be warped via a seam to a shrine room where a crystal is held. After a brief argument, the totema and [[Clan Nutsy]] will engage.
+
+===#005 Twisted Flow===
+At [[Ulei River]], the river bends and twists oddly and an onlooker places a request at the pub. When Marche approaches the river, he notices nothing out of the ordinary, but the seam catches him off guard. Confused, Marche looks around and is surprised by the crystal, and then Famfrit. A Special Judge appears, red rather than a neutral blue, and Marche decides there is nothing to lose and engages. Famfrit summons two [[Floateye (Tactics Advance)|Floateyes]] and two [[Ahriman (Tactics Advance)|Ahriman]] to aid him.
+
+===#008 Hot Awakening===
+[[Roda Volcano]] has been acting up and researchers are wanted to investigate. Applicants "must like heat." As Marche walks onto the volcano's battlefield it gives a violent shake and a seam appears, catching Marche off-guard again. After being warped and coming to his senses, he notes the shrine is more colorful than the last one, and even has butterflies. As he approaches the crystal, a mysterious crystal appears next to him and more crystals appear to surround him. This is Ultima, in the form of eight Ultima Crystals, which cannot move and can only fight or use a special skill called Logos.
+
+===#011 Pale Company===
+At [[Nargai Cave]], residents are scared by a "ghost" going in and out of the cave. As Marche makes his way in, the ghost appears right in front of him. It fades in and out of view deeper inside the cave. After being lured the seam appears. The shrine is similar to Famfrit's: bland but suspenseful. Approaching the crystal, Adrammelech appears and yells at Marche before engaging. Adrammelech summons a [[Firewyrm]], [[Icedrake]], and [[Thundrake]] to assist him in the fight.
+
+===#015 Scouring Time===
+After the engagement at [[Muscadet]], Marche is dragged to the prison in [[Sprohm]] for questioning. As [[Cid Randell|Cid]] and [[Babus Swain|Babus]] question Marche, a seam appears on the wall and all three are warped to Exodus's shrine. Exodus is weak and unable to defend the crystal, but has several "Exodus Fruit" to "guard" the crystal. Alone, Marche fights off Babus, while Cid supervises as Judge and does not interfere. Marche destroys the Exodus Fruits to defeat Exodus.
+
+===#018 Quiet Sands===
+The once-famous "barking sands" of [[Delia Dunes]] have stopped sounding recently, and it concerns the touring industry. As Marche investigates, [[Llednar Twem|Llednar]] confronts Marche. The seam appears and warps both into a pre-shrine room. Llednar charges up a powerful attack to banish Marche from the shrine, but before the attack can be executed, Cid appears and prevents Llednar from using his Omega skill with an [[Advanced Law]]. Seeing no other option, Llednar summons two [[Templar (Tactics Advance)|Templars]] and two [[Titania (Tactics Advance)|Titanias]] to assist him. Before much can be accomplished though, Llednar's overconfidence overpowers him as he charges up another Omega attack. Cid [[Red Card (Tactics Advance)|red cards]] Llednar, and the engagement is finished.
+
+Cid leads Marche to the shrine where the last crystal is held. Mateus appears as Marche approaches the shrine and gets under Marche's skin by taking the forms of his friends, and then the form of Marche himself. Mateus summons four [[Vampire (Tactics Advance)|Vampires]] to assist her in the engagement.
+{{Endspoiler}}
+
+==Musical themes==
+The theme "The Road We Both Aim For" plays in the battles against the totema.
+
+==Other appearances==
+===''[[Final Fantasy Record Keeper]]''===
+
+The totema appear as enemies.
+<gallery>
+FFRK Adrammelech FFTA.png|Adrammelech.
+FFRK Famfrit FFTA.png|Famfrit.
+FFRK Mateus FFTA.png|Mateus.
+</gallery>
+
+===''[[Final Fantasy Trading Card Game]]''===
+
+The totema appear on cards.
+
+<gallery>
+Adrammelech TCG.png|Adrammelech.
+</gallery>
+
+==Gallery==
+<gallery>
+FFTA Famfrit Totema.png|Famfrit's sprite.
+FFTA Famfrit.png|Famfrit in battle.
+FFTA Ultima Totema.png|Ultima's sprite.
+FFTA Ultima.png|Ultima in battle.
+FFTA Adrammelech Totema.png|Adrammelech's sprite.
+FFTA Adrammalech.png|Adrammelech in battle.
+FFTA Exodus Totema.png|Exodus's sprite.
+FFTA Exodus.png|Exodus in battle.
+FFTA Mateus Totema.png|Mateus's sprite.
+FFTA Mateus.png|Mateus in battle.
+</gallery>
+
+==Etymology==
+{{Etym|Totem}}
+
+{{Etym|Scion}}
+
+{{navbox characters FFTA}}
+
+[[de:Totema]]
+[[Category:Totema in Final Fantasy Tactics Advance]]
+[[Category:Summons in Ivalice]]
+[[Category:Summons]]

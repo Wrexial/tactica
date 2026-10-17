@@ -1,0 +1,104 @@
+{{infobox job
+|name=Hermetic
+|release=FFTA
+|japanese=精錬術士
+|romaji=Seirenjutsushi
+|image=Ffta-ezel.jpg
+|portrait=[[File:FFTA-Ezel-por.png|50px]]
+|sprite=[[File:FFTA ezel.gif|20px|Player]]
+|obtained=Default
+|characters=[[Ezel Berbier]]
+|stats=*Move Rate: 3
+*Jump Rate: 3
+*Evade Rate: 35
+*Stat growth: high MP, Magic Power and Resistance, below-average Speed, and poor HP, Attack and Defense
+|weapons=[[Final Fantasy Tactics Advance weapons#Maces|Maces]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Hermetics]]
+|support abilities=*[[#Weapon Atk+|Weapon Atk+]]
+*[[#Block Arrows|Block Arrows]] (reaction)
+}}
+{{Quote|Alchemist elites that can manipulate even laws.|Description}}
+'''Hermetic''' is a [[Final Fantasy Tactics Advance jobs|job]] available to [[Ezel Berbier]] in ''[[Final Fantasy Tactics Advance]]''. Hermetic has the same [[stat growth]] as the [[Alchemist (Tactics Advance)|Alchemist]], and wields maces. Ezel cannot learn new abilities by wielding maces and cannot change into another job, and thus can only have [[Item]] as his second A-Ability.
+
+==Growth==
+Like the Alchemist, the Hermetic job has high MP, Magic Power and Resistance growths, below-average Speed, and abysmal HP, Attack and Defense. Ezel's stat growth can be seen as a balance between the [[Sage (Tactics Advance)|Sage]] and the [[Time Mage (Tactics Advance)|Time Mage]].
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.1 D+
+|8.4 S-
+|5.9 E
+|6.5 D
+|9.2 A-
+|style="text-align:center"|9.6 A
+|style="text-align:center"|0.9 D-
+|}
+
+==Abilities==
+===[[Hermetics]]===
+{{Quote|Hermetic command. Use extremely potent alchemy.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:40%"|Effect
+!style="width:10%"|MP
+!style="width:10%"|Range
+|-
+!{{A|Azoth}}
+|style="text-align:left"|''Secret alchemy. Puts all enemies to sleep.''
+|12
+|Infinite
+|-
+!{{LA|Astra (ability)|Astra}}
+|style="text-align:left"|''Confers one-time status affliction protection.''
+|8
+|4
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:30%"|Effect
+|-
+!{{A|Block Arrows}}
+|''Completely avoid all physical attacks from units wielding a bow or greatbow.''
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:30%"|Effect
+|-
+!{{A|Weapon Atk+}}
+|''Increase Weapon Attack power.''
+|}
+
+== Overview ==
+Ezel is a [[secret character]] who is easy to unlock and has unique access to Azoth, a technique that puts all enemies on the map to sleep. This is a superior version of Night, and among the most broken abilities in the game. Ezel has excellent MP and very high Magic Resistance. However, his ability set only contains two abilities. Unable to change classes, Ezel is stuck with one reaction ability, one support ability, and no combo abilities. The Hermetic doesn't benefit from its high Magic Power as Ezel doesn't have any damaging abilities. Ezel's usefulness is debatable, as even if Azoth is so exploitable it takes the difficulty out of almost any situation, apart from that one ability Hermetic is but a bare-bones mage with no spells to back up its great Magic Power. For any situation where Azoth doesn't apply, Ezel also becomes useless.
+
+==Gallery==
+<gallery>
+FFTA Azoth.png|Azoth.
+FFTA Astra.png|Astra.
+</gallery>
+
+==Etymology==
+{{Etym|Hermetic}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Herético (Final Fantasy Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

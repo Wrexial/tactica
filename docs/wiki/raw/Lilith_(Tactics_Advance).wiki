@@ -1,0 +1,96 @@
+{{DISPLAYTITLE:Lilith (''Tactics Advance'')}}
+[[File:FFTA Lilith Portrait.gif|right]]
+[[File:FFTA-spr-Lilith.gif|50px|left]]
+{{Quote|Powerful lamia that delights in taking life.|Description}}
+The '''Lilith''' in ''[[Final Fantasy Tactics Advance]]'' is a blue variant of the [[Lamia (Tactics Advance)|Lamia]]. They have relatively high [[HP (stat)|HP]] and Attack power, and their skills can inflict a myriad of [[status effect]]s on the party.
+
+{{See|Lilith}}
+
+==Abilities==
+===Poison Fang===
+{{Quote|Lilith command. Attack with poison and magic.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Twister (ability)|Twister}}
+|''Whipping whirlwind. Reduces HP by half in an area.''
+|20
+|-
+!{{LA|Poisonous Frog|Poison Frog}}
+|''Turns target into a frog and poisons them.''
+|—
+|-
+!Kiss
+|''Sweet kiss. Charms, and dooms target.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Atk+}}
+|''Improves weapon attacks to deal more damage.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Uladon!
+|All four units here can be quickly incapacitated by a well-placed Poison Frog from the Lilith.
+|-
+!Mission #049: A Lost Ring
+|This is probably the first time a Lilith will be encountered.
+|-
+!Mission #058: Royal Ruins
+|A Lilith is a Ruin Ward that guards the two mysterious goat-statues.
+|-
+!Mission #092: Cursed Bride
+|A level 26 Lilith that has been masquerading as a human fights alone against the four party members.
+|-
+!Mission #077: Free Baguba!
+|This incarnation of the [[Magus Sisters]] are three Liliths, who are of course named Mindy, Cindy, and Sandy.
+|-
+!Mission #022: To Ambervale
+|Five powerful enemies intercept [[Marche Radiuju|Marche]] and co. at a narrow valley. The Lilith is the farthest monster from the party and will rain her skills down from the upper ledge if allowed.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Uladon Bog]]
+|style="text-align: center"|Roaming Naiads
+|A Lilith and a Lamia are members of this clan.
+|}
+
+==Gallery==
+<gallery>
+FFTA Lilith Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Lilith}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

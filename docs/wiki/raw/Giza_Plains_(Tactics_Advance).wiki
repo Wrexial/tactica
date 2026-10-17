@@ -1,0 +1,56 @@
+{{DISPLAYTITLE:Giza Plains (''Tactics Advance'')}}
+[[File:FFTA-Giza.jpg|right|thumb|250px|The landscape of Giza Plains.]]
+{{Quote|Rolling grassy plains. Muscmaloi grows here.|Description}}
+{{See|Giza Plains}}
+'''Giza Plains''' {{J|ギーザ平原|Gīza heigen}} is the first location in ''[[Final Fantasy Tactics Advance]]'' where [[Marche Radiuju]] begins his ventures with [[Clan Nutsy]]. It is a rolling grassy plain where the Muscmaloi grows.
+
+==Story==
+In his first mission, "Mission #001: Herb Picking", Marche came here, along with [[Montblanc]] and the rest of Clan Nutsy, to gather Muscmaloi herbs, and encountered some [[Goblin (Tactics Advance)|Goblins]] and monsters.
+
+The clan in "Mission #109: Snow Fair" spawns from it.
+
+==Missions==
+*"Mission #001: Herb Picking"
+{{Quote|Looking for people to gather the fever-reducing herb muscamaloi on the Giza Plain. No experience necessary.|Ivalice Pharmacists Guild}}
+*"Mission #027: Wanted!"
+{{Quote|This Month's Wanted! Diaghilev Godeye: 2800 gil! Using alchemy to make counterfeit gil! Rumored to have a third eye!}}
+*"Mission #055: White Flowers"
+{{Quote|Please bring me some of the flowers I planted on the Giza Plains. They're the only way to cheer my sister up since mom died.|Temil, Town Youth}}
+*"Mission #070: Raven's Oath"
+{{Quote|Think you can push Clan Borzoi and its allies around? Next time, you face me: Dread Raven!|Raven, Clan Borzoi}}
+*"Mission #240: Giza Plain"
+{{Quote|A bug infestation has hit Giza Plains, and it will reach the town if we don't take action! Someone help drive those critters away!|Noris, Townsperson}}
+
+==Clan Encounters==
+===Clan Marble===
+
+{{Quote|'Engage first, then ask questions!' is their motto. They like a good clean fight.|Description}}
+*[[Soldier (Tactics Advance)|Soldier]] ([[Human|Hume]])
+*[[Animist (Tactics Advance)|Animist]] ([[Moogle]])
+*[[Archer (Tactics Advance)|Archer]] (Hume)
+*[[Fencer (Tactics Advance)|Fencer]] ([[Viera]])
+*[[Warrior (Tactics Advance)|Warrior]] ([[Bangaa]])
+
+==Turf Defense==
+===Help Giza!===
+
+{{Quote|The sky to the east of the plains is a weird color. Gramps says it's a plague of insects a-coming! Stop them before they get here!|Town rumor}}
+*[[Animist (Tactics Advance)|Animist]]
+*[[Antlion (Tactics Advance)|Antlion]] x2
+*[[Jawbreaker]]
+
+The enemy Animist has the Chocobo Rush skill, which he will use to bombard the party from his side of the river. One can line up units with the enemy Antlions to discourage the Animist from targeting them with this move.
+
+==Gallery ==
+<gallery>
+Giza Plains 1.PNG|Giza Plains.
+Giza Plains 2.PNG|Giza Plains.
+Giza Plains 3.PNG|Giza Plains.
+Giza Plains 4.PNG|Giza Plains.
+Plain-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Plains]]
+[[Category:Locations in Final Fantasy Tactics Advance]]

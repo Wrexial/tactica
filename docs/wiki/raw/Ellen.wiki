@@ -1,0 +1,16 @@
+{{infobox character
+|name=Ellen
+|release=FFTA
+|japanese=エレン
+|romaji=Eren
+|image=FFTA Ellen.png
+|race=[[Viera]]
+|gender=Female
+|type=npc
+}}
+'''Ellen''' is a [[viera]] from ''[[Final Fantasy Tactics Advance]]''. Ellen is the only named shopkeeper. She's the flirtatious owner of the item shop in [[Muscadet]] who gives good deals on greatswords. She's also mentioned in the mission "No Answers" along with a member from [[Clan Ritz]].
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Viera]]

@@ -1,0 +1,102 @@
+{{DISPLAYTITLE:Prayer (''Tactics Advance'')}}
+{{Quote|Bishop command. Sway the battle with prayers.|Description}}
+'''Prayer''' {{J|祈祷|Kitō}} is the action ability for the [[Bishop (Tactics Advance)|Bishop]] in ''[[Final Fantasy Tactics Advance]]''.
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Range
+!style="width:10%"|Power
+|-
+! rowspan=2|{{LA|Cura}}
+|[[Final Fantasy Tactics Advance weapons#Cure Staff|Cure Staff]]
+|200
+|10
+|4
+|60
+|-
+|colspan=5 style="text-align:left"|''Heals a lot of HP. Deals damage to zombies.''<br>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Dispel}}
+|[[Final Fantasy Tactics Advance weapons#Bless Staff|Bless Staff]]
+|200
+|12
+|3
+|—
+|-
+|colspan=5 style="text-align:left"|''Weakens foe, neutralizing status enhancements.''
+|-
+! rowspan=2|{{LA|Holy (ability)|Holy}}
+|[[Final Fantasy Tactics Advance weapons#Nirvana Staff|Nirvana Staff]]
+|300
+|32
+|3
+|50
+|-
+|colspan=5 style="text-align:left"|''Emits a holy light to deal damage.''
+|-
+! rowspan=2|{{LA|Barrier (ability)|Barrier}}
+|[[Final Fantasy Tactics Advance weapons#Garnet Staff|Garnet Staff]]
+|300
+|1
+|3
+|—
+|-
+|colspan=5 style="text-align:left"|''Raises weapon defense and magic resistance.''
+|-
+! rowspan=2|{{LA|Judge (ability)|Judge}}
+|[[Final Fantasy Tactics Advance weapons#Cheer Staff|Cheer Staff]]
+|300
+|6
+|3
+|—
+|-
+|colspan=5 style="text-align:left"|''Calls forth judge sword to steal judgement points.''
+|-
+! rowspan=2|{{LA|Water (ability)|Water}}
+|[[Final Fantasy Tactics Advance weapons#Spring Staff|Spring Staff]]
+|200
+|12
+|3
+|34
+|-
+|colspan=5 style="text-align:left"|''Envelops target in a damaging sphere of water.''
+|-
+! rowspan=2|{{LA|Aero}}
+|[[Final Fantasy Tactics Advance weapons#Judge Staff|Judge Staff]]
+|200
+|12
+|3
+|34
+|-
+|colspan=5 style="text-align:left"|''Creates damaging whorl of wind.''
+|-
+! rowspan=2|{{LA|Break (ability)|Break}}
+|[[Final Fantasy Tactics Advance weapons#Snake Staff|Snake Staff]]
+|200
+|20
+|3
+|—
+|-
+|colspan=5 style="text-align:left"|''Halts metabolization, petrifying target.''
+|}
+
+==Gallery==
+<gallery>
+FFTA Cura.png|Cura.
+FFTA Dispel.png|Dispel.
+FFTA Holy.png|Holy.
+FFTA Barrier.png|Barrier.
+FFTA Judge.png|Judge.
+FFTA Water.png|Water.
+FFTA Aero.png|Aero.
+FFTA Break.png|Break.
+</gallery>
+
+{{navbox abilities FFTA}}
+[[Category:Prayer abilities in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]

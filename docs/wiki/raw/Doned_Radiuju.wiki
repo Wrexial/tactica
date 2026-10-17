@@ -1,0 +1,42 @@
+{{infobox character
+|name=Doned Radiuju
+|release=FFTA
+|japanese=ドネッド・ラディウユ
+|romaji=Doneddo Radi'uyu
+|image=fftadoned.jpg
+|portrait=[[File:FFTA-Doned1-por.png|Portrait facing right in St. Ivalice.]] [[File:FFTA-Doned2-por.png|Portrait facing left in Ivalice.]]
+|sprite=[[File:FFTA doned2.gif|Sprite]]
+|race=[[Human]]
+|gender=Male
+|type=npc
+}}
+'''Doned Radiuju''' is [[Marche Radiuju|Marche's]] brother in ''[[Final Fantasy Tactics Advance]]''. He is introduced as a kid who suffers from an illness and uses a wheelchair. He finds a new life for himself inside a fantasy world that his hometown, [[St. Ivalice]], transforms into. He is also the founder of a new and large [[clan]], Clan Doned. A faction from his clan, the Doned Faction, can be fought at [[Ambervale]]. Though he has a clan, Doned cannot be fought.
+
+==Story==
+{{spoiler}}
+[[File:Ffta cast illustration.jpg|150px|thumb|left|Doned with his brother Marche, looking through a donut.]]
+Doned uses a wheelchair in the real world, but can walk in the imaginary world of [[Ivalice (Tactics Advance)|Ivalice]]. He has no desire to return to the real world until Marche confronts him and explains how he truly feels. Doned tries to impede Marche's project of reverting the world by stealing his Materite for use in [[Bervenia Palace]]'s Present Day, but Marche creates an acceptable present with the help of [[Nono]] anyway.
+
+After Doned attempts to sabotage Marche on numerous other occasions, Marche sets him up for a meeting at [[Tubola Cave]]. Marche expresses his feelings about Doned's preferential treatment from their mother and explains that her care was something that Doned had and Marche did not. Doned finally understands his brother's ambitions and agrees to help him.
+
+Back in the real [[St. Ivalice]], Doned is again using a wheelchair. However, he has accepted his condition, and makes new friends, teaching them how to play ''[[Final Fantasy (term)|Final Fantasy]]''.
+{{endspoiler}}
+
+==Other appearances==
+===''[[Final Fantasy Artniks]]''===
+<gallery>
+FFTA Doned R+ I Artniks.png|''Final Fantasy Artniks''.
+</gallery>
+{{Section|Final Fantasy Artniks}}
+{{clear}}
+
+===''[[Final Fantasy Trading Card Game]]''===
+Doned appears in ''Final Fantasy Trading Card Game'' as various wind-element monster-focused cards.
+<gallery>
+Doned Radiuju FFTCG Forward Wind.jpg
+Doned Radiuju FFTCG Backup Wind.jpg
+</gallery>
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]

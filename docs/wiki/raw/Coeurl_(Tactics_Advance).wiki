@@ -1,0 +1,102 @@
+{{DISPLAYTITLE:Coeurl (''Tactics Advance'')}}
+[[File:FFTA-spr-Coeurl.gif|left]]
+[[File:FFTA_Coeurl_Portrait.gif|right]]
+{{Quote|King of the red panthers. Turns prey to stone.|Description}}
+The '''Coeurl''' in ''[[Final Fantasy Tactics Advance]]'' is a powerful blue beast related to the [[Red Panther (Tactics Advance)|Red Panther]]. It has high [[HP (stat)|HP]] and is dangerous to approach because of its [[Blaster (ability)|Blaster]] skill and high Attack power. There is usually never more than one Coeurl at a time.
+
+{{See|Coeurl}}
+
+==Abilities==
+===Scratch===
+{{Quote|Coeurl command. Lunge with sharp poison claws.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Hastebreak}}
+|''Slows target. [[Stop (status)|Stops]] [[Haste (status)|Hasted]] targets.''
+|12
+|-
+!{{LA|Blaster (ability)|Blaster}}
+|''Releases shining energy, [[Petrify (status)|Petrifying]] target.''
+|—
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Reveal}}
+|''Finds and reveals any [[Invisible (status)|Concealed]] units.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:25%"|Prerequisites
+!style="width:70%"|Information
+|-
+!Mission #037: Village Hunt
+|Complete Mission #003: The Cheetahs
+|It is a good idea to have the units use the Judge and easternmost cactus to cover their backs when heading for the Coeurl.
+|-
+!Mission #004: Desert Peril
+|Complete Mission #003: The Cheetahs
+|The Coeurl begins on a mesa and should take at least three turns to reach the party. Try to eliminate closer enemies before it approaches.
+|-
+!Mission #100: Fiend Run
+|Complete Mission #009: Magic Wood, Capture 5 monsters
+|The four escaped monsters should be no match, unless the Ahrimans begins to KO most of the units with [[Roulette]] and the Coeurl petrifies the rest with Blaster.
+|-
+!Mission #052: Friend Trouble
+|Complete Mission #012: Pale Company
+|There are three Red Panthers and a Coeurl. Try not to let them surround the mages.
+|-
+!Mission #065: Exploration
+|Complete Mission #016: The Big Find
+|To unlock [[Jagd Ahli]], the monsters guarding the gate must be defeated. The Coeurl begins on the left side.
+|-
+!Mission #022: To Ambervale
+|Complete Mission #021: Hidden Vein
+|The Coeurl is backed up a group of other difficult monsters, including a [[Big Malboro]], [[Thundrake]], and [[Lilith (Tactics Advance)|Lilith]].
+|-
+!Mission #067: Missing Meow
+|Complete Mission #191: Lucky Charm
+|Disabling the Coeurl or putting it to sleep is recommended.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Nargai Cave]]
+|style="text-align:center"|Tribites
+|The Coeurl and three Red Panthers should be taken out one by one, preferably with ranged attacks or melee units that have high Defense.
+|-
+![[Jagd Dorsa]]
+|style="text-align:center"|Clan Hounds
+|Clan Hounds is one of the few clans that includes both monsters and people. The Coeurl is the most dangerous enemy.
+|-
+![[Gotor Sands]]
+|style="text-align:center"|Wild Monsters
+|The Coeurl will be trouble if it and the [[Icedrake]] rush the party at the same time.
+|}
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Coeurl TCG.png|right|100px]]
+Coeurl appears on a card.
+{{clear}}
+
+==Etymology==
+{{Etym|Coeurl}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

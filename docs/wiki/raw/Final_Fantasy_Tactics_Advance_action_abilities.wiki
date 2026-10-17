@@ -1,0 +1,559 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' action abilities}}
+[[File:FFTA Action Ability Icon.png|right]]
+'''Action abilities''' {{J|アクションアビリティ|Akushon Abiriti}} in ''[[Final Fantasy Tactics Advance]]'' are combat abilities learned via [[Ability Points]] (AP). The [[Unit (term)|unit's]] mandatory job ability appears in the top slot, while the second slot may be assigned any action ability the unit has learned.
+
+The following lists action abilities and also includes the flavor text along with the abilities found within their sub-menu, if applicable.
+
+==Action abilities==
+===Basic===
+{|class="full-width article-table FFTA" style="text-align:center"
+|-
+!style="width:20%"|Name
+!style="width:30%"|Text
+!style="width:35%"|Abilities
+!style="width:15%"|User
+|-
+!{{LA|Attack (command)|Fight}}
+|''Fight with bare hands or a weapon, if equipped.''
+|—
+|All
+|-
+!{{LA|Item}}
+|''Use items like "potion" and "antidote."''
+|—
+|All
+|-
+!{{LA|Combo (Tactics Advance)|Combo}}
+|''All allies with combo abilities attack together.''
+|—
+|All
+|}
+
+===[[Human]]===
+{|class="full-width article-table FFTA" style="text-align:center"
+|-
+!style="width:20%"|Name
+!style="width:30%"|Text
+!style="width:35%"|Abilities
+!style="width:15%"|User
+|-
+!{{LA|Totema}}
+|''Use all JP to summon the human totema, Mateus. Deals a massive amount of HP damage to all enemies.''
+|—
+|[[Human]]
+|-
+!{{LA|Battle Tech}}
+|''Soldier & warrior command. Soften up enemy defenses.''
+|First Aid, Powerbreak, Mindbreak, Magicbreak, Speedbreak, Mug, Provoke, Sensor
+|[[Soldier (Tactics Advance)|Soldier]]
+|-
+!{{LA|Chivalry (Tactics Advance)|Chivalry}}
+|''Paladin command. Defend allies with your sword.''
+|Nurse, Defense, Cover, Subdue, Drop Weapon, Parley, Saint Cross, Holy Blade
+|[[Paladin (Tactics Advance)|Paladin]]
+|-
+!{{LA|Fighter Tech}}
+|''Fighter command. Use many different sword techs.''
+|Rush, Wild Swing, Beatdown, Blitz, Air Render, Far Fist, Air Blast, Backdraft
+|[[Fighter (Tactics Advance)|Fighter]]
+|-
+!{{LA|Steal (Tactics Advance)|Steal}}
+|''Thief command. Steal with nimble hands.''
+|Steal: Armor, Steal: Shield, Steal: Access., Steal: Helm, Steal: Weapon, Steal: Gil, Steal: EXP, Steal: JP, Steal: Ability
+|[[Thief (Tactics Advance)|Thief]]
+|-
+!{{LA|Ninja Skill}}
+|''Ninja command. Fight with techs from a foreign land.''
+|Throw, Wood Veil, Fire Veil, Earth Veil, Metal Veil, Water Veil, Unspell, Oblivion
+|[[Ninja (Tactics Advance)|Ninja]]
+|-
+!{{LA|White Magic (Tactics Advance)|White Magic}}
+|''White mage command. Help allies with healing magic.''
+|Cure, Cura, Curaga, Esuna, Life, Full-Life, Auto-Life, Shell, Protect
+|[[White Mage (Tactics Advance)|White Mage]]
+|-
+!{{LA|Black Magic (Tactics Advance)|Black Magic}}
+|''Black mage command. Use elemental magic.''
+|Fire, Fira, Firaga, Thunder, Thundara, Thundaga, Blizzard, Blizzara, Blizzaga
+|[[Black Mage (Tactics Advance)|Black Mage]]
+|-
+!{{LA|Phantasm Tech}}
+|''Illusionist command. Deal damage to all foes.''
+|Prominence, Tempest, Freezeblink, Star Cross, Stardust, Deluge, Soil Evidence, Wild Tornado
+|[[Illusionist (Tactics Advance)|Illusionist]]
+|-
+!{{LA|Blue Magic (Tactics Advance)|Blue Magic}}
+|''Blue mage command. Use learned enemy ability.''
+|Goblin Punch, Magic Hammer, Acid, Blowup, Mighty Guard, Guard-Off, Dragon Force, Night, Twister, LV3 Def-Less, Matra Magic, Poison Claw, Hastebreak, Bad Breath, Stare, Roulette, Drain Touch, LV? S-Flare, White Wind, Angel Whisper
+|[[Blue Mage (Tactics Advance)|Blue Mage]]
+|-
+!{{LA|Aim (Tactics Advance)|Aim}}
+|''Archer command. Shoot a well-aimed arrow.''
+|Boost, Aim: Legs, Aim: Arm, Cupid, Burial, Take Aim, Faster, Blackout
+|[[Archer (Tactics Advance)|Archer]]
+|-
+!{{LA|Hunt (Tactics Advance)|Hunt}}
+|''Hunter command. Use your hunting skills to fight.''
+|Sonic Boom, Oust, Advice, Aim: Vitals, Hunting, Addle, Sidewinder, Capture, Ultima Shot
+|[[Hunter (Tactics Advance)|Hunter]]
+|}
+
+===[[Moogle]]===
+{|class="full-width article-table FFTA" style="text-align:center"
+|-
+!style="width:20%"|Name
+!style="width:30%"|Text
+!style="width:35%"|Abilities
+!style="width:15%"|User
+|-
+!{{LA|Totema}}
+|''Use all JP to summon the moogle totema, Famfrit. Deals a massive amount of HP damage to all enemies.''
+|—
+|[[Moogle]]
+|-
+!{{LA|Call (Tactics Advance)|Call}}
+|''Animist command. Borrow strength from animals.''
+|Sheep Count, 100% Wool, Cuisine, Tail Wag, Chocobo Rush, Frogsong, Friend, Catnip
+|[[Animist (Tactics Advance)|Animist]]
+|-
+!{{LA|Charge (Tactics Advance)|Charge}}
+|''Mog Knight command. Use momentum to deal damage.''
+|Mog Attack, Mog Guard, Mog Lance, Mog Rush, Mog Shield, Mog Peek, Mog Aid, Ultima Charge
+|[[Mog Knight]]
+|-
+!{{LA|Gunmanship}}
+|''Gunner command. Use special bullets to fight.''
+|Fireshot, Iceshot, Boltshot, Confushot, Charmshot, Blindshot, Silenshot, Stopshot
+|[[Gunner (Tactics Advance)|Gunner]]
+|-
+!{{LA|Steal (Tactics Advance)|Steal}}
+|''Thief command. Steal with nimble hands.''
+|Steal: Armor, Steal: Shield, Steal: Access., Steal: Helm, Steal: Weapon, Steal: Gil, Steal: EXP, Steal: JP, Steal: Ability
+|[[Thief (Tactics Advance)|Thief]]
+|-
+!{{LA|Stunt}}
+|''Juggler command. Attack with hoops and balls.''
+|Hurl, Ring, Firebomb, Ball, Dagger, Smile, Gil Toss
+|[[Juggler (Tactics Advance)|Juggler]]
+|-
+!{{LA|Pandora (Tactics Advance)|Pandora}}
+|''Gadgeteer command. Pull something from your box.''
+|Red Spring, Blue Screw, Green Gear, Silver Disc, Gold Battery, Black Ingot, Chroma Gem, Yellow Spring
+|[[Gadgeteer]]
+|-
+!{{LA|Black Magic (Tactics Advance)|Black Magic}}
+|''Black mage command. Use elemental magic.''
+|Fire, Fira, Firaga, Thunder, Thundara, Thundaga, Blizzard, Blizzara, Blizzaga
+|[[Black Mage (Tactics Advance)|Black Mage]]
+|-
+!{{LA|Time Magic (Tactics Advance)|Time Magic}}
+|''Time mage command. Warp the fabric of time itself.''
+|Haste, Quicken, Slow, Reflect, Stop, Silence, Quarter, Demi
+|[[Time Mage (Tactics Advance)|Time Mage]]
+|}
+
+===[[Nu mou]]===
+{|class="full-width article-table FFTA" style="text-align:center"
+|-
+!style="width:20%"|Name
+!style="width:30%"|Text
+!style="width:35%"|Abilities
+!style="width:15%"|User
+|-
+!{{LA|Totema}}
+|''Use all JP to summon the nu mou totema, Ultima. Deals a massive amount of MP damage to all enemies.''
+|—
+|[[Nu mou]]
+|-
+!{{LA|White Magic (Tactics Advance)|White Magic}}
+|''White mage command. Help allies with healing magic.''
+|Cure, Cura, Curaga, Esuna, Life, Full-Life, Auto-Life, Shell, Protect
+|[[White Mage (Tactics Advance)|White Mage]]
+|-
+!{{LA|Black Magic (Tactics Advance)|Black Magic}}
+|''Black mage command. Use elemental magic.''
+|Fire, Fira, Firaga, Thunder, Thundara, Thundaga, Blizzard, Blizzara, Blizzaga
+|[[Black Mage (Tactics Advance)|Black Mage]]
+|-
+!{{LA|Time Magic (Tactics Advance)|Time Magic}}
+|''Time mage command. Warp the fabric of time itself.''
+|Haste, Quicken, Slow, Reflect, Stop, Silence, Quarter, Demi
+|[[Time Mage (Tactics Advance)|Time Mage]]
+|-
+!{{LA|Phantasm Tech}}
+|''Illusionist command. Deal damage to all foes.''
+|Prominence, Tempest, Freezeblink, Star Cross, Stardust, Deluge, Soil Evidence, Wild Tornado
+|[[Illusionist (Tactics Advance)|Illusionist]]
+|-
+!{{LA|Alchemy Tech}}
+|''Alchemist command. Change the form of matter.''
+|Astra, Death, Meteor, Rasp, Flare, Poison, Toad
+|[[Alchemist (Tactics Advance)|Alchemist]]
+|-
+!{{LA|Control (ability)|Control}}
+|''Beastmaster command. Control various monsters.''
+|Goblin, Flan, Bomb, Dragon, Lamia, Bug, Tonberry, Panther, Malboro, Floateye, Undead, Fairy, Rockbeast
+|[[Beastmaster (Tactics Advance)|Beastmaster]]
+|-
+!{{LA|Morph (Tactics Advance)|Morph}}
+|''Morpher command. Assume captured monster's form.''
+|Goblin, Flan, Bomb, Dragon, Lamia, Bug, Panther, Malboro, Floateye
+|[[Morpher]]
+|-
+!{{LA|Sagacity Skill}}
+|''Sage command. Use new and different magic.''
+|Drain, Blind, Water, Aero, Raise, Giga Flare, Bio, Ultima Blow
+|[[Sage (Tactics Advance)|Sage]]
+|}
+
+===[[Bangaa]]===
+{|class="full-width article-table FFTA" style="text-align:center"
+|-
+!style="width:20%"|Name
+!style="width:30%"|Text
+!style="width:35%"|Abilities
+!style="width:15%"|User
+|-
+!{{LA|Totema}}
+|''Use all JP to summon the bangaa totema, Adrammalech. Deals a massive amount of HP damage to all enemies.''
+|—
+|[[Bangaa]]
+|-
+!{{LA|Battle Tech}}
+|''Soldier & warrior command. Soften up enemy defenses.''
+|First Aid, Powerbreak, Mindbreak, Magicbreak, Speedbreak, Body Slam, Greased Bolt, Downsize
+|[[Warrior (Tactics Advance)|Warrior]]
+|-
+!{{LA|Dragon Tech}}
+|''Dragoon command. Use techs learned from the dragons.''
+|Jump, Lancet, Wyrmtamer, Fire Breath, Bolt Breath, Ice Breath, Wyrmkiller, Bangaa Cry
+|[[Dragoon (Tactics Advance)|Dragoon]]
+|-
+!{{LA|Defend (Tactics Advance)|Defend}}
+|''Defender command. Protect yourself and your allies.''
+|Tremor, Meltdown, Defense, Drop Weapon, Hibernate, Mow Down, Aura, Expert Guard
+|[[Defender (Tactics Advance)|Defender]]
+|-
+!{{LA|Spellblade (command)|Spellblade Tech}}
+|''Gladiator command. Combine magic with swordplay.''
+|Rush, Wild Swing, Beatdown, Blitz, Fire Sword, Bolt Sword, Ice Sword, Ultima Sword
+|[[Gladiator (Tactics Advance)|Gladiator]]
+|-
+!{{LA|Monk Tech}}
+|''White monk command. Use own body as a weapon.''
+|Whirlwind, Air Render, Earth Render, Far Fist, Chakra, Revive, Exorcise, Holy Sign
+|[[White Monk (Tactics Advance)|White Monk]]
+|-
+!{{LA|Prayer (Tactics Advance)|Prayer}}
+|''Bishop command. Sway the battle with prayers.''
+|Cura, Dispel, Holy, Barrier, Judge, Water, Aero, Break
+|[[Bishop (Tactics Advance)|Bishop]]
+|-
+!{{LA|Sacred Tech}}
+|''Templar command. Use aid magic and your sword.''
+|Astra, Warcry, Rasp, Cheer, Silence, Soul Sphere, Haste, Lifebreak
+|[[Templar (Tactics Advance)|Templar]]
+|}
+
+===[[Viera]]===
+{|class="full-width article-table FFTA" style="text-align:center"
+|-
+!style="width:20%"|Name
+!style="width:30%"|Text
+!style="width:35%"|Abilities
+!style="width:15%"|User
+|-
+!{{LA|Totema}}
+|''Use all JP to summon the viera totema, Exodus. Deals a massive amount of MP damage to all enemies.''
+|—
+|[[Viera]]
+|-
+!{{LA|Lunge Tech}}
+|''Fencer command. Use quick, lunging sword attacks.''
+|Swarmstrike, Shadowstick, Checkmate, Featherblow, Swallowtail, Manastrike, Piercethrough, Nighthawk
+|[[Fencer (Tactics Advance)|Fencer]]
+|-
+!{{LA|Spirit Magic}}
+|''Elementalist command. Draw on spirit power to attack.''
+|Fire Whip, Earth Heal, White Flame, Shining Air, Evil Gaze, Heavy Dust, Sliprain, Elementalshift
+|[[Elementalist (Tactics Advance)|Elementalist]]
+|-
+!{{LA|Red Magic (Tactics Advance)|Red Magic}}
+|''Red mage command. Use offensive magic.''
+|Barrier, Fire, Thunder, Blizzard, Cure, Sleep, Poison, Doublecast
+|[[Red Mage (Tactics Advance)|Red Mage]]
+|-
+!{{LA|White Magic (Tactics Advance)|White Magic}}
+|''White mage command. Help allies with healing magic.''
+|Cure, Cura, Curaga, Esuna, Life, Full-Life, Auto-Life, Shell, Protect
+|[[White Mage (Tactics Advance)|White Mage]]
+|-
+!{{LA|Summon Magic (Tactics Advance)|Summon Magic}}
+|''Summoner command. Summon creatures from the ether.''
+|Unicorn, Ifrit, Ramuh, Shiva, Kirin, Carbuncle, Phoenix, Madeen
+|[[Summoner (Tactics Advance)|Summoner]]
+|-
+!{{LA|Aim (Tactics Advance)|Aim}}
+|''Archer command. Shoot a well-aimed arrow.''
+|Boost, Aim: Legs, Aim: Arm, Cupid, Burial, Take Aim, Faster, Blackout
+|[[Archer (Tactics Advance)|Archer]]
+|-
+!{{LA|Corner (Tactics Advance)|Corner}}
+|''Assassin command. Corner foe in a tight spot.''
+|Shadowbind, Last Breath, Aphonia, Nightmare, Ague, Rockseal, Oblivion, Ultima Masher
+|[[Assassin (Tactics Advance)|Assassin]]
+|-
+!{{LA|Sharpshoot}}
+|''Sniper command. Strike at foe's gear, gil and life.''
+|Doubleshot, Beso Toxico, Death Sickle, Conceal, Doom Archer, Aim: Armor, Aim: Weapon, Aim: Wallet
+|[[Sniper (Tactics Advance)|Sniper]]
+|}
+
+===Special===
+{|class="full-width article-table FFTA" style="text-align:center"
+|-
+!style="width:20%"|Name
+!style="width:30%"|Text
+!style="width:35%"|Abilities
+!style="width:15%"|User
+|-
+!{{LA|Snowball (ability)|Snowball}}
+|''Throw a snowball. No rocks, please.''
+|—
+|[[Marche Radiuju|New Kid]], [[Ritz Malheur|Class Head]], [[Mewt Randell|Librarian]], Custodian, Nurse, [[Colin (Tactics Advance)|PE Head]], [[Lyle|PE Head]], [[Guinness|D.J.]]
+|-
+!{{LA|Advanced Law }}
+|''Judgemaster command. Laws reserved for Judgemaster.''
+|Abate, Judge Sword, Bind, JP Gift, Yellow Clip
+|[[Judgemaster (Tactics Advance)|Judgemaster]]
+|-
+!{{LA|Hermetics}}
+|''Hermetic command. Use extremely potent alchemy.''
+|Azoth, Astra
+|[[Hermetic]]
+|-
+!{{LA|Rune (Tactics Advance)|Rune}}
+|''Runeseeker command. Use all forms of magic.''
+|Explode, Stillness, Quarter, Demi
+|[[Runeseeker]]
+|-
+!{{LA|Dark Magic (Tactics Advance)|Dark Magic}}
+|''Biskmatar command. Use negative powered magic.''
+|Omega, Abyss
+|[[Biskmatar]]
+|-
+!{{LA|Flair (Tactics Advance)|Flair}}
+|''Biskmatar command. Use ancient sword techs.''
+|Life Render, Heart Render, Ripcircle, Furycircle
+|[[Biskmatar]]
+|-
+!{{LA|Final Fantasy Tactics Advance enemy abilities#Blank Card|Blank Card}}
+|''Blank law card. Allows law making.''
+|Blank Card
+|Official
+|-
+!{{A|Judgement}}
+|''Judge command. Sentence given to criminals.''
+|Yellow Card, Judge Sword, Palaistra
+|[[Judge (Tactics Advance)|Judge]]
+|}
+
+===Monsters===
+{|class="full-width article-table FFTA" style="text-align:center"
+|-
+!style="width:20%"|Name
+!style="width:30%"|Text
+!style="width:35%"|Abilities
+!style="width:15%"|User
+|-
+!{{A|Punch}}
+|''Goblin command. Hit foes with a powerful punch.''
+|Goblin Punch
+|[[Goblin (Tactics Advance)|Goblin]]
+|-
+!{{A|Hit}}
+|''Red cap command. Deliver an all-out punch.''
+|Magic Hammer, Mutilate
+|[[Red Cap (Tactics Advance)|Red Cap]]
+|-
+!{{A|Scorch}}
+|''Cream command. Attack with electrically charged body.''
+|Acid, Thunder, Thundara, Thundaga
+|[[Cream (Tactics Advance)|Cream]]
+|-
+!{{A|Chill}}
+|''Ice flan command. Attack with frozen body.''
+|Acid, Blizzard, Blizzara, Blizzaga
+|[[Ice Flan (Tactics Advance)|Ice Flan]]
+|-
+!{{A|Melt}}
+|''Jelly command. Attack with superheated body.''
+|Acid, Sacrifice, Fire, Fira, Firaga
+|[[Jelly (Tactics Advance)|Jelly]]
+|-
+!{{A|Blaze}}
+|''Bomb command. Attack enemies with fire.''
+|Blowup, Flame Attack
+|[[Bomb (Tactics Advance)|Bomb]]
+|-
+!{{A|Boom!}}
+|''Grenade command. Envelop surrounding area in fire.''
+|Blowup, Chill
+|[[Grenade (Tactics Advance)|Grenade]]
+|-
+!{{A|Dragonblaze}}
+|''Firewyrm command. Unleash the dragonblaze.''
+|Guard-Off, Fire Breath
+|[[Firewyrm]]
+|-
+!{{A|Icewyrm}}
+|''Ice drake command. Unleash icy death.''
+|Mighty Guard, Ice Breath
+|[[Icedrake]]
+|-
+!{{A|Boltdragon}}
+|''Thundrake command. Fire a dragonbolt at foes.''
+|Dragon Force, Bolt Breath
+|[[Thundrake]]
+|-
+!{{A|Song}}
+|''Lamia command. Confuse enemy with beautiful song.''
+|Night, Hand Slap, Poison Frog
+|[[Lamia (Tactics Advance)|Lamia]]
+|-
+!{{A|Poison Fang}}
+|''Lilith command. Attack with poison and magic.''
+|Twister, Poison Frog, Kiss
+|[[Lilith (Tactics Advance)|Lilith]]
+|-
+!{{A|Sandstorm}}
+|''Antlion command. Attack with swirling sand.''
+|LV 3 Def-Less, Sandstorm
+|[[Antlion (Tactics Advance)|Antlion]]
+|-
+!{{A|Adhere}}
+|''Jawbreaker command. Bite enemies hard.''
+|LV 3 Def-Less, LV 5 Death, Suffocate
+|[[Jawbreaker]]
+|-
+!{{A|Grudge}}
+|''Tonberry command. Attack with a vengeance.''
+|Knife, Karma
+|[[Tonberry (Tactics Advance)|Tonberry]]
+|-
+!{{A|Malice}}
+|''Masterberry command. Attack with utter malice.''
+|Knife, Voodoo
+|[[Masterberry]]
+|-
+!{{A|Scratch}}
+|''Coeurl command. Lunge with sharp poison claws.''
+|Hastebreak, Blaster
+|[[Coeurl (Tactics Advance)|Coeurl]]
+|-
+!{{A|Rake}}
+|''Red panther command. Rake with poison claws.''
+|Poison Claw, Rend
+|[[Red Panther (Tactics Advance)|Red Panther]]
+|-
+!{{A|Stench}}
+|''Malboro command. Poison with slime and breath.''
+|Bad Breath, Goo
+|[[Malboro (Tactics Advance)|Malboro]]
+|-
+!{{A|Reek}}
+|''Big malboro command. Spew poison and eerie sounds.''
+|Bad Breath, Goo, Soundwave
+|[[Big Malboro]]
+|-
+!{{A|Glare}}
+|''Ahriman command. Weaken foes with evil gaze.''
+|Roulette, Circle
+|[[Ahriman (Tactics Advance)|Ahriman]]
+|-
+!{{A|Gaze}}
+|''Floateye command. Shoot evil from eye.''
+|Stare, Devil Gaze
+|[[Floateye (Tactics Advance)|Floateye]]
+|-
+!{{A|Illude}}
+|''Vampire command. Use dark power to take lives.''
+|Miasma, LV? S-Flare, Zombify
+|[[Vampire (Tactics Advance)|Vampire]]
+|-
+!{{A|Rot}}
+|''Zombie command. Drain life from an enemy.''
+|Drain Touch, Miasma
+|[[Zombie (Tactics Advance)|Zombie]]
+|-
+!{{A|Trick}}
+|''Sprite command. Play nasty prank.''
+|White Wind, Meteorite
+|[[Sprite (Tactics Advance)|Sprite]]
+|-
+!{{A|Fluoresce}}
+|''Titania command. Destroy foes with searing light.''
+|Angel Whisper, LV?D Holy
+|[[Titania (Tactics Advance)|Titania]]
+|-
+!{{A|Debilitate}}
+|''Toughskin command. Weaken enemy in self-defense.''
+|Matra Magic, Resonance
+|[[Toughskin (Tactics Advance)|Toughskin]]
+|-
+!{{A|Crush}}
+|''Blade biter command. Crush weapons in powerful jaws.''
+|Limit Glove, Munch, Resonate
+|[[Blade Biter (Tactics Advance)|Blade Biter]]
+|-
+!{{A|Expulse}}
+|''Totema command. Drive off all intruders.''
+|Lightspeed, Howl of Rage, Firestream
+|[[Adrammelech (Tactics Advance)|Adrammelech]]
+|-
+!{{A|Magestorm}}
+|''Totema command. Use all the world's magic.''
+|Soul Sphere
+|[[Adrammelech (Tactics Advance)|Adrammelech]]
+|-
+!{{A|Expulse}}
+|''Totema command. Drive off all intruders.''
+|Breath of God, Lightspeed, Presence
+|[[Famfrit (Tactics Advance)|Famfrit]]
+|-
+!{{A|Magestorm}}
+|''Totema command. Use all the world's magic.''
+|Demi, Slow
+|[[Famfrit (Tactics Advance)|Famfrit]]
+|-
+!{{A|Expulse}}
+|''Totema command. Drive off all intruders.''
+|Breath of God, Spellbind
+|[[Mateus (Tactics Advance)|Mateus]]
+|-
+!{{A|Magestorm}}
+|''Totema command. Use all the world's magic.''
+|Star Cross, Thundaga
+|[[Mateus (Tactics Advance)|Mateus]]
+|-
+!{{A|Expulse}}
+|''Totema command. Drive off all intruders.''
+|Logos
+|[[Ultima (Tactics Advance)|Ultima Crystal]]
+|-
+!{{A|Genesis}}
+|''Li-grim command. Wield the primal world-power.''
+|Lawshift, Amber Gleam
+|[[Remedi|Li-Grim]]
+|-
+!{{A|Wicca}}
+|''Li-grim command. Magic shaped from desires.''
+|Omega, Alpha, Descent, Magi
+|[[Remedi|Li-Grim]]
+|}
+
+{{Navbox abilities FFTA}}
+{{navbox command abilities}}
+[[Category:Action abilities in Final Fantasy Tactics Advance]]
+[[Category:Abilities in Final Fantasy Tactics Advance]]
+[[Category:Command abilities]]

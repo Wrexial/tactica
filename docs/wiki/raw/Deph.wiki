@@ -1,0 +1,137 @@
+[[File:FFTA-final01.png|right|thumb|Clan Nutsy against the Battle Queen and her Dephs.]]
+{{Quote|Loyal golems made with magic like the crystals.|Description}}
+'''Deph''' is a powerful creature in ''[[Final Fantasy Tactics Advance]]'', summoned by [[Remedi|Queen Remedi]] during the final battle. Dephs are essentially advanced purple versions of three of the [[Totema]] that [[Marche Radiuju]] battled in his effort to return the world of [[Ivalice (Tactics Advance)|Ivalice]] back [[St. Ivalice|to normal]]. Upon defeat, Dephs condense into deep purple crystals surrounded by a crimson light.
+
+==Battle==
+During her fight with Marche, Remedi summons a total of four Dephs.
+
+===As the [[Battle Queen#Battle Queen|Battle Queen]]===
+After unsheathing her white sickle, Remedi summons two Dephs, [[Famfrit (Tactics Advance)|Famfrit]] on her right and [[Adrammelech (Tactics Advance)|Adrammelech]] on her left. The two Dephs have much more [[HP (stat)|HP]] and [[MP (stat)|MP]] than when Marche fought them as Totema. They have retained their Expulse and Magestorm abilities, and will use them with a higher frequency than before. Once Remedi's HP has been depleted, these Dephs will disappear.
+
+===As [[Remedi#Li-Grim|Li-Grim]]===
+[[File:FFTA-final02.png|right|thumb|Clan Nutsy against Li-Grim.]]
+Upon transforming into the Li-Grim, Remedi summons two more Dephs, both of the Totema of humans, [[Mateus (Tactics Advance)|Mateus]]. The two Dephs appear in the same starting position as Famfrit and Adrammelech did. The clones of Mateus have even more HP than the original Totema battled in the fifth shrine. It may be necessary to defeat both Dephs before concentrating on the Li-Grim.
+
+If the player attempts to rush the Li-Grim and fails to defeat her before she and her minions are able to act, they will have three devastating spells to deal with at once, such as Magi and Star Cross, which can affect all party members at the same time.
+
+==Abilities==
+===Adrammelech===
+;Expulse
+{{Quote|Totema command. Drive off all intruders.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+!Lightspeed
+|Damages unit and bypasses Reaction ability.
+|-
+!Howl of Rage
+|Lowers Speed of surrounding units.
+|-
+!Firestream
+|Fire damage to all units in line.
+|}
+
+;Magestorm
+{{Quote|Totema command. Use all the world's magic.}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+![[Rasp (ability)#Final Fantasy Tactics Advance|Soul Sphere]]
+|Area MP damage.
+|}
+
+;Reaction
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+![[Counter (ability)|Counter]]
+|Follow up an enemy attack with an attack of your own.
+|}
+{{clear}}
+
+===Famfrit===
+;Expulse
+{{Quote|Totema command. Drive off all intruders.}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+!Breath of God
+|Envelops surrounding units and deals damage.
+|-
+!Lightspeed
+|Damages unit and bypasses Reaction ability.
+|-
+!Presence
+|Damages and knocks back a unit using the fear of God.
+|-
+|}
+
+;Magestorm
+{{Quote|Totema command. Use all the world's magic.}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+![[Slow (ability)|Slow]]
+|Inflicts the Slow status.
+|-
+![[Gravity (ability)|Demi]]
+|Deals damage equal to 1/2 of targets '''current''' HP.
+|}
+
+;Reaction
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+![[Counter (ability)|Counter]]
+|Follow up an enemy attack with an attack of your own.
+|}
+{{clear}}
+
+===Mateus===
+;Expulse
+{{Quote|Totema command. Drive off all intruders.}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+!Spellbind
+|Dark arm that attacks soul, damages, [[Slow (status)|Slows]], and delays next turn of one target.
+|-
+!Breath of God
+|Envelops surrounding units and deals damage.
+|}
+
+;Magestorm
+{{Quote|Totema command. Use all the world's magic.}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+!Star Cross
+|Uses the power of the stars to deal Holy damage to all enemies.
+|-
+![[Thundaga (ability)|Thundaga]]
+|Most powerful [[Lightning (element)|Lightning]] spell. Shoots many bolts in a cross-shaped area.
+|}
+{{clear}}
+
+==Etymology==
+'Deph' is a slang term for describing something as 'good', 'impressive', 'attractive' or 'mind blowing'.
+
+{{navbox characters FFTA}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]
+[[Category:Final bosses]]

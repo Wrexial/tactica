@@ -1,0 +1,101 @@
+{{DISPLAYTITLE:Mateus (''Tactics Advance'')}}
+{{infobox character
+|name=Mateus
+|release=FFTA
+|japanese=背徳の神帝マティウス
+|romaji=Haitoku no Shintei Matiusu
+|lit=The Corrupt Emperor Mateus
+|image=FFTA Mateus.JPG
+|race=[[Totema]]
+|type=boss
+|recurring appearance=Mateus (Ivalice)
+}}
+{{Quote|The totema of the humans...|[[Marche Radiuju]]}}
+'''Mateus''' is the [[totema]] of the [[Human|humes]] in ''[[Final Fantasy Tactics Advance]]'', and is the fifth and final Totema fought by [[Marche Radiuju]]. After being defeated, Mateus can be summoned by any hume member of [[Clan Nutsy]]. Two [[Deph]]s of Mateus also appear during the fight with [[Remedi]] in her Li-Grim form.
+
+Unlike the other appearances of Mateus, the totema is an armored female warrior, not an armor with a goddess as a living shield. As Mateus is the totema of the Hume race, she possesses two abilities usable by humes: the [[Illusionist (Tactics Advance)|Illusionist]] ability Star Cross, and the [[Black Mage (Tactics Advance)|Black Mage]] spell [[Thundaga (ability)|Thundaga]].
+
+==Battle==
+[[File:Mateus FFTA.JPG|thumb|left|150px|Mateus being summoned in battle.]]
+Mateus is accompanied by four [[Vampire (Tactics Advance)|Vampires]], two on each side. The shrine in which the battle takes place is quite small, consisting of two flat areas that the opposite teams start out on, with a small 3-panel wide bridge connecting them over a wide abyss. Units can also sneak around the sides of the gap, though the Vampires can simply teleport over it.
+
+To combat Mateus and her [[undead]] cronies, players may wish to bring a [[White Mage (Tactics Advance)|White Mage]] with [[Full-Life (Tactics Advance)|Full-Life]], a [[Summoner (Tactics Advance)|Summoner]] with [[Phoenix (Tactics Advance)|Phoenix]], and any [[Hunter (Tactics Advance)|Hunter]]. Full-Life will instantly kill a Vampire, but Phoenix is a better choice because of its wide area of effect and 100% accuracy. If the Summoner has not learned Phoenix from the [[Nirvana Staff (Tactics Advance)|Nirvana Staff]], [[Madeen (Tactics Advance)|Madeen]], [[Curaga (Tactics Advance)|Curaga]] and [[Unicorn (Tactics Advance)|Unicorn]] are also good options.
+
+A melee unit with a move range of 4 or higher (perhaps a [[Ninja (Tactics Advance)|Ninja]]) should be placed in the front row within reach of Mateus. On that unit's first turn, it can score a hit on the Totema while the mages blast the Vampires with [[Holy (Tactics Advance)|Holy]] spells. Mateus should only get off one spell, most likely [[Thundaga (ability)|Thundaga]] or Star Cross, before the absence of minions makes her an easy target for a KO.
+
+==Stats==
+{|class="FFTA article-table" style="text-align:center"
+|-
+!style="width:{{#expr:100/3}}%"|Move Rate
+!style="width:{{#expr:100/3}}%"|Jump Rate
+!style="width:{{#expr:100/3}}%"|Evade Rate
+|-
+|3
+|2
+|30
+|}
+
+==Growth==
+As a boss character, Mateus's [[stat growth]] is considerably higher than that of normal playable job classes. She has the highest HP, MP, Attack, and Magic Resistance of all Totema, and her remaining stats are impressive in their own right with the exception of Speed.
+{{clear}}
+
+{|class="FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|HP
+!style="width:10%"|MP
+!style="width:10%"|Attack
+!style="width:10%"|Defense
+!style="width:10%"|Magic Power
+!style="width:10%"|Magic Resistance
+!style="width:10%"|Speed
+|-
+|14.6 S+
+|7.2 S+
+|11.4 S+
+|10.4 S+
+|9.6 A+
+|11.4 S+
+|1.0 D
+|}
+
+==Abilities==
+===Expulse===
+{{Quote|Totema command. Drive off all intruders.|Description}}
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+!Breath of God
+|Envelops surrounding units and deals damage.
+|-
+!Spellbind
+|Dark arm that attacks soul, damages, [[Slow (status)|Slows]], and delays next turn of one target.
+|-
+|}
+
+===Magestorm===
+{{Quote|Totema command. Use all the world's magic.}}
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+!Star Cross
+|Uses the power of the stars to deal Holy damage to all enemies.
+|-
+!Thundaga
+|Most powerful Lightning spell. Shoots many bolts in a cross-shaped area.
+|}
+
+==Gallery==
+<gallery>
+FFTA Mateus Totema.png|Mateus' sprite.
+</gallery>
+
+==Etymology==
+{{Etym|Mateus}} Mateus's name is taken from [[Emperor Mateus]] of ''[[Final Fantasy II]]''.
+
+{{navbox characters FFTA}}
+[[Category:Totema in Final Fantasy Tactics Advance]]
+[[Category:Bosses in Final Fantasy Tactics Advance]]

@@ -1,0 +1,56 @@
+[[File:BervPalace.png|250px|thumb|right|Entrance to the Palace, guarded by the Guard Patrol.]]
+'''Bervenia Palace''' {{j|王宮ベルベニア|Ōkyū berubenia}} is a location from ''[[Final Fantasy Tactics Advance]]''. It is the palace of the royal family, and [[Marche Radiuju]] gains entry here after using the Gift Day ritual to his advantage. He is identified and soldiers mobilize against him, but they are defeated. [[Babus Swain]] defects to his side, and the two confront [[Mewt Randell]] and Queen [[Remedi]]. Remedi takes Mewt and teleports to the [[Ambervale]], summoning [[Llednar Twem]] to attack Marche. Llednar keeps Marche on the run for a while, but is forced to retreat when [[Cid Randell|Judgemaster Cid]] arrives.
+
+==After "#020 Present Day"==
+[[File:Bervenia Palace 1.PNG|right|thumb]]
+After completion of the storyline mission "#020 Present Day" a series of tournaments will begin that take place at Bervenia Palace. They show up at the pub every month except Bardmoon and Madmoon. Any tournament that takes place at Bervenia Palace has its own unique sets of Laws during that battle, and the laws on the current day are '''NOT''' followed during the tournament. All of them share one law: [[Law system (Tactics Advance)#Rank 7: NoLawCrds|NoLawCrd]]. The tournaments are as follows:
+
+==="#040 Battle Tourney"===
+[[File:Bervenia Palace 3.PNG|right|thumb]]
+This event takes place on a flat battleground with the center raised slightly and pillars surrounding it. There are no other laws in effect during the battle, which allows, pretty much, law-free fighting. Players are allowed five units against a [[Paladin (Tactics Advance)|Paladin]], [[Dragoon (Tactics Advance)|Dragoon]], [[Defender (Tactics Advance)|Defender]], [[Illusionist (Tactics Advance)|Illusionist]], and [[Sage (Tactics Advance)|Sage]].
+
+A Sequence is rewarded for a victory, a special item that grows in Weapon Attack power as more wins are accumulated.
+
+==="#041 Mage Tourney"===
+This event takes place on the same battleground as the above. Because it is a Mage Tourney, the [[Law system (Tactics Advance)#Rank 7:NoClrMgc|NoClrMgc]] law is in effect. This law prohibits any attack that is not [[White Mage#Final Fantasy Tactics Advance|White]], [[Black Mage (job)#Final Fantasy Tactics Advance|Black]], [[Red Mage (Tactics Advance)|Red]], or [[Blue Mage#Final Fantasy Tactics Advance|Blue]] Magic. Players are allowed four units against a [[moogle]] [[Black Mage (job)#Final Fantasy Tactics Advance|Black Mage]], a [[Blue Mage#Final Fantasy Tactics Advance|Blue Mage]], a [[nu mou]] White Mage, and a [[Red Mage (Tactics Advance)|Red Mage]].
+
+A Sapere Aude is rewarded for a victory, a special item that grows in Magic Power as more wins are accumulated.
+
+==="#042 Swimming Meet"===
+[[File:Bervenia Palace 4.PNG|right|thumb]]
+This event takes place on a very watery battlefield. In the left and right corners, there is a 3×5 island where both teams start out at. In the center is a 3×3 island with two corners in water. There are five spaces that are raised above the water as well. Finally, close to the left side starting point, there is a 2×2 island with a palm tree and is also where the [[Judge (Tactics Advance)|Judge]] resides. The object here is the same as all battles, but is harder because players cannot take an action while in the water.
+
+In addition to the NoLawCrd law, the Target All law is in effect as well. Feather Boots are recommended to allow waterwalking, while Galmia Shoes are not recommended because they disallow water-traversing. Players are allowed four units against a [[Archer (Tactics Advance)|Archer]], [[Dragoon (Tactics Advance)|Dragoon]], [[White Mage (Tactics Advance)|White Mage]], and a [[Gladiator (Tactics Advance)|Gladiator]].
+
+An Acacia Hat is rewarded for a victory, a special item that grows in Magic Resistance as more wins are accumulated.
+
+==="#043 Clan League"===
+Unlike the first three, the Clan League is unlocked after "#022 To Ambervale". Before actually unlocking the tournament though, players must complete four side-missions against four different groups of clans and then engage against the "Brown Rabbits". Players are allowed four units against an [[Assassin (Tactics Advance)|Assassin]], [[Summoner (Tactics Advance)|Summoner]], [[Elementalist (Tactics Advance)|Elementalist]], and [[Sniper (Tactics Advance)|Sniper]].
+
+A Peytral is rewarded for a victory, in addition to the rewards for completing the required missions for unlocking Clan League. The Peytral is a special item that grows in Weapon Defense as more wins are accumulated.
+
+==Liberating Bervenia Palace==
+Strangely, "#087 Free Bervenia!" takes place in Cyril after completing the storyline and freeing the other 29 areas. It is an engagement against Gukko (or Gutskor, as he is named in battle), who has been reincarnated as a [[Undead|Vampire]]. Accompanying him is are two Firewyrms and two Ahrimans, who have been given [[Hunter (Tactics Advance)#Capture Guide|unique species names]] preventing capture.
+
+Completing the mission liberates the last turf in Ivalice. Bervenia will not come under attack after liberation. Be warned that because of the above, losing this mission is not an option.
+
+==Encounters==
+===Guard Patrol===
+{{Quote|Patrols the Bervenia palace to protect the queen. Hard-headed and taciturn.|Description}}
+*Human Paladin
+*Nu Mou Sage
+*Bangaa Bishop
+*Moogle Mog Knight
+*Bangaa Defender
+*Bangaa Templar
+
+==Gallery==
+<gallery>
+Bervenia Palace 2.PNG|Bervenia Palace.
+Town-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Castles]]

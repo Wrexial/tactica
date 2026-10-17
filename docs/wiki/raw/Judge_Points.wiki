@@ -1,0 +1,16 @@
+[[File:Judge_point.png|thumb|First judge point awarded in the game.]]
+'''Judge Points (JP)''' {{J|ジャッジポイント|Jajji Pointo}} are awarded by the [[Judge (Tactics Advance)|Judges]] on the field in ''[[Final Fantasy Tactics Advance]]''. Judge Points are received by either successfully and legally KOing an opponent, or performing a recommended action during battle as stated by the [[Law system (Tactics Advance)|Law]] of the day.
+
+Upon receiving a Judge Point, the Judge will recognize the point by waving his hand and emitting a glitter. Judge Points cannot be stacked. For example, using Last Breath to KO an opponent with the Holy law in effect will not grant two Judge Points, one for the KO and one for the "Dark" action. The [[Hunter (Tactics Advance)|Hunting]] skill learned by Hunters awards ten Judge Points upon a successful kill.
+
+Judge Points can be used for two purposes. The first purpose is to allow a character to use his/her "Combo" ability. When a Combo is activated, all current JP is used up and any allies who are nearby will join in, however, their JP will not be used. The more JP the initiating character has, the more damage the Combo will deal. The second purpose is to summon the [[Totema]]s when they are unlocked. At first, no Totemas are unlocked so players will not be able to summon. As players progress through the storyline missions, Totemas can be unlocked. A Totema summon requires ten JP, which is also the maximum a character can carry.
+
+==Gallery==
+<gallery>
+FFTA Judge Point.png|A Judge Point.
+</gallery>
+
+{{navbox setting FFTA}}
+{{navbox stats}}
+[[Category:Gameplay in Final Fantasy Tactics Advance]]
+[[Category:Stats]]

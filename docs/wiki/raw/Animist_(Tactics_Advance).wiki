@@ -1,0 +1,193 @@
+{{DISPLAYTITLE:Animist (''Tactics Advance'')}}
+{{infobox job
+|name=Animist
+|release=FFTA
+|japanese=動物使い
+|romaji=Dōbutsu Tsukai
+|lit=Animal Tamer
+|image=Ffta-moogle-animist.jpg
+|portrait=[[File:ffta-job-animist.png|50px|Player]] [[File:Ffta-job-animist-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-animist.gif|20px]] [[File:Ffta-job-animist-enemy-sprite.png|Enemy|20px]]
+|obtained=Default
+|characters=[[Moogle]]s
+|stats=
+*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 55
+*Stat growth: Balanced between HP, MP, Attack and Magic Power, focuses on Defense and Resistance
+|weapons=[[Final Fantasy Tactics Advance weapons#Instruments|Instruments]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and
+[[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Call (Tactics Advance)|Call]]
+*[[#Animal Combo|Animal Combo]] (combo)
+|support abilities=
+*[[Archer's Bane|Block Arrows]] (reaction ability)
+|recurring appearance=Animist
+}}
+{{Quote|Moogle that borrows strength from animals.|Description}}
+The '''Animist''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' for [[moogle]]s. Animists rely on the aid of the animal kingdom and can turn the tide of battle. Most of their abilities involve using an animal for personal gain, but some abilities can damage opponents. Animists use the power of musical instruments and abilities such as Cuisine, which fully heals a unit, and 100% Wool, which bestows a unit the [[Protect (Tactics Advance status effect)|Protect]] and [[Shell (Tactics Advance status effect)|Shell]] status effects. Animist is a good support job.
+
+==Growth==
+Statistic-wise, the Animist is the moogle's basic attack-oriented job, having the highest HP, Attack and Defense of all the basic moogle jobs. Their strength lies in its abilities rather than stats. Compared to other basic Attack-oriented jobs, like the [[hume]] [[Soldier (Tactics Advance)|Soldier]] or the [[nu mou]] [[Beastmaster (Tactics Advance)|Beastmaster]], the Animist is much more balanced between HP, MP, Attack and Magic Power, and focuses more on Defense and Resistance than anything else.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.2 B-
+|2.6 D+
+|7.6 C
+|8.8 B+
+|7.2 C-
+|8.8 B+
+|1.2 D+
+|}
+
+==Abilities==
+===[[Call (Tactics Advance)|Call]]===
+{{Quote|Animist command. Borrow strength from animals.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Sheep Count}}
+|[[Glass Bell (Tactics Advance)|Glass Bell]]
+|100
+|8
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Summons forth sheep to put target to sleep.''
+|-
+! rowspan=2|{{A|100% Wool}}
+|[[Earth Bell (Tactics Advance)|Earth Bell]]
+|200
+|8
+|—
+|Self
+|-
+|colspan=5 style="text-align:left"|''Soft wool. Improves weapon def. and magic res.''
+|-
+! rowspan=2|{{A|Cuisine}}
+|[[Heal Chime (Tactics Advance)|Heal Chime]]
+|300
+|32
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Cook animal and serve it to completely heal HP.''
+|-
+! rowspan=2|{{A|Tail Wag}}
+|[[Fairy Harp (Tactics Advance)|Fairy Harp]]
+|200
+|8
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Wagging tail. Charms target.''
+|-
+! rowspan=2|{{A|Chocobo Rush}}
+|[[Satyr Flute (Tactics Advance)|Satyr Flute]]
+|300
+|12
+|45 WATK
+|Double Line
+|-
+|colspan=5 style="text-align:left"|''Chocobo stampede! Deals damage.''
+|-
+! rowspan=2|{{LA|Frog Song|Frogsong}}
+|[[Aona Flute (Tactics Advance)|Aone Flute]]
+|200
+|18
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Lilting refrain. Turns target into a frog.''
+|-
+! rowspan=2|{{A|Friend}}
+|[[Blood Strings (Tactics Advance)|Blood Strings]]
+|300
+|12
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Summons random creature from the spirit world.''
+|-
+! rowspan=2|{{A|Catnip}}
+|[[War Trumpet (Tactics Advance)|War Trumpet]]
+|100
+|12
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Catnip! Drives target berserk.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Archer's Bane|Block Arrows}}
+|[[Green Beret (Tactics Advance)|Green Beret]]
+|style="text-align:left"|''Dodge bow and longbow attacks.''<br>Because it's a reaction, it does not activate against counterattacks.
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Animal Combo}}
+|[[Mythril Bell (Tactics Advance)|Mythril Bell]]
+|style="text-align:left"|''Failproof combo ability for animists.''
+|100
+|}
+
+== Overview ==
+[[File:FFTA Cuisine.png|Cuisine.|thumb]]
+Animist is a good support class. Cuisine is a strong heal, while the job's other abilities inflict status ailments on enemies. Animists have high attack for a moogle, and very high defense and resistance. Despite having decent attack growth, Animists shouldn't see frontline combat, as instruments are weak and they lack damaging abilities. Their MP growth is also troublesome for a support class. Their mediocre stats do not make Animists useless, as their support abilities are often used by classes with better [[Stat growth|stat gains]] and equipment. Overall, Animist is a good support job and a great stepping stone for moogles on the way to better classes.
+
+Enemy Animists often support their teammates, and are decently tanky themselves. It is advised to not let the Animist or its allies survive long on low health, as a single Cuisine can bring them back into full condition. Even with good attack, Animists don't hit hard with their instruments. Silence is a big weakness for Animists, almost as much as for mages. Unlike other supporters, their high defense and resistance poses a problem to ranged units looking to down them from afar. Animists require a bit more force than others to KO, but offensive units, like [[Fighter (Tactics Advance)|Fighters]] and [[Dragoon (Tactics Advance)|Dragoons]], can handle them nicely.
+
+Like [[Beastmaster (Tactics Advance)|Beastmasters]], Animists are shown holding a [[Whip (weapon type)|Whip]] in their official artwork despite it not being a weapon type in ''Final Fantasy Tactics Advance''. This could allude to their ability to call upon and control animals.
+
+==Gallery==
+<gallery>
+FFTA Sheep Count.png|Sheep Count.
+FFTA 100% Wool.png|100% Wool.
+FFTA Tail Wag.png|Tail Wag.
+FFTA Chocobo Rush.png|Chocobo Rush.
+FFTA Frogsong.png|Frogsong.
+FFTA Friend.png|Friend.
+FFTA Catnip.png|Catnip.
+</gallery>{{Gallery incomplete|Animal Combo}}
+
+==Etymology==
+{{Etym|Animist}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Animista (Final Fantasy Tactics Advance)]]
+[[it:Animista (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

@@ -1,0 +1,269 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics A2: Grimoire of the Rift''}}
+{{infobox game
+|title = Final Fantasy Tactics A2: Grimoire of the Rift
+|image = [[File:Ffta2logo.jpg|250px|Official logo for ''Final Fantasy Tactics A2: Grimoire of the Rift''.]]
+|japanese = ファイナルファンタジータクティクスA2 封穴のグリモア
+|romaji = Fainaru Fantajī Takutikusu Eitsū Fūketsu no Gurimoa
+|developer = [[Square Enix]]
+|publisher = [[Square Enix]]
+|release = [[File:Flag of Japan.svg|20px|Japan]] October 25, 2007<br/>[[File:Flag of the United States.svg|20px|United States]]/[[File:Flag of Canada.svg|20px|Canada]] June 24, 2008<br/>[[File:European flag.svg|20px|Europe]] June 27, 2008
+|genre = Tactical role-playing, simulation RPG
+|modes = Single Player, multiplayer
+|ratings = [[wikipedia:Computer Entertainment Rating Organization|CERO]]:[[File:CERO_A.gif|12px]]All Ages<br/>[[wikipedia:Entertainment Software Rating Board|ESRB]]:[[File:Ratingsymbol_e10.gif|12px]]Everyone 10+<br/>[[wikipedia:Australian Classification Board|ACB]]:[[File:OFLC_small_PG.png|12px]]PG
+|platforms = [[Nintendo DS]]
+}}
+{{Quote|One is fated to fill these barren pages. Know you his name?|Written on the [[Grimoire of the Rift]]}}
+'''''Final Fantasy Tactics A2: Grimoire of the Rift''''' is the [[Nintendo DS]] sequel to the [[Game Boy Advance]] tactical role-playing game, ''[[Final Fantasy Tactics Advance]]''.
+
+==Gameplay==
+A brand new region of [[Ivalice]] is used, with the game taking place in [[Jylland]], at the junction of two landmasses, one of which is far-western [[Ivalice#Final Fantasy Tactics A2: Grimoire of the Rift|Ordallia]]. The [[Final Fantasy Tactics A2: Grimoire of the Rift jobs|job system]] from ''Final Fantasy Tactics Advance'' returns, with action abilities, reaction abilities, and passive (Support) abilities.
+
+[[Final Fantasy Tactics A2: Grimoire of the Rift abilities|Abilities]] can be learned from various [[Final Fantasy Tactics A2: Grimoire of the Rift weapons|weapons]], [[Final Fantasy Tactics A2: Grimoire of the Rift armor|armor]], and [[Final Fantasy Tactics A2: Grimoire of the Rift accessories|accessories]], which can be obtained through the [[Bazaar (Tactics A2)|bazaar]]. The [[Law system (Tactics A2)|Laws System]] has been slightly revised. For example, restrictions, like "not moving three spaces", are set up in the beginning of an engagement, but the player can also select a beneficial clan privilege such as Speed↑.
+
+[[File:FFTA2 Battle.png|right|thumb|A typical battle.]]
+As well, breaking these laws no longer sends the player's characters to jail, but instead negates whatever clan privilege the player set for the battle and also restricts them from reviving any fallen allies. To top it off, upholding the law through the entirety of a battle will net the player extra items as a bonus. [[Combo (Tactics Advance)|Combos]] however, have been removed from the game, as well as the mythril weapons from which they are learned. Units can now perform actions in water, other than moogles and nu mou, who cannot enter water unless they have Winged Boots equipped.
+
+The game has many traits from ''Tactics Ogre'', like MP starting from 0 and gaining treasure after defeating a foe. Unlike ''Final Fantasy Tactics Advance'', slanted terrains are available.
+
+===Races and jobs===
+{{See|Final Fantasy Tactics A2: Grimoire of the Rift jobs}}
+[[File:Ffta2-hume.jpg|100px|right]]
+*'''[[Human|Humes]]''': The most populous race in Ivalice, there are a few places where humes have not made their mark. A well-rounded race, humes are equally suited to swordplay and magery.
+
+The jobs available for them are:
+*[[Soldier (Tactics A2)|Soldier]]
+*[[White Mage (Tactics A2)|White Mage]]
+*[[Thief (Tactics A2)|Thief]]
+*[[Black Mage (Tactics A2)|Black Mage]]
+*[[Archer (Tactics A2)|Archer]]
+*[[Paladin (Tactics A2)|Paladin]]
+*[[Fighter (Tactics A2)|Fighter]]
+*[[Hunter (Tactics A2)|Hunter]]
+*[[Parivir (Tactics A2)|Parivir]]
+*[[Blue Mage (Tactics A2)|Blue Mage]]
+*[[Illusionist (Tactics A2)|Illusionist]]
+*[[Seer (Tactics A2)|Seer]]
+*[[Ninja (Tactics A2)|Ninja]]
+
+[[File:Ffta2-moogle.jpg|100px|right]]
+'''[[Moogle]]s''': A fluffy pom-pom and bat-like wings set this race apart. Their small stature lends itself to leaping out and surprising people, in which they take great delight. With tiny and nimble hands, moogles excel at a number of unusual jobs.
+
+The jobs available for them are:
+*[[Animist (Tactics A2)|Animist]]
+*[[Thief (Tactics A2)|Thief]]
+*[[Black Mage (Tactics A2)|Black Mage]]
+*[[Moogle Knight (Tactics A2)|Moogle Knight]]
+*[[Fusilier (Tactics A2)|Fusilier]]
+*[[Juggler (Tactics A2)|Juggler]]
+*[[Tinker (Tactics A2)|Tinker]]
+*[[Time Mage (Tactics A2)|Time Mage]]
+*[[Chocobo Knight (Tactics A2)|Chocobo Knight]]
+*[[Flintlock (Tactics A2)|Flintlock]]
+
+[[File:Ffta2-viera.jpg|100px|right]]
+'''[[Viera]]''': Members of this tall race with hair of spun silver are often called People of the Wood or Wood People. Viera are lithe of limb and tremendously quick. Their slender bodies grant superior strength and skill.
+
+Viera jobs are:
+*[[Fencer (Tactics A2)|Fencer]]
+*[[White Mage (Tactics A2)|White Mage]]
+*[[Archer (Tactics A2)|Archer]]
+*[[Assassin (Tactics A2)|Assassin]]
+*[[Summoner (Tactics A2)|Summoner]]
+*[[Sniper (Tactics A2)|Sniper]]
+*[[Elementalist (Tactics A2)|Elementalist]]
+*[[Red Mage (Tactics A2)|Red Mage]]
+*[[Green Mage (Tactics A2)|Green Mage]]
+*[[Spellblade (Tactics A2)|Spellblade]]
+
+[[File:Ffta2-bangaa.jpg|100px|right]]
+'''[[Bangaa]]''': Scales cover the bodies of this reptilian race. Muscled and powerful, bangaa are physically imposing. Their rough, bellicose temperament leads them to pursue mainly warrior-like jobs.
+
+Their jobs are mostly physical:
+*[[Warrior (Tactics A2)|Warrior]]
+*[[White Monk (Tactics A2)|White Monk]]
+*[[Dragoon (Tactics A2)|Dragoon]]
+*[[Defender (Tactics A2)|Defender]]
+*[[Bishop (Tactics A2)|Bishop]]
+*[[Gladiator (Tactics A2)|Gladiator]]
+*[[Templar (Tactics A2)|Templar]]
+*[[Cannoneer (Tactics A2)|Cannoneer]]
+*[[Master Monk (Tactics A2)|Master Monk]]
+*[[Trickster (Tactics A2)|Trickster]]
+
+[[File:Ffta2-NuMou.jpg|120px|right]]
+'''[[Nu mou]]''': With a dog-like face and ears that drag along the ground, there is no mistaking a nu mou. Extremely intelligent, they make for powerful mages, but their frail bodies are ill suited for physical combat.
+
+Due to their high intelligence, they are suited to magic-related jobs:
+*[[White Mage (Tactics A2)|White Mage]]
+*[[Black Mage (Tactics A2)|Black Mage]]
+*[[Beastmaster (Tactics A2)|Beastmaster]]
+*[[Time Mage (Tactics A2)|Time Mage]]
+*[[Illusionist (Tactics A2)|Illusionist]]
+*[[Sage (Tactics A2)|Sage]]
+*[[Alchemist (Tactics A2)|Alchemist]]
+*[[Arcanist (Tactics A2)|Arcanist]]
+*[[Scholar (Tactics A2)|Scholar]]
+
+[[File:FFTA2-Seeq.jpg|right|95px]]
+'''[[Seeq]]''': A portly, porcine race with stubby legs, one would not expect a seeq to be quick, yet few can match their speed. Though dim-witted and unscrupulous, their knowledge of battle is formidable.
+
+Their jobs are:
+*[[Ranger (Tactics A2)|Ranger]]
+*[[Berserker (Tactics A2)|Berserker]]
+*[[Lanista (Tactics A2)|Lanista]]
+*[[Viking (Tactics A2)|Viking]]
+
+[[File:Gria.png|right|90px]]
+'''[[Gria]]''': Wings of a dragon and powerful tail distinguish this unique race. Outwardly small, some may even say cute, gria make vicious foes in battle. They have a fierce and competitive spirit.
+
+Their jobs are:
+*[[Raptor (Tactics A2)|Raptor]]
+*[[Hunter (Tactics A2)|Hunter]]
+*[[Ravager (Tactics A2)|Ravager]]
+*[[Geomancer (Tactics A2)|Geomancer]]
+
+;Special jobs:
+*[[Bard (Tactics A2)|Bard]] - [[Hurdy (Final Fantasy XII)|Hurdy]] only
+*[[Sky Pirate (Tactics A2)|Sky Pirate]] - [[Vaan]] only
+*[[Dancer (Tactics A2)|Dancer]] - [[Penelo]] only
+*[[Heritor]] - [[Adelle]] only
+*[[Agent]] - [[Al-Cid Margrace]] only
+
+==Setting==
+{{spoiler}}
+{{main|Jylland}}
+[[File:FFTA2 Ivalice.jpg|thumb|right|200px|Map of the Jylland region of Ivalice.]]
+The game takes places in a region of Ivalice called Jylland. Jylland stretches across two continents: Loar Continent in the west, and Ordalia Continent in the east. The land is governed by a set of Laws thought to be devised centuries ago by Archduke Beaudonis, but in truth devised by his high mage, Lezaford. Jylland uses a 240-day calendar divided according to the seasons; each season spans three months, and each month spans 20 days. This region is populated by eight known races: [[Human|hume]], [[bangaa]], [[nu mou]], [[moogle]], [[viera]], [[seeq]], [[gria]], and [[rev]]gaji.
+
+==Characters==
+{{main|Final Fantasy Tactics A2: Grimoire of the Rift characters}}
+Below are the main characters that join the player's clan: Clan Gully, within the storyline.
+*'''[[Luso Clemens|Luso]]''': The brown-haired protagonist with a sense of justice, Luso is quite the prankster, but has a fear of ghosts. Before his school's summer break, he is punished for truancy by being sent to the library to clean, where he finds a mysterious book, which transports him to the world of Ivalice.
+*'''[[Adelle]]''': The silver-haired female protagonist and a thief-type fighter. She is a hunter and is called, among other hunters, "Adelle the Cat". Unlike Luso, Adelle actually hails from Ivalice. Adelle has powers inside her that are yet to be unleashed.
+*'''[[Cid (Tactics A2)|Cid]]''': The revgaji leader of a group of hunters, [[Clan Gully]], Cid saves Luso from being attacked by the Crushatrice, Klesta. Intent on helping Luso return to his world, Cid acts as a big brother. He seems to hide a mysterious past and connection with a certain organization.
+*'''[[Hurdy (Final Fantasy XII)|Hurdy]]''': A joyful minstrel moogle whom is befriended by Luso and the clan. One of [[Montblanc]]'s siblings, and twin brother of [[Gurdy (Final Fantasy XII)|Gurdy]]. He promises Luso that he will compose a song for him.
+
+==Story==
+[[File:A2grimoire.JPG|right|thumb|200px|The Grimoire beckons once more.]]
+The story begins on the last day of school before summer vacation. Before being allowed to begin summer vacation, Luso is sent to help Mr. Randell, the librarian, clean up the library as punishment for his mischievous behavior and perpetual tardiness. Inside the library, Luso finds a strange book with exciting pictures of wizards and monsters, the latter half of which is mysteriously blank. On the last written page, the book asks who will be the hero to complete the story. Being a mischievous child, Luso writes his own name and is immediately transported to the world of [[Jylland|Ivalice]].
+
+Meanwhile, [[Cid (Tactics A2)|Cid]] and the members of his Clan were hunting a [[Crushatrice]] named Klesta (a monster that is involved in a subplot with [[House Bowen]]). When Luso drops in out of the sky into the middle of the battle, helpless and confused, Cid quickly saves him, telling him he must join their clan for the battle by swearing an oath to the [[Judge (Tactics A2)|Judge]]. Luso then becomes a [[Soldier (Tactics A2)|Soldier]] and helps the clan defeat the Crushatrice, who flees after a while.
+
+After that, they head for [[Targ Wood#Wood Village|Wood Village]], a small town in [[Targ Wood]]. There, Cid introduces Luso to the Clan and they discuss what will be of Luso's future. Then, Luso notices that he carries a journal within his garments, which hold writings about his recent adventures in Ivalice. Cid and Luso decide to leave Targ Wood to find more information about the journal, but they hear that the road to Camoa is blocked by a band of Thieves. Cid then tells Luso of a contact he has in [[Camoa]], and the clan heads there, defeating the band of thieves blocking the path.
+
+In Camoa, Cid and Luso find Ribs, a seeq streetear, who tells them that he has information about some mages, but will only give it in exchange for a tomato stalk. The clan then searches for Deadly Nightshades, encountering an Alraune in the midst. Cid explains that the Alraune drops an "Alraune Drill", a rare loot that could bring in a hefty amount of gil. Before the hunt, however they meet [[Adelle]], a poacher who cares about nothing other than gil. They obtain the tomato stalk, but in the end, Adelle runs off with the drill, which enrages Cid.
+
+On their return to Camoa, the clan learns more about Adelle, who is called "The Cat", and about [[Lezaford]], a mythical mage of old, who seems to be living at present time. Ribs also tells Cid and Luso where to find him, as well as Adelle's probable destination. After defeating a mark, Adelle joins the party, and Cid tells Luso that he has a friend that knows where Lezaford is, in [[Graszton]]. Cid visits the mysterious friend, alone, and finds the location of Lezaford, but on his way back a mysterious ninja shoots him with a gun and runs off. Luso arrives just in time and takes Cid to an inn. Cid tells him where Lezaford is, in his humble abode in the Aldanna range. Luso finds Lezaford and tells him that the journal is magically connected to him, writing itself down, after every major event. Lezaford tells him that when his "story" is finished in the journal he will return home.
+
+[[File:Ewen.jpg|thumb|left|150px|Ewen, the Nightfall.]]
+After partaking in an [[Auction (Tactics A2)|Auction]] and some pearl hunting (pearls being located near pearl moss, an ingredient for a restorative item later given to Cid), Luso and Adelle are hired to be tour guides at the [[Rupie Mountains]]. After finishing their evening shift, a lone, shadowy figure approaches them with the intent of buying off Clan Gully's Judge. Though Luso does not know it, the briber is [[Ewen]], the very same ninja who shot Cid in Graszton. When Ewen's offer of two million gil is rejected by Luso, the Nightfall and his cronies attack Luso. Upon defeat, Ewen teleports away from the battlefield, leaving behind a shining shard that Luso pockets.
+
+After seeing Cid in Camoa and showing him the item that Ewen dropped, Luso and Adelle decide to go to [[Moorabella]] and ride an airship to [[Fluorgis]]. While engaging the troublesome Genius Ed, a [[nu mou]] who has grounded the airship with his futile experiments, Luso meets [[Vaan]], a Sky Pirate who has come to look for a supposed treasure on the airship. After Genius Ed's defeat, [[Penelo]] appears and chides Vaan for mistaking which airship dock they were supposed to meet at. She then advises Luso to hunt for treasure in [[Tramdine Fens]]. Luso, Adelle, and a newly-recovered Cid then board the repaired airship and head to Fluorgis, taking the mission to hunt for spoils at the Fens.
+
+Clan Gully arrives at the Fens, and finds not treasure, but a horde of undead, one of which curses Luso and haunts his dreams. Clan Gully learns of a fiend in the [[Nazan Mines]] that haunts dreams and defeat it. Clan Gully, upon their return to the nearest town, listens to a music performance by [[Hurdy (Final Fantasy XII)|Hurdy]]. The clan accepts his bill to get strawood, and heads to [[Aisenfield (Tactics A2)|Aisenfield]] to get some. After making an instrument for Hurdy, who joins the clan, the party finds a bill from a [[Scholar (Tactics A2)|Scholar]], Narph, who claims to have lost the piece of magicite dropped by Ewen. When the party delivers the stone, they discover that it was a setup by [[Khamja]]. Clan Gully battles the scholar, but Ewen takes off with the magicite.
+
+After returning to town, Adelle is approached by a blue-haired woman who attempts to recruit Adelle into her organization. Though Adelle refuses, she is evidently troubled by the woman's parting words, which hint at Adelle's "talents". Luso, Cid, and Adelle then notice a petition at the Pub for the capture of two attempted murderers, who are none other than Vaan and Penelo. The pair have been accused of attacking the wealthy Baron Beltorey in [[Graszton]]. Cid recalls the Baron as being one of the most powerful men in the area and one of the more prominent opposers of Khamja's operations in Graszton. When Clan Gully reaches the [[Rupie Mountains]], they find Vaan and Penelo surrounded by a band of bounty hunters. The sky pirates plead innocence, so Luso and his clanmates clear out the headhunters in order to get the true story. Vaan and Penelo tell Luso that they had only been in the Baron's mansion for a stealing raid when they witnessed the attempt on the Baron's life by Khamja members. The sky pirates helped save Beltorey from murder, but in turn they were framed for the crime.
+
+After the sky pirates go into hiding, Clan Gully receives an anonymous request to meet at the [[Ruins of Delgantua]]. The bill turns out to be a trap by Khamja, as [[Illua]] and Ewen ambush Luso and his clan when they arrive at the ruins. When Illua is bested in battle, Luso notices the grimoire she has chained to her belt. He brings out his own magic journal, which Illua tries to destroy, recognizing it as another grimoire. The book repels her assault with a flash of light, teleporting Clan Gully to [[Zellea, the Forbidden Land]] and leaving the Khamja leaders behind.
+
+Upon reaching the misty land of Jagd Zellea, Luso, Cid, and Adelle are urged by an apparition of Lezaford to flee the desolate place. His warning comes too late, as a hand of the demon [[Neukhia]] breaks through the rift, intent on manifesting its full self in the land of Jylland. With the help of an ancient mage cannon and Lezaford's directions, Luso and his friends are able to defeat the demon and return to Lezaford's cottage via a teleportation crystal.
+
+After this, Hurdy convinces Luso to partake in a "salvage run" in [[Goug (Tactics A2)|Goug]], where they recover a Hurdy-gurdy. After coming back, Adelle decides to leave and we see a flashback of a conversation between her and Lezaford about her "special powers". Lezaford tells her she should accept them, but Adelle does not wish this, and tells a sad story of her estrangement because of her differences.
+
+While she leaves, we see she bumps into Illua, who tells her she has "powers that laid dormant for too long". Adelle steps back, and the cutscene ends.
+
+Meanwhile, Luso and Cid are enraged by her leaving, and decide to take a quest of eradicating monsters to soothe their anger. However, they see Adelle there, where she is "ensorcelled" by Illua. She mumbles about Luso's grimoire. After talking to her three times, Luso manages to bring Adelle back to her senses. She then collapses.
+
+After this, she rejoins the clan. While in the pub, Hurdy tells the group that apparently Vaan and Penelo have been on a "stealing spree", and were going to steal the Black Cat in Camoa. Excited, Luso takes up the request. However, when he meets them, "Vaan" and "Penelo" speak in an "olde language". It's clear they are impersonators, but they deny this. They also have the same moves as Vaan and Penelo, such as Shadow Stalk and Mincing Minuet.
+
+When defeated, the impersonators run off, but not before bumping into... themselves. Penelo comments on their costumes, saying she likes them a lot. After the impersonators have been taken care of, Vaan and Penelo tell Luso about how they have enemies, due to the Baron Beltorey incident. Vaan then runs off to steal the Black Cat.
+
+[[File:FFTA2-Irua.jpg|right|thumb|180px|Illua, Master Grimoire of the Rift.]]
+All too soon, Clan Gully finds themselves another petition, titled "The Ritual". Oddly, like the last one, this one is addressed to Clan Gully only. Knowing that this is Khamja's doing, our heroes accept the petition and head to confront Illua. Once they arrive, Illua explains that she is going to open a portal to Jagd Zellea and create a rift for the Neukhia to enter. Illua is defeated once more, but manages to transport the party to Zellea along with her.
+
+Luso, Cid, and Adelle then find Illua, and fight her one last time, to stop her from completing her "hero's story" and opening the rift. Defeated one last time, Illua drops to the cold ground. But she had succeeded, and created a rift to allow the Neukhia to pass through. Confronted by the giant monstrosity, our heroes then do one last epic battle to end the threat to all of Ivalice.
+
+Once the Neukhia has been defeated in a grand battle, Luso is being transported back to his home. With all his new friends, it is hard for him to say goodbye, especially for Adelle. But Luso promises that he will return one day, to visit all of them again.
+
+Luso returns to his home, being greeted by none other than [[Mewt Randell]]. When Luso mentions Ivalice, Mewt says he believes him, because he has been there too.
+{{endspoiler}}
+
+==Music==
+{{main|Final Fantasy Tactics A2: Original Soundtrack}}
+''[[Final Fantasy Tactics A2: Original Soundtrack]]'' is composed by [[Hitoshi Sakimoto]] and joined by other composers under Basiscape, the soundtrack reused several music from ''Final Fantasy Tactics Advance'' and ''Final Fantasy XII'', with several new and original themes.
+
+==Production credits==
+===Staff===
+{|class="sortable article-table FFTA2"
+!Executive Publisher
+|[[Yoichi Wada]]
+|-
+!Executive Producer
+|[[Akitoshi Kawazu]]
+|-
+!Producer
+|[[Hiroaki Kato]]
+|-
+!Director
+|[[Yuichi Murasawa]]
+|-
+!Main System Programmer
+|[[Shinichi Fujisawa]]
+|-
+!Scenario & Event Direction
+|[[Kyoko Kitahara]]
+|-
+!Lead Quest Design & Map System
+|[[Motoharu Tanaka]]
+|-
+!Character Design
+|[[Ryōma Itō]]
+|-
+!Lead Menu Design
+|[[Satomi Hongo]]
+|-
+!Lead Visual Effects Design
+|[[Jiro Mifune]]
+|-
+!Lead Background Design
+|[[Koji Takino]]
+|-
+!Music Production & Composition
+|[[Hitoshi Sakimoto]] (Basiscape Co., Ltd.)
+|-
+!Sound Effects Director
+|[[Jun Nakamura]]
+|}
+
+==Packaging artwork==
+<gallery>
+TA2Front.jpg|Japanese box art.
+TA2NAFront.jpg|North American box art.
+FFTA2 Europe.jpg|European box art.
+</gallery>
+
+==Trivia==
+*''Final Fantasy Tactics A2'' was originally conceived as a Game Boy Advance game, hence the title being suffixed "A2" not "DS".
+*The Transmuter job was a nu mou job intended to allow mixture of items for abilities. However, with 19 usable items, there were over 300 combinations, and would take a long time to test, pushing back the release date. Thus, it was scrapped at the last minute, though remnants of it exist in the game. The Luck Stick Traders have Transmuter portraits, and the Transmuter sprite is used by the [[Keeper (Tactics A2)|Keeper]] of Brightmoon Tor. [[Mack Ocktor]] uses both their portrait and sprite.
+*The talking group that appears in ''[[Final Fantasy Tactics Advance]]'' (which consists of an [[Illusionist (Tactics A2)|Illusionist]], [[Blue Mage (Tactics A2)|Blue Mage]], and [[Hunter (Tactics A2)|Hunter]]) appears again, usually before story missions.
+*The original plot by the development team was that Luso was the last surviving villager of a village, with the other villagers gone away. This was partially reused as part of [[Adelle]]'s backstory.
+*In one of the story-related quests, Luso finds a portable game machine, an allusion to the original game.
+*''Final Fantasy Tactics A2'' and its predecessors share many icons with fellow Square Enix Tactical Series ''Tactics Ogre'', in particular weapons and armor icons.
+
+==External links==
+*[http://www.ffta2.com/ Official '''''Japanese''''' site]
+*[http://na.square-enix.com/ffta2/ Official '''''North American''''' site]
+*[http://www.ffta2game.com/ Official '''''European''''' site]
+*[http://member.square-enix.com/na/features/ffta2/ FFTA2 at Square Enix Members]
+
+{{navbox FFTA2}}
+{{navbox Ival}}
+{{navbox series}}
+
+[[de:Final Fantasy Tactics A2: Grimoire of the Rift]]
+[[es:Final Fantasy Tactics A2: Grimoire of the Rift]]
+[[fr:Final Fantasy Tactics A2: Grimoire of the Rift]]
+[[it:Final Fantasy Tactics A2: Grimoire of the Rift]]
+[[pt-br:Final Fantasy Tactics A2: Grimoire of the Rift]]
+[[Category:Final Fantasy Tactics A2: Grimoire of the Rift| ]]
+[[Category:Games in Ivalice]]

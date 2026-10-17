@@ -1,0 +1,279 @@
+{{DISPLAYTITLE:Black Mage (''Tactics Advance'')}}
+{{infobox job
+|name=Black Mage
+|release=FFTA
+|japanese=黒魔道士
+|romaji=Kuromadōshi
+|lit = Black Sorcerer
+|image=<gallery>
+Ffta-h-blackmage.jpg|Hume
+Ffta-moogle-blackmage.jpg|Moogle
+Ffta-nu-mou-blackmage.jpg|Nu mou
+</gallery>
+|portrait=[[File:Ffta-job-human-black-mage.png|50px|Hume player]]<br/>[[File:Ffta-job-moogle-black-mage.png|50px|Moogle player]] [[File:Ffta-job-moogle-black-mage-enemy.png|50px|Moogle enemy]]<br/>[[File:Ffta-job-nu-mou-black-mage.png|50px|Nu mou player]] [[File:ffta-job-nu-mou-black-mage-enemy.png|50px|Enemy nu mou.]]
+|sprite=[[File:FFTA-job-blkmageH.gif|20px|Hume player.]] [[File:FFTA-job-blkmageM.gif|20px|Moogle player.]] [[File:Ffta-job-moogle-black-mage-enemy-sprite.png|20px|Enemy moogle.]] [[File:FFTA-job-blkmageNM.gif|20px|Nu mou player]] [[File:ffta-job-nu-mou-black-mage-enemy-sprite.png|20px|Enemy nu mou.]]
+|obtained=Default
+|characters=[[Human|Humes]], [[moogle]]s, [[nu mou]]
+|stats=
+*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 35
+*Stat growth: Nu mou are the best, moogles are the worst; magic-oriented with focus on Resistance
+|weapons=[[Final Fantasy Tactics Advance weapons#Rods|Rods]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]], [[Final Fantasy Tactics Advance armor#Robes|robes]]<br/>Can't equip shields
+|command abilities=
+*[[Black Magic (Tactics Advance)|Black Magic]]
+*[[#Black Combo|Black Combo]] (combo)
+|support abilities=
+*[[Return Magic]] (reaction)
+|recurring appearance=Black Mage (job)
+}}
+{{Quote|Wields fire, ice and lightning magic.|Description}}
+The '''Black Mage''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' for [[Human|humes]], [[moogle]]s, and [[nu mou]]. It learns [[Black Magic (Tactics Advance)|Black Magic]]. Nu mou are better suited to be raised as Black Mages because their [[Stat growth|magic power growth]] is better than that of moogles and humes.
+
+Black Mages can be one of the most powerful jobs early on if raised right and have the right equipment. One combination players can try is equipping a [[Black Robe (Tactics Advance)|Black Robe]] and having the S-Ability Turbo MP from the [[White Mage (Tactics Advance)|White Mage]]. Another idea would be to use the Magic Pow+ ability from the [[Alchemist (Tactics Advance)|Alchemist]]. Different elemental rods will [[Elemental Affinity|enhance the power of the spell]] (i.e. [[Flame Rod (Tactics Advance)|Flame Rod]] enhances Firaga).
+
+==Growth==
+===Hume===
+Hume Black Mages are less powerful but slightly faster than nu mou Black Mages. While most of their stats are mediocre compared to other hume jobs, they have high MP, exceptional Magic Power, and the highest Resistance of all hume jobs.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.6 D-
+|4.4 B-
+|6.4 D
+|6.8 D+
+|8.8 B+
+|9.6 A+
+|1.1 D
+|}
+
+===Moogle===
+The moogle race is handicapped when it comes to magic using. Everything the moogle Black Mage can do, either the hume or nu mou Black Mage can do better. This extends to the moogle's advanced magic job, the [[Time Mage (Tactics Advance)|Time Mage]], which is outclassed in every stat, except defense, by the nu mou Time Mage. Despite these setbacks, this is not a useless set, though leveling a moogle Black Mage is not advised. 
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.4 D-
+|4.8 B
+|5.7 E
+|7.6 C
+|8.4 B
+|9.7 A+
+|1.1 D
+|}
+
+===Nu mou===
+The nu mou Black Mage is superior to both the hume and moogle Black Mages. The difference in HP, Speed, and Attack between the three are marginal, and there is a substantial increase in MP, Magic Attack, and Resistance. Nu mou Black Mages have the highest Resistance, tied with moogle [[Gadgeteer]]s.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.4 D-
+|5.2 B+
+|6.2 D-
+|6.8 D+
+|9.2 A
+|10.2 S
+|0.9 D
+|}
+
+==Abilities==
+===[[Black Magic (Tactics Advance)|Black Magic]]===
+{{Quote|Black mage command. Use elemental magic.|Description}}
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Fire (ability)|Fire}}
+|[[Final Fantasy Tactics Advance weapons#Rod|Rod]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Generates damaging ball of flame.''
+|-
+! rowspan=2|{{LA|Fira (ability)|Fira}}
+|[[Final Fantasy Tactics Advance weapons#Firewheel Rod|Firewheel Rod]]
+|200
+|12
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Powerful fire spell. Deals great damage.''
+|-
+! rowspan=2|{{LA|Firaga (ability)|Firaga}}
+|[[Final Fantasy Tactics Advance weapons#Flame Rod|Flame Rod]]
+|300
+|24
+|50
+|4
+|-
+|colspan=5 style="text-align:left"|''Most powerful fire spell. Deals incredible damage.''
+|-
+! rowspan=2|{{LA|Thunder (ability)|Thunder}}
+|[[Final Fantasy Tactics Advance weapons#Rod|Rod]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Calls down lightning to deal damage.''
+|-
+! rowspan=2|{{LA|Thundara (ability)|Thundara}}
+|[[Final Fantasy Tactics Advance weapons#Thunder Rod|Thunder Rod]]
+|200
+|12
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Powerful lightning spell. Shoots a giant bolt.''
+|-
+! rowspan=2|{{LA|Thundaga (ability)|Thundaga}}
+|[[Final Fantasy Tactics Advance weapons#Thor Rod|Thor Rod]]
+|300
+|24
+|50
+|4
+|-
+|colspan=5 style="text-align:left"|''Most powerful lightning spell. Shoots many bolts.''
+|-
+! rowspan=2|{{LA|Blizzard (ability)|Blizzard}}
+|[[Final Fantasy Tactics Advance weapons#Rod|Rod]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Creates chuck of ice to deal damage.''
+|-
+! rowspan=2|{{LA|Blizzara (ability)|Blizzara}}
+|[[Final Fantasy Tactics Advance weapons#Sleet Rod|Sleet Rod]]
+|200
+|12
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Powerful blizzard spell. Fires larger chuck of ice.''
+|-
+! rowspan=2|{{LA|Blizzaga (ability)|Blizzaga}}
+|[[Final Fantasy Tactics Advance weapons#Chill Rod|Chill Rod]]
+|300
+|24
+|50
+|4
+|-
+|colspan=5 style="text-align:left"|''Most powerful blizzard spell.''
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Return Magic}}
+|[[Final Fantasy Tactics Advance armor#Black Robe|Black Robe]]
+|style="text-align:left"|''Counters magic attack with the same spell.''
+|300
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Geomancy}}
+|[[Final Fantasy Tactics Advance armor#Sage Robe|Sage Robe]]
+|style="text-align:left"|''Reduces resistance to elements by one level. [Absb > Null > Half > Norm > Weak].''
+|300
+|}
+
+===Combo===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Black Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Rod|Mythril Rod]]
+|style="text-align:left"|''Ranged combo ability for black mages.''
+|100
+|}
+
+== Overview ==
+The iconic spellcaster is available as a basic class for three races. All three have great Magic Resistance, Magic Power, and MP. Conversely, they have low HP, Attack, and Defense. The hume Black Mage has the best Resistance growth and high Magic Power, so it is not a bad class to [[level]] up as. It falls short to the might of a nu mou Black Mage, however; although its Attack and Speed are the worst of the three, its great Magic Power and excellent Resistance more than make up for it. Moogle Black Mage has the lowest Attack and Magic Power.
+
+The Black Mage has a solid ability set used to target enemies' elemental weaknesses for heavy damage. Spell power can be boosted by use of certain equipment, like the Black Robe and Flame Rod, or with abilities like Geomancy or Magic Pow+. White Mages and most other casters synergize well with the Black Mage's abilities for dealing damage.
+
+Black Mage is physically frail and doesn't stand a chance at melee combat. It is targeted by enemy ranged units, like [[Archer (Tactics Advance)|Archers]] and [[Gunner (Tactics Advance)|Gunners]]. Like most mages, Silence cripples a Black Mage for a period of time. Black Mage lacks healing and status effects, and thus is not good for support. Black Mage doesn't synergize well with physical units, like [[Fighter (Tactics Advance)|Fighters]], and vice versa.
+
+Overall, the Black Mage is a strong and stable class focused on dealing magical damage. It has poor physical capabilities and no support capabilities, but has a decently varied kit of spells that can be strengthened by certain abilities and equipment. Like most White Magic spells, every Black Magic spell creates area/plus form damage.
+
+Against enemy Black Mages, the player should get up close as Black Mages require some distance to be effective; rushing them with units like [[Gladiator (Tactics Advance)|Gladiator]] works well. However, most physical units are vulnerable to Black Magic. Ranged units, like [[Hunter (Tactics Advance)|Hunters]] and Gunners, can inflict major damage to Black Mages while also being faster and more durable.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+Black Mage appears on a few cards.
+
+<gallery>
+BlackMage TCG.png|A Hume Black Mage.
+BlackMage NuMou TCG.png|A Nu Mou Black Mage.
+BlackMage Moogle TCG.png|A Moogle Black Mage.
+</gallery>
+
+==Gallery==
+<gallery>
+FFTA Fire.png|Fire.
+FFTA Fira.png|Fira.
+FFTA Firaga.png|Firaga.
+FFTA Thunder.png|Thunder.
+FFTA Thundara.png|Thundara.
+FFTA Thundaga.png|Thundaga.
+FFTA Blizzard.png|Blizzard.
+FFTA Blizzara.png|Blizzara.
+FFTA Blizzaga.png|Blizzaga.
+</gallery>{{Gallery incomplete|Black Combo}}
+
+{{navbox abilities FFTA}}
+
+[[de:Schwarzmagier (FFTA)]]
+[[es:Mago negro (Final Fantasy Tactics Advance)]]
+[[it:Mago nero (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

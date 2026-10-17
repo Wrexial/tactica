@@ -1,0 +1,43 @@
+[[File:FFTA-spr-masterberry.gif|left]]
+[[File:FFTA - Masterberry Portrait.png|right]]
+{{Quote|Purple, hooded monster. Carries a lantern.|Description}}
+The '''Masterberry''' in ''[[Final Fantasy Tactics Advance]]'' is a purple variation of the [[Tonberry (Tactics Advance)|Tonberry]]. It is even more vicious than its green cousin, mainly because of its high Speed and devastating Voodoo attack.
+
+==Abilities==
+===Malice===
+{{Quote|Masterberry command. Attack with utter malice.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Chef's Knife|Knife}}
+|''Tonberry knife stab. Reduces HP to 1/10.''
+|-
+!Voodoo
+|''This attack carries a powerful, deadly curse.''<br>Deals more than 900 damage.
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:20%"|Mission
+!style="width:80%"|Information
+|-
+!#039: The Wanderer
+|This mission takes place in [[Muscadet]]. The Masterberry here is wanted for the murder of a [[viera]] and is flanked by two Tonberries. While the Masterberry starts off further away from the party than its underlings, it will soon get close enough to the party to use its dangerous '''Malice''' skills.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Jagd Helje]]
+|Jagd Emissaries
+|The lone Masterberry here can be highly dangerous if its starting point is very close to the party. If this is the case, it should be eliminated ASAP.
+|}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

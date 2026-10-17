@@ -1,0 +1,52 @@
+{{infobox character
+|name=Lini
+|release=FFTA
+|japanese=リネ
+|romaji=Rine
+|image=Ffta-moogle-mogknight.jpg
+|portrait=[[File:FFTA-job-MogKnight-por.png|Portrait.]]
+|sprite=[[File:FFTA-job-mogknight.gif|Sprite.]]
+|race=[[Moogle]]
+|type=playable
+|job=Mog Knight
+}}
+{{Quote|Seeing Gaol die horribly before his very eyes, Lini took his sword into the Eluut Sands to await the one worthy to wield it.|''The Hero Gaol'', Epilogue}}
+'''Lini''', a [[moogle]], is one of six special recruits in ''[[Final Fantasy Tactics Advance]]''.
+
+==Recruitment==
+Lini has a 1-in-5 chance of joining the clan after completion of a mission where The Hero Gaol is equipped. The Hero Gaol is a reward for "#062 Oasis Frogs", which itself is unlocked after "#005 Twisted Flow", but can only be completed after "#006 Antilaws" due to an automatic engagement in Cadoan.
+
+==Abilities==
+Like all secret characters, Lini joins four levels above the average of the entire clan. Lini is recruited as a [[Mog Knight]], and as a bonus he has two abilities already mastered: Mog Guard and Ultima Charge.
+
+===Charge===
+{{Quote|Mog Knight command. Use momentum to deal damage.}}
+{|class="half-width FFTA article-table"
+|-
+!width="50"|Skill
+!width="220"|Effect
+!width="30"|MP
+|-
+!Mog Guard
+|Raise Defense and Resistance for one turn.
+|—
+|-
+!Ultima Charge
+|Triple Damage Attack.
+|60
+|}
+
+==Etymology==
+In Sudanese, "Lini" means "Earthquake".
+
+==Behind the scenes==
+Lini was the name of the sidekick of [[Gaol]], a legendary hero on which Missions #032 through #035 were based. The special recruit could either be a moogle named after the original Lini, or, based on what Mission "#036 Twin Swords" states, could be the original Lini returned from the dead.
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Secret characters]]
+[[Category:Moogles]]
+[[Category:Knights]]
+
+[[it:Linì]]

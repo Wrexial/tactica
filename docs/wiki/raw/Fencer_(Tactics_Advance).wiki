@@ -1,0 +1,210 @@
+{{DISPLAYTITLE:Fencer (''Tactics Advance'')}}
+{{infobox job
+|name=Fencer
+|release=FFTA
+|japanese=フェンサー
+|romaji=Fensā
+|image=Ffta-viera-fencer.jpg
+|portrait=[[File:ffta-job-fencer.png.png|50px|Player]] [[File:Ffta-job-fencer-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-fencer.gif|20px|Player]] [[File:Ffta-job-fencer-enemy-sprite.png|Enemy|20px]]
+|obtained=Default
+|characters=[[Viera]], [[Ritz Malheur]]
+|stats=*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 60
+*Stat growth: high HP, Attack, Defense, Magic Resistance and Speed, mediocre Magic Power and poor MP
+|weapons=[[Final Fantasy Tactics Advance weapons#Rapiers|Rapiers]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Female-only ornament|ornaments]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]] and [[Final Fantasy Tactics Advance armor#Shields|shields]]
+|command abilities=*[[Lunge Tech]]
+*[[#Lunge Combo|Lunge Combo]] (combo)
+|support abilities=*[[Shieldbearer (ability)|Shieldbearer]]
+*[[Reflex (evasion ability)|Reflex]] (reaction)
+|boss page=
+|recurring appearance=Fencer (job)
+}}
+{{Quote|Uses a rapier for accurate, elegant combat.|Description}}
+'''Fencer''' is a [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]'' available to [[viera]]. The only non-viera Fencer is [[Ritz Malheur]] who remains on the job until the second act where she upgrades to the [[Elementalist (Tactics Advance)|Elementalist]] job. Eventually joining [[Clan Nutsy]], she reverts to her Fencer job.
+
+The Fencers are the standard wielders of [[Rapier (weapon)|rapiers]] but they also have an array of tricks up their sleeve; from [[status effect|status ailments]] to [[MP (stat)|MP]] damage, Fencers' attacks have the widest range of effects. One should be careful in combat against Fencers, especially ones with Reflex. Fencer becomes available the moment viera are recruited to the clan and serves as the default job for viera companions.
+
+==Growth==
+Fencers are the main Attack-oriented basic job of the viera. They have high HP, Attack, Defense, Magic Resistance and Speed, mediocre Magic Power and abysmal MP.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.6 B
+|1.1 D
+|8.4 B+
+|8.1 B+
+|7.6 D+
+|7.2 B
+|1.5 B-
+|}
+
+==Abilities==
+===[[Lunge Tech]]===
+{{Quote|Fencer command. Use quick, lunging sword attacks.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Swarmstrike}}
+|[[Final Fantasy Tactics Advance weapons#Stinger|Stinger]]
+|100
+|As Weapon
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Deals damage and poisons like stinging bees..''
+|-
+! rowspan=2|{{LA|Shadowstick}}
+|[[Final Fantasy Tactics Advance weapons#Silver Rapier|Silver Rapier]]
+|200
+|—
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Attack to hinder movement, reducing target's speed.''
+|-
+! rowspan=2|{{LA|Checkmate}}
+|[[Final Fantasy Tactics Advance weapons#Gupti Aga|Gupti Aga]]
+|300
+|—
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Attack capable of ending all life. Dooms target.''
+|-
+! rowspan=2|{{A|Featherblow}}
+|[[Final Fantasy Tactics Advance weapons#Estoc|Estoc]]
+|200
+|As Weapon
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Flurry of attacks. Good hit rate, light damage.''
+|-
+! rowspan=2|{{LA|Swallowtail (ability)|Swallowtail}}
+|[[Final Fantasy Tactics Advance weapons#Djinn Flyssa|Djinn Flyssa]]
+|300
+|As Weapon
+|Self
+|-
+|colspan=4 style="text-align:left"|''Weave like a butterfly, damaging nearby enemies.''
+|-
+! rowspan=2|{{LA|Manastrike}}
+|[[Final Fantasy Tactics Advance weapons#Mage Masher|Mage Masher]]
+|300
+|As Weapon
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Strikes target's will directly, damaging MP.''
+|-
+! rowspan=2|{{LA|Piercing Blow|Piercethrough}}
+|[[Final Fantasy Tactics Advance weapons#Flamberge|Flamberge]]
+|200
+|As Weapon
+|Line
+|-
+|colspan=4 style="text-align:left"|''Armor-penetrating attack. Also hits unit behind.''
+|-
+! rowspan=2|{{LA|Nighthawk}}
+|[[Final Fantasy Tactics Advance weapons#Joyeuse|Joyeuse]]
+|200
+|As Weapon
+|4
+|-
+|colspan=4 style="text-align:left"|''Attack as swift as the hunting hawk.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+! style="width:30%" |Effect
+! style="width:5%" |Equipment
+!style="width:5%"|AP
+|-
+!{{LA|Reflex (evasion ability)|Reflex}}
+| style="text-align:left" |''Predict and avoid a regular attack.''
+|[[Final Fantasy Tactics Advance armor#Mirage Vest|Mirage Vest]]
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+! style="width:30%" |Effect
+! style="width:5%" |Equipment
+!style="width:5%"|AP
+|-
+!{{LA|Shieldbearer (ability)|Shieldbearer}}
+| style="text-align:left" |''Enables shield-wielding, regardless of job.''
+|[[Final Fantasy Tactics Advance armor#Bronze Shield|Bronze Shield]]<br>[[Final Fantasy Tactics Advance armor#Round Shield|Round Shield]]
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+! style="width:30%" |Effect
+! style="width:5%" |Equipment
+!style="width:5%"|AP
+|-
+!{{A|Lunge Combo}}
+| style="text-align:left" |''Failproof combo ability for fencers.''
+|[[Final Fantasy Tactics Advance weapons#Mythril Rapier|Mythril Rapier]]
+|100
+|}
+
+== Overview ==
+The basic physical job of the viera, Fencer is comparable to [[Soldier (Tactics Advance)|Soldier]] and [[Warrior (Tactics Advance)|Warrior]]. It has high HP, attack, defense, and speed that is well-suited for front line combat. Unlike Soldiers and Warriors, Fencers have a generous ability set that includes status effects, area damage, and even a ranged attack. As a default job, Fencer and her equipment does not take any time to acquire. Fencer's high speed allows her to outpace most other units and close distances quickly. Since nearly all Fencer abilities have range identical to weapon range, they can fit well with ranged jobs like [[Sniper (Tactics Advance)|Snipers]] and [[Archer (Tactics Advance)|Archers]].
+
+Rapiers are not strong weapons and thus other classes with better equipment selections can deal more damage. Fencers have awful MP growth, which will trouble them if they move on to the more advanced classes, like [[Elementalist (Tactics Advance)|Elementalists]] or [[Assassin (Tactics Advance)|Assassins]]. They also lack significant support abilities and heavily damaging abilities.
+
+Overall, Fencer is one of the most physical viera jobs along with the Sniper and Assassin. Despite being a basic class, Fencer can hold her own in melee combat and hunt down various enemies with her high speed. Their terrible MP growth hurts them in the long run and narrows their flexibility, but Fencers are still reliable melee fighters.
+
+Enemy Fencers cannot be outpaced easily. Fencers can deal sizable damage to many units, except tanks like [[Templar (Tactics Advance)|Templars]] and [[Defender (Tactics Advance)|Defenders]]. Due to their high speed and accurate attacks, it is difficult to escape from Fencers once they are in melee range. Fencers are a threat to mages due to possessing ranged attacks and an MP-damaging ability. However, mages and ranged units also do well against Fencers who still have relatively weak ranged combat. Fencers have relatively high evasion that makes front and side attacks inconsistent, so inflicting ailments like Sleep and Stop can make them easy prey.
+
+==Other appearances==
+===''[[Final Fantasy Brave Exvius]]''===
+<gallery>
+FFBE 290 Fencer.png
+FFBE 291 Fencer.png|5★ sprite.
+FFBE Checkmate.png|Checkmate.
+FFBE Manastrike.png|Manastrike.
+FFBE Reflex 2.png|Reflex (4★).
+FFBE Reflex.png|Reflex (5★).
+FFBE Shadowstick.png|Shadowstick.
+FFBE Swallowtail.png|Swallowtail.
+FFBE Swarmstrike.png|Swarmstrike.
+</gallery>
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Swarmstrike.png|Swarmstrike.
+FFTA Checkmate.png|Checkmate.
+FFTA Featherblow.png|Featherblow.
+FFTA Swallowtail.png|Swallowtail.
+FFTA Piercethrough.png|Piercethrough.
+FFTA Nighthawk.png|Nighthawk.
+</gallery>{{Gallery incomplete|Shadowstick|Manastrike|Lunge Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Esgrimidor (Final Fantasy Tactics Advance)]]
+[[it:Schermidore (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

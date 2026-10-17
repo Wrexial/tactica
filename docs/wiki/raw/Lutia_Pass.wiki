@@ -1,0 +1,46 @@
+[[File:LutiaPass.png|thumb|right|250px|Clan Nutsy soundly defeating Clan Dip.]]
+{{Quote|Much-traveled pass, with the occasional roadshop.|Description}}
+'''Lutia Pass''' {{J|ルテチア峠|Rutechia-tōge}} is a mountain location in ''[[Final Fantasy Tactics Advance]]''. It is the site of "Mission #002: Thesis Hunt", where [[Marche Radiuju|Marche]] and company confront a band of thieves that have stolen a thesis.
+
+Lutia Pass is also the site of "Mission #044: Snow in Lutia", "Mission #045: Frosty Mage", "Mission #046: Prof in Trouble", "Mission #072: Lutia Mop-up", and the [[clan]] in "Mission #101: Clan Roundup" spawns from here. Lutia Pass can be freed in "Mission #241: Lutia Pass" after "Mission #004: Desert Peril".
+
+==Missions==
+*"Mission #002: Thesis Hunt"
+{{Quote|I search for my master the late Dr. Dalilei's thesis. It was taken from me by bandits as I crossed the Lutia Pass.|Dr. Coleman, Geologist}}
+*"Mission #044: Snow in Lutia"
+{{Quote|Would you please take my children to play in the snow on Lutia Pass? I'll make you lunch! Please watch out for monsters.|Auntie Larsu}}
+*"Mission #045: Frosty Mage"
+{{Quote|I saw a bad wizard doing something up in the snow mountains. He's up to no good, I know it! He was making all this ice!|Laudy, Shopkeeper's Son}}
+*"Mission #046: Prof in Trouble"
+{{Quote|Please find Professor Auggie. He's been gone to the Lutia Pass for three days now. Maybe he's lost, or buried in an avalanche!|Dag, Research Assistant}}
+*"Mission #072: Lutia Mop-up"
+{{Quote|We found another nest of those Borzoi worms in Lutia Pass! We've got four of their capos already, only three to go!|Sprohm Town Watch}}
+*"Mission #241: Lutia Pass"
+{{Quote|I opened a shop in Lutia Pass, but not a single customer has come yet! I think I need to advertise. Could you pass out flyers?|Bintz, Tool Shop}}
+
+==Encounters==
+===Clan Dip===
+{{Quote|Good with bows. Watch out for attacks from behind.|Description}}
+*[[Soldier (Tactics Advance)|Soldier]] ([[Human|Hume]])
+*[[Archer (Tactics Advance)|Archer]] (Hume)
+*Archer ([[Viera]])
+*[[Thief (Tactics Advance)|Thief]] ([[Moogle]])
+*[[White Mage (Tactics Advance)|White Mage]] (Viera)
+
+==Turf Defense==
+===Help Lutia!===
+{{Quote|Clan Dip's made a base in the pass, and they're shooting arrows at anyone that comes close. Can you do something about them?|Town rumor}}
+*[[Archer (Tactics Advance)|Archer]] (Human)
+*Archer (Viera)
+*[[Soldier (Tactics Advance)|Soldier]]
+*[[White Mage (Tactics Advance)|White Mage]]
+
+==Gallery==
+<gallery>
+Mountain-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Mountains]]

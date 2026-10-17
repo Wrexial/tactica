@@ -1,0 +1,35 @@
+[[File:Koringwood.png|thumb|right|250px|Koring Band against Clan Nutsy.]]
+{{Quote|Refreshing wood filled with ambient pure magic.|Description}}
+The '''Koringwood''' {{J|コリング緑林|Koringu Ryokurin}} is a forest location in ''[[Final Fantasy Tactics Advance]]''. It is playable after completing "Mission #008: Hot Awakening" and is the site of "Mission #009: Magic Wood". In this mission, [[Marche Radiuju|Marche]] confronts a band of loggers that are illegally cutting down the magic trees in the wood. The Koringwood is also the site of "Mission #032: Tower Ruins", "Mission #048: S.O.S", and "Mission #079: Wind Sigil". It can be freed in "Mission #247: Travel Aid" after "Mission #011: Pale Company" is completed.
+
+==Encounters==
+===Koring Band===
+{{Quote|Mountain bandit band based in Koringwood. Self-sufficient due to hunting and gathering.|Description}}
+*[[Bishop (Tactics Advance)|Bishop]] (Bangaa)
+*[[White Monk (Tactics Advance)|White Monk]] (Bangaa)
+*[[Animist (Tactics Advance)|Animist]] (Moogle)
+*[[White Mage (Tactics Advance)|White Mage]] (Human)
+*[[Archer (Tactics Advance)|Archer]] (Viera)
+
+==Turf Defense==
+===Help Koring!===
+{{Quote|The Koringwood Band is securing their turf, putting out lights and setting traps. It's scary to go through there now!|Town rumor}}
+*[[Animist (Tactics Advance)|Animist]] 
+*[[Archer (Tactics Advance)|Archer]]
+*[[Bishop (Tactics Advance)|Bishop]]
+*[[White Mage (Tactics Advance)|White Mage]]
+
+==Gallery==
+<gallery>
+Koring Wood 1.PNG|Koringwood.
+Koring Wood 2.PNG|Koringwood.
+Koring Wood 3.PNG|Koringwood.
+Koring Wood 4.PNG|Koringwood.
+Koring Wood 5.PNG|Koringwood.
+Forest-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Forests]]

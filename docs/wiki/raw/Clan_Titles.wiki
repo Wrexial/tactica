@@ -1,0 +1,26 @@
+{{Cleanup|adding links from other pages}}
+In ''[[Final Fantasy Tactics Advance]]'', after completing certain conditions, the title of the player's [[clan]] will be changed. Titles do not affect anything, and are only for bragging rights.
+
+==Titles and their conditions==
+'''Note:''' Due to there being 47 ranks for Clan Titles, only the top ten are shown.
+*Trufflenose: Gather skill at 70+
+*Godeye: Appraise skill at 70+
+*Defthand: Craft skill at 70+
+*Meister: Smithing skill at 70+
+*Jamagus: Magic skill at 70+
+*Riskbreaker: Combat skill at 70+
+*Super: Clan level at 85+
+*Peerless: Battle count at 500+
+*Master: Clan level at 99+
+*Explorer: Clear 300+ missions
+
+==Special titles==
+The following four titles are special titles. They are obtained in unique ways that may be missed on a regular play through. As with the other titles, these have no effect on gameplay whatsoever.
+
+*Baham Faction: Succeed in negotiations during Mission 112-A Challenge
+*Cheap: Succeed in negotiations during Mission 108-Poachers
+*Cheater: Succeed in negotiations during Mission 104-Stolen Scoop or Mission 105-Smuggle Bust
+*Loser: Lose during any of the following missions: L04-Newbie Hunt, L05-Real Hunt, L06-Expert Hunt
+
+{{navbox setting FFTA}}
+[[Category:Final Fantasy Tactics Advance]]

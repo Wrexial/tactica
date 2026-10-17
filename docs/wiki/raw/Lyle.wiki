@@ -1,0 +1,66 @@
+{{infobox character
+|name=Lyle
+|release=FFTA
+|japanese=ライル
+|romaji=Rairu
+|image=FFTA-Lyle por.gif
+|sprite=[[File:FFTA Lyle.png]]
+|home=[[St. Ivalice]]
+|race=[[Human]]
+|gender=Male
+|type=npc
+}}
+{{Quote|Aww, man! Why do I get stuck on the weak team? We're just gonna lose. Where's the fun in that?|Lyle}}
+'''Lyle''' is a resident of [[St. Ivalice]] in ''[[Final Fantasy Tactics Advance]]''. Lyle attends the same school where [[Marche Radiuju]] enrolled after moving into town, where he is the PE Head—a student, usually a boy, who cleans up after a PE lesson.
+
+Lyle's clothing resembles the [[Gaia Gear]], a piece of clothing that grants the [[Auto-Regen|Auto Regen]] ability to [[Sniper (Tactics Advance)|Snipers]], [[Hunter (Tactics Advance)|Hunters]] and [[Gadgeteer]]s.
+
+==Story==
+[[File:StIvaliceSchool.png|right|thumb|Lyle and the other students in a snowball fight.]]
+Lyle is in cohorts with two other kids, [[Guinness]] and [[Colin (Tactics Advance)|Colin]]. The three are school bullies who enjoy taunting [[Mewt Randell]] for his shy, odd demeanor, and [[Ritz Malheur]] over her dyed hair. During the snowball "fight", the bullies gang up on Mewt. [[Mr. Leslaie]], the "Master" of the fight, sees this and sends them off to his office.
+
+When St. Ivalice is transformed by the [[Gran Grimoire]], Marche and [[Clan Nutsy]] accept the quest "Prof in Trouble" to save the [[nu mou]] Professor [[Professor Auggie|Auggie]] in [[Lutia Pass]], where the player discovers the three bullies have been turned into [[Zombie (Tactics Advance)|Zombies]] and had been attacking people. Marche does not acknowledge this, and he and his clan defeat the undead bullies. After the main game, Lyle and his friends re-emerge as [[Vampire (Tactics Advance)|Vampires]] in the mission "Mortal Snow", where the clan will recruit Ritz.
+
+When St. Ivalice reverts to its initial state, so do the three bullies, and Marche and Mewt have gathered courage to go against them. 
+
+==Gameplay==
+===Stats===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!width="25%"|Move Rate
+!width="25%"|Jump Rate
+!width="25%"|Evade Rate
+|-
+|3
+|2
+|50
+|}
+
+===Growth===
+Like the other school children, Lyle's PE Head job class has unique [[stat growth]] rate programmed into the game, though it cannot be accessed without a cheat device. Because it is only used in a tutorial, its stats are low and it has no abilities.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="10%"|HP
+!width="10%"|MP
+!width="10%"|Attack
+!width="10%"|Defense
+!width="10%"|Magic Power
+!width="10%"|Magic Resistance
+!width="10%"|Speed
+|-
+|4.2 E
+|0.0 E
+|2.5 E
+|3.3 E
+|0.0 E
+|0.0 E
+|1.0 D
+|}
+
+==Etymology==
+''Lyle'' is Old French for "the island".
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]

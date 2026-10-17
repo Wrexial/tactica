@@ -1,0 +1,3 @@
+{{category |contains=all ability |namespace=main }}
+[[pt-br:Categoria:Habilidades]]
+[[Category:Final Fantasy series]]

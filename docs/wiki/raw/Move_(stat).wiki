@@ -1,0 +1,73 @@
+{{Image needed|FFT|FFTA|Image of example of moving in FFT, FFTA, and FFTA2. Probably with the blue spaces as example}}
+{{Expand|FFT}}
+'''Move''' is an integral and important [[Stats|stat]] in the ''Tactics'' series of [[Final Fantasy series|''Final Fantasy'']] games. It is the stat that determines how far a unit can travel from their current position, and works in tangent with the [[Jump (stat)|Jump]] statistic, in scenarios in which the player can or cannot cross over tiles lower or higher than the spot they are at. All job classes have a set Move counter, which can further be increased either by abilities or pieces of equipment.
+
+== Appearances ==
+=== ''[[Final Fantasy Tactics]]'' ===
+{{Quote|A combination of the unit's base movement range and any job, equipment, or ability bonuses. The higher the number, the farther the unit can move.|Description (PSP)}}
+"Move" or "Movement" is the stat that determines how far a unit can move on their turn. The base movement is determined by the unit's [[Final Fantasy Tactics jobs|job]], and can be increased further via equipment like [[Battle Boots (Tactics)|battle boots]] and [[Germinas Boots (Tactics)|Germinas boots]], and via the [[Final Fantasy Tactics movement abilities|movement abilities]] [[Movement +1 (Tactics)|Movement +1]], [[Movement +2 (Tactics)|+2]], and [[Movement +3 (Tactics)|+3]]. Terrain may give movement penalties, such as when wading through water without [[Swim (Tactics)|Swim]].
+{{Multicol-begin}}
+Units with movement of 3:
+* [[Chemist (Tactics)|Chemist]]
+* [[Knight (Tactics)|Knight]]
+* [[Archer (Tactics)|Archer]]
+* [[White Mage (Tactics)|White Mage]]
+* [[Black Mage (Tactics)|Black Mage]]
+* [[Monk (Tactics)|Monk]]
+* [[Mystic (Tactics)|Mystic]]
+* [[Time Mage (Tactics)|Time Mage]]
+* [[Dragoon (Tactics)|Dragoon]]
+* [[Orator (Tactics)|Orator]]
+* [[Summoner (Tactics)|Summoner]]
+* [[Samurai (Tactics)|Samurai]]
+* [[Arithmetician (Tactics)|Arithmetician]]
+* [[Dancer (Tactics)|Dancer]]
+* [[Bard (Tactics)|Bard]]
+* [[Holy Knight (Tactics)|Holy Knight]] (Agrias, Weigraf)
+* [[Machinist (Tactics)|Machinist]]
+* [[Skyseer]]
+* [[Dragonkin]]
+* [[Soldier (Tactics)|Soldier]]
+* [[Astrologer (Tactics)|Astrologer]]
+* [[Ark Knight]] (Elmdore)
+* [[Fell Knight (Tactics)|Fell Knight]]
+* [[Sorcerer (Tactics)|Sorcerer]]
+* [[Dark Knight (Tactics)|Dark Knight]]
+* [[Deathknight (Tactics)|Deathknight]]
+{{Multicol-separator}}
+Units with Move of 4:
+* [[Squire (Tactics)|Squire]]
+* [[Thief (Tactics)|Thief]]
+* [[Geomancer (Tactics)|Geomancer]]
+* [[Ninja (Tactics)|Ninja]]
+* [[Mime (Tactics)|Mime]]
+* [[Holy Knight (Tactics)|Holy Knight]] (Delita)
+* [[Netherseer]]
+* [[Divine Knight (Tactics)|Divine Knight]]
+* [[Sword Saint (Tactics)|Sword Saint]]
+* [[Templar (Tactics)|Templar]]
+* [[Cleric (Tactics)|Cleric]]
+* [[Princess (job)|Princess]]
+* [[Ark Knight]] (Delita)
+* [[Celebrant]]
+* [[Rune Knight (Tactics)|Rune Knight]]
+* [[Nightblade]]
+* [[Sky Pirate (Tactics)|Sky Pirate]]
+* [[Game Hunter]]
+{{Multicol-separator}}
+Units with Move of 5:
+* [[Ark Knight]] (Zalbaag)
+* [[Assassin (Tactics)|Assassin]]
+{{Multicol-end}}
+The [[Onion Knight (Tactics)|onion knight]] is unique in that it starts with base 3 movement, but upon mastering the job, will have base 4 movement.
+
+The range of [[Throw (Tactics)|Throw]] is equal to the unit's movement stat.
+
+=== ''[[Final Fantasy Tactics Advance]]'' ===
+{{Section|Final Fantasy Tactics Advance}}
+
+==== ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]'' ====
+{{Section|Final Fantasy Tactics A2: Grimoire of the Rift}}
+
+{{navbox stats}}
+[[Category:Recurring stats]]

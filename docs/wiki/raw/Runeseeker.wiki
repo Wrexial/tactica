@@ -1,0 +1,138 @@
+{{infobox job
+|name=Runeseeker
+|release=FFTA
+|japanese=ルーンシーカー
+|romaji=Rūnshīkā
+|image=Ffta-babus.jpg
+|portrait=[[File:FFTA-Babus-por.png|50px|Player]]
+|sprite=[[File:FFTA_babus.gif|20px|Player]]
+|obtained=Default
+|characters=[[Babus Swain]]
+|stats=*Move Rate: 4
+*Jump Rate: 3
+*Evade Rate: 50
+*Stat growth: high MP growth, poor Speed growth, high HP, Attack and Magic Power, mediocre Defense and Resistance
+|weapons=[[Final Fantasy Tactics Advance weapons#Maces|Maces]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]], [[Final Fantasy Tactics Advance armor#Robes|robes]] and [[Final Fantasy Tactics Advance armor#Shields|shields]]
+|command abilities=*[[Rune (Tactics Advance)|Rune]]
+|support abilities=*[[#Weapon Def+|Weapon Def+]]
+*[[Counter (ability)|Counter]] (reaction)
+|recurring appearance=
+}}
+{{Quote|Royal mages, trained in all forms of magic.|Description}}
+'''Runeseeker''' is a [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]'' available to [[Babus Swain]]. Runeseeker follows the same [[stat growth]] as the [[Sage (Tactics Advance)|Sage]], and wields [[Mace (weapon type)|maces]] in combat. Babus cannot learn any new abilities by wielding maces or change jobs and thus can only have [[Item]] as his second A-Ability.
+
+==Growth==
+The Runeseeker has the highest MP growth, but is tied with [[Paladin (Tactics Advance)|Paladins]], [[Templar (Tactics Advance)|Templars]], and [[nu mou]] [[Illusionist (Tactics Advance)|Illusionists]] for slowest speed growth. Compared to other nu mou, Babus has high HP, Attack and Magic Power, allowing him to be equally effective with magic spells and physical attacks, but his Defense and Resistance are mediocre.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.6 B
+|8.8 S
+|8.4 B+
+|7.6 B+
+|9.2 A-
+|7.6 D+
+|0.8 E
+|}
+
+==Abilities==
+===[[Rune (Tactics Advance)|Rune]]===
+{{Quote|Runeseeker command. Use all forms of magic.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Explode}}
+|24
+|40
+|3
+|-
+|colspan=3 style="text-align:left"|''Explosive magical power. Deals enormous damage.''
+|-
+! rowspan=2|{{A|Stillness}}
+|24
+|—
+|3
+|-
+|colspan=3 style="text-align:left"|''Freezes time and space to stop units in an area.''
+|-
+! rowspan=2|{{LA|Gravity (ability)|Quarter}}
+|10
+|—
+|3
+|-
+|colspan=3 style="text-align:left"|''Small gravity field. Saps 1/4 of target's HP.''
+|-
+! rowspan=2|{{LA|Graviga|Demi}}
+|24
+|—
+|3
+|-
+|colspan=3 style="text-align:left"|''Gravity field. Saps 1/2 of target's HP.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:30%"|Effect
+|-
+![[Counter (ability)|Counter]]
+|style="text-align:left"|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:30%"|Effect
+|-
+!{{A|Weapon Def+}}
+|style="text-align:left"|''Reduces damage from weapon attacks.''
+|}
+
+== Overview ==
+The Runeseeker class is exclusive to Babus. He has excellent MP and Magic Power, but suffers from low resistance and terrible speed. His ability set is decently versatile, as it contains area damage, consistent damage, and status effects. Babus can even engage in melee combat despite not having access to Ultima Blow. However, Babus's abilities are hardly considered diverse when compared to the likes of [[Juggler (Tactics Advance)|Jugglers]] or [[Alchemist (Tactics Advance)|Alchemists]]. Babus cannot change class, and thus is unable to learn any other abilities. He starts out with one reaction ability and one support ability mastered.
+
+Babus's unique abilities are not all that great, as Explode is outclassed by others in terms of damage, while Stillness is essentially identical to the [[Time Mage (Tactics Advance)|Time Mage's]] Stop. Both Quarter and Demi are taken from the Time Mage's ability set even though they are more suited for Time Mages than Babus. Unlocking Babus in the first place follows a lengthy chain of missions, and is subject to a bug that makes either Babus or [[Shara]] permanently unrecruitable (in the North American version only).
+
+Overall, Babus's personal class is hardly endgame material. His small ability set is outdone by regular characters. He has respectable stats, but his poor speed limits his usefulness.
+
+==Non-''Final Fantasy'' guest appearances==
+===''[[Knights of the Crystals]]''===
+The Rune Seeker appears on a gold card.
+
+<gallery>
+KotC Rune Seeker Male.png|Rune Seeker (male).
+KotC Rune Seeker Female.png|Rune Seeker (female).
+</gallery>
+
+==Gallery==
+<gallery>
+FFTA Explode.png|Explode
+FFTA Stillness.png|Stillness
+FFTA Demi.png|Demi
+FFTA Quarter.png|Quarter
+</gallery>
+
+==Etymology==
+{{Etym|Rune}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Cazarunas (Final Fantasy Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

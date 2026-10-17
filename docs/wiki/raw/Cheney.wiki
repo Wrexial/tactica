@@ -1,0 +1,45 @@
+{{infobox character
+|name=Cheney
+|release=FFTA
+|japanese=チェイニー
+|romaji=Cheinī
+|image=Ffta-h-hunter.jpg
+|portrait=[[File:FFTA-job-Hunter-por.png|Portrait.]]
+|sprite=[[File:FFTA-job-hunter.gif|Sprite.]]
+|race=[[Human]]
+|gender=Male
+|type=playable
+|job=Hunter
+}}
+{{Quote|Arr, them mountain beasts have been coming down to the lowlands of late, and one took a bite out of me!|Cheney}}
+'''Cheney''' is one of six special recruits in ''[[Final Fantasy Tactics Advance]]''. As an NPC he posts the missions "#165 Hundred-Eye" and "#52 Friend Trouble".
+
+==Requirements==
+Cheney has a 1-in-5 chance of joining the [[clan]] after completion of a mission where the [[Snake Shield]] is equipped. The Snake Shield is a reward for "#165 Hundred-Eye", which is a mission posted by Cheney himself, and which itself is unlocked after "#015 Scouring Time" and "#126 Wine Delivery".
+
+==Abilities==
+Like all [[secret character]]s, Cheney joins four [[level]]s above the clan average. Cheney is recruited as a [[Hunter (Tactics Advance)|Hunter]], and has two abilities already mastered: Capture and Ultima Shot, among the Hunter's most valuable prospects. For any player desiring a monster capturer and ranged fighter, Cheney is the ideal Hunter. Cheney removes the need to master the class requirements and Capture, and even if the player has a Hunter on the team already, having more than one will drastically improve the process of capturing monsters.
+
+Cheney is no slouch in ranged combat with strong greatbows and Ultima Shot. Using greatbows, Cheney can use physical abilities from other classes well, exploiting their weapon-dependent range. As Cheney joins at a level higher than most, becoming a mage can be difficult for him. The MP for his class is average, meaning that Cheney will generally only be able to use Ultima Shot a limited number of times.
+
+===Hunt===
+{{Quote|Hunting command. Use your hunting skills to fight.|Description}}
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:20%"|Skill
+!style="width:70%"|Effect
+!style="width:10%"|MP Use
+|-
+!Capture
+|Attempt to capture a monster. Captured monsters are added to the Monster Bank in Cyril.
+|—
+|-
+!Ultima Shot
+|Triple damage attack.
+|60
+|}
+
+{{navbox characters FFTA}}
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Secret characters]]

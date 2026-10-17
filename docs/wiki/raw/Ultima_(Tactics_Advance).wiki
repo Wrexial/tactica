@@ -1,0 +1,78 @@
+{{DISPLAYTITLE:Ultima (''Tactics Advance'')}}
+{{infobox character
+|name=Ultima
+|release=FFTA
+|japanese=聖天使アルテマ
+|romaji=Sei Tenshi Arutema
+|lit=Ultima, the Holy Angel
+|image=FFTA Ultima.jpg
+|race=[[Totema]]
+|type=boss
+|recurring appearance=Ultima (Ivalice)
+}}
+{{Quote|This place... This whole shrine is a totema!|[[Marche Radiuju]]}}
+'''Ultima''' is the [[totema]] of the [[nu mou]] in ''[[Final Fantasy Tactics Advance]]'', and is the second totema fought by [[Marche Radiuju]]. Instead of battling Marche directly, she transports him inside of herself, where Marche must destroy a number of crystals, each able to cast spells against him. After being defeated, Ultima can be summoned by any nu mou member of [[Clan Nutsy]] to deal a large amount of [[MP (stat)|MP]] damage to all enemies.
+
+==Battle==
+[[File:FFTA Ultima Totema.png|Ultima's sprite.|left]]
+The crystals attack the intruding Clan Nutsy by using a standard physical attack when they are close enough. Their main skill, Logos, can [[Charm (status)|Charm]] the player's units from four spaces away. Since they are just objects, however, they cannot move about, and their evade is 0. Once all the Ultima crystals are destroyed, Ultima herself is defeated.
+
+The Logos attack can only go so far. The player will need to take advantage of this by fighting with [[Black Mage (Tactics Advance)|Black Mages]] or [[Archer (Tactics Advance)|Archers]]. It is good to have any [[Moogle#Final Fantasy Tactics Advance|moogle]] with 10 JP in this battle, because the fight can end easily by having them summon [[Famfrit (Tactics Advance)|Famfrit]]. Additionally, the player can enter the battle while the [[Law system (Tactics Advance)|Charm Law]] is in effect, making the crystals unable to use Logos.
+
+Alternatively the player can equip items that nullify Charm, although the units' stats will still go down when Logos is used.
+
+==Stats==
+As the Ultima crystals are stationary, they do not have any movement stats.
+
+{|class="FFTA article-table" style="text-align:center"
+|-
+!style=width="25%"|Move Rate
+!style=width="25%"|Jump Rate
+!style=width="25%"|Evade Rate
+|-
+|0
+|0
+|0
+|}
+
+==Growth==
+[[File:TAUltimaCrystal.png||right|Ultima crystals.]]
+As the Ultima crystals are fought as a group, their stat growth is lower than most other totema. While their HP, MP, and Speed are all very low, their offensive and defensive stats are all well above-average, particularly Attack and Defense.
+
+{|class="FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|HP
+!style="width:10%"|MP
+!style="width:10%"|Attack
+!style="width:10%"|Defense
+!style="width:10%"|Magic Power
+!style="width:10%"|Magic Resistance
+!style="width:10%"|Speed
+|-
+|4.6 E
+|1.6 E
+|10.8 S+
+|10.7 S+
+|9.6 A+
+|8.5 B
+|0.9 D-
+|}
+
+==Abilities==
+===Expulse===
+{{Quote|Totema command. Drive off all intruders.|Description}}
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!Logos
+|Word of God. Lowers Attack Power, Magic Power, and may inflict [[Charm (status)|Charm]].
+|}
+
+==Etymology==
+The Ultima crystal's Expulse ability, Logos, is an Ancient Greek word referring to speech, oration, and discourse.
+
+{{navbox characters FFTA}}
+[[Category:Totema in Final Fantasy Tactics Advance]]
+[[Category:Bosses in Final Fantasy Tactics Advance]]

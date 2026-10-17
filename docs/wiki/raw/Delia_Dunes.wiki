@@ -1,0 +1,39 @@
+[[File:DeliaDunes.png|250px|right|thumb|Brass Dragoons in Delia Dunes.]]
+{{Quote|Desert area famous for its barking sands. Said to be formed from a celestial beast's bones.|Description}}
+'''Delia Dunes''' {{J|デライラ砂丘|Deraira sakyū}} is a desert location in ''[[Final Fantasy Tactics Advance]]''. It can be placed on the World Map after "Mission #017: Desert Patrol" is completed and is the site of the storyline "Mission #018: Quiet Sands".
+
+Delia Dunes is also the site of "Mission #034: Magewyrm", "Mission #066: A Dragon's Aid", and "Mission #091: Challengers?". It can be freed in "Mission #254: Delia Dunes".
+
+==Story==
+In "Mission #018: Quiet Sands", [[Marche Radiuju|Marche]] is confronted by [[Llednar Twem]]. A seam is also located here, and Marche and Llednar were teleported to the shrine of the fifth Crystal, the [[Human]] Crystal. When Llednar attempts to use his [[Final Fantasy Tactics Advance enemy abilities#Omega|Omega]] skill, [[Cid Randell|Judgemaster Cid]] intervenes and sends Llednar to prison. Marche is then free to battle the Human Totema, [[Mateus (Tactics Advance)|Mateus]].
+
+==Encounters==
+===Brass Dragoons===
+{{Quote|Proud dragoon band. Revels in challenging worthy opponents. "Fight with honor!"|Description}}
+*[[Defender (Tactics Advance)|Defender]] (Bangaa)
+*[[Dragoon (Tactics Advance)|Dragoon]] (Bangaa)
+*Dragoon (Bangaa)
+*[[Paladin (Tactics Advance)|Paladin]] (Human)
+*[[Templar (Tactics Advance)|Templar]] (Bangaa)
+
+==Turf Defense==
+===Help Delia!===
+{{Quote|Clan Toriar's trying to build a base in the dunes, putting up a tent and pushing out residents. Go get 'em, Clan [Nutsy]!|Town rumor}}
+*[[Animist (Tactics Advance)|Animist]] (Moogle)
+*[[Fighter (Tactics Advance)|Fighter]] (Human)
+*[[Gladiator (Tactics Advance)|Gladiator]] (Bangaa)
+*[[Warrior (Tactics Advance)|Warrior]] (Bangaa)
+
+==Gallery==
+<gallery>
+Delia Dunes 1.PNG|Delia Dunes.
+Delia Dunes 2.PNG|Delia Dunes.
+Delia Dunes 3.PNG|Delia Dunes.
+Delia Dunes 4.PNG|Delia Dunes.
+Desert-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Deserts]]

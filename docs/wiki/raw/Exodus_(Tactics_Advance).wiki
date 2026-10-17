@@ -1,0 +1,32 @@
+{{DISPLAYTITLE:Exodus (''Tactics Advance'')}}
+{{infobox character
+|name=Exodus
+|release=FFTA
+|japanese=審判の霊樹エクセデス
+|romaji=Shinban no Reiju Ekusedesu
+|lit=Exodus the Tree-Spirit Judge
+|image=FFTA Exodus.JPG
+|race=[[Totema]]
+|type=boss
+|boss page=Exodus Fruit
+|recurring appearance=Exodus (Ivalice)
+}}
+{{Quote|They look like trees. They're the totema!?|Marche Radiuju}}
+'''Exodus''' is the [[totema]] of the [[viera]] in ''[[Final Fantasy Tactics Advance]]'', and is the fourth totema fought by [[Marche Radiuju]].
+
+Instead of fighting Marche directly, Exodus transports him into a room with several [[Exodus Fruit]], which he must destroy all the while fending off [[Babus Swain]], who is trying to stop him. After being defeated, Exodus can be summoned by any viera member and Ritz of [[Clan Nutsy]]. He is based on [[Exdeath]] from ''[[Final Fantasy V]]''. In ''[[Final Fantasy Tactics Advance Radio Edition]]'', [[Shara]] summons him against [[Remedi|Queen Remedi]].
+
+In his in-game appearance, the symbol on each of Exodus's hands is the astrological sign [[Libra (zodiac)|Libra]], the scales.
+
+==Gameplay==
+{{See|Exodus Fruit}}
+[[File:FFTA Exodus Totema.png|left|thumb|Exodus sprite.]]
+Instead of fighting Exodus directly, Marche must fight the Exodus Fruit. They are incapable of opposing Marche's efforts to destroy them and have low HP, ranging from around 30 to 60. Marche will be under attack from Babus Swain. Once Babus is neutralized, Marche only has to avoid breaking the [[Law system (Tactics Advance)|law]] while he destroys the Exodus Fruit unopposed. Once all the Exodus Fruits are destroyed, Exodus is defeated.
+{{clear}}
+
+==Etymology==
+{{etym|Exodus}}
+
+{{navbox characters FFTA}}
+[[Category:Totema in Final Fantasy Tactics Advance]]
+[[Category:Bosses in Final Fantasy Tactics Advance]]

@@ -1,0 +1,9 @@
+'''Gaol''' {{J|ガオル|Gaoru}} is a hero mentioned in ''The Hero Gaol'', a book from ''[[Final Fantasy Tactics Advance]]''. He is befriended by a [[Mog Knight]] named [[Lini]], which could be recruited by having a unit request to join after completing a mission with the item ''The Hero Gaol'' selected for the mission. He is also known to wield two swords, the Ayuvir Red and the Ayuvir Blue. They are [[Final Fantasy Tactics Advance weapons#Blades|Blades]], which implies that he is a [[Fighter (Tactics Advance)|Fighter]]. He also has a relationship with the Moon Maiden.
+
+== Etymology ==
+"Gaol" is an alternate spelling for "jail", used primarily in Old English. Pronunciation is the same as jail.
+{{Character section|Final Fantasy Tactics Advance}}
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]

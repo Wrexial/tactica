@@ -1,0 +1,15 @@
+[[File:Fortune.png|thumb|right|250px|Cid uses the Anti-Law Card to nullify Llednar's Fortune.]]
+'''Fortune''' is the official name for the law that grants immunity to all weapon and magic damage, along with immunity to all status ailments in ''[[Final Fantasy Tactics Advance]]''. It does not provide any attack or magic power boosts.
+
+Fortune is only granted to one character: [[Llednar Twem]]. It is granted upon him by Queen [[Remedi]] after being created. During the few engagements before the final battle, [[Marche Radiuju]] and his fellow clan members will be unable to fight Llednar.
+
+{{spoiler}}
+However, during the first engagement at Delia Dunes' totema Shrine, Llednar is thwarted by [[Cid Randell|Judgemaster Cid]] who imposes an Advanced Law to prevent Llednar from using his expert skill [[Final Fantasy Tactics Advance enemy abilities#Omega|Omega]]. However, after only two turns, Llednar becomes overconfident and charges up an Omega attack. Because of this, Judgemaster Cid penalizes Llednar with a [[Red Card (Tactics Advance)|Red Card]] and removes him from battle, effectively ending the current engagement.
+
+During the second encounter at [[Bervenia Palace]], Llednar and Marche face off in [[Mewt Randell|Prince Mewt's]] throne room. Because Marche is still unable to attack Llednar, he must survive long enough for Judgemaster Cid to arrive and scare Llednar off.
+
+Fortune is eventually removed from Llednar via Judgemaster Cid's use of an [[Law system (Tactics Advance)#Law Cards|Antilaw Card]]. Afterward, Llednar is vulnerable to damage by Marche and his clanners in the final battle, "#024 Royal Valley".
+{{Endspoiler}}
+
+{{navbox setting FFTA}}
+[[Category:Gameplay in Final Fantasy Tactics Advance]]

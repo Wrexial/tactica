@@ -1,0 +1,105 @@
+{{DISPLAYTITLE:Antlion (''Tactics Advance'')}}
+[[File:FFTA-Antlion.jpg|200px|right]]
+[[File:FFTA-spr-Antlion.gif|left]]
+{{Quote|Giant bug with needle-like legs and a powerful jaw.|Description}}
+The '''Antlion''' is a blue insect in ''[[Final Fantasy Tactics Advance]]'', and unlike some previous games, a common enemy rather a [[boss]]. It makes use of its strong mandibles and affinity with sand to damage party members. It has a stronger relative called [[Jawbreaker]]s.
+
+Its LVL 3 Def-Less is learnable as a [[Blue Magic (Tactics Advance)|Blue Magic]] ability; the [[Blue Mage (Tactics Advance)|Blue Mage]] needs to be on a [[level]] that is a multiple of 3 to learn it. Since the maximum level is 50, LVL 3 Def-Less can become [[Permanently missable content|missable]] after a unit passes level 48. LVL 3 Def-Less can be useful when an enemy's level is just right, since it always works and it has an area effect.
+
+The Antlion's other ability, Sandstorm, is usable by [[Morpher]]s since they are capturable. Morphers can use Antlion abilities with Jawbreaker abilities if the player has one. Sandstorm provides damage while also blinding enemies, severely decreasing the accuracy on all of their attacks. Sandstorm's damage output can always be increased by feeding the monster.
+
+{{See|Antlion}}
+
+==Abilities==
+===Sandstorm===
+{{Quote|Antlion command. Attack with swirling sand.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|LV 3 Def-Less}}
+|''Lowers magic res. and weapon def. in units with levels divisible by 3''.
+|20
+|-
+!{{LA|Sandstorm (ability)|Sandstorm}}
+|''Dark tornado. Damages and inflicts darkness.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Mission: Help Eluut!
+|One Antlion is a member of the monsters that try to take over Eluut.
+|-
+!Turf Defense Mission: Mission: Help Giza!
+|Two Antlions appear here, along with a Jawbreaker and an Animist.
+|-
+!Mission #051: Desert Rose
+|Two Antlions appear here, along with a Jawbreaker.
+|-
+!Mission #037: Village Hunt
+|[[Marche Radiuju|Marche]] stumbles across an Antlion nest while searching for the lost [[moogle]] village, and three Antlions will lead a monster charge against him.
+|-
+!Mission #055: White Flowers
+|Another three Antlions interrupt Marche's flower picking.
+|-
+!Mission #004: Desert Peril
+|One Antlion begins the battle in the southern corner of the map.
+|-
+!Mission #012: Jagd Hunt
+|The Antlion here is one of the two monsters that assists the bandits that stole [[Nono]]'s airship.
+|-
+!Mission #034: Magewyrm
+|An Antlion is at the head of Magewyrm Gerland's forces.
+|-
+!Mission #107: Old Friends
+|An Antlion and [[Bomb (Tactics Advance)|Bomb]] are underlings of the [[viera]] clan in this mission.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Eluut Sands]]
+|style="text-align:center"|Antlions
+|As expected, two Antlions are part of this mainly Bug clan.
+|-
+![[Kudik Peaks]]
+|style="text-align:center"|Kudik Beasts
+|There is one Antlion in this all-monster clan.
+|}
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Antlion TCG.png|right|100px]]
+Antlion appears on an earth-elemental card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Antlion Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Antlion}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

@@ -1,0 +1,80 @@
+{{DISPLAYTITLE:Grenade (''Tactics Advance'')}}
+[[File:Grenade.gif|left]]
+[[File:FFTA Grenade Portrait.gif|right]]
+{{Quote|Powerful bomb. Covered in ice due to elemental shift.|Description}}
+The '''Grenade''' in ''[[Final Fantasy Tactics Advance]]'' is an [[Ice (element)|Ice-elemental]] blue variation of the [[Bomb (Tactics Advance)|Bomb]]. Like the Bomb, the Grenade has access to Blowup and Chill, the latter dealing powerful ice damage all around the user, healing itself while hurting adjacent units for no MP cost.
+
+The Grenade's Blowup can be learned as Blue Magic in the same way that regular Bombs do. [[Beastmaster (Tactics Advance)|Beastmasters]] cannot make Grenades use Blowup even after they control them. (This applies to Bombs as well.) Grenades must thus be coaxed to use Blowup for the player to learn it.
+
+Grenades are capturable, which gives the player access to Chill and other Bomb abilities. Even in the hands of the player, Chill is a useful skill that heals and damages at the same time. Despite dealing ice damage to the caster, Chill will always heal the [[Morpher]] even when they don't wear ice-absorbent equipment.
+
+{{See|Grenade (enemy)}}
+
+==Abilities==
+===Boom!===
+{{Quote|Grenade command. Envelop surrounding area in fire.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Self-Destruct|Blowup}}
+|''Self-KO. Deals massive damage to nearby enemies.''
+|2
+|-
+!{{A|Chill}}
+|''Spreads chill from caster, causing area cold damage.''
+|—
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Atk+}}
+|''Improves weapon attacks to deal more damage.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:25%"|Prerequisites
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Roda!
+|Free [[Roda Volcano (Tactics Advance)|Roda Volcano]]
+|The Grenade here is the only non-Fire enemy in this monster group, so make to not inadvertently heal it with an Ice spell while trying to KO the Bombs.
+|-
+!Mission #109: Snow Fairy
+|
+|There are only three enemies here, so cast a [[Fira (ability)|Fira]] spell at the Grenade and be done with it.
+|-
+!Mission #065: Exploration
+!Free [[Gotor Sands]]
+|The Ice Flan and Grenade here may take turns healing each other with icy attacks, so focus on one or the other.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+!Gotor Sands
+|style="text-align:center"|Wild Monsters
+|The Grenade here likes to come close to the party and cast Chill around itself. The [[Icedrake]] may then use Ice Breath to damage the units and heal the Grenade simultaneously.
+|-
+![[Materiwood]]
+|style="text-align:center"|Lost Monsters
+|Make sure the [[Malboro (Tactics Advance)|Malboros]] here are out of range of the mages before aiming a Fire spell at the Grenade.
+|}
+
+==Etymology==
+{{Etym|Grenade}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

@@ -1,0 +1,165 @@
+{{DISPLAYTITLE:Judge (''Tactics Advance'')}}
+:''Not to be confused with '''Judge''', a [[Bishop (Tactics Advance)|Bishop's]] A-Ability that steals an amount of [[Judge Points]].''
+{{infobox organization
+|name=Judges
+|release=FFTA
+|japanese=ジャッジ
+|romaji=Jajji
+|lit=
+|image=FFTA-GameCover.jpg
+|type=Military force
+|affiliation=[[Ivalice (Tactics Advance)|Ivalice]]
+|locations=[[Ivalice (Tactics Advance)|Ivalice]]
+|recurring appearance=Judge (term)
+}}
+[[File:Judge Chocobo.png|left]]
+{{Quote|Knights that uphold the laws of Ivalice.|Description}}
+'''Judges''' enforce the [[Law system (Tactics Advance)|laws]] of [[Ivalice (Tactics Advance)|Ivalice]] in ''[[Final Fantasy Tactics Advance]]''. One appears every time a battle occurs, riding an armored [[chocobo]]. They award [[Judge Points]] to combatants who perform recommended actions, but also issue [[Yellow Card|Yellow]] and [[Red Card (Tactics Advance)|Red Cards]] to any unit successfully performing forbidden actions. They also teleport all units that receive Red Cards to prison. The judges are led by [[Cid Randell|Judgemaster Cid]], who also has the power to issue [[Advanced Law]]s. Judges can also move corpses or petrified units out of the way to avoid battlefield gridlock. They cannot, however, enter Ivalice's three [[Jagd]]s.
+
+==Corrupt Judges==
+[[File:Battle Judge.PNG|right]][[File:Ffta-job-judge-alt-sprite.png|right|34px]]
+After completing all 300 missions, a string of sidequests will appear that center around the activities of a group of corrupt Judges selling law card immunities on the black market. Three of these missions—"Immunity Pass," Favoritism," and "Decision Time"—require the player to actually face Judges in battle. After clearing the very first mission with the help of Judgemaster Cid, he will offer to join [[Clan Nutsy]].
+
+==Stats==
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!width="25%"|Move Rate
+!width="25%"|Jump Rate
+!width="25%"|Evade Rate
+|-
+|3
+|2
+|40
+|}
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!Weapon
+!Head
+!Body
+!Equip Shields?
+|-
+|[[Final Fantasy Tactics Advance weapons#Knightswords|Knightswords]]
+|[[Final Fantasy Tactics Advance armor#Helms|Helms]]
+|[[Final Fantasy Tactics Advance armor#Heavy Armor|Heavy Armor]]
+|[[Final Fantasy Tactics Advance armor#Shields|Yes]]
+|}
+
+==Growth==
+While they all have access to the same Judgement abilities, each of the three Judges encountered during the Corrupted Judges sidequest have their own slightly unique stat growth rates, though none of them can be used by the player without a cheat device.
+
+===Judge A===
+[[File:ffta-job-judge.png|right|55px]]
+The Judge encountered during the "Immunity Pass" mission and re-encountered in Decision Time" is largely geared towards Magic Power and Magic Resistance with above-average HP and Defense, but has low Speed.
+{{clear}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="10%"|HP
+!width="10%"|MP
+!width="10%"|Attack
+!width="10%"|Defense
+!width="10%"|Magic Power
+!width="10%"|Magic Resistance
+!width="10%"|Speed
+|-
+|8.2 A-
+|4.8 B
+|7.8 C
+|8.9 B+
+|9.2 A-
+|10.2 S
+|1.1 D
+|}
+
+===Judge B===
+[[File:ffta-job-judge.png|right|55px]]
+The Judge encountered during the "Favoritism" mission and re-encountered in "Decision Time" has stats are more in favor of HP, Defense, and Magic Resistance, and has the highest speed of all three Judges by far.
+{{clear}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="10%"|HP
+!width="10%"|MP
+!width="10%"|Attack
+!width="10%"|Defense
+!width="10%"|Magic Power
+!width="10%"|Magic Resistance
+!width="10%"|Speed
+|-
+|9.4 S
+|5.2 B+
+|7.2 C-
+|8.6 B
+|6.8 D+
+|8.2 B-
+|1.8 A-
+|}
+
+===Judge C===
+[[File:ffta-job-judge-alt.png|right|55px]]
+The Judge encountered during the "Decision Time" mission has the highest HP, Attack, and Defense of all Judges, but also the lowest MP and Magic Power. He is seemingly more geared towards physical attacks than magical assault.
+{{clear}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="10%"|HP
+!width="10%"|MP
+!width="10%"|Attack
+!width="10%"|Defense
+!width="10%"|Magic Power
+!width="10%"|Magic Resistance
+!width="10%"|Speed
+|-
+|10.2 S
+|3.4 C
+|8.8 B+
+|9.2 A-
+|5.9 D-
+|7.8 C+
+|1.4 C
+|}
+
+==Abilities==
+===Judgement===
+{{Quote|Judge command. Sentence given to criminals.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="100"|Ability
+!width="770"|Effect
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Yellow Card}}
+|style="text-align:left"|''Gives target a yellow card.''
+|—
+|1
+|-
+!{{A|Judge Sword}}
+|style="text-align:left"|''Slash to damage and steal JP.''<br>Element is same as equipped weapon.
+|As Weapon
+|As Weapon
+|-
+!{{A|Palaistra}}
+|style="text-align:left"|''Deadly whirl to deal damage around.''<br>Element is same as equipped weapon.
+|As Weapon
+|Self
+|}
+
+==Gallery==
+<gallery>
+Final Fantasy Tactics Advance Logo.jpg|A Judge is depicted on the game's logo.
+Yellow Card Ability.png|Yellow Card.
+Judge Sword Alt.png|Judge Sword.
+Palaistra.png|Palaistra.
+FFTA Judge Sword Sprite.png|Judge Sword's sprite.
+</gallery>
+
+==Etymology and allusion==
+The Judgement skill Palaistra is a Latin word that literally means "wrestling school". It can also be used figuratively to refer to a battleground, including one that deals with battles of rhetoric or debate.
+
+Their signature weapons, Judge Swords, are translucent, sometimes blue, crystalline, and axe-like in shape. They may be inspired by water maiden fairy tales like ''The Maiden of the Spring'' and the Lady of the Lake in Arthurian mythology, who were the keepers of luxuriant or prestigious weapons and bestowed them onto people they deemed morally worthy to have. 
+
+{{navbox setting FFTA}}
+{{navbox abilities FFTA}}
+
+
+[[it:Giudice (Tactics Advance)]]
+[[Category:Bosses in Final Fantasy Tactics Advance]]
+[[Category:Final Fantasy Tactics Advance organizations]]

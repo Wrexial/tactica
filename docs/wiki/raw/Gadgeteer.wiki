@@ -1,0 +1,171 @@
+{{infobox job
+|name=Gadgeteer
+|release=FFTA
+|japanese=カラクリ士
+|romaji=Karakurishi
+|image=Ffta-moogle-gadgeteer.jpg
+|portrait=[[File:ffta-job-gadgeteer.png|50px|Player]] [[File:Ffta-job-gadgeteer-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-gadgeteer.gif|20px|Player]] [[File:Ffta-job-gadgeteer-enemy-sprite.png|Enemy|20px]]
+|obtained=*Learn two [[Thief (Tactics Advance)|Thief]] A-Abilities
+|required=[[Thief (Tactics Advance)|Thief]]
+|characters=[[Moogle]]s
+|stats=*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 50
+*Stat growth: ideal tanking job for moogles with mediocre Attack, Magic Power and Speed
+|weapons=[[Final Fantasy Tactics Advance weapons#Knuckles|Knuckles]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Pandora (Tactics Advance)|Pandora]]
+*[[#Gadget Combo|Gadget Combo]] (combo)
+|support abilities=*[[Regenerate (reaction ability)|Auto-Regen]] (reaction)
+*[[#Damage &#62; MP|Damage &#62; MP]] (reaction)
+|recurring appearance=Puppetmaster
+}}
+{{Quote|Gadgeteer who carry tricks in Pandora boxes.|Description}}
+'''Gadgeteer''' is a [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]'' available to [[moogle]]s. Gadgeteers rely on the tricks held within Pandora's Box, learned by knuckles, for their special abilities. There is a catch: the Pandora action ability may affect all members of the player's team or the enemy team.
+
+Which side is affected is determined by the coin that comes out of the Gadgeteer's box. If the coin's face is a sun, the ability will affect the player's team. If the coin face is a crescent moon, the ability will affect the opposition. To guard against hurting one's own allies, using equipment that blocks ailments is advisable, among them the very useful [[Angel Ring (Tactics Advance)|Angel Ring]], which nulls Darkness, Poison, and Doom, three out of four offensive Pandora abilities.
+
+==Growth==
+Gadgeteer is the most defensive moogle job. Its Defense stat ties with the [[Mog Knight]] for second among moogle jobs, its Attack stat ties with [[Juggler (Tactics Advance)|Juggler]] for second among moogle jobs, and its Resistance ties with the [[nu mou]] [[Black Mage (Tactics Advance)|Black Mage]] for highest Resistance among all jobs. It also ties with the [[Animist (Tactics Advance)|Animist]] for highest HP in a moogle job, making it the ideal tanking job for moogles. However, its Magic Power and Speed, while not horrible, leave something to be desired. Overall, Gadgeteer has the highest stat total of all moogle jobs.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.2 B-
+|2.4 D
+|8.2 B-
+|9.6 A
+|8.3 B-
+|10.2 S
+|0.9 D-
+|}
+
+==Abilities==
+===[[Pandora (Tactics Advance)|Pandora]]===
+{{Quote|Gadgeteer command. Pull something from your box.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Red Spring}}
+|[[Final Fantasy Tactics Advance weapons#Rising Sun|Rising Sun]]
+|style="text-align:left"|''Works like "haste"... but who will it hit?''
+|200
+|-
+!{{A|Blue Screw}}
+|[[Final Fantasy Tactics Advance weapons#White Fangs|White Fangs]]
+|style="text-align:left"|''Works like "dispel"... but who will it hit?''
+|200
+|-
+!{{A|Green Gear}}
+|[[Final Fantasy Tactics Advance weapons#Sick Knuckle|Sick Knuckles]]
+|style="text-align:left"|''Inflicts poison... but who will it hit?''
+|200
+|-
+!{{A|Silver Disc}}
+|[[Final Fantasy Tactics Advance weapons#Hard Knuckles|Hard Knuckles]]
+|style="text-align:left"|''Inflicts darkness... but who will it hit?''
+|200
+|-
+!{{A|Gold Battery}}
+|[[Final Fantasy Tactics Advance weapons#Cat Claws|Cat Claws]]
+|style="text-align:left"|''Heals HP... but whose?''
+|200
+|-
+!{{A|Black Ingot}}
+|[[Final Fantasy Tactics Advance weapons#Death Claws|Death Claws]]
+|style="text-align:left"|''Inflicts doom... but who will it hit?''
+|style="text-align: center"|200
+|-
+!{{A|Chroma Gem}}
+|[[Final Fantasy Tactics Advance weapons#Dream Claws|Dream Claws]]
+|style="text-align:left"|''Induces sleep... but who will it hit?''
+|200
+|-
+!{{A|Yellow Spring}}
+|[[Final Fantasy Tactics Advance weapons#Survivor|Survivor]]
+|style="text-align:left"|''Works like "barrier"... but who will it hit?''
+|200
+|}
+
+Gold Battery has a Magic Power of 40.
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Regenerate (reaction ability)|Auto-Regen}}
+|[[Final Fantasy Tactics Advance armor#Gaia Gear|Gaia Gear]]
+|style="text-align:left"|''Automatically regenerates HP when you take damage.''
+|300
+|-
+!{{A|Damage &#62; MP}}
+|[[Final Fantasy Tactics Advance armor#Judo Uniform|Judo Uniform]]
+|style="text-align:left"|''Converts HP damage to MP. (Doesn't work if MP is 0)''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Gadget Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Claws|Mythril Claws]]
+|style="text-align:left"|''Long-ranged combo ability for gadgeteers.''
+|100
+|}
+
+== Overview ==
+Gadgeteers are inconsistent, able to single-handedly determine the outcome of a battle. Their stats are excellent with good defense and resistance. Gadgeteers are deceptively potent front-line fighters with unreliable global utility. This job requires planning immunities and advantages in advance and not a small amount of luck.
+
+Enemy Gadgeteers can be annoying and it is best to dispatch them before they start infecting the battlefield with their wacky status effects. A free win on a mission is genuinely worth less than a sudden and unlucky loss.
+
+==Other appearances==
+===''[[Final Fantasy Artniks]]''===
+<gallery>
+FFTA Gadgeteer R L Artniks.png|''Final Fantasy Artniks''.
+</gallery>
+{{Section|Final Fantasy Artniks}}
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Red Spring.png|Red Spring.
+FFTA Blue Screw.png|Blue Screw.
+FFTA Green Gear.png|Green Gear.
+FFTA Silver Disc.png|Silver Disc.
+FFTA Gold Battery.png|Gold Battery.
+FFTA Black Ingot.png|Black Ingot.
+FFTA Chroma Gem.png|Chroma Gem.
+FFTA Yellow Spring.png|Yellow Spring.
+</gallery>{{Gallery incomplete|Gadget Combo}}
+
+==Trivia==
+*The Gadgeteer's Pandora's box item alludes to the [[wikipedia:Pandora's box|Greek myth of the same name]], where the first woman, Pandora, opened a container (actually a large jar) that released all the evils of the world.
+
+{{navbox abilities FFTA}}
+
+
+[[es:Manitas (Final Fantasy Tactics Advance)]]
+[[it:Factotum (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

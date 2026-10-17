@@ -1,0 +1,27 @@
+{{infobox character
+|name=Mr. Leslaie
+|release=FFTA
+|japanese=レズリー先生
+|romaji=Rezurī-sensei
+|image=FFTA-Leslaie-por.png
+|sprite=[[File:FFTA_Leslaie.png|24px]]
+|home=[[St. Ivalice]]
+|occupation=Teacher
+|race=[[Human]]
+|gender=Male
+|type=npc
+}}
+{{Quote|Ah, there's a trick to throwing a snowball, too. It's easier to hit someone from the side or behind. Think about which way your opponent's facing when you move.|Mr. Leslaie giving Marche pointers in his first snowball fight}}
+'''Mr. Leslaie''' is a non-player character from ''[[Final Fantasy Tactics Advance]]''. He is a teacher at the school in [[St. Ivalice]] where [[Marche Radiuju|Marche]], [[Ritz Malheur|Ritz]], and [[Mewt Randell|Mewt]] are students.
+
+==Story==
+At the beginning of the story, the children had a snowball fight against other students, including the bullies [[Colin (Tactics Advance)|Colin]], [[Lyle]], and [[Guinness]]. Mr. Leslaie acts as the "[[Judge (Tactics Advance)|Judge]]" of the fight, under the rank of "Master".
+
+With the snowball fight acting as the tutorial level, Mr. Leslaie teaches Marche battle strategies, with Ritz's assistance. When the bullies continue to pummel Mewt with snowballs, Mr. Leslaie stops the fight and sends the bullies to his office for punishment.
+
+== Trivia==
+*Though it cannot be accessed without a cheat device, Mr. Leslaie has his own unique job class simply called "Mr. Leslaie" in the game's code. It's description identifies him specifically as Marche's homeroom teacher.
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]

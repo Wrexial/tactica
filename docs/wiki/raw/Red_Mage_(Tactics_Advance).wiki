@@ -1,0 +1,212 @@
+{{DISPLAYTITLE:Red Mage (''Tactics Advance'')}}
+{{infobox job
+|name=Red Mage
+|release=FFTA
+|japanese=赤魔道士
+|romaji=Akamadoushi
+|lit = Red Sorcerer
+|image=Ffta-viera-redmage.jpg
+|portrait=[[File:FFTA-job-RedMage-por.png|50px|Player]] [[File:Ffta-job-red-mage-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-redmage.gif|20px|Player]] [[File:Ffta-job-red-mage-enemy-sprite.png|Enemy|20px]]
+|obtained=Learn one [[Fencer (Tactics Advance)|Fencer]] A-Ability
+|required=[[Fencer (Tactics Advance)|Fencer]]
+|characters=[[Viera]], [[Ritz Malheur]], and [[Eldena]]
+|stats=*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 50
+*Stat growth: well-rounded between physical and magical
+|weapons=[[Final Fantasy Tactics Advance weapons#Rapiers|Rapiers]]{{note|Red Mages cannot wield staves despite their official artwork showing them with one.}}
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Female-only ornament|ornaments]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]] and [[Final Fantasy Tactics Advance armor#Robes|robes]]<br/>Can't equip shields
+|command abilities=*[[Red Magic (Tactics Advance)|Red Magic]]
+*[[#Red Combo|Red Combo]] (combo)
+|support abilities=*[[#Magic Pow+|Magic Pow+]]
+*[[Sticky Fingers (ability)|Catch]] (reaction)
+|recurring appearance=Red Mage
+}}
+{{Quote|Uses black, white and red magic.|Description}}
+'''Red Mage''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' available to the [[viera]]. Red Mage is a blend of [[Black Mage (Tactics Advance)|Black]] and [[White Mage (Tactics Advance)|White Mage]], and also has a few status effect spells.
+
+They have well-rounded [[stat growth]] between physical and magic attack power, and are sought for their extremely useful Doublecast ability. Even when silenced, they can still dish out decent physical damage with rapiers with their surprisingly good Attack Power.
+
+Two notable Red Mages are recruitable characters: [[Ritz Malheur]] and [[Eldena]]. Ritz is the only non-viera character to become a Red Mage; she upgrades from [[Fencer (Tactics Advance)|Fencer]] to Red Mage at the beginning of Act 2.
+
+==Growth==
+The Red Mage is the viera's mid-tier balanced job. Their stats are almost identical to the [[Elementalist (Tactics Advance)|Elementalist]], although the Red Mage has lower MP, slightly lower Magic Power, and slightly higher Speed.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.8 C+
+|2.6 C-
+|8.1 B-
+|7.6 C
+|8.4 B
+|7.6 C
+|1.3 C
+|}
+
+==Abilities==
+===[[Red Magic (Tactics Advance)|Red Magic]]===
+{{Quote|Red mage command. Use offensive magic.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!Skill
+!Equipment
+!AP
+!MP
+!Power
+!Range
+|-
+! rowspan=2|{{LA|Barrier (ability)|Barrier}}
+|[[Final Fantasy Tactics Advance weapons#Mage Masher|Mage Masher]]
+|300
+|10
+|—
+|3
+|-
+|colspan=5 style="text-align:left"|''Raises weapon defense and magic resistance.''
+|-
+! rowspan=2|{{LA|Fire (ability)|Fire}}
+|[[Final Fantasy Tactics Advance weapons#Scarlette|Scarlette]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Generates damaging ball of flame.''
+|-
+! rowspan=2|{{LA|Thunder (ability)|Thunder}}
+|[[Final Fantasy Tactics Advance weapons#Stinger|Stinger]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Calls down lightning to deal damage.''
+|-
+! rowspan=2|{{LA|Blizzard (ability)|Blizzard}}
+|[[Final Fantasy Tactics Advance weapons#Flamberge|Flamberge]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Creates chunk of ice to deal damage.''
+|-
+! rowspan=2|{{LA|Cure (ability)|Cure}}
+|[[Final Fantasy Tactics Advance weapons#Fleuret|Fleuret]]
+|100
+|6
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Eases pain and heals HP. Deals damage to zombies.''<br>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Sleep (ability)|Sleep}}
+|[[Final Fantasy Tactics Advance weapons#Estoc|Estoc]]
+|200
+|10
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Releases sleeping gas to put target to sleep.''
+|-
+! rowspan=2|{{LA|Poison (ability)|Poison}}
+|[[Final Fantasy Tactics Advance weapons#Silver Rapier|Silver Rapier]]
+|100
+|10
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Spew out poison gas, poisoning target.''<br>'''Element:''' Dark
+|-
+! rowspan=2|{{LA|Dualcast|Doublecast}}
+|Madu
+|999
+|[[Red Mage (Tactics Advance)#Doublecast mechanics|*See below]]
+|—
+|—
+|-
+|colspan=5 style="text-align:left"|''Cast two spells in quick succession.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Sticky Fingers (ability)|Catch}}
+|[[Final Fantasy Tactics Advance armor#Chain Plate|Chain Plate]]
+|style="text-align:left"|''Catches thrown item and places it in stock.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Magic Pow+}}
+|[[Final Fantasy Tactics Advance weapons#Colichemarde|Colichemarde]]
+|style="text-align:left"|''Increases damage dealt by magic.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Red Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Rapier|Mythril Rapier]]
+|style="text-align:left"|''Easily chained combo ability for red mages.''
+|100
+|}
+
+== Overview ==
+Strikingly similar to Elementalists, Red Mages are fit for both physical and magical combat. They have balanced stats with above average speed. Their Red Magic contains the core abilities from the [[Black Magic (Tactics Advance)|Black]] and [[White Magic (Tactics Advance)|White Magic]] ability sets, as well as a few more support magic. Red Mages can work as spellcasters, healers, and supporters. Their "signature" ability, Doublecast, although difficult to acquire, allows the user to cast two magic spells they know during one turn allowing for endless strategies (see below). The unique character [[Eldena]] comes with Doublecast already mastered. Being flexible units, Red Mages also benefit from the abilities of nearly any other viera class.
+
+Being so average, Red Mages can be outdone by more specialized units. Besides their speed, their other stats are unremarkable. Doublecast is great, but over reliance on it will spell trouble if the Red Mage is silenced. Overall, Red Mages are incredibly flexible, able to use many kinds of abilities and play different combat roles. Red Mages are also valuable for Doublecast alone, and other magically inclined viera may as well pick up some Red Magic just for Doublecast.
+
+Enemy Red Mages usually do middling damage against tanky units, and often get outpaced by units like [[Juggler (Tactics Advance)|Jugglers]]. They have some physical combat capability, but it is nothing that some good melee fighters canno t handle. Should the enemy Red Mage know Doublecast, the threat measure increases substantially. Red Mages with Doublecast are dangerous and demand to be prioritized. Silencing or otherwise disabling access to Doublecast cuts Red Mages off from their greatest source of power.
+
+==Doublecast mechanics==
+Doublecast casts two magic spells at once, not limited to Red Magic. E.g. if [[Spirit Magic (Tactics Advance)|Spirit Magic]] is the secondary A-Ability, one can use those spells when Doublecasting. The MP cost of Doublecast is the combined totals of the magic cast, and so may vary. One can use Doublecast to bypass some [[Law system (Tactics Advance)|laws]], like restrictions against using summons or Fire, Lightning, Ice and Holy, because Doublecast is only seen as a Red Magic ability with no elemental affiliation. Doublecast can also bypass the "Target Area" law since some spells are intended for a single target (like the offensive Spirit Magic spells); this can help if the player needs to eliminate their enemies and aid allies afterward.
+
+One potent combination is the [[Summoner (Tactics Advance)|Summoner]] class. Players may start out battles with both Reflect and Auto-Regen on their entire team. [[Phoenix]] allows players to revive multiple units at once followed by [[Unicorn (creature)|Unicorn]] to heal them to full HP (while also damaging any [[undead]] in the area) or add various status effects from either spellset on the same turn.
+
+==Gallery==
+<gallery>
+FFTA Barrier.png|Barrier.
+FFTA Fire.png|Fire.
+FFTA Thunder.png|Thunder.
+FFTA Blizzard.png|Blizzard.
+FFTA Cure.png|Cure.
+FFTA Sleep.png|Sleep.
+FFTA Poison.png|Poison.
+</gallery>{{Gallery incomplete|Doublecast|Red Combo}}
+==Notes==
+{{annotations}}
+{{navbox abilities FFTA}}
+
+
+[[es:Mago rojo (Final Fantasy Tactics Advance)]]
+[[it:Mago rosso (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

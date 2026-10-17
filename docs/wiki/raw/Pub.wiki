@@ -1,0 +1,158 @@
+{{expand}}
+[[File:FFTAMissions.png|right|300px|thumb|[[Marche Radiuju|Marche]] taking up a mission at the pub in ''Final Fantasy Tactics Advance''.]]
+{{Quote|Greetings! How may I help you?|The Pub Owner}}
+The '''Pub''' {{j|パブ|Pabu}}, also known as '''Tavern''' and '''Cafe''', is a recurring establishment in the [[Final Fantasy series|''Final Fantasy'']] series.
+
+In the main series, the pub is a place to gather information on current events but otherwise exists mainly to provide flavor to the town or city. In the [[Ivalice]] games the pub acts as a place for players to select certain [[missions]] that can serve to either advance the storyline or gain new items and allies. Certain games enable players to either dispatch characters to end mission automatically, or control them in mission battles.
+
+Another of the more recurring feature is where "Rumors" are circulated that add to learning more about the world. "Rumors" also add more story element that could not be presented with cutscenes.
+{{See|Restaurant}}
+==Appearances==
+===''[[Final Fantasy II]]''===
+{{Location section|Final Fantasy II}}
+
+===''[[Final Fantasy III]]''===
+{{Location section|Final Fantasy III}}
+
+===''[[Final Fantasy IV]]''===
+Pubs, also called Cafe, are located in various towns, mostly found within the [[Inn]].
+
+{|class="full-width FFIV article-table"
+|-
+!width="20%"|Town
+!width="80%"|Location
+|-
+!{{LA|Baron (Final Fantasy IV)|Baron}}
+|The pub is located in the back of the Inn.
+|-
+!{{LA|Kaipo}}
+|The pub is located on the second floor of the Inn.
+|-
+!{{LA|Fabul}}
+|The pub is located on the second floor of the east tower of [[Fabul|Fabul Castle]].
+|-
+!{{LA|Mysidia (Final Fantasy IV)|Mysidia}}
+|The pub is located on the first floor of the Inn. The barkeeper will [[Poison (status)|poison]] the party if spoken to, this only occurs before [[Cecil Harvey|Cecil]] becomes a [[Paladin (job)|Paladin]].
+|-
+!{{LA|Troia}}
+|The most famous pub of all, the King's Bounty Pub is located on the first floor in a lone building in Troia.
+|-
+!{{LA|Agart}}
+|The pub is located inside the Inn's entrance.
+|-
+!{{LA|Dwarven Castle}}
+|Lali-ho Pub, also known as Cafe HOWDY!, is located behind the weapon and armor shop on the second floor inside the Dwarven Castle. It is from here that you can access the Developer's Room.
+|-
+|}
+
+====''[[Final Fantasy IV: The After Years]]''====
+{{Location section|Final Fantasy IV: The After Years}}
+
+===''[[Final Fantasy V]]''===
+Pubs appear in almost every town.
+
+===''[[Final Fantasy VI]]''===
+Pubs appear in [[South Figaro]], [[Kohlingen]], [[Albrook]], and [[Vector]]. The South Figaro pub is where the party first encounters [[Shadow (Final Fantasy VI)|Shadow]], and is a minor part of a subquest during the first part of the game, where [[Locke Cole|Locke]] must steal Cider from a merchant in the pub's basement to get access to a hidden passage that can get him out of town.
+
+The Kohlingen pub is in the same building as the Inn, and is where Shadow be be recruited for 3,000 gil during the party's trip to [[Jidoor]] and [[Zozo]]. In the World of Ruin, [[Setzer Gabbiani|Setzer]] is recruited here. Albrook's pub features [[Gestahlian Empire|Imperial troopers]] drinking and flirting with [[Dancing girl (character)|dancing girls]] at tables in front of a stage, and is larger than the other pubs.
+
+If the player manages to enter in Vector's pub, there is a man who recognizes the party as [[Returners]] and will tell the party about the [[Magitek]] soldier project. If the party accepts in hearing more gossip, he will tell [[Kefka Palazzo|Kefka]] was the first experimental Magitek knight who lost his sanity because the process was not perfected at that time. This is the only biographic data the player can find about Kefka. The player can use the [[Teleport|Warp]] spell within the pub.
+
+[[Zozo]] has a building marked as a pub, but as with all buildings in Zozo, the sign is merely decoration and the interior is a two-floor structure with a bar and table on the ground floor. At the balcony outside the pub the player can find the [[Chainsaw (Final Fantasy VI)|Chainsaw]], and in the World of Ruin can dissolve the rush on a rusted door to access [[Mt. Zozo]].
+
+In the SNES release, all Pub signs were changed to read "Cafe" due to [[censorship]].
+
+===''[[Final Fantasy VII]]''===
+The main pub is the [[Seventh Heaven Bar]], which serves as the headquarters for [[Avalanche (group)|AVALANCHE]]. There are other pubs located throughout the world, such as the [[Wall Market (Final Fantasy VII field)|Wall Market]].
+
+===''[[Final Fantasy VIII]]''===
+[[File:Dollet-pub-FFVIII.jpg|thumb|Dollet pub, second floor.]]
+[[File:Timber Pub FFVIII Art.jpg|thumb|Timber pub, Aphorora.]]
+[[File:Winhill 7.jpg|thumb|Winhill pub.]]
+There is a pub in [[Dollet]]. If the player enters it while escaping from [[X-ATM092 (Final Fantasy VIII)|X-ATM092]], the party loses 20 points. The first floor sells beverages and confectionery, and the top floor is devoted to the game of [[Triple Triad (Final Fantasy VIII)|Triple Triad]]. The pub manager's office is accessed via a bridge that cuts over the street outside. Only those invited are allowed to enter, but the player gets the invite if they win against the manager in a game of Triple Triad.
+
+The party can find a [[Timber Maniacs]] magazine from the upstairs and [[Occult Fan|Occult Fan II]] from the stacks of magazines in the manager's office alongside some random items. There is also [[Crossdressing|a man dressed as a woman]] at the downstairs of the pub. The [[Siren (Final Fantasy VIII card)|Siren card]] can be won from the pub manager and the [[Queen of Cards]] is found at the upstairs of the pub when she is in Dollet; it is required to get her to do Dollet to do the side quest with her.
+
+There is also a pub in [[Timber]] called Aphorora, located near the Railroad Station and patrons can walk through the pub into a back alley to access the Timber TV Station. The drinks for sale are named after greens found in other ''Final Fantasy'' games. There is a [[Cure (Final Fantasy VIII)|Cure]] [[draw point]] outside and a [[Scan (Final Fantasy VIII)|Scan]] draw point in the back alley behind the pub.
+
+There is a pub in [[Winhill]] that used to be managed by [[Raine Loire|Raine]]. It is located next to the Winhill mansion. In present day the premises are run by an unnamed woman, but some say Raine's spirit can still be felt within the pub, kept alive by her white flowers, and visiting the pub is needed to complete the [[Winhill#Vase quest|vase side quest]].
+{{clear}}
+
+===''[[Final Fantasy IX]]''===
+Pubs help expand the storyline. In the beginning of the game, [[Gilgamesh (Final Fantasy IX)|Alleyway Jack]] can take [[Vivi Ornitier|Vivi]] to the tavern in [[Alexandria (Final Fantasy IX)|Alexandria]] to teach him about [[Tetra Master (minigame)|Tetra Master]]. There is one in [[Dali]] where [[Adelbert Steiner|Steiner]] attempts to obtain information from Slai about the [[Cargo Ship (Final Fantasy IX)|cargo ship]] parked in town.
+
+When the group reaches [[Lindblum (Final Fantasy IX)|Lindblum]], [[Zidane Tribal]] declines the invitation to eat at the [[Lindblum Castle|castle]] and instead decides to eat at a pub in the Industrial District, where he runs into [[Freya Crescent]]. At the beginning of disc 3 in the tavern in Alexandria, Zidane struggles with his feelings for [[Garnet Til Alexandros XVII|Princess Garnet]] as she prepares to become queen.
+
+===''[[Final Fantasy X]]''===
+There is a bar in [[Luca (Final Fantasy X)|Luca]] where [[Tidus]] and [[Yuna]] seek for [[Auron]]. Later in the game, [[Wakka]] obtains his [[Celestial Weapon]], the World Champion, from the owner of the bar.
+
+====''[[Final Fantasy X-2]]''====
+The airship ''[[Celsius]]'' has a bar in the cabin section. [[Barkeep]] is the bartender of the [[Gullwings]].
+
+===''[[Final Fantasy XIV]]''===
+In the ''[[Final Fantasy XIV (version 1.0)|Legacy version]]'', the Adventurer's Guilds in all three city-states have a bar in it. The players can accept sidequests and daily quests from the bars. Inn service is also included in the Adventurer's Guilds.
+
+In ''A Realm Reborn'', in addition to the taverns in the main city-states, the "Seventh Heaven" is a bar in Revenant's Toll, [[Mor Dhona]]. The players can accept many of high level sidequests from NPCs in the bar. Later in the Main Scenario quests, the [[Scions of the Seventh Dawn]] new headquarters are in the back of said bar.
+
+===''[[Final Fantasy XVI]]''===
+{{Location section|Final Fantasy XVI}}
+
+===''[[Final Fantasy Tactics]]''===
+[[File:FFT Tavern.png|thumb|right|Speaking to the bar owner in a bar.]]
+{{Quote|Come on in, then! Make yourself welcome.|Tavernmaster}}
+Taverns, also known as Bars, are special locations in every town or city in [[Ivalice (Tactics)|Ivalice]]. Like the [[Shop|Outfitters]] and [[Warriors' Guild]]s, it is a mere menu that cannot be explored. The bartender will give the player a series of options. It is here that the player can listen to [[Rumors (Tactics)|rumors]], or run [[errands]] after chapter 1.
+
+The Rumors are based around the events of the game at the moment, and will change after storyline events pass. Errands can be played at any time. After the player returns from [[Eagrose Castle]] in chapter 1, the tavern keeper will tell them about multiplayer content (''War of the Lions'' only) such as [[Rendezvous]] and [[Melee (Tactics)|Melee]].
+
+<gallery>
+FFT Tavernmaster Portrait.png|Tavernmaster's portrait.
+FFT Tavern Chapter 1.png|Tavern in chapter 1.
+FFT Tavern Chapter 2&3.png|Tavern in chapter 2 and 3.
+FFT Tavern Chapter 4.png|Tavern in chapter 4.
+</gallery>
+
+===''[[Final Fantasy Tactics Advance]]''===
+
+The Pub is where players can listen to rumors, take up [[Missions (Tactics Advance)|missions]] as well as quitting any missions currently undertaken. The player will also end up here if they go to Multiplayer Mode.
+
+All five settlements in [[Ivalice (Tactics Advance)|Ivalice]] has a pub, listed below along with its in-game description:
+*[[Cyril (Tactics Advance)|Cyril]] - The Prancing Chocobo: Popular clan watering hole. Townspeople post their requests here.
+*[[Cadoan]] - The Sleeping Frog: Only pub in Cadoan, Come hear the frogs croak in the oasis.
+*[[Sprohm]] - The Long-Ear Tavern: There's never a quiet night at this hotbed of brawls and rumors.
+*[[Muscadet]] - Spina Lodge: Small main street inn. Guests come at night to hear the trichord.
+*[[Baguba Port]] - The Golden Gil: Sports a sign cut like an ancient royal coin. Airship crew hangout.
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+[[File:FFTA2-PubOwner.png|right|thumb|The pub owner.]]
+The Pub acts as a place for reading rumors and notices, obtaining quests, and checking current quest status. Additionally, a clan can undertake Clan Trials to append a title according to their clan's talents such as teamwork, aptitude, negotiation skills and adaptability.
+
+All settlements have a pub serving the same purpose throughout the game. Noticeably, the owner retains a similar sprite to the pub owner in ''Final Fantasy Tactics Advance'', and is referred to as "barman" instead of "pubmaster". [[Luso Clemens]] is the character taking the missions, with [[Adelle]], [[Cid (Tactics A2)|Cid]], and [[Hurdy (Final Fantasy XII)|Hurdy]] accompanying him.
+
+===''[[The Final Fantasy Legend]]''===
+[[File:FFL Pub Icon.png|right]]
+There are only two pubs; the first is located in [[Sky Town]] and the second in [[Southwest Town]]. The player must visit both to advance the story.
+
+===''[[Final Fantasy Legend II]]''===
+Cafes are the center for finding more information about the current world and its current events. They can be found in [[First Town]], [[Desert Town]], [[Giant's Town]], [[Lynn's Village]], [[Port Town (Legend II)|Port Town]], [[Guardian's Town]], [[Venus' City]], [[Race Circuit]], and [[Final Town]]. A [[Music player|gramophone]] can be found in each cafe, and paying 1 GP allows the player to play any of the game's tracks and listen to it on a continuous loop until they leave town. The Cafe in Guardian's Town is actually a front for the hidden [[Guardian's Base]], which can be accessed using the gramophone.
+
+===''[[Final Fantasy Legend III]]''===
+[[File:FFLIII Cafe Sign.png|left]]
+Cafes are the center for finding more information about the current world and its current events. They can be found in [[Dharm]], [[Muu]], [[New Dharm]], and [[Darius]].
+
+==Gallery==
+<gallery>
+King's Bounty Pub.png|The King's Bounty Pub, ''[[Final Fantasy IV]]''.
+Luca Bar.png|The bar in [[Luca (Final Fantasy X)|Luca]], ''[[Final Fantasy X]]''.
+Celsius Cabin.jpg|The bar inside the ''[[Celsius]]'' cabin, ''[[Final Fantasy X-2]]''.
+FFTA2-Pub.JPG|The inside of the pub in ''Grimoire of the Rift''.
+File:FFTA2 Pub.png|Full inside of a pub in ''Grimoire of the Rift''.
+Cups FFIX Art.jpg|Concept artwork of the drinking cups from ''Final Fantasy IX''.
+Waitress Tray FFIX Art.png|Concept artwork of the a waitress's tray from ''Final Fantasy IX''.
+</gallery>
+
+==Etymology==
+A [[wikipedia:pub|pub]], formally public house (a house "open to the public", as opposed to a private house), is a drinking establishment fundamental to the culture of Britain, Ireland, Australia, Canada, New England, Metro Detroit, South Africa, and New Zealand.
+
+{{navbox locations}}
+{{navbox recurring}}
+[[Category:Recurring location types]]

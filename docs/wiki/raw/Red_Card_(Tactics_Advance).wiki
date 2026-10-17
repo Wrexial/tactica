@@ -1,0 +1,11 @@
+{{DISPLAYTITLE:Red Card (''Tactics Advance'')}}
+[[File:FFTA Red Card.png|right|thumb|Red Card.]]
+'''Red Cards''' are part of the [[Law system (Tactics Advance)|Law System]] in ''[[Final Fantasy Tactics Advance]]''. Any violation of a Law that results in a fatality or any second offense during a single battle will result in a Red Card. Any unit given a Red Card will be sent to prison immediately, removing them from the battle. If [[Marche Radiuju|Marche]] ever gets a Red Card, it is an instant [[Game Over (term)|Game Over]].
+
+Units wearing Hero Medals are immune to receiving Red Cards, and will instead receive a subsequent [[Yellow Card]]. However, even units that are wearing Hero Medals are not completely immune to Red Cards, as [[Llednar Twem]] learned the hard way by attempting to use [[Final Fantasy Tactics Advance enemy abilities#Omega|Omega]] on Marche despite an Advanced Law activated by [[Cid Randell|Judgemaster Cid]] to prevent him from doing so.
+
+==Etymology==
+{{Etym|Red Card}}
+
+{{navbox setting FFTA}}
+[[Category:Gameplay in Final Fantasy Tactics Advance]]

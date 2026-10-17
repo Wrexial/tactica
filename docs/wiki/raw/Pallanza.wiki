@@ -1,0 +1,41 @@
+{{infobox character
+|name=Pallanza
+|release=FFTA
+|japanese=パランザ
+|romaji=Paranza
+|image=Ffta-bangaa-gladiator.png
+|portrait=[[File:FFTA-job-Gladiator-por.png|Portrait.]]
+|sprite=[[File:FFTA-job-gladiator.gif|Sprite.]]
+|race=[[Bangaa]]
+|type=playable
+|job=Gladiator
+}}
+'''Pallanza''', a [[bangaa]], is one of six special recruits in ''[[Final Fantasy Tactics Advance]]''.
+
+==Recruitment==
+Pallanza has a 1-in-5 chance of joining the clan after completion of a mission where the Wyrmstone is equipped. The Wyrmstone is a reward for "#031 Ruby Red", which itself is unlocked after "#017 Desert Patrol" and "#102 Wyrms Awaken".
+
+==Abilities==
+Like all secret characters, Pallanza joins four levels above the average of the entire clan. Pallanza is recruited as a [[Gladiator (Tactics Advance)|Gladiator]], and as a bonus he has two abilities already mastered: Blitz and Ultima Sword.
+
+===Spellblade Tech===
+{{Quote|Gladiator command. Combine magic with swordplay.}}
+{|class="half-width FFTA article-table"
+|-
+!style="width:20%"|Skill
+!style="width:70%"|Effect
+!style="width:10%"|MP
+|-
+!Blitz
+|Half damage, double Accuracy.
+|-
+!Ultima Sword
+|Triple damage attack.
+|60
+|}
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Secret characters]]
+[[Category:Bangaa]]

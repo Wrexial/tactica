@@ -1,0 +1,46 @@
+{{infobox character
+|name=Quin
+|release=FFTA
+|japanese=クィン
+|romaji=Kwin
+|image=Ffta-nu-mou-sage.jpg
+|portrait=[[File:FFTA-job-Sage-por.png|Portrait.]]
+|sprite=[[File:FFTA-job-sage.gif|Sprite.]]
+|race=[[Nu mou]]
+|type=playable
+|job=Sage
+}}
+'''Quin''', a [[nu mou]], is one of six special recruits in ''[[Final Fantasy Tactics Advance]]''.
+
+==Story==
+Quin is the member of the search party looking for Professor Auggie who originally posted the mission at the pub and, according to the mission board, is a student of Auggie's.
+
+==Recruitment==
+Quin has a 1-in-5 chance of joining the clan after completion of "#063 Missing Prof" which is unlocked after "#020 Present Day" and "#046 Prof In Trouble". This mission is not repeatable so if Quin does not ask to be recruited after the battle, the player cannot get him unless they restart from the previous save.
+
+==Abilities==
+Like all secret characters, Quin joins four levels above the average of the entire clan. Quin is recruited as a [[Sage (Tactics Advance)|Sage]], and as a bonus he has two abilities already mastered: Giga Flare and Ultima Blow.
+
+===Sagacity Skill===
+{{Quote|Sage command. Use new and different magic.}}
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!width="20%"|Skill
+!width="30%"|Effect
+!width="10%"|MP
+|-
+!Giga Flare
+|Heavy area damage.
+|40
+|-
+!Ultima Blow
+|Triple damage attack.
+|60
+|}
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Secret characters]]
+[[Category:Sages]]
+[[Category:Nu mou]]

@@ -1,0 +1,123 @@
+{{DISPLAYTITLE:Sprite (''Tactics Advance'')}}
+[[File:FFTA-spr-sprite.gif|left]]
+[[File:Sprite - Status.gif|right]]
+{{Quote|Not the sprite of tales. A dangerous beastie.|Description}}
+The '''Sprite''' in ''[[Final Fantasy Tactics Advance]]'' is a fairy-type [[Monster (term)|monster]] who has the [[Float (ability)|Float]] ability and absorbs [[Holy (element)|Holy]]-based attacks. Sprite has low Attack and Defense, but high Magic Resistance and Magic Power. Its [[White Wind]] skill is a powerful healing tool, so the player should eliminate it with a strong physical attack in one shot.
+
+==Abilities==
+===Trick===
+{{Quote|Sprite command. Play nasty prank.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|White Wind}}
+|''Fluttering fairy wings. Restores HP equal to own HP.''
+|12
+|-
+!{{LA|Meteorite (ability)|Meteorite}}
+|''Shoots small meteor to deal damage.''
+|22
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Def+}}
+|''Reduces damage from weapon attacks''.
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Eluut!
+|While there is no Sprite in the Antlions clan, it helps them attack Eluut.
+|-
+!Turf Defense Mission: Help Salika!
+|The Sprite duo and a [[Titania (Tactics Advance)|Titania]] appear in this turf defense mission.
+|-
+!Turf Defense Mission: Help Kudik!
+|The Sprite here will spend much of its time using White Wind on its two [[Red Panther (Tactics Advance)|Red Panther]] allies.
+|-
+!Turf Defense Mission: Help Helje!
+|The Sprite will play the part of healer in this Turf Defense mission, since all the other monsters will attempt to strike with physical attacks.
+|-
+!Mission #001: Herb Picking
+|The first Sprite does not know any Trick skills and will instead opt for weak melee attacks.
+|-
+!Mission #049: A Lost Ring
+|One Sprite starts out on the edge of the river in this mission.
+|-
+!Mission #048: S.O.S 
+|Marche and co. will have to make their way through two Sprites and a Juggler before assisting [[Ritz Malheur|Ritz]] with the [[Zombie (Tactics Advance)|Zombies]].
+|-
+!Mission #109: Snow Fairy
+|The Snow Fairy wants some Cyril Ice, if given the item, she will give an Iceprism, but to keep the Mission Item, it and its two allies can be defeated easily.
+|-
+!Mission #051: Desert Rose
+|A Sprite helps defend the entrance to the oasis.
+|-
+!Mission #054: For A Song
+|The Sprite here can keep her dangerous allies at optimum HP levels with her skills.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Salikawood (Tactics Advance)|Salikawood]]
+|style="text-align:center"|Tricky Spirits
+|Two Sprites are in this clan. They can be annoying if allowed to abuse White Wind on their allies.
+|-
+![[Kudik Peaks]]
+|style="text-align: center"|Kudik Peaks
+|The Sprite is most fragile monster in this clan.
+|-
+![[Uladon Bog]]
+|style="text-align:center"|Roaming Naiads
+|Try to defeat the enemy [[Icedrake]] before the [[Ice Flan (Tactics Advance)|Ice Flan]] and the Sprite can heal it.
+|-
+![[Materiwood]]
+|style="text-align:center"|Lost Monsters
+|The Sprite here is the least problematic, as it is accompanied by a [[Big Malboro]] and other dangerous monsters.
+|}
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Sprite TCG.png|right|100px]]
+Sprite appears on a card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Sprite Portrait.gif|Portrait.
+FFTA Sprite Titania Artwork.jpg|Artwork of (from left to right) a Sprite and a [[Titania (Tactics Advance)|Titania]].
+</gallery>
+
+==Etymology==
+{{Etym|Sprite}}
+
+{{navbox FFTA}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

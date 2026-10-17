@@ -1,0 +1,39 @@
+[[File:TubolaCave.png|thumb|right|200px|Tubola, overrun by bandits.]]
+{{Quote|These caves were once mined for their mythril.|Description}}
+'''Tubola Cave''' {{J|ツァボラ洞窟|Tsabora dōkutsu}} is a cave location in ''[[Final Fantasy Tactics Advance]]''. It can be placed after "Mission #20: Present Day" is completed and is the site of "Mission #021: Hidden Vein".
+
+Tubola Cave is also the site of "Mission #063: Missing Prof", "Mission #064: Den of Evil" (in which [[Jagd Helje]] is obtained), and "Mission #103: Mythril Rush". Tubola Cave can be freed in "Mission #256: Tubola Cave" after "Mission #020: Present Day" is completed.
+
+==Story==
+In "Mission #021: Hidden Vein", [[Marche Radiuju|Marche]] plans to lure his brother [[Doned Radiuju|Doned]] to the cave to meet with him. Predictably, Doned once again attempts to do Marche in by telling a party of mythril miners that Marche is stealing their mythril. After the miners are eliminated, Marche reveals to Doned that he planned this setup to able to persuade his little brother to come home. After Marche explains to Doned that he was always shunned by his mother while Doned received all the attention, Doned agrees to help Marche return to the previous world.
+
+==Encounters==
+===Tubola Bandits===
+{{Quote|Usually in their cave hideout, counting gil. Attacks any traveler carrying cash.|Description}}
+*[[Blue Mage (Tactics Advance)|Blue Mage]] (Human)
+*[[Hunter (Tactics Advance)|Hunter]] (Human)
+*[[Thief (Tactics Advance)|Thief]] (Human)
+*[[Illusionist (Tactics Advance)|Illusionist]] (Nu mou)
+*[[Red Mage (Tactics Advance)|Red Mage]] (Viera)
+
+==Turf Defense==
+===Help Tubola!===
+{{Quote|I heard that these bandits in Tubola found some treasure in the cave, and now they're trying to keep it all for themselves!|Town rumor}}
+*Blue Mage
+*Hunter
+*Illusionist
+*Thief
+
+==Gallery==
+<gallery>
+Tubola Cave 1.PNG|Tubola Cave.
+Tubola Cave 2.PNG|Tubola Cave.
+Tubola Cave 3.PNG|Tubola Cave.
+Tubola Cave 4.PNG|Tubola Cave.
+Cave-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Caves]]

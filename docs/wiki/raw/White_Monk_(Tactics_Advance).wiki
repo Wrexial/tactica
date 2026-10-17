@@ -1,0 +1,191 @@
+{{DISPLAYTITLE:White Monk (''Tactics Advance'')}}
+{{infobox job
+|name=White Monk
+|release=FFTA
+|japanese=ホワイトモンク
+|romaji=Howaitomonku
+|image=Ffta-bangaa-whitemonk.jpg
+|portrait=[[File:Ffta-job-white-monk.png|50px|Player]] [[File:Ffta-job-white-monk-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-whtmonk.gif|20px|Player]] [[File:Ffta-job-white-monk-enemy-sprite.png|Enemy|20px]]
+|obtained=Default
+|characters=[[Bangaa]]
+|stats=*Move Rate: 4
+*Jump Rate: 3
+*Evade Rate: 60
+*Stat growth: focuses on Attack, Magic Power and Speed but other stats are poor
+|weapons=[[Final Fantasy Tactics Advance weapons#Knuckles|Knuckles]]
+|armor=[[Final Fantasy Tactics Advance armor#Clothing|Clothing]]<br/>Can't equip shields
+|command abilities=*[[Monk Tech]]
+*[[#Monk Combo|Monk Combo]] (combo)
+|support abilities=*[[Reflex (evasion ability)|Reflex]] (reaction)
+*[[Counter (ability)|Counter]] (reaction)
+|recurring appearance=Monk (job)
+}}
+{{Quote|Bangaa that use their fists as weapons.|Description}}
+The '''White Monk''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' available to [[bangaa]] that uses their fists in combat and is one of two jobs that can ward off the [[undead]] for good, the other being the [[Archer (Tactics Advance)|Archer]]. White Monk is the only job that cannot equip headgear.
+
+==Growth==
+The White Monk focuses equally on Attack, Magic Power and Speed. Their other stats, however, are abysmally low.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.4 C
+|1.1 E
+|8.1 B-
+|7.6 C-
+|8.3 B
+|6.8 D+
+|1.4 C
+|}
+
+==Abilities==
+===[[Monk Tech]]===
+{{Quote|White monk command. Use own body as a weapon.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Cyclone (Monk ability)|Whirlwind}}
+|[[Final Fantasy Tactics Advance weapons#Hard Knuckles|Hard Knuckles]]
+|100
+|25
+|Self
+|-
+|colspan=4 style="text-align:left"|''Quick spin attack. Hits to the front, back, and side.''
+|-
+! rowspan=2|{{A|Air Render}}
+|[[Final Fantasy Tactics Advance weapons#Kaiser Knuckles|Kaiser Knuckles]]
+|200
+|45
+|3
+|-
+|colspan=4 style="text-align:left"|''Releases aggression. Can damage at a distance.''
+|-
+! rowspan=2|{{LA|Earth Render}}
+|[[Final Fantasy Tactics Advance weapons#Tiger Fangs|Tiger Fangs]]
+|200
+|34
+|Line
+|-
+|colspan=4 style="text-align:left"|''Attack so powerful it can rend the very earth.''
+|-
+! rowspan=2|{{LA|Aurablast|Far Fist}}
+|[[Final Fantasy Tactics Advance weapons#Godhand|Godhand]]
+|200
+|35
+|4
+|-
+|colspan=4 style="text-align:left"|''Unleashed aggression deals area damage at a distance.''
+|-
+! rowspan=2|{{LA|Chakra}}
+|[[Final Fantasy Tactics Advance weapons#Cat Claws|Cat Claws]]
+|200
+|35
+|Self
+|-
+|colspan=4 style="text-align:left"|''Sends energy into chakra points to heal HP.''
+|-
+! rowspan=2|{{LA|Revive (ability)|Revive}}
+|[[Final Fantasy Tactics Advance weapons#Survivor|Survivor]]
+|300
+|—
+|1
+|-
+|colspan=4 style="text-align:left"|''Sends energy through body to revive KO'd unit.''
+|-
+! rowspan=2|{{A|Exorcise}}
+|[[Final Fantasy Tactics Advance weapons#Rising Sun|Rising Sun]]
+|300
+|—
+|1
+|-
+|colspan=4 style="text-align:left"|''Evil-banishing life chakra. Destroys zombies.''<br>'''Element:''' Holy
+|-
+! rowspan=2|{{A|Holy Sign}}
+|[[Final Fantasy Tactics Advance weapons#White Fangs|White Fangs]]
+|200
+|—
+|1
+|-
+|colspan=4 style="text-align:left"|''Holy symbol. Neutralizes status enhancements.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Reflex (evasion ability)|Reflex}}
+|[[Final Fantasy Tactics Advance armor#Mirage Vest|Mirage Vest]]
+|style="text-align:left"|''Predict and avoid a regular attack.''
+|300
+|-
+!{{LA|Counter (ability)|Counter}}
+|[[Final Fantasy Tactics Advance armor#Brigandine|Brigandine]]
+|style="text-align:left"|''Follows up enemy attack with a counterattack.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Monk Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Claws|Mythril Claws]]
+|style="text-align:left"|''Very easy chained combo ability for white monks.''
+|100
+|}
+
+== Overview ==
+[[File:FFTA Revive.png|Revive.|thumb]]
+The White Monk is superior to the other basic bangaa class, [[Warrior (Tactics Advance)|Warrior]]. A highly offensive class, its stats feature high attack and magic attack as well as good speed. The White Monk also has several abilities that deal ranged damage and some support capabilities, courtesy of Revive and Exorcise. The White Monk is the only other class, besides the Archer, that can kill off the undead for good. Though White Monk has awful MP, it doesn't affect it or bangaa in general as none of the White Monk's abilities cost MP, also meaning Silence is ineffective against them. The White Monk is the first class that bangaa can learn Counter from.
+
+The White Monk's defensive capabilities are close to non-existent. Despite having some healing, its low HP and average defenses still make the White Monk a poor tank. Knuckles are not strong weapons, and White Monk cannot equip headgear, further lowering their defensive capability. The White Monk's [[stat growth]] subject bangaa to low HP, Attack, and Defense, hurting them in the long run if they change to more advanced classes.
+
+Overall, the White Monk is better than the Warrior, having stats suitable for a balanced offense, and has a decent variety of abilities giving them ranged damage and support. The White Monk's durability is comparable to ranged units or mages.
+
+Against enemy White Monks, the player's faster units overwhelm them quickly. Mages can destroy White Monks easily, but the player should be equally as cautious. Strong physical tanks, like [[Mog Knight]]s, can handle most attacks while launching powerful counter offenses during the player's turns. Despite possessing decent ranged combat, White Monks are prey to ranged units.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:WhiteMonk TCG.png|right|100px]]
+White Monk appears on a card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Whirlwind.png|Whirlwind.
+FFTA Air Render.png|Air Render.
+FFTA Earth Render.png|Earth Render.
+FFTA Far Fist.png|Far Fist.
+FFTA Chakra.png|Chakra.
+FFTA Exorcise.png|Exorcise.
+FFTA Holy Sign.png|Holy Sign.
+</gallery>{{Gallery incomplete|Monk Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Monje blanco (Final Fantasy Tactics Advance)]]
+[[it:Monaco bianco (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

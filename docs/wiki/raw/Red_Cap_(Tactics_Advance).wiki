@@ -1,0 +1,59 @@
+{{DISPLAYTITLE:Red Cap (''Tactics Advance'')}}
+[[File:FFTA-spr-RedCap.gif|left]]
+{{Quote|Powerful goblins. More crafty, more dangerous.|Description}}
+The '''Red Cap''' is an enemy in ''[[Final Fantasy Tactics Advance]]'', and a stronger version of the [[Goblin (Tactics Advance)|Goblin]].
+
+{{See|Red Cap (enemy)}}
+
+==Abilities==
+===Hit===
+{{Quote|Red cap command. Deliver an all-out punch.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Magic Hammer (ability)|Magic Hammer}}
+|''Mystical hammer. Deals damage to MP.''
+|8
+|-
+!{{A|Mutilate}}
+|''Absorbs HP from target.''
+|18
+|-
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Atk+}}
+|''Improves weapon attacks to deal more damage.''
+|}
+
+==Other appearances==
+[[File:RedCap TCG.png|120px|right]]
+Redcap appears as a card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA RedCap Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Redcap}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

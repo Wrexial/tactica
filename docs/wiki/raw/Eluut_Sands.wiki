@@ -1,0 +1,35 @@
+[[File:EluutSands.png|thumb|right|250px|Antlion infestation in Eluut Sands.]]
+{{Quote|Dangerous desert; home to many fiends and treasures.|Description}}
+'''Eluut Sands''' {{J|イルート砂漠|Irūto sabaku}} is a desert location in ''[[Final Fantasy Tactics Advance]]''. It can be placed after the completion of "Mission #003: The Cheetahs" and is the site of "Mission #004: Desert Peril". When [[Marche Radiuju|Marche]] learns of rabid monsters inhabiting the desert, he comes to investigate.
+
+After the monsters are defeated, [[Montblanc]] explains to Marche that the monsters' behavior may be a result of the magical [[Crystal (term)|Crystals]], which [[Bervenia Palace]] created. Eluut Sands is also the site of "Mission #036: Twin Swords", "Mission #037: Village Hunt", "Mission #092: Cursed Bride", and "Mission #106: Resistance". It can be freed in "Mission #243: Eluut Sands", after "Mission #007: Diamond Rain" is completed.
+
+==Encounters==
+===Antlions===
+{{Quote|Much feared, often leave their sandy nests to hunt for food.|Description}}
+*[[Antlion (Tactics Advance)|Antlion]] x2
+*[[Toughskin (Tactics Advance)|Toughskin]]
+*[[Jawbreaker]]
+*[[Bomb (Tactics Advance)|Bomb]]
+
+==Turf Defense==
+===Help Eluut!===
+{{Quote|Malboross are sshowing up more and more at the oassiss... hope they sstay out of Eluut!|Town rumor}}
+*[[Antlion (Tactics Advance)|Antlion]]
+*[[Malboro (Tactics Advance)|Malboro]]
+*[[Big Malboro]]
+*[[Sprite (Tactics Advance)|Sprite]]
+
+==Gallery==
+<gallery>
+Elutt Sands 1.PNG|Eluut Sands.
+Elutt Sands 2.PNG|Eluut Sands.
+Elutt Sands 3.PNG|Eluut Sands.
+Elutt Sands 4.PNG|Eluut Sands.
+Desert-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Deserts]]

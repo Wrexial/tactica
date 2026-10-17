@@ -1,0 +1,73 @@
+{{DISPLAYTITLE:Vampire (''Tactics Advance'')}}
+[[File:FFTA - Vampire Portrait.png|right]]
+[[File:FFTA-spr-vampire.gif|left]]
+{{Quote|Blood-feeding monster. Turns prey into undead.|Description}}
+The '''Vampire''' is an enemy in ''[[Final Fantasy Tactics Advance]]'', an advanced form of [[undead]]. It floats and can teleport, and absorbs [[Dark (element)|Dark]] and is weak to [[Holy (element)|Holy]]. It has high overall stats, much surpassing [[Zombie (Tactics Advance)|Zombies]]. Being undead, Vampires will revive after three turns, but [[Archer (Tactics Advance)|Archers]] and [[White Monk (Tactics Advance)|White Monks]] can remove their corpses with Burial and Exorcise, respectively, preventing them from reviving.
+{{See|Vampire (enemy)}}
+
+==Abilities==
+===Illude===
+{{Quote|Vampire command. Use dark power to take lives.|Description}}
+'''Note:''' Normal vampires will have LV? S-Flare or Zombify, not both.
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Miasma (ability)|Miasma}}
+|''Calls forth ill humors to damage and poison target.''
+|—
+|-
+!{{LA|LV? S-Flare}}
+|''Shadowflares units with same one's digit in level.''
+(For example, a 29th level caster would hit anyone with a 9 in their respective level - 9, 19, 29, 39, 49)
+|30
+|-
+!{{A|Zombify}}
+|''Zombifies target. Holy power cannot heal zombies.''
+|—
+|}
+
+
+Miasma deals both damage and poison, which can quickly rack up damage on even the tougher units. Zombify is one of the few ways to inflict the undead status on a player, meaning that healing spells will not work on them. Since the Vampire is weak to Holy, [[White Magic (Tactics Advance)|White Magic]] spells, like Curaga, damage them. Vampire can teleport freely, thus able to can maneuver around terrain and through enemies.
+
+LV? S-Flare is learnable as [[Blue Magic (Tactics Advance)|Blue Magic]], but its learning conditions are very specific; the [[Blue Mage (Tactics Advance)|Blue Mage's]] [[level]] must have the same digit as the Vampire using it (for example, to learn it the Blue Mage must share a digit level with the Vampire casting it). A [[Beastmaster (Tactics Advance)|Beastmaster]] can help speed up the process. Shadowflare is strong, and thus the player should ensure the Blue Mage does not die while being hit with it. Shadowflare is situational, but can be useful. Since it does damage even to the caster, it would be a good idea to supply them with equipment that reduces, nullifies, or absorbs Dark damage.The player should be careful and not use Shadowflare when it would end up hitting more of the player's units rather than the enemies.
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Block Arrows}}
+|''Dodge bow and longbow attacks.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Atk+}}
+|''Improves weapon attacks to deal more damage.''
+|}
+
+==Appearances==
+The Bloodthirsters Clan always has two Vampires as members.
+
+Four Vampires assist the [[Totema]] [[Mateus (Tactics Advance)|Mateus]] in "Quiet Sands".
+
+Vampires named [[Lyle]], [[Colin (Tactics Advance)|Colin]], and [[Guinness]] are fought during "Mortal Snow".
+
+A Vampire is part of the Undead fought during "Defend Helje".
+
+==Variant Vampires==
+*Lord Ghost ("Salika Keep")
+*Dread Lord ("Last Stand")
+*Gutskor the Rukavi ("Free Bervenia")
+
+==Etymology==
+{{Etym|Vampire}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

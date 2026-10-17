@@ -1,0 +1,204 @@
+{{Image needed}}
+{|cellspacing="0" cellpadding="4" border="1" class="toccolours" style="border-collapse:collapse; float: right; width: 160px; margin: 10px;"
+|[[File:FFIII KO Status.gif|center|50px]]||[[File:Onion Kid KO.png|center|Onion Kid KO.]]
+|-
+|[[File:Bartz KO.png|center|Bartz KO.]]||[[File:FFVIII Death Symbol.PNG|center]]
+|-
+|colspan="2" style="font-size: 95%;"|Various portrayals attributed to KO: ''Final Fantasy'' (top left), Onion Knight from ''Final Fantasy III'' (top right), Bartz Klauser (bottom left) and ''Final Fantasy VIII'' KO status icon (bottom right)
+|}
+{{Quote|The character has lost consciousness and cannot move or act. Remove with a tuft of Phoenix Down.|''[[Final Fantasy XII]]'' Description}}
+'''Knocked Out''' {{j|せんとうふのう|Sentofunou|unable to fight}}, also known as '''Dead''', '''Death''', '''Disabled''', '''Swoon''', '''Wound''', '''Wounded''', '''Fatal''', '''Fell''', '''Killed Out''', '''Killed Off''', '''Stun''', '''Down''', '''KO''', '''KO'd''' or '''KOed''', is the condition a unit is in when they have run out of [[HP (stat)|HP]]. Whenever this occurs, the unit "faints" and is no longer able to aid in battle. Other status effects generally wear off upon being KO'd, though some can still persist. In older games, the condition was called "Death", but this is not to be confused with [[Instant Death]].
+
+Being knocked out in battle is not to be confused with when a character actually dies in the game's story, where use of such aforementioned items and spells won't revive the character; they are beyond the point of no return and cannot be saved.
+
+{{See|Game Over (term)}}
+
+==Attributes==
+When a character is knocked out, they collapse and lie down on the ground, presumably in a state of total unconsciousness. This trend, starting in the original ''[[Final Fantasy]]'' continues on to ''[[Final Fantasy XI]]''. Starting with ''[[Final Fantasy XII]]'', knocked out characters would kneel down instead.
+
+In almost all ''[[Final Fantasy series|Final Fantasy]]'' games, KO would only result in a [[Game Over (term)|Game Over]] when all [[party]] members on screen are wiped out. This can also happen when the player has exhausted all available party members in titles where the characters can be switched in and out of battle. In ''Final Fantasy XII'', when a party member is knocked out they are removed from the field and players have to navigate to the main menu to select a new party member; when a party leader dies, the gameplay freezes and prompts the player to designate a new party leader.
+
+However, in ''[[Final Fantasy XIII]]'', the game is over whenever the designated party leader is knocked out even when other party members are still alive. In ''[[The Final Fantasy Legend]]'' series, the player may restart from the beginning of the fight after this loss, but in ''[[Final Fantasy Legend II]]'', this power is explicitly granted by [[Odin (Legend II)|Odin]], and is lost after he is defeated by the player on his request.
+
+In ''[[Final Fantasy Tactics]]'', when a character is knocked out, a counter starts counting down from 3 to 0. When the counter is set to 0, the character will transform into a [[Crystal (term)|Crystal]] or a [[Treasure chest (object)|Treasure Chest]], and the character can no longer be revived. If [[Ramza Beoulve]] becomes a crystal, the game is over even though the other party members are still alive. Knocked out [[Guest]] units are protected from Permanent Death with stars floating above their heads.
+
+This particular feature was not continued in ''[[Final Fantasy Tactics Advance]]'' and ''[[Final Fantasy Tactics A2: Grimoire of the Rift]];'' instead, Judges revive knocked out units at the end of a battle, and those characters gain no AP for that engagement. The exception to this occurs when a character is knocked out without a Judge present (in a Jagd or certain instances in ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''); in this case, the character will actually die and be lost from the player's clan if not revived before the end of the battle. Interesting side note: because Dead cancels Blood Suck, and Dead is a lot easier to remove than Blood Suck is, killing a Blood Sucked unit is often the best way to deal with it if one doesn't have any Holy Water handy.
+
+In ''Final Fantasy V,'' a playable character is always in their Freelancer outfit when knocked out.
+
+In ''Final Fantasy VI'', some enemies can be defeated by bringing down their MP to 0. If [[Gau]] is using these monster's Rages, he too can be knocked out through his [[MP (stat)|MP]].
+
+===Healing and prevention===
+{{Quote|Defeated and Unable to Battle. Restore with Item 'Phoenix Down', or White Magic 'Life' or 'Full-Life'.|''Final Fantasy Tactics'' description}}
+[[White Mage]] abilities, such as [[Raise (Life 1)|Raise]] and [[Arise]], the [[List of summons|summon]] [[Phoenix]], the [[Blue Magic]] [[Angel Whisper (ability)|Angel Whisper]] and the item [[Phoenix Down]], can revive a knocked out unit. Other [[job system|job classes]] may have skills that revive units, like the [[Sage (job)|Sage]]'s Raise or the [[White Monk (Tactics Advance)|White Monk's]] [[Revive (Tactics Advance)|Revive]].
+
+KO can be prevented by the use of items such as [[Potion (item)|Potions]] and White Mage skills such as [[Cure (ability)|Cure]] and [[Cura]] that restore HP. Also, bestowing a unit with [[Reraise (status)|Auto-Life]] will automatically revive them in the case of a KO.
+
+Games with [[inn]]s allow the party to fully heal all characters, including ''Final Fantasy X'' [[Save point|save spheres]]. However, this does not occur in the original ''Final Fantasy'' and ''[[Final Fantasy II]]'', as Sanctuaries are used to revive fallen characters. In the original ''Final Fantasy'', a clergyman takes a fee for his services, though in ''Final Fantasy II'' the party prays directly and therefore it is free of charge.
+
+In ''[[The Final Fantasy Legend]]'', characters must be revived at a [[Church|House of Life]] for 100GP, but can only be revived so long as they have extra lives remaining unless they are the party leader. Party members can gain extra lives by using [[Heart (Legend)|Hearts]] (10 000 GP each) or can be revived without extra lives by using [[Revive (Legend)|Revives]] (15 000 GP each). Alternatively, party members can be replaced entirely at a [[Guild]].
+
+===After battle===
+In most games, a character will remain incapacitated after the battle's end. However, in ''Final Fantasy X'' and ''[[Final Fantasy Mystic Quest]]'', the character is brought back to life after battle with 1 HP remaining, and in ''[[Final Fantasy XIII]]'' and ''[[Final Fantasy Tactics]]'' all characters are fully healed after battle, although characters who are not lost forever are always fully healed after a battle in ''Final Fantasy Tactics''.
+
+===Application===
+Some skills inflict Instant Death regardless of current HP. Such moves include the [[Alchemist (Tactics Advance)#Death|Alchemist's Death]] or the [[Assassin (Tactics Advance)#Last Breath|Assassin's Last Breath]]. Bosses are usually immune to Instant Death, and the [[Undead]] may fully restore health if inflicted with it (seeing as it is a Dark ability).
+
+The only way to prevent Instant Death is with equipment or support abilities that offer protection for it. This kind of KO is often called a [[status effect]], since an Instant Death attack does not actually inflict damage on the character.
+
+====On enemies====
+Knock Outs usually result in the award of [[Experience Points|EXP]]/[[Ability Points|AP]] to increase the power of units, which is why it is critical to keep units alive to score KOs to increase their abilities. In ''Final Fantasy Tactics Advance'', KOing a unit results in the awarding of one [[Judge Points|Judge Point]].
+
+In ''Final Fantasy Type-0'', enemies are given unique death animations, most particularly when magic is used, since they cannot be brought back to life like the player. Fire spells immolate the enemy before they die to trauma, Ice spells instantaneously freezes them in place, Thunder spells electrocute them, and Holy petrifies them on the spot.
+
+==Gallery==
+<gallery>
+FF1NES Fighter Death.gif|Fighter ''[[Final Fantasy]]'' (NES).
+FF1NES Knight Death.gif|Knight ''[[Final Fantasy]]'' (NES).
+FF1NES BlackMage Death.gif|Black Mage ''[[Final Fantasy]]'' (NES).
+FF1NES BlackWizard Death.gif|Black Wizard ''[[Final Fantasy]]'' (NES).
+FF1NES WhiteMage Death.gif|White Mage ''[[Final Fantasy]]'' (NES).
+FF1NES WhiteWizard Death.gif|White Wizard ''[[Final Fantasy]]'' (NES).
+FF1NES Thief Death.gif|Thief ''[[Final Fantasy]]'' (NES).
+FF1NES Ninja Death.gif|Ninja ''[[Final Fantasy]]'' (NES).
+FF1NES BlackBelt Death.gif|Black Belt ''[[Final Fantasy]]'' (NES).
+FF1NES Master Death.gif|Master ''[[Final Fantasy]]'' (NES).
+FF1NES RedMage Death.gif|Red Mage ''[[Final Fantasy]]'' (NES).
+FF1NES RedWizard Death.gif|Red Wizard ''[[Final Fantasy]]'' (NES).
+FFI KO.png|''[[Final Fantasy]]'' (PS).
+FFI PSP KO Status.png|''[[Final Fantasy]]'' (PSP).
+FF2NES Firion Death.gif|Firion ''[[Final Fantasy II]]'' (NES).
+FF2NES Maria Death.gif|Maria ''[[Final Fantasy II]]'' (NES).
+FF2NES Guy Death.gif|Guy ''[[Final Fantasy II]]'' (NES).
+FF2NES Minwu Death.gif|Minwu ''[[Final Fantasy II]]'' (NES).
+FF2NES Leila Death.gif|Leila ''[[Final Fantasy II]]'' (NES).
+FF2NES Josef Death.gif|Josef ''[[Final Fantasy II]]'' (NES).
+FF2NES Gordon Death.gif|Gordon ''[[Final Fantasy II]]'' (NES).
+FF2NES Ricard Death.gif|Ricard ''[[Final Fantasy II]]'' (NES).
+FF2NES Leon Death.gif|Leon ''[[Final Fantasy II]]'' (NES).
+FFII NES Death Symbol.png|The Dead graphic in ''[[Final Fantasy II]]'' (NES).
+FFII Proto RIP Graphic.png|The Dead graphic in ''[[Final Fantasy II]]'' Proto (NES).
+FFII GBA KO.png|''[[Final Fantasy II]]'' (GBA).
+FF3NES Onion1 Death.gif
+FF3NES Onion2 Death.gif
+FF3NES Onion3 Death.gif
+FF3NES Ranger Death.gif
+FF3NES Warrior Death.gif
+FF3NES Knight Death.gif
+FF3NES Black Mage Death.gif
+FF3NES Magus Death.gif
+FF3NES White Mage Death.gif
+FF3NES Devout Death.gif
+FF3NES Monk Death.gif
+FF3NES BlackBelt Death.gif
+FF3NES Geomancer Death.gif
+FF3NES Dark Knight Death.gif
+FF3NES Dragoon Death.gif
+FF3NES Red Mage Death.gif
+FF3NES Evoker Death.gif
+FF3NES Bard Death.gif
+FF3NES Ninja Death.gif
+FF3NES Sage Death.gif
+FF3NES Viking Death.gif
+FF3NES Scholar Death.gif
+FFIII KO.png|''[[Final Fantasy III]]'' (NES).
+FFIII NES KO Menu.png|''[[Final Fantasy III]]'' (NES).
+FFIIIDS Knocked Out.PNG|''[[Final Fantasy III]]'' (DS).
+FFIIIDS KO Symbol.png|Icon in ''[[Final Fantasy III]]'' (DS).
+FF4SNES Dark Cecil Death.gif
+FF4SNES Paladin Cecil Death.gif
+FF4SNES Kain Death.gif
+FF4SNES Adult Rydia Death.gif
+FF4SNES Rosa Death.gif
+FF4SNES Edge Death.gif
+FF4SNES Tellah Death.gif
+FF4SNES Edward Death.gif
+FF4SNES Yang Death.gif
+FF4SNES Palom Death.gif
+FF4SNES Porom Death.gif
+FF4SNES Cid Death.gif
+FF4SNES FuSoYa Death.gif
+FF4SNES Golbez Death.gif
+FFIV KO.png|''[[Final Fantasy IV]]'' (GBA).
+FFIV PSP Game Over.png|''[[Final Fantasy IV]]'' (PSP).
+FFIV DS KO.PNG|''[[Final Fantasy IV]]'' (DS).
+Demon wall ffivios 1.PNG|''[[Final Fantasy IV]]'' (iOS)
+TAY Wii KO Status.jpg|''[[Final Fantasy IV: The After Years]]'' (Wii).
+TAY Knocked Out.png|''[[Final Fantasy IV: The After Years]]'' (PSP).
+FF5SNES Freelancer Bartz Death.gif
+FF5SNES Freelancer Lenna Death.gif
+FF5SNES Freelancer Galuf Death.gif
+FF5SNES Freelancer Faris Sarisa Death.gif
+FF5SNES Freelancer Krile Death.gif
+FFV KO.png|''[[Final Fantasy V]]'' (GBA).
+FFV iOS Death Status.png|''[[Final Fantasy V]]'' (iOS).
+FF6SNES Terra Death.gif
+FF6SNES Terra Trance Death.gif
+FF6SNES Locke Death.gif
+FF6SNES Edgar Death.gif
+FF6SNES Sabin Death.gif
+FF6SNES Celes Death.gif
+FF6SNES Cyan Death.gif
+FF6SNES Gau Death.gif
+FF6SNES Setzer Death.gif
+FF6SNES Mog Death.gif
+FF6SNES Strago Death.gif
+FF6SNES Relm Death.gif
+FF6SNES Shadow Death.gif
+FF6SNES Umaro Death.gif
+FF6SNES Vicks Death.gif
+FF6SNES Banon Death.gif
+FF6SNES General Leo Death.gif
+FF6SNES Imp Death.gif
+FFVI KO.png|''[[Final Fantasy VI]]''.
+FFVI iOS KO.png|''[[Final Fantasy VI]]'' (iOS).
+FFVII KO.png|''[[Final Fantasy VII]]''.
+Barret KO'd from FFVII Remake.jpg|Barret in KO status in ''[[Final Fantasy VII Remake]]''.
+Tifa KO'd from FFVII Remake.jpg|Tifa in KO status in ''[[Final Fantasy VII Remake]]''.
+Aerith KO'd from FFVII Remake.jpg|Aerith in KO status in ''[[Final Fantasy VII Remake]]''.
+FFVIII KO.png|''[[Final Fantasy VIII]]''.
+FFIX KO.png|''[[Final Fantasy IX]]''.
+FFX KO Status.png|''[[Final Fantasy X]]''
+FFX Auron KO.png|Auron in KO status in ''[[Final Fantasy X]]''.
+FFX Kimahri KO.png|Kimahri in KO status in ''[[Final Fantasy X]]''.
+FFX Lulu KO.png|Lulu in KO status in ''[[Final Fantasy X]]''.
+FFX Rikku KO.png|Rikku in KO status in ''[[Final Fantasy X]]''.
+FFX Seymour KO.png|Seymour in KO status in ''[[Final Fantasy X]]''.
+FFX Tidus KO.png|Tidus in KO status in ''[[Final Fantasy X]]''.
+FFX Wakka KO.png|Wakka in KO status in ''[[Final Fantasy X]]''.
+FFX Yuna KO.png|Yuna in KO status in ''[[Final Fantasy X]]''.
+FFX KO PS3.png|''Final Fantasy X'' (PS3).
+FFX2 KO.png|''[[Final Fantasy X-2]]'' (PS2).
+FFX-2 Death Icon.png|Icon in ''[[Final Fantasy X-2]]''.
+FFXII Deathscythe.png|''[[Final Fantasy XII]]''.
+FFXII KO Icon.png|Icon in ''[[Final Fantasy XII]]''.
+RW Knocked Out.png|''[[Final Fantasy XII: Revenant Wings]]''.
+FFXIII KO.png|''[[Final Fantasy XIII]]''.
+FFXIV KO.png|''[[Final Fantasy XIV]]''.
+Final-fantasy-type-0-queen-KOed.jpg|''[[Final Fantasy Type-0]]''.
+FFT KO Status.png|''[[Final Fantasy Tactics]]''.
+FFTA Knocked Out.png|''[[Final Fantasy Tactics Advance]]''.
+RoF Death Status.PNG|''[[Final Fantasy Crystal Chronicles: Ring of Fates]]''.
+Mysticquestknockedout.PNG|''[[Final Fantasy Mystic Quest]]''.
+FFA Fell.png|''[[Final Fantasy Adventure]]''.
+FFL Game Over.png|''[[The Final Fantasy Legend]]''.
+FFL Knocked Out.jpg|''[[The Final Fantasy Legend]]''.
+FFL Knocked Out JP.jpg|''[[The Final Fantasy Legend]]''.
+FFLII Game Over.png|''[[Final Fantasy Legend II]]''.
+FFLII Knocked Out.jpg|''[[Final Fantasy Legend II]]''.
+FFLII Knocked Out JP.jpg|''[[Final Fantasy Legend II]]''.
+FFLIII Game Over.png|''[[Final Fantasy Legend III]]''.
+FFT4HoL Dead Icon.png|Icon in ''[[Final Fantasy: The 4 Heroes of Light]]''.
+FFT4HoL Dead.png|''[[Final Fantasy: The 4 Heroes of Light]]''.
+FFD KO Status.PNG|''[[Final Fantasy Dimensions]]''.
+FFD Knocked Out Icon.png|Icon in ''[[Final Fantasy Dimensions]]''.
+FFRK KO Status.png|''[[Final Fantasy Record Keeper]]''.
+FFBE KO Status.png|''[[Final Fantasy Brave Exvius]]''.
+WoFF KO Status.png|''[[World of Final Fantasy]]''.
+</gallery>{{Gallery incomplete|''Final Fantasy X-2'' (PS3)|''[[Final Fantasy XIII-2]]''|''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''|''[[The Final Fantasy Legend]]''|''[[Final Fantasy Airborne Brigade]]''|''[[Final Fantasy All the Bravest]]''}}
+
+==Etymology==
+A [[wikipedia:knockout|knockout]] (also referred to as a K.O.) is a strike that renders an opponent unable to continue fighting in several full-contact combat sports, such as boxing, kickboxing, Muay Thai, mixed martial arts, Karate and other sports involving striking.
+
+{{navbox statuses}}
+[[Category:Negative status effects]]

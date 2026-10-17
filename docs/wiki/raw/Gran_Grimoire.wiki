@@ -1,0 +1,36 @@
+[[File:TAgrimoire2.jpg|right|250px|thumb|Grimoire.]]
+{{Quote|It is not certain how many copies of the book still exist, but it is said that whoever should hold one holds the power to change the world.|Instruction manual}}
+The '''Gran Grimoire''' {{j|グラン・グリモア|Guran Gurimoa}} is a powerful source of [[Magic (term)|magic]] in [[Ivalice]], although its powers cannot be easily explained. In reality, there are many books going by the name of Gran Grimoire, each one holding an incredible amount of power.
+
+==Appearances==
+===''[[Final Fantasy Tactics Advance]]''===
+
+[[File:TAgrimoire.jpg|180px|right|thumb|Gran Grimoire.]]
+The Gran Grimoire is the magic book that transforms the town of [[St. Ivalice]] into the world of [[Ivalice (Tactics Advance)|Ivalice]]. The world it creates is centered around [[Mewt Randell]]'s desires: he becomes Prince, his father [[Cid Randell|Cid]] becomes [[Judgemaster (Tactics Advance)|Judgemaster]], and the book creates an entity known as the [[Remedi|Li-Grim]] to replace his dead mother Remedi. The Gran Grimoire's spell is reversed when [[Marche Radiuju]] defeats all five of the [[totema]] and the Li-Grim, reverting the world to normal.
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+
+The Gran Grimoire is mentioned during the quest The Ultimate Book of Magick, where [[Luso Clemens]] goes to ask [[Lezaford]] about the legendary book. According to Lezaford's notes, anyone who holds the Gran Grimoire has the power to shape the fabric of the world. Not much else is known about it, and its existence has passed into legend. The [[Grimoire of the Rift]] may also be the Gran Grimoire, as Mewt's possession of it explains how such a book would be in a school [[library]].
+
+===''[[Vagrant Story]]''===
+
+The Gran Grimoire is known as the ultimate codex of sorcery and the Prime Mover, the machinery of life itself. While it was common belief that the Gran Grimoire is a book, the higher echelons of the Iocus priesthood and the [[Valendia Knights of the Peace]] knew that [[Leá Monde]], the dead city, was itself the Gran Grimoire. Ancient [[Kiltia|Kildean]] incantations dating to the age of [[Müllenkamp]] have been carved into the city's stone walls and floors, making it the wellspring of [[The Dark (term)|the Dark]]. [[Jan Rosencrantz|Rosencrantz]] and [[Romeo Guildenstern]] yearn for the Gran Grimoire and its powers, which can only be unlocked by the key bearer, the individual that holds the [[Blood-Sin]] tattoo, [[Sydney Losstarot]].
+
+==Gallery==
+<gallery>
+Gran-Grimoire-FFTA.jpg|Gran Grimoire in ''Final Fantasy Tactics Advance''.
+</gallery>
+
+==Etymology==
+{{Etym|Grand Grimoire}}
+
+{{Etym|Gran}}
+
+==Trivia==
+*The floor pattern in the [[Sky Pirate's Den]] of ''[[Final Fantasy XII]]'' resembles the cover of the ''Final Fantasy Tactics Advance'' Gran Grimoire.
+
+{{navbox setting FFTA}}
+{{navbox FFTA2}}
+{{navbox VagrS}}
+[[Category:Final Fantasy Tactics Advance]]
+[[Category:Vagrant Story]]

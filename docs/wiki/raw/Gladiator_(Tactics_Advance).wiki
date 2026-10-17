@@ -1,0 +1,209 @@
+{{DISPLAYTITLE:Gladiator (''Tactics Advance'')}}
+{{infobox job
+|name=Gladiator
+|release=FFTA
+|japanese=グラディエーター
+|romaji=Guradiētā
+|image=Ffta-bangaa-gladiator.png
+|portrait=[[File:FFTA-job-Gladiator-por.png|50px|Player]] [[File:Ffta-job-gladiator-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-gladiator.gif|20px|Player]] [[File:Ffta-job-gladiator-enemy-sprite.png|Enemy|20px]]
+|obtained=*Master two [[Warrior (Tactics Advance)|Warrior]] abilities
+|required=[[Warrior (Tactics Advance)|Warrior]]
+|characters=[[Bangaa]]
+|stats=*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate:45
+*Stat growth: Attack-oriented
+|weapons=[[Final Fantasy Tactics Advance weapons#Blades|Blades]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Spellblade Tech]]
+*[[#Sword Combo|Sword Combo]] (combo)
+|support abilities=*[[Doublehand]]
+*[[Strike Back|Strikeback]] (reaction)
+|recurring appearance=Gladiator (job)
+}}
+{{Quote|Wielders of the magical "spellswords".|Description}}
+'''Gladiator''' is a [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]'' for [[bangaa]] who can become Gladiators after mastering two [[Warrior (Tactics Advance)|Warrior]] abilities. Gladiators wield the powerful blades and can learn three "Spell Blades" to deal damage and some [[Fighter (Tactics Advance)|Fighter]] abilities. When raised right, Gladiators are very powerful and, when equipped with Strikeback, it is difficult to get in a hit.
+
+==Growth==
+Gladiators are basically the same as [[Dragoon (Tactics Advance)|Dragoons]], although with higher MP, lower Attack, higher Defense, and slightly higher Magic Power.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|8.2 A-
+|2.8 D+
+|9.4 A-
+|8.8 B+
+|5.9 D-
+|6.4 D
+|1.1 D
+|}
+
+==Abilities==
+===[[Spellblade Tech]]===
+{{Quote|Gladiator command. Combine magic with swordplay.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Range
+!style="width:10%"|Power
+|-
+! rowspan=2|{{LA|Rush}}
+|[[Final Fantasy Tactics Advance weapons#Sweep Blade|Sweep Blade]]
+|100
+|—
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Full-on bull rush. Pushes target back.''
+|-
+! rowspan=2|{{A|Wild Swing}}
+|[[Final Fantasy Tactics Advance weapons#Ogun Blade|Ogun Blade]]
+|200
+|—
+|Self
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Swinging weapon attack. Hits to front, back, side.''
+|-
+! rowspan=2|{{A|Beatdown}}
+|[[Final Fantasy Tactics Advance weapons#Shadow Blade|Shadow Blade]]
+|200
+|—
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Aggressive attack. Low hit rate, but very damaging.''
+|-
+! rowspan=2|{{LA|Blitz (Tactics)|Blitz}}
+|[[Final Fantasy Tactics Advance weapons#Sun Blade|Sun Blade]]
+|200
+|—
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Uses aggression to sense and attack target. High hit rate, low damage.''
+|-
+! rowspan=2|{{LA|Fire Blade (ability)|Fire Sword}}
+|[[Final Fantasy Tactics Advance weapons#Flametongue|Flametongue]]
+|200
+|10
+|1
+|54
+|-
+|colspan=5 style="text-align:left"|''Fiery blade. Deals damage.''
+|-
+! rowspan=2|{{LA|Thunder Blade (ability)|Bolt Sword}}
+|[[Final Fantasy Tactics Advance weapons#Air Blade|Air Blade]]
+|200
+|10
+|1
+|54
+|-
+|colspan=5 style="text-align:left"|''Electrically charged blade. Deals damage.''
+|-
+! rowspan=2|{{A|Ice Sword}}
+|[[Final Fantasy Tactics Advance weapons#Ice Brand|Ice Brand]]
+|200
+|10
+|1
+|54
+|-
+|colspan=5 style="text-align:left"|''Icy blade. Deals damage.''
+|-
+! rowspan=2|{{LA|Ultima Sword (ability)|Ultima Sword}}
+|[[Final Fantasy Tactics Advance weapons#Materia Blade|Materia Blade]]
+|999
+|60
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Mageblade attack born from ultima magic.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Strike Back|Strikeback}}
+|[[Final Fantasy Tactics Advance armor#Wygar|Wygar]]
+|style="text-align:left"|''Block enemy attack and counterattack. Ineffective vs. A-abil.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Doublehand}}
+|[[Final Fantasy Tactics Advance weapons#Venus Blade|Venus Blade]]
+|style="text-align:left"|''Hold one-handed weapon in two hands. Improves weapon attack.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Sword Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Blade|Mythril Blade]]
+|style="text-align:left"|''Failproof combo ability for gladiators.''
+|100
+|}
+
+== Overview ==
+Gladiators are similar to [[Fighter (Tactics Advance)|Fighters]] in that they have identical stat growths and share several abilities. Gladiators have high attack, HP, and defense, with low magic power and resistance. The Spellblade abilities provide a decent selection of elemental damage, and their Ultima Sword is the Ultima ability for the [[bangaa]]. However, Gladiators have many shortcomings. Their ability set is lacking, having no ranged attacks. They are often compared negatively towards a similar offensive class, the [[Dragoon (Tactics Advance)|Dragoon]]. They have slightly higher MP than usual, but few ways to use their MP supply. Silence can affect Gladiators more than most other bangaa, as it takes away a few of their abilities. Overall, Gladiators are a somewhat unusual offensive class that generally pales in comparison to the Dragoon, but they can still hold up on their own.
+
+Most physical walls can go up against enemy Gladiators without much worry, since they have no supporting abilities. Ranged units and mages can toast Gladiators while keeping their distance.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Gladiator TCG.png|right|100px]]
+Gladiator appears with an earth-elemental card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Rush.png|Rush.
+FFTA Wild Swing.png|Wild Swing.
+FFTA Fire Sword.png|Fire Sword.
+FFTA Bolt Sword.png|Bolt Sword.
+FFTA Ice Sword.png|Ice Sword.
+</gallery>{{Gallery incomplete|Beatdown|Blitz|Ultima Sword|Sword Combo}}
+
+==Etymology==
+{{Etym|Gladiator}}
+
+==Trivia==
+*Despite wielding one in their official artwork, Gladiators cannot equip shields without the aid of the [[Warrior (Tactics Advance)|Warrior]] job's support ability [[equipment abilities|Shieldbearer]].
+
+{{navbox abilities FFTA}}
+
+
+[[es:Gladiador (Final Fantasy Tactics Advance)]]
+[[it:Gladiatore (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

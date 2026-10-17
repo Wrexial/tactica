@@ -1,0 +1,654 @@
+{{navbox joblists}}
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' jobs}}
+
+[[File:Master Juggler.jpeg|thumb|The star after learning every Juggler skill.]]
+Every race can choose between several primary [[job system|job classes]] without requirements in ''[[Final Fantasy Tactics Advance]]''. Mastering a certain amount of action abilities for certain classes unlocks secondary jobs. Characters can freely switch to any primary or unlocked secondary class outside of [[Battle (term)|battle]].
+
+Skillsets containing abilities the character has mastered can be equipped as secondary skillsets; the character can use all mastered A-Abilities (action abilities) of this secondary skillset. Some abilities, like the [[Jump (ability)|Jump]] attack, additionally require certain equipment. The [[Item]] command is the default secondary skillset. Additionally, a character can equip all reaction, support and combo abilities they previously mastered in any class.
+
+Classes not unlocked with any character won't be displayed on the class switching screen. Classes must be unlocked individually for each character. Unlocking a class for the first time will make that class option visible for all characters with compatible races, but they won't be able to use that class unless they meet the requirements themselves. When a character learns all the abilities of one job, that job will be considered [[Job Mastered|mastered]] and marked with a star above it in the class switching screen.
+
+==Job tree==
+[[File:Ffta jobstree.png|693x693px]]
+
+==[[Human]] jobs==
+===Primary jobs===
+<gallery>
+FFTA Soldier Portrait.gif|link=Soldier (Tactics Advance)|[[File:FFTA-job-soldier.gif|link=]]'''[[Soldier (Tactics Advance)|Soldier]]'''
+FFTA Thief Portrait.gif|link=Thief (Tactics Advance)|[[File:FFTA-job-thiefH.gif|link=]]'''[[Thief (Tactics Advance)|Thief]]'''
+FFTA Archer Portrait.gif|link=Archer (Tactics Advance)|[[File:FFTA-job-archerH.gif|link=]]'''[[Archer (Tactics Advance)|Archer]]'''
+FFTA White Mage Portrait.gif|link=White Mage (Tactics Advance)|[[File:FFTA-job-whtmageH.gif|link=]]'''[[White Mage (Tactics Advance)|White Mage]]'''
+FFTA Black Mage Portrait.gif|link=Black Mage (Tactics Advance)|[[File:FFTA-job-blkmageH.gif|link=]]'''[[Black Mage (Tactics Advance)|Black Mage]]'''
+</gallery>
+
+===Secondary jobs===
+<gallery>
+FFTA Fighter Portrait.gif|[[File:FFTA-job-fighter.gif|link=]]'''[[Fighter (Tactics Advance)|Fighter]]'''<br>2x Soldier A-Abilities.
+FFTA Paladin Portrait.gif|link=Paladin (Tactics Advance)|[[File:FFTA-job-paladin.gif|link=]]'''[[Paladin (Tactics Advance)|Paladin]]'''<br>2x Soldier A-Abilities.
+FFTA Ninja Portrait.gif|link=Ninja (Tactics Advance)|[[File:FFTA-job-ninja.gif|link=]]'''[[Ninja (Tactics Advance)|Ninja]]'''<br/>2x Thief A-Abilities.
+FFTA Hunter Portrait.gif|link=Hunter (Tactics Advance)|[[File:FFTA-job-hunter.gif|link=]]'''[[Hunter (Tactics Advance)|Hunter]]'''<br/>2x Archer A-Abilities.
+FFTA Blue Mage Portrait.gif|link=Blue Mage (Tactics Advance)|[[File:FFTA-job-bluemage.gif|link=]]'''[[Blue Mage (Tactics Advance)|Blue Mage]]'''<br/>1x White and Black Mage A-Abilities.
+FFTA Illusionist Portrait.gif|link=Illusionist (Tactics Advance)|[[File:FFTA-job-IllusionistH.gif|link=]]'''[[Illusionist (Tactics Advance)|Illusionist]]'''<br/>5x Black Mage and 3x White Mage A-Abilities.
+</gallery>
+
+===Human stat growth===
+{| class="sortable full-width FFTA article-table" style="text-align:center"
+|-
+! width="150" |Job Class
+! width="100" |HP
+! width="100" |MP
+! width="100" |Attack
+! width="100" |Defense
+! width="100" |Magic
+! width="100" |Resist
+! width="100" |Speed
+! width="100" |Total (without Speed)
+|-
+![[Soldier (Tactics Advance)|Soldier]]
+|8.40 A-
+|1.10 E 
+|8.80 B+ 
+
+|8.80 B+
+|6.00 D-
+|7.20 C-
+|1.10 D
+|40.3
+|-
+![[White Mage (Tactics Advance)|White Mage]]
+|6.10 D+
+|4.80 B
+|6.20 D-
+|7.30 C-
+|8.40 B
+|8.20 B-
+|1.20 D+
+|41.0 
+|-
+![[Black Mage (Tactics Advance)|Black Mage]]
+|5.60 D-
+|4.40 B-
+|6.40 D
+|6.80 D+
+|8.80 B+
+|9.60 A+
+|1.10 D
+|41.6
+
+|-
+![[Thief (Tactics Advance)|Thief]]
+|6.60 C
+|1.10 E
+|7.60 C+
+|7.60 C+
+|7.60 C+
+| 6.80 D+
+|1.80 A-
+|37.3
+|-
+![[Archer (Tactics Advance)|Archer]]
+|7.20 B-
+|1.10 E
+| 7.20 C-
+|7.20 C-
+|6.40 D
+|8.10 B-
+|1.40 C
+|37.2
+|-
+![[Fighter (Tactics Advance)|Fighter]]
+|7.20 B- 
+|1.10 E
+|9.20 A-
+|8.10 B-
+|5.60 E
+|6.80 D+
+
+|1.10 D
+|38
+|-
+![[Paladin (Tactics Advance)|Paladin]]
+|7.60 B+
+|2.20 D
+|8.10 B-
+|9.20 A-
+|7.20 C-
+
+|8.80 B+
+|0.80 E
+
+|43.1
+|-
+![[Ninja (Tactics Advance)|Ninja]]
+|5.80 D+ 
+|2.10 D- 
+|8.40 B
+|7.20 C-
+|8.10 B-
+|7.60 C
+|2.10 A+
+|39.2
+|-
+![[Hunter (Tactics Advance)|Hunter]]
+|6.80 C+
+|3.20 C-
+|8.80 B+
+|6.80 D+
+|6.80 D+
+
+|8.40 B
+|1.70 B+
+|40.8
+|-
+![[Blue Mage (Tactics Advance)|Blue Mage]]
+|6.80 C+
+|3.60 C+
+|8.10 B-
+|8.40 B
+|8.40 B
+|9.20 A-
+|1.20 D+
+|44.5
+|-
+![[Illusionist (Tactics Advance)|Illusionist]]
+|5.20 E
+|7.10 A+
+|6.10 D-
+|6.40 D
+|9.20 A-
+|8.40 B
+|0.90 D-
+|42.4
+|}
+
+==[[Bangaa]] jobs==
+===Primary jobs===
+<gallery>
+FFTA Warrior Portrait.gif|link=Warrior (Tactics Advance)|[[File:FFTA-job-warrior.gif|link=]]'''[[Warrior (Tactics Advance)|Warrior]]'''
+FFTA White Monk Portrait.gif|link=White Monk (Tactics Advance)|[[File:FFTA-job-whtmonk.gif|link=]]'''[[White Monk (Tactics Advance)|White Monk]]'''
+</gallery>
+
+=== Secondary jobs===
+<gallery>
+FFTA Bishop Portrait.gif|link=Bishop (Tactics Advance)|[[File:FFTA-job-bishop.gif|link=]]'''[[Bishop (Tactics Advance)|Bishop]]'''<br/>2x White Monk A-Abilities.
+FFTA Defender Portrait.gif|link=Defender (Tactics Advance)|[[File:FFTA-job-defender.gif|link=]]'''[[Defender (Tactics Advance)|Defender]]'''<br/>2x Warrior A-Abilities.
+FFTA Dragoon Portrait.gif|link=Dragoon (Tactics Advance)|[[File:FFTA-job-dragoon.gif|link=]]'''[[Dragoon (Tactics Advance)|Dragoon]]'''<br/>2x Warrior A-Abilities.
+FFTA Gladiator Portrait.gif|link=Gladiator (Tactics Advance)|[[File:FFTA-job-gladiator.gif|link=]]'''[[Gladiator (Tactics Advance)|Gladiator]]'''<br/>2x Warrior A-Abilities.
+FFTA Templar Portrait.gif|link=Templar (Tactics Advance)|[[File:FFTA-job-templar.gif|link=]]'''[[Templar (Tactics Advance)|Templar]]'''<br/>2x White Monk A-Abilities.
+</gallery>
+
+===Bangaa stat growth===
+{| class="sortable full-width FFTA article-table" style="text-align:center"
+|-
+! width="150" |Job Class
+! width="100" |HP
+! width="100" |MP
+! width="100" |Attack
+! width="100" |Defense
+! width="100" |Magic
+! width="100" |Resist
+! width="100" |Speed
+! width="100" |Total (without Speed)
+|-
+![[Warrior (Tactics Advance)|Warrior]]
+|9.20 S
+|2.10 D
+|9.20 B+
+|8.40 B
+|6.20 D-
+|6.80 D+ 
+|0.90 D- 
+|41.9
+|-
+![[White Monk (Tactics Advance)|White Monk]]
+|6.40 C
+|1.10 E
+|8.10 B-
+
+|7.60 C
+|8.40 B
+| 6.80 D+
+| 1.40 C
+|38.4
+|-
+![[Gladiator (Tactics Advance)|Gladiator]]
+|8.20 A-
+|2.80 D+
+| 9.40 A-
+|8.80 B+
+|5.90 D-
+|6.40 D
+|1.10 D
+|41.5
+|-
+![[Defender (Tactics Advance)|Defender]]
+|8.40 A-
+|1.10 E 
+|8.80 B+
+|9.20 A-
+|6.50 D
+|7.20 C-
+|0.90 D-
+|41.2
+|-
+![[Dragoon (Tactics Advance)|Dragoon]]
+|8.20 A-
+|1.20 E
+|9.60 A
+|8.40 B
+|5.60 E
+| 6.40 D
+|1.20 D+
+|39.4
+|-
+![[Bishop (Tactics Advance)|Bishop]]
+|6.10 D+
+|4.60 B
+|7.20 C-
+|6.80 D+
+|8.80 B+
+|7.60 C
+|0.90 D-
+|41.1
+|-
+![[Templar (Tactics Advance)|Templar]]
+|7.20 B
+|3.20 C
+|8.20 B-
+|9.70 A+
+|8.40 B+
+|7.20 C-
+| 0.80 E
+|43.9
+|}
+
+==[[Nu mou]] jobs==
+===Primary jobs===
+<gallery>
+FFTA Beastmaster Portrait.gif|link=Beastmaster (Tactics Advance)|[[File:FFTA-job-beastmaster.gif|link=]]'''[[Beastmaster (Tactics Advance)|Beastmaster]]'''
+FFTA Black Mage Nu Mou Portrait.gif|link=Black Mage (Tactics Advance)|[[File:FFTA-job-blkmageNM.gif|link=]]'''[[Black Mage (Tactics Advance)|Black Mage]]'''
+FFTA White Mage Nu Mou Portrait.gif|link=White Mage (Tactics Advance)|[[File:FFTA-job-whtmageNM.gif|link=]]'''[[White Mage (Tactics Advance)|White Mage]]'''
+</gallery>
+
+===Secondary jobs===
+<gallery>
+FFTA Alchemist Portrait.gif|link=Alchemist (Tactics Advance)|[[File:FFTA-job-alchemist.gif|link=]]'''[[Alchemist (Tactics Advance)|Alchemist]]'''<br/>5x Black Mage and 3x White Mage A-Abilities.
+FFTA Illusionist Nu Mou Portrait.gif|link=Illusionist (Tactics Advance)|[[File:FFTA-job-IllusionistNM.gif|link=]]'''[[Illusionist (Tactics Advance)|Illusionist]]'''<br/>5x Black Mage and 3x White Mage A-Abilities.
+FFTA Morpher Portrait.gif|link=Morpher|[[File:FFTA-job-morpher.gif|link=]]'''[[Morpher]]'''<br/>5x Beastmaster A-Abilities.
+FFTA Sage Portrait.gif|link=Sage (Tactics Advance)|[[File:FFTA-job-sage.gif|link=]]'''[[Sage (Tactics Advance)|Sage]]'''<br/>3x White Mage and 2x Beastmaster A-Abilities.
+FFTA Time Mage Portrait.gif|link=Time Mage (Tactics Advance)|[[File:FFTA-job-timemageNM.gif|link=]]'''[[Time Mage (Tactics Advance)|Time Mage]]'''<br/>5x Black Mage A-Abilities.
+</gallery>
+
+===Nu mou stat growth===
+{| class="sortable full-width FFTA article-table" style="text-align:center"
+|-
+! width="150" |Job Class
+! width="100" |HP
+! width="100" |MP
+! width="100" |Attack
+! width="100" |Defense
+! width="100" |Magic
+
+! width="100" |Resist
+! width="100" |Speed
+! width="100" |Total (without Speed)
+|-
+![[Beastmaster (Tactics Advance)|Beastmaster]]
+|7.40 B
+|2.10 D
+|8.80 B+ 
+|8.80 B+
+|6.80 D+
+|8.40 B
+|1.20 D+
+|42.3
+|-
+![[White Mage (Tactics Advance)|White Mage]]
+|5.80 D
+|5.60 A-
+|5.70 E
+|7.30 C-
+| 8.80 B+
+|8.40 B
+|1.10 D
+|41.6
+|-
+![[Black Mage (Tactics Advance)|Black Mage]]
+|5.60 D-
+|5.40 B+
+|6.20 D-
+|6.80 D+
+|9.20 A-
+|10.2 S
+|0.90 D-
+|43.4
+|-
+![[Alchemist (Tactics Advance)|Alchemist]]
+|6.10 D+
+|8.40 S-
+|5.90 E
+|6.50 D
+|9.20 A-
+|9.60 A
+|0.90 D-
+|45.7
+|-
+![[Time Mage (Tactics Advance)|Time Mage]]
+|5.20 E
+|3.60 C+
+|5.60 E
+|6.80 D+
+|10.2 S
+|9.60 A
+|1.20 D+
+|41.0
+|-
+![[Illusionist (Tactics Advance)|Illusionist]]
+|5.10 E
+|7.50 A+
+|5.70 E
+|6.40 D
+|9.70 A+
+|8.70 B+
+|0.80 E
+|43.1
+|-
+![[Sage (Tactics Advance)|Sage]]
+|7.60 B
+|8.80 S
+|8.40 B+
+|7.60 B+
+|9.20 A-
+|7.60 D+
+|0.80 E
+|49.2
+|-
+![[Morpher]]
+|6.80 C+
+|2.80 D+
+|7.10 C-
+|8.20 B-
+|7.60 C
+|8.20 B-
+|1.60 B
+|40.7
+|}
+
+==[[Viera]] jobs==
+===Primary jobs===
+<gallery>
+FFTA Fencer Portrait.gif|link=Fencer (Tactics Advance)|[[File:FFTA-job-fencer.gif|link=]]'''[[Fencer (Tactics Advance)|Fencer]]'''
+FFTA White Mage Viera Portrait.gif|link=White Mage (Tactics Advance)|[[File:FFTA-job-whtmageV.gif|link=]]'''[[White Mage (Tactics Advance)|White Mage]]'''
+FFTA Archer Viera Portrait.gif|link=Archer (Tactics Advance)|[[File:FFTA-job-archerV.gif|link=]]'''[[Archer (Tactics Advance)|Archer]]'''
+</gallery>
+
+===Secondary jobs===
+<gallery>
+File:FFTA Sniper Portrait.gif|link=Sniper_(Tactics_Advance)|[[File:FFTA-job-sniper.gif|link=]]'''[[Sniper (Tactics Advance)|Sniper]]'''<br />2x Archer A-Ability.
+File:FFTA Red Mage Portrait.gif|link=Red_Mage_(Tactics_Advance)|[[File:FFTA-job-redmage.gif|link=]]'''[[Red Mage (Tactics Advance)|Red Mage]]'''<br />1x Fencer A-Ability.
+File:FFTA Elementalist Portrait.gif|link=Elementalist_(Tactics_Advance)|[[File:FFTA-job-elementalist.gif|link=]]'''[[Elementalist (Tactics Advance)|Elementalist]]'''<br />1x White Mage and 1x Fencer A-Ability.
+</gallery>
+
+=== Tertiary jobs ===
+<gallery>
+File:FFTA Assasin Portrait.gif|link=Assassin_(Tactics_Advance)|[[File:FFTA-job-assassin.gif|link=]]'''[[Assassin (Tactics Advance)|Assassin]]'''<br />2x Elementalist A-Ability.  1x Sniper A-Ability. 
+File:FFTA Summoner Portrait.gif|link=Summoner_(Tactics_Advance)|[[File:FFTA-job-summoner.gif|link=]]'''[[Summoner (Tactics Advance)|Summoner]]'''<br />2x White Mage A-Ability.  2x Elementalist A-Ability. 
+</gallery>
+
+===Viera growth===
+{| class="sortable full-width FFTA article-table" style="text-align:center"
+|-
+! width="150" |Job Class
+! width="100" |HP
+! width="100" |MP
+! width="100" |Attack
+! width="100" |Defense
+! width="100" |Magic
+! width="100" |Resist
+! width="100" | Speed
+! width="100" |Total (without Speed)
+|-
+![[Fencer (Tactics Advance)|Fencer]]
+|7.90 B
+|1.10 E
+|8.40 B+
+|8.10 B+
+|7.60 C
+
+|7.20 C-
+|1.50 B-
+
+| 40
+|-
+![[White Mage (Tactics Advance)|White Mage]]
+|6.20 D+
+|4.80 B
+|6.20 D-
+|7.20 C-
+|8.80 B+
+|7.60 C
+|1.20 D+
+|40.8
+|-
+![[Archer (Tactics Advance)|Archer]]
+|7.20 B-
+|1.60 D-
+|8.10 B-
+|6.80 D+
+|7.20 C-
+| 7.60 C
+| 1.60 B
+|38.5
+|-
+![[Red Mage (Tactics Advance)|Red Mage]]
+|6.80 C+
+|2.80 C- 
+|8.10 B- 
+|7.60 C
+|8.40 B
+|7.60 C
+|1.30 C
+|41.3
+|-
+![[Elementalist (Tactics Advance)|Elementalist]]
+|6.80 C+
+|4.20 B-
+|8.10 B-
+|7.60 C
+|8.80 B+
+
+|7.60 C
+|1.10 D
+
+|43.1
+|-
+![[Sniper (Tactics Advance)|Sniper]]
+|6.20 D+ 
+|2.40 D+ 
+|9.40 A
+|6.80 D+
+|7.60 C
+|7.60 C
+|1.80 A-
+|40
+|-
+![[Assassin (Tactics Advance)|Assassin]]
+|5.20 E
+|5.20 B+
+|8.80 B+
+|6.80 D+ 
+|9.20 A-
+|7.20 C-
+|2.30 S
+|42.4
+|-
+![[Summoner (Tactics Advance)|Summoner]]
+|5.60 D
+|6.20 A
+|6.50 D
+|6.40 D-
+|10.10 S
+|8.40 B
+|0.90 D-
+|43.2
+|}
+
+==[[Moogle]] jobs==
+===Primary jobs===
+<gallery>
+FFTA Animist.gif|link=Animist (Tactics Advance)|[[File:FFTA-job-animist.gif|link=]]'''[[Animist (Tactics Advance)|Animist]]'''
+FFTA Black Mage Moogle Portrait.gif|link=Black Mage (Tactics Advance)|[[File:FFTA-job-blkmageM.gif|link=]]'''[[Black Mage (Tactics Advance)|Black Mage]]'''
+FFTA Thief Moogle Portrait.gif|link=Thief (Tactics Advance)|[[File:FFTA-job-thiefM.gif|link=]]'''[[Thief (Tactics Advance)|Thief]]'''
+</gallery>
+
+===Secondary jobs===
+<gallery>
+FFTA Gunner Portrait.gif|link=Gunner (Tactics Advance)|[[File:FFTA-job-gunner.gif|link=]]'''[[Gunner (Tactics Advance)|Gunner]]'''<br/>1x Animist A-Ability.
+FFTA Mog Knight Portrait.gif|link=Mog Knight|[[File:FFTA-job-mogknight.gif|link=]]'''[[Mog Knight]]'''<br/>1x Animist A-Ability.
+FFTA Time Mage Moogle Portrait.gif|link=Time Mage (Tactics Advance)|[[File:FFTA-job-timemageM.gif|link=]]'''[[Time Mage (Tactics Advance)|Time Mage]]'''<br/>5x Black Mage A-Abilities.
+FFTA Juggler Portrait.gif|link=Juggler (Tactics Advance)|[[File:FFTA-job-juggler.gif|link=]]'''[[Juggler (Tactics Advance)|Juggler]]'''<br/>2x Thief A-Abilities.
+FFTA Gadgeteer Portrait.gif|link=Gadgeteer|[[File:FFTA2-TinkerSprite.gif|link=]]'''[[Gadgeteer]]'''<br/>2x Thief A-Abilities.
+</gallery>
+
+===Moogle growth===
+{| class="sortable full-width FFTA article-table" style="text-align:center"
+|-
+! width="150" |Job Class
+! width="100" |HP
+! width="100" |MP
+! width="100" |Attack
+! width="100" |Defense
+! width="100" |Magic 
+! width="100" | Resist
+! width="100" |Speed
+! width="100" |Total (without Speed)
+|-
+![[Animist (Tactics Advance)|Animist]]
+|7.20 B-
+|2.60 D+ 
+|7.60 C 
+|8.80 B+ 
+|7.20 C-
+|8.80 B+
+|1.20 D+
+|42.2
+|-
+![[Black Mage (Tactics Advance)|Black Mage]]
+| 5.40 D-
+| 4.80 B
+| 5.70 E
+|7.60 C
+|8.40 B 
+|9.70 A+ 
+|1.10 D
+|41.6
+|-
+![[Thief (Tactics Advance)|Thief]]
+|5.80 D
+|2.20 D
+|7.30 C-
+|8.40 B
+|6.80 D+
+|7.60 C
+|1.90 A+
+| 38.1
+|-
+![[Gunner (Tactics Advance)|Gunner]]
+|6.20 C-
+|1.10 E
+|6.80 D+
+|9.20 A-
+|5.60 E
+|8.10 B-
+|1.10 D
+|37
+|-
+![[Mog Knight]]
+|7.10 B- 
+|3.20 C-
+|8.80 B+
+|9.60 A
+|6.20 D-
+|8.30 B-
+|1.00 D
+|43.2
+|-
+![[Juggler (Tactics Advance)|Juggler]]
+|6.80 B-
+| 1.60 D-
+|8.20 B-
+|9.90 S
+|6.50 D
+|6.50 D
+|1.70 B
+| 39.8
+|-
+![[Time Mage (Tactics Advance)|Time Mage]]
+|5.10 E
+|3.60 C 
+|5.60 E
+|7.60 C
+|9.20 A-
+|9.60 A
+|1.20 D+
+|40.7
+|-
+![[Gadgeteer]]
+|7.20 B-
+|2.40 D
+|8.20 B-
+|9.60 A
+|8.30 B-
+|10.2 S
+|0.90 D-
+|45.9
+|}
+
+==Special jobs==
+<gallery>
+FFTA llednar.png|'''[[Biskmatar]]''' (non-playable)
+FFTA ezel.gif|'''[[Hermetic]]'''
+FFTA judgecid.gif|'''[[Judgemaster (Tactics Advance)|Judgemaster]]'''
+FFTA babus.gif|'''[[Runeseeker]]'''
+</gallery>
+
+==Other jobs==
+<gallery>
+FFTA-Ritz1.png|'''[[Ritz Malheur|Class Head]]'''
+FFTA Class Head Portrait.gif|'''[[Ritz Malheur|Class Head]]'''
+FFTA Custodian.png|'''Custodian'''
+FFTA Madrine Custodian Portrait.gif|'''Custodian'''
+FFTA Guiness.png|'''[[Guinness|D.J.]]'''
+FFTA Guiness DJ Portrait.gif|'''[[Guinness|D.J.]]'''
+FFTA mewt.gif|'''[[Mewt Randell|Librarian]]'''
+Mewt Portrait.gif|'''[[Mewt Randell|Librarian]]'''
+FFTA-Marche1.png|'''[[Marche Radiuju|New Kid]]'''
+FFTA New Kid Portrait.gif|'''[[Marche Radiuju|New Kid]]'''
+FFTA Nurse Job.png|'''Nurse'''
+FFTA Marisa Portrait.gif|'''Nurse'''
+FFTA Colin.png|'''[[Colin (Tactics Advance)|PE Head]]'''
+FFTA PA Head Portrait Colyn.gif|'''[[Colin (Tactics Advance)|PE Head]]'''
+FFTA Lyle.png|'''[[Lyle|PE Head]]'''
+FFTA PA Head 2 Portrait Lylie Portrait.gif|'''[[Lyle|PE Head]]'''
+FFTA-bqremedi.gif|'''[[Remedi|Battle Queen]]'''
+Mr. Leslaie.gif|'''Leslaie'''
+FFTA Lesaie Master Portrait.gif|'''Leslaie'''
+FFTA Pub.gif|'''Pub'''
+FFTA Pub Portrait.gif|'''Pub'''
+FFTA Shop Cyril Portrait.gif|'''Shop'''
+FFTA Sprohm Shop Portrait.gif|'''Shop'''
+FFTA Monster Banker Portrait.gif|'''Monster Bank'''
+FFTA Prisonkeeper.gif|'''Prison'''
+FFTA Prison Sprohm Portrait.gif|'''Prison'''
+FFTA Cid Rewordker Portrait.gif|'''Coworker'''
+Cid coworker.gif|'''Coworker'''
+</gallery>
+
+{{navbox abilities FFTA}}
+{{navbox FFTA}}
+{{navbox jobs}}
+
+[[Category:Jobs in Final Fantasy Tactics Advance]]
+[[Category:Job lists]]
+
+[[es:Lista de oficios de Final Fantasy Tactics Advance]]

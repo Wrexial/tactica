@@ -1,0 +1,211 @@
+{{DISPLAYTITLE:Bishop (''Tactics Advance'')}}
+{{infobox job
+|name=Bishop
+|release=FFTA
+|japanese=ビショップ
+|romaji=Bishoppu
+|image=Ffta-bangaa-bishop.jpg
+|portrait=[[File:ffta-job-bishop.png|50px|Player]]
+|sprite=[[File:FFTA-job-bishop.gif|20px|Player]]
+|obtained=Learn two [[White Monk (Tactics Advance)|White Monk]] A-Abilities
+|required=[[White Monk (Tactics Advance)|White Monk]]
+|characters=[[Bangaa]]
+|stats=
+*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 30
+*Stat growth: Magic-oriented
+|weapons=[[Final Fantasy Tactics Advance weapons#Staves|Staves]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]] and [[Final Fantasy Tactics Advance armor#Robes|robes]]<br/>Can't equip shields
+|command abilities=*[[Prayer (Tactics Advance)|Prayer]]
+*[[#Pray Combo|Pray Combo]] (combo)
+|support abilities=*[[Half MP]]
+*[[Return Magic]] (reaction)
+|recurring appearance=Bishop
+}}
+{{Quote|Uses healing, aiding and offensive magic.|Description}}
+The '''Bishop''' is a [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]'' to [[bangaa]]. Bishops are the only magic casters of the bangaa jobs, and as such, do not rely on them too much. Their action ability contains of a mix of offensive, defensive, and status ailment magic. They wield staves to learn their abilities and gain better Magic power than Attack power.
+
+==Growth==
+Bishops are the bangaa Magic-oriented job, and have the highest MP, Magic Power and Resistance of all the bangaa jobs. Their stats are still mediocre compared to the mages of other races.
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.1 D+
+|4.6 B
+|7.2 C-
+|6.8 D+
+|8.8 B+
+|7.6 C
+|0.9 D
+|}
+
+==Abilities==
+===[[Prayer (Tactics Advance)|Prayer]]===
+{{Quote|Bishop command. Sway the battle with prayers.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Range
+!style="width:10%"|Power
+|-
+! rowspan=2|{{LA|Cura}}
+|[[Final Fantasy Tactics Advance weapons#Cure Staff|Cure Staff]]
+|200
+|10
+|4
+|60
+|-
+|colspan=5 style="text-align:left"|''Heals a lot of HP. Deals damage to zombies.''<br>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Dispel}}
+|[[Final Fantasy Tactics Advance weapons#Bless Staff|Bless Staff]]
+|200
+|12
+|3
+|—
+|-
+|colspan=5 style="text-align:left"|''Weakens foe, neutralizing status enhancements.''
+|-
+! rowspan=2|{{LA|Holy (ability)|Holy}}
+|[[Final Fantasy Tactics Advance weapons#Nirvana Staff|Nirvana Staff]]
+|300
+|32
+|3
+|50
+|-
+|colspan=5 style="text-align:left"|''Emits a holy light to deal damage.''
+|-
+! rowspan=2|{{LA|Barrier (ability)|Barrier}}
+|[[Final Fantasy Tactics Advance weapons#Garnet Staff|Garnet Staff]]
+|300
+|1
+|3
+|—
+|-
+|colspan=5 style="text-align:left"|''Raises weapon defense and magic resistance.''
+|-
+! rowspan=2|{{LA|Judge (ability)|Judge}}
+|[[Final Fantasy Tactics Advance weapons#Cheer Staff|Cheer Staff]]
+|300
+|6
+|3
+|—
+|-
+|colspan=5 style="text-align:left"|''Calls forth judge sword to steal judgement points.''
+|-
+! rowspan=2|{{LA|Water (ability)|Water}}
+|[[Final Fantasy Tactics Advance weapons#Spring Staff|Spring Staff]]
+|200
+|12
+|3
+|34
+|-
+|colspan=5 style="text-align:left"|''Envelops target in a damaging sphere of water.''
+|-
+! rowspan=2|{{LA|Aero}}
+|[[Final Fantasy Tactics Advance weapons#Judge Staff|Judge Staff]]
+|200
+|12
+|3
+|34
+|-
+|colspan=5 style="text-align:left"|''Creates damaging whorl of wind.''
+|-
+! rowspan=2|{{LA|Break (ability)|Break}}
+|[[Final Fantasy Tactics Advance weapons#Snake Staff|Snake Staff]]
+|200
+|20
+|3
+|—
+|-
+|colspan=5 style="text-align:left"|''Halts metabolization, petrifying target.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Return Magic}}
+|[[Final Fantasy Tactics Advance armor#Black Robe|Black Robe]]
+|style="text-align:left"|''Counters magic attack with the same spell.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Half MP}}
+|[[Final Fantasy Tactics Advance armor#Light Robe|Light Robe]]
+|style="text-align:left"|''Cuts the amount of MP used for abilities by half.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Pray Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Staff|Mythril Staff]]
+|style="text-align:left"|''Ranged combo ability for bishops.''
+|100
+|}
+
+== Overview ==
+Bishop is the only major bangaa magic user with the highest MP, magic power, and magic resistance for a bangaa class. Their HP, attack, and defense are all low for a bangaa, but they have a decent mix of offensive, support, and status magic. Half MP can make the expensive spells more manageable to use. Bishops can provide healing with Cura, and they have several offensive abilities, like Water and Holy. However, being something bangaa usually aren't, Bishops have downsides.
+
+Most of their more powerful abilities, like Holy and Break, are not easily accessed until quite late into the game. Some of their support magic, such as Dispel and Judge, are situational. Bishops lack a reviving ability and other healing besides Cura. Bishop is also not a class that bangaa can just pick up. Being their only mage job, Bishops are not a good fit for bangaa who have already started down a physical path. Basically, the only bangaa who can be decent Bishops, are the ones who are recruited as Bishops, since all the other bangaa jobs have stats unfit for magic use. The only other remotely magical job is the [[Templar (Tactics Advance)|Templar]], whose abilities and stats fit quite well for Bishops and vice versa. Overall, the Bishop is a job that breaks bangaa stereotypes, but should not be the first choice of mage. The lack of other magical jobs means it is difficult stat-wise and ability-wise to find bangaa to become Bishops, and their stats are decidedly inferior to the mages of other races.
+
+Enemy Bishops are more unorthodox than a typical spellcaster. Break can petrify units from a distance, while Dispel destroys the buffs the player sets on their troops. Despite having mediocre magic, Holy can still deal high damage just because of its high base power. Bishops have healing, but they are unable to help their downed allies down due to lacking reviving techniques. Silence affects them worse than nearly any other bangaa. Being physically frail, offensive units like [[Fighter (Tactics Advance)|Fighters]] and [[Assassin (Tactics Advance)|Assassins]] are threats to Bishops.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Bishop Bangaa TCG.png|right|100px]]
+Bishop appears with an Earth-elemental card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Cura.png|Cura.
+FFTA Dispel.png|Dispel.
+FFTA Holy.png|Holy.
+FFTA Barrier.png|Barrier.
+FFTA Judge.png|Judge.
+FFTA Water.png|Water.
+FFTA Aero.png|Aero.
+FFTA Break.png|Break.
+</gallery>{{Gallery incomplete|Pray Combo}}
+
+==Etymology==
+{{Etym|Bishop}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Obispo (Final Fantasy Tactics Advance)]]
+[[it:Abate (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

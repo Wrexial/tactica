@@ -1,0 +1,106 @@
+{{DISPLAYTITLE:Summon Magic (''Tactics Advance'')}}
+{{Quote|Summoner command. Summon creatures from the ether.|Description}}
+'''Summon Magic''' {{J|召喚魔法|Shōkan Mahō}} is the action ability for the [[Summoner (Tactics Advance)|Summoner]] in ''[[Final Fantasy Tactics Advance]]''.
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Range
+!style="width:10%"|Power
+|-
+! rowspan=2|{{LA|Unicorn (creature)|Unicorn}}
+|[[Final Fantasy Tactics Advance weapons#Pure Staff|Pure Staff]]
+|200
+|12
+|4
+|40
+|-
+|colspan=5 style="text-align:left"|''Summons Unicorn to heal HP and status ailments. Deals damage to zombies.''<br>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Ifrit}}
+|[[Final Fantasy Tactics Advance weapons#Guard Staff|Guard Staff]]
+|200
+|18
+|4
+|40
+|-
+|colspan=5 style="text-align:left"|''Summons Ifrit to deal fire damage.''
+|-
+! rowspan=2|{{LA|Ramuh}}
+|[[Final Fantasy Tactics Advance weapons#Judgme Staff|Judge Staff]]
+|200
+|18
+|4
+|40
+|-
+|colspan=5 style="text-align:left"|''Summons Ramuh to deal lightning damage.''
+|-
+! rowspan=2|{{LA|Shiva}}
+|[[Final Fantasy Tactics Advance weapons#Snake Staff|Snake Staff]]
+|200
+|18
+|4
+|40
+|-
+|colspan=5 style="text-align:left"|''Summons Shiva to deal cold damage.''
+|-
+! rowspan=2|{{LA|Kirin}}
+|[[Final Fantasy Tactics Advance weapons#Cure Staff|Cure Staff]]
+|200
+|24
+|4
+|—
+|-
+|colspan=5 style="text-align:left"|''Summons Kirin to gradually heal HP.''
+|-
+! rowspan=2|{{LA|Carbuncle}}
+|[[Final Fantasy Tactics Advance weapons#Garnet Staff|Garnet Staff]]
+|300
+|12
+|4
+|—
+|-
+|colspan=5 style="text-align:left"|''Summons fairy Carbuncle to cast "Reflect."''
+|-
+! rowspan=2|{{LA|Phoenix}}
+|[[Final Fantasy Tactics Advance weapons#Nirvana Staff|Nirvana Staff]]
+|300
+|24
+|4
+|—
+|-
+|colspan=5 style="text-align:left"|''Summon phoenix to revive KO's ally. Deals damage to zombies.''<br>'''Element:''' Holy.
+|-
+! rowspan=2|{{LA|Madeen}}
+|[[Final Fantasy Tactics Advance weapons#Cheer Staff|Cheer Staff]]
+|300
+|36
+|4
+|52
+|-
+|colspan=5 style="text-align:left"|''Summons Madeen to deal holy damage.''
+|}
+
+==Gallery==
+<gallery>
+FFTA Unicorn.png|Unicorn.
+FFTA Ifrit.png|Ifrit.
+FFTA Ramuh.png|Ramuh.
+FFTA Shiva.png|Shiva.
+FFTA Kirin.png|Kirin.
+FFTA Carbuncle.png|Carbuncle.
+FFTA Phoenix.png|Phoenix.
+FFTA Madeen.png|Madeen.
+</gallery>
+
+==Etymology==
+{{Etym|Summon}}
+
+{{navbox abilities FFTA}}
+[[Category:Summon Magic in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]
+[[Category:Summon magic]]

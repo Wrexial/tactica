@@ -1,0 +1,78 @@
+{{Expand}}
+{{Image needed|FFTA}}
+
+[[File:FFTA Menu.png|right|thumb|250px|The main menu.]]
+The following entails the contents of the main menu in ''[[Final Fantasy Tactics Advance]]''.
+
+== Party ==
+{{clear}}
+
+=== Equip ===
+[[File:FFTA Equip Menu.png|right|thumb|200px|The Equip option.]]
+{{clear}}
+
+=== Skill ===
+[[File:FFTA Skill Menu.png|right|thumb|200px|The Skill option.]]
+In the skill menu, the party member chosen can choose the skills they wish to use in battle. One Action skillset, Reaction ability, Support ability, and Combo can be selected.
+{{clear}}
+
+=== Change Job ===
+[[File:FFTA Job Menu.png|right|thumb|200px|The Job option.]]
+Selecting this option allows the party member to switch job classes, and therefore primary Action skillset and stat increases on level up. Only jobs that have already been unlocked by at least one member of the party are shown.
+{{clear}}
+
+=== Leave Clan ===
+{{clear}}
+
+== Clan ==
+[[File:FFTA Clan Menu.png|right|thumb|200px|The Clan menu.]]
+{{clear}}
+
+=== Mission List ===
+[[File:FFTA Mission List Menu.png|right|thumb|200px|The Mission List menu.]]
+{{clear}}
+
+=== Report ===
+{{clear}}
+
+=== Clan Turf ===
+[[File:FFTA Clan Turf.png|right|thumb|200px|The Clan Turf menu.]]
+{{clear}}
+
+=== Mission Item ===
+[[File:FFTA Mission Item Menu.png|right|thumb|200px|The Mission Item menu.]]
+{{clear}}
+
+=== Law Cards ===
+[[File:FFTA Law Cards Menu.png|right|thumb|200px|The Law Cards menu.]]
+{{clear}}
+
+=== Support Clan ===
+{{clear}}
+
+== Link ==
+[[File:FFTA Link Option.png|right|thumb|200px|The Link option.]]
+{{clear}}
+
+== Area List ==
+[[File:FFTA Area List.png|right|thumb|200px|The Area List option.]]
+{{clear}}
+
+== System ==
+[[File:FFTA System Menu.png|right|thumb|200px|The System menu.]]
+{{clear}}
+
+=== Save ===
+[[File:FFTA Save Menu.png|right|thumb|200px|The Save menu.]]
+{{clear}}
+
+=== Load ===
+[[File:FFTA Load Menu.png|right|thumb|200px|The Load menu.]]
+{{clear}}
+
+=== Options ===
+[[File:FFTA Options Menu.png|right|thumb|200px|The Options menu.]]
+{{clear}}
+
+{{navbox FFTA}}
+[[Category:Gameplay in Final Fantasy Tactics Advance]]

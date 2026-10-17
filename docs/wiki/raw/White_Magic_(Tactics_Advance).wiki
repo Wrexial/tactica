@@ -1,0 +1,118 @@
+{{DISPLAYTITLE:White Magic (''Tactics Advance'')}}
+{{Quote|White mage command. Help allies with healing magic.|Description}}
+'''White Magic''' {{J|白魔法|Shiro Mahō}} is the action ability for the [[White Mage (Tactics Advance)|White Mage]] in ''[[Final Fantasy Tactics Advance]]''.
+
+{{See|White Magic}}
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Cure (ability)|Cure}}
+|[[Final Fantasy Tactics Advance weapons#White Staff|White Staff]]
+|100
+|6
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Eases pain and heals HP. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Cura}}
+|[[Final Fantasy Tactics Advance weapons#Cure Staff|Cure Staff]]
+|200
+|10
+|60
+|4
+|-
+|colspan=5 style="text-align:left"|'''''Heals a lot of HP. Deals damage to zombies.''<br />Element: Holy'''
+|-
+! rowspan=2|{{LA|Curaga}}
+|[[Final Fantasy Tactics Advance weapons#Spring Staff|Spring Staff]]
+|300
+|16
+|80
+|4
+|-
+|colspan=5 style="text-align:left"|''Heals a great deal of HP. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Esuna (ability)|Esuna}}
+|[[Final Fantasy Tactics Advance weapons#Pure Staff|Pure Staff]]
+|200
+|18
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Purifying light. Remedies status ailments.''
+|-
+! rowspan=2|{{LA|Raise (Life 1)|Life}}
+|[[Final Fantasy Tactics Advance weapons#Bless Staff|Bless Staff]]
+|200
+|10
+|90
+|4
+|-
+|colspan=5 style="text-align:left"|''Revives KO'd unit. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Arise|Full-Life}}
+|[[Final Fantasy Tactics Advance weapons#Nirvana Staff|Nirvana Staff]]
+|300
+|20
+|100
+|4
+|-
+|colspan=5 style="text-align:left"|''Revives KO'd unit, and heals HP to max. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Reraise (ability)|Auto-Life}}
+|[[Final Fantasy Tactics Advance weapons#Cheer Staff|Cheer Staff]]
+|200
+|18
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Auto-raises KO'd unit.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Shell (ability)|Shell}}
+|[[Final Fantasy Tactics Advance weapons#Judge Staff|Judge Staff]]
+|100
+|6
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Envelops target in holy veil. Raises magic res.''
+|-
+! rowspan=2|{{LA|Protect (ability)|Protect}}
+|[[Final Fantasy Tactics Advance weapons#Guard Staff|Guard Staff]]
+|100
+|6
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Enveloping white cloud. Raises weapon defense.''
+|}
+
+==Gallery==
+<gallery>
+FFTA Cure.png|Cure.
+FFTA Cura.png|Cura.
+FFTA Curaga.png|Curaga.
+FFTA Esuna.png|Esuna.
+FFTA Life.png|Life.
+FFTA Full-Life.png|Full-Life.
+FFTA Auto-Life.png|Auto-Life.
+FFTA Shell.png|Shell.
+FFTA Protect.png|Protect.
+</gallery>
+
+==Etymology==
+{{Etym|White Magic}}
+
+{{navbox abilities FFTA}}
+[[Category:White Magic in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]
+[[Category:White Magic]]

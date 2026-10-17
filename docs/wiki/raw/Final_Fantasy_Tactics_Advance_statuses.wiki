@@ -1,0 +1,167 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' statuses}}
+{{Expand}}
+The following is a list of all statuses found in ''[[Final Fantasy Tactics Advance]]''.
+
+==List of statuses==
+===[[Counter Force|Addle]]===
+[[File:FFTA Addle Status Symbol.png|right]]
+Causes the unit to be unable to access A-Abilities.
+
+===Advice===
+A unit's critical hit rate is increased.
+
+===[[Astra (status)|Astra]]===
+[[File:FFTA Astra Status Symbol.png|right]]
+A unit is given a one-time immunity from status-ailment inducing abilities.
+
+===[[Reraise (status)|Auto-Life]]===
+[[File:FFTA Auto-Life Status Symbol.png|right]]
+A unit with this status is automatically revived when their HP falls to zero.
+
+===[[Berserk (status)|Berserk]]===
+Unit will rush towards and attack whatever enemy unit is closest to it using only the Attack action.
+
+===[[Blind (status)|Blind]]===
+[[File:FFTA Blind Status Symbol.PNG|right]]
+Reduces hit chances for actions that target enemies. Can be cured with [[Esuna (ability)|Esuna]] or [[Eye Drops]].
+
+===Boost===
+[[File:FFTA Boost Status Symbol.PNG|right]]
+Increases Physical Attack until the next action is taken.
+
+===[[Charm (status)|Charm]]===
+[[File:FFTA Charm Status Symbol.PNG|right]]
+Unit acts as though it is on the opposite team, attacking its own team and healing the opposite. Wears off once the unit takes damage.
+
+===[[Invisible (status)|Conceal]]===
+Units become invisible.
+
+===[[Confuse (status)|Confuse]]===
+[[File:FFTA Confuse Status Symbol.png|right]]
+Unit performs a random action, either against the player's team or the enemy team.
+
+===[[Control (status)|Control]]===
+[[File:FFTA Control Status Symbol.PNG|right]]
+Usable only by nu mou that have the appropriate [[Beastmaster (Tactics Advance)|Beastmaster]] A-Ability. Gain control of a monster until the Beastmaster's next turn.
+
+===[[Cover (status)|Cover]]===
+[[File:FFTA Cover Status Symbol.png|right]]
+Covering unit takes damage for the Covered unit.
+
+===Defense===
+[[File:FFTA Defend Status Symbol.PNG|right]]
+A unit's physical defense and magic resistance are temporarily increased.
+
+===[[Disable (status)|Disable]]===
+[[File:FFTA Disable Status Symbol.PNG|right]]
+Unit can move, but can't use any A-abilities. Some, but not all, R-abilities are also disabled.
+
+===[[Doom (status)|Doom]]===
+[[File:FFTA Doom Status Symbol.PNG|right]]
+Delayed instant death. The bubble above the unit will indicate the number of turns left before it is automatically [[Knocked Out|KO'd]].
+
+===Expert Guard===
+[[File:FFTA Expert Guard Status Symbol.PNG|right]]
+A unit will not take HP or MP damage for one turn.
+
+===[[Toad (status)|Frog]]===
+Turns the unit into a frog, rendering it only capable of using Move, Attack, and Wait commands (no A-Abilities).
+
+===[[Haste (status)|Haste]]===
+Increases the units speed. Shown on the screen by the unit marching faster than the others.
+
+===Hibernate===
+[[File:FFTA Hibernate Status Symbol.png|right]]
+Inflicts Sleep status on a Defender unit in exchange for being cured of status ailments.
+
+===[[Immobilize (status)|Immobilize]]===
+[[File:FFTA Immobilize Status Symbol.png|right]]
+Renders the unit unable to move, but still allowing it to take Actions. Lasts 3 turns.
+
+===[[Knocked Out|KO]]===
+Unit is unable to Move or take Actions and is effectively just another obstacle on the field unless revived with the white magic [[Raise (Life 1)|Life]] or a [[Phoenix Down]].
+
+===[[Magic Down|MPow DOWN]]===
+Reduces unit's Magic Power, making magic less powerful.
+
+===[[MAG Up|MPow UP]]===
+Increases unit's Magic Power, making magic more powerful.
+
+===[[Magic Defense Down|MRes DOWN]]===
+Decreases unit's Magic Resistance, making it more susceptible to magic.
+
+===[[MDEF Up|MRes UP]]===
+Increases unit's Magic Resistance causing magic to be less damaging.
+
+===[[Petrify (status)|Petrify]]===
+Unit counts as [[Knocked Out|KO'd]] for the purposes of winning/losing. Petrify affects units similar to KO in that they cannot Move or take Actions, but is cured by [[Gold Needle]].
+
+===[[Poison (status)|Poison]]===
+Unit loses [[HP (stat)|HP]] every time it is their turn. Cured by [[Esuna (ability)|Esuna]] or [[Antidote (item)|Antidote]].
+
+===[[Protect (status)|Protect]]===
+[[File:FFTA Protect Status Symbol.PNG|right]]
+Increases Weapon Defense.
+
+===Quicken===
+Quicken is slightly different from other status effects in that there is no representation of it on the afflicted unit as Quicken forces the afflicted's turn to come right after the user.
+
+===[[Reflect (status)|Reflect]]===
+[[File:FFTA Reflect Status Symbol.png|right]]
+Reflects all magic back at the caster. A similar effect can be gained with the "Return Magic" R-Ability.
+
+===[[Regen (status)|Regen]]===
+[[File:FFTA Regen Status Symbol.png|right]]
+Unit recovers [[HP (stat)|HP]] each turn. Effect does not wear off when HP is full.
+
+===[[Shell (status)|Shell]]===
+[[File:FFTA Shell Status Symbol.PNG|right]]
+Increases unit's Magic Resistance.
+
+===[[Silence (status)|Silence]]===
+[[File:FFTA Silence Status Symbol.png|right]]
+Renders the unit unable to use magic A-Abilities. Can be cured with [[Esuna (ability)|Esuna]] or [[Echo Herbs|Echo Drops]].
+
+===[[Sleep (status)|Sleep]]===
+[[File:FFTA Sleep Status Symbol.png|right]]
+Puts the unit to sleep, causing it to be unable to Move or take Actions. Anything targeting the unit automatically has 100% accuracy, and any damage the unit takes will wake it up. Healing the unit will not cause it to wake up, however the player could attack its own units to force them awake.
+
+===[[Slow (status)|Slow]]===
+Reduces the unit's speed, making its turns come around less quickly.
+
+===Speed DOWN===
+Reduces the unit's speed, making its turns come around less quickly.
+
+===[[Stop (status)|Stop]]===
+Completely stops the unit, making it unable to Move or Act. Damage will not cause the unit to come back into time.
+
+===[[Attack Down|WAtk DOWN]]===
+Reduces Weapon Attack, causing physical attacks to become less damaging.
+
+===[[STR Up (status)|WAtk UP]]===
+Increases Weapon Attack.
+
+===[[Defense Down|WDef DOWN]]===
+Reduces Weapon Defense, making physical attacks more damaging.
+
+===[[DEF Up|WDef UP]]===
+Increases Weapon Defense.
+
+===[[Zombie (status)|Zombie]]===
+Treats the unit as [[Undead]] for the purposes of weaknesses and healing. Can be removed via [[Holy Water]].
+
+==Gallery==
+<gallery>
+FFTA Berserk Status.png|Berserk.
+FFTA Knocked Out.png|KO.
+FFTA Petrify Status.png|Petrify.
+FFTA Poison Status.png|Poison.
+FFTA Toad Status.png|Frog.
+FFTA Zombie Status.png|Zombie.
+</gallery>
+
+{{Status section}}
+{{navbox statuses}}
+{{navbox FFTA}}
+[[Category:Status effects in Final Fantasy Tactics Advance]]
+[[Category:Status effect lists]]

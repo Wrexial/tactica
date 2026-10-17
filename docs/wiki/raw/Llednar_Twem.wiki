@@ -1,0 +1,109 @@
+{{infobox character
+|name=Llednar Twem
+|release=FFTA
+|japanese=レドナ・トェム
+|romaji=Redona Twemu
+|image=Llednar.jpg
+|sprite=[[File:FFTA-Llednar por.png|Llednar Twem.]]
+|race=[[Human]]
+|gender=Male
+|type=boss
+|designer=[[Ryōma Itō]]
+}}
+{{Quote|Judgemaster or not, you cannot pass.|Llednar Twem}}
+'''Llednar Twem''' is one of the main antagonists in ''[[Final Fantasy Tactics Advance]]''. He appears in the story after [[Marche Radiuju]] defeats the [[Totema]] [[Exodus (Tactics Advance)|Exodus]], Llednar replaces Judgemaster [[Cid Randell]] as [[Mewt Randell|Prince Mewt's]] guardian and personal attendant. His job class is [[Biskmatar]].
+
+==Profile==
+
+=== Appearance ===
+Llednar has brown eyes and blonde, medium length, hair in a style similar to [[Marche Radiuju]]. He wears a bright red hat with a white ribbon, a matching red and white surcoat, violet pants and bluish shin guards accessorized with bronze gloves, knee guards, shoes, and belts.
+
+He bears a strong resemblance to [[Marche Radiuju]] with his bronze, pale red, and dark indigo clothes being an opposing color scheme to Marche's platinum, light blue and dark red. Llednar's appearance suggests [[Mewt Randell|Mewt's]] jealousy of Marche and insecurity about his appearance, as well as his desire to be Marche's friend.
+
+=== Personality ===
+Unlike both Cid, Mewt's former attendant, and Marche, his former friend, Llednar possesses an undying loyalty to Mewt and [[Ivalice (Tactics Advance)|Ivalice]], only overshadowed by his desire to defeat Marche.
+
+Llednar likely represents an idealized version of Mewt, as his name is Mewt Randell reversed: "Llednar" (Randell) "Twem" (Mewt).
+
+==Story==
+{{spoiler}}
+Llednar Twem is the embodiment of Mewt Randell's darker side, created by the [[Remedi|Li-Grim]] to stop [[Marche Radiuju]] from reverting the world back to normal. The Li-Grim places a Fortune Law on Llednar, rendering him invincible. Despite his invincibility, he fails to kill Marche three times. First, he attacks Marche just before he reaches the [[Totema]] [[Mateus (Tactics Advance)|Mateus]] at [[Delia Dunes]].
+
+[[File:FFTA Ripcircle.png|thumb|right|Marche's duel with Llednar Twem in Bervenia Palace.]]
+However, before he can use Omega to kill Marche, Judgemaster Cid appears. Judgemaster Cid, realizing that [[Final Fantasy Tactics Advance enemy abilities#Omega|Omega's]] overwhelming power would destroy the nearby crystal of Mateus if unleashed near it, is forced to put an Advanced Law on Llednar to prevent him from using Omega. Llednar becomes arrogant and attempts to defy the law, charging up the Omega to attack and finish off Marche, Cid slaps him with a [[Red Card (Tactics Advance)|Red Card]], sending him off to prison. He is subsequently released, however, and confronts Marche again at [[Bervenia Palace]], this time one-on-one.
+
+Once again, Judgemaster Cid arrives before Llednar can finish off Marche, and Llednar, not forgetting his previous encounter with Cid, retreats rather than risk getting sent to prison again. On his third encounter with Marche at [[Ambervale]], Cid once again intervenes, this time by using an Anti-Law to nullify the Li-Grim's Fortune Law, rendering Llednar vulnerable. After Marche defeats him, the Biskmatar turns to stone and crumbles.
+{{endspoiler}}
+
+==Gameplay==
+===Equipment===
+====During "Quiet Sands" and "Present Day"====
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="12%"|Weapons
+!width="12%"|Armor
+!width="12%"|Helmet
+!width="12%"|Shoes
+|-
+|SaveTheQueen
+|Maximillian
+|Bangaa Helm
+|Caligula
+|}
+
+====During "Royal Valley"====
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="12%"|Weapons
+!width="12%"|Armor
+!width="12%"|Accessories
+!width="12%"|Shoes
+|-
+|Excalibur
+|Peytral
+|Genji Armlets
+|Caligula
+|}
+
+===Stats===
+Below are Llednar's stats during the mission "Memories".
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="10%"|Move
+!width="10%"|Jump
+!width="10%"|Speed
+!width="10%"|Evade
+!width="10%"|Weapon Attack
+!width="10%"|Weapon Magic
+!width="10%"|Magic Power
+!width="10%"|Magic Resist
+|-
+|5
+|3
+|145
+|70
+|412
+|375
+|329
+|386
+|}
+
+===Abilities===
+Both of his [[Biskmatar]] skill sets are [[Dark Magic]]; which are negative magics, and [[Flair]]; which are ancient sword techniques.
+
+==Voice==
+In ''[[Final Fantasy Tactics Advance Radio Edition]]'', Llednar is voiced by [[wikipedia:Hikaru Midorikawa|Hikaru Midorikawa]].
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+Llednar appears in ''Final Fantasy Trading Card Game'' as Earth- and Fire-elemental Forward cards.
+
+<gallery>
+Llednar TCG.png|Llednar [6-056R] Chapter series card.
+Llednar 4-024R from FFTCG Opus.jpg|Llednar [4-024R] Opus series card.
+</gallery>
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]

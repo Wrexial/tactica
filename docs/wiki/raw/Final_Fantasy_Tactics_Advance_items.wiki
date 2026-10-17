@@ -1,0 +1,108 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' items}}
+This is a list of [[item]]s that can be found in ''[[Final Fantasy Tactics Advance]]''.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="15%"|Name
+!width="5%"|Price
+!width="20%"|Effect
+!width="50%"|Description
+!width="10"|Magic Power
+|-
+!{{LA|Potion (item)|Potion}}<br/>[[File:FFTA Potion.PNG]]
+|style="text-align:center"|50
+|'''Restores:''' 25 HP<br/>'''Element:''' Holy
+|''Magical brew that heals wounded flesh.''
+|40
+|-
+!{{LA|Hi-Potion}}<br/>[[File:FFTA Hi-Potion.PNG]]
+|style="text-align:center"|200
+|'''Restores:''' 50 HP<br/>'''Element:''' Holy
+|''Potion made in a higher concentration.''
+|60
+|-
+!{{LA|X-Potion}}<br/>[[File:FFTA X-Potion.PNG]]
+|style="text-align:center"|700
+|'''Restores:''' 150 HP<br/>'''Element:''' Holy
+|''The most potent potion available.''
+|80
+|-
+!{{LA|Ether}}<br/>[[File:FFTA Ether.PNG]]
+|style="text-align:center"|=
+|'''Restores:''' 80 MP
+|''This draught restores lost magical power.''
+|—
+|-
+!{{LA|Elixir (item)|Elixir}}<br/>[[File:FFTA Elixir.PNG]]
+|style="text-align:center"|20000
+|'''Restores:''' All HP and MP<br/>'''Element:''' Holy
+|''This fabulous draught both heals and restores magic.''
+|100
+|-
+!{{LA|Antidote (item)|Antidote}}<br/>[[File:FFTA Antidote.PNG]]
+|style="text-align:center"|50
+|'''Removes:''' [[Poison (status)|Poison]]
+|''This potion is an antidote to most forms of poison.''
+|—
+|-
+!{{LA|Eye Drops}}<br/>[[File:FFTA Eye Drops.PNG]]
+|style="text-align:center"|50
+|'''Removes:''' [[Blind (status)|Darkness]]
+|''Drink this potion to see through the darkness.''
+|—
+|-
+!{{LA|Echo Herbs|Echo Screen}}<br/>[[File:FFTA Echo Screen.PNG]]
+|style="text-align:center"|50
+|'''Removes:''' [[Silence (status)|Silence]]
+|''Drink this potion to break the silence.''
+|—
+|-
+!{{LA|Maiden's Kiss}}<br/>[[File:FFTA Maiden Kiss.PNG]]
+|style="text-align:center"|50
+|'''Removes:''' [[Toad (status)|Frog]]
+|''Drink this potion to restore true form.''
+|—
+|-
+!{{LA|Gold Needle|Soft}}<br/>[[File:FFTA Soft.PNG]]
+|style="text-align:center"|100
+|'''Removes:''' [[Petrify (status)|Petrify]]
+|''Drink this potion to soften stony skin.''
+|—
+|-
+!{{LA|Holy Water}}<br/>[[File:FFTA Holy Water.PNG]]
+|style="text-align:center"|2,000
+|'''Removes:''' [[Zombie (status)|Zombie]]
+|''Holy water restores true life to zombies.''
+|—
+|-
+!{{A|Bandage}}<br/>[[File:FFTA Bandage.PNG]]
+|style="text-align:center"|200
+|'''Removes:''' [[Disable (status)|Disable]], [[Immobilize (status)|Immobilize]]
+|''Bandage wounded limbs to regain full movement.''
+|—
+|-
+!{{LA|Remedy (item)|Cureall}}<br/>[[File:FFTA Cureall.PNG]]
+|style="text-align:center"|500
+|'''Removes:''' Petrify, Frog, Poison, Blind, [[Invisible (status)|Conceal]], [[Sleep (status)|Sleep]], Silence, [[Confuse (status)|Confuse]]
+|''Fabulous drought that cures status ailments.''
+|—
+|-
+!{{LA|Phoenix Down}}<br/>[[File:FFTA Phoenix Down.PNG]]
+|style="text-align:center"|300
+|'''Removes:''' KO<br/>'''Element:''' Holy
+|''Magical tail feather revives fallen allies.''
+|90
+|}
+
+==Gallery==
+<gallery>
+FFTA Bandage Use.png|Bandage.
+</gallery>
+
+{{navbox FFTA}}
+{{navbox items}}
+
+
+[[it:Lista degli oggetti in Final Fantasy Tactics Advance]]
+[[Category:Items in Final Fantasy Tactics Advance]]
+[[Category:Item lists]]

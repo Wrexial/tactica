@@ -1,0 +1,39 @@
+[[File:FFTATown.png|left]]
+[[File:FFTA St. Ivalice.png|thumb|right|250px|The town of St. Ivalice in the evening.]]
+'''St. Ivalice''' {{j|セント・イヴァリース|Sento Ivarīsu}} is the hometown of the characters of ''[[Final Fantasy Tactics Advance]]''. It is transformed into the world of [[Ivalice (Tactics Advance)|Ivalice]] after [[Mewt Randell]] reads the [[Gran Grimoire]]. After [[Marche Radiuju]] defeats the [[Remedi|Li-Grim]], the world reverts to normal, causing St. Ivalice to reappear.
+
+St. Ivalice is a wintry town, unlike Marche's hometown, which according to him never snowed. It is believed to be located far from the equator. Within the game, the player can only manage to see the town center where the cafe is located, the school the children go to, the hospital where [[Doned Radiuju]], Marche's brother, receives his treatment, and several other locations such as the town's playground and residential apartments.
+
+It is unknown whether or not St. Ivalice is the real-world location seen in ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]'', where the protagonist, [[Luso Clemens]], resides. Although the presence of Mewt and the Gran Grimoire do suggest that it is, indeed, St. Ivalice, it is also possible that Mewt simply took the Gran Grimoire with him as he pursued his career as a librarian. Currently, there is no solid evidence to suggest that St. Ivalice is the town in ''Final Fantasy Tactics A2'', but they obviously both exist in the same world.
+
+==Locations==
+===School===
+[[File:StIvaliceSchool.png|thumb|right|200px|The schoolyard where Mewt was being bullied.]]
+The school where Marche, Mewt, and [[Ritz Malheur]] attended, along with the three bullies [[Colin (Tactics Advance)|Colin]], [[Lyle]], and [[Guinness]]. One of the known teachers is [[Mr. Leslaie]], who participates in the tutorial snowball fight as a "[[Judge (Tactics Advance)|Judge]]". Marche befriended Mewt and Ritz at that time.
+
+When St. Ivalice was transformed into Dream Ivalice, the school compound was turned into a wasteland.
+
+The students' uniforms (which are absent in the game) appear in concept art, colored red. The uniforms of the students in ''Tactics A2'' are similar to what is in ''Tactics Advance'', but with a white color.
+{{clear}}
+
+===Marche's house===
+[[File:Radiuju's_Room.png‎|thumb|right|200px|Marche's room.]]
+The house with the yellow roof. Marche lives here with his mother and younger brother Doned. At the beginning of the game, Marche, Ritz, Mewt and Doned are in Marche's bedroom while they are reading from the Gran Grimoire.
+{{clear}}
+
+===Hospital===
+[[File:FFTA-DonedEnding.jpg|thumb|right|200px|The hospital.]]
+Appears in the game's ending, where Doned received his treatment. Doned is still incapacitated in a wheelchair, however, he is more accepting of his condition. Here, Doned finds solace in helping others with their own versions of ''Final Fantasy'', having some experience with the game's intricacies himself.
+{{clear}}
+
+==Gallery==
+<gallery>
+StIvalice.png|Streets of St. Ivalice.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Towns]]
+
+[[de:St. Ivalice]]

@@ -1,0 +1,729 @@
+[[File:FFIX Steiner Attack.png|thumb|250px|right|[[Adelbert Steiner|Steiner]] attacking in ''[[Final Fantasy IX]]''.]]
+{{Quote|Attack with equipped weapons or bare fists.|''[[Final Fantasy IV: The Complete Collection]]'' description}}
+'''Attack''' {{J|たたかう|Tatakau|Fight}}, also known as '''Fight''' or '''Battle''', is a basic command that appears in every game in the [[Final Fantasy series|''Final Fantasy'' series]], and is known by nearly every entity encountered in combat, both playable and non-playable.
+
+The entity attacks a single opponent using their equipped [[Weapon (equipment)|weapon]], or their [[Unarmed (weapon)|bare fists if they are not equipped with anything]], most frequently dealing physical damage. The [[Blind (status)|Blind]] [[status effect|status]] increases the chance that Attack will miss. Unless the equipped weapon has an [[Element (term)|elemental]] property, Attack is [[non-elemental]].
+
+In some games, the Attack command can be upgraded to [[Barrage (ability)|Barrage]], which allows more than one attack. Some other commands make the Attack command obsolete, such as [[Mug (ability)|Mug]], which is a physical attack while simultaneously [[steal]]ing, or [[Jump (ability)|Jump]], a stronger attack.
+
+Some weapons with bonuses only have those bonuses apply when Attacking. In ''[[Final Fantasy VII]]'', the Attack command becomes unavailable when a character attains a [[Limit (Final Fantasy VII)|Limit Break]]. From ''[[Final Fantasy VIII]]'' onward [[Limit Break (ability)|Limit]]-type commands don't replace the Attack command.
+
+{{See|Double Attack|Barrage|Bladeblitz}}
+
+==Appearances==
+===''[[Final Fantasy]]''===
+Attack (originally called Fight) is the top command on characters' command lists. Its power varies from character to character, especially when calculating damage with a [[Monk (Final Fantasy)|Monk]].
+
+The damage formula for a regular attack is equal to the attack power of the equipped [[Final Fantasy weapons|weapon]] plus that character's Strength stat halved.
+:<math>Attack = Weapon Attack + STR/2</math>
+
+However, when using a Monk armed with a weapon, the formula for Attack is equal to the weapon attack power plus the character's Strength halved plus 1.
+:<math>Attack = Weapon Attack + STR/2 + 1 </math>
+
+And the damage for Attack for an unarmed Monk is equal to that character's [[Level]] multiplied by 2.
+:<math>Attack = Level \times 2</math>
+
+If attack power were to exceed 255, it would [[Overflow glitch|roll the value over to 0]] and continue to raise from there, though this is impossible to do in a normal playthrough.
+
+===''[[Final Fantasy II]]''===
+[[File:FFII DoS Attack Command.png|thumb|Attack command (GBA).]]
+Attack is available to all characters and allows them to strike a physical blow with their equipped [[Final Fantasy II weapons|weapon]]. Doing so can improve the characters' proficiency with the equipped weapon type(s) and their [[Strength]] stat. The higher a weapon proficiency, the more chances a character has to hit. Some versions have a [[target-cancel bug]] that lets the player easily level up their weapons by repeatedly selecting and cancelling the Attack command. A character can attack while [[Dual Wield|dual-wielding]] shields, but their attack will have no effect.
+
+The power of Attack is derived from the combination of the weapon's attack value and the user's Strength, divided by a value based on what they are equipped with in their hands.
+:<math>Attack = Weapon Attack + STR/x</math>
+
+The base modifier for a character attacking wielding only a weapon in their [[Dextrality|dominant hand]] is half of their Strength stat. For a weapon wielded in the [[Dextrality|non-dominant hand]], the Strength bonus is halved again. If a shield or a second weapon is wielded, the Strength bonus is halved. These modifiers stack, and therefore a second weapon held in the off-hand only receives an Attack increase of one-eighth of the user's Strength.
+
+===''[[Final Fantasy III]]''===
+Attack (Fight on the [[Nintendo Entertainment System|NES]]) is the top command of all job command windows.
+
+The formula for Attack (which is applied to all physical attacks) is equal to the base attack power of the player's weapon plus 1/4 of the character's Strength plus 1/4 of that player's skill.
+:<math>Base Damage = Weapon Base + (Strength/4) + (Skill/4)</math>
+
+If a character attacks while under [[Haste (status)|Haste]], the formula changes to add in the damage from Haste as well.
+:<math>Base Damage = Base Damage + (Final Damage calculated from Haste)</math>
+
+If a [[Bard (Final Fantasy III)|Bard]] uses the ability [[Cheer (ability)|Cheer]], for each use, the physical attack power of all party members increases by 10.
+:<math>Base Damage = Base Damage + 10</math>
+
+Afterwards, the target's Defense is applied to the formula, followed by attack multipliers, such as Haste, Hit%, and Blind for the final damage value.
+
+===''[[Final Fantasy IV]]''===
+Attack (originally called Fight) is the top command of every character's command window. Its strength varies greatly due to various circumstances, such as equipped weapons and the characters performing it.
+
+For a character that uses the Attack command without an equipped weapon in their [[Dextrality|primary hand]], the damage dealt is equal to that character's Strength divided by 4 plus that character's Level divided by 4.
+:<math>Base Attack Power = Str/4 + Level/4</math>
+
+For all weapons (that are not [[Bow (weapon type)|bow and arrows]]), the damage formula is the same as the previous formula, but adds the attack power of the weapon.
+:<math>Base Attack Power = Weapon's Attack Power + Str/4 + Level/4</math>
+
+If a character attacks with a bow or arrow in either hand, the damage is equal to the base attack power as if the character had no weapons plus 1.
+:<math>Base Attack Power = Base Attack Power (Fists) + 1</math>
+
+However, if the character has both bow and arrows and uses the Attack command, the damage becomes equal to the bow's attack power divided by 2 plus the arrow's attack power plus the character's Strength divided by 4.
+:<math>Base Attack Power = Bow's Attack Power/2 + Arrow's Attack Power + Str/4</math>
+
+Meanwhile, if the bow is equipped in the character's primary hand, the formula differs yet again to equal the base attack power of the bow and arrow multiplied by 4/5.
+:<math>Base Attack Power = Base Attack Power (Bow and Arrow) * 4/5</math>
+
+[[Yang (Final Fantasy IV party member)|Yang]] and [[Edge (Final Fantasy IV party member)|Edge]] use a different formula from the rest of the party members, as they can [[Dual Wield|dual-wield]] weapons. When Yang uses the Attack command, the damage dealt is equal to Yang's Level +1, multiplied by 2, added to Yang's Strength stat divided by 4. The weapons Yang uses have no effect as they all have 0 Attack power naturally.
+:<math>Base Attack Power = (Level+1) \times 2 + Str/4</math>
+
+If Edge has two weapons equipped, the damage he deals from the Attack command is equal to the attack power of his left weapon plus the attack power of the right weapon plus Edge's Strength divided by 4, added together with Edge's Level divided by 4, multiplied by 2.
+:<math>Base Attack Power = Weapon on Left Hand's Attack Power + Weapon on Right Hand's Attack Power + (Str/4 + Level/4) \times 2</math>
+
+However, if Edge is only equipped with one weapon, the damage he deals from the Attack command is equal to just the attack power of the weapon.
+:<math>Base Attack Power = Weapon's Attack Power</math>
+
+After calculating the base attack power for a physical attack, several modifiers are brought into play, such as [[critical hit]]s, elements, and status effects.
+
+Being afflicted with [[Toad (status)|Toad]] or [[Mini (status)|Mini]] statuses sets the player's attack power to 1. [[Curse (status)|Curse]] halves damage dealt by the afflicted. If the character is under [[Berserk (status)|Berserk]] status, the damage is multiplied by 3/2. If the target has Toad or Mini status, the attacker's damage is doubled.
+
+Some command abilities also use a specific formula. For instance, the [[Kick (ability)|Kick]] command's formula is equal to half of the attack power (though it does 0 damage to [[Flan]]-type enemies), both Jump and [[Focus (ability)|Power]] double the damage, and Deadly triples the damage.
+
+When applying elemental attacks, if the monster is physically attacked with their weakness and has the weak+/very weak property, the damage dealt is quadrupled. If they do not have the weak+/very weak property, but are still hit with their weakness, the damage is doubled. If the character attacks a monster that resists an elemental attack, the damage is halved. When a player attacks a monster with a weapon that applies to a specific race (for example, attacking an [[Ogre]] with the [[Ogrekiller (axe)|Ogrekiller]]), the damage done is quadrupled.
+
+After applying the modifiers, the game then must computer Attack%, or Hit Rate, of the attack, which also varies for various situations. For those unarmed or with fist weapons, the hit rate is equal to 50 plus that character's level divided by 4.
+:<math>Base Hit Rate = 50 + Level/4</math>
+
+For any non-bow/arrow weapon, the hit rate is equal to weapon's hit rate plus the character's level divided by 4.
+:<math>Base Hit Rate = Weapon's Hit Rate + Level/4</math>
+
+For bow and arrows, the hit rate is the same as the previous formula, but factors in the bow's hit rate instead.
+
+After factoring that in, the hit rate modifiers are factored in. Several commands and statuses affect this modifier. For example, if the [[Aim (ability)|Aim]] command is used, the hit rate is automatically set to 255.
+
+For Jump/[[High Jump]] and Build Up/Power/Deadly, the hit rate is equal to the hit rate plus the character's level divided by 4.
+:<math>Hit Rate = Hit Rate + Level/4</math>
+
+If a character uses Fight under Blind status or is targeting a monster in the back [[row]] (though back row hit rate only applies in the [[Super Nintendo Entertainment System|SNES]] version), then the hit rate is halved.
+
+Afterwards, Attack Multiplier is calculated, which is equal to the character's Strength divided by 8 plus the character's Agility divided by 16 plus 1.
+:<math>Base Attack Multiplier = Str/8 + Agi/16 + 1</math>
+
+Next, the game must calculate the target's Defense, then factors in Defense modifiers such as [[Protect (status)|Protect]] and [[Defend (ability)|Defend]]. After that, Defense% and Evade Modifiers are calculated, as well as Defense Multiplier. Finally, the game calculates the Attack multiplier, and then plugs in all the numbers to calculate the final damage, which is shown below:
+:<math>Damage = Attacker's Attack Power * random(100, 150)/100 - Target's Defense</math>
+:<math>If Damage < 0, Damage = 0.</math>
+:<math>If Attack Multiplier > 0 and Damage = 0, Damage = 1.</math>
+
+If the target is [[undead]] and the character is using a [[Drain (ability)|Drain]]-elemental weapon.
+:<math>Damage = Damage * -1</math>
+
+====''[[Final Fantasy IV -Interlude-]]''====
+Attack returns and it has the same function as the previous game.
+
+====''[[Final Fantasy IV: The After Years]]''====
+Attack is a basic command that uses the chosen character's equipped weapon on a target. Melee weapons do more damage in the front row. Ranged weapons do the same damage in either row, making it more useful to have a ranged attacker in the back row to mitigate damage to said character.
+
+The formulas are the same as they were in ''Final Fantasy IV'', except it is no longer possible to equip bows incorrectly (bows can only be equipped in the off-hand). In 3D versions, [[Izayoi (The After Years)|Izayoi]] is unique in that she uses Edge's dual-wielding damage formula when equipped with a bow, rather than standard bow formula, making her by far the most powerful bow user.
+
+===''[[Final Fantasy V]]''===
+[[File:FFV Attack Icon iOS.png|right]]
+[[Attack (Final Fantasy V)|!Attack]], called !Fight in the ''PS'' version, is a basic command that is automatically equipped and available to all [[Final Fantasy V jobs|jobs]] (except for [[Mime (Final Fantasy V)|Mime]]) without occupying any ability slots. The Mime job has it automatically learned, but must equip as an ability, in order to access it.
+
+When used in battle, it can either trigger a damage-replacing [[Final Fantasy V added abilities|added ability]], or attempt to hit a single target (including self, a fellow ally, or an opponent) with a physical attack (potentially coupled with an [[Final Fantasy V added statuses|added status]], and potentially followed by a post-hit added ability).
+
+If a damage-replacing added ability is not triggered, the game follows a number of steps to determine the outcome:
+# Perform [[Final Fantasy V hit determination|hit determination]] to check whether or not the physical attack hits its target. Upon failure, all subsequent steps are skipped, except for the post-hit added ability step.
+# Compute the damage using the appropriate [[Final Fantasy V damage formulas|formula]], including applying the relevant [[Final Fantasy V damage formulas#Additional modifiers|modifiers]].
+# Perform the physical attack.
+# If there is a chance to activate an added status, determine whether it activates, and, in the affirmative case, inflict it on the target, if vulnerable.
+# If there is a chance to activate a post-hit added ability, determine whether it activates, and then perform hit determination (if relevant), damage computation (if relevant, and if the ability hits), and apply its effects on the target (if the ability hits).
+
+If, on the other end, a damage replacing added ability is triggered, the game follows an alternative set of steps. For each target of the added ability:
+# Perform hit determination. Upon failure, all subsequent steps are skipped.
+# Compute the damage.
+# Apply the effects (damage and potential [[Final Fantasy V statuses|status]] infliction).
+
+===''[[Final Fantasy VI]]''===
+Attack is the top command on every character's command list, except for [[Gau (Final Fantasy VI party member)|Gau]], who has [[Rage (Final Fantasy VI command)|Rage]], [[Umaro (Final Fantasy VI party member)|Umaro]], who is uncontrollable, and [[Gogo (Final Fantasy VI party member)|Gogo]], who has [[Mimic (Final Fantasy VI)|Mimic]] on top but can equip Attack as a secondary command. The strength of the attack is based on the player's Attack stat and level. Some [[Relic (Final Fantasy VI)|relics]] replace the Attack command with other commands, such as [[Jump (Final Fantasy VI)|Jump]].
+
+The formula for calculating how much damage a character's physical attack is as follows:
+:<math>Strength2 = Strength \times 2</math>
+
+Strength was localized as "Vigor" in the early versions of ''Final Fantasy VI''.
+
+If Strength >=128, then Strength2 = 255 instead:
+:<math>Attack = Battle Power + Strength2</math>
+
+If the character is equipped with a [[Gauntlet (Final Fantasy VI)|Gauntlet]], the Attack stat increases further:
+:<math>Attack = Attack + Battle Power \times 3 / 4</math>
+
+The base damage is calculated as follows:
+:<math>Damage = Battle Power + ((Level \times Level \times Attack) / 256) \times 3 / 2 </math>
+
+If the character is equipped with the [[Master's Scroll (Final Fantasy VI)|Master's Scroll]], the damage is halved. If the character is equipped with [[Gigas Glove]] or [[Hero's Ring (Final Fantasy VI)|Hero's Ring]], the damage is multiplied by 5/4. If the attack is a standard attack, and the character is equipped with a [[Genji Glove (Final Fantasy VI)|Genji Glove]], but only one or no weapons (see also [[Genji Glove bug]]).
+:<math>Damage = ceil(Damage \times 3 / 4)</math>
+
+If the character is in the [[Row|back row]] then:
+:<math>Damage = Damage / 2</math>
+*(Certain weapons ignore this step)
+
+The next step takes into account critical hits, [[Berserk (Final Fantasy VI status)|berserk]] status, and [[Trance (Final Fantasy VI)|Trance]] (Morph) multipliers. Every Attack has a 1 in 32 chance of being a critical hit (although some weapons, known as [[MP Attack|MP Critical]] weapons, consume MP for an automatic critical hit), and the Trance multiplier only applies when the attacker is in Trance mode (this will almost always apply only to [[Terra (Final Fantasy VI party member)|Terra]], but in the SNES version anyone can have the Morph status due to the [[Rippler bug]]). This works by setting a damage multiplier equal to 0. For critical hits, add 2 to the damage multiplier.
+
+If the attacker is berserked, add 1 to the damage multiplier. If the attacker is in Trance, add 2 to the damage multiplier:
+:<math>Damage = Damage + ((Damage / 2) \times damage multiplier)</math>
+
+Next, the game factors in random variance:
+:<math>Damage = (Damage \times (224...255) / 256) + 1</math>
+
+Next, the game factors in the target's [[Defense (stat)|Defense]]:
+:<math>Damage = (Damage \times (255 - \text{target's defense}) / 256) + 1</math>
+
+*(The [[Ultima Weapon (Final Fantasy VI weapon)|Ultima Weapon]] (Atma Weapon) and the [[Valiant Knife (Final Fantasy VI)|Valiant Knife]] ignore this step).
+
+Next, if the target has the [[Protect (Final Fantasy VI status)|protect]] (Safe) status, then:
+:<math>Damage = (Damage \times 170 / 256) + 1</math>
+*(The Ultima Weapon [Atma Weapon] and the Valiant Knife ignore this step)
+
+Next, if the target is [[Defend (ability)|Defending]], then:
+:<math>Damage = Damage / 2</math>
+
+Next, if the target is in the Back Row, then:
+:<math>Damage = Damage / 2</math>
+
+Next, if the target has the Trance (Morph) status, then:
+:<math>Damage = Damage / 2</math>
+
+Next, another damage multiplier step is performed. The damage multiplier again starts at 0. If the attacker is facing the target's back, add 1 to the damage multiplier. If the attacker is attacking with the [[Hawkeye (Final Fantasy VI)|Hawkeye]] or [[Sniper (Final Fantasy VI)|Sniper]], and the target has the [[Float (Final Fantasy VI status)|float]] status, there is a 50% chance of adding 4 to the damage multiplier (if the target is not floating there is a 50% chance of adding 1 to the damage multiplier). If the attacker is attacking with the [[Man-Eater (Final Fantasy VI)|Man-Eater]] and the target is [[Enemy type|human]], add 2 to the damage multiplier.
+:<math>Damage = Damage + ((Damage / 2) \times damage multiplier)</math>
+
+If the target is [[Petrify (Final Fantasy VI)|petrified]], the damage is reduced to 0 at this point. Otherwise, the game checks [[Final Fantasy VI elements|elemental]] properties, which finalizes the damage.
+
+Elemental properties are checked in this order:
+*If [[Force Field (Final Fantasy VI)|Force Field]] is in effect for the element in question, the damage reduces to 0.
+*If the target absorbs the element in question, the attack heals the target by the amount it would have dealt damage had the target not absorbed the element.
+*If the target is immune to the element in question, the damage reduces to 0.
+*If the target resists the element in question, the damage is halved.
+*If the target is weak to the element in question, the damage doubles.
+*Otherwise, the damage remains the same.
+
+If one of the elemental checks is true, the game does not check subsequent steps.
+
+Certain weapons have different damage formulas:
+*Some weapons have a 25% chance to cast a spell from the [[Magic (Final Fantasy VI command)|Magic]] skillset. These spells ignore [[Reflect (Final Fantasy VI status)|reflect]] and [[Runic (Final Fantasy VI)|Runic]]. Unless the weapon is a long range weapon, the spells are affected by the back row penalty and any [[Jump (Final Fantasy VI)|Jump]] multipliers. If the Attack is a critical hit, the spells are not affected unless the weapon is an [[MP Attack|MP Critical]] weapon.
+
+*The Valiant Knife ignores defense. Also, it adds on an extra step after element calculation:
+:<math>Damage = \text{Damage} + \text{Attacker's Max HP} - \text{Attacker's Current HP}</math>
+
+*The Ultima Weapon (Atma Weapon) ignores defense and adds on three extra steps after element calculation:
+:<math>DamageA = Damage \times Level</math>
+:<math>DamageB = DamageA \times ((Current HP / 256) + 1) / ((Max HP / 256) + 1)</math>
+:<math>Final Damage = DamageB / 64</math>
+
+*The [[Dice (Final Fantasy VI)|Dice]] uses an independent damage calculation formula:
+:<math>Damage = \text{Dice Roll 1} \times \text{Dice Roll 2} \times \text{Level} \times 2</math>
+
+*The [[Fixed Dice]] uses an independent damage calculation formula:
+:<math>Damage = \text{Dice Roll 1} \times \text{Dice Roll 2} \times \text{Dice Roll 3} \times \text{Level} \times 2</math>
+
+:*If all three dice show the same number, a second step is added:
+:<math>Damage = \text{Damage} \times \text{Dice Roll}</math>
+
+[[File:FFVI Control.png|thumb|200px|Monster's Attack command within its battle menu.]]
+In the Super Nintendo and [[PlayStation]] versions, the Attack command is called "Battle" within the Control menu. In the Game Boy Advance, it was renamed to Attack. A player will see this when a monster is under their [[Control (Final Fantasy VI)|Control]] on the monster's battle menu. The monster's normal attack will look and sound like certain weapons the player can equip, but unlike the player's weapon, these monster weapons are only for show (this can be seen when [[Gau (Final Fantasy VI party member)|Gau]] uses a [[Rage (Final Fantasy VI command)|Rage]]).
+
+Each monster is assigned a specific weapon for their normal attack. The weapon only takes the graphic and sound effect and not its special properties. For example, the [[Ice Rod (Final Fantasy VI)|Ice Rod]] is not {{icon|FFVI|element|ice}}-elemental, and it does not [[Added Ability|randomly cast]] [[Blizzara (Final Fantasy VI)|Blizzara]] when Gau attacks, nor when [[Apocrypha (Final Fantasy VI)|Apocrypha]] attacks. It merely looks and sounds like the Ice Rod, nothing more.
+
+===''[[Final Fantasy VII]]''===
+Attack (labeled Fight in the [[Final Fantasy VII demo|demo]]) is the top command on every party member's command list. Its strength is based on the player's Attack stat and Level.
+
+To work out the Attack's strength ignoring any other factors, the Attack stat has to be added to the truncated total of the Attack and Level stats added together and divided by 32, which is all multiplied by the truncated total of the Attack stat multiplied by the Level stat, and then divided by 32.
+:<math>Base Damage = Attack + [(Attack + Level) / 32] \times [(Attack \times Level) / 32]</math>
+
+Then Power and Defense factors are applied. The Defense factor is the stat found on all targets. The Power factor is a stat given to most abilities.
+:<math>Max Damage = [(Power \times (512 - Def) \times Base Damage) / (16 \times 512)]</math>
+
+Every time the player attacks the same target, they do not take off the same amount. This is due to additional math that adds a random factor to the equation. The lowest possible damage the attack can do is <sup>3841</sup>/<sub>4096</sub> of the damage shown above.
+:<math>Actual Damage = Max Damage \times (3841 + Rnd(0..255)) / 4096</math>
+
+There are many other factors that affect the damage of the attack, such as a critical hit, which will double the damage. If either the user or the target is in the back row position without having a long range weapon or the [[Long Range (Final Fantasy VII)|Long Range Materia]], the attack will deal half damage. If the target has its back to the user, the attack is usually doubled. For a small amount of enemies, the attack will take off more than double.
+
+[[File:Cloud Attack Animation Sketch.jpg|thumb|200px|Concept art for Cloud's attack animation.]]
+If the user has the Berserk status they will deal x1.5 of the normal damage; with Frog status x0.25 the normal damage; and with the Mini status deal only 1 HP damage per hit. Target's [[Sadness (Final Fantasy VII)|Sadness]] takes off x0.3 the damage; with the [[Barrier (Final Fantasy VII status)|Barrier status]] x0.5 the damage; and with the Defend status x0.5 the damage.
+
+When the player's Limit gauge is full, their Attack command is replaced with a Limit Break command and they can't use a normal attack except through the use of similar commands (like [[Mug (Final Fantasy VII)|Mug]]). Each attacking Limit Break uses the actual damage. For example, [[Cloud (Final Fantasy VII party member)|Cloud's]] [[Braver (Final Fantasy VII)|Braver]] Limit takes off three times the damage of a normal attack. His [[Cross-slash (Final Fantasy VII)|Cross-slash]] will do x3.25 the damage, and inflict [[Paralyzed (Final Fantasy VII)|Paralyze]].
+
+Some [[Command Materia (Final Fantasy VII)|Command Materia]] commands replace the Attack command. The [[Slash-All (Final Fantasy VII)|Slash-All Materia]] replaces the Attack command with the [[Slash-All (Final Fantasy VII ability)|Slash-All]] command that attacks all enemies without applying the long range rule. Slash-All upgrades to [[Flash (Final Fantasy VII)|Flash]] after leveling up which [[Death (Final Fantasy VII status)|kills all enemies instantly]], but halves the hit-rate. [[Double Cut (Final Fantasy VII)|Double Cut's]] 2x-Cut and 4x-Cut replace the Attack command and attack the target twice or four times respectively. In both these commands, the long range rule does not apply.
+
+The Mug command, the second level of the [[Steal (Final Fantasy VII)|Steal Materia]], functions the same as the Attack command but has the added steal effect. The [[Deathblow (Final Fantasy VII)|Deathblow Materia]] grants access to the D.blow command, which has a third of the hit-rate a normal attack would, but guarantees a critical if it hits.
+
+If the player is in the [[All Lucky 7s]] status, their attacks will disregard any other factors and take off 7777.
+
+The [[Added Cut (Final Fantasy VII)|Added Cut]] [[Support Materia (Final Fantasy VII)|Support Materia]] adds the Attack command to a paired Materia as an [[Added Ability]], and has the user use the Attack command on the same target as the paired Materia was used.
+
+Due to the [[Master Command and Support Materia glitch]], support effects can be applied to the Attack command via the [[Master Command]] Materia.
+
+===''[[Final Fantasy VII Remake]]''===
+{{See|Final Fantasy VII Remake battle system#Damage formula|t1=Final Fantasy VII Remake damage formula}}
+[[File:Cloud Aerial Attack from FFVII Remake.jpg|thumb|Cloud's aerial attack.]]
+Every playable character has their own version of the Attack command. [[Final Fantasy VII Remake battle system|Attacking enemies fills the party members' ATB gauges.]] The normal attack command is used with {{button|ps|square}}, and holding it rather than tapping can also change it, such as [[Cloud Strife (VII Remake party member)|Cloud]] doing an area attack and [[Barret Wallace (VII Remake party member)|Barret]] dealing a sustained burst of fire power. Cloud's attack also depends on whether he is in [[Operator Mode (VII Remake)|Operator Mode]] or [[Punisher Mode (VII Remake)|Punisher Mode]]; in the latter, Attack turns into Strong Attack and is faster and stronger, and can have a different finisher if holding the attack button rather than tapping it.
+
+Cloud and [[Tifa Lockhart (VII Remake party member)|Tifa]]'s attack is melee range, and they can jump to hit flying enemies. Barret's attack command depends on whether he has a gun arm equipped or not; even when equipped with a melee weapon, he cannot jump to hit flying targets with his normal attack. [[Aerith Gainsborough (VII Remake party member)|Aerith's]] attack command is to send magical projectiles from the tip of her staff; her attack command is magical, whereas the others' is physical.
+
+[[Yuffie Kisaragi (VII Remake party member)|Yuffie]] is the playable character in "[[Episode INTERmission]]". When holding her weapon, she will attack physically at melee range with it. Her {{button|ps|triangle}} command is to [[Throw (VII Remake)|throw]] the weapon to stick to her target. While without her weapon, Yuffie's attack command is a magical ranged ninjutsu, whose [[Final Fantasy VII Remake elements|element]] the player can toggle with [[Elemental Ninjutsu (VII Remake)|Elemental Ninjutsu]].
+
+===''[[Before Crisis -Final Fantasy VII-]]''===
+{{Section|Before Crisis -Final Fantasy VII-}}
+
+===''[[Crisis Core -Final Fantasy VII-]]''===
+Attack is the primary command available to [[Zack (Crisis Core player character)|Zack]]. A physical attack, it uses no MP or AP. As an action RPG, the commands are executed real-time as the player presses the {{button|ps|x}}. The targets can evade and block physical attacks with correct timing, and when targets are hit from behind, Zack deals a critical hit. The command can be chained up to four times in succession with each hit being stronger than the previous.
+
+The damage formula is as follows:
+:<math>A = Zack'sAttack \times 1.25</math>
+:<math>B = ((Zack'sLevel \times 2) \times 0.625)</math>
+:<math>S = ((260 - Target'sVitality) / 255)</math>
+:<math>Dmg = ((A \times B/4+Zack'sAttack \times Base Ability Power/16) \times Random (240..271)/256) \times S</math>
+
+===''[[Final Fantasy VIII]]''===
+Attack is the standard (and only) command usable by every character, and is at the top of each character's command window.
+
+The game first determines whether the attack will connect.
+:<math>Hit\% = (Attacker's~Luck / 2 + Attacker's~Hit - Target's~Eva - Target's~Luck)</math><ref name="ffviii">{{ref |author= ForteGSOmega|month=2 |day=2 |year=2010 |title= Final Fantasy VIII – Battle Mechanics FAQ|platform= GameFAQs|url=https://gamefaqs.gamespot.com/ps/197343-final-fantasy-viii/faqs/58936|access-date=5 March 2024}}</ref>
+If the attacker's hit rate is 255, this step is skipped and the attack will always connect.
+
+Next the game determines whether the attack criticals.
+:<math>Critical\% = (Attacker's~Luck + 1) / 256 \times 100</math><ref name="ffviii"/>
+
+This step is skipped if the attacker is [[Squall (Final Fantasy VIII party member)|Squall]] or [[Seifer (Final Fantasy VIII gameplay)|Seifer]] who never critical by chance; instead, they have the trigger ability.
+
+Next, if the attack connects, the amount of damage is calculated.
+:<math>DamageA = AttackerStr^2 / 16 + AttackerStr</math><ref name="ffviii"/>
+:<math>DamageB = DamageA \times (265 - TargetVit) / 256</math>
+:<math>Damage = DamageB \times Power / 16</math>
+
+All player weapons have an Attack Power value of 20. The basic "Physical attack" skill has a power of 16, and the two "unnamed" ones below it a power of 32 and 48 respectively. If the target has [[Protect (Final Fantasy VIII status)|Protect]] or [[Zombie (Final Fantasy VIII status)|Zombie]] statuses, the damage is halved. If the target has [[Invincible (status)|Invincible]] or [[Defend (Final Fantasy VIII)|Defend]] status, the damage is 0. If the attack goes critical, or if the target is attacked from behind, the damage is doubled. If the damage goes critical due to Squall's or Seifer's triggers, or if the user attacks the target while under [[Berserk (Final Fantasy VIII status)|Berserk]], the damage done is x1.5.
+
+Characters can also [[Junction system|junction]] [[Elem-Atk-J|elemental properties to their physical attacks]] that affects the damage outcome.
+:<math>DamageBonus = Damage \times ElemAtt \times (800 - ElemDef) / 10000</math><ref name="ffviii"/>
+:<math>Damage = Damage + DamageBonus</math>
+
+Elemental attack can be anything between 0 and 100%. Elemental Defense starts at 800 (0%), 900 nullifies damage and 1000 absorbs the damage. If an enemy is shown to be weak against an element, its Elemental Defense is below 800. If damage becomes negative (due to high Elemental Defense), the target is healed by that amount.
+
+===''[[Final Fantasy IX]]''===
+{{Quote|Attack with equipped weapon.|Description}}
+The Attack command is at the top of every character's command window, and the damage formula for it varies per weapon type, whereas the final damage will always be the base.
+
+There are two main components to the formula: the base damage and the bonus.
+
+For most attacks, the base is:
+:<math>Base = Atk - Def</math>
+For [[Save the Queen (Final Fantasy IX)|Save the Queen]], the base is instead:
+:<math>Base = (Atk + Lv) - Def</math>
+
+The bonus depends on the equipped weapon type:
+*Standard weapons and Save the Queen
+:<math>Bonus = Str + RND([(Lv + Str) / 8] + 1)</math>
+*Thief and knight swords:
+:<math>Bonus = (Str + Spr) / 2 + RND[(Lv + Str) / 8]</math>
+*Hammers and Forks:
+:<math>Bonus  = ((Rnd MOD (1 + Str - 1)) + 1) + RND[(Lvl + Str) / 8]</math>
+*Rackets:
+:<math>Bonus = [(Str + Spd) / 2] + RND([(Lvl + Str) / 8] + 1)</math>
+*Enemies:
+:<math>Bonus  = Str + RND([(Lvl + Str) / 4] + 1)</math>
+
+The Bonus formula is affected by various other factors. If the character using the Attack command is using a [[Killer (ability)#Final Fantasy IX|Killer]] ability, is under [[Berserk (Final Fantasy IX status)|Berserk status]], is using [[MP Attack (Final Fantasy IX)|MP Attack]], is in [[Trance (Final Fantasy IX)|Trance]], is attacking an enemy that is under [[Mini (Final Fantasy IX status)|Mini status]], strikes an enemy with their [[Final Fantasy IX elements|elemental]] weakness, if the attacker is wearing an [[Elemental Affinity#Final Fantasy IX|elemental attack raising item]], or [[Attack formations#Final Fantasy IX|back-attacking]] an enemy, the bonus is x1.5. If the target is under [[Protect (Final Fantasy IX status)|Protect]], or if the attacker is in the back row, the bonus is halved. If the attacker is under Mini, the bonus is set to 1.
+
+The final damage comes out to:
+
+:<math>Base \times Bonus</math>
+
+When in [[Ipsen's Castle]], the formula is different for the base formula, shown below:
+:<math>Base = (60 - Atk Pwr) - Target's Defense</math>
+
+With the [[Healer (Final Fantasy IX)|Healer]] ability, Attack command heals its targets.
+
+===''[[Final Fantasy X]]''===
+{{Quote|Attack enemy with equipped weapon.|Description}}
+Attack is a command available to all characters, placed at the top of each of their command windows.
+
+The damage formula for the Attack command, as well as any physical attack, is as follows:
+:<math>Damage = [(Stat^3/32) + 30] \times DmCon/16</math>
+
+Where Stat is equal to Strength plus [[Cheer (ability)|Cheer]], and DmCon is equal to the Damage Constant (16, for the Attack command).
+
+Afterwards, the game must calculate the reduction of base damage due to Defense by converting the Defense integer into the DefNum integer, which can be found through the following formula:
+:<math>DefNum = [730 - (Def \times 51 - Def^2/11)/10]/730</math>
+
+Before moving onto the final step, the game must also factor in any reduction from Cheer, which is done in the following formula:
+:<math>Cheer~Reduction = (15 - Cheer)/15</math>
+
+After all of that, the game then calculates the final damage based on the following formula:
+:<math>Final Damage = Base~Damage \times DefNum \times Cheer~Reduction</math>
+
+Variance is provided by multiplying final damage by a value between <math>240/256</math> and <math>271/256</math>, which corresponds to approximately 94%–106%.
+
+Several other modifiers apply to the damage of physical attacks as well, such as the [[Stat-enhancing ability|Strength Plus]] [[Final Fantasy X auto-abilities|abilities]]. If the attacker attacks an enemy with the [[Final Fantasy X statuses#Armored|Armored]] property, damage is divided by 3. If target is under [[Defend (Final Fantasy X status)|Defend]], [[Sentinel (Final Fantasy X ability)|Sentinel]], or [[Protect (Final Fantasy X status)|Protect]], or if the attacker is under [[Power Break (Final Fantasy X)|Power Break]], then damage is halved.
+
+Each [[Celestial Weapon]] has a special damage multiplier:
+*For [[Ultima Weapon (weapon)|Caladbolg]], [[World Champion]], [[Longinus (weapon)|Spirit Lance]], and [[Godhand (weapon)|Godhand]]:
+:<math>(10 + [100 \times User's~current~HP/User's~Max~HP])/110</math>
+*For [[Nirvana]] and [[Onion Knight (weapon)|Onion Knight]]:
+:<math>(10 + [100 \times User's~current~MP/User's~Max~MP])/110</math>
+*For [[Masamune (weapon)|Masamune]]:
+:<math>(130 - [100 \times Auron's~current~HP/Auron's~Max~HP])/60</math>
+
+These apply to all physical-type attacks made with the weapon; in addition, they ignore defense, as well as all bonuses from Cheer.
+
+[[Aeon (Final Fantasy X)|Aeons]] possess a different, but similar Attack command. It has a built-in [[Piercing (Final Fantasy X)|Piercing]] effect, and the damage constant for [[Valefor (Final Fantasy X)|Valefor]] and [[Shiva (Final Fantasy X)|Shiva]]'s Attack commands is 14 rather than 16, though their accuracy rating is higher.
+
+If [[Tidus (Final Fantasy X party member)|Tidus]] uses the Attack command against an ally, they lose [[Affection mechanics (Final Fantasy X)|affection]] with him.
+
+====''[[Final Fantasy X-2]]''====
+{{Quote|Attack one enemy.|"Help" description}}
+Attack is a command present in each [[dressphere]], except for [[Songstress]], [[Black Mage (Final Fantasy X-2)|Black Mage]], and [[White Mage (Final Fantasy X-2)|White Mage]]. While under the effects of [[Berserk (status)|Berserk]], any dressphere uncontrollably performs the Attack action.
+
+The formula for the offensive side of the Attack is as follows:
+:<math>Attack = (User's~Level + User's~Strength) \times User's~Level \times User's~Strength / 1024 + User's~Strength</math>
+
+The formula for the defensive side of the Attack is as follows:
+:<math>Defense = StepCount \times (270 - Enemy's~Defense) / 255</math>
+
+Also, all abilities have the following formula for randomization of the damage dealt:
+:<math>Random = StepCount \times (240..271) / 256</math><ref>{{Refwebsite| page url = https://gamefaqs.gamespot.com/ps2/562386-final-fantasy-x-2/faqs/31807| page name = Final Fantasy X-2 – Enemy Encyclopedia by SinirothX| site url = https://gamefaqs.gamespot.com| site name = GameFAQs| access time = 10:35, June 11, 2020 (UTC)}}</ref>
+
+===''[[Final Fantasy XII]]''===
+[[File:Ffxii-attack.jpg|thumb|Red line shows when an enemy is attacking the player.]]
+Attack and Items are the only two commands available without a [[License Board|license]]. Some [[Esper (Final Fantasy XII)|Espers]] can also use the Attack command as long as the enemy is immune to or absorbs their elemental attacks. Attack commands execute simultaneously whenever the game is set to "Active" mode, regardless of [[Effect Capacity]] (mainly applies to the [[PlayStation 2]] versions), even during long spell animations.
+
+The attack formula is calculated based upon the type of weapon equipped. For example, [[Sword (weapon type)|swords]], [[Spear (weapon type)|spears]], [[Rod (weapon type)|rods]], and [[Crossbow (weapon type)|crossbows]] are based on the character's strength, while [[Dagger (weapon type)|daggers]], [[Bow (weapon type)|bows]], and [[Ninja blade (weapon type)|ninja swords]] are calculated using a character's strength and speed. Attack is an action that can be applied to self, allies or members in current party.
+
+Melee weapons [[Hit (term)#Final Fantasy XII|can combo their attacks]] and hit multiple times in a row. Certain enemies, often the most difficult bosses and optional [[Hunt (Final Fantasy XII)|marks]], also chain their attacks. The combo rate is a hidden value specific to each weapon (see them in the [[Final Fantasy XII weapons|weapon list]]). Ranged weapons do not combo, but have the chance to deal critical damage.
+
+Attack damage is calculated differently depending on the type of weapon the character is equipping.
+
+The formulas are as follows:
+*Unarmed (Without Brawler Augment):
+:<math>DMG = [11 \times RANDOM(1..1.125) - DEF] \times STR \times (Lv+STR)/256</math>
+*Unarmed (With Brawler Augment):
+:<math>DMG = [(Lv+STR)/2 \times RANDOM(1..1.125) - DEF] \times STR \times (Lv+STR)/256</math>
+*Swords, Spears, Crossbows, Rods:
+:<math>DMG = [ATK \times RANDOM(1..1.125) - DEF] \times [1 + STR \times (Lv+STR)/256]</math>
+*Poles:
+:<math>DMG = [ATK \times RANDOM(1..1.125) - MDEF] \times [1 + STR \times (Lv+STR)/256]</math>
+*Maces:
+:<math>DMG = [ATK \times RANDOM(1..1.125) - DEF] \times [1 + MAG \times (Lv+MAG)/256]</math>
+*Katana, Staves:
+:<math>DMG = [ATK \times RANDOM(1..1.125) - DEF] \times [1 + STR \times (Lv+MAG)/256]</math>
+*Axes, Hammers, Hand-bombs:
+:<math>DMG = [ATK \times RANDOM(0..1.111) - DEF] \times [1 + STR \times (Lv+VIT)/128]</math>
+*Daggers, Ninja Swords, Bows:
+:<math>DMG = [ATK \times RANDOM(1..1.125) - DEF] \times [1 + STR \times (Lv+SPD)/218]</math>
+*Guns, Measures:
+:<math>DMG = [ATK \times RANDOM(1..1.125)]^2</math>
+
+After the Attack command has been selected the [[Charge Time]] starts, and the command is executed once the attack has charged. Each attack action has its own animation with a fixed length, which also varies between characters and which weapon they use. If the game config is set on "Wait" only one action can execute at any time. When set on "Active", multiple actions can execute simultaneously (although some magick spells with long animations cannot be cast simultaneously even with "Active"). When [[gambits]] are turned off, party members will continue attacking an enemy automatically, but will not walk towards them.
+
+Certain [[Augment (Final Fantasy XII)|augments]] on the License Board enhance battle power: [[Augments (Final Fantasy XII)#Adrenaline|Adrenaline]] boosts attack when the user is in [[HP Critical (Final Fantasy XII)|HP Critical]] status, and [[Augments (Final Fantasy XII)#Focus|Focus]] boosts battle power when the user's HP is full. These effects can also be gained via accessories [[Steel Gorget (Final Fantasy XII)|Steel Gorget]] and [[Blazer Gloves (Final Fantasy XII)|Blazer Gloves]].
+
+In the ''Zodiac'' versions, [[Larsa (Final Fantasy XII party member)|Larsa]] and [[Reddas (Final Fantasy XII party member)|Reddas]] can attack [[flying]] targets with their basic attacks.
+
+Attacking 300 times adds [[Balthier]]'s sprite to the [[Sky Pirate's Den]] and awards the "Assault Striker" [[Final Fantasy XII The Zodiac Age achievements and trophies|trophy/achievement]] in ''The Zodiac Age''.
+
+====''[[Final Fantasy XII: Revenant Wings]]''====
+Attack is the basic command for most melee units; however, certain characters such as [[Kytes (Revenant Wings party member)|Kytes]] have magickal actions as their core commands. The abilities of [[Esper (Revenant Wings)|Espers]] and monsters are given unique names, such as [[Balasa]]'s [[Final Fantasy XII: Revenant Wings enemy abilities#Fire Fist|Fire Fist]].
+
+===''[[Final Fantasy XIII]]''===
+{{Quote|Deal physical damage to target.|Description}}
+[[File:Lightning Attack from FFXIII.jpg|thumb|200px|Lightning using the Commando's Attack command.]]
+Attack is a [[Commando (Final Fantasy XIII)|Commando]] ability that physically attacks one enemy, having a damage multiplier of 1.2. Attack command expends one [[Command Synergy Battle|ATB segment]].
+
+Damage is calculated as follows:
+:<math>Base~Damage = Parameter \times Damage~Multiplier</math>
+
+Where Parameter is equal to the attack's basic parameter and the Damage Multiplier is equal to the base multiplier of the ability. For instance, a normal Attack command from [[Lightning (Final Fantasy XIII party member)|Lightning]] has the base damage multiplier of 1.2,; if she has 1700 attack power, her base damage is 1700 x 1.2 = 2040. Uniquely, [[Sazh (Final Fantasy XIII party member)|Sazh's]] Attack command consists of two shots at half power.
+
+Adding more Commandos to the current line up boosts the damage multiplier. Damage can also be increased by hitting an enemy's weakness while under the effect of an [[Elemental infusion|en-spell]] from the [[Synergist (Final Fantasy XIII)|Synergist]] role.
+
+Attack is available to everyone before the [[Crystarium system]] is unlocked. Thus, Sazh, [[Vanille (Final Fantasy XIII party member)|Vanille]], and [[Hope (Final Fantasy XIII party member)|Hope]] temporarily lose the ability to use Attack, as they do not initially have access to the Commando role. Unknown to the player, [[Lebreau]]'s Attack command costs two ATB segments to execute while it costs three ATB segments for [[Gadot]] compared to the main cast where it only costs them one ATB segment.
+
+Sazh, Vanille, and Hope's Attack commands are [[Long Range|long ranged]], though Vanille's range is limited. Lightning also uses a ranged Attack when fighting the [[Havoc Skytank]] boss.
+{{clear}}
+
+====''[[Final Fantasy XIII-2]]''====
+The Attack command is a [[Commando (Final Fantasy XIII-2)|Commando]] ability that physically attacks one enemy, and expends one ATB segment. The strength of the attack is determined by the attacker's Strength stat, and the role level bonus, as well as the number of Commandos in the current paradigm.
+
+Both [[Serah (Final Fantasy XIII-2 party member)|Serah]] and [[Noel (Final Fantasy XIII-2 party member)|Noel]] can use the Attack command in both close-range and long-range hits. Serah deals close-range attacks with a sword, but her sword transforms into a bow for ranged attacks. Noel wields his two swords with one in each hand for close-range combat, but combines them into a javelin he can throw for long-range targets.
+
+Most of the [[Paradigm Pack|Commando monsters]] have Attack as their physical damage ability, which in rare cases is replaced with Drain Attack.
+
+====''[[Lightning Returns: Final Fantasy XIII]]''====
+[[File:Attack from LRFFXIII.jpg|200px|right|thumb|Lightning using the default Attack ability.]]
+{{Main|Attack (Lightning Returns)}}
+Attack is the default physical attack command available to [[Lightning (Lightning Returns party member)|Lightning]]. It can be obtained as an enemy [[Item drop|drop]] from the [[Gorgonopsid (Lightning Returns)|Gorgonopsid]], [[Rafflesia (Lightning Returns)|Rafflesia]], and [[Rafflesia Ω]] enemies. It is also the locked ability for several [[Lightning Returns: Final Fantasy XIII garbs|garbs]].
+{{clear}}
+
+===''[[Final Fantasy XIV]]''===
+[[File:Auto-attack from Final Fantasy XIV icon.png|right|Auto-attack icon.]]
+{{main|Auto-attack (Final Fantasy XIV)}}
+
+Attack {{J|攻撃|Kōgeki}} is the default auto-attack executed by most entities in the game. Its effects vary depending on the user—most are single-target attacks that deal physical damage, but some can deal magic or elemental damage, have an area of effect, or even inflict status effects.
+
+For players, Attack deals damage with 110 potency and has a range 3 yalms, with the exception of {{icon|ffxiv|discipline|dancer}}s whose Attack has a 25 yalm range. {{icon|ffxiv|discipline|archer}}s, {{icon|ffxiv|discipline|bard}}s, and {{icon|ffxiv|discipline|machinist}}s use the 100 potency, 25 yalm [[Shot (Final Fantasy XIV)|Shot]] as their auto-attack instead of Attack.
+
+===''[[Final Fantasy XV]]''===
+When playing as [[Noctis (Final Fantasy XV party member)|Noctis]], holding the attack button has the player continuously attack their target with their selected weapon. The attack animation depends on the chosen weapon, and the player can switch weapons on-the-fly. If the target is not in range, holding the attack button has Noctis approach the target. Magic is also used via the attack command, as [[elemancy]] and the [[Ring of the Lucii]] are equipped to a weapon slot, although only the [[Death (ability)|Death]]-spell from the latter is used via the attack command.
+
+Unlocking nodes on the [[Ascension (Final Fantasy XV)|Ascension Grid]] adds new properties to Noctis's attack, such as Airstep, that lets him stay airborne at the cost of draining his MP. Attacking an enemy from their backside performs a blindside-attack for x1.5 damage. This can chain to a blindside-link with a party member. Parrying attacks while nearby a party member can trigger [[link-strike]]s.
+
+[[Warp-strike]] is another type of physical attack used via the [[Warp (Final Fantasy XV)|Warp]] command rather than the attack command. [[Armiger]] changes Noctis's attacks to warps and wields his [[Final Fantasy XV weapons#Royal Arms|royal arms]], but is used via the normal attack command.
+
+The attack prompt can appear at the end of party members' [[Technique (Final Fantasy XV)|Techniques]] for Noctis to perform a follow-up attack, and also appears during the ending cinematic for the player to perform a finishing blow to the main antagonist.
+
+The ability to character-swap was added in a [[Final Fantasy XV patches|patch]], and each playable character has their own battle style.
+
+===''[[Final Fantasy XVI]]''===
+The player's controlled character is [[Clive (Final Fantasy XVI gameplay)|Clive]], apart from a brief moment in the prologue where the player controls [[Joshua Rosfield#Gameplay|Joshua]]. In the default controller scheme {{button|ps|square}} is a melee attack with the character's sword. Countinously attacking leads into combos: a four-hit string of sword strikes is a melee combo, and doing the same midair is an aerial combo. Chaining {{button|ps|triangle}} [[Magic (Final Fantasy XVI)#Gameplay|magic]] into the four-hit melee combo triggers a powerful magic burst.
+
+Holding magic and melee execute buttons simultaneously results into a lunge when grounded and into downthrust when airborne. Lunge has Clive dash to a target to stab them, and downthrust has Clive descend from above sword-point first.
+
+Holding the attack button charges burning blade, a move that engulfs Clive's sword in flames and deals one strong hit to his target.
+
+Attacking is faster during [[Limit Break (Final Fantasy XVI)|Limit Break]].
+
+Chaining Attack from a precision-dodge triggers a counterattack.
+
+Using attack during [[Phoenix Shift]], before Clive reaches his target, results in a shift strike, where Clive teleports to an enemy to instantly strike them.
+
+===''[[Final Fantasy Tactics]]''===
+The Attack command can be used by any job. Its power depends on the weapon used:
+*Unarmed without Brawler: <math>[(PA \times Br) / 100] \times PA</math>
+*Unarmed with Brawler: <math>[(PA \times Br) / 100] \times PA \times 1.5</math>
+*Knife, Ninja Sword, Cloth: <math>[(PA + Sp) / 2] \times WP</math>
+*Sword, Rod, Spear, Crossbow: <math>PA \times WP</math>
+*Knightsword, Katana: <math>[(PA \times Br) / 100] \times WP</math>
+*Staff, Stick: <math>MA \times WP</math>
+*Flail, Axe, Bag: <math>(1..PA) \times WP</math>
+*Longbow: <math>[(PA + Sp) / 2] \times WP</math>
+*Physical Gun: <math>WP ^ 2</math> (cannot be evaded)
+*Instrument, Dictionary: <math>[(PA + MA) / 2] \times WP</math>
+*Magical Gun: <math>[(CFa \times TFa \times Q \times WP) / 10000]</math> (Q = 14 60% of the time, Q = 18 30% of the time, Q = 24 10% of the time)
+
+===''[[Final Fantasy Tactics Advance]]''===
+The action ability Fight is available to every unit. It is sometimes prohibited by [[Law system (Tactics Advance)|Law]], or encouraged when Color Magic is the prohibited action.
+
+The base damage formula for the majority of physical attacks is as follows:
+:<math>Attacker's Weapon Attack - [Target's Weapon Def / 2]</math>
+
+Afterwards, damage is multiplied by Power/100, where Power is usually equal to the strength of the ability being used. For weapon-based abilities, this will be the EqAtt bonus the unit's equipment (minus secondary weapons) gives, For other abilities, this will be the Power stat of the ability itself.
+
+The final formula is:
+:(caster strength + weapon attack) - (target defence / 2) x (weapon att / 100)
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+Attack is occasionally discouraged by [[Law system (Tactics A2)|Law]].
+
+===''[[Final Fantasy Type-0]]''===
+There are fourteen playable characters who each have their own playstyle: some are fast, some are slow, some are ranged, some specialize in close-combat. Players can determine enemies' weak points with [[Killsight]], allowing them to kill the target instantly. Breaksight is applicable to enemies with more than one bar of health, such as strong monsters, bosses, and enemy leaders.
+
+===''[[Final Fantasy Crystal Chronicles]]''===
+{{Section|Final Fantasy Crystal Chronicles}}
+
+====''[[Final Fantasy Crystal Chronicles: Ring of Fates]]''====
+{{Section|Final Fantasy Crystal Chronicles: Ring of Fates}}
+
+====''[[Final Fantasy Crystal Chronicles: Echoes of Time]]''====
+{{Section|Final Fantasy Crystal Chronicles: Echoes of Time}}
+
+===''[[Final Fantasy Mystic Quest]]''===
+[[File:FFMQ Damage Icon.png|right|Damage icon.]]
+The Attack command is one of four basic commands, selecting it will cause the character to attack with the current equip weapon. All physical attacks are classified as [[Physical (element)|Damage]]-elemental, and attacks that do not possess any elemental attributes are classified as [[non-elemental]]. There's an unused Elemental Defense called Damage, which reduces the damage taken from physical attacks. It can only be gotten by the use of a cheating device.
+
+===''[[Final Fantasy Adventure]]''===
+The weapon attack is the most basic kind of attack. To attack enemies, the player will have to move Sumo so that the enemy is in range of the equipped weapon. Then press the A button. Every time the player successfully hits the enemy, it will receive damage. Once it's HP reach 0, it will die.
+
+===''[[Final Fantasy Legend II]]''===
+The Fight command is one of two command available to the player, selecting it will bring up the list of equipped weapons and abilities the current character possesses.
+
+===''[[Final Fantasy Legend III]]''===
+The Fight command causes the character to attack enemies that causes [[Physical (element)|physical]] damage, except for a few weapons, a common late-game resistance on many enemies and bosses.
+
+===''[[Final Fantasy: The 4 Heroes of Light]]''===
+The Attack command is one of the default commands available for all playable characters. It expends one [[Action Point (The 4 Heroes of Light)|Action Point]] and has the character attack an opponent with their equipped weapon.
+
+The player may not choose the target of the attack. The weapon's range determines the target: long range weapons prioritize the enemies at the back, and short range weapons prioritize the enemies in the front. If there is only one enemy all attacks target that one.
+
+===''[[Final Fantasy Dimensions]]''===
+{{Section|Final Fantasy Dimensions}}
+
+===''[[Final Fantasy All the Bravest]]''===
+Attack was the ability used by both the Warrior and Onion Knight during battle.
+
+The Onion Knight's Attack dealt more damage the more [[Hit (term)|hits]] it got, which was determined randomly. In addition, more hits hastened the ATB gauge, causing the next turn to come sooner.
+
+===''[[Final Fantasy Record Keeper]]''===
+Attack is a basic command ability with infinite uses. It has a charge time of 1.5 seconds. It is unavailable when a character is in [[Burst Mode (Record Keeper)|Burst Mode]].
+
+Its damage formula is as follows:
+:<math>\frac{User'sATK^{1.3} *User'sATK^{0.5}}{Target'sDEF^{0.5}}</math>
+
+Reaching the soft ATK cap will diminish the final damage total.
+
+Some [[Record Materia]] can change Attack to a different ability when used. Some have a chance to turn Attack into a stronger ability, while other Record Materia will always trigger an alternate ability when Attack is used.
+
+The maximum damage dealt by the attack command is capped at 9,999. However, if the attacker is under the effects of [[EX Mode (Record Keeper)#SOLDIER EX Mode|SOLDIER EX Mode]], they can [[Break Damage Limit|break the usual damage cap]] and reach 99,999 points of damage.
+
+===''[[Chocobo no Fushigina Dungeon]]''===
+{{Section|Chocobo no Fushigina Dungeon}}
+
+====''[[Chocobo's Dungeon 2]]''====
+{{Section|Chocobo's Dungeon 2}}
+
+==Gallery==
+<gallery>
+FF1NES Fighter Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES Knight Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES Thief Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES Ninja Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES BlackBelt Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES Master Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES BlackMage Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES BlackWizard Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES WhiteMage Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES WhiteWizard Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES RedMage Attack.gif|''[[Final Fantasy]]'' (NES).
+FF1NES RedWizard Attack.gif|''[[Final Fantasy]]'' (NES).
+FFI Attack.png|''[[Final Fantasy]]'' (NES).
+FFII Fight Command.png|''[[Final Fantasy II]]'' (NES).
+FF2NES Firion Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Firion Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Maria Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Maria Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Guy Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Guy Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Minwu Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Minwu Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Leila Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Leila Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Gordon Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Gordon Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Josef Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Josef Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Ricard Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Ricard Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Leon Attack1.gif|''[[Final Fantasy II]]'' (NES).
+FF2NES Leon Attack2.gif|''[[Final Fantasy II]]'' (NES).
+FFII Attack GBA.png|''[[Final Fantasy II]]'' (GBA).
+FFIII NES Attack.png|''[[Final Fantasy III]]'' (NES).
+FFIII Attack.png|''[[Final Fantasy III]]'' (DS).
+FFIII Android Attack.png|''[[Final Fantasy III]]'' (iOS).
+FFIV GBA Attack.png|''[[Final Fantasy IV]]'' (GBA).
+FFIVDS Critical.png|''[[Final Fantasy IV]]'' (DS).
+FFIVDS Paladin Cecil Attack.png|Paladin Cecil attacking with a holy sword in ''Final Fantasy IV'' (DS).
+FFIV TAY Attack.png|''[[Final Fantasy IV: The After Years]]''.
+FFIV TAY iOS Attack.png|''[[Final Fantasy IV: The After Years]]'' (iOS).
+Attack from FFV Advance.png|''[[Final Fantasy V]]''.
+FFVI Critical Hit.png|''[[Final Fantasy VI]]''.
+FFVII Cloud Attack.png|[[Cloud (Final Fantasy VII party member)|Cloud]] attacking in ''[[Final Fantasy VII]]''.
+FFVII Barret Attack Gunarm.png|[[Barret (Final Fantasy VII party member)|Barret]] attacking with a gun in ''[[Final Fantasy VII]]''.
+FFVII Barret Attack Non-Gun.png|Barret attacking without a gun in ''[[Final Fantasy VII]]''.
+FFVII Tifa Attack.png|[[Tifa (Final Fantasy VII party member)|Tifa]] attacking in ''[[Final Fantasy VII]]''.
+FFVII Aeris Attack.png|[[Aeris (Final Fantasy VII party member)|Aeris]] attacking in ''[[Final Fantasy VII]]''.
+FFVII Red XIII Attack.png|[[Red XIII (Final Fantasy VII party member)|Red XIII]] attacking in ''[[Final Fantasy VII]]''.
+FFVII Yuffie Attack.png|[[Yuffie (Final Fantasy VII party member)|Yuffie]] attacking in ''[[Final Fantasy VII]]''.
+FFVII Vincent Attack.png|[[Vincent (Final Fantasy VII party member)|Vincent]] attacking in ''[[Final Fantasy VII]]''.
+FFVII Cait Sith Attack.png|[[Cait Sith (Final Fantasy VII party member)|Cait Sith]] attacking in ''[[Final Fantasy VII]]''.
+FFVII Cid Attack.png|[[Cid (Final Fantasy VII party member)|Cid]] attacking in ''[[Final Fantasy VII]]''.
+FFVII Sephiroth Attack.png|[[Sephiroth (Final Fantasy VII party member)|Sephiroth]] attacking in ''[[Final Fantasy VII]]''.
+VIIBC Cid Attack.png|Cid attacking in ''[[Before Crisis -Final Fantasy VII-]]''.
+VIIBC Reno Attack.png|[[Reno]] attacking in ''[[Before Crisis -Final Fantasy VII-]]''.
+VIIBC Shotgun Attack.png|[[Shotgun (Female)]] attacking in ''[[Before Crisis -Final Fantasy VII-]]''.
+VIIBC Tseng Attack.png|[[Tseng]] attacking in ''[[Before Crisis -Final Fantasy VII-]]''.
+VIIBC Two Guns Attack.png|[[Two Guns (Male)]] attacking in ''[[Before Crisis -Final Fantasy VII-]]''.
+VIIBC Verdot Attack.png|[[Verdot]] attacking in ''[[Before Crisis -Final Fantasy VII-]]''.
+VIIBC Vincent Attack.png|Vincent attacking in ''[[Before Crisis -Final Fantasy VII-]]''.
+VIICC Attack.jpg|Zack attacking in ''[[Crisis Core -Final Fantasy VII-]]''.
+FFVIII Squall Attack.png|[[Squall (Final Fantasy VIII party member)|Squall]] attacking in ''[[Final Fantasy VIII]]''.
+FFVIII Zell Attack.png|[[Zell (Final Fantasy VIII party member)|Zell]] attacking in ''[[Final Fantasy VIII]]''.
+FFVIII Selphie Attack.png|[[Selphie (Final Fantasy VIII party member)|Selphie]] attacking in ''[[Final Fantasy VIII]]''.
+FFVIII Rinoa Attack.png|[[Rinoa (Final Fantasy VIII gameplay)|Rinoa]] attacking in ''[[Final Fantasy VIII]]''.
+FFVIII Quistis Attack.png|[[Quistis (Final Fantasy VIII party member)|Quistis]] attacking in ''[[Final Fantasy VIII]]''.
+FFVIII Irvine Attack.png|[[Irvine (Final Fantasy VIII party member)|Irvine]] attacking in ''[[Final Fantasy VIII]]''.
+FFVIII Seifer Attack.png|[[Seifer (Final Fantasy VIII gameplay)|Seifer]] attacking in ''[[Final Fantasy VIII]]''.
+FFIX Zidane Attack Dagger.png|[[Zidane (Final Fantasy IX party member)|Zidane]] attacking with a dagger in ''[[Final Fantasy IX]]''.
+FFIX Zidane Attack Thief Sword.png|Zidane attacking with a thief sword in ''[[Final Fantasy IX]]''.
+FFIX Garnet Attack Racket.png|[[Dagger (Final Fantasy IX gameplay)|Dagger]] attacking with a racket in ''[[Final Fantasy IX]]''.
+FFIX Garnet Attack Rod.png|Garnet attacking with a rod in ''[[Final Fantasy IX]]''.
+FFIX Vivi Attack.png|[[Vivi (Final Fantasy IX party member)|Vivi]] attacking in ''[[Final Fantasy IX]]''.
+FFIX Quina Attack.png|[[Quina (Final Fantasy IX party member)|Quina]] attacking in ''[[Final Fantasy IX]]''.
+FFIX Freya Attack.png|[[Freya (Final Fantasy IX party member)|Freya]] attacking in ''[[Final Fantasy IX]]''.
+FFIX Amarant Attack.png|[[Amarant (Final Fantasy IX gameplay)|Amarant]] attacking in ''[[Final Fantasy IX]]''.
+FFIX Eiko Attack Flute.png|[[Eiko (Final Fantasy IX party member)|Eiko]] attacking with a flute in ''[[Final Fantasy IX]]''.
+FFIX Eiko Attack Racket.png|Eiko attacking with a racket in ''[[Final Fantasy IX]]''.
+FFX Attack Tidus.PNG|[[Tidus (Final Fantasy X party member)|Tidus]] attacking in ''[[Final Fantasy X]]''.
+FFX Tidus Self Attack.png|[[Tidus (Final Fantasy X party member)|Tidus]] attacking himself in ''[[Final Fantasy X]]''.
+FFX Attack Auron.PNG|[[Auron (Final Fantasy X party member)|Auron]] attacking in ''[[Final Fantasy X]]''.
+FFX Auron Self Attack.png|[[Auron (Final Fantasy X party member)|Auron]] attacking himself in ''[[Final Fantasy X]]''.
+FFX Attack Yuna.PNG|[[Yuna (Final Fantasy X party member)|Yuna]] attacking in ''[[Final Fantasy X]]''.
+FFX Yuna Self Attack.png|[[Yuna (Final Fantasy X party member)|Yuna]] attacking herself in ''[[Final Fantasy X]]''.
+FFX Attack Wakka.PNG|[[Wakka (Final Fantasy X party member)|Wakka]] attacking in ''[[Final Fantasy X]]''.
+FFX Wakka Self Attack.png|[[Wakka (Final Fantasy X party member)|Wakka]] attacking himself in ''[[Final Fantasy X]]''.
+FFX Attack Lulu.PNG|[[Lulu (Final Fantasy X party member)|Lulu]] attacking in ''[[Final Fantasy X]]''.
+FFX Lulu Self Attack.png|[[Lulu (Final Fantasy X party member)|Lulu]] attacking herself in ''[[Final Fantasy X]]''.
+FFX Attack Kimahri.PNG|[[Kimahri (Final Fantasy X party member)|Kimahri]] attacking in ''[[Final Fantasy X]]''.
+FFX Kimahri Self Attack.png|[[Kimahri (Final Fantasy X party member)|Kimahri]] attacking himself in ''[[Final Fantasy X]]''.
+FFX Attack Rikku.PNG|[[Rikku (Final Fantasy X party member)|Rikku]] attacking in ''[[Final Fantasy X]]''.
+FFX Rikku Self Attack.png|[[Rikku (Final Fantasy X party member)|Rikku]] attacking herself in ''[[Final Fantasy X]]''.
+FFX Attack Valefor.PNG|[[Valefor (Final Fantasy X)|Valefor]] attacking in ''[[Final Fantasy X]]''.
+FFX Attack Ifrit.PNG|[[Ifrit]] attacking in ''[[Final Fantasy X]]''.
+Shiva Attack.PNG|[[Shiva]] attacking in ''[[Final Fantasy X]]''.
+FFX Attack Ixion.PNG|[[Ixion]] attacking in ''[[Final Fantasy X]]''.
+FFX Attack Bahamut.PNG|[[Bahamut]] attacking in ''[[Final Fantasy X]]''.
+FFX Attack Anima.PNG|[[Anima (summon)|Anima]] attacking in ''[[Final Fantasy X]]''.
+Sandy Attacking.PNG|Sandy attacking in ''[[Final Fantasy X]]''.
+FFX Cindy Attacking.PNG|Cindy attacking in ''[[Final Fantasy X]]''.
+FFX Mindy Attacking.PNG|Mindy attacking in ''[[Final Fantasy X]]''.
+FFX Seymour Attack.png|[[Seymour Guado|Seymour]] attacking in ''[[Final Fantasy X]]''.
+FFX Seymour Self Attack.png|[[Seymour Guado|Seymour]] attacking himself in ''[[Final Fantasy X]]''.
+FFX-2 Thief Attack.png|Rikku as a Thief attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Warrior Attack.png|Paine as a Warrior attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Gunner Attack.png|Yuna as a Gunner attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Samurai Attack.png|Yuna as a Samurai attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Berserker Attack.png|Rikku as a Berserker attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Yuna Trainer Attack.png|Yuna as a Trainer attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Rikku Trainer Attack.png|Rikku as a Trainer attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Paine Trainer Attack.png|Paine as a Trainer attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Alchemist AttackS.png|Yuna as an Alchemist attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Lady Luck Attack.png|Yuna as a Lady Luck attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 TonberryP Attack.png|Paine as a Mascot attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Floral Fallal Attack.png|Yuna in Floral Fallal attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Machina Maw Attack.png|Rikku in Machina Maw attacking in ''[[Final Fantasy X-2]]''.
+FFX-2 Full Throttle Attack.png|Paine in Full Throttle attacking in ''[[Final Fantasy X-2]]''.
+FFXII Attack.png|[[Vaan (Final Fantasy XII party member)|Vaan]] attacking in ''[[Final Fantasy XII]]''.
+Snow Attack from FFXIII.jpg|''[[Final Fantasy XIII]]'' ([[Snow (Final Fantasy XIII party member)|Snow]]).
+Sazh Attack from FFXIII.jpg|''[[Final Fantasy XIII]]'' ([[Sazh (Final Fantasy XIII party member)|Sazh]]).
+Vanille Attack from FFXIII.jpg|''[[Final Fantasy XIII]]'' ([[Vanille (Final Fantasy XIII party member)|Vanille]]).
+Hope Attack from FFXIII.jpg|''[[Final Fantasy XIII]]'' ([[Hope (Final Fantasy XIII party member)|Hope]]).
+Fang Attack from FFXIII.jpg|''[[Final Fantasy XIII]]'' ([[Fang (Final Fantasy XIII party member)|Fang]]).
+FFXIII-2 attack.jpg|[[Noel (Final Fantasy XIII-2 party member)|Noel]] attacks in ''[[Final Fantasy XIII-2]]''.
+FFXIII-2 Seraphic Wing DLC 2.jpg|[[Serah (Final Fantasy XIII-2 party member)|Serah]] attacks in ''[[Final Fantasy XIII-2]]''.
+FFXIV Archer Light Shot.jpg|[[Bard (Final Fantasy XIV)|Archer]] light shot in [[Final Fantasy XIV (version 1.0)|''Final Fantasy XIV'' (version 1.0)]].
+FFXIV Archer Punch.jpg|[[Bard (Final Fantasy XIV)|Archer]] auto attack in [[Final Fantasy XIV (version 1.0)|''Final Fantasy XIV'' (version 1.0)]].
+FFXIV Conjurer Attack.jpg|[[White Mage (Final Fantasy XIV version 1.0)|Conjurer]] auto attack in [[Final Fantasy XIV (version 1.0)|''Final Fantasy XIV'' (version 1.0)]].
+FFXIV Gladiator Attack.jpg|[[Paladin (Final Fantasy XIV)|Gladiator]] auto attack in [[Final Fantasy XIV (version 1.0)|''Final Fantasy XIV'' (version 1.0)]].
+FFXIV Lancer Attack.jpg|[[Dragoon (Final Fantasy XIV)|Lancer]] auto attack in [[Final Fantasy XIV (version 1.0)|''Final Fantasy XIV'' (version 1.0)]].
+FFXIV Marauder Attack.jpg|[[Warrior (Final Fantasy XIV)|Marauder]] auto attack in [[Final Fantasy XIV (version 1.0)|''Final Fantasy XIV'' (version 1.0)]].
+FFXIV Pugilist Attack.jpg|[[Monk (Final Fantasy XIV)|Pugilist]] auto attack in [[Final Fantasy XIV (version 1.0)|''Final Fantasy XIV'' (version 1.0)]].
+FFXIV Thaumaturge Attack.jpg|[[Black Mage (Final Fantasy XIV version 1.0)|Thaumaturge]] auto attack in [[Final Fantasy XIV (version 1.0)|''Final Fantasy XIV'' (version 1.0)]].
+FFTactics Unarmed.png|''[[Final Fantasy Tactics]]''.
+FFT Attack.png|Attacking with a weapon in ''[[Final Fantasy Tactics]]''.
+FFTA Attack.png|''[[Final Fantasy Tactics Advance]]''.
+FFTA2 Attack.png|''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''.
+FF Adventure.PNG|''[[Final Fantasy Adventure]]''.
+FFLII Attack Command.png|Main character attacking in ''[[Final Fantasy Legend II]]''.
+FFLIII Liz King Attacked.png|[[Arthur (Legend III)|Arthur]] attacking in ''[[Final Fantasy Legend III]]''.
+Deuce Flute Attack.jpg|[[Deuce]] attacking with a flute in ''[[Final Fantasy Type-0]]''.
+FF4HoL Attack.png|''[[Final Fantasy: The 4 Heroes of Light]]''.
+FFD Attacking.PNG|''[[Final Fantasy Dimensions]]''.
+FFATB Warrior Attack.png|''[[Final Fantasy All the Bravest]]''.
+</gallery>
+
+==Citations==
+{{citations}}
+
+{{navbox command abilities}}
+
+
+[[ru:Атака (команда)]]
+[[Category:Recurring command abilities]]

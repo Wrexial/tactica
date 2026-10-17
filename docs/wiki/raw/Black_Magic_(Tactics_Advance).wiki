@@ -1,0 +1,118 @@
+{{DISPLAYTITLE:Black Magic (''Tactics Advance'')}}
+{{Quote|Black mage command. Use elemental magic.|Description}}
+'''Black Magic''' {{J|黒魔法|Kuro Mahō}} is the action ability for the [[Black Mage (Tactics Advance)|Black Mage]] in ''[[Final Fantasy Tactics Advance]]''.
+
+{{See|Black Magic}}
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Fire (ability)|Fire}}
+|[[Final Fantasy Tactics Advance weapons#Rod|Rod]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Generates damaging ball of flame.''
+|-
+! rowspan=2|{{LA|Fira (ability)|Fira}}
+|[[Final Fantasy Tactics Advance weapons#Firewheel Rod|Firewheel Rod]]
+|200
+|12
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Powerful fire spell. Deals great damage.''
+|-
+! rowspan=2|{{LA|Firaga (ability)|Firaga}}
+|[[Final Fantasy Tactics Advance weapons#Flame Rod|Flame Rod]]
+|300
+|24
+|50
+|4
+|-
+|colspan=5 style="text-align:left"|''Most powerful fire spell. Deals incredible damage.''
+|-
+! rowspan=2|{{LA|Thunder (ability)|Thunder}}
+|[[Final Fantasy Tactics Advance weapons#Rod|Rod]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Calls down lightning to deal damage.''
+|-
+! rowspan=2|{{LA|Thundara (ability)|Thundara}}
+|[[Final Fantasy Tactics Advance weapons#Thunder Rod|Thunder Rod]]
+|200
+|12
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Powerful lightning spell. Shoots a giant bolt.''
+|-
+! rowspan=2|{{LA|Thundaga (ability)|Thundaga}}
+|[[Final Fantasy Tactics Advance weapons#Thor Rod|Thor Rod]]
+|300
+|24
+|50
+|4
+|-
+|colspan=5 style="text-align:left"|''Most powerful lightning spell. Shoots many bolts.''
+|-
+! rowspan=2|{{LA|Blizzard (ability)|Blizzard}}
+|[[Final Fantasy Tactics Advance weapons#Rod|Rod]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Creates chuck of ice to deal damage.''
+|-
+! rowspan=2|{{LA|Blizzara (ability)|Blizzara}}
+|[[Final Fantasy Tactics Advance weapons#Sleet Rod|Sleet Rod]]
+|200
+|12
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Powerful blizzard spell. Fires larger chuck of ice.''
+|-
+! rowspan=2|{{LA|Blizzaga (ability)|Blizzaga}}
+|[[Final Fantasy Tactics Advance weapons#Chill Rod|Chill Rod]]
+|300
+|24
+|50
+|4
+|-
+|colspan=5 style="text-align:left"|''Most powerful blizzard spell.''
+|}
+
+==Gallery==
+<gallery>
+FFTA Fire.png|Fire.
+FFTA Fira.png|Fira.
+FFTA Firaga.png|Firaga.
+FFTA Thunder.png|Thunder.
+FFTA Thundara.png|Thundara.
+FFTA Thundaga.png|Thundaga.
+FFTA Blizzard.png|Blizzard.
+FFTA Blizzara.png|Blizzara.
+FFTA Blizzaga.png|Blizzaga.
+</gallery>
+
+==Etymology==
+{{Etym|Black magic}}
+
+{{navbox abilities FFTA}}
+[[Category:Black Magic in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]
+[[Category:Black Magic]]

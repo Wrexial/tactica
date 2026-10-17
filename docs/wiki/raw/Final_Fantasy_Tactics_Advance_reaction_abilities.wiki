@@ -1,0 +1,107 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' reaction abilities}}
+[[File:FFTA Reaction Ability Icon.png|right]]
+'''Reaction abilities''' {{J|リアクションアビリティ|Riakushon Abiriti}} in ''[[Final Fantasy Tactics Advance]]'' are learned via [[Ability Points]] (AP). Each character can equip one reaction ability. Reaction abilities activate when their trigger condition is met. The reaction abilities vary, ranging from retaliating actions to bestowing positive status.
+
+==Ability list==
+{|class="full-width FFTA article-table"
+|-
+!style="width:20%"|Name
+!style="width:25%"|Description
+!style="width:25%"|Trigger
+!style="width:10%"|AP
+!style="width:20%"|Job
+|-
+!{{LA|Absorb MP (ability)|Absorb MP}}
+|Gain MP from magic or skill used against unit
+|Attacked by magic or skill that uses MP
+|style="text-align:center"|300
+|[[Elementalist (Tactics Advance)|Elementalist]]/[[Illusionist (Tactics Advance)|Illusionist]]
+|-
+!{{LA|Regenerate (reaction ability)|Auto Regen}}
+|Bestows Regen on self
+|Attacked by another unit
+|style="text-align:center"|300
+|[[Gadgeteer]]/[[Hunter (Tactics Advance)|Hunter]]/[[Sniper (Tactics Advance)|Sniper]]
+|-
+!{{A|Block Arrows}}
+|Block all arrow attacks
+|Any arrow attack
+|style="text-align:center"|300
+|[[Animist (Tactics Advance)|Animist]]/[[Archer (Tactics Advance)|Archer]]
+|-
+!{{LA|Counter (ability)|Bonecrusher}}
+|Counter with 1.5 times damage. Only affects first weapon if two weapons are equipped.
+|Physically attacked by another unit who is in range for the counter
+|style="text-align:center"|300
+|[[Fighter (Tactics Advance)|Fighter]]/[[Templar (Tactics Advance)|Templar]]
+|-
+!{{LA|Sticky Fingers (ability)|Catch}}
+|Catch Thrown/Hurled items and add them to inventory. 
+|Anything thrown at the user
+|style="text-align:center"|300
+|[[Juggler (Tactics Advance)|Juggler]]/[[Red Mage (Tactics Advance)|Red Mage]]
+|-
+!{{LA|Counter (ability)|Counter}}
+|Counter an enemy's attack
+|Targetted by a physical attack by another unit who is in range for the counter
+|style="text-align:center"|300
+|[[Thief (Tactics Advance)|Thief]] / [[White Monk (Tactics Advance)|White Monk]]
+|-
+![[MP Shield|Damage &#62; MP]]
+|Converts HP damage to MP damage
+|Attacked by another unit (does not trigger when unit has zero MP)
+|style="text-align:center"|300
+|[[Blue Mage (Tactics Advance)|Blue Mage]]/[[Gadgeteer]]/[[Morpher]]
+|-
+!{{A|Dragonheart}}
+|Bestows [[Reraise (status)|Auto-Life]] on self
+|Attacked by another unit
+|style="text-align:center"|300
+|[[Dragoon (Tactics Advance)|Dragoon]]
+|-
+!{{LA|Critical ability|Last Berserk}}
+|Inflicts [[Berserk (status)|Berserk]] on self when in Critical status
+|Attacked by another unit which results in Critical status
+|style="text-align:center"|300
+|[[Defender (Tactics Advance)|Defender]]
+|-
+!{{LA|Critical: Haste|Last Haste}}
+|Bestows [[Haste (status)|Haste]] on self when in Critical status
+|Attacked by another unit which results in Critical status
+|style="text-align:center"|300
+|[[Beastmaster (Tactics Advance)|Beastmaster]]/[[Mog Knight]]/[[Ninja (Tactics Advance)|Ninja]]
+|-
+!{{LA|Critical ability|Last Quicken}}
+|Immediately take a turn when in Critical status
+|Attacked by another unit which results in Critical status
+|style="text-align:center"|300
+|[[Time Mage (Tactics Advance)|Time Mage]]
+|-
+!{{LA|Reflex (evasion ability)|Reflex}}
+|Completely dodge attacks
+|Attacked by another unit using the Fight command
+|style="text-align:center"|300
+|[[Fencer (Tactics Advance)|Fencer]]/[[Paladin (Tactics Advance)|Paladin]]/[[Sage (Tactics Advance)|Sage]]/[[White Monk (Tactics Advance)|White Monk]]
+|-
+!{{LA|Counter (ability)|Return Fire}}
+|Return arrow attacks
+|Any arrow attack
+|style="text-align:center"|300
+|[[Assassin (Tactics Advance)|Assassin]]/[[Juggler (Tactics Advance)|Juggler]]
+|-
+!{{LA|Return Magic}}
+|Counter magic attacks with the same spell
+|Magically attacked by another unit
+|style="text-align:center"|300
+|[[Bishop (Tactics Advance)|Bishop]]/[[Black Mage (Tactics Advance)|Black Mage]]
+|-
+!{{LA|Strike Back|Strikeback}}
+|Block attack and counter
+|Attacked by another unit using the ''Fight'' command and in range for the counter
+|style="text-align:center"|300
+|[[Fighter (Tactics Advance)|Fighter]]/[[Gladiator (Tactics Advance)|Gladiator]]
+|}
+
+{{navbox FFTA}}
+{{navbox support abilities}}
+[[Category:Reaction abilities in Final Fantasy Tactics Advance]]

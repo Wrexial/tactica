@@ -1,0 +1,67 @@
+{{DISPLAYTITLE:Cream (''Tactics Advance'')}}
+[[File:FFXIIRW YellowFlan.PNG|right|Cream.]]
+[[File:FFTA-spr-Cream.gif|left]]
+'''Cream''' {{J|イエローゼリー|Ierō Zerī|Yellow Jelly}} in ''[[Final Fantasy Tactics Advance]]'' is a gelatinous monster related to the [[Jelly (Tactics Advance)|Jelly]] and [[Ice Flan (Tactics Advance)|Ice Flan]]. It has a ridiculously high Defense stat but is susceptible to magic, barring that of the [[Thunder (ability)|Thunder]] element, which the Cream absorbs.
+
+{{See|Yellow Jelly}}
+
+==Abilities==
+===Scorch===
+{{Quote|Cream command. Attack with electrically charged body.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Acid}}
+|''Corrosive liquid. Inflicts random status ailment.''
+|12
+|-
+!{{LA|Thunder (ability)|Thunder}}
+|''Calls down lightning to deal damage.''
+|—
+|-
+!{{LA|Thundara (ability)|Thundara}}
+|''Powerful lightning spell. Shoots a giant bolt.''
+|—
+|-
+!{{LA|Thundaga (ability)|Thundaga}}
+|''Most powerful lightning spell. Shoots many bolts.''
+|—
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Mission #004: Desert Peril
+|The Cream here is at the front ranks of the monster brigade. A [[Black Mage (Tactics Advance)|Black Mage]] with [[Fire (ability)|Fire]] or [[Blizzard (ability)|Blizzard]] can defeat the Cream on its first turn.
+|-
+!Mission #052: Friend Trouble
+|This Cream in the only non-Panther-type enemy in this mission.
+|-
+!Mission #093: Flan Breakout!
+|The Mamaflan is a Cream and is flanked by two Ice Flans and two Jellies. Illusionist magic works wonders in this battle.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Salikawood (Tactics Advance)|Salikawood]]
+|style="text-align: center"|Tricky Spirits
+|One Cream joins this mostly fairy-type clan.
+|}
+
+==Etymology==
+{{Etym|Cream}}
+
+{{Etym|Jelly}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

@@ -1,0 +1,27 @@
+{{Expand|Data on each mission}}
+[[File:FFTAMissions.png|right|300px|thumb|[[Marche Radiuju|Marche]] taking up a Mission at the pub.]]
+'''Missions''' in ''[[Final Fantasy Tactics Advance]]'' are important in maintaining a [[Clan]]. These missions help increase character experiences and skill, as well as increase overall clan's skill level. There are different ways of accepting missions, as there are different types of missions.
+
+Mission requests are posted at the [[Pub]] at each of the five towns, and each town carry different mission requests at one time. To take on a mission, a Clan must pay a set information fee. Prices range depending on the reward, duration of battle as well as the mission type.
+
+==Mission types==
+Missions are divided into four types, two of which can be canceled at any given time:
+#Missions that advance the storyline are symbolized by the "sword" icon. Clan Tourneys are also symbolized by the "sword" icon.
+#Dispatch missions—those that enable a clan to send out a clan member—are symbolized by the "parchment" icon.
+#Clan engagements, symbolized by the "blue horned head" icon. These missions can be taken either at the pub or on the world map, where the former are usually restricted to Clan League battles as well as friendly clan requests while the latter are for clans seeking to challenge other clans.
+#"White flag" Turf battles, where one clan can "liberate" an area from the other clan in control.
+
+==Mission requests==
+A typical mission request are written on three pages:
+*The first page contains the request statement, signed by the requester.
+*Second page listing the requirements to clear a mission—either by winning a set number of battles, dispatching a clan member for a set number of days or simply by winning the mission battle—as well as the rewards in the form of gil, equipment or mission items.
+*Third page listing the required items, skill or jobs necessary for the mission request, as well as noting whether a request can be canceled.
+
+Reports of cleared mission can be read from the Clan menu. Certain missions are not listed there, however.
+
+==Mission items==
+:''For a list of mission items, see [[Final Fantasy Tactics Advance mission items|here]].''
+Up to two mission items can be taken into a mission; these either increase the player's physical or magical offensive or defensive powers, are required to unlock other missions or give a chance of secret characters joining.
+
+{{navbox setting FFTA}}
+[[Category:Final Fantasy Tactics Advance]]

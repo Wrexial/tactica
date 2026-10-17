@@ -1,0 +1,234 @@
+{{infobox race
+|name=Human
+|japanese=人間
+|romaji=Ningen
+|lit=
+|image=FFXIIHume.jpg
+|distinctions=Bipedal, upright posture
+}}
+
+'''Humans''', also known as '''humes''' {{j|ヒュム|Hyumu}}, '''hyur''', and '''humanoid''', are a recurring race that appears throughout the [[Final Fantasy series|''Final Fantasy'' series]].
+
+Based almost entirely on the real-world [[wikipedia:Human|species]], humans are usually the most numerous and politically dominant sapient species in any given ''Final Fantasy'' world, particularly in the main series. As the most common sapient species, they are often considered to be a standard or average to which the biology, psychology, and culture of other species and races are compared. A rather potent race, humans have been witnessed occupying, or at least having the capacity to occupy, most [[job system|jobs]] in the ''Final Fantasy'' worlds.
+
+==Humanoid types and races==
+Typically, humans can define and categorize themselves by their place of origin ([[Spira]]ns, [[Galbadia]]ns) or by their appearances (such as skin color). However, there are Humans, Human races, or types of humans that possess unique classifications largely due to certain unique abilities.
+
+Aside from humans or humes, ''Final Fantasy'' worlds are often populated with humanoid, or near-human, races that have varying degrees of resemblance to true humans (as based on real life).
+
+As an example, the [[Summoner (Final Fantasy IX)|Summoners]] from ''[[Final Fantasy IX]]'' look almost entirely human but for their distinctive horns that deviate from the appearance of a typical human, making them, instead, "near-human". Alternatively, the classification of "near-human" can also fall upon those of mixed-bloodlines or on those who have been "created in their image" (eg. [[Genome (Final Fantasy IX)|Genomes]]).
+
+The term "humanoid" is reserved towards those that only possess human characteristics in a less apparent manner. An example of a "humanoid" race would be the [[Ronso]] or the [[Mithra]], both possessing human-like bodies, but, overall, are entirely different from humans.
+
+{{multicol-begin}}
+;Human and near-human races
+*[[Aegyl]]
+*[[Al Bhed]]
+*[[Cetra]]
+*[[Clavat]]
+*[[Elezen]]
+*[[Elf|Elves]]
+*[[Elvaan]]
+*[[Garlean|Garleans]]
+*[[Genome (Final Fantasy IX)|Genomes]]
+*[[Hume (Final Fantasy XI)|Hume]]
+*[[Hyur]]
+*[[Jiant]]
+*[[Kuluu]]
+*[[Lufenian]]
+*[[Lunarian]]s
+*[[Mutant]]
+*[[Selkie (Crystal Chronicles)|Selkie]]
+*[[Sorceress (Final Fantasy VIII)|Sorceresses]] from ''[[Final Fantasy VIII]]''
+*[[Summoner (Final Fantasy IX)|Summoners]] from ''[[Final Fantasy IX]]''
+*[[Zilart]]
+{{multicol-separator}}
+;Humanoid races
+*[[Au Ra]]
+*[[Bangaa]]
+*[[Black mage (Final Fantasy IX)|Black Mages]] from ''[[Final Fantasy IX]]''
+*[[Burmecian]]s
+*[[Cleyran]]s
+*[[Dark Elf (Final Fantasy)|Dark Elves]]
+*[[Dwarf|Dwarves]]
+*[[Fairy (Final Fantasy III)|Fairies]]
+*[[Galka]]
+*[[Garif]]
+*[[Gnome (race)|Gnomes]]
+*[[Gria]]
+*[[Guado]]
+*[[Helgas]]
+*[[Hrothgar]]
+*[[Hypello]]
+*[[Lamia (Final Fantasy XI)|Lamiae]]
+*[[Lalafell]]
+*[[Lilty]]
+*[[Lilikin]]
+*[[Mermaid (Final Fantasy)|Mermaids]]
+*[[Lamia (Final Fantasy XI)|Merrows]]
+*[[Miqo'te]]
+*[[Mithra]]
+*[[Moogle]]s (in some games, especially in Ivalice)
+*[[Qu]]
+*[[Roegadyn]]
+*[[Rev]]
+*[[Ronso]]
+*[[Shumi]]
+*[[Seeq]]
+*[[Tarutaru]]
+*[[Viera]]
+*[[Werewolf (Final Fantasy V)|Werewolves]]
+*[[Yuke]]s
+{{multicol-end}}
+
+==Appearances==
+===''[[Final Fantasy V]]''===
+Humans appear as an enemy type.
+{{Section|Final Fantasy V}}
+
+===''[[Final Fantasy VI]]''===
+Human is a racial type, with most playable characters being humans (bar [[Mog (Final Fantasy VI)|Mog]] and [[Umaro]]). Some [[Monster (term)|monsters]], such as [[Guard (Final Fantasy VI)|Guard]] and [[Baalzephon (Final Fantasy VI)|Baalzephon]], are humans as well. The majority of the human-type monsters are weak to the [[Poison (element)|Poison]] element. The [[Man-Eater (weapon)|Man-Eater]] can deal double damage to human opponents.
+
+===''[[Final Fantasy IX]]''===
+There are many humans in the world of [[Gaia (Final Fantasy IX)|Gaia]], mainly residing in the nations of [[Alexandria (Final Fantasy IX)|Alexandria]] and [[Lindblum (Final Fantasy IX)|Lindblum]]. The playable humans include [[Adelbert Steiner]], General [[Beatrix]], [[Cinna (Final Fantasy IX)|Cinna]], and [[Amarant Coral]]. Humanoid is an [[Final Fantasy IX enemy types|enemy type]], which takes more damage when the [[Man Eater (Final Fantasy IX)|Man Eater]] support ability is equipped; the enemy type includes mainly bosses and [[Black mage (Final Fantasy IX)|black mages]].
+
+Many of the animal-like humanoid species are considered humans, including [[Doctor Tot]] and the [[Nero family]].<ref name="ffixultichar">{{Refbook|[[Final Fantasy IX Ultimania]]|26|30}}</ref>
+
+===''[[Final Fantasy X]]''===
+A human-like race appears to have the largest population in [[Spira]]. Five out of the seven playable characters are human. [[Wen Kinoc]] is the [[Maester]] of all human [[Yevon]]ites. The race is never given an official name from Square-Enix.
+
+[[Al Bhed]] is another human-like race in Spira, but the lore of the game seems to count them as a different race.
+
+The term [[Humanoid (Final Fantasy X)|Humanoid]] is used to describe a type of enemies faced. This category includes the [[Guado]] and [[Ronso]] enemies.
+
+===''[[Final Fantasy XI]]''===
+[[File:FFXI-Hume maleArtwork.jpg||left|50px]]
+[[File:FFXI-Hume femaleArtwork.jpg||right|50px]]
+{{main|Hume (Final Fantasy XI)}}
+Humes originate from the [[Republic of Bastok|Bastok]] region, but have spread to the farthest reaches of [[Vana'diel]]. The race is characterized by its equally balanced abilities, moderate intelligence, and high level of skill in numerous areas. This combination of traits has played a large role in Bastok's growth into a prosperous nation of technology and industry. The hume race has balanced stats that make it able to play any job well, but not as well as one of the races that specializes in that job. The home kingdom for humes is the Republic of Bastok. 
+
+Sometimes, the Enlightened Races as a whole are referred to as "humans."
+
+They also appear as an [[Humanoid (Final Fantasy XI)|enemy type]].{{clear}}
+
+===''[[Final Fantasy XII]]''===
+[[File:XII Humes.PNG|left|130px]]
+Humes are the most common race in [[Ivalice (Final Fantasy XII)|Ivalice]], making up about 40% of the population. They have no special abilities and have the second shortest life span of any race in Ivalice (roughly 60 years), next to the [[aegyl]]. Despite this, they have managed to set up large empires and kingdoms all over the continent and effectively achieved global dominance due to their industrious nature. Humes can be compared with moogles in this regard and probably have the closest relationship with the moogle than any other race, as seen in many instances when moogles are employed by humes. However, races of all kinds inhabit hume settlements.
+
+Hume characteristics in Ivalice vary, but there are visible patterns based on location. For example, Dalmascans generally have darker skin and light hair, whilst Archadians are paler with darker hair.
+
+In the English dub, most of the higher classes speak in proper Queen's English despite their origins; however, among the humbler classes, [[Archadia]]ns resemble East Londoners in speech, [[Dalmasca (Final Fantasy XII)|Dalmasca]]ns speak with a Californian American accent, [[Bhujerba]]ns with an Indian English accent, and [[Rozarrian Empire|Rozarrians]] with a Spanish accent.{{clear}}
+
+===''[[Lightning Returns: Final Fantasy XIII]]''===
+[[File:LRFFXIII Cathedral Sentry.png|left|85px]]
+[[File:LRFFXIII Fanatic.png|right|100px]]
+{{main|Human (Lightning Returns enemy type)}}
+"Human" is listed as a specific type in the [[Datalog (Final Fantasy XIII)#Lightning Returns: Final Fantasy XIII|Datalog's]] [[Bestiary (term)#Lightning Returns: Final Fantasy XIII|Bestiary]] submenu.{{clear}}
+
+===''[[Final Fantasy XIV]]''===
+[[File:Hyur CG.png|right|150px]]
+{{main|Hyur}}
+Hyur have the largest population in all of Eorzea. They came in multiple migratory waves from neighboring continents and islands, bringing with them their sophisticated technology and complex ethos. Various types of Hyur exist, with two tribes being playable—Highlanders, those who live in mountainous areas, and Midlanders, those who live in lower elevations.
+
+The word "human" is often used in the world of Eorzea as a catch-all term for all sentient non-beast races. In the parallel world of [[First|the First]], Hyur are known as Humes. In the western continent of [[Tural]], they are known as Tonawawta. In [[Alexandria (Final Fantasy XIV)|Alexandria]], they are known as Hyune.
+
+===''[[Final Fantasy XV]]''===
+Humans and [[Astral]]s are the only known sentient races on the planet of [[Eos (Final Fantasy XV)|Eos]]. In Chapter 12, [[Shiva (Final Fantasy XV)|Shiva]] tells [[Noctis Lucis Caelum|Prince Noctis]] the story of Astrals' and mankind's relationship, saying that humans were created in the Astrals' image. In ''[[Final Fantasy XV: Episode Ardyn]]'', the player can explore an exhibition on the planet and learn that fossils thought to be remains of the oldest members of the human race were discovered in the [[Niflheim|Piztala region]]. Man is said to have gained the knowledge of fire from the god [[Ifrit (Final Fantasy XV)|Ifrit]] and built a powerful nation known as [[Solheim]] that lies in ruin in the modern day, having been destroyed in the [[War of the Astrals]]. Humans continued to populate the planet while the gods went to rest.
+
+===''[[Final Fantasy XVI]]''===
+Humanity was created by [[Ultima (Final Fantasy XVI)|Ultima]] as seeds for fostering [[Mythos]], a vessel capable of casting a spell powerful enough to remake the world and escape the ever-encroaching threat of the [[Blight (Final Fantasy XVI)|Blight]]. Ultima and his kin slumbered in [[Origin (Final Fantasy XVI)|Origin]] and awaited the birth of Mythos, only to reawaken to discover that humanity had gained sentience and had harnessed the power of magic, hastening the Blight's approach. In order to correct this, Ultima began manipulating the leaders of nations into waging great wars, attempting to break the collective will of humanity and bring them back to a state void of consciousness. Ironically, this plan would lead to [[Clive Rosfield]], the Mythos that Ultima had been waiting for, to rise up alongside several other powerful [[Dominant|Dominants]] and bring an end to not only Ultima, but magic altogether.
+
+===''[[Final Fantasy Tactics]]''===
+In the time of the story, humes are the only intelligent race left in Ivalice, with all of the others having gone extinct long before the game's start.{{clear}}
+
+===''[[Final Fantasy Tactics Advance]]''===
+[[File:Ffta-human.jpg|right|60px]]
+Because of their nature, humes are some of the most adaptable characters in [[Ivalice (Tactics Advance)|Ivalice]]. While they can't access extremely strong classes like the [[viera]]'s [[Assassin (Tactics Advance)|Assassin]] or the [[bangaa]]'s [[Dragoon (Tactics Advance)|Dragoon]], they have the highest number of [[job system|jobs]] to choose from. They are also the only race able to get the S-Ability Doublesword, which allows a unit to wield two weapons, so long as they are both 1-hand (bows, for example, are not affected by Doublesword, though Rods can be). Hume exclusive jobs include: Soldier, Paladin, Ninja, Hunter, Fighter, and Blue Mage.
+
+The [[Totema]] of the humes is [[Mateus (Ivalice)#Final Fantasy Tactics Advance|Mateus]]. Mateus is the most powerful of the Totema, but is also the last one obtained.{{clear}}
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+[[File:Ffta2-hume.jpg|left|60px]]
+{{Quote|The most common of the races, humes can be found throughout Ivalice. In skill and ability they are perhaps the most balanced race. While they excel in no single area, they perform capably in most any role.|Description}}
+The humes have access to more balanced jobs and two new jobs: [[Parivir (Tactics A2)|Parivir]] and [[Seer (Tactics A2)|Seer]].
+
+Being the most widespread race, the majority of notable characters are hume, including the protagonist [[Luso Clemens|Luso]] and the antagonist [[Illua]].
+
+Humes can be obtained in these locations during ''Blackfrost'' or ''Skyfrost'':
+*'''[[Targ Wood]]''' - [[Soldier (Tactics A2)|Soldier]], [[Thief (Tactics A2)|Thief]], [[White Mage (Tactics A2)|White Mage]], [[Black Mage (Tactics A2)|Black Mage]], [[Archer (Tactics A2)|Archer]]
+*'''[[Galerria Deep]]''' - [[Paladin (Tactics A2)|Paladin]], [[Fighter (Tactics A2)|Fighter]], [[Blue Mage (Tactics A2)|Blue Mage]], [[Hunter (Tactics A2)|Hunter]]
+*'''[[Sant D'alsa Bluff]]''' - [[Parivir (Tactics A2)|Parivir]], [[Ninja (Tactics A2)|Ninja]], [[Illusionist (Tactics A2)|Illusionist]], [[Seer (Tactics A2)|Seer]]
+
+===''[[Final Fantasy Tactics S]]''===
+[[File:FFTS Agrias.png|right|60px]]
+Humes make an appearance as one of the playable races. They retain all of the jobs introduced from ''Final Fantasy Tactics Advance'' and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+
+Humes are given the following new jobs: [[Onion Knight (job)|Onion Knight]], [[Sky Pirate (job)|Sky Pirate]], [[Judgemaster (Tactics Advance)|Judgemaster]], [[Holy Knight]], and [[Squire]].
+{{Section|Final Fantasy Tactics S}}
+{{clear}}
+
+===''[[The Final Fantasy Legend]]''===
+{{main|Human (Legend series)}}
+Humans are a playable race and, like the [[mutant]] race, there are both male and female humans available for hire at Guilds. Their stats do not improve via experience in battle and must improve their statistics with special potions. These potions can only improve the humans' Strength, Agility, and HP. There are three varieties of HP potion classified by the max HP they can raise to before becoming ineffective (200, 400, and 600, respectively), at which point they will only raise 1 HP at a time.
+
+Because they cannot raise their magic statistic, humans make poor spellcasters, though are capable of equipping Spell Books if the need presents. Humans do not have Talents, but this allows them to fill all eight of their inventory slots with equipment or items instead of irremovable Talents, which is an advantage on its own. Their ability to buy statistics makes Humans very powerful in the late game, but they function best with support from other classes.
+
+===''[[Final Fantasy Legend II]]''===
+Humans are a playable race that may be selected at the start of the game. Like the Mutant race, there are both Male and Female Humans available for selection. Regardless of the lead player character's race, their parents will be Human, including the majority of Guest Characters, although guest characters function under their own internal rules.
+
+Like Mutants, Humans gain statistics with use, gaining Strength while using Heavy weapons, Agility while using Light, etc. They gain statistics faster than Mutants and can use all eight inventory slots at all times. They may now also potentially gain Magic via the use of Magic Books and Staves, but the sheer expense and early-game absence of such items is prohibitive.
+
+===''[[Final Fantasy Legend III]]''===
+{{main|Transformation (Legend III)}}
+Humans are a playable race: Arthur and Sharon are Human. Humans and Mutants gain experience points and levels in the traditional fashion. They are distinguished from Mutants by their statistical progression, favoring Strength over Agility, Defense over Magic, and Heavy weapons over Light.
+
+Humans and Mutants together represent the center of the transformation sequence: if they eat Meat, they will become a [[Beast (type)|Beast]]. If they install parts, they will become a [[Cyborg]]. It is impossible for them to revert to their default selves. All of the [[Guest]] Characters are Humans and Mutants, but as Guest Characters cannot level or transform, the difference is largely moot.
+
+===''[[Final Fantasy Dimensions]]''===
+Humans appear as an enemy type.
+{{Section|Final Fantasy Dimensions}}
+
+===''[[Final Fantasy Grandmasters]]''===
+Hume were one of the playable races.
+
+<gallery>
+FFGrand Male Hume.png|Male Hume.
+FFGrand Female Hume.png|Female Hume.
+</gallery>
+
+==Non-''Final Fantasy'' guest appearances==
+===''[[Puzzle & Dragons]]''===
+Humes appeared as part of the ''Crystal Defenders'' collaboration.
+
+<gallery>
+PAD Soldier.png|Soldier.
+PAD Soldier2.png|Soldier's evolution.
+PAD Soldier3.png|Soldier's ultimate evolution.
+PAD Thief.png|Thief.
+PAD Thief2.png|Thief's evolution.
+PAD Thief3.png|Thief's ultimate evolution.
+</gallery>
+
+==Gallery==
+<gallery>
+Red Mage Concept.jpg|Hume [[Red Mage (Final Fantasy XI)|Red Mage]] in ''[[Final Fantasy XI]]''.
+FFXI-HumePresident concept.jpg|President Karst, a hume, in ''Final Fantasy XI''.
+FFXI-HumeChild concept.jpg|Various humes in ''Final Fantasy XI''.
+Archadian noble.jpg|Archadian Humes in ''[[Final Fantasy XII]]''.
+Ffxii humes1.jpg|Humes in ''Final Fantasy XII''.
+Ffxii humes2.jpg|Humes in ''Final Fantasy XII''.
+FFTA2_HumeIntro.png|Humes introduction in ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''.
+</gallery><br />
+==Citations==
+{{citations}}
+
+{{navbox Ival}}
+{{navbox races}}
+
+
+[[de:Hume]]
+[[it:Umano]]
+[[ru:Люди]]
+[[Category:Races]]
+[[Category:Hume]]
+[[Category:Races in Final Fantasy IX]]

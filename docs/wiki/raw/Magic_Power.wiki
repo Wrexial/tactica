@@ -1,0 +1,614 @@
+{{Expand|TFF|BravelyD|FFCC|FFT|X2|FFIII|FFI|Info on formulas, character/job specifics, etc.}}
+[[File:RoF Magic Stat Icon.png|right]]
+'''Magic Power''' {{J|魔力|Maryoku}}, also known as '''Magic Attack''', '''Magic atk''', '''Mag.Pwr''', '''MPow''', '''Attack Magic Potency''', '''Mana''', '''M-Power''', or just '''Magic''', is the stat that determines the amount of damage a character can do when [[Magic (command)|casting a spell]] or using any ability whose effect depends on the user's Magic stat. Usually, it works in conjunction with a spell's inherent Spell Power. Characters with high Magic Power usually have low Attack Power and vice-versa. Often, Magic Power is the function of [[Intelligence (stat)|Intelligence]], another recurring statistic.
+
+== Appearances ==
+=== ''[[Final Fantasy]]'' ===
+{{Section|Final Fantasy}}
+
+=== ''[[Final Fantasy II]]'' ===
+Magic determines how much [[MP (stat)|MP]] a character will gain when maximum MP increases after a battle. For example, if a character has 25 Magic with 250 maximum MP, then his/her maximum MP will become 275 the moment it rises. Each point of Magic also increases [[Magic Defense (stat)#Final Fantasy II|Magic Defense]] by 0.5%. Magic is gained by losing MP in battle, whether by casting spells or having MP reduced by [[Rasp (ability)#Final Fantasy II|Sap]] or [[Osmose (ability)#Final Fantasy II|Osmose]].
+
+=== ''[[Final Fantasy III]]'' ===
+{{section|Final Fantasy III}}
+
+=== ''[[Final Fantasy V]]'' ===
+The character's Magic stat is determined by their current [[Final Fantasy V jobs|job]] and their inherent Magic bonus.
+
+{| class="FFV article-table" style="text-align:center"
+|- 
+! style="width:50%" |Character
+! style="width:50%" |Magic Bonus
+|-
+!  |[[Bartz Klauser|Bartz]]
+| +1
+|-
+!  |[[Lenna Charlotte Tycoon|Lenna]]
+| +4
+|-
+!  |[[Galuf Halm Baldesion|Galuf]]
+|0
+|-
+!  |[[Faris Scherwiz|Faris]]
+| +2
+|-
+!  |[[Krile Mayer Baldesion|Krile]]
+| +3
+|}
+
+[[Oracle (Final Fantasy V)|Oracle]] (GBA/2013 only) has the highest Magic, followed by the [[Summoner (Final Fantasy V)|Summoner]]. [[Monk (Final Fantasy V)|Monk]] and [[Berserker (Final Fantasy V job)|Berserker]] have the lowest Magic. Magic determines the power of spells, summons as well as physical magic damage such as by [[Bell (weapon type)|bells]] and [[Rod (weapon type)|rods]].
+
+The [[Bard (Final Fantasy V)|Bard]]'s [[Sing (Final Fantasy V)#Mana's Paean|Mana's Paean]] song boosts the party's Magic while he or she is singing.
+
+=== ''[[Final Fantasy VI]]'' ===
+Also known as Mag.Pwr., [[Final Fantasy VI stats#Magic|Magic]] determines magic spells' strength, as well as the strength of certain special abilities; such as [[Sabin (Final Fantasy VI party member)|Sabin]]'s [[Blitz (Final Fantasy VI)|Blitzes]], most of which are considered magical. Characters like [[Terra (Final Fantasy VI party member)|Terra]] and [[Celes (Final Fantasy VI party member)|Celes]] have naturally high magic stat, but [[Relm (Final Fantasy VI party member)|Relm]] has the highest, although spells cast via [[Sketch]] use the opponent's Magic Power to determine damage. [[Cyan (Final Fantasy VI party member)|Cyan]] has the lowest Magic of the party.
+
+The Magic stat can be boosted via leveling up with using [[Esper (Final Fantasy VI)|espers']] [[stat growth|stat boosting]] abilities. This is the only way to boost the characters' base magic stat, because it cannot be increased by simply leveling up. The espers are [[Cait Sith (Final Fantasy VI)|Cait Sith]], [[Maduin (Final Fantasy VI)|Maduin]] (Magic Power +1), [[Zona Seeker (Final Fantasy VI)|Zona Seeker]], and [[Valigarmanda (Final Fantasy VI)|Valigarmanda]] (Magic Power +2). Certain [[Relic (Final Fantasy VI)|relics]] and [[Final Fantasy VI weapons|weapons]] also give bonuses to the wearer's Magic stat.
+
+It is possible to [[Overflow glitch|overflow]] damage if a character's Magic stat is boosted high enough.
+
+=== ''[[Final Fantasy VII]]'' ===
+[[Final Fantasy VII stats#Magic atk|Magic atk]] determines the strength of [[Magic (Final Fantasy VII)|Magic]] and [[Summon (Final Fantasy VII)|Summon]] spells, as well as several [[Enemy Skill (Final Fantasy VII)|Enemy Skills]] and [[Limit (Final Fantasy VII)|Limit Breaks]]. It can be upgraded with the [[Magic Source (Final Fantasy VII)|Magic Source]] item ([[Morph (Final Fantasy VII ability)|morphed]] from [[8 eye]] and [[Unknown 3]]), by equipping [[Magic Materia (Final Fantasy VII)|Magic]] and [[Summon Materia (Final Fantasy VII)|Summon Materia]] and the [[Magic Plus (Final Fantasy VII)|Magic Plus]] [[Independent Materia (Final Fantasy VII)|Independent Materia]]. Most Materia give +1 to Magic, but some give +2, some +4, and [[Knights of Round (Final Fantasy VII)|Knights of Round]] gives +8. Equipment can also boost the user's magic, especially the accessory [[Circlet (Final Fantasy VII)|Circlet]].
+
+Each character has unique stat growth when leveling up. Even though each stat growth via level up is randomized, the game is programmed in such manner the character can never stray too far from the intended average.
+
+List of characters' possible minimum and maximum Magic on Level 99.
+
+{| class="half-width FFVII article-table" style="text-align:center"
+|- 
+! style="width:33%" |Character
+! style="width:33%" |Minimum Magic
+! style="width:33%" |Maximum Magic
+|-
+!  |[[Cloud (Final Fantasy VII party member)|Cloud]]
+|98
+|100
+|-
+!  |[[Tifa (Final Fantasy VII party member)|Tifa]]
+|82
+|89
+|-
+!  |[[Aeris (Final Fantasy VII party member)|Aeris]]
+|100
+|100
+|-
+!  |[[Barret (Final Fantasy VII party member)|Barret]]
+|78
+|85
+|-
+!  |[[Red XIII (Final Fantasy VII party member)|Red XIII]]
+|84
+|91
+|-
+!  |[[Cid (Final Fantasy VII party member)|Cid]]
+|79
+|86
+|-
+!  |[[Yuffie (Final Fantasy VII party member)|Yuffie]]
+|85
+|92
+|-
+!  |[[Vincent (Final Fantasy VII party member)|Vincent]]
+|89
+|96
+|-
+!  |[[Cait Sith (Final Fantasy VII party member)|Cait Sith]]
+|89
+|96
+|}
+
+===''[[Final Fantasy VII Remake]]''===
+Magic is a character's value that determines their magic attack power. It is boosted by leveling up or by an equipped [[Final Fantasy VII Remake accessories|accessory]]. [[Aerith Gainsborough (VII Remake party member)|Aerith's]] normal ranged attack is also calculated by her Magic attribute.
+
+====''[[Final Fantasy VII Rebirth]]''====
+{{section|Final Fantasy VII Rebirth}}
+
+=== ''[[Crisis Core -Final Fantasy VII-]]'' ===
+Magic determines the power of [[Zack (Crisis Core player character)|Zack's]] spells. It can be boosted via [[Crisis Core -Final Fantasy VII- accessories|accessories]] and leveling up, but the main form of stat boost in the game is through [[Materia (Crisis Core equipment)|materia]]. Materia's stats can be boosted via [[Materia Fusion]]. Using [[Dark Matter (Crisis Core)|Dark Matters]] in the fusion adds +1 to Magic in the resulting Materia.
+
+Zack's base Magic stat is a fixed number and depends on his level, unlike in ''Final Fantasy VII'' where stat growth is random. After level 75 the Magic grows halts and grows only a little bit.
+
+The below values are from [http://www.gamefaqs.com/psp/925138-crisis-core-final-fantasy-vii/faqs/50842 ''Crisis Core -Final Fantasy VII-'' FAQ/Walkthrough by Absolute Steve]
+
+{| class="half-width FFVII article-table" style="text-align:center"
+|- 
+! style="width:25%" |Level
+! style="width:25%" |Magic
+! style="width:25%" |Level
+! style="width:25%" |Magic
+|-
+!  |6
+|17
+!  |53
+|53
+|-
+!  |7
+|18
+!  |54
+|53
+|-
+!  |8
+|19
+!  |55
+|53
+|-
+!  |9
+|20
+!  |56
+|54
+|-
+!  |10
+|21
+!  |57
+|54
+|-
+!  |11
+|22
+!  |58
+|54
+|-
+!  |12
+|23
+!  |59
+|55
+|-
+!  |13
+|25
+!  |60
+|55
+|-
+!  |14
+|25
+!  |61
+|55
+|-
+!  |15
+|26
+!  |62
+|56
+|-
+!  |16
+|27
+!  |63
+|56
+|-
+!  |17
+|28
+!  |64
+|56
+|-
+!  |18
+|29
+!  |65
+|57
+|-
+!  |19
+|29
+!  |66
+|58
+|-
+!  |20
+|30
+!  |67
+|58
+|-
+!  |21
+|31
+!  |68
+|58
+|-
+!  |22
+|32
+!  |69
+|58
+|-
+!  |23
+|32
+!  |70
+|59
+|-
+!  |24
+|33
+!  |71
+|59
+|-
+!  |25
+|34
+!  |72
+|59
+|-
+!  |26
+|36
+!  |73
+|59
+|-
+!  |27
+|36
+!  |74
+|59
+|-
+!  |28
+|37
+!  |75
+|60
+|-
+!  |29
+|38
+!  |76
+|60
+|-
+!  |30
+|38
+!  |77
+|60
+|-
+!  |31
+|39
+!  |78
+|61
+|-
+!  |32
+|40
+!  |79
+|61
+|-
+!  |33
+|40
+!  |80
+|61
+|-
+!  |34
+|41
+!  |81
+|61
+|-
+!  |35
+|42
+!  |82
+|61
+|-
+!  |36
+|42
+!  |83
+|61
+|-
+!  |37
+|43
+!  |84
+|61
+|-
+!  |38
+|43
+!  |85
+|61
+|-
+!  |39
+|45
+!  |86
+|61
+|-
+!  |40
+|45
+!  |87
+|61
+|-
+!  |41
+|46
+!  |88
+|61
+|-
+!  |42
+|46
+!  |89
+|61
+|-
+!  |43
+|47
+!  |90
+|61
+|-
+!  |44
+|47
+!  |91
+|61
+|-
+!  |45
+|48
+!  |92
+|62
+|-
+!  |46
+|48
+!  |93
+|62
+|-
+!  |47
+|49
+!  |94
+|62
+|-
+!  |48
+|49
+!  |95
+|62
+|-
+!  |49
+|50
+!  |96
+|62
+|-
+!  |50
+|50
+!  |97
+|62
+|-
+!  |51
+|51
+!  |98
+|62
+|-
+!  |52
+|52
+!  |99
+|62
+|}
+
+=== ''[[Final Fantasy VIII]]'' ===
+Magic stat determines the power of [[Magic (Final Fantasy VIII)|spells]] and how well the character is able to [[Draw (Final Fantasy VIII)|draw]] magic from enemies. It also affects [[Quistis (Final Fantasy VIII party member)|Quistis's]] [[Blue Magic (Final Fantasy VIII)|Blue Magic]], [[Selphie (Final Fantasy VIII party member)|Selphie's]] [[Slot (Final Fantasy VIII)|Slot]] spells, and [[Rinoa (Final Fantasy VIII gameplay)|Rinoa's]] [[Angel Wing (Final Fantasy VIII)|Angel Wing]] spells. Magic stat does not affect the [[Guardian Force|summon magic's]] power like in previous games.
+
+The characters' base stats are low, but Rinoa has the highest natural Magic stat of the main six playable characters. Magic can be permanently boosted with [[Mag Up (Final Fantasy VIII)|Mag Up]] items, by [[Devour (Final Fantasy VIII)|devouring]] a high level [[Behemoth (Final Fantasy VIII)|Behemoth]], and leveling up. [[Siren (Final Fantasy VIII)|Siren]] and [[Cactuar (Final Fantasy VIII summon)|Cactuar]] also have a [[Mag Bonus]] support ability that works like the espers' level up bonuses in ''Final Fantasy VI''. The main method of raising Magic is via [[Junction system|junctioning]]. [[Guardian Force]]s with [[Mag-J]] ability allow its user to junction spells to the character's Magic stat, and GFs also learn [[Final Fantasy VIII support abilities|Mag+%]] abilities to boost it further.
+
+Spells in ''Final Fantasy VIII'' are mainly intended for junctioning, and when used in battle, most offensive spells are inferior to using physical attacks unless the opponent is weak against the particular [[Element (term)|element]] or the player is chain-casting spells via [[Double (Final Fantasy VIII status)|Double]] or [[Triple (Final Fantasy VIII status)|Triple]]. As there is no penalty to summoning in ''Final Fantasy VIII'', magic spells may end up rarely being used for offense unless when using Angel Wing or Slot.
+
+=== ''[[Final Fantasy IX]]'' ===
+Magic determines the power of spells ([[Wht Mag (Final Fantasy IX)|White Magic]], [[Blk Mag (Final Fantasy IX)|Black Magic]], [[Blu Mag (Final Fantasy IX)|Blue Magic]]) and [[Summon (Final Fantasy IX)|summon magic]] and other magical abilities. [[Swd Mag (Final Fantasy IX)|Swd Mag]] and [[Dragon (Final Fantasy IX command)|Dragon]] use [[Steiner (Final Fantasy IX gameplay)|Steiner]] and [[Freya (Final Fantasy IX party member)|Freya's]] Strength stats (respectively) for damage calculation, instead of Magic. Magic stat factors into characters' MP growth rate, however.
+
+The formula for Magic is:
+:<math>MagBase + [Level \times 3 / 10] + [MagBonus / 32]</math>
+
+The MagBase values differ from character to character, but never change. The MagBonus is the only way the player can affect the Magic growth and every level the bonus goes up by a rate that is worked out from the character's current stat increases. For example, if the character has equipment that gives extra Magic, then MagBonus will go up by that amount every time they level up with that equipment piece on. In addition the MagBonus will go up by 3 per level. [[Dagger (Final Fantasy IX gameplay)|Dagger]] has the highest potential maximum Magic stat (see [http://www.gamefaqs.com/ps/197338-final-fantasy-ix/faqs/20745 ''Final Fantasy IX'' Max Stats FAQ by KADFC]).
+
+Steiner's [[Magic Break (Final Fantasy IX)|Magic Break]] ability lowers a target's Magic and can be used repeatedly. [[Vivi (Final Fantasy IX party member)|Vivi's]] [[Focus (Final Fantasy IX)|Focus]] increases his Magic up to the maximum of 99 during battle.
+
+=== ''[[Final Fantasy X]]'' ===
+{{See|Sphere Grid}}
+[[Magic (Final Fantasy X)|Magic]] determines the power of magical attacks. The characters gain Magic by activating Magic nodes on the Sphere Grid. [[Yuna (Final Fantasy X party member)|Yuna]] gets the best Magic from her path on the grid, but eventually, every character is able to traverse any path. The player can use [[Magic Sphere (Final Fantasy X)|Magic Spheres]] to attain higher stats; the spheres can be obtained by fighting [[Jumbo Flan (Final Fantasy X)|Jumbo Flan]] in the [[Monster Arena]].
+
+The [[Magic+]]??% abilities on a character's weapon work by directly increasing magical damage; they do not affect the Magic stat, nor attacks based on Magic but are not considered magical, such as [[Fury (Final Fantasy X)|Fury]] ([[Overdrive (Final Fantasy X)|Overdrives]] are considered "special" damage; neither magical or physical).
+
+[[Lulu (Final Fantasy X party member)|Lulu's]] [[Focus (Final Fantasy X)|Focus]] ability increases Magic by 1 each use and can be stacked up to five times. Same effect is also gained from some of [[Rikku (Final Fantasy X party member)|Rikku's]] [[Mix (Final Fantasy X)|Mixes]].
+
+Just because an attack is affected by Magic and/or Magic Defense does not make it a magical attack, and vice versa; these are two separate attack attributes. There are even some enemy attacks where the damage is determined by Magic and Magic Defense but are still considered physical attacks (and thus their damage can be halved with [[Protect (Final Fantasy X status)|Protect]] and not [[Shell (Final Fantasy X status)|Shell]]).
+
+[[Aeon (Final Fantasy X)|Aeons]] have separate stats that increase in conjunction with Yuna's, but the player can boost them manually, and the stats gradually increase when the player fights more battles (any battles count). Of all the aeons, Mindy of the [[Magus Sisters (Final Fantasy X)|Magus Sisters]] has the highest Magic, whereas [[Yojimbo (Final Fantasy X)|Yojimbo]] has the lowest.
+
+==== ''[[Final Fantasy X-2]]'' ====
+Magic determines the power of spells as well as other attacks that are magical in nature. Each [[dressphere]] has its own stats and the stats grow naturally when the girls level up. [[Final Fantasy X-2 accessories|Accessories]] and [[MAG Up (Final Fantasy X-2)|MAG Up]] can boost the stat even further. [[Black Mage (Final Fantasy X-2)|Black Mage]] has the best Magic of all normal jobs, and [[Berserker (Final Fantasy X-2)|Berserker]] the lowest.
+
+There are two formulas in which Magic is taken into account.
+
+"Regular" magic spells and recovery spells follow the following formula:
+:<math>FinalValue = (Level \times 2) + Magic</math>
+
+"Special" magic spells follow the following formula:
+:<math>FinalValue = ((Level + Magic) \times Level \times Magic) / 1024 + Magic</math><ref>https://gamefaqs.gamespot.com/ps2/562386-final-fantasy-x-2/faqs/31807</ref>
+
+The color for the Magic gauge in the menu is green.
+{{Ability section|Final Fantasy X-2}}<!-- Which are "regular" and which are "special" magic spells? -->
+
+==== ''[[Final Fantasy X-2: Last Mission]]'' ====
+{{Section|Final Fantasy X-2: Last Mission}}
+
+=== ''[[Final Fantasy XI]]'' ===
+Magic Attack is an unseen stat that affects the power of direct damage spells such as [[Blizzard (ability)|Blizzard]]. [[Black Mage (Final Fantasy XI)|Black Mages]] typically have the highest Magic Attack due to their [[Magic Attack Bonus]] trait.
+
+=== ''[[Final Fantasy XII]]'' ===
+[[Final Fantasy XII stats#Magick Power|Magick Power]] determines the damage of magick attacks, effectiveness of negative status magicks, and the healing power of healing spells. It also boosts the power of [[Katana (weapon)|katana]] and [[Staff (weapon type)|staves]] and wholly determines the physical attack power of [[Mace (weapon type)|maces]].
+
+Each character has their own magick growth, with [[Ashe (Final Fantasy XII party member)|Ashe]] and [[Penelo (Final Fantasy XII party member)|Penelo]] having the best natural magick growth and [[Balthier (Final Fantasy XII party member)|Balthier]] the worst.
+
+Formula for a character's Magick stat:
+:Base + (Level x Modifier)/128<ref name="ff12">{{Refwebsite| page url = https://www.neoseeker.com/final-fantasy-xii/faqs/142830-mech.html| page name = Final Fantasy XII Game Mechanics FAQ by maltzsan| site url = https://www.neoseeker.com/| site name = Neoseeker| access time = 11:26, June 11, 2020 (UTC)}}</ref>
+* Base = Base value. Different character has different values.
+* Level = The current level of the character.
+
+List of characters' base (BA) and modifier (MO) values:
+
+{| class="half-width FFXII article-table" style="text-align:center"
+|- 
+! style="width:33%" |Character
+! style="width:33%" |Base
+! style="width:33%" |Modifier
+|-
+!  |[[Vaan (Final Fantasy XII party member)|Vaan]]
+|20
+|57
+|-
+!  |[[Balthier (Final Fantasy XII party member)|Balthier]]
+|17
+|51
+|-
+!  |[[Fran (Final Fantasy XII party member)|Fran]]
+|18
+|54
+|-
+!  |[[Basch (Final Fantasy XII party member)|Basch]]
+|20
+|50
+|-
+!  |[[Ashe (Final Fantasy XII party member)|Ashe]]
+|21
+|63
+|-
+!  |[[Penelo (Final Fantasy XII party member)|Penelo]]
+|18
+|66
+|-
+!  |[[Reks#Gameplay|Reks]]
+|21
+|60
+|-
+!  |[[Larsa (Final Fantasy XII party member)|Larsa]]
+|21
+|66
+|-
+!  |[[Vossler (Final Fantasy XII party member)#Gameplay|Vossler]]
+|20
+|50
+|-
+!  |[[Reddas (Final Fantasy XII party member)|Reddas]]
+|21
+|60
+|}<ref name="ff12" />
+
+The [[Esper (Final Fantasy XII)|Espers]] also have their own Magick stats.
+
+{| class="half-width FFXII article-table" style="text-align:center"
+|- 
+! style="width:33%" |Esper
+! style="width:33%" |Base
+! style="width:33%" |Modifier
+|-
+!  |[[Belias (Final Fantasy XII)|Belias]]
+|46
+|75
+|-
+!  |[[Mateus (Final Fantasy XII)|Mateus]]
+|46
+|75
+|-
+!  |[[Adrammelech (Final Fantasy XII)|Adrammelech]]
+|46
+|75
+|-
+!  |[[Zalera (Final Fantasy XII)|Zalera]]
+|46
+|75
+|-
+!  |[[Cúchulainn (Final Fantasy XII)|Cúchulainn]]
+|46
+|75
+|-
+!  |[[Shemhazai (Final Fantasy XII)|Shemhazai]]
+|46
+|75
+|-
+!  |[[Hashmal (Final Fantasy XII)|Hashmal]]
+|48
+|75
+|-
+!  |[[Zeromus (Final Fantasy XII)|Zeromus]]
+|46
+|75
+|-
+!  |[[Exodus (Final Fantasy XII)|Exodus]]
+|46
+|75
+|-
+!  |[[Famfrit (Final Fantasy XII)|Famfrit]]
+|53
+|76
+|-
+!  |[[Chaos (Final Fantasy XII)|Chaos]]
+|53
+|76
+|-
+!  |[[Ultima (Final Fantasy XII)|Ultima]]
+|46
+|77
+|-
+!  |[[Zodiark (Final Fantasy XII)|Zodiark]]
+|45
+|78
+|}<ref name="ff12" />
+
+Magick Power is boosted via equipment, with the [[Final Fantasy XII armor#Mystic Armor|Mystic Armor]] having the best boosts. [[Augment (Final Fantasy XII)#Magick Lore|Magick Lores]] add +1 to the user's Magick Power when purchased. Magick Power is capped at 99 so any overflow is wasted.
+
+The [[accuracy underflow bug]] is a [[List of bugs and glitches|glitch]] in some versions of ''Final Fantasy XII'' where a low [[level]] character with extremely low Magick attempts to use a status move on a target with very high [[Vitality (stat)|Vitality]], and the accuracy of the spell becomes less than zero, the accuracy will underflow to 100%, allowing certain status spells to always succeed.
+
+==== ''[[Final Fantasy XII: Revenant Wings]]'' ====
+Magick Power determines the power of spells and other magick attacks. It can be boosted via appropriate equipment and by leveling up.
+
+=== ''[[Final Fantasy XIII]]'' ===
+Magic is gained via the [[Crystarium system]], and characters can also boost their magic via [[Final Fantasy XIII weapons|weapons]] and [[Final Fantasy XIII accessories|accessories]]. In addition to boosting the potency of offensive spells and healing spells, a higher Magic stat will result in longer-lasting status enhancements and status ailments. Because [[Faith (Final Fantasy XIII)|Faith]] and the [[Final Fantasy XIII passive abilities|Power Surge]] passive abilities directly affect the Magic stat, they also increase the duration.
+
+Unlike in most other games, the Magic stat is no longer capped at 99 or 255, and instead rises to the thousands for characters with maxed out Crystarium and weapons. Magic tends to be inferior to physical attacks when it comes to dealing damage, as [[Ravager (Final Fantasy XIII)|Ravagers]] lack the passive damage boost from the [[Commando (Final Fantasy XIII)|Commando]] role bonus, and [[Ruin (Final Fantasy XIII)|Ruin]] is slightly weaker than [[Attack (Final Fantasy XIII)|Attack]].
+
+The [[Battle Results|battle results]] screen displays the battle's target time. The characters' physical or magic attack stat, whichever is higher, is one of the factors that affects the target time; the stronger the party, the less allotted time they get.
+
+[[Hope (Final Fantasy XIII party member)|Hope]] has the best natural Magic stat. With a maxed out Crystarium, equipping him with four maxed out [[Magistral Crest (Final Fantasy XIII)|Magistral Crests]] and a maxed out [[Nue (Final Fantasy XIII)|Nue]] from the upgraded [[Hawkeye (Final Fantasy XIII)|Hawkeye]] grants him a total of 4,017 points in Magic.
+
+==== ''[[Final Fantasy XIII-2]]'' ====
+[[File:FFXIII-2 Magic Icon.png|15px|right|Icon representation for Magic.]]
+Magic is once again gained via the Crystarium system. [[Serah (Final Fantasy XIII-2 party member)|Serah]] has better Magic growth than [[Noel (Final Fantasy XIII-2 party member)|Noel]] and both can raise it by equipping various [[Final Fantasy XIII-2 weapons|weapons]] and [[Final Fantasy XIII-2 accessories|accessories]]. As for the [[Paradigm Pack|recruitable monsters]], they can raise their Magic not only via the Crystarium, but the infusion as well. Like in ''Final Fantasy XIII'', Magic is not capped to either 99 or 255.
+
+Magic is not considered in the star rating on the battle results screen as monsters have set "Enemy Points" which are taken into account when determining the target time.
+
+==== ''[[Lightning Returns: Final Fantasy XIII]]'' ====
+[[File:MagicStat-lrffxiii-icon.png|18px|right|Magic icon.]]
+Magic increases the power of magical attacks and duration of inflicted status ailments. [[Lightning (Lightning Returns party member)|Lightning]] starts with 200 Magic, with a minimum value of 5 and a maximum value of 5,000, or 9,999 with the Limit Break setting activated.
+
+=== ''[[Final Fantasy XIV]]'' ===
+Called "Spell Power," this defines the total power of offensive spells based on [[Final Fantasy XIV stats#Intelligence|Intelligence]], [[Final Fantasy XIV stats#Determination|Determination]], and other factors. A related stat is "Healing Power," which defines the strength of healing magic.
+
+=== ''[[Final Fantasy XV]]'' ===
+[[Final Fantasy XV stats#Magic|Magic]] affects the damage done with [[elemancy]], the [[Ring of the Lucii]]'s [[Death (ability)|Death]] and [[Holy (ability)|Holy]] abilities, the [[Bow of the Clever]], the [[Scepter of the Pious]], [[Gravisphere (Final Fantasy XV)|Gravisphere]], [[Libra Elementia]], and [[Sagefire (Final Fantasy XV)|Sagefire]], as well as the explosions from [[Prompto (Final Fantasy XV party member)|Prompto's]] bazooka and lumen flare while controlling him. This damage can be modified by equipping [[Final Fantasy XV weapons|weapons]], [[Final Fantasy XV accessories|accessories]], [[attire]], or acquiring [[Recipe (Final Fantasy XV)|food]] buffs that boost the Magic stat. The [[Ascension (Final Fantasy XV)|Ascension Grid]] lacks a node for increasing the Magic stat for the party, and [[Noctis (Final Fantasy XV party member)|Noctis's]] Magic stat is noticeably higher than the others'.
+
+=== ''[[Final Fantasy Tactics]]'' ===
+[[Magick Attack (Tactics)|Magick Attack]] determines the power of spells, which is also boosted by the character's [[Faith (stat)|faith]] stat. The characters' [[Final Fantasy Tactics stats|stat growth]] depends on which [[Final Fantasy Tactics jobs|job]] they are in when they gain a level; jobs like [[Black Mage (Tactics)|black mage]] and [[White Mage (Tactics)|white mage]] offer the best boosts to magick stats. Magicl can also be boosted via equipment.
+
+=== ''[[Final Fantasy Tactics Advance]]'' ===
+{{Section|Final Fantasy Tactics Advance}}
+
+==== ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]'' ====
+{{Section|Final Fantasy Tactics A2: Grimoire of the Rift}}
+
+=== ''[[Final Fantasy Crystal Chronicles: Echoes of Time]]'' ===
+{{Section|Final Fantasy Crystal Chronicles: Echoes of Time}}
+
+=== ''[[Final Fantasy Mystic Quest]]'' ===
+The higher the number, the more damage the spell will deal. The damage formula for spells are.
+
+Black magic:
+:<math>((Spell Power \times 4)+(Magic \times 3)-Defense) \times weakness/split</math>
+
+Wizard magic:
+:<math>((Spell Power \times 6)+(Magic \times 9)-(Defense \times 2)) \times weakness/split</math>
+
+=== ''[[The Final Fantasy Legend]]'' ===
+
+Mana determines the damage and power of the spells that the character cast.
+
+=== ''[[Final Fantasy Legend II]]'' ===
+Magic Power is called Mana in the game. Some weapons use the Mana stat instead of the usual [[Strength|Str]] stat for its damage formula. This stat impacts damage dealt with magical attacks and damage received by magical attacks that aren't physical attacks. Damage received from physical attacks that depend on Mana such as the Psi weaponry are not impacted by the target's Mana, only the target's normal Defense. Mana can be raised by using magical attacks during battle, but caps at 99, and can be raised higher by equipping items like [[Final Fantasy Legend II armor#Hecate|Hecate]].
+
+All [[Robot (Legend series)|robots]] and robot-type enemies, except [[Final Fantasy Legend II enemies#WarMach|WarMach]] and [[Final Fantasy Legend II enemies#Arsenal|Arsenal]], have 0 Mana and cannot raise it by any means. This means that all robots are generally weak against the damaging Mana-based abilities and are difficult to heal using the Mana-based healing abilities.
+
+=== ''[[Final Fantasy Legend III]]'' ===
+The Magic stat affects the degree of damage and accuracy of magic attacks.
+
+=== ''[[Final Fantasy: The 4 Heroes of Light]]'' ===
+Magic Power, along with its sister stat, Magic Attack {{J|魔攻|Makou}}, both determine the strength of magical attacks, and how much damage the attack will inflict.
+
+Magic Power is not actually visible on the status screen. It can be boosted by equipping [[Final Fantasy: The 4 Heroes of Light weapons|weapons]] or [[Final Fantasy: The 4 Heroes of Light armor|gears]] that grants those effect, or can be augmented in battle with certain abilities from the [[Bard (The 4 Heroes of Light)|Bard]] or [[Musician (The 4 Heroes of Light)|Musician]] crowns, or the White Magics [[White Magic (The 4 Heroes of Light)#Magick|Magick]] and [[White Magic (The 4 Heroes of Light)#Lux|Lux]].
+
+=== ''[[Theatrhythm Final Fantasy]]'' ===
+{{Section|Theatrhythm Final Fantasy}}
+
+==== ''[[Theatrhythm Final Fantasy Curtain Call]]'' ====
+{{Section|Theatrhythm Final Fantasy Curtain Call}}
+
+=== ''[[Final Fantasy Explorers]]'' ===
+M-Attack: might of magical attacks. Reflected in Magic stat.
+{{Section|Final Fantasy Explorers}}
+
+== Etymology ==
+{{Etym|Magic}}
+
+{{Etym|Mana}}
+
+==Citations==
+{{citations}}
+
+{{navbox stats}}
+[[Category:Recurring stats]]

@@ -1,0 +1,82 @@
+[[File:FFTA-FireWyrm.jpg|200px|right]]
+[[File:FFTA-spr-Firewyrm.gif|left]]
+{{Quote|Giant scaly monster. Breathes blistering fire.|Description}}
+The '''Firewyrm''' in ''[[Final Fantasy Tactics Advance]]'' is the [[Fire (element)|Fire]] elemental variant of the dangerously powerful dragon species. Like its relatives, the [[Icedrake]] and [[Thundrake]], its stats are superior to almost every other monster. When paired with other Fire-elemental monsters, Firewyrms like to heal its compatriots with Fire Breath. It can also lower the Defense and Magic Resistance of your units, increasing the damage that they receive. Its Guard-Off ability can be learned by the Blue Mage job as Blue Magic.
+
+==Abilities==
+===Dragonblaze===
+{{Quote|Firewyrm command. Unleash the dragonblaze.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Guard-Off}}
+|''Fire breath. Lowers weapon def. and magic res.''
+|8
+|-
+!{{LA|Fire Breath}}
+|''Incendiary breath. Deals damage.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Roda!
+|The Firewyrm here can heal its two [[Bomb (Tactics Advance)|Bomb]] allies using Fire Breath.
+|-
+!Mission #047: Hot Recipe
+|All enemies here are of the Fire element, including two Firewyrms.
+|-
+!Mission #032: Tower Ruins
+|The Firewyrm is one of the two Dragons here, the other being a Icedrake.
+|-
+!Mission #011: Pale Company
+|[[Adrammelech (Tactics Advance)|Adrammelech]] summons a Dragon of each element to assist him. The Firewyrm flanks the [[Totema]] on the left.
+|-
+!Mission #034: Magewyrm
+|The Firewyrm here is one of the [[Thundrake]]'s cronies.
+|-
+!Mission #066: A Dragon's Aid
+|A Dragon of each element helps out the two [[Dragoon (Tactics Advance)|Dragoons]] in this mission.
+|-
+!Mission #102: Wyrms Awaken
+|Five Dragons intercept the party in this mission, and any one of them may be placed right next to the starting block.
+|-
+!Mission #054: For A Song
+|A Firewyrm is one of the monsters attacking the allied [[Summoner (Tactics Advance)|Summoner]] in this mission.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Roda Volcano (Tactics Advance)|Roda Volcano]]
+|style="text-align:center"|Roda Dragons
+|As one might expect, the Roda Dragons clan includes two Firewyrms.
+|}
+
+==Gallery==
+<gallery>
+FFTA Firewyrm Portrait.gif|Portrait.
+</gallery>
+[[Category:Enemies in Final Fantasy Tactics Advance]]

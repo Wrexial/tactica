@@ -1,0 +1,122 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' enemies}}
+{{Expand|filling in [[#Dephs|missing enemy names]]}}
+A list of the [[:Category:Enemies in Final Fantasy Tactics Advance|enemies]] from ''[[Final Fantasy Tactics Advance]]''.
+
+__NOTOC__
+{|id="toc" class="toc" summary="Contents" align="center"
+! {{MediaWiki:Toc}}
+|-
+|align="center"|
+[[#Bomb|Bomb]] - [[#Bug|Bug]] - [[#Dragon|Dragon]] - [[#Fairy|Fairy]] - [[#Flan|Flan]] - [[#Floateye|Floateye]] - [[#Goblin|Goblin]] - [[#Lamia|Lamia]] - [[#Malboro|Malboro]] - [[#Panther|Panther]] - [[#Rockbeast|Rockbeast]] - [[#Tonberry|Tonberry]] - [[#Undead|Undead]]
+|-
+|align="center"|
+[[#Other|Other]] - [[#Bosses|Bosses]]
+|}
+
+== Monster types ==
+=== Bomb ===
+<gallery expand="true">
+FFTABomb.png|[[Bomb (Tactics Advance)|Bomb]]
+Grenade.gif|[[Grenade (Tactics Advance)|Grenade]]
+</gallery>
+
+=== Bug ===
+<gallery expand="true">
+FFTA-spr-Antlion.gif|[[Antlion (Tactics Advance)|Antlion]]
+FFTA-spr-Jawbreaker.gif|[[Jawbreaker]]
+</gallery>
+
+=== Dragon ===
+<gallery expand="true">
+FFTA-spr-Firewyrm.gif|[[Firewyrm]]
+FFTA-spr-Icedrake.gif|[[Icedrake]]
+FFTA-spr-Thundrake.gif|[[Thundrake]]
+</gallery>
+
+=== Fairy ===
+<gallery expand="true">
+FFTA-spr-sprite.gif|[[Sprite (Tactics Advance)|Sprite]]
+FFTA-spr-titania.gif|[[Titania (Tactics Advance)|Titania]]
+</gallery>
+
+=== Flan ===
+<gallery expand="true">
+FFTA-spr-Cream.gif|[[Cream (Tactics Advance)|Cream]]
+FFTA-spr-IceFlan.gif|[[Ice Flan (Tactics Advance)|Ice Flan]]
+FFTA-spr-Jelly.gif|[[Jelly (Tactics Advance)|Jelly]]
+</gallery>
+
+=== Floateye ===
+<gallery expand="true">
+FFTA-spr-Floateye.gif|[[Floateye (Tactics Advance)|Floateye]]
+Ahriman.gif|[[Ahriman (Tactics Advance)|Ahriman]]
+</gallery>
+
+=== Goblin ===
+<gallery expand="true">
+FFTA-spr-Goblin.gif|[[Goblin (Tactics Advance)|Goblin]]
+FFTA-spr-RedCap.gif|[[Red Cap (Tactics Advance)|Redcap]]
+</gallery>
+
+=== Lamia ===
+<gallery expand="true">
+FFTA-spr-Lamia.gif|[[Lamia (Tactics Advance)|Lamia]]
+FFTA-spr-Lilith.gif|[[Lilith (Tactics Advance)|Lilith]]
+</gallery>
+
+=== Malboro ===
+<gallery expand="true">
+FFTA-spr-Malboro.gif|[[Malboro (Tactics Advance)|Malboro]]
+FFTA-spr-BigMalboro.gif|[[Big Malboro]]
+</gallery>
+
+=== Panther ===
+<gallery expand="true">
+FFTA-spr-RedPanther.gif|[[Red Panther (Tactics Advance)|Red Panther]]
+FFTA-spr-Coeurl.gif|[[Coeurl (Tactics Advance)|Coeurl]]
+</gallery>
+
+=== Rockbeast ===
+<gallery expand="true">
+FFTA-spr-toughskin.gif|[[Toughskin (Tactics Advance)|Toughskin]]
+FFTA-spr-bladebiter.gif|[[Blade Biter (Tactics Advance)|Blade Biter]]
+</gallery>
+
+=== Tonberry ===
+<gallery expand="true">
+FFTA-spr-tonberry.gif|[[Tonberry (Tactics Advance)|Tonberry]]
+FFTA-spr-masterberry.gif|[[Masterberry]]
+</gallery>
+
+=== Undead ===
+<gallery expand="true">
+FFTA-spr-zombie.gif|[[Zombie (Tactics Advance)|Zombie]]
+FFTA-spr-vampire.gif|[[Vampire (Tactics Advance)|Vampire]]
+</gallery>
+
+=== Other ===
+<gallery expand="true">
+FFTA-job-mogknight.gif|[[Reaker]]
+</gallery>
+
+
+=== Bosses ===
+<gallery expand="true">
+FFTA-adrammelech.gif|[[Adrammelech (Tactics Advance)|Adrammelech]]
+FFTA-exodus.gif|[[Exodus Fruit]]
+FFTA-famfrit.gif|[[Famfrit (Tactics Advance)|Famfrit]]
+FFTA-mateus.gif|[[Mateus (Tactics Advance)|Mateus]]
+TAUltimaCrystal.png|[[Ultima (Tactics Advance)|Ultima Crystal]]
+FFTA-bqremedi.gif|[[Remedi]]
+FFTA-ligrim.gif|[[Remedi#Li-Grim|Li-Grim]]
+Battle Judge.PNG|[[Judge (Tactics Advance)#Judge A|Judge A]]
+Battle Judge.PNG|[[Judge (Tactics Advance)#Judge B|Judge B]]
+Ffta-job-judge-alt-sprite.png|[[Judge (Tactics Advance)#Judge C|Judge C]]
+</gallery>
+
+{{navbox enemies}}
+{{navbox FFTA}}
+
+[[Category:Final Fantasy Tactics Advance|Enemies]]
+[[Category:Enemies in Final Fantasy Tactics Advance]]
+[[Category:Enemy lists]]

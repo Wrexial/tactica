@@ -1,0 +1,46 @@
+[[File:Sprohm 1.PNG|right|200px]]
+{{Quote|Bangaa moutain town. Home to the prison.|Description}}
+'''Sprohm''' {{j|山岳都市スプロム|Sangaku Toshi Supuromu|Mountain Town Sphrom}} is the [[bangaa]] [[town]] from ''[[Final Fantasy Tactics Advance]]''. While it is a town in the game, the battlefield in battles held there are very uneven and mountainous. The [[clan]], Yellow Powerz, the first of four clans fought in the Clan League, spawns here.
+
+==Locations==
+===The Long Ear Tavern===
+The local tavern infamous for its rowdy crowd and prominent brawls. Great place for rumors to start.
+
+===Bangaa Emporium===
+The local shop famed for its ornery owner. At the shop, discounts are given on weaponry wielded by bangaas. This includes knuckles, blades, staves, spears, swords, etc.
+
+===Prison===
+[[File:SprohmPrison.png|right|250px|thumb|Marche seeking pardon for a clan member.]]
+Described as the tightest-run place in Ivalice, it is administered by guards appointed personally by [[Remedi|Queen Remedi]]. The largest (and only) Prison is located in Sprohm. During engagements, if a character is [[Yellow Card|carded]] by a [[Judge (Tactics Advance)|Judge]], the prison can hand out pardons.
+
+When seeking a pardon, the character is held in the prison for a length determined by how far the game has progressed. If the character is [[Red Card (Tactics Advance)|removed]] from battle by a Judge, they are held in the prison until they are bailed out or serve out their sentence. In either case, if a unit actually serves time, they are returned to your party after entering the prison, if they have served their time.
+
+The theme that plays is simply called "Prison", and sounds similar to "Holy Angel's Theme".
+
+==Liberating Sprohm==
+Sprohm is liberated by completing "Mission #069: Free Sprohm!", which is unlocked after completing mission "Mission #068: Fowl Thief"" and reading the "Area Freed!" rumor. Unlike other turfs, towns actually have an engagement when being liberated. After completion, Sprohm is liberated and will not come under attack.
+
+==Missions==
+*"Mission #057: Prison Break"
+{{Quote|Help me break out of prison, just for one day, please! All I have to do is deliver a birthday present to my wife!|Julian, Troubled Inmate}}
+*"Mission #069: Free Sprohm!"
+{{Quote|One of the Borzoi Capos is in the mountain town of Sprohm! Keep an eye on him until we and the Sprohm Watch are ready!|Cyril Town Watch}}
+
+==Encounters==
+===Sprohmknights===
+{{Quote|Defectors from the town watch. They aim to bring every clan under their control.|Description}}
+*White Monk (Bangaa)
+*Fighter (Human)
+*Soldier (Human)
+*Warrior (Bangaa)
+*White Mage (Nu Mou)
+
+==Gallery==
+<gallery>
+Town-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Towns]]
+[[Category:Locations in Final Fantasy Tactics Advance]]

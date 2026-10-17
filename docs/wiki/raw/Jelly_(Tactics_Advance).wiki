@@ -1,0 +1,85 @@
+{{DISPLAYTITLE:Jelly (''Tactics Advance'')}}
+[[File:FFTA-spr-Jelly.gif|left]]
+{{Quote|Red, jelly-like entity. Absorbs fire damage.|Description}}
+The '''Jelly''' {{J|レッドマシュマロ|Reddomashumaro|Red Marshmallow}} in ''[[Final Fantasy Tactics Advance]]'' is a plasma-like monster that is related to the [[Cream (Tactics Advance)|Cream]] and [[Ice Flan (Tactics Advance)|Ice Flan]]. It follows the [[Flan]] mold of having a huge [[Defense (stat)|Defense]] stat, but being very weak to magical spells. Jelly absorbs [[Fire (element)|Fire]] damage, but can be destroyed easily with nearly any other elemental spell.
+
+{{see|Red Marshmallow}}
+
+==Abilities==
+===Melt===
+{{Quote|Jelly command. Attack with superheated body.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Acid}}
+|''Corrosive liquid. Inflicts random status ailment.''
+|12
+|-
+!{{A|Sacrifice}}
+|''Self-KO. Heals ally's HP and status ailments.''
+|—
+|-
+![[Fire (ability)|Fire]]
+|''Generates damaging ball of flame.''
+|—
+|-
+![[Fira (ability)|Fira]]
+|''Powerful fire spell. Deals great damage.''
+|—
+|-
+![[Firaga (ability)|Firaga]]
+|''Most powerful fire spell. Deals incredible damage.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Mission #093: Flan Breakout!
+|Two Jellies, two Ice Flans, and a Cream are devouring the [[Salikawood (Tactics Advance)|Salikawood's]] trees. Bring an [[Illusionist (Tactics Advance)|Illusionist]] to make the battle easy.
+|-
+!Mission #059: Sketchy Thief
+|The [[Thief (Tactics Advance)|Thief]] here uses a magical sketchbook to bring a not-very-artful Jelly to life.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Roda Volcano (Tactics Advance)|Roda Volcano]]
+|style="text-align: center"|Roda Dragons
+|The Jelly here takes pleasure in healing itself and the Bomb with Fire-based magic.
+|-
+![[Gotor Sands]]
+|style="text-align: center"|Wild Monsters
+|Take caution to not heal the Jelly with a Fire spell meant to damage the [[Grenade (Tactics Advance)|Grenade]] or [[Icedrake]].
+|}
+
+==Gallery==
+<gallery>
+FFTA Jelly Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Jelly}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

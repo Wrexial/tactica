@@ -1,0 +1,226 @@
+{{DISPLAYTITLE:Illusionist (''Tactics Advance'')}}
+{{infobox job
+|name=Illusionist
+|release=FFTA
+|japanese=幻術士
+|romaji=Genjutsushi
+|image=<gallery>
+Ffta-h-illusionist.jpg|Hume
+Ffta-nu-mou-illusionist.jpg|Nu mou
+</gallery>
+|portrait=[[File:Ffta-job-human-illusionist.png|50px|Hume player]] [[File:Ffta-job-human-illusionist-enemy.png|50px|Enemy Hume.]]<br/>[[File:Ffta-job-nu-mou-illusionist.png|50px|Nu mou player]] [[File:Ffta-job-nu-mou-illusionist-enemy.png|50px|Enemy Nu mou.]]
+|sprite=[[File:FFTA-job-IllusionistH.gif|20px|Hume player.]] [[File:Ffta-job-human-illusionist-enemy-sprite.png|20px|Enemy Hume.]]<br/>[[File:FFTA-job-IllusionistNM.gif|20px|Nu mou player.]] [[File:Ffta-job-nu-mou-illusionist-enemy-sprite.png|20px|Enemy nu mou.]]
+|obtained=Learn three [[White Mage (Tactics Advance)|White Mage]] A-Abilities and five [[Black Mage (Tactics Advance)|Black Mage]] A-Abilities
+|required=[[White Mage (Tactics Advance)|White Mage]] and [[Black Mage (Tactics Advance)|Black Mage]]
+|characters=[[Human|Hume]], [[nu mou]]
+|stats=
+*Move: 3
+*Jump: 2
+*Evade: 30
+*Stat growth:
+|weapons=[[Final Fantasy Tactics Advance weapons#Rods|Rods]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]] and [[Final Fantasy Tactics Advance armor#Robes|robes]]<br/>Can't equip shields
+|command abilities=*[[Phantasm Tech]]
+*[[#Spell Combo|Spell Combo]] (combo)
+|support abilities=*[[Half MP]]
+*[[Absorb MP (ability)|Absorb MP]] (reaction)
+|recurring appearance=Illusionist (job)
+}}
+{{Quote|Uses phantasm magic to attack all enemies!|Description}}
+'''Illusionist''' is a [[Final Fantasy Tactics Advance jobs|job class]] in ''[[Final Fantasy Tactics Advance]]'' for [[Human|humes]] and [[nu mou]].
+
+Illusionists use the power of the elements to deal a decent damage to all enemies on the battlefield. Because their abilities "Target All" enemies, the Illusionist can stay out of the fray and cast magic. Since they have mediocre HP growth (and outstanding MP and Magic Power growth), it is advisable to move out of harm's way at every turn.
+
+==Growth==
+===Hume===
+Hume Illusionists have the highest MP and Magic Power of any hume job, and have exceptionally high Resistance. This is counter-balanced by having the lowest HP, Attack and Defense stats of all hume jobs, as well as being the second slowest, beating out the [[Paladin (Tactics Advance)|Paladin]] by only a tenth of a point. Like all hume magic jobs, it is faster but slightly less powerful than its nu mou counterpart.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.2 E
+|7.1 A+
+|6.1 D-
+|6.4 D
+|9.2 A-
+|8.4 B
+|0.9 D-
+|}
+
+===Nu mou===
+Nu mou Illusionists have the lowest HP growth, and tie with Paladins, [[Templar (Tactics Advance)|Templars]] and [[Sage (Tactics Advance)|Sages]] for the lowest Speed growth. The Illusionist does not have any beneficial unique merits, as the [[Alchemist (Tactics Advance)|Alchemist]], [[Time Mage (Tactics Advance)|Time Mage]] and Sage outshine it in almost every aspect.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.1 E
+|7.6 A+
+|5.7 E
+|6.4 D
+|9.6 A+
+|8.8 B+
+|0.8 E
+|}
+
+==Abilities==
+===[[Phantasm Tech|Phantasm ]]Skill===
+{{Quote|Illusionist command. Deal damage to all foes.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+|-
+! rowspan=2|{{LA|Prominence (ability)|Prominence}}
+|[[Firewheel Rod (Tactics Advance)|Firewheel Rod]]
+|100
+|32
+|20
+|-
+|colspan=4 style="text-align:left"|''Sun's power. Deals fire damage to all enemies.''
+|-
+! rowspan=2|{{LA|Tempest (ability)|Tempest}}
+|[[Thunder Rod (Tactics Advance)|Thunder Rod]]
+|100
+|32
+|17
+|-
+|colspan=4 style="text-align:left"|''Storm. Deals lightning damage to all enemies.''
+|-
+! rowspan=2|{{A|Freezeblink}}
+|[[Sleet Rod (Tactics Advance)|Sleet Rod]]
+|100
+|32
+|20
+|-
+|colspan=4 style="text-align:left"|''Makes blizzard to deal cold damage to all enemies.''
+|-
+! rowspan=2|{{LA|Southern Cross|Star Cross}}
+|[[Princess Rod]]
+|300
+|32
+|17
+|-
+|colspan=4 style="text-align:left"|''Uses the power of the stars to damage all enemies.''
+|-
+! rowspan=2|{{LA|Stardust (ability)|Stardust}}
+|[[Stardust Rod (Tactics Advance)|Stardust Rod]]
+|300
+|32
+|20
+|-
+|colspan=4 style="text-align:left"|''Calls down rain of meteors to damage all enemies.''
+|-
+! rowspan=2|{{LA|Deluge}}
+|[[Chill Rod (Tactics Advance)|Chill Rod]]
+|200
+|32
+|17
+|-
+|colspan=4 style="text-align:left"|''Waterfall deals water damage to all enemies.''
+|-
+! rowspan=2|{{A|Soil Evidence}}
+|[[Terre Rod (Tactics Advance)|Terre Rod]]
+|200
+|32
+|17
+|-
+|colspan=4 style="text-align:left"|''Earthquake. Deals earth damage to all enemies.''
+|-
+! rowspan=2|{{A|Wild Tornado}}
+|[[Thor Rod (Tactics Advance)|Thor Rod]]
+|200
+|32
+|17
+|-
+|colspan=4 style="text-align:left"|''Giant twister. Deals wind damage to all enemies.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Absorb MP (ability)|Absorb MP}}
+|[[Lordly Robe (Tactics Advance)|Lordly Robe]]
+|style="text-align:left"|''Absorbs MP used to cast a spell against you.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Half MP}}
+|[[Light Robe (Tactics Advance)|Light Robe]]
+|style="text-align:left"|''Cuts the amount of MP used for abilities by half.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Spell Combo}}
+|[[Mythril Rod (Tactics Advance)|Mythril Rod]]
+|style="text-align:left"|''Ranged combo ability for illusionists.''
+|100
+|}
+
+== Overview ==
+Illusionist has the highest magically inclined stats for humes, so this is a good class to [[level]] up as for any hume desiring to be a mage. Their spells target all enemies, even able to hit enemies who try to run away. It is difficult to escape the grasp of an Illusionist, unless the enemy gets very lucky or has some elemental immunities. Wielding [[White Magic (Tactics Advance)|White]] or [[Black Magic (Tactics Advance)|Black Magic]] allows humes to capitalize even more on their high magic. With such weak physical stats, Illusionists should never see the light of combat. With such weak abilities, Illusionists never deal high damage. Since their abilities target all enemies, they can stay out of the fray while providing other kinds of support. The nu mou variant of the Illusionist is outclassed by other nu mou jobs, and [[Sage (Tactics Advance)|Sages]] and [[Time Mage (Tactics Advance)|Time Mages]] outdo them at almost everything.
+
+Enemy Illusionists run away as they are not required to get into messy close combat, making them annoying to fight. The player should chase them relentlessly, as Illusionists have low move and jump, so any remotely faster unit will catch up. Silence cripples Illusionists, as they are the least capable of physical combat of any class.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Illusionist TCG.png|right|100px]]
+Nu mou Illusionist appears on a card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Prominence.png|Prominence.
+FFTA Tempest.png|Tempest.
+FFTA Freezeblink.png|Freezeblink.
+FFTA Star Cross.png|Star Cross.
+FFTA Stardust.png|Stardust.
+FFTA Deluge.png|Deluge.
+FFTA Soil Evidence.png|Soil Evidence.
+FFTA Wild Tornado.png|Wild Tornado.
+</gallery>{{Gallery incomplete|Spell Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Ilusionista (Final Fantasy Tactics Advance)]]
+[[it:Illusionista (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

@@ -1,0 +1,169 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance Radio Edition''}}
+{{cleanup}}
+{{infobox drama
+|image=[[File:Final Fantasy Tactics Advance Logo.jpg]]
+|japanese=ファイナルファンタジー タクティクスアドバンス ラジオ エディション
+|romaji=Fainaru Fantajī Takutikusu Adobansu Radio Edishon
+|title=''Final Fantasy Tactics Advance Radio Edition''
+|director=Atsuhiro Tomioka
+|producer=Kensuke Tanaka
+|studio=TAVAC
+|cdinfo=13 Tracks + 4 Extra Chapters
+|release=January 4, 2003 - March 29, 2003
+}}
+'''''Final Fantasy Tactics Advance Radio Edition''''' is a radio drama dedicated to ''[[Final Fantasy Tactics Advance]]''. It was aired in January and February 2003. There is a complete version which was released by [[DigiCube]] in form of four CDs. The first one was released February 26, 2003. One CD represents one volume, while one volume consists of three chapters (except for volume one, which consists of four) and an extra chapter. The background music played in the drama was originally from disc 2 of ''[[Final Fantasy Tactics Advance: Original Soundtrack]]''. In live radio broadcasts, the song "[[Shiroi Hana (song)|Shiroi Hana]]" plays during the epilogue. A premium edition contains a poster and a calendar.
+
+==Story==
+The plot is slightly different from the original game, and the main characters are immediately transferred to [[Ivalice (Tactics Advance)|Ivalice]] after [[Mewt Randell]] reads ''Alta Oron Sondus Kameela''. [[Nono]] appears much earlier in the storyline than before. At the first battle with the [[bangaa]], it was forbidden to use [[Magic (term)|Magic]] instead of using items. Because of this, Montblanc receives a [[Yellow Card]] after casting [[Fire (ability)|Fire]] to a bangaa. After that, one of the bangaa received a [[Red Card (Tactics Advance)|Red Card]] and was sent into prison because he had hit Nono, a non-participant, with [[Aero (ability)|Aero]].
+
+Another difference is that [[Doned Radiuju|Doned]] says that Marche is Ritz's boyfriend, but Ritz insists it is a lie. Unlike the original game, Ritz, Mewt and even Doned's arrival are shown. Upon Doned's arrival, he meets up with a [[Judge (Tactics Advance)|Judge]].
+
+Nono's airship's name is revealed, which is called the ''Brilliante''. When the ''Brilliante'' was about to be fixed by Nono along with Montblanc, a lever got stuck and caused an explosion. The ''Brilliante'' was then used to go to the [[Bervenia Palace]]. This was mentioned again in [[Hurdy (Final Fantasy XII)|Hurdy's]] sidestory from ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''.
+
+Later in the radio drama, Marche, Montblanc, Ritz, [[Shara]], Doned, [[Cid Randell|Judgemaster Cid]], and [[Babus Swain|Babus]] joined forces against Queen Remedi. During the battle, Montblanc knew [[Time Magic]] and Ritz knew [[Elementalist (Tactics Advance)#Spirit Magic|Spirit Magic]]. The team also summoned [[Totema]] based on their race. Instead of summoning Exodus like in the game, Ritz summons [[Mateus (Tactics Advance)|Mateus]], while Cid summons [[Adrammelech (Tactics Advance)|Adrammelech]].
+
+At the ending, instead of meeting with [[Biggs and Wedge|Biggs]], Cid Randell invites a drinking friend. Later on, a voice, presumably Montblanc, says to Marche that he hopes to see him in a dream.
+
+==Volumes==
+===Volume 1===
+[[File:Fftaradio1.jpg|right]]
+'''Catalog #:''' SSCX-10081/2
+
+'''Release Date:''' February 26, 2003
+#Chapter 1: Ivalice
+#Chapter Two: Engage!
+#Chapter Three: Realized Dreams
+#Chapter Four: Clan, Quest and the First Job!
+#EX-One: Marche's Training Diary
+
+===Volume 2===
+[[File:Fftaradio2.jpg|right]]
+'''Catalog #:''' SSCX-10088
+
+'''Release Date:''' March 26, 2003
+#Chapter One: On a Different Wavelength
+#Chapter Two: An Alchemist Ezel
+#Chapter Three: Famfrit
+#EX-Two: Reminiscing the Past
+
+===Volume 3===
+[[File:Fftaradio3.jpg|right]]
+'''Catalog #:''' SSCX-10092
+
+'''Release Date:''' April 23, 2003
+#Chapter One: Undesirable Person, Desired Person
+#EX-Three: Important Thing of Ritz
+#Chapter Two: In Prison
+#Chapter Three: What Moves Darkness
+
+===Volume 4===
+[[File:Fftaradio4.jpg|right]]
+'''Catalog #:''' SSCX-10094
+
+'''Release Date:''' May 21, 2003
+#Chapter One: Miscalculation
+#EX-Four: Anxious Feeling of Disturbance
+#Chapter Two: Conquer Weakness Exceeding Fantasy
+#Chapter Three: In the End, There is Snowfall
+#Extra Track: FFTA Radio CM Collection*
+:<nowiki>*</nowiki>The CM Collection contains commercial of the radio drama, the game ''[[Final Fantasy Tactics Advance]]'', and ''[[Final Fantasy Tactics Advance: Original Soundtrack]]''.
+
+==Credits==
+===Voice cast===
+The voice actors was introduced during the credits, by the voice actors themselves. Each voice actor stated which character they played, and then their own name. The Song ''The Place We Should Return To'' was played.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!Character
+!Voice actor
+|-
+|[[Marche Radiuju]]
+|[[wikipedia:Yuka Imai|Yuka Imai]]
+|-
+|[[Mewt Randell]]
+|[[wikipedia:Asami Sanada|Asami Sanada]]
+|-
+|[[Ritz Malheur]]
+|[[wikipedia:Yumi Kakazu|Yumi Kakazu]]
+|-
+|[[Doned Radiuju]]
+|[[wikipedia:Hiromi Ishikawa|Hiromi Ishikawa]]
+|-
+|[[Montblanc]]
+|[[wikipedia:Hyo-sei|Kumiko Yokote]]
+|-
+|[[Nono]]
+|[[wikipedia:Masako Jō|Masako Jō]]
+|-
+|[[Judge (Tactics Advance)|Judge]]
+|[[wikipedia:Akimitsu Takase|Akimitsu Takase]]
+|-
+|[[Shara]]
+|[[wikipedia:Rie Kanda|Rie Kanda]]
+|-
+|[[Babus Swain]]
+|[[wikipedia:Kumi Sakuma|Kumi Sakuma]]
+|-
+|[[Mog Knight]]
+|[[wikipedia:Ryoukichi Takahashi|Ryoukichi Takahashi]]
+|-
+|Eaglets
+|[[wikipedia:Katsuhiro Harasawa|Katsuhiro Harasawa]]
+|-
+|[[Bangaa]] Tribe
+|[[wikipedia:Satoshi Katougi|Satoshi Katougi]]
+|-
+|Madam Kiri
+|[[wikipedia:Kiri Segawa|Kiri Segawa]]
+|-
+|[[Remedi]]
+|[[wikipedia:Yoshiko Sakakibara|Yoshiko Sakakibara]]
+|-
+|[[Ezel Berbier]]
+|[[wikipedia:Wataru Takagi|Wataru Takagi]]
+|-
+|[[Cid Randell]]
+|[[wikipedia:Yasuyuki Kase|Yasuyuki Kase]]
+|-
+|[[Llednar Twem]]
+|[[wikipedia:Hikaru Midorikawa|Hikaru Midorikawa]]
+|-
+|[[Famfrit (Tactics Advance)|Famfrit]]
+|[[wikipedia:Mitsuaki Madono|Mitsuaki Madono]]
+|-
+|[[Ultima (Tactics Advance)|Ultima]]
+|[[wikipedia:Kaho Kōda|Kaho Kōda]]
+|-
+|[[Adrammelech (Tactics Advance)|Adrammelech]]
+|[[wikipedia:Toshiyuki Morikawa|Toshiyuki Morikawa]]
+|}
+
+===Other===
+*'''Script''': [[Wikipedia:ja:冨岡淳広|Atsuhiro]] [http://translate.google.com/translate?sl=ja&tl=en&u=http://ja.wikipedia.org/wiki/冨岡淳広 Tomioka] and [[Wikipedia:ja:吉村清子|Kiyoko]] [http://translate.google.com/translate?sl=ja&tl=en&u=http://ja.wikipedia.org/wiki/吉村清子 Yoshimura]
+*'''Music Composers''': [[Nobuo Uematsu]], [[Hitoshi Sakimoto]], Kaori Ohkoshi, and Ayako Saso
+*'''Producer''': Kensuke Tanaka
+*'''Assistant Producer''': Kyoko Saito
+*'''Coordinators''': Shinji Nakashima & Nobutaka Kasama
+*'''Recording''': Director Tomohiro Yoshida
+*'''Recording Engineer''': Satoshi Fujimura
+*'''Sound Effect''': Daisuke Jimbo
+*'''Recording Studio''': TAVAC
+*'''Recording Management''': RAKUONSHA
+*'''Art Direction''': Tadashi Shimada
+*'''Design''': Tadashi Shimada & Norie Kadokura
+*'''Photography''': Hiroshi Shibaizumi & Shinji Motomatsu
+*'''CD Production Producer''': Yusuke Hasegawa
+*'''CD Production Manager''': Akiko Honda & Yuichiro Komiyama
+
+==Behind the scenes==
+The spell chants in the radio drama are taken from the spell chants in the PlayStation version of ''[[Final Fantasy Tactics]]''. The ''war of the Lions'' remaster no longer features them.
+
+''Final Fantasy Tactics Advance Radio Edition'' is the second audio drama released under the ''[[Final Fantasy series|Final Fantasy]]'' franchise, after ''[[Final Fantasy: Unlimited]]''.
+
+==External links==
+*[http://owb.cool.ne.jp/ivalice/ffta/radio.htm Japanese Summary at OgreWebBook]
+
+{{navbox FFTA}}
+[[Category:Ivalice]]
+[[Category:Radio dramas]]
+[[Category:Final Fantasy Tactics Advance]]

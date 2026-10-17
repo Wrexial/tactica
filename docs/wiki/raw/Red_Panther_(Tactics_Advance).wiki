@@ -1,0 +1,103 @@
+{{DISPLAYTITLE:Red Panther (''Tactics Advance'')}}
+[[File:FFTA-spr-RedPanther.gif|left]]
+[[File:FFTA-Panther.jpg|200px|right]]
+{{Quote|Hunts its prey with swift leaps and poison claws.|Description}}
+The '''Red Panther''' in ''[[Final Fantasy Tactics Advance]]'' is a nimble beast related to the [[Coeurl (Tactics Advance)|Coeurl]]. It is among the first and most common enemies encountered, and is tough to bring down due to its high HP and [[Counter (ability)|Counter]] ability.
+
+==Abilities==
+===Rake===
+{{Quote|Red panther command. Rake with poison claws.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Poison Claw (ability)|Poison Claw}}
+|''Poison claw attack damages and poisons target.''
+|8
+|-
+!{{A|Rend}}
+|''Bite target's weak spot to deal damage.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Reveal}}
+|''Finds and reveals [[Invisible (status)|concealed]] units.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Nargai!
+|The Coeurl and Red Panther here will likely move close enough to each other that the player can damage both at once with an area effect spell.
+|-
+!Turf Defense Mission: Help Kudik!
+|Two Red Panthers defend their turf in this mission.
+|-
+!Mission #044: Snow in Lutia
+|This is the first time that Red Panthers appear, and they can be difficult for an under-leveled clan. Take out the weaker [[Goblin (Tactics Advance)|Goblin]] first.
+|-
+!Mission #045: Frosty Mage
+|The enemy [[Black Mage (Tactics Advance)|Black Mage]] in this mission controls two red Panthers and a Floateye.
+|-
+!Mission #004: Desert Peril
+|Two Red Panthers and a Coeurl make up the core of the monsters in this mission.
+|-
+!Mission #052: Friend Trouble
+|A record three Red Panthers have been attacking travelers heading though the Kudik Peaks.
+|-
+!Mission #051: Desert Rose
+|There are two Red Panthers among the oasis guards.
+|-
+!Mission #034: Magewyrm
+|The Red Panther and an Antlion must be defeated before the clan can reach Magewyrm Gerland.
+|-
+!Mission #054: For A Song
+|The Red Panther is one of the three monsters here.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Nargai Cave]]
+|style="text-align:center"|Tribites
+|There are three Panther-type enemies in this clan, which should be taken out one at a time.
+|-
+![[Kudik Peaks]]
+|style="text-align:center"|Kudik Beasts
+|The Red Panther duo reappears in this encounter.
+|}
+
+==Gallery==
+<gallery>
+FFTA Red Panther Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Panther}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

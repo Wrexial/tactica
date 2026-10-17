@@ -1,0 +1,47 @@
+{{infobox character
+|name=Eldena
+|release=FFTA
+|japanese=エルデナ
+|romaji=Erudena
+|image=Ffta-viera-redmage.jpg
+|portrait=[[File:FFTA-job-RedMage-por.png|Portrait.]]
+|sprite=[[File:FFTA-job-redmage.gif|Sprite.]]
+|race=[[Viera]]
+|gender=Female
+|type=playable
+|job=[[Red Mage (Tactics Advance)|Red Mage]]
+}}
+'''Eldena''', a [[viera]], is one of six special recruits in ''[[Final Fantasy Tactics Advance]]''. Eldena was once a jail breaker in [[Ivalice (Tactics Advance)|Ivalice]].
+
+==Requirements==
+Eldena is easily missed compared to the other secret characters, as her recruitment process is more complicated. She has a 1-in-5 chance of joining [[Clan Nutsy]] after completion of a mission where the [[Elda's Cup]] is equipped. Using Elda's Cup is required for the dispatch mission "Caravan Guard," which becomes playable after Mission #07 "Diamond Rain." However, it isn't gained until completing "Hungry Ghost," which becomes playable after Mission #06 "Antilaws." After it's used in "Caravan Guard" it's gone for good, and the only way to get another Elda's Cup is to trade with another player. Thus there is a limited time frame in which to recruit Eldena.
+
+==Abilities==
+Like all [[secret character]]s, Eldena joins four [[level]]s above the average of the entire clan. Eldena is recruited as a [[Red Mage (Tactics Advance)|Red Mage]], and has two abilities already mastered: Barrier and Doublecast. Eldena does not possess Ultima Masher, but Doublecast is arguably just as good, taking the same amount of AP to master as the Ultima abilities. Eldena can easily switch between the different magic-based jobs the viera have. Eldena is one of two secret characters who do not innately know the Ultima ability of their race, the other being Littlevili.
+
+===Red Magic===
+{{Quote|Red mage command. Use offensive magic.}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:20%"|Skill
+!style="width:70%"|Effect
+!style="width:10%"|MP
+|-
+![[Wall (ability)|Barrier]]
+|Bestows [[Shell (status)|Shell]] and [[Protect (status)|Protect]].
+|10
+|-
+![[Dualcast|Doublecast]]
+|Cast two spells during the same turn.
+|—
+|}
+
+{{navbox characters FFTA}}
+
+
+[[it:Linì]]
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Secret characters]]
+[[Category:Viera]]
+[[Category:Red Mages]]

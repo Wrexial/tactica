@@ -1,0 +1,209 @@
+{{DISPLAYTITLE:Time Mage (''Tactics Advance'')}}
+{{infobox job
+|name=Time Mage
+|release=FFTA
+|japanese=時魔道士
+|romaji=Tokimadoushi
+|lit=Time Sorcerer
+|image=<gallery>
+Ffta-moogle-timemage.jpg|Moogle
+Ffta-nu-mou-timemage.jpg|Nu mou
+</gallery>
+|portrait=[[File:ffta-job-moogle-time-mage-por.png|50px|Moogle player]] [[File:Ffta-job-moogle-time-mage-enemy.png|Enemy moogle|50px]]<br/>[[File:ffta-job-nu-mou-time-mage.png|50px|Nu mou player]] [[File:Ffta-job-nu-mou-time-mage-enemy.png|Enemy nu mou|50px]]
+|sprite=[[File:FFTA-job-timemageM.gif|20px|Moogle player]] [[File:Ffta-job-moogle-time-mage-sprite.png|Enemy moogle|20px]] [[File:FFTA-job-timemageNM.gif|20px|Nu mou player]] [[File:Ffta-job-nu-mou-time-mage-enemy-sprite.png|Enemy nu mou|20px]]
+|obtained=Learn five [[Black Mage (Tactics Advance)|Black Mage]] A-Abilities
+|required=[[Black Mage (Tactics Advance)|Black Mage]]
+|characters=[[Moogle]]s, [[nu mou]]
+|stats=*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 30
+*Stat growth: Magical-geared with good Speed
+|weapons=[[Final Fantasy Tactics Advance weapons#Rods|Rods]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]] and [[Final Fantasy Tactics Advance armor#Robes|robes]]<br/>Can't equip shields
+|command abilities=*[[Time Magic (Tactics Advance)|Time Magic]]
+*[[#Time Combo|Time Combo]] (combo)
+|support abilities=*[[Critical: Quicken|Last Quicken]] (reaction)
+|recurring appearance=Time Mage
+}}
+{{Quote|Mage masters of time and space.|Description}}
+'''Time Mage''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' accessible to [[nu mou]] and [[moogle]]s. Time Mages' abilities cannot be predicted, but some classes, such as the [[Juggler (Tactics Advance)|Juggler]] and [[Ninja (Tactics Advance)|Ninja]], can reap the benefits of Time Magic without the large [[MP (stat)|MP]] consumption.
+
+==Growth==
+===Moogle===
+The moogle Time Mage is the most powerful magic-oriented moogle job, with a Magic Power stat rivaling that of the other races' best Magic-oriented jobs, and a Speed stat capable of out-racing most other magical jobs. Yet, the moogle Time Mage's stats are inferior to the nu mou Time Mage. This does not mean moogle Time Mages are useless, but they should differentiate themselves by using abilities to which nu mou Time Mages do not have access, such as Concentrate or Call.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.2 E
+|3.6 C
+|5.6 E
+|7.6 C
+|9.2 A-
+|9.4 A
+|1.2 D+
+|}
+
+===Nu mou===
+Nu mou Time Mages are the kings of the magical world. They have the highest Magic Power, an impressive Resistance, and one of the highest Speed stats a nu mou can get. Like most magic-oriented jobs, their other stats are abysmally low, making them weak to physical attacks.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.2 E
+|3.6 C+
+|5.6 E
+|6.8 D+
+|10.2 S
+|9.6 A
+|1.2 D+
+|}
+
+==Abilities==
+===[[Time Magic (Tactics Advance)|Time Magic]]===
+{{Quote|Time mage command. Warp the fabric of time itself.|Description}}
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Haste (ability)|Haste}}
+|[[Final Fantasy Tactics Advance weapons#Firewheel Rod|Firewheel Rod]]
+|200
+|24
+|3
+|-
+|colspan=4 style="text-align:left"|''Meddle with time's flow to increase speed.''
+|-
+! rowspan=2|{{LA|Quick (ability)|Quicken}}
+|[[Final Fantasy Tactics Advance weapons#Thor Rod|Thor Rod]]
+|300
+|24
+|3
+|-
+|colspan=4 style="text-align:left"|''Slides time, allowing target to take turn early.''
+|-
+! rowspan=2|{{LA|Slow (ability)|Slow}}
+|[[Final Fantasy Tactics Advance weapons#Terre Rod|Terre Rod]]
+|200
+|12
+|3
+|-
+|colspan=4 style="text-align:left"|''Meddles with time's flow, reducing target's speed.''
+|-
+! rowspan=2|{{LA|Reflect (ability)|Reflect}}
+|[[Final Fantasy Tactics Advance weapons#Thunder Rod|Thunder Rod]]
+|300
+|8
+|3
+|-
+|colspan=4 style="text-align:left"|''Reflects white, red, time, and black magic.''
+|-
+! rowspan=2|{{LA|Stop (ability)|Stop}}
+|[[Final Fantasy Tactics Advance weapons#Chill Rod|Chill Rod]]
+|300
+|24
+|3
+|-
+|colspan=4 style="text-align:left"|''Stops the flow of time. Target is unable to act.''
+|-
+! rowspan=2|{{LA|Silence (ability)|Silence}}
+|[[Final Fantasy Tactics Advance weapons#Sleet Rod|Sleet Rod]]
+|200
+|8
+|3
+|-
+|colspan=4 style="text-align:left"|''Steals voice, silencing target.''
+|-
+! rowspan=2|{{LA|Graviga|Quarter}}
+|[[Final Fantasy Tactics Advance weapons#Force Rod|Force Rod]]
+|200
+|10
+|3
+|-
+|colspan=4 style="text-align:left"|''Small gravity field. Saps 1/4 of target's HP.''
+|-
+! rowspan=2|{{LA|Gravity (ability)|Demi}}
+|[[Final Fantasy Tactics Advance weapons#Stardust Rod|Stardust Rod]]
+|300
+|24
+|3
+|-
+|colspan=4 style="text-align:left"|''Gravity field. Saps 1/2 of target's HP.''
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Critical: Quicken|Last Quicken}}
+|[[Final Fantasy Tactics Advance armor#Lordly Robe|Lordly Robe]]
+|style="text-align:left"|''Take turn immediately if severely wounded.''
+|300
+|}
+
+===Combo===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Time Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Rod|Mythril Rod]]
+|style="text-align:left"|''Ranged combo ability for time mages.''
+|100
+|}
+
+== Overview ==
+Time Mages are top-notch spellcasters boasting great support abilities. They have plenty of ways to manipulate battles into their favor, such as quickening a slow ally or stopping enemy thieves. They can halt even the fastest units in their tracks. Time Mages work well against other mages, having access to Silence and Reflect. Their lack of offensive abilities can be made up for by abilities from other classes, like [[Black Magic (Tactics Advance)|Black Magic]] or [[Sage (Tactics Advance)|Sage]] skills. This also allows Time Mages to put their excellent magic power to good use. Overall, Time Mages are top-tier mages, and the best magic-based job for moogles and most nu mou.
+
+Speed is key against enemy Time Mages. It is advised to dispatch them before they start bending the turn order. Both melee fighters and other mages are underdogs against Time Mages, but Silence—as against most mages—works well. It is best to hit enemy Time Mages up close where they cannot defend themselves.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:TimeMage TCG.png|100px|right]]
+A moogle Time Mage appears on a card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Haste.png|Haste.
+FFTA Quicken.png|Quicken.
+FFTA Slow.png|Slow.
+FFTA Reflect.png|Reflect.
+FFTA Stop.png|Stop.
+FFTA Silence.png|Silence.
+FFTA Quarter.png|Quarter.
+FFTA Demi.png|Demi.
+</gallery>{{Gallery incomplete|Time Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Mago temporal (Final Fantasy Tactics Advance)]]
+[[it:Mago temporale (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

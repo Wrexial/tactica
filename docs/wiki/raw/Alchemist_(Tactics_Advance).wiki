@@ -1,0 +1,199 @@
+{{DISPLAYTITLE:Alchemist (''Tactics Advance'')}}
+{{infobox job
+|name=Alchemist
+|release=FFTA
+|japanese=錬金術士
+|romaji=Renkin Jutsushi
+|lit=Alchemy Magician 
+|image=Ffta-nu-mou-alchemist.jpg
+|portrait=[[File:ffta-job-alchemist.png|50px|Player]] [[File:ffta-job-alchemist-enemy.png|50px|Enemy]]
+|sprite=[[File:FFTA-job-alchemist.gif|Player|20px]] [[File:ffta-job-alchemist-enemy-sprite.png|Enemy|20px]]
+|obtained=
+*Learn five [[Black Mage (Tactics Advance)|Black Mage]] A-Abilities
+*Learn three [[White Mage (Tactics Advance)|White Mage]] A-Abilities
+|required=[[Black Mage (Tactics Advance)|Black Mage]], [[White Mage (Tactics Advance)|White Mage]]
+|characters=[[Nu mou]]
+|stats=
+*Move Rate: 3
+*Jump Rate: 3
+*Evade Rate: 35
+*Stat growth: High MP, Magic Power and Resistance, below-average Speed, and poor HP, Attack and Defense
+|weapons=[[Final Fantasy Tactics Advance weapons#Maces|Maces]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=
+*[[Alchemy Tech]]
+*[[#Gold Combo|Gold Combo]] (combo)
+*[[Final Fantasy Tactics Advance items|Item]]
+|support abilities=
+*[[#Magic Pow+|Magic Pow+]]
+*[[#Maintenance|Maintenance]]
+|recurring appearance=Alchemist (Ivalice)
+}}
+{{Quote|Mage that uses the secrets of alchemy.|Description}}
+'''Alchemist''' is a [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]'' for the [[nu mou]]. They focus on the offense, working to alter the composition of the opponent (ex: [[#Toad|Toad]] and [[#Poison|Poison]]) or the environment (ex. [[#Meteor|Meteor]] and [[#Flare|Flare]]). Combining the Alchemist abilities with [[White Mage (Tactics Advance)|White Mage]] abilities makes for a versatile unit.
+
+Alchemists always have access to the [[Item]] command, although it can never be actually equipped as a secondary A-Ability. Instead, the player can choose another action ability to be the secondary A-Ability and still use items in battle.
+
+==Growth==
+Alchemists have high MP, Magic Power and Resistance growths, below-average Speed, and abysmal HP, Attack and Defense. The Alchemist's [[stat growth]] can be seen as a balance between the [[Sage (Tactics Advance)|Sage]] and the [[Time Mage (Tactics Advance)|Time Mage]].
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.1 D+
+|8.4 S-
+|5.9 E
+|6.5 D
+|9.2 A-
+|9.6 A
+|0.9 D-
+|}
+
+==Abilities==
+===[[Alchemy Tech]]===
+{{Quote|Alchemist command. Change the form of matter.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Astra (ability)|Astra}}
+|[[Final Fantasy Tactics Advance weapons#Sage Crosier|Sage Crosier]]
+|200
+|8
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Confers one-time status affliction protection.''
+|-
+! rowspan=2|{{LA|Death (ability)|Death}}
+|[[Final Fantasy Tactics Advance weapons#Life Crosier|Life Crosier]]
+|300
+|36
+|—
+|3
+|-
+|colspan=5 style="text-align:left"|''Cuts the very threads of life. Instant KO.''<br/>'''Element:''' Dark
+|-
+! rowspan=2|{{LA|Meteor (ability)|Meteor}}
+|[[Final Fantasy Tactics Advance weapons#Scorpion Tail|Scorpion Tail]]
+|300
+|40
+|50
+|3
+|-
+|colspan=5 style="text-align:left"|''Drops giant meteors from space. Deals damage.''
+|-
+! rowspan=2|{{LA|Rasp (ability)|Rasp}}
+|[[Final Fantasy Tactics Advance weapons#Energy Mace|Energy Mace]]
+|100
+|24
+|60
+|3
+|-
+|colspan=5 style="text-align:left"|''Deals damage to MP.''
+|-
+! rowspan=2|{{LA|Flare (ability)|Flare}}
+|[[Final Fantasy Tactics Advance weapons#Lotus Mace|Lotus Mace]]
+|300
+|36
+|65
+|3
+|-
+|colspan=5 style="text-align:left"|''Sudden temperature spike. Deals damage.''
+|-
+! rowspan=2|{{LA|Poison (ability)|Poison}}
+|[[Final Fantasy Tactics Advance weapons#Druid Mace|Druid Mace]]
+|100
+|10
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Spews out poison gas, poisoning target.''<br/>'''Element:''' Dark
+|-
+! rowspan=2|{{LA|Toad (ability)|Toad}}
+|[[Final Fantasy Tactics Advance weapons#Mandragora|Mandragora]]
+|200
+|36
+|—
+|3
+|-
+|colspan=5 style="text-align:left"|''Turns target into a frog.''
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Magic Pow+}}
+|[[Final Fantasy Tactics Advance weapons#Morning Star|Morning Star]]
+|style="text-align:left"|''Increase damage of magic attacks.''
+|300
+|-
+!{{LA|Safeguard|Maintenance}}
+|[[Final Fantasy Tactics Advance armor#Adaman Vest|Adaman Vest]]
+|style="text-align:left"|''Ensures equipped items are not stolen or destroyed.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Gold Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Mace|Mythril Mace]]
+|style="text-align:left"|''Ranged combo ability for alchemists.''
+|100
+|}
+
+== Overview ==
+The Alchemist has great magic power and excellent MP, and provides a decent amount of support. Instant death and frog are potent status effects, while Flare and Meteor provide strong magical damage. However, Alchemists have major competition with their close counterpart, the [[Sage (Tactics Advance)|Sage]]. Both classes have similar stats, abilities, and even equipment. Sages perform better in physical combat, while Alchemists can handle a bit more magical attacks. Sages possess abilities that can be considered superior versions of the Alchemist's abilities, however, Alchemists have a few abilities that Sages don't. Alchemists can always use items, a privilege that no other class has. Overall, Alchemists and Sages are mostly interchangeable, but Alchemists have a few niches no one else can fulfill.
+
+Enemy Alchemists are high-priority targets as they use toad, instant death, powerful magic and potent healing items. Alchemists have underwhelming physical stats, so the best way to deal with them is to get melee units up close to attack. Even with decently strong maces and items, Alchemists don't defend themselves well in close combat. Silence cuts off their magical capabilities, but they may be in possession of restorative items and cure their otherwise lethal status effects.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Alchemist TCG.png|right|100px]]
+Alchemist appears on a card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Astra.png|Astra.
+FFTA Death.png|Death.
+FFTA Meteor.png|Meteor.
+FFTA Rasp.png|Rasp.
+FFTA Flare.png|Flare.
+FFTA Poison.png|Poison.
+FFTA Toad.png|Toad.
+</gallery>{{Gallery incomplete|Gold Combo}}
+
+==Etymology==
+{{Etym|Alchemist}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Alquimista (Final Fantasy Tactics Advance)]]
+[[it:Alchimista (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

@@ -1,0 +1,108 @@
+{{DISPLAYTITLE:Red Magic (''Tactics Advance'')}}
+{{Quote|Red mage command. Use offensive magic.|Description}}
+'''Red Magic''' {{J|赤魔法|Aka Mahō}} is the action ability for the [[Red Mage (Tactics Advance)|Red Mage]] in ''[[Final Fantasy Tactics Advance]]''.
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Barrier (ability)|Barrier}}
+|[[Final Fantasy Tactics Advance weapons#Mage Masher|Mage Masher]]
+|300
+|10
+|—
+|3
+|-
+|colspan=5 style="text-align:left"|''Raises weapon defense and magic resistance.''
+|-
+! rowspan=2|{{LA|Fire (ability)|Fire}}
+|[[Final Fantasy Tactics Advance weapons#Scarlette|Scarlette]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Generates damaging ball of flame.''
+|-
+! rowspan=2|{{LA|Thunder (ability)|Thunder}}
+|[[Final Fantasy Tactics Advance weapons#Stinger|Stinger]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Calls down lightning to deal damage.''
+|-
+! rowspan=2|{{LA|Blizzard (ability)|Blizzard}}
+|[[Final Fantasy Tactics Advance weapons#Flamberge|Flamberge]]
+|100
+|6
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Creates chunk of ice to deal damage.''
+|-
+! rowspan=2|{{LA|Cure (ability)|Cure}}
+|[[Final Fantasy Tactics Advance weapons#Fleuret|Fleuret]]
+|100
+|6
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Eases pain and heals HP. Deals damage to zombies.''<br>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Sleep (ability)|Sleep}}
+|[[Final Fantasy Tactics Advance weapons#Estoc|Estoc]]
+|200
+|10
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Releases sleeping gas to put target to sleep.''
+|-
+! rowspan=2|{{LA|Poison (ability)|Poison}}
+|[[Final Fantasy Tactics Advance weapons#Silver Rapier|Silver Rapier]]
+|100
+|10
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Spew out poison gas, poisoning target.''<br>'''Element:''' Dark
+|-
+! rowspan=2|{{LA|Dualcast|Doublecast}}
+|Madu
+|999
+|[[#Doublecast Info|*See below]]
+|—
+|—
+|-
+|colspan=5 style="text-align:left"|''Cast two spells in quick succession.''
+|}
+
+==Doublecast info==
+Doublecast works by casting two magic spells at once. However, this is not limited to Red Magic. If, for example, Spirit Magic is the secondary A-Ability, one can use those spells when Doublecasting. A special quirk about Doublecast is that one can use it to bypass some laws like Fire, Lightning, Ice and Holy, because Doublecast is only seen as a Red Magic ability with no elemental affiliation. Doublecast magic is always considered Red Magic as well, so if a law disallows Summoning, the Red Mage can doublecast them without being penalized.
+
+Another great feat of Doublecast magic is that it can bypass the "Target Area" law since some spells are intended for a single target (like the offensive Spirit Magic spells); this can really help if the player is in desperate need of eliminating their enemies and aiding allies afterward. The MP cost of Doublecast is the combined totals of the magic cast, and so may vary from use to use.
+
+One potent combination is the summoner class. Once the abilities are learned, players may start out fights with both reflect and auto-regen on their entire team. Phoenix will allow players to revive multiple units at once followed by Unicorn to get them to full HP (while also seriously damaging any undead in the area) or add various status effects from either spell set on the same turn.
+
+==Gallery==
+<gallery>
+FFTA Barrier.png|Barrier.
+FFTA Fire.png|Fire.
+FFTA Thunder.png|Thunder.
+FFTA Blizzard.png|Blizzard.
+FFTA Cure.png|Cure.
+FFTA Sleep.png|Sleep.
+FFTA Poison.png|Poison.
+</gallery>{{Gallery incomplete|Doublecast}}
+
+{{navbox abilities FFTA}}
+[[Category:Red Magic in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]

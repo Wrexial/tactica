@@ -1,0 +1,72 @@
+[[File:FFTA-spr-Jawbreaker.gif|left]]
+[[File:FFTA Jawbreaker Portrait.gif|right]]
+{{Quote|Toughest antlion. Bites on and doesn't let go.|Description}}
+The '''Jawbreaker''' in ''[[Final Fantasy Tactics Advance]]'' is a powerful, red upgrade of the [[Antlion (Tactics Advance)|Antlion]]. It knows two [[level]]-dependent spells and attacks ruthlessly with its jaws.
+
+==Abilities==
+===Adhere===
+{{Quote|Jawbreaker command. Bite enemies hard.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|LV 3 Def-Less}}
+|''Lowers magic res. and weapon def. in units with levels divisible by 3.''
+|12
+|-
+!{{LA|Level 5 Death|LV 5 Death}}
+|''KO's units with levels divisible by 5.''
+|—
+|-
+!{{A|Suffocate}}
+|''Choking attack. target loses next turn.''
+|—
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:25%"|Prerequisites
+!style="width:70%"|Information
+|-
+!Mission #051: Desert Rose
+|
+|The Jawbreaker is this battle is assisted by two of its Antlion brethren and two [[Red Panther (Tactics Advance)|Red Panthers]].
+|-
+!Mission #065: Exploration
+|Free [[Gotor Sands]]
+|The Jawbreaker here starts out far away from the party on a high elevation, to take it out with magic before it gets close.
+|-
+!Mission #022: To Ambervale
+|Complete Mission #021: Hidden Vein
+|The level 25 Jawbreaker is actually the least dangerous enemy here, as the player must also deal with a [[Thundrake]], [[Lilith (Tactics Advance)|Lilith]], [[Coeurl (Tactics Advance)|Coeurl]], and [[Big Malboro]].
+|-
+!Mission #094: Sorry, Friend
+|Complete Mission #020: Present Day
+|The escaped Jawbreaker is the only enemy in this mission. It is level 34, so exercise caution when venturing in for melee attacks.
+|-
+!Turf Defense Mission: Help Giza!
+|Free [[Giza Plains (Tactics Advance)|Giza Plains]]
+|The Jawbreaker in this turf defense mission starts out on the leftmost side of the battlefield. It is wise to KO the two Antlions before making a beeline for their red cousin.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Eluut Sands]]
+|style="text-align:center"|Antlions
+|This Jawbreaker is backed up by two Antlions, a [[Toughskin (Tactics Advance)|Toughskin]], and a [[Bomb (Tactics Advance)|Bomb]].
+|-
+![[Aisenfield (Tactics Advance)|Aisenfield]]
+|style="text-align:center"|Aisen Ghosts
+|Focus on the enemy [[Tonberry (Tactics Advance)|Tonberry]] and [[Zombie (Tactics Advance)|Zombies]] before taking care of the Jawbreaker.
+|}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

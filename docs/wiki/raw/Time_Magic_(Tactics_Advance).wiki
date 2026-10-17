@@ -1,0 +1,96 @@
+{{DISPLAYTITLE:Time Magic (''Tactics Advance'')}}
+{{Quote|Time mage command. Warp the fabric of time itself.|Description}}
+'''Time Magic''' {{J|時魔法|Toki Mahō}} is the action ability for the [[Time Mage (Tactics Advance)|Time Mage]] in ''[[Final Fantasy Tactics Advance]]''.
+
+{{See|Time Magic}}
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Haste (ability)|Haste}}
+|[[Final Fantasy Tactics Advance weapons#Firewheel Rod|Firewheel Rod]]
+|200
+|24
+|3
+|-
+|colspan=4 style="text-align:left"|''Meddle with time's flow to increase speed.''
+|-
+! rowspan=2|{{LA|Quick (ability)|Quicken}}
+|[[Final Fantasy Tactics Advance weapons#Thor Rod|Thor Rod]]
+|300
+|24
+|3
+|-
+|colspan=4 style="text-align:left"|''Slides time, allowing target to take turn early.''
+|-
+! rowspan=2|{{LA|Slow (ability)|Slow}}
+|[[Final Fantasy Tactics Advance weapons#Terre Rod|Terre Rod]]
+|200
+|12
+|3
+|-
+|colspan=4 style="text-align:left"|''Meddles with time's flow, reducing target's speed.''
+|-
+! rowspan=2|{{LA|Reflect (ability)|Reflect}}
+|[[Final Fantasy Tactics Advance weapons#Thunder Rod|Thunder Rod]]
+|300
+|8
+|3
+|-
+|colspan=4 style="text-align:left"|''Reflects white, red, time, and black magic.''
+|-
+! rowspan=2|{{LA|Stop (ability)|Stop}}
+|[[Final Fantasy Tactics Advance weapons#Chill Rod|Chill Rod]]
+|300
+|24
+|3
+|-
+|colspan=4 style="text-align:left"|''Stops the flow of time. Target is unable to act.''
+|-
+! rowspan=2|{{LA|Silence (ability)|Silence}}
+|[[Final Fantasy Tactics Advance weapons#Sleet Rod|Sleet Rod]]
+|200
+|8
+|3
+|-
+|colspan=4 style="text-align:left"|''Steals voice, silencing target.''
+|-
+! rowspan=2|{{LA|Graviga|Quarter}}
+|[[Final Fantasy Tactics Advance weapons#Force Rod|Force Rod]]
+|200
+|10
+|3
+|-
+|colspan=4 style="text-align:left"|''Small gravity field. Saps 1/4 of target's HP.''
+|-
+! rowspan=2|{{LA|Gravity (ability)|Demi}}
+|[[Final Fantasy Tactics Advance weapons#Stardust Rod|Stardust Rod]]
+|300
+|24
+|3
+|-
+|colspan=4 style="text-align:left"|''Gravity field. Saps 1/2 of target's HP.''
+|}
+
+==Gallery==
+<gallery>
+FFTA Haste.png|Haste.
+FFTA Quicken.png|Quicken.
+FFTA Slow.png|Slow.
+FFTA Reflect.png|Reflect.
+FFTA Stop.png|Stop.
+FFTA Silence.png|Silence.
+FFTA Quarter.png|Quarter.
+FFTA Demi.png|Demi.
+</gallery>
+
+{{navbox abilities FFTA}}
+[[Category:Time Magic in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]
+[[Category:Time Magic]]

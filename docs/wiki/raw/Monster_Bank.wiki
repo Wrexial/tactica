@@ -1,0 +1,184 @@
+{{Quote|Welcome to the monster bank. Your monster awaits!|Monster Bank Morpher}}
+[[File:CyrilMonsterBank.png|right|thumb|250px|The monster bank on Cyril's outskirts.]]
+The '''Monster Bank''' is the holding place for the monsters [[Hunter (Tactics Advance)|Hunters]] capture in ''[[Final Fantasy Tactics Advance]]''. It is similar to a zoo and is run by a [[Morpher]], who has a unique bond with the monsters. To develop a powerful Morpher, one will have to capture as many monsters as possible, and then raise them by feeding them. This service is offered free of charge. The only fees incurred are the ones spent on food for the monsters.
+
+The types of monsters that can be brought to the Monster Bank are:
+*Bombkind (Bomb/Grenade)
+*Goblinkind ([[Goblin (Tactics Advance)|Goblin]]/Red Cap)
+*Antlionkind (Antlion/Jawbreaker)
+*Dragonkind (Firewyrm/Icewyrm/Thundrake)
+*Flankind (Jelly/Ice Flan/Cream)
+*Lamiakind (Lamia/Lilith)
+*Ahrimankind (Floateye/Ahriman)
+*Pantherkind (Red Panther/Coeurl)
+*Malborokind (Malboro/Big Malboro)
+
+==Gameplay==
+=== Affection ===
+Selecting "Play" with a monster will allow the player to feed them various [[Final Fantasy Tactics Advance items|Items]]. If the monster eats the item it will increase its Affection, otherwise it will spit it out. The monster will respond differently as its Affection level increases. At level 75 it will emote a Heart instead of Annoyed Lines.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!Affection
+!Response
+|-
+!0-29
+|Grrurr... (What are you looking at?)
+|-
+!30-79
+|(Gimmie food.)
+|-
+!80-99
+|(Thanks for dropping by.)
+|-
+!100
+|(I love you, Marche. No, really, I love you!)
+|}
+
+Different items raise Affection by different amounts. Each item also has a max level of Affection it can raise. Although the monster will continue to eat an item, it will not raise Affection higher than its max.
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!Item
+!Aff.
+!Max
+|-
+!Potion
+|1
+|29
+|-
+!Hi-Potion
+|2
+|29
+|-
+!X-Potion
+|2
+|79
+|-
+!Ether
+|4
+|100
+|-
+!Elixir
+|10
+|100
+|-
+!Antidote
+|2
+|79
+|-
+!Eye Drops
+|2
+|79
+|-
+!Echo Screen
+|2
+|79
+|-
+!Maiden Kiss
+|3
+|79
+|-
+!Soft
+|3
+|79
+|-
+!Holy Water
+|4
+|79
+|-
+!Bandage
+|1
+|79
+|-
+!Cureall
+|5
+|100
+|-
+!Phoenix Down
+|10
+|79
+|}
+
+Monsters have different likes and dislikes. If they like an item; it will receive more affection.
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!Monster
+!Item
+!Aff.
+|-
+! rowspan="2"|Goblin
+|Maiden Kiss
+|5
+|-
+|Antidote
+|0
+|-
+! rowspan="2"|Flan
+|Antidote
+|5
+|-
+|Eye Drops
+|0
+|-
+!Bomb
+|Holy Water
+|0
+|-
+!Dragon
+|Cureall
+|10
+|-
+! rowspan="3"|Lamia
+|Echo Screen
+|5
+|-
+|Cureall
+|10
+|-
+|Maiden Kiss
+|0
+|-
+! rowspan="2"|Bug
+|Soft
+|5
+|-
+|Bandage
+|0
+|-
+! rowspan="3"|Panther
+|Holy Water
+|10
+|-
+|Antidote
+|0
+|-
+|Echo Screen
+|0
+|-
+! rowspan="3"|Malboro
+|Holy Water
+|7
+|-
+|Bandage
+|4
+|-
+|Cureall
+|0
+|-
+! rowspan="2"|Floateye
+|Eye Drops
+|5
+|-
+|Soft
+|0
+|}
+
+=== Stat raising ===
+When a monster has 100 Affection, it is ready to raise its stats. It will eat all items saying "It seems to be enjoying it!". However only Curealls, Ethers, and Elixirs will raise its stats. "It seems to like that quite a lot!" A monster's Weapon Attack, Defense, Magic Power, and Resistance will be simultaneously raised; up to 999 max.
+
+:Stat Gain = (Item Quantity * Item Affection) / 10
+
+Since the game rounds down, Affection from Items should be in divisible by 10. Viz. 2 x Cureall (5), 5 x Ether (4), 1 x Elixir (10). Note that monster likes and dislikes still apply. E.g. Lamia will get +1 for eating 1 Cureall, and Malboros will not gain any stats from Curealls.
+
+{{Navbox FFTA}}
+[[Category:Final Fantasy Tactics Advance]]

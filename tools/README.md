@@ -1,0 +1,61 @@
+# tools/
+
+## `todo.mjs` — task runner
+
+A zero-dependency Node CLI that parses `todo.md`, reports the next actionable
+task, validates the dependency graph, and can sequentially drive a coding agent.
+
+```bash
+node tools/todo.mjs check                 # validate the task graph (IDs, deps, cycles)
+node tools/todo.mjs list                  # list tasks grouped by phase
+node tools/todo.mjs list --status todo    # filter by status
+node tools/todo.mjs next                  # print the next actionable task
+node tools/todo.mjs show T014             # full task detail
+node tools/todo.mjs prompt T014           # the agent prompt for a task
+node tools/todo.mjs verify T014           # run the task's verify command
+node tools/todo.mjs mark T014 doing       # set a task's status
+```
+
+### Running tasks sequentially
+
+```bash
+# Dry run: show what would happen and the prompts (default when no --agent).
+node tools/todo.mjs run --phase 0
+
+# Drive the Pi coding agent, verifying and marking each task done in turn.
+# `@file` includes the generated prompt; works cross-platform.
+node tools/todo.mjs run --agent 'pi --print "@{promptFile}"'
+node tools/todo.mjs run --from T011 --until T023 --commit
+TODO_AGENT='pi --print "@{promptFile}"' node tools/todo.mjs run
+```
+
+Options:
+
+| Flag | Meaning |
+| ---- | ------- |
+| `--agent "<cmd>"` | Command template (or `TODO_AGENT` env var). Omit for dry run. |
+| `--from T0NN` | Start at this task (inclusive). |
+| `--until T0NN` | Stop after this task (inclusive). |
+| `--phase 3` | Restrict to a phase (substring match). |
+| `--limit N` | Run at most N tasks. |
+| `--dry-run` | Print prompts without executing. |
+| `--commit` | `git commit` each accepted task. |
+| `--file todo.md` | Use a different task file. |
+
+**`run` loop per task:** mark `doing` → run the agent command → run `verify` →
+mark `done`, or mark `failed` and stop on the first failure. A task is only
+actionable when every dependency is `done`.
+
+Template placeholders: `{promptFile}`, `{id}`, `{title}`, `{file}`.
+
+### `todo.md` format
+
+- Phases: `## <name>`
+- Tasks: `### TNNN — Title` (three-digit, unique)
+- Bullets (one per line): `status:` (`todo|doing|done|blocked|failed|skipped`),
+  `deps:` (`[]` or `[T001, T002]`), `verify:` (shell command or `—`), `done:`,
+  optional `files:`, optional `milestone:`.
+- Free prose after the bullets is the description; the runner passes it to the
+  agent.
+
+Keep bullets to a single line — wrapped values will be read as description text.

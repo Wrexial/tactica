@@ -1,0 +1,209 @@
+{{FA|February 1, 2012}}
+[[File:Ivalice (FF12).jpg|thumb|right|250px|Map of Ivalice locations in ''Final Fantasy XII''.]]
+'''Ivalice''' {{j|イヴァリース|Ivarīsu}} is a recurring [[Final Fantasy worlds|world]] in the [[Final Fantasy series|''Final Fantasy'' series]]. Created by Director [[Yasumi Matsuno]], Ivalice has been the setting of several games, including the non-''Final Fantasy'' title ''[[Vagrant Story]]''. Matsuno wanted to expand Ivalice across a number of different titles so that it would stay within the memories of players.<ref>{{Refwebsite| page url = https://wegotthiscovered.com/gaming/exclusive-interview-takashi-katano-hiroaki-kato-final-fantasy-xii-zodiac-age/2/| page name = Exclusive Interview: Takashi Katano And Hiroaki Kato On Final Fantasy XII: The Zodiac Age| site url = https://wegotthiscovered.com| site name = We Got This Covered| access time = 17:44, December 09, 2018 (UTC)}}</ref> Unlike many other ''Final Fantasy'' worlds, most games set in Ivalice happen in the same universe, usually at different periods in time. It first appeared in ''[[Final Fantasy Tactics]]'', a spin-off entry to the series, and made its main series debut in ''[[Final Fantasy XII]]''.
+
+The Golden Age of Ivalice is based on various ancient Mediterranean cultures such as Turkey, Jordan, and Late Period Egypt, with additional influence from India, Sri Lanka, and modern metropolitan cities, while its post-[[Cataclysm (Ivalice)|Cataclysm]] era—represented by ''Final Fantasy Tactics'' and ''[[Vagrant Story]]''—is inspired by medieval and Renaissance-era Europe. The fall of the [[Holy Ydoran Empire]] in particular is reminiscent of the French legend of [[wikipedia:Ys|Ys]].
+
+The stories set in Ivalice tend to be narratives. The events of ''Final Fantasy Tactics'' are told to the player by Arazlam Durai, who uses the [[Durai Papers]] as his source. ''Vagrant Story'' appears to be an investigative report on the Graylands Incident. Similarly, [[Halim Ondore IV]] narrates some of the story of ''Final Fantasy XII'' from his memoirs and [[Penelo]] and the rest of the party are implied to have written the story of ''Final Fantasy XII: Revenant Wings'' into the [[Logbook]].
+
+It is unknown whether Ivalice is considered a planet or if the entire Ivalice is a [[dream world]] created by [[Mewt Randell]], based on St. Ivalice from his world, with a backstory created by his imagination.
+
+==Appearances==
+===''[[Final Fantasy XII]]''===
+{{main|Ivalice (Final Fantasy XII)}}
+Ivalice is a region consisting of three continents: [[Ordallia|Ordalia]] in the west with a secret islet called the Den's Hideout, Valendia in the northeast, and [[Kerwon]] in the south. Only the lands bordering the Naldoan Sea are explored, although other Ivalician lands (the former [[Republic of Landis]], for example) are sometimes mentioned. Centuries ago, King [[Raithwall]] united the three continents to establish the [[Galtean Alliance]], but over time, conflicts split the continents again.
+
+The continents are dominated by an assortment of industrialized city-states: the [[Archadia|Archadian Empire]] and the [[Nabradia|Kingdom of Nabradia]] in Valendia, the [[Rozarrian Empire]] in Ordalia, and sandwiched between the two, the [[Dalmasca (Final Fantasy XII)|Kingdom of Dalmasca]]. Strategically located between the rival neighboring states, Dalmasca's position as a neutral buffer region is eliminated when Archadia invades it. Reduced to an occupied territory, Dalmasca plays a central role in the still-heated dispute between its neighbors, which is again escalating.{{clear}}
+
+====''[[Final Fantasy XII: Revenant Wings]]''====
+A new sky continent is discovered and [[Sky pirate (Final Fantasy XII)|sky pirates]] rush to explore it while new threats to the mainland of Ivalice emerge. Most of the game takes place on the sky continent of [[Lemurés (Revenant Wings)|Lemurés]], with locations from ''Final Fantasy XII'' briefly visited.{{clear}}
+
+===''[[Final Fantasy Tactics]]''===
+{{main|Ivalice (Tactics)}}
+[[File:FFTIvalice.png|thumb|Map of Ivalice.]]
+Ivalice is referred to as a kingdom, similar to a European country in the Middle Ages. It is a feudal society with a single major religion, the [[Church of Glabados]], of which all Ivalicians are members, mirroring pre-reformation Christian Europe. Ivalice has recently suffered a series of wars that involved the invasion of neighboring kingdoms of [[Ordallia]] and Romanda. During the [[Fifty Years' War]], Ivalice opposed the armies of Ordallia, leading to the current destabilized political situation and, eventually, the [[War of the Lions (term)|War of the Lions]] to decide the kingdom's true ruler.{{clear}}
+
+===''[[Final Fantasy Tactics Advance]]''===
+{{main|Ivalice (Tactics Advance)}}
+[[File:FFTA world.png|thumb|Map of Ivalice.]]
+Ivalice is a kingdom created by [[Mewt Randell]]'s imagination after he bought the [[Gran Grimoire]] from a bookstore. Mewt and his friends—as well as the entire town—were brought to this kingdom after Mewt uttered magic words to the Grimoire. Ivalice is influenced by classic Middle Eastern cultures as everything from the architecture, character design, and clothing patterns indicates an arabesque style.
+
+The Ivalice of ''Final Fantasy XII'' is arguably based on the Ivalice in ''Final Fantasy Tactics Advance'', although a more mature version; in ''Tactics Advance'', Ivalice was created by a child. [[Law system (Tactics Advance)|Laws]] play an important role in this world, being supervised by the [[Judge (Tactics Advance)|Judges]] of the palace. [[Hideo Minaba]] has stated that his team tried to bring Arabic culture into the setting.<ref>[http://web.archive.org/web/20091003031245/http://www.gamepro.com/article/features/31808/a-final-fantasy-xii-interview-page-2/]</ref>
+
+Ivalice may also refer to [[St. Ivalice]], Mewt's hometown.
+
+===''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''===
+{{main|Jylland}}
+Ivalice is a geographical region rather than a kingdom. The land is not a dream world like in ''Final Fantasy Tactics Advance'', but a region called [[Jylland]], an area situated within the larger world of Ivalice, combining elements from ''Tactics Advance'' with ''Final Fantasy XII''. Jylland is comprised of the Loar continent in the west and the western half of the Ordallia continent in the east. [[Luso Clemens]] is teleported to Jylland by writing his name in the Gran Grimoire.
+
+===''[[Vagrant Story]]''===
+{{main|Valendia (Vagrant Story)}}
+''Vagrant Story'' takes place within the kingdom of Valendia, which shares the name of a continent from ''Final Fantasy XII''. The story spans three locations: the capital city Valnain, [[the Graylands]], and the evil city of [[Leá Monde]]. There are several references to Ivalice and ''Final Fantasy XII'' uses the [[Calendar system|Old Valendian Calendar]]. The [[Kiltia]] religion also features in both.
+
+While ''Vagrant Story'' is not a ''Final Fantasy'' title, the game was designed by Yasumi Matsuno, the director and story creator for ''Final Fantasy Tactics'' and the original director for ''Final Fantasy XII''.
+
+''Vagrant Story'' being set in Ivalice is actually a retcon, as originally, nothing confirmed that the game was set in that world. The game was not promoted as being connected to ''Final Fantasy Tactics'' on its release and the ''Vagrant Story Ultimania'' makes no mention of Ivalice. At the time, Yasumi Matsuno stressed that he made ''Vagrant Story'' to move away (at least temporarily) from the ''Final Fantasy Tactics'' universe. He stated that the games are connected in 2004 in ''Final Fantasy XII'' interviews for a French gaming magazine, ''Joypad''.<ref>{{Refwebsitedead| page url = https://www.ffworld.com/?rub=ff12&page=interview_jp-mai04| page name = Interview| site url = https://www.ffworld.com| site name = Final Fantasy World| access time = 20071011201410}}</ref> Before that, the allusions to ''Final Fantasy Tactics'' in ''Vagrant Story'' could simply be seen as Easter eggs. 
+
+==Story==
+===Timeline===
+[[File:Ivalice Timeline.jpg|thumb|Timeline of Ivalice.]]
+The chronological order of the games is the following:
+*''[[Final Fantasy XII]]''
+*''[[Final Fantasy XII: Revenant Wings]]''
+*''[[Final Fantasy Tactics A2: Grimoire of the Rift]]'' (main game)
+*''[[Final Fantasy Tactics]]''
+*''[[Vagrant Story]]'' (not an official ''Final Fantasy'' title)
+*''[[Final Fantasy Tactics Advance]]''
+*''[[Final Fantasy Tactics A2: Grimoire of the Rift]]'' (prologue & epilogue)
+
+In ''Final Fantasy Tactics A2: Grimoire of the Rift'', Luso is transported to an Ivalice in the timeline after ''Final Fantasy XII: Revenant Wings'' (when [[Vaan]] and [[Penelo]] fully become sky pirates and hinted by the discussion they have with [[Hurdy (Final Fantasy XII)|Hurdy]]) and before ''Final Fantasy Tactics'' or during, if his ''War of the Lions'' appearance is considered canon, which is possible, since Mewt gave the Grimoire that he used in ''Tactics Advance'' to Luso at the end of ''Tactics A2''. This would also explain why Luso was looking for his friends in ''Final Fantasy Tactics: War of the Lions''. If his ''War of the Lions'' appearance is canon, it would take place after the events of ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+
+''Final Fantasy Tactics A2: Grimoire of the Rift'' appears twice due to the appearances of Luso in both Ivalice and St. Ivalice.
+
+===The age of myths===
+[[File:FFXII-International PromoArt.jpg|thumb|Scions of Dark.]]
+The gods, calling themselves the [[Occuria]] in ''Final Fantasy XII'', worked upon the world of Ivalice. They created the twenty-four scions based on [[Zodiac (term)|zodiacs]] split as scions of Light and Dark, tasked with important objectives. Based on ancient texts, some believe there is a thirteenth scion. The scions of Dark rose against the gods and were bound to the world, hence only half appear as [[Esper (Final Fantasy XII)|Espers]] in ''Final Fantasy XII''.
+
+:The creation myths of Ivalice are many, but one of the better known ones is as follows:{{Citation needed}}
+Before Ivalice was created, there existed two warring tribes of gods: the Fabar and the Danan. The war lasted for millennia until the Prophet Matoya predicted the death of the Danan god-king Xabaam at the hands of his trusted blade. Xabaam feared his trusted General, Ahnas, to be the death of him and imprisoned him and his loyal followers in the darkest labyrinths. Ahnas implored the death-god Heth to free him in exchange for his own life. Freed along with his followers, Ahnas sought revenge.
+
+Now Ahnas the Holy, he and his followers appeared millennia later upon the Fabar and battled the Danan triumphantly. The Fabar god We'aka was intrigued with the strength of his vengeance and swore an oath to fight alongside his men. Battles raged on for countless millennia until Ahnas finally confronted Xabaam and defeated him.
+
+While We'aka sought the head of Xabaam, Ahnas wished the Danan god-king pay for his misdeeds and immortalized Xabaam's body, transforming it into a great land and named it Ivalice. Now Ahnas the Shining, he and his followers withdrew into the heavens, watching as Man lived and thrived upon Xabaam's eternal body.
+
+===The age of gods===
+[[File:RWOccuria.jpg|thumb|The Occuria.]]
+Thousands of years before the Galtean Alliance was established, the Occuria ruled over Ivalice. While Man was starting to thrive, the Occuria built imposing structures, such as the [[Pharos (Final Fantasy XII)|Pharos]] at the [[Ridorana Cataract (Final Fantasy XII)|Ridorana Cataract]]. For reasons unknown, the Occuria withdrew into hiding in the city of [[Giruvegan]], causing mass confusion until the dawn of a new age.
+
+Some believed that the Occuria left because of the [[Esper (Final Fantasy XII)#The Legend|Thousand Years War]] incited by the twelve Espers, led by the corrupt Holy Seraph [[Ultima (Ivalice)|Ultima]]. The Espers were defeated and the Occuria, wanting to ensure that the Espers would not rebel again, bound them into glyphs and banished them to the dark reaches within Ivalice.
+
+The [[aegyl]] [[Feolthanos]] defied the Occuria and sealed himself and his people on the [[Purvama]] of Lemurés to evade their wrath. In secret, Feolthanos married a [[viera]], whose offspring became a subspecies known as the feol viera.
+
+===Time of the glaciers===
+Ivalice was covered in ice, much like the ice ages of Earth. Many creatures adapted to a land-based way of life, but some creatures, such as the [[Croakadile (Final Fantasy XII)|Croakadile]], struggled surviving through the colder temperatures and their population dwindled. Eventually, the glaciers began to melt as the temperature rose, flooding the lands. The sudden change in sea level killed many land species and a number of surviving creatures, such as the [[Coeurl]], were forced to adapt.
+
+===Magick enters Ivalice===
+Vague records claim that [[Magic (term)|magick]] was brought to Ivalice from an unknown continent and into the hands of Man. It is unknown if the Occuria had a hand in this as they are known to have given magick stones with great power to individuals of their choosing.
+
+===The Light of Kiltia===
+{{Main|Kiltia}}
+Circa 1294 years before the Valendian calendar, the Light of Kiltia was founded in Ordalia by a prophet of the same name with [[Mt Bur-Omisace]] at its center. The dualistic faith worshiped a polytheistic pantheon led by Faram, the father. It was an early precursor to the Church of Glabados and also influential to the [[Blood-Sin|Iocus Priesthood]].
+
+===The Galtean Alliance===
+{{Main|Galtean Alliance}}
+[[File:King raithwall with dawn shard.png|thumb|King Raithwall with a piece of deifacted nethicite.]]
+Circa Old Valendian 1,{{note|The timeline given in a publication {{Show image|Ivalice Timeline.jpg}}, and the one given in [[Sage Knowledge]] in ''Final Fantasy XII'', do not match. The former proposes the calendar started, year 394 the Alliance fell, and 706 was when ''Final Fantasy XII'' took place. The Sage Knowledge in ''Final Fantasy XII'' posits that Raithwall established Galtean Alliance, reigned for 50 years, the Alliance ended after 400 years, and then House Dalmasca ruled for 700 years.}} Ivalice was at war. The Occuria, fearing that Ivalice would be scarred further, gave the [[garif]] a large piece of [[nethicite]], a weapon to set everything straight. The garif were unable to use it and, angered at the garif's incompetence, the Occuria came to learn of Raithwall's victory over the Esper [[Belias]]. Amazed, they gifted the nethicite and the [[Sword of Kings (weapon)|Sword of Kings]] to him.
+
+Taking three shards off the motherlode of nethicite, the [[Sun-Cryst]], King Raithwall united Ivalice and became known as the [[Dynast King]] and the founder of the Galtean Alliance. The Empires of Archadia and Rozarria arose and expanded quickly.
+
+King Raithwall was buried with the [[Dawn Shard]] and his tomb is guarded by Belias. The [[Dusk Shard]] went to the Kingdom of Dalmasca while the [[Midlight Shard]] went to the [[Nabradia|Kingdom of Nabradia]].
+
+In ''Final Fantasy Tactics A2: Grimoire of the Rift'', the [[Ruins of Delgantua]] are described as dating back to the Galtean era. This is further evidenced by the ancient stone architecture that composes its rooms and halls.
+
+The Dancer-Priestess [[Müllenkamp]] lived during this era. A practitioner of the darker arts of Kiltia, Müllenkamp amassed a following, created many magickal Grimoires, and founded the city of Leá Monde. The [[Blood-Sin]] [[Tattoo (body modification)|tattoo]] on her back was passed down through her family after her death and serves as the key to Leá Monde.
+
+If the [[Zodiac Braves]] from the Church of Glabados legend did exist, they lived during a warring period before the union of Ivalice, possibly a reference to the Galtean Alliance of this era.
+
+===The age of technology===
+[[File:Bashamut2.png|thumb|[[Battle above Rabanastre]].]]
+Circa Old Valendian 706, the Empires of Rozarria and Archadia were at war. A truce was signed, but the son of [[Gramis Gana Solidor|Emperor Gramis Solidor]], [[Vayne Carudas Solidor|Vayne]], assassinated his father and took over the Empire. He hoped to start a war with Rozarria and become Ivalice's new Dynast King, as he was being led by the rogue Occuria, [[Venat (Final Fantasy XII)|Venat]], who wished to shatter the control its kind had over Ivalice.
+
+Vayne was stopped and killed by [[Ashelia B'nargin Dalmasca|Princess Ashe]] of the Kingdom of Dalmasca, along with the sky pirates [[Balthier]] and [[Fran (Final Fantasy XII)|Fran]], street urchin Vaan and his friend, Penelo, and a Dalmascan Knight-Captain, [[Basch fon Ronsenburg]]. Ashe had been the Occuria's chosen, but opted to destroy the Sun-Cryst instead of carving new nethicite from it.
+
+A year later, the Purvama of Lemurés was revealed to Ivalice along with the mysterious aegyl race. This sparked a treasure hunting spree among sky pirates that a maddened Feolthanos attempted to exploit. The party who stopped Vayne Solidor, along with some new friends, also defeated Feolthanos and restored peace to Ivalice.
+
+===The cataclysm and the age of Ajora===
+At an unknown point in time, a great [[Cataclysm (Ivalice)|catastrophe]] hit Ivalice, wiping out many landmarks and taking out many races, including the [[moogle]]s. Man started referring to the previous era as the Golden Era and rebuilt the world from the ground up.
+
+In an age where [[Airship (term)|airships]] and robots were commonplace, [[Pharism]] became the dominant religion of the Holy Ydoran Empire. A man called [[Ajora Glabados|Ajora]], at the age of twenty, started to preach about the coming of Paradise. His influence incited unrest among the Pharist priests and Ajora was caught and hanged by the Empire, after which an earthquake wiped out Ydora and sunk [[Mullonde]] into the sea.
+
+Some took this as a divine sign and started praising Ajora as a child of the gods. Over the next few decades, Ajora's tale would become twisted to valorize him. The Church of Glabados was founded by Ajora's disciples with Saint Ajora as its cynosure. Pharism faded with the Church of Glabados becoming the main religion. Presumably, [[Germonique]] wrote his [[Scriptures of Germonique|scriptures]] around this time, describing Ajora in a less favorable light.
+
+===The War of the Lions===
+[[File:FFT-WotL art.jpg|thumb|War of the Lions.]]
+{{Main|War of the Lions (term)}}
+1200 years after the sinking of Mullonde, Ivalice was again at war between two men seeking the throne. In reality, the war was a means for a greater evil. The Espers, now calling themselves [[Lucavi]], wanted to return to rule Ivalice and [[enthrall|possessed]] people to use them to do their bidding. It turned out Ajora had been being possessed by the Lucavi's leader, [[Ultima (Tactics)|Ultima]], who was trapped in Ajora's body when he died. Using the War of the Lions, the new leader of the Lucavi, [[Hashmal (Tactics)|Hashmal]], hoped to revive her.
+
+The Lucavi amassed an abundance of bloodshed to revive Ajora, Ultima's last host, but a young man named [[Ramza Beoulve|Ramza]] stopped them. Ramza became labeled a heretic and his old friend, [[Delita Heiral]], went down in history as the man who ended the war. The only one who knew the truth, [[Orran Durai]], was executed by the Church of Glabados as a heretic. 400 years later, Orran's descendant, [[Arazlam Jenomis Durai|Arazlam Durai]], discovered his writings and decided to bring the truth to light.
+
+While not historically relevant, Luso Clemens appeared during this time period, but how he got there is unknown. He may have used the powers of his [[Grimoire of the Rift]] to return to Ivalice in a different era once he was freed from his imprisonment.
+
+Balthier from ''Final Fantasy XII'' also appeared in this era, claiming to have been brought to Ivalice's future by the Cache of Glabados. It can be speculated that during his time as sky pirate, Balthier found a magickal artifact that transported him through time. This is further supported by his statement at the end of ''Final Fantasy XII'' of going after the Cache of Glabados.
+
+===The Graylands incident===
+Previously, a Kildean priestess named Müllenkamp founded the city of Leá Monde. Her followers created a cult after her and, as time passed, a man called Saint Iocus began prohibiting the use of magicks. The influence of the Iocus priesthood increased and followers of Müllenkamp were hunted down in the Inquisition. The prosperous city of Leá Monde was struck by a great earthquake, turning it into a concentration of [[The Dark (term)|dark energy]] and lost souls. 25 years later, [[Riskbreaker]] [[Ashley Riot]] of Valendia entered Leá Monde to stop [[Sydney Losstarot]], a Müllenkamp cultist leader with an unknown objective.
+
+Ashley discovered that the real threat was [[Romeo Guildenstern]], who wanted the power of the [[Gran Grimoire]]. Stripping Sydney of his power, he revealed that the entire city was the Grimoire. Ashley stopped Romeo and, in turn, was granted the dark powers of Leá Monde. Ashley became the vagrant, eternally saving lost souls who had become undead.
+
+===The true Zodiac Brave Story===
+400 years after the War of the Lions, Arazlam Durai, a descendant of Orran, revealed the truth about Saint Ajora, the [[Scriptures of Germonique]], and the war itself.
+
+===The modern age(?)===
+[[File:StIvalice.png|thumb|St. Ivalice.]]
+It is unknown if St. Ivalice in ''Final Fantasy Tactics Advance'' is a location in the same Ivalice as seen in the other games. It is possible that its name merely alludes to it.
+
+If St. Ivalice is taken to belong to the same world, it depicts a world several centuries in the future where magick has vanished and been replaced by technology. In a small town, a young boy named Mewt Randell buys an ancient book, the Gran Grimoire. Leafing through it with his friends, [[Marche Radiuju|Marche]] and [[Ritz Malheur|Ritz]], along with Marche's little brother, [[Doned Radiuju|Doned]], the book creates an Ivalice following Mewt's designs, who, in turn, is inspired by a [[Final Fantasy (term)|''Final Fantasy'' game]] and the grimoire's illustrations. Marche eventually reverts the world to normal, knowing that it isn't healthy to live in a dream world.
+
+Ten to twenty years later, a young boy named Luso finds the Gran Grimoire, but unlike Mewt's experience, this time, the Gran Grimoire sends Luso back in time to the Golden Era. It is possible that this is not the same grimoire that Marche used, as in ''Final Fantasy Tactics A2'', the book is referred to as the [[Grimoire of the Rift]].
+
+Alternatively, it is possible that the presence of ''Final Fantasy Tactics Advance'' in Ivalice itself is a retcon, as material related to ''Tactics Advance'' noted the existence of a civilization that was destroyed by Noah's flood. 
+
+==Recurring characters==
+Many of the characters in Ivalice have recurring roles due to the games in Ivalice being based in the same world.
+
+Some examples are:
+*[[Montblanc]] in ''Final Fantasy XII'', ''Final Fantasy XIV, Final Fantasy Tactics Advance'', and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Nono]] in ''Final Fantasy Tactics Advance'', ''Final Fantasy XII: Revenant Wings'', ''Final Fantasy XII'', and is mentioned in ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Sorbet (Final Fantasy XII)|Sorbet]] in ''Final Fantasy XII'' and ''[[Dive II Hunt: The Adventures of Sorbet]]''.
+*[[Hurdy (Final Fantasy XII)|Hurdy]] in ''Final Fantasy XII, Final Fantasy XIV,'' and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Balthier]] in ''Final Fantasy XII'', ''Final Fantasy XII: Revenant Wings'', and ''Final Fantasy Tactics: War of the Lions''.
+*[[Ezel Berbier]] in ''Final Fantasy Tactics Advance'' and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Luso Clemens]] in ''Final Fantasy Tactics: War of the Lions'' and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Penelo]] in ''Final Fantasy XII'', ''Final Fantasy XII: Revenant Wings'', and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Vaan]] in ''Final Fantasy XII'', ''Final Fantasy XII: Revenant Wings'', and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Al-Cid Margrace]] in ''Final Fantasy XII'', ''Final Fantasy XII: Revenant Wings'', and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Mewt Randell]] in ''Final Fantasy Tactics Advance'' and ''Final Fantasy Tactics A2: Grimoire of the Rift''.
+*[[Ashelia B'nargin Dalmasca]] or "Ashe" in ''Final Fantasy XII'', ''Final Fantasy XII: Revenant Wings'', and was to appear in ''[[Fortress]]''.
+
+The Montblanc, Nono, and Ezel that appear in ''Final Fantasy Tactics Advance'' are part of the [[dream world]] that Mewt created with the help of the Gran Grimoire, but Montblanc possibly retains memories of the dream Ivalice. The Montblanc, Hurdy, and Ba'Gamnan and crew that appear in the ''Return to Ivalice'' section of ''FFXIV: Stormblood'' appear to be in an alternate history of events set sometime after the Garlean invasion of Rabanastre as depicted in ''Final Fantasy XII.''
+
+==Other appearances==
+===''[[Final Fantasy XIV]]''===
+Ivalice is the main focus of the {{icon|ffxiv|duty|Return to Ivalice}} raid series. The Ivalice of ''Final Fantasy XIV'' is unrelated to the Ivalice of other titles, here being an ancient near-eastern region in [[Source (Final Fantasy XIV)|the Source]] rather than a world unto itself. While it exists separately from Ivalice's other appearances, it bears many similarities, from nations such as [[Dalmasca (Final Fantasy XIV)|Dalmasca]] to historical events such as the [[War of the Lions (term)|War of the Lions]], though these shared elements have differences. Perhaps the greatest difference is in its timeline—the Ivalice of ''XIV'' borrows elements primarily from its ''XII'' and ''Tactics'' appearances, but in ''XIV'''s timeline, the ''Tactics'' elements predate the ''XII'' elements rather than the other way around.
+
+Throughout the history of Ivalice, there were many heroes known as the [[Zodiac Braves]], such as [[Ashley Riot]], [[Müllenkamp]], [[Saint Ajora]], and others. The most famous group of Zodiac Braves are [[Delita Heiral (Final Fantasy XIV)|Delita Heiral]] and [[Ramza Beoulve (Final Fantasy XIV)|Ramza Beoulve]], who fought in the War of the Lions.
+
+Thousands of years ago, Ivalice was the home of the [[Holy Ydoran Empire#Final Fantasy XIV|Holy Ydoran Empire]] and the first group of Zodiac Braves, led by Ajora, battled the empire's tyranny. By summoning the being [[Ultima (Final Fantasy XIV character)|Ultima]], Ajora destroyed the imperial capital [[Mullonde]]. Fearing Ultima's powers, Ajora's fellow Zodiac Braves sealed Mullonde and Ultima in another dimension to keep the High Seraph away from Hydaelyn.
+
+Centuries later, the War of the Lions was fought across Ivalice, during which Ultima tried to free herself. She was fought back by the group of Zodiac Braves led by Ramza, who sacrificed themselves to keep her sealed. Delita won the war and united Ivalice, becoming a great king, while Ramza was forgotten by history by his own last request to keep Ultima a secret. Also around this time, [[The Clockwork City of Goug (Final Fantasy XIV)|the Clockwork City of Goug]] was abandoned, its people traveling to the northern continent [[Ilsabard]]. Their descendants would go on to found the [[Garlean Empire]].
+
+In the modern day, Ivalice is long forgotten, its stories thought to be mere myths and known across Ilsabard. Ivalice's former territory is now occupied by the kingdom of Dalmasca, with its capital, [[the Royal City of Lesalia (Final Fantasy XIV)|Lesalia]], deep underground beneath [[the Royal City of Rabanastre (Final Fantasy XIV)|the Royal City of Rabanastre]]. The ruins are uncovered after Rabanastre's destruction by Garlemald and, during the Return to Ivalice storyline, the characters uncover the truth of Ramza's story and fight to keep Ultima from freeing herself.
+
+===''Fortress''===
+''[[Fortress]]'' was the codename of a video game developed as a sequel to ''Final Fantasy XII'' set in Ivalice. The title was never formally announced or publicly acknowledged.
+
+==Gallery==
+<gallery>
+Ivalicemapmisconception.jpg|Fanmade map that is not canon.
+Ivalice_map.jpg|Extended map of Ivalice (''Final Fantasy XII'').
+</gallery>
+
+==Notes==
+===Annotations===
+{{Annotations}}
+===Citations===
+{{citations}}
+
+{{navbox Ival}}
+
+
+[[de:Ivalice]]
+[[es:Ivalice]]
+[[Category:Worlds]]
+[[Category:Locations in Final Fantasy XII]]
+[[Category:Locations in Final Fantasy Tactics]]
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Locations in Final Fantasy Tactics A2: Grimoire of the Rift]]
+[[Category:Vagrant Story]]
+[[Category:Locations in Final Fantasy XII: Revenant Wings]]
+[[Category:Ivalice]]

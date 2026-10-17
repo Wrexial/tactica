@@ -1,0 +1,78 @@
+{{infobox character
+|name=Babus Swain
+|release=FFTA
+|japanese=バブズ・スエイン
+|romaji=Babuzu Suein
+|image=Ffta-babus.jpg
+|portrait=[[File:FFTA-Babus-por.png|Portrait.]]
+|sprite=[[File:FFTA babus.gif|Sprite.]]
+|race=[[nu mou]]
+|gender=Male
+|type=playable
+|job=[[Runeseeker]]
+|japanese voice actor=Kumi Sakuma ([[Final Fantasy Tactics Advance Radio Edition|Radio Drama]])
+}}
+{{Quote|I still follow Prince Mewt. I will always be loyal!|Babus}}
+'''Babus Swain''' is [[Mewt Randell]]'s [[nu mou]] assistant from ''[[Final Fantasy Tactics Advance]]''. An experienced mage, he will do anything to protect Mewt.
+
+==Profile==
+===Appearance===
+Babus's appearance differs from other nu mou in a few ways: he is white instead of gray, lacks a tuft of hair on the top of his head, and has a round button nose. He carries a large staff and wears similar attire to [[Sage (Tactics Advance)|Sages]], but with a different color scheme and without a hat. As Babus has a nose unique to all other nu mou, it is possible Babus is based on Mewt's teddy bear.
+
+===Personality===
+Babus is a devoted servant to Prince Mewt, often using his powerful magic to track down criminals and other ne'er-do-wells on his behalf. He speaks in a sophisticated manner and can be haughty.
+
+==Story==
+{{spoiler}}
+Babus initially opposes [[Marche Radiuju]]'s efforts to revert the [[Ivalice (Tactics Advance)|world]] to normal. He is present when [[Cid Randell|Judgemaster Cid]] interrogates Marche, and the portal opens to bring all three inside [[Exodus (Tactics Advance)|Exodus]]. Realizing that Marche has a chance to defeat the fourth [[Totema]], bringing the world closer to reverting, Babus attacks, but Marche defeats and renders the [[Runeseeker]] unconscious. Babus later realizes the truth about Mewt and the world, and comes to believe that opposing Mewt is in his best interests and the interests of the prince.
+
+When Marche enters the palace, Babus calls for Cid who arrives in time to prevent [[Llednar Twem]] from destroying Marche. Babus travels to the [[Ambervale]] ahead of Marche, but is injured by Llednar. When Marche and Cid arrive, they find Babus unconscious. After Babus comes to, he offers to keep going, but Cid orders him to withdraw since he is in no condition to fight.
+
+==Gameplay==
+Babus is fought as a [[boss]] inside the Totema Exodus, being the only real threat in the encounter. The player is only allowed to bring their main character, so it is important that Marche is decently [[level]]ed, as Babus is very powerful. The player needs to complete another battle before this encounter, so a [[Game Over (term)|Game Over]] means restarting the previous mission as well.
+
+Babus uses Runeseeker abilities, including Explode, which deals high fire damage. Its power is further boosted by the [[Lotus Mace (Tactics Advance)|Lotus Mace]] Babus has equipped. Babus has valuable equipment, including a [[Lordly Robe (Tactics Advance)|Lordly Robe]] and the aforementioned Lotus Mace. The main character can have some [[Thief (Tactics Advance)|Thief]] abilities mastered to steal Babus's equipment.
+
+Babus can deal some physical damage, but that should be a lesser concern compared to his magic. A great strategy is to have [[Law system (Tactics Advance)|laws]] banning Fire during the battle, which will prevent Babus from using Explode freely.
+
+===Recruitment===
+[[File:FFTA Explode.png|thumb|right|Babus using Explode.]]
+Babus can be recruited by completing the missions "Left Behind" and "With Babus". If dismissed, he can be recruited again on the "Doned Here" mission.
+
+After completing the Dispatch Mission "Left Behind", Babus asks Marche to help him find a lost item of Mewt's in [[Ambervale]]. In "With Babus", Marche joins the Runeseeker in an Ambervale cave that is made of a large variety of colorful crystals. A specter of [[Remedi|Queen Remedi]] appears on a column of green and blue crystal, and criticizes Babus for opposing her. Babus states his devotion to the prince and tells the image of Remedi that she is only a ghost.
+
+After Remedi and her [[Floateye (Tactics Advance)|Floateye]] and [[Ahriman (Tactics Advance)|Ahriman]] cronies are defeated, Remedi turns into a stuffed bear, the lost item that Babus was seeking. Marche comforts the Runeseeker, telling him to keep the bear as a memory of Prince Mewt. Babus agrees, and offers to join Marche's [[Clan Nutsy|clan]].
+
+
+===Party member===
+Babus joins as a Runeseeker and can equip [[Mace (weapon type)|maces]]. His primary skill is [[Rune (Tactics Advance)|Rune]] and he can also use items.
+
+He is initially equipped with a [[Lotus Mace (Tactics Advance)|Lotus Mace]], [[Aegis Shield (Tactics Advance)|Aegis Shield]], and a [[Mirage Vest (Tactics Advance)|Mirage Vest]], and has already mastered all of his Runeseeker abilities. His [[stat growth]] is identical to an [[Sage (Tactics Advance)|Sage]], which has high [[MP (stat)|MP]] and [[Magic Power]], but low [[Defense (stat)|Defense]].
+
+Babus as a nu mou should be devoted to magic, but his stat growth allows him to take on physical actions if equipped with the proper weapon, such as the [[Vesper (Tactics Advance)|Vesper]] or the [[Cactus Stick]].
+
+{{endspoiler}}
+==Other appearances==
+===''[[Final Fantasy Record Keeper]]''===
+[[File:FFRK Babus FFTA.png|right]]
+{{Enemy section|Final Fantasy Record Keeper}}
+{{clear}}
+
+===''[[Final Fantasy Trading Card Game]]''===
+Babus appears in ''Final Fantasy Trading Card Game'' as a Fire- and an Ice-elemental Forward cards.
+
+<gallery>
+Babus2 TCG.png|Babus [6-011C]/[13-021C] Chapter series card.
+Babus 4-042C from FFTCG Opus.jpg|Babus [4-042C] Opus series card.
+</gallery>
+
+==Etymology==
+{{Etym|Babus}}
+
+{{Etym|Swain}}
+
+These refer to Babus's relationship to Prince Mewt.
+
+{{navbox characters FFTA}}
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Nu mou]]

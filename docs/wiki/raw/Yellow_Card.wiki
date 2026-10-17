@@ -1,0 +1,12 @@
+[[File:FFTA Yellow Card.png|right|thumb|An enemy being given a Yellow Card for breaking a law.]]
+'''Yellow Cards''' are part of the [[Law system (Tactics Advance)|Law System]] in ''[[Final Fantasy Tactics Advance]]''. They are issued for any violation of a law that results in a successful action that is not fatal to its victim.
+
+A Yellow Card on a character serves as a warning, but will result in a post battle penalty. The possible penalties include the offending unit receiving no experience or AP for the battle, a monetary fine of the player's gil, a fine of items in the player's inventory, a loss of one of the unit's equipped item, a confiscation of the player's law cards, or a permanent unit stat reduction.
+
+A second offense during the same battle or a fatal offense will result in a [[Red Card (Tactics Advance)|Red Card]] and the unit will be sent to jail immediately. However, some units (most bosses) have a spell known as [[Justice (term)|Justice]] that protects them from receiving Red Cards. They will instead receive another Yellow Card upon subsequent or fatal infractions of the law.
+
+==Etymology==
+A [[wikipedia:penalty card#Yellow card|yellow card]] is shown in many sports after a rules infraction or, by analogy, a serious warning in other areas.
+
+{{navbox setting FFTA}}
+[[Category:Gameplay in Final Fantasy Tactics Advance]]

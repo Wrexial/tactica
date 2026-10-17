@@ -1,0 +1,47 @@
+{{DISPLAYTITLE:Tonberry (''Tactics Advance'')}}
+[[File:FFTA-spr-tonberry.gif|left]]
+[[File:FFTA - Tonberry Portrait.png|right]]
+{{Quote|Green, hooded monster. Carries a wicked knife.|Description}}
+The '''Tonberry''' in ''[[Final Fantasy Tactics Advance]]'' is a small green lizard-like creature that wears a hood and carries a knife and a lantern. Though its Move and Jump stats are low, the Tonberry is dangerous if it can execute its skills on an unsuspecting party member.
+
+{{See|Tonberry}}
+
+==Abilities==
+===Grudge===
+{{Quote|Tonberry command. Attack with a vengeance.|Description}}
+{|class="full-width FFTA article-table"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Chef's Knife|Knife}}
+|''Tonberry knife stab. Reduces HP to 1/10.''
+|-
+!{{LA|Karma (ability)|Karma}}
+|''Deals damage for each unit the target has KO'd.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:20%"|Mission
+!style="width:70%"|Information
+|-
+!#039: The Wanderer
+|This mission takes place in [[Muscadet]]. Two Tonberries appear here, along with their even more dangerous cousin, the [[Masterberry]]. Their starting positions are a bit too close to the party for comfort.
+|-
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Aisenfield (Tactics Advance)|Aisenfield]]
+|style="text-align: center"|Aisen Ghosts
+|The Tonberry is the only enemy to take note of in this clan encounter, so KO it first.
+|}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

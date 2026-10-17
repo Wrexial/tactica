@@ -1,0 +1,94 @@
+{{infobox character
+|name=Mewt Randell
+|release=FFTA
+|japanese=ミュート・ランデル
+|romaji=Myūto Randeru
+|image=Ffta-mewt.jpg
+|portrait=[[File:FFTA-Mewt1-por.png|St. Ivalice portrait.]] [[File:FFTA-Mewt2-por.png|Prince Mewt's portrait.]] [[File:FFTA-Mewt3-por.png|Prince Mewt's portrait in the epilogue.]] [[File:TA2Randell.png|Mr. Randell's portrait (''Final Fantasy Tactics A2: Grimoire of the Rift'').]]
+|sprite=[[File:FFTA mewt.gif|St. Ivalice sprite.]] [[File:FFTA mewt2.gif|Prince Mewt's sprite.]] [[File:FFTA2-Mr. RandellSprite.PNG|Mr. Randell's sprite (''Final Fantasy Tactics A2'').]]
+|age=About 12 - 14 (''Final Fantasy Tactics Advance'')<br/>About mid 20s until early 30s (''Final Fantasy Tactics A2'')
+|race=[[Human|Hume]]
+|gender=Male
+|type=playable (Snowball fight only)<br>
+Non-Playable (Different world and Tactics Advance 2)
+|job=Prince (FFTA - [[Dummied content|Dummied]])<br>Librarian (FFTA2)
+|japanese voice actor=Asami Sanada ([[Final Fantasy Tactics Advance Radio Edition|Radio Drama]])
+}}
+{{Quote|Marche's classmate Mewt is an odd boy who always carries a teddy bear. Shy and a little precocious, Mewt is often picked on by other kids in school. Ever since Mewt's mother became ill and passed away, his father has had trouble at work, and Mewt's shyness has only gotten worse. The teddy bear he always carries with him was a gift from his mother. When Mewt finds an old book at a used bookstore, everything he knows changes... but is it for better or for worse?|Online description}}
+'''Mewt Randell''' ('''Mewt Randall''' according to the European official website) is a major character from ''[[Final Fantasy Tactics Advance]]'' who also appears in ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''. In the real world, he is shy and bullied, but befriends the protagonist, [[Marche Radiuju]], and [[Ritz Malheur]].
+
+==Profile==
+===Appearance===
+Mewt's appearance varies based on which version of [[Ivalice (Tactics Advance)|Ivalice]] he is in. While in the real world, he has unkempt brown hair, lazy eyes, and a green hooded sweatshirt. Before the book glows to transform their world, Mewt wears a pair of blue pajamas. In the transformed world, he wears a yellow long-sleeved shirt, red pants, an orange cape, and carries a long staff. His hair is done up in two pointed "horns," and he sports a glyph in the center of his forehead, the same glyph also seen on the [[nu mou]] hat and the [[Alchemist (Tactics Advance)|Alchemist]] job class. [[Remedi|Mewt's mother]] also bears a tattoo on her forehead, but not [[Cid Randell|his father]].
+
+In ''Final Fantasy Tactics A2: Grimoire of the Rift'', 16 years later, an older Mewt retains his appearance in the real world and he wears eyeglasses. He now wears a light khaki long-sleeved button shirt with a red neck-tie on the collar, burned orange pants and brown shoes.
+
+===Personality===
+Mewt is a quiet, reserved young boy who is a target for bullies at his school. His mother has died and his father, [[Cid Randell|Cid]], fell on hard times and became an alcoholic. When his home of [[St. Ivalice]] is transformed to resemble his favorite video game, he is given everything he ever wanted, and develops an entitlement complex. His choice whether to remain in the new world, or return to his old imperfect life, forms the crux of the game's main conflict between himself and Marche.
+
+{{spoiler}}
+Afraid at the prospect of being deprived of his current status, Mewt becomes aggressively tyrannical, making laws harsher and even placing a bounty on Marche, sending all Ivalice on a manhunt for him, all to protect his dream. Although desperate and scared, he is able to realize through Marche that the life he now leads is a fake and is futile to maintain, and musters the will to return to normalcy. By the end of the game, Mewt is more resolute and able to stand up to his bullies, having learned valuable lessons from his time in Ivalice.
+
+Not much is known about him as an adult, although he seems to be a respectable and caring figure in the school he works at, and was able to relate to [[Luso Clemens|Luso's]] own adventures in Ivalice.
+
+==Story==
+===''[[Final Fantasy Tactics Advance]]''===
+{{Quote|I'd pick Final Fantasy. That's my favorite.|Mewt, when asked what his favorite game is.}}
+[[File:MewtArt.jpg|thumb|100px|left|Artwork of Mewt in St. Ivalice.]]
+Mewt is a timid boy who is bullied by the three boys, [[Guinness]], [[Lyle]], and [[Colin (Tactics Advance)|Colin]], during a snowball fight. Marche and Ritz befriend him and Mewt shows his new friends a book he found at a bookstore in St. Ivalice. He chants the words "Alta oron sondus kameela", the only legible sentence he could find. At night, the world is transformed.
+
+In Ivalice Mewt is the prince, since the [[Gran Grimoire]] book used his imagination to create the fantasy world. His father Cid is the [[Judgemaster (Tactics Advance)|Judgemaster]], enforcing Ivalice's laws, while his mother, [[Remedi|Queen Remedi]], dead in the real world, is alive in Ivalice. Because of all that Mewt has in Ivalice, he opposes Marche's attempts to revert the world to normal. Mewt has an [[nu mou]] assistant named [[Babus Swain|Babus]] who defects to Marche upon learning the truth.
+
+[[File:Ffta cast illustration.jpg|right|thumb|Mewt as a baby with his parents, Remedi and Cid.]]
+When Judgemaster Cid learns the truth about the world, he separates himself from the palace. To replace Cid as an agent of the palace, Queen Remedi creates an entity resembling Mewt called [[Llednar Twem]] ("Mewt Randell" backwards). When Llednar fights Marche, Cid tells him Llednar is an embodiment of Mewt's darker side.
+
+When Marche catches up to Mewt, Queen Remedi blocks Marche's effort to change his mind. After she is defeated by Marche, she reveals herself to be the Li-Grim, the entity keeping the world transformed who had taken the form of Remedi to comfort Mewt. A second battle ensues, during which Marche tries to break Mewt out of his confused state. This is only partially successful, so Marche continues his fight against the Li-Grim and defeats it. Before the world reverts, Mewt and the Li-Grim, which he still considers to be Remedi, share one final moment together, before Mewt is ready to return to the real world.
+
+===''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''===
+{{Quote|You see, I've been there too. A world of swords... and magick.|Mewt to Luso}}
+Mewt makes a cameo appearance as Mr. Randell, the librarian in [[Luso Clemens]]'s school in St. Ivalice. After returning from his adventures in Ivalice, Luso encounters Mr. Randell and tells him about it. Mewt replies he believes him as he has been to that place too, giving Luso the very [[Grimoire of the Rift|Grimoire]] he kept with him for years. He still has his stuffed bear, which he keeps on his desk.
+{{endspoiler}}
+
+==Gameplay==
+===''Final Fantasy Tactics Advance''===
+In the game's data coding, there is a battle sprite set and a job coding of "Prince" for Mewt, which is [[Dummied content|largely incomplete]]. This suggests Mewt may have been considered as an opponent or ally at some point.
+
+===''Final Fantasy Tactics A2: Grimoire of the Rift''===
+{{Quote|Responsible for tidying the few library books.|Librarian job description}}
+Mewt is controllable during the opening snowball fight tutorial battle. His class, Librarian, has low [[stats]] and no abilities.
+
+{{Stats FFTA
+|level = 1
+|HP = 8
+|MP = 5
+|move = 3
+|jump = 2
+|evade = 40
+|attack = 6
+|defense = 9
+|power = 1
+|resistance = 12
+|speed = 91
+}}
+
+==Musical themes==
+Mewt's musical theme is "Mewt". On ''[[Final Fantasy Tactics Advance: Original Soundtrack]]'', it is number 26 on disc one and number 19 on disc two. The song was mostly played by strings and a French horn. Its remix in ''[[White: Melodies of Final Fantasy Tactics Advance]]'' is called "Mewt (Acoustic Guitar Version)" which was arranged by Satoshi Henmi. The theme "Grief" from ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]'' sounds similar to this.
+
+The original version of Mewt's theme is melancholy overall, reflecting his inherent loneliness and his desire to escape the reality he despised back home. The arrange version carries a more "mature" tone to the original.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+Mewt appears in ''Final Fantasy Trading Card Game'' as Ice-elemental Backup cards.
+
+<gallery>
+Mewt TCG.png|Mewt [6-027R] Chapter series card.
+Mewt 4-044R from FFTCG Opus.jpg|Mewt [4-044R] Opus series card.
+</gallery>
+
+==Etymology==
+"Mewt" has a similar pronunciation with the word "mute" which means a quiet state, similar to Mewt's quietness at the beginning of the game. In the Maltese language, the word ''mewt'' means "death". His last name, Randell, is an alternate spelling of the the Medieval surname Randall, which contains two Germanic elements meaning "shield" and "wolf".
+
+{{navbox characters FFTA}}
+{{navbox FFTA2}}
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Characters in Final Fantasy Tactics A2: Grimoire of the Rift]]

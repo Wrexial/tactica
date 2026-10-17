@@ -1,0 +1,119 @@
+{{DISPLAYTITLE:Famfrit (''Tactics Advance'')}}
+{{infobox character
+|name=Famfrit
+|release=FFTA
+|japanese=暗闇の雲ファムフリート
+|romaji=Kurayami no Kumo Famufurīto
+|lit=Famfrit, the Cloud of Darkness
+|image=FFTA Famfrit Artwork.jpg
+|sprite=[[File:Ffta-famfrit-sprite.png|24px]]
+|race=[[Totema]]
+|type=boss
+|recurring appearance=Famfrit
+}}
+{{Quote|With the white ones, I was born...|Famfrit}}
+'''Famfrit''' is the [[totema]] of the [[moogle]]s in ''[[Final Fantasy Tactics Advance]]'', and is the first totema fought by [[Marche Radiuju]]. After being defeated, Famfrit can be summoned by any moogle member of [[Clan Nutsy]], including [[Montblanc]]. A [[Deph]] of Famfrit also appears during the fight with [[Remedi|Queen Remedi]] in her Battle Queen form.
+
+As Famfrit is the totema of the [[moogle]] race, he possesses two abilities of the [[Time Mage (Tactics Advance)|Time Mage]] (a moogle job): Demi and Slow.
+
+==Battle==
+[[File:Famfrit FFTA.jpg|thumb|right|150px|Famfrit being summoned.]]
+Famfrit is accompanied by two [[Floateye (Tactics Advance)|Floateye]]s and two [[Ahriman (Tactics Advance)|Ahrimans]]. It is best to take out the Ahriman on Famfrit's left first, because it usually starts out with its deadly attack [[Roulette]]. It can be taken out easily by a mid-level [[Black Magic (Tactics Advance)|Black Magic]]. Players can also move a unit into the Ahriman's move range of 5, which will lure it towards the party for a physical attack instead of using Roulette. If the Ahriman is let alone, it may actually KO one of its own allies with Roulette.
+
+Famfrit mostly attacks with [[Gravity (ability)|Demi]], but he uses Breath of God every once in awhile, usually after the player K.Os a Floateye or an Ahriman. The player should use a [[Combo (Tactics Advance)|Combo]] when possible to defeat him. It is recommended to give another clan member a Combo if possible.
+
+Marche and a [[Paladin (Tactics Advance)|Paladin]] can deal with Famfrit, and Montblanc or another [[Black Mage (Tactics Advance)|Black Mage]] can fight the other enemies. A [[Bishop (Tactics Advance)|Bishop]] or [[White Mage (Tactics Advance)|White Mage]] can keep Marche and other important clan members alive.
+
+==Stats==
+{|class="FFTA article-table" style="text-align:center"
+|-
+!style=width="25%"|Move Rate
+!style=width="25%"|Jump Rate
+!style=width="25%"|Evade Rate
+|-
+|3
+|2
+|30
+|}
+
+==Growth==
+[[File:Ffta-famfrit.png|right|55px]]
+As a boss, Famfrit's stat growth is considerably better than normal job classes. He has the highest Defense and third-highest HP of all totema, giving him incredible endurance against physical attacks, as well as impressive Attack, Magic Power, and Magic Resistance. His MP and Speed are only average, however.
+{{clear}}
+
+{|class="FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|HP
+!style="width:10%"|MP
+!style="width:10%"|Attack
+!style="width:10%"|Defense
+!style="width:10%"|Magic Power
+!style="width:10%"|Magic Resistance
+!style="width:10%"|Speed
+|-
+|12.3 S+
+|5.2 B+
+|10.6 S+
+|11.2 S+
+|9.4 A
+|10.6 S+
+|1.0 D
+|}
+
+==Abilities==
+===Expulse===
+{{Quote|Totema command. Drive off all intruders.|Description}}
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+!Breath of God
+|Envelops surrounding units and deals damage.
+|-
+!Lightspeed
+|Damages unit and bypasses reaction ability.
+|-
+!Presence
+|Damages and knocks back a unit using the fear of god.
+|-
+|}
+
+===Magestorm===
+{{Quote|Totema command. Use all the world's magic.|Description}}
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+![[Slow (ability)|Slow]]
+|Inflicts the Slow status.
+|-
+![[Gravity (ability)|Demi]]
+|Deals damage equal to 1/2 of targets '''current''' HP.
+|-
+|}
+
+===Reaction===
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+![[Counter (ability)|Counter]]
+|Follow up an enemy attack with an attack of your own.
+|-
+|}
+
+==Gallery==
+<gallery caption="">
+File:FFTA Famfrit Totema.png|Famfrit's sprite.
+File:FamfritChain.png|Famrit's sprite with rocks removed, revealing a hidden loop in his chain.
+</gallery>
+
+{{navbox characters FFTA}}
+
+
+[[es:Fámfrit (Final Fantasy Tactics Advance)]]
+[[Category:Totema in Final Fantasy Tactics Advance]]
+[[Category:Bosses in Final Fantasy Tactics Advance]]

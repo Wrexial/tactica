@@ -1,0 +1,152 @@
+{{DISPLAYTITLE:Gunner (''Tactics Advance'')}}
+{{infobox job
+|name=Gunner
+|release=FFTA
+|japanese=銃使い
+|romaji=Jūtsukai
+|lit=Gunman
+|image=Ffta-moogle-gunner.jpg
+|portrait=[[File:ffta-job-gunner.png|50px|Player]] [[File:Ffta-job-gunner-enemy.png|50px|Enemy]]
+|sprite=[[File:FFTA-job-gunner.gif|Player|20px]] [[File:Ffta-job-gunner-enemy-sprite.png|Enemy|20px]]
+|obtained=Learn an [[Animist (Tactics Advance)|Animist]] A-Ability
+|required=[[Animist (Tactics Advance)|Animist]]
+|characters=[[Moogle]]s
+|stats=
+*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 65
+*Stat growth: Poor
+|weapons=[[Final Fantasy Tactics Advance weapons#Guns|Guns]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=
+*[[Gunmanship (Tactics Advance)|Gunmanship]]
+*[[#Gun Combo|Gun Combo]] (combo)
+|support abilities=[[Concentrate (ability)|Concentrate]]
+|boss page=
+|recurring appearance=Fusilier
+}}
+{{Quote|Uses guns made by moogle machinists.|Description}}
+'''Gunner''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' for [[moogle]]s. They are useful in battle, but somewhat hindered by their lack of strength. Gunners wield of powerful guns and can deal damage from halfway across the battlefield, staying out of close combat.
+
+They inflict status ailments with their shots, and with the Concentrate ability equipped are a class to be feared. The best jobs to pair with Gunner are either the [[Mog Knight]] or the [[Animist (Tactics Advance)|Animist]] to either do massive damage from afar or to assist the party with support abilities.
+
+==Growth==
+Even by moogle standards, Gunners have horrible [[stat growth]]. The Mog Knight outclasses it in every stat except speed, where the Gunner is one tenth of a point faster.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.2 C-
+|1.1 E
+|6.8 D+
+|9.2 A-
+|5.6 E
+|8.1 B-
+|1.1 D
+|}
+
+==Abilities==
+===[[Gunmanship (Tactics Advance)|Gunmanship]]===
+{{Quote|Gunner command. Use special bullets to fight.|Description}}
+The Range, Power, and Element of each ability, excluding the elemental abilities Fireshot, Iceshot, and Boltshot, will always be equal to that of the equipped weapon.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Fireshot}}
+|[[Final Fantasy Tactics Advance weapons#Aiot Gun|Aiot Gun]]
+|style="text-align:left"|''Shoots bullet of crystallized fire.''
+|100
+|-
+!{{A|Boltshot}}
+|[[Final Fantasy Tactics Advance weapons#Riot Gun|Riot Gun]]
+|style="text-align:left"|''Shoots bullet of crystallized lightning.''
+|100
+|-
+!{{A|Iceshot}}
+|[[Final Fantasy Tactics Advance weapons#Giot Gun|Giot Gun]]
+|style="text-align:left"|''Shoots bullet of crystallized ice.''
+|100
+|-
+!{{A|Confushot}}
+|[[Final Fantasy Tactics Advance weapons#Chaos Rifle|Chaos Rifle]]
+|style="text-align:left"|''Damages and confuses target.''
+|200
+|-
+!{{A|Charmshot}}
+|[[Final Fantasy Tactics Advance weapons#Peacemaker|Peacemaker]]
+|style="text-align:left"|''Damages and charms target.''
+|300
+|-
+!{{LA|Blind Shell|Blindshot}}
+|[[Final Fantasy Tactics Advance weapons#Silver Cannon|Silver Cannon]]
+|style="text-align:left"|''Damages and inflicts darkness.''
+|100
+|-
+!{{LA|Silence Shell|Silenshot}}
+|[[Final Fantasy Tactics Advance weapons#Lost Gun|Lost Gun]]
+|style="text-align:left"|''Damages and silences target.''
+|200
+|-
+!{{A|Stopshot}}
+|[[Final Fantasy Tactics Advance weapons#Outsider|Outsider]]
+|style="text-align:left"|''Damages and stops target.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Concentrate}}
+|[[Final Fantasy Tactics Advance weapons#Longbarrel|Longbarrel]]
+|style="text-align:left"|''Focuses mind to increase attack hit rate.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Gun Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Gun|Mythril Gun]]
+|style="text-align:left"|''Long-ranged combo ability for gunners.''
+|100
+|}
+
+== Overview ==
+It is advised to never [[level]] up as a Gunner, as although the class is useful in battle, their [[stat growth]] is terrible. They have high defense and decent resistance, but the [[Mog Knight]] outclasses Gunners in both; in fact, every other class outdoes the Gunner in almost every stat. However, Gunners give moogles access to the rather broken Concentrate ability, and have a decent array of shots that inflict status effects. Combined with Concentrate and the long range of guns, Gunners can accurately inflict status effects from far away. Gunners cannot deal good damage or have good speed without leveling up as other jobs. Leveling a Gunner as a Mog Knight will make them hit harder, while leveling as a [[Juggler (Tactics Advance)|Juggler]] can augment a Gunner's speed. Overall, Gunners do a good job providing long-distance firing support.
+
+The player can expect enemy Gunners' stats to be bad. Against heavy tanks, their attacks are but a tap on the shoulder. However, they are difficult class to get close to, courtesy of their guns. If equipped with Concentrate, their status effect shots can be threatening. The player's own Gunners or other ranged units can handle enemy Gunners nicely.
+
+==Gallery==
+<gallery>
+FFTA Confushot.png|Confushot.
+FFTA Charmshot.png|Charmshot.
+</gallery>{{Gallery incomplete|Fireshot|Boltshot|Iceshot|Blindshot|Silenshot|Stopshot|Gun Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Artillero (Final Fantasy Tactics Advance)]]
+[[it:Artigliere (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

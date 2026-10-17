@@ -1,0 +1,104 @@
+{{DISPLAYTITLE:Spirit Magic (''Tactics Advance'')}}
+{{Quote|Elementalist command. Draw on spirit power to attack.|Description}}
+'''Spirit Magic''' {{J|精霊魔法|Seirei Mahō}} is the action ability for the [[Elementalist (Tactics Advance)|Elementalist]] in ''[[Final Fantasy Tactics Advance]]''.
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Range
+!style="width:10%"|Power
+|-
+! rowspan=2|{{A|Fire Whip}}
+|[[Final Fantasy Tactics Advance weapons#Scarlette|Scarlette]]
+|100
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Ring of flame. Damages and disables target.''
+|-
+! rowspan=2|{{A|Earth Heal}}
+|[[Final Fantasy Tactics Advance weapons#Fleuret|Fleuret]]
+|200
+|12
+|4
+|40
+|-
+|colspan=5 style="text-align:left"|''Focuses power from the earth to heal HP.''
+|-
+! rowspan=2|{{A|White Flame}}
+|[[Final Fantasy Tactics Advance weapons#Flamberge|Flamberge]]
+|100
+|24
+|3
+|40
+|-
+|colspan=5 style="text-align:left"|''Soothing fairy fire. Heals HP.''
+|-
+! rowspan=2|{{A|Shining Air}}
+|[[Final Fantasy Tactics Advance weapons#Djinn Flyssa|Djinn Flyssa]]
+|200
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Rush of air. Damages and inflicts darkness.''
+|-
+! rowspan=2|{{A|Evil Gaze}}
+|[[Final Fantasy Tactics Advance weapons#Joyeuse|Joyeuse]]
+|300
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Fiendish presence. Deals damage and confuses.''
+|-
+! rowspan=2|{{A|Heavy Dust}}
+|[[Final Fantasy Tactics Advance weapons#Estoc|Estoc]]
+|200
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Lobs a chunk of earth to damage and immobilize.''
+|-
+! rowspan=2|{{A|Sliprain}}
+|[[Final Fantasy Tactics Advance weapons#Silver Rapier|Silver Rapier]]
+|200
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Drops damaging water ball to slow target.''
+|-
+! rowspan=2|{{LA|Barrier Shift|Elementalshift}}
+|[[Final Fantasy Tactics Advance weapons#Epeprism|Epeprism]]
+|300
+|6
+|4
+|—
+|-
+|colspan=5 style="text-align:left"|''Randomly shifts resistance to elements in target.''
+|}
+
+==Gallery==
+<gallery>
+FFTA Fire Whip.png|Fire Whip.
+FFTA Earth Heal.png|Earth Heal.
+FFTA White Flame.png|White Flame.
+FFTA Shining Air.png|Shining Air.
+FFTA Evil Gaze.png|Evil Gaze.
+FFTA Heavy Dust.png|Heavy Dust.
+FFTA Sliprain.png|Sliprain.
+FFTA Elementalshift.png|Elementalshift.
+</gallery>
+
+{{navbox spirit magic}}
+{{navbox abilities FFTA}}
+[[Category:Spirit Magic in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]
+[[Category:Spirit Magic]]

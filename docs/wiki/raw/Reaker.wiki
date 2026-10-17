@@ -1,0 +1,103 @@
+{{infobox character
+|name=Reaker
+|release=FFTA
+|japanese=レイカ
+|romaji=Reika
+|image=Ffta-moogle-mogknight.jpg
+|affiliation=Clan Rose
+|occupation=Leader
+|race=[[Mog Knight]]
+|gender=Female
+|type=npc
+|job=[[Mog Knight]]
+}}
+{{Quote|Now you'll get a lesson in humanity from Clan Rose!|Reaker}}
+'''Reaker''' is a [[non-player character]] [[moogle]] from ''[[Final Fantasy Tactics Advance]]''. Taking the appearance of a typical [[Mog Knight]] and the leader of Clan Rose, she set up a trick in the shape of a girl named '''Mogumi''' to lure [[Montblanc]] to the [[Materiwood]], believing that she and Montblanc would be perfect together.
+
+==Battle==
+[[File:FFTAClanRose.png|thumb|left|Reaker and her fellow clan mates.]]
+{{Quote|My dearest Montblanc, I think of you always. If we could meet, I would much like to tell you how I feel in person.<br>—Mogumi, Townsgirl|Mission description}}
+Reaker appears in "Mission #089: [[A Bride for Montblanc|Moogle Bride]]", where she sets up the trick in form of a townsgirl and wants to give Montblanc a "lesson in humanity". As the leader of Clan Rose, Reaker is the enemy party's boss.
+
+Reaker has four moogle units with her, a [[Black Mage (Tactics Advance)|Black Mage]], a [[Time Mage (Tactics Advance)|Time Mage]], a [[Thief (Tactics Advance)|Thief]], and a [[Juggler (Tactics Advance)|Juggler]], all fellow moogles.
+
+===Equipment===
+*'''Weapon:''' Venus Blade
+*'''Armor:''' Opal Armor
+*'''Shield:''' Opal Shield
+*'''Accessory:''' Gold Hairpin
+
+===Stats===
+{{Stats FFTA
+|level = 34
+|HP = 270
+|MP = 118
+|move = 3
+|jump = 2
+|evade = 52
+|attack = 428
+|defense = 469
+|power = 274
+|resistance = 384
+|speed = 134
+}}
+
+===Abilities===
+{|class="full-width
+|width="50%" valign="top"|
+;Charge
+{{Quote|[[Mog Knight]] command. Use momentum to deal damage.}}
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!width="30%"|Skill
+!width="70%"|Effect
+|-
+!Mog Attack
+|Damages and knocks back target.
+|-
+!Mog Rush
+|Double damage, Half Accuracy.
+|-
+!Mog Aid
+|Recover some HP and cure status ailments.
+|-
+!Shieldbearer
+|Allows shield-wielding, regardless of job.
+|}
+|width="50%" valign="top"|
+;Call
+{{Quote|[[Animist (Tactics Advance)|Animist]] command. Borrow strength from animals.}}
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!width="30%"|Skill
+!width="70%"|Effect
+|-
+!100% Wool
+|Bestows [[Shell (status)|Shell]] and [[Protect (status)|Protect]].
+|-
+!Tail Wag
+|Inflicts [[Charm (status)|Charm]].
+|-
+!Friend
+|Summons random spirit from [[Summoner (Tactics Advance)|Summoner's]] skillset.
+|}
+|}
+
+;Steal
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!width="30%"|Skill
+!width="70%"|Effect
+|-
+![[Counter (ability)|Counter]]
+|Follow up an enemy attack with an attack of your own.
+|}
+
+==Etymology==
+Reaker's Japanese name, "Reika", means "lovely flower". This is related to her clan name, while her alias "Mogumi" is a formation of "Megumi", which means "blessing". Otherwise, the name "Mogumi" might be based on the ''[[Final Fantasy IX]]'' moogle, Mogmi. Another possibility could be it is a play on the Japanese pronunciation of "moogle", which is "Moguri".
+
+{{navbox characters FFTA}}
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Moogles]]
+[[Category:Enemies in Final Fantasy Tactics Advance]]
+[[Category:Knights]]

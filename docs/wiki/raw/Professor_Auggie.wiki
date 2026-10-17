@@ -1,0 +1,27 @@
+{{infobox character
+|name=Professor Auggie
+|release=FFTA
+|japanese=オーギー教授
+|romaji=Ōgī Kyōju
+|image=Ffta-nu-mou-sage.jpg
+|portrait=[[File:FFTA-job-Sage-por.png]]
+|sprite=[[File:FFTA-job-sage.gif]]
+|race=[[Nu mou]]
+|gender=Male
+|type=npc
+|job=[[Sage (Tactics Advance)|Sage]]
+}}
+{{Quote|Professor Auggie, are you OK? We'll help you!|[[Marche Radiuju]]}}
+'''Professor Auggie''' is a recurring character in ''[[Final Fantasy Tactics Advance]]'' who shows up in three separate missions throughout the game. A [[nu mou]] [[Sage (Tactics Advance)|Sage]], he is constantly getting himself lost while exploring, leading his research team to post clan notices to help look for him.
+
+==Story==
+Professor Auggie appears as the subject of "Mission 46: Prof in Trouble", where Dag, one his research assistants, posts a clan notice stating that he left for [[Lutia Pass]] three days earlier and has not returned. [[Clan Nutsy]] arrives just in time to rescue him from a group of [[Zombie (Tactics Advance)|Zombies]] and [[Flan#Final Fantasy Tactics Advance|Flan]].
+
+In "Mission 63: Missing Prof", another of Auggie's researchers, Quin, posts a notice asking to rescue him again, this time from [[Tubola Cave]]. Marche and his clan are able to save him from a horde of monsters while the professor hides behind a statue.
+
+Finally, in "Mission 103: Mythril Rush", a streetear named Carnen posts a notice claiming that Auggie has discovered a [[Mythril (item)|Mythril]] vein in Tubola Cave and may be willing to sell some. After arriving on the scene, the professor offers some of his [[Final Fantasy Tactics Advance mission items#Silvril|Silvril]] for 10,000 [[gil]]. The player is given the option to pay his fee, or outright attack him and his team, with either option resulting in completion of the mission.
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Nu mou]]

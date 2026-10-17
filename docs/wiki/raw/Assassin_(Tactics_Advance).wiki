@@ -1,0 +1,203 @@
+{{DISPLAYTITLE:Assassin (''Tactics Advance'')}}
+{{infobox job
+|name=Assassin
+|release=FFTA
+|japanese=アサシン
+|romaji=Asashin
+|image=Ffta-viera-assassin.jpg
+|portrait=[[File:ffta-job-assassin.png|50px|Player]] [[File:Ffta-job-assassin-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-assassin.gif|20px|Player]] [[File:Ffta-job-assassin-enemy-sprite.png|20px|Enemy.]]
+|obtained=*Learn a [[Sniper (Tactics Advance)|Sniper]] A-Ability
+*Learn two [[Elementalist (Tactics Advance)|Elementalist]] A-Abilities
+|required=[[Sniper (Tactics Advance)|Sniper]], [[Elementalist (Tactics Advance)|Elementalist]]
+|characters=[[Viera]]
+|stats=
+*Move Rate: 4
+*Jump Rate: 4
+*Evade Rate: 65
+*Stat growth: balanced between MP, Attack, Magic Power and Speed at the cost of low HP, Defense and Resistance
+|weapons= [[Final Fantasy Tactics Advance weapons#Katana|Katana]] and [[Final Fantasy Tactics Advance weapons#Greatbows|greatbows]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Female-only ornament|ornaments]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Corner (Tactics Advance)|Corner]]
+*[[#Killer Combo|Killer Combo]] (combo)
+|support abilities=*[[#Return Fire|Return Fire]] (reaction)
+|recurring appearance=Assassin (job)
+}}
+{{Quote|Corners and dispatches foes with ease.|Description}}
+'''Assassin''' is a [[Final Fantasy Tactics Advance jobs|job]] available to [[viera]] in ''[[Final Fantasy Tactics Advance]]''. The Assassin is a deadly force with dangerous [[Instant Death|instant death]] abilities and incomparable [[stat growth]] in all areas except HP. It is one of the best classes to [[level]] viera in, though one needs to be mindful about their HP, since Assassins are almost always the enemies' first target because of their low health.
+
+Assassins wield katanas and greatbows. When equipped with the [[Concentrate (ability)|Concentrate]] ability, Assassins' instant death abilities gain near perfect Accuracy.
+
+==Growth==
+Assassin, like [[Ninja (Tactics Advance)|Ninja]], is balanced between MP, Attack, Magic Power and Speed, at the cost of low HP, Defense and Resistance. Assassin is the fastest class.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.2 E
+|5.2 B+
+|8.8 B+
+|6.8 D+
+|9.2 A-
+|7.2 C-
+|2.3 S
+|}
+
+==Abilities==
+===[[Corner (Tactics Advance)|Corner]]===
+{{Quote|Assassin command. Corner foe in a tight spot.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Shadowbind}}
+|[[Final Fantasy Tactics Advance weapons#Fey Bow|Fey Bow]]
+|200
+|12
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Stops target by pinning shadow to the ground.''
+|-
+! rowspan=2|{{A|Last Breath}}
+|[[Final Fantasy Tactics Advance weapons#Petalchaser|Petalchaser]]
+|300
+|32
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Deals a swift shock, knocking out target.''<br>'''Element:''' Dark
+|-
+! rowspan=2|{{A|Aphonia}}
+|[[Final Fantasy Tactics Advance weapons#Murasame|Murasame]]
+|200
+|12
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Attacked aimed at throat to silence target.''
+|-
+! rowspan=2|{{LA|Nightmare (ability)|Nightmare}}
+|[[Final Fantasy Tactics Advance weapons#Kikuichimonji|Kikuichimonji]]
+|300
+|18
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Puts targets to sleep, and sometimes dooms them.''
+|-
+! rowspan=2|{{A|Ague}}
+|[[Final Fantasy Tactics Advance weapons#Ranger Bow|Ranger Bow]]
+|200
+|12
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Causes feverish chills to slow target.''
+|-
+! rowspan=2|{{LA|Petrify (ability)|Rockseal}}
+|[[Final Fantasy Tactics Advance weapons#Kotetsu|Kotetsu]]
+|300
+|32
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Seals target in stone. Causes petrification.''
+|-
+! rowspan=2|{{LA|Oblivion (ninjutsu)|Oblivion}}
+|[[Final Fantasy Tactics Advance weapons#Masamune|Masamune]]
+|300
+|24
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Attack to the head. Addles target.''
+|-
+! rowspan=2|{{A|Ultima Masher}}
+|[[Final Fantasy Tactics Advance weapons#Zanmato|Zanmato]]
+|999
+|60
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Assassin attack born from ultima magic.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Return Fire}}
+|[[Final Fantasy Tactics Advance armor#Power Sash|Power Sash]]
+|style="text-align:left"|''Catch arrow shot at you and shoot it back.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Killer Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Epee|Mythril Epee]]
+|style="text-align:left"|''Failproof combo ability for assassins.''
+|100
+|}
+
+== Gameplay ==
+Notoriously fast and furious, the Assassin is considered by many the game's most overpowered class. The combination of their abilities, stat growth, and equipment make the game a cakewalk. Nearly all of the Assassin's abilities inflict debilitating status effects, such as Stop, Doom, Silence, and Addle. The Last Breath instantly KOs a target. Assassin also has the viera's Ultima ability: Ultima Masher.
+
+Assassin wields katanas and greatbows, both powerful weapon types. They have unparalleled speed and respectably high stat gains minus HP and defense. It is a versatile class, able to use other abilities effectively with maybe the exception of the magically inclined classes. Assassin does not learn any support abilities, but mastering Concentrate from the [[Archer (Tactics Advance)|Archer]] allows near pinpoint accuracy for nearly all of the assassin's abilities.
+
+The Assassin's HP and defense are not great and the class has low healing and defensive capabilities. Assassin is the most difficult class to unlock since it requires mastery of other advanced classes, which in turn require more mastered abilities. Many of the Assassin's best abilities are only learned from weapons found very late, which limits the Assassin's usefulness. Their ability set almost entirely consists of status effects, and thus enemies who defend against status ailments may give an Assassin slightly more trouble. Assassins are not better suited to greatbows than the [[Sniper (Tactics Advance)|Sniper]], as some of their abilities (such as Last Breath or Rockseal) can only be used in melee range, though the Sniper's skillset can complement the Assassin's abilities (such as by using Conceal to keep enemies from swarming in or using the Aim: Weapon and Aim: Armor skills to eliminate any gear that protects enemies from the Assassin's abilities).
+
+Overall, the Assassin is stacked with high damage, status effects, and blistering speed, and can become even more broken with the right set of abilities. The only difficulties are the lack of defensive techniques, possessing demanding unlock requirements, and maybe even making the game less enjoyable.
+
+The player cannot hope to outspeed enemy Assassins who also have few weaknesses; Assassins can decimate frail targets, like mages and [[Ninja (Tactics Advance)|Ninjas]], with their high attack and range (if wielding a greatbow). Tanks like [[Defender (Tactics Advance)|Defenders]] and [[Paladin (Tactics Advance)|Paladins]] also face certain doom from the Assassin's deadly repertoire of status effects, worsened by the classes' low evasion. Other support jobs are outdone by the Assassin's speed. Equipping status-immunity equipment can mitigate the threat, but Assassins can still deal major damage with Ultima Masher and their strong weapons. Assassins are at their weakest when cornered and outnumbered.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Assassin TCG.png|right|100px]]
+Assassin appears with a Lightning-elemental card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Shadowbind.png|Shadowbind.
+FFTA Last Breath.png|Last Breath.
+FFTA Aphonia.png|Aphonia.
+FFTA Nightmare.png|Nightmare.
+FFTA Ague.png|Ague.
+FFTA Rockseal.png|Rockseal.
+FFTA Oblivion.png|Oblivion.
+</gallery>{{Gallery incomplete|Ultima Masher|Killer Combo}}
+
+==Etymology==
+{{Etym|Assassin}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Asesino (Final Fantasy Tactics Advance)]]
+[[it:Assassino (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

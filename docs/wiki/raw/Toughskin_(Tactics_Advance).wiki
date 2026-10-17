@@ -1,0 +1,90 @@
+{{DISPLAYTITLE:Toughskin (''Tactics Advance'')}}
+[[File:FFTA-spr-toughskin.gif|left]]
+[[File:FFTA - Toughskin Portrait.png|right]]
+{{Quote|Monster with skin so tough it doesn't feel swords.|Description}}
+The '''Toughskin''' in ''[[Final Fantasy Tactics Advance]]'' is a green turtle-like creature with a sword sticking out of its back. It has an extremely high Defense stat, so magic spells are much more effective compared to physical attacks. Its Resonance ability can also disable the weapons used by most physically orientated jobs, further necessitating the use of magic.
+
+Toughskins can be dangerous against physical units with low MP, as it can use [[Matra Magic]] to invert the HP and MP of a target. To avoid this attack, it is best to keep a distance by using long-range bows and magic. Matra Magic can also be learned by the Blue Mage job as a Blue Magic ability. The Toughskin has an even hardier lavender cousin, the [[Blade Biter (Tactics Advance)|Blade Biter]].
+
+==Abilities==
+===Debilitate===
+{{Quote|Toughskin command. Weaken enemy in self-defense.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!Resonance
+|''Back sword quivers to create resonance. [[Disable (status)|Disable]]s target.''<br>Works on target's with metallic weapons.
+|—
+|-
+!{{LA|Matra Magic}}
+|''Switches target's HP and MP.''
+|24
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Def+}}
+|''Reduces damage from weapon attacks''.
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Nubs!
+|Two Toughskins appear here, on opposite sides of the battlefield. It helps to have two units with Black Magic or an instant KO ability.
+|-
+!Turf Defense Mission: Help Nargai!
+|The Toughskin here can be KO'd with a strong Ice spell on the first turn if the [[Black Mage (Tactics Advance)|Black Mage]] is placed on the northeastern corner of the starting block.
+|-
+!Mission #058: Royal Ruins
+|The Toughskin here is a guardian of the ancient Ruins. Players can use Phantasm Skills to bypass the monsters and destroy the statues.
+|-
+!Mission #012: Jagd Hunt
+|The Toughskin in the back corner of the arena should be dealt with after the four clan members in front of the party are all KO'd.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Eluut Sands]]
+|style="text-align: center"|Antlions
+|The Toughskin here does not know Resonate, making it an easy enemy.
+|-
+![[Roda Volcano (Tactics Advance)|Roda Volcano]]
+|style="text-align: center"|Roda Dragons
+|All enemies here can be dispatched quickly with [[Blizzard (ability)|Blizzard]] spells, especially [[Blizzara (ability)|Blizzara]].
+|-
+![[Nargai Cave]]
+|style="text-align: center"|Tribites
+|The Toughskin and Blade Biter here should be taken care of after the [[Red Panther (Tactics Advance)|Panthers]] and [[Coeurl (Tactics Advance)|Coeurl]].
+|-
+![[Kudik Peaks]]
+|style="text-align: center"|Kudik Beasts
+|One Toughskin is part of this mainly Panther monster band.
+|}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

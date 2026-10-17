@@ -1,0 +1,103 @@
+{{Quote|Gladiator command. Combine magic with swordplay.|Description}}
+'''Spellblade Tech''' {{J|魔法剣技|Mahō Kengi|Magic Sword}} is the action ability for the [[Gladiator (Tactics Advance)|Gladiator]] in ''[[Final Fantasy Tactics Advance]]''.
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Range
+!style="width:10%"|Power
+|-
+! rowspan=2|{{LA|Rush}}
+|[[Final Fantasy Tactics Advance weapons#Sweep Blade|Sweep Blade]]
+|100
+|—
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Full-on bull rush. Pushes target back.''
+|-
+! rowspan=2|{{A|Wild Swing}}
+|[[Final Fantasy Tactics Advance weapons#Ogun Blade|Ogun Blade]]
+|200
+|—
+|Self
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Swinging weapon attack. Hits to front, back, side.''
+|-
+! rowspan=2|{{A|Beatdown}}
+|[[Final Fantasy Tactics Advance weapons#Shadow Blade|Shadow Blade]]
+|200
+|—
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Aggressive attack. Low hit rate, but very damaging.''
+|-
+! rowspan=2|{{LA|Blitz (Tactics)|Blitz}}
+|[[Final Fantasy Tactics Advance weapons#Sun Blade|Sun Blade]]
+|200
+|—
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Uses aggression to sense and attack target. High hit rate, low damage.''
+|-
+! rowspan=2|{{LA|Fire Blade (ability)|Fire Sword}}
+|[[Final Fantasy Tactics Advance weapons#Flametongue|Flametongue]]
+|200
+|10
+|1
+|54
+|-
+|colspan=5 style="text-align:left"|''Fiery blade. Deals damage.''
+|-
+! rowspan=2|{{LA|Thunder Blade (ability)|Bolt Sword}}
+|[[Final Fantasy Tactics Advance weapons#Air Blade|Air Blade]]
+|200
+|10
+|1
+|54
+|-
+|colspan=5 style="text-align:left"|''Electrically charged blade. Deals damage.''
+|-
+! rowspan=2|{{A|Ice Sword}}
+|[[Final Fantasy Tactics Advance weapons#Ice Brand|Ice Brand]]
+|200
+|10
+|1
+|54
+|-
+|colspan=5 style="text-align:left"|''Icy blade. Deals damage.''
+|-
+! rowspan=2|{{LA|Ultima Sword (ability)|Ultima Sword}}
+|[[Final Fantasy Tactics Advance weapons#Materia Blade|Materia Blade]]
+|999
+|60
+|As Weapon
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Mageblade attack born from ultima magic.''
+|}
+
+==Gallery==
+<gallery>
+FFTA Rush.png|Rush.
+FFTA Wild Swing.png|Wild Swing.
+FFTA Fire Sword.png|Fire Sword.
+FFTA Bolt Sword.png|Bolt Sword.
+FFTA Ice Sword.png|Ice Sword.
+</gallery>{{Gallery incomplete|Beatdown|Blitz|Ultima Sword}}
+
+==Etymology==
+{{Etym|Spell}}
+
+{{navbox abilities FFTA}}
+[[Category:Spellblade Tech abilities in Final Fantasy Tactics Advance]]
+[[Category:Action abilities in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]
+[[Category:Spellblade]]

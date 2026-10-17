@@ -1,0 +1,37 @@
+[[File:KudiKPeaks.png|thumb|right|250px|Clan Nutsy and Cid in Kudik Peaks.]]
+{{Quote|Towering peaks. Home to an endangered tiger.|Description}}
+'''Kudik Peaks''' {{J|クディクス山岳|Kudikusu sangaku}} is a mountain location in ''[[Final Fantasy Tactics Advance]]''. It becomes available for placement after the completion of "Mission #012: Jagd Hunt". In "Mission #013: The Bounty", Clan Ox spawns from this location.
+
+When [[Marche Radiuju|Marche]] engages this clan, he learns that [[Remedi|Queen Remedi]] has placed a bounty on his head. In "Mission #108: Poachers", Poachers spawn from this location. Kudik Peaks is also the site of "Mission #052: Friend Trouble". It can be freed in "Mission #250: Kudik Peaks" after "Mission #015: Scouring Time" is completed.
+
+==Missions==
+*"Mission #052: Friend Trouble"
+{{Quote|Arr, them mountain beasts have been coming down to the lowlands of late, and one took a bite out of me! Find me a good hunter!|Cheney, Hunter}}
+*"Mission #250: Kudik Peaks"
+{{Quote|A rock slide has blocked off the road to the Kudik Peaks. Looking for people to help clear it off.|Jagark, Mountain Patrol}}
+
+==Encounters==
+===Kudik Beasts===
+*[[Red Panther (Tactics Advance)|Red Panther]] x2
+*[[Antlion (Tactics Advance)|Antlion]]
+*[[Sprite (Tactics Advance)|Sprite]]
+*[[Toughskin (Tactics Advance)|Toughskin]]
+
+==Turf Defense==
+===Help Kudik!===
+{{Quote|The monsters are acting up in the Kudik Peaks again, and they're attacking just about everyone. We need all the help we can get.|Town rumor}}
+*[[Red Panther (Tactics Advance)|Red Panther]] x2
+*[[Ice Flan (Tactics Advance)|Ice Flan]]
+*[[Sprite (Tactics Advance)|Sprite]]
+
+==Gallery==
+<gallery>
+Kudik Peaks 1.PNG|Kudik Peaks.
+Kudik Peaks 2.PNG|Kudik Peaks.
+Mountain-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Mountains]]

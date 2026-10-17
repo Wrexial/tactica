@@ -1,0 +1,17 @@
+'''Reaction abilities''' {{J|リアクションアビリティ|Riakushon Abiritei}} are abilities that require a trigger to be activated, and once activated, their effects take place.
+
+==Appearances==
+===''[[Final Fantasy Tactics]]''===
+
+{{main|Final Fantasy Tactics reaction abilities}}
+Reaction abilities activate when their trigger condition is met, and the chance for activating also depends on the user's [[Bravery (Tactics)|bravery]] stat in percentage, the braver the higher chance.
+
+===''[[Final Fantasy Tactics Advance]]''===
+{{main|Final Fantasy Tactics Advance reaction abilities}}
+Reaction abilities activate when their trigger condition is met. Unlike its predecessor, the reaction abilities varies, ranging from retaliating actions to bestowing positive status.
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+{{Main|Final Fantasy Tactics A2: Grimoire of the Rift abilities}}
+{{Ability section|Final Fantasy Tactics A2: Grimoire of the Rift}}
+
+[[Category:Reaction abilities]]

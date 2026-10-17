@@ -1,0 +1,103 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' support abilities}}
+[[File:FFTA Support Ability Icon.png|right]]
+'''Support abilities''' {{j|サポートアビリティ|Sapōto Abiriti}} in ''[[Final Fantasy Tactics Advance]]'' are learned via equipment. Each unit can only have one support ability "equipped" at a time, but can master other support abilities for later use. Support abilities are learned by equipping a [[Final Fantasy Tactics Advance weapons|weapon]] or [[Final Fantasy Tactics Advance armor|armor]].
+{{See|Support ability}}
+==Ability list==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="20%"|Skill
+! width="30%" |Effect
+! width="20%" |Equipment
+!width="20%"|Jobs
+!width="10%"|AP
+|-
+!{{LA|Concentrate}}
+|''Focuses mind to increase attack hit rate.''
+|Target Bow (Bow)/<br>Longbarrel (Gun)
+|[[Archer (Tactics Advance)|Archer]]/[[Gunner (Tactics Advance)|Gunner]]
+|300
+|-
+!{{LA|Doublehand}}
+|''Hold one-handed weapon in two hands.''"
+|Venus Blade (Blade)
+|[[Fighter (Tactics Advance)|Fighter]]/[[Gladiator (Tactics Advance)|Gladiator]]
+|300
+|-
+!{{LA|Dual Wield|Double Sword}}
+|''Enables two attacks with weapons in both hands.''
+|Nosada (Katana)
+|[[Ninja (Tactics Advance)|Ninja]]
+|999
+|-
+!{{LA|Stat-enhancing ability|Geomancy}}
+|''Reduces resistance to elements by one level. [Absb > Null > Half > Norm > Weak].''
+|Sage Robe
+|[[Black Mage (Tactics Advance)|Black Mage]]
+|300
+|-
+!{{LA|Half MP}}
+|''Cuts the amount of MP used for abilities by half.''
+|Light Robe
+|[[Bishop (Tactics Advance)|Bishop]]/[[Illusionist (Tactics Advance)|Illusionist]]/[[Summoner (Tactics Advance)|Summoner]]
+|300
+|-
+!{{A|Immunity}}
+|''Confers resistance to some status ailments.''
+|Survival Vest
+|[[Beastmaster (Tactics Advance)|Beastmaster]]/[[Blue Mage (Tactics Advance)|Blue Mage]]
+|300
+|-
+!{{LA|Learning}}
+|''Study attacks against you. Learn some as blue magic.''<br>Cannot be taught by Morphers and Blue Mages who are allies.
+|Blue Saber (Saber)
+|[[Blue Mage (Tactics Advance)|Blue Mage]]
+|400
+|-
+!{{LA|Stat-enhancing ability|Magic Pow+}}
+|''Increase damage of magic attacks.''
+|Colichemarde/[[Morning Star (weapon)|Morning Star]]
+|[[Alchemist (Tactics Advance)|Alchemist]]/[[Red Mage (Tactics Advance)|Red Mage]]
+|300
+|-
+!{{A|Maintenance}}
+|''Ensures equipped items are not stolen or destroyed.''
+|Adaman Vest
+|[[Alchemist (Tactics Advance)|Alchemist]]/[[Thief (Tactics Advance)|Thief]]
+|300
+|-
+!{{LA|Monkey Grip}}
+|''Enables holding a two-handed weapon in one hand.''
+|Vigilante ([[Greatsword (weapon type)|Greatsword]])/<br>Claymore (Broadsword)
+|[[Soldier (Tactics Advance)|Soldier]]/[[Warrior (Tactics Advance)|Warrior]]
+|300
+|-
+!{{LA|Shieldbearer (ability)|Shieldbearer}}
+|''Enables shield-wielding, regardless of job.''
+|Bronze Shield/Round Shield/Opal Shield
+|[[Fencer (Tactics Advance)|Fencer]]/[[Mog Knight]]/ [[Sage (Tactics Advance)|Sage]]/[[Soldier (Tactics Advance)|Soldier]]/[[Warrior (Tactics Advance)|Warrior]]
+|300
+|-
+!{{LA|Turbo MP}}
+|''Doubles MP use for better damage and hit rate.''
+|White Robe
+|[[White Mage (Tactics Advance)|White Mage]]
+|300
+|-
+!{{LA|Stat-enhancing ability|Weapon Atk+}}
+|''Increases damage from weapon attacks.''
+|Nike Bow (Greatbow)/<br>Trident (Spear)
+|[[Hunter (Tactics Advance)|Hunter]]/[[Templar (Tactics Advance)|Templar]]
+|300
+|-
+!{{LA|Stat-enhancing ability|Weapon Def+}}
+|''Reduces damage from weapon attacks.''
+|Diamond Armor/Dark Gear
+|[[Defender (Tactics Advance)|Defender]]/[[Paladin (Tactics Advance)|Paladin]]/[[Sage (Tactics Advance)|Sage]]
+|300
+|}
+
+{{navbox abilities FFTA}}
+{{navbox support abilities}}
+[[Category:Support abilities in Final Fantasy Tactics Advance]]
+[[Category:Abilities in Final Fantasy Tactics Advance]]
+[[Category:Support abilities]]

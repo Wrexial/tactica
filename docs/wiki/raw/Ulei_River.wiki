@@ -1,0 +1,37 @@
+[[File:UleiRiver.png|thumb|right|250px|Clan Shalo defeated by Clan Nutsy.]]
+{{Quote|Largest river in Ivalice. Winds through swamplands.|Description}}
+'''Ulei River''' {{J|ユレー川|Yurē gawa}} is a swamp location in ''[[Final Fantasy Tactics Advance]]''. It can be placed after "Mission #004: Desert Peril" is completed and is the site of "Mission #005: Twisted Flow", where [[Marche Radiuju|Marche]] finds the first of the seams. He is then teleported to the shrine of the [[Totema]] [[Famfrit]], who guards the [[moogle]] [[Crystal (term)|crystal]], and engages Marche in battle.
+
+After Marche defeats Famfrit, the crystal shatters, and Marche resolves to destroy the remaining crystals. Ulei River is also the site of "Mission #049: A Lost Ring", "Mission #083: Foreign Fiend", and "Mission #112: A Challenge". It can be freed in "Mission #244: Ulei River" after "Mission #008: Hot Awakening" is completed.
+
+==Encounters==
+===Clan Shalo===
+{{Quote|Base located in the shallows. Avoid water engagements. Attack them on land!|Description}}
+*[[Warrior (Tactics Advance)|Warrior]] (Bangaa)
+*[[White Mage (Tactics Advance)|White Mage]] (Nu mou)
+*[[Defender (Tactics Advance)|Defender]] (Bangaa)
+*[[White Monk (Tactics Advance)|White Monk]] (Bangaa)
+*[[Animist (Tactics Advance)|Animist]] (Moogle)
+
+All members of Clan Shalo have Feather Boots equipped, allowing them to walk on the many water tiles of their home base.
+
+==Turf Defense==
+===Help Ulei!===
+{{Quote|Clan Shalo has taken over the upper river, and they aren't just fishing! It's dangerous to even go near the water these days.|Town rumor}}
+*[[Defender (Tactics Advance)|Defender]]
+*[[White Mage (Tactics Advance)|White Mage]]
+*[[White Monk (Tactics Advance)|White Monk]]
+*[[Warrior (Tactics Advance)|Warrior]]
+
+==Gallery==
+<gallery>
+Ulei River 1.PNG|Ulei River.
+Ulei River 2.PNG|Ulei River.
+Ulei River 3.PNG|Ulei River.
+River-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Rivers]]

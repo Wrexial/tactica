@@ -1,0 +1,100 @@
+{{Quote|Sage command. Use new and different magic.|Description}}
+'''Sagacity Skill''' {{J|賢術|Kenjutsu}} is the action ability for the [[Sage (Tactics Advance)|Sage]] in ''[[Final Fantasy Tactics Advance]]''.
+
+==Abilities==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+! style="width:10%" |Power
+! style="width:10%" |Range
+|-
+! rowspan=2|{{LA|Drain (ability)|Drain}}
+|[[Final Fantasy Tactics Advance weapons#Energy Mace|Energy Mace]]
+|100
+|12
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Steals target's strength, adding to your HP.''
+|-
+! rowspan=2|{{LA|Blind (ability)|Blind}}
+|[[Final Fantasy Tactics Advance weapons#Druid Mace|Druid Mace]]
+|100
+|12
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Spray inky gas. Inflicts darkness.''
+|-
+! rowspan=2|{{LA|Water (ability)|Water}}
+|[[Final Fantasy Tactics Advance weapons#Battle Mace|Battle Mace]]
+|200
+|12
+|34
+|3
+|-
+|colspan=5 style="text-align:left"|''Envelops target in a damaging sphere of water.''
+|-
+! rowspan=2|{{LA|Aero}}
+|[[Final Fantasy Tactics Advance weapons#Battle Mace|Battle Mace]]
+|200
+|12
+|34
+|3
+|-
+|colspan=5 style="text-align:left"|''Creates damaging whorl of wind.''
+|-
+! rowspan=2|{{LA|Curaise|Raise}}
+|[[Final Fantasy Tactics Advance weapons#Life Crosier|Life Crosier]]
+|300
+|22
+|45
+|4
+|-
+|colspan=5 style="text-align:left"|''Great healing magic. Heals HP and revives KO'd units. Deals damage to zombies.''<br>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Gigaflare|Giga Flare}}
+|[[Final Fantasy Tactics Advance weapons#Lotus Mace|Lotus Mace]]
+|300
+|40
+|65
+|3
+|-
+|colspan=5 style="text-align:left"|''More powerful version of "flare." Area affect.''
+|-
+! rowspan=2|{{LA|Bio (ability)|Bio}}
+|[[Final Fantasy Tactics Advance weapons#Mandragora|Mandragora]]
+|300
+|12
+|45
+|3
+|-
+|colspan=5 style="text-align:left"|''Creates viscous waves to damage and poison target.''
+|-
+! rowspan=2|{{A|Ultima Blow}}
+|[[Final Fantasy Tactics Advance weapons#Zeus Mace|Zeus Mace]]
+|999
+|60
+|x3
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Powerful sage attack born from ultima magic.''<br>'''Element:''' As Weapon
+|}
+
+==Gallery==
+<gallery>
+FFTA Drain.png|Drain.
+FFTA Blind.png|Blind.
+FFTA Water.png|Water.
+FFTA Aero.png|Aero.
+FFTA Raise.png|Raise.
+FFTA Giga Flare.png|Giga Flare.
+FFTA Bio.png|Bio.
+</gallery>{{Gallery incomplete|Ultima Blow}}
+
+{{navbox abilities FFTA}}
+[[Category:Sagacity Skill abilities in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]

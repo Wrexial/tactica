@@ -1,0 +1,94 @@
+[[File:Floateye_-_Status.gif|right]]
+[[File:FFTA-spr-Floateye.gif|left]]
+{{Quote|Eyeball with wings and a nasty gaze attack.|Description}}
+'''Floateye''' in ''[[Final Fantasy Tactics Advance]]'' is a blue spherical monster that can cause various status effects with its single eye. It has a pair of wings to fly over other units on the battlefield. Although its mobility and Speed scores are high, it is a fragile creature. Floateye is related to the [[Ahriman (Tactics Advance)|Ahriman]] monster.
+
+Its Stare ability is learnable as [[Blue Magic (Tactics Advance)|Blue Magic]], and it is easy to learn due to how Stare works. This process can be sped up by having a [[Beastmaster (Tactics Advance)|Beastmaster]] command a Floateye to use Stare. Stare is an effective method of inflicting confusion, as it can be 100% accurate, and it also has an area effect in front of the user.
+
+[[Morpher]]s can use Floateye abilities alongside Ahriman abilities, since Floateyes are capturable. This gives players access to Devil Gaze, which operates on the same principles as Stare, where it only works when the user faces the enemy, but it does so with 100% accuracy. Devil Gaze inflicts both Blind and Silence, which disables any unit for a period of time, or encourages an enemy to heal themselves. The Floateye has no damaging abilities, but they do provide great status effects, especially with Ahriman abilities.
+
+{{see|Floating Eye}}
+
+==Abilities==
+{{Quote|Floateye command. Shoot evil from eye.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Stare}}
+|''Fearsome gaze. Confuses target.''<br>All units facing the caster with 100% Accuracy.
+|12
+|-
+!{{A|Devil Gaze}}
+|''Gaze silences and inflicts darkness.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Def+}}
+|''Reduces damage from weapon attacks''.
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Mission #045: Frosty Mage
+|The [[Black Mage (Tactics Advance)|Black Mage]] here has one Floateye crony.
+|-
+!Mission #050: Staring Eyes
+|Two Floateyes and an Ahriman will swoop down from [[Cyril (Tactics Advance)|Cyril]]'s rooftops to confront the party.
+|-
+!Mission #005: Twisted Flow
+|The [[Totema]] [[Famfrit (Tactics Advance)|Famfrit]] will summon two Floateyes and two Ahrimans to help him guard his crystal.
+|-
+!Mission: With Babus
+|The specter of [[Remedi|Queen Remedi]] calls a Floateye and Ahriman to fight against [[Marche Radiuju|Marche]] and [[Babus Swain|Babus]].
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Aisenfield (Tactics Advance)|Aisenfield]]
+|style="text-align: center"|Aisen Ghosts
+|A Floateye is one of the three non-undead enemies in this clan.
+|-
+![[Materiwood]]
+|style="text-align: center"|Lost Monsters
+|The Floateye's wings allow it to expertly maneuver around its vertically inconsistent home base.
+|}
+
+==Other appearances==
+===''[[Final Fantasy Record Keeper]]''===
+[[File:FFRK Floateye FFTA.png|right]]
+{{Enemy section|Final Fantasy Record Keeper}}
+{{clear}}
+
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Floateye TCG.png|right|100px]]
+Floateye appears with a wind-elemental card.
+[[Category:Enemies in Final Fantasy Tactics Advance]]

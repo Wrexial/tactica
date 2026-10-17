@@ -1,0 +1,22 @@
+'''Muscmaloi''' {{J|ムスクマロイ|Musukamaroi|Muskmallow}} is a type of herb.
+
+==Appearances==
+===''[[Final Fantasy Tactics Advance]]''===
+
+Muscmaloi grows on the [[Giza Plains (Tactics Advance)|Giza Plains]]. Muscmaloi is described as being "fever-reducing" in the first mission, "Herb Picking". After the mission is completed, [[Montblanc]] explains that it grows "all over" and that he used to pick them when he was little.
+
+===''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''===
+
+Muskmallows are grown at [[Targ Wood#Muskmallow Field|Muskmallow Field]].
+
+=== ''[[Final Fantasy XIV]]'' ===
+Muscmaloi is an herb, with potent [[Aether (Final Fantasy XIV)|Aether]]-fortifying properties having its cultivation outlawed in [[Old Sharlayan]] a few years ago. In the [[Sage (Final Fantasy XIV)|Sage]] Questline Faldrinet uses the plant, and [[Thavnair|Thavnairian]] [[Alchemist (Final Fantasy XIV)|alchemical]] ingredients in his procedures to enhance the human body.
+
+==Trivia==
+*It is possible that the "muscmaloi" of ''Final Fantasy Tactics Advance'' is a misinterpretation of a Japanese pronunciation of "musk mallow", which is an actual herbal plant of the extensive mallow family.
+
+{{Item section}}
+
+[[Category:Final Fantasy Tactics Advance]]
+[[Category:Final Fantasy Tactics A2: Grimoire of the Rift]]
+[[Category:Flora]]

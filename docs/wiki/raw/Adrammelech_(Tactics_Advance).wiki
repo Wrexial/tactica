@@ -1,0 +1,115 @@
+{{DISPLAYTITLE:Adrammelech (''Tactics Advance'')}}
+{{infobox character
+|name=Adrammelech
+|release=FFTA
+|japanese=憤怒の霊帝アドラメレク
+|romaji=Fundo no Reitei Adoramereku
+|lit=Adrammelech the Wrathful Spirit Emperor
+|image=FFTA Adrammelech Totema.png
+|race=[[Totema]]
+|type=boss
+|recurring appearance=Adrammelech
+}}
+{{Quote|I am the totema Adrammalech!  By my strength, I shall defend the world-thread... And destroy all those who seek to harm it!|Adrammelech}}
+The '''Adrammelech''' is the [[totema]] of the [[bangaa]] in ''[[Final Fantasy Tactics Advance]]''. It is the third totema fought by [[Marche Radiuju]], at [[Nargai Cave]]. After being defeated, Adrammelech can be summoned by a bangaa member of [[Clan Nutsy]]. A [[Deph]] clone of Adrammelech also appears during the fight with [[Remedi|Queen Remedi]] in her Battle Queen form.
+
+As Adrammelech is the totema of the bangaa race, he possesses two abilities of the bangaa job [[Templar (Tactics)|Templar]]: Soul Sphere and [[Warcry]] (renamed Howl of Rage.) Adrammelech is designed after [[Dycedarg Beoulve]]'s [[Lucavi]] demon form [[Adrammelech (Tactics)|of the same name]] with more of a draconic appearance.
+
+==Battle==
+Adrammelech is accompanied by a [[Firewyrm]] on his right, a [[Thundrake]] on his left, and an [[Icedrake]] in front of him. The player will most likely need to kill off at least the Icedrake to reach Adrammelech. On the totema's first turn, he will most likely use his Firestream spell to hit the party from afar. This, coupled with one of the Dragons' Breath attacks, can KO a group of tightly-clumped units.
+
+The key is to space units out enough so that one Breath attack cannot hit more than two units at once. Players should take down the Thundrake on their first turn, and have any leftover units aim spells at Adrammelech. If one's units are sparsely grouped, the remaining enemies should not be able to KO more than one of Marche's allies. The player may then use the next turn to focus on Adrammelech. Summoning [[Famfrit (Tactics Advance)|Famfrit]] may be helpful. Having many ranged units, or units that can hit at a far range, is also valuable. If this doesn't help, having one of the [[Law system (Tactics Advance)|laws]] forbid fire can also simplify matters.
+
+==Stats==
+{|class="FFTA article-table" style="text-align:center"
+|-
+!style=width="25%"|Move Rate
+!style=width="25%"|Jump Rate
+!style=width="25%"|Evade Rate
+|-
+|3
+|2
+|style="text-align:center"|30
+|}
+
+==Growth==
+[[File:FFTA-AdrammelechTalkSprite.png|right|55px|Adrammelech's talk sprite.]]
+As a boss, Adrammelech has substantially higher stat growth than normal, playable jobs. He possesses the highest Magic Power and Speed of all totema, though the latter is still quite low. With the exception of MP, all of his other stats are tremendously above-average, making him more than match for an entire clan.
+{{clear}}
+
+{|class="FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|HP
+!style="width:10%"|MP
+!style="width:10%"|Attack
+!style="width:10%"|Defense
+!style="width:10%"|Magic Power
+!style="width:10%"|Magic Resistance
+!style="width:10%"|Speed
+|-
+|13.4 S+
+|2.4 E
+|11.1 S+
+|10.6 S+
+|10.5 A+
+|10.6 B
+|1.1 D-
+|}
+
+==Abilities==
+===Expulse===
+{{Quote|Totema command. Drive off all intruders.|Description}}
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+!Lightspeed
+|Damages unit and bypasses reaction ability.
+|-
+!Howl of Rage
+|Lowers Speed of surrounding units.
+|-
+!Firestream
+|Fire damage to all units in line.
+|}
+
+===Magestorm===
+{{Quote|Totema command. Use all the world's magic.|Description}}
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+![[Rasp (ability)#Final Fantasy Tactics Advance|Soul Sphere]]
+|Area [[MP (stat)|MP]] damage.
+|}
+
+===Reaction===
+{|class="FFTA article-table"
+|-
+!style="width:120px"|Skill
+!Effect
+|-
+![[Counter (ability)|Counter]]
+|Follow up an enemy attack with an attack of your own.
+|}
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Adrammelech TCG.png|right|100px]]
+Adrammelech, the Wroth appears with a Lightning-elemental card.
+{{clear}}
+
+=== ''[[Final Fantasy Record Keeper]]'' ===
+[[File:FFRK Adrammelech FFTA.png|right|170px]]
+{{Enemy section|Final Fantasy Record Keeper}}
+{{clear|left}}
+
+{{navbox characters FFTA}}
+
+
+[[de:Adrammelech (FFTA)]]
+[[es:Adrammelech (Final Fantasy Tactics Advance)]]
+[[Category:Totema in Final Fantasy Tactics Advance]]
+[[Category:Bosses in Final Fantasy Tactics Advance]]

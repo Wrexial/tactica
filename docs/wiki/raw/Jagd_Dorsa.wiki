@@ -1,0 +1,50 @@
+[[File:JagdDorsa.png|thumb|right|250px|Clan Hounds engages Clan Nutsy.]]
+{{Quote|Lawless "jagd". A deserted town.|Description}}
+'''Jagd Dorsa''' {{j|ヤクトドルーサ|Yakuto Dorūsa}} is a location from ''[[Final Fantasy Tactics Advance]]''. It is the first of the three [[Jagds]] to become accessible to [[Clan Nutsy]]. [[Marche Radiuju]] leads a team to investigate the Jagd in "Mission #012: Jagd Hunt" after [[Nono]] reports to the clan that he was on the receiving end of a hit and run.
+
+After completion, a revisit is required during mission "#061 Hit Again" which occurs shortly after the first encounter, because the same crime was committed. Jagd Dorsa is also the site of "Mission #097: The Dark Blade" and can be freed in "Mission #261: Jagd Dorsa".
+
+==Liberation==
+Despite the fact that Jagd Dorsa is unlocked about halfway through the game, Jagd Dorsa can only be liberated after completion of the storyline. The mission to liberate Jagd Dorsa requires fifteen enemy kills before completion.
+
+Because of the completion of the storyline, it takes only thirty days for a territory to be taken over when under attack.
+
+==Missions==
+*"Mission #012: Jagd Hunt"
+{{Quote|On my brand-new airship's maiden flight, she was damaged in a hit-and-run! The criminal is in Jagd Dorsa, kupo! Get him!|Nono, Machinist Apprentice}}
+*"Mission #061 Hit Again"
+{{Quote|They got me again, kupo... And they went running off to Jagd Dorsa again, too, kupo... I give up, kupo...|Nono, Once Again}}
+*"Mission #097: The Dark Blade"
+{{Quote|He killed them all... with his dark blade, he slew all the men that went to rescue their comrade who fell to the Redwings...|Deetz, Streetear}}
+*"Mission #261: Jagd Dorsa"
+{{Quote|Please kill the jagdsaurus that plagues Jagd Dorsa. He'll come out if you go there alone, I guarantee it.|Handog, Townsperson}}
+
+==Encounters==
+===Clan Hounds===
+{{Quote|Only in the jagds can you find a clan with both monsters and people. Dangerous.|Description}}
+*[[Blue Mage (Tactics Advance)|Blue Mage]] (Human)
+*[[Elementalist (Tactics Advance)|Elementalist]] (Viera)
+*[[Gunner (Tactics Advance)|Gunner]] (Moogle)
+*[[Coeurl (Tactics Advance)|Coeurl]]
+*[[Lamia (Tactics Advance)|Lamia]]
+*[[Red Cap (Tactics Advance)|Red Cap]]
+
+==Turf Defense==
+===Help Dorsa!===
+{{Quote|Word is that Clan Hounds summoned these freakish creatures and now they're using them to drive other clans out of the jagd...|Town Rumor}}
+Reward: 4000 gil. Available for 30 days.
+*Blue Mage
+*Elementalist
+*Gunner
+*Lamia
+
+==Gallery==
+<gallery>
+Jagd Dorsa 1.PNG|Jagd Dorsa (1).
+Jagd Dorsa 2.PNG|Jagd Dorsa (2).
+Dungeon-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]

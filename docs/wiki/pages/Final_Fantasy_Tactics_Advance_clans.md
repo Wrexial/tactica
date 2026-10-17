@@ -1,0 +1,121 @@
+# Final Fantasy Tactics Advance clans
+
+> Source: https://finalfantasy.fandom.com/wiki/Final_Fantasy_Tactics_Advance_clans
+> Group: Core
+
+Below is a list of clans seen in Final Fantasy Tactics Advance.
+
+## Main clans
+
+### Clan Nutsy
+
+The clan that Marche Radiuju joins and names. The co-leader of the clan is the moogle, Montblanc.
+
+### Clan Ritz
+
+A mainly viera clan that is led by Ritz Malheur who is a friend of Marche from St. Ivalice and Shara, a Viera Sniper. They are an allied clan for most of the game.
+
+### Clan Doned
+
+A newly created clan led by Doned Radiuju, Marche's younger brother. Large in number with a representing faction.
+
+## Major clans
+
+### Clan Borzoi
+
+A large and ruthless clan that engages in several criminal activities led by their boss, Gukko. The members of the group are managed by several capos along with the elite Dread Raven and is known for causing trouble across the country of Ivalice and is mainly responsible for the rise of the clan wars. With the group's fall, Gukko escapes for the barbarian lands and later returns for revenge as the vampire, Guksor.
+
+### Redwings
+
+A powerful and large foreign criminal ring led by the Dark Knight, Grissom. The group is known as the real mastermind behind Clan Borzoi and mainly consists of Mog Knights, which in turn are led by the elite members known as the Falgabirds. This group is based on the military organization, Red Wings of Final Fantasy IV.
+
+## Minor clans
+
+### Cheetahs
+
+A band of conmen that engages in swindling people which Clan Nutsy and Clan Ritz fight when they first meet (Mission#3).
+
+### Clan Baham
+
+A clan that challenges Clan Nutsy to either join their ranks or face them in battle.
+
+### Clan Ox
+
+A clan of bounty hunters that engage Clan Nutsy as part of the quest "The Bounty" as Clan Ox is looking for the wanted "Marche," and try to take Marche in.
+
+### Clan Rose
+
+A moogle clan led by a female Mog Knight, Reaker. She tricks Montblanc with a confession by impersonating as a townsgirl named "Mogumi" and claiming after their defeat that she and Montblanc would have been great together.
+
+## Other clans and organizations
+
+**Random clans**
+
+- Aisen Ghosts - Ghost of a soldier killed in a past war. Still searches for its enemy... Situated in Aisenfield.
+- Antlions - Much feared, antlions often leave their sandy nests to hunt for food. Situated in Eluut Sands.
+- Bloodthirsters - Dark beings from the lawless jagds, come to drag the living down into darkness. Situated in Jagd Ahli.
+- Brass Dragoons - Proud dragoon band. Revels in challenging worthy opponents. "Fight with honor!". Situated in Delia Dunes.
+- Clan Banisa - Members are hardy desert dwellers. Often act as couriers across the desert. Situated in Cadoan.
+- Clan Belmia - This clan prefers to work indoors. Easily angered when outside. Best to avoid. Situated in Muscadet.
+- Clan Clatz - Tricks opponents into defeating themselves. Avoid this clan's base at all costs! Situated in Jeraw Sands.
+- Clan Dip - Good with bows. Watch out for attacks from behind. Situated in Lutia Pass.
+- Clan Hounds - Only in the jagds can you find a clan with both monsters and people. Dangerous. Situated in Jagd Dorsa.
+- Clan Marble - "Engage first, then ask questions!" is their motto. They like a good clean fight. Situated in Giza Plains.
+- Clan Shalo - Base located in the shallows. Avoid water engagements. Attack them on land! Situated in Ulei River.
+- Cyril Band - Main turf: Cyril. Targets travelers, never townspeople. Situated in Cyril.
+- Doned Faction - Faction of the newly established "Clan Doned". On a fast rise to ascendance. Situated in Ambervale.
+- Gaja Band - Bandit clan. Rides the high-speed airship, the "Accelerator." Get them on the ground. Situated in Baguba Port.
+- Gertai Band - Shady group that once controlled half of Ivalice. Rivals with the Bardo Band. Situated in Ozmonfield.
+- Guard Patrol - Patrols the Bervenia palace to protect the queen. Hard-headed and taciturn. Situated in Bervenia Palace. Also the clan dispatched by Bervenia Palace to apprehend Marche in Muscadet (Mission#15) and during Present Day (Mission#20).
+- Jagd Emissaries - Appears from the jagds to spread ill will and chaos. Detests the law in all its forms. Situated in Jagd Helje.
+- Koring Band - Mountain bandit band based in Koringwood. Self-sufficient due to hunting and gathering. Situated in Koringwood.
+- Kudik Beasts - Wild monster living in the Kudik Peaks. Sometimes comes down and attacks people. Situated in Kudik Peaks.
+- Lost Monsters - Monster usually found in the woods. Ornery. Use caution. Situated in Materiwood.
+- Ramble Band - Mountain bandits. Famous for staging a jail-break to free their leader, Berk. Situated in Deti Plains.
+- Rangers - Preservationists. Radical clan that doesn't like others coming into the woods. Situated in Nubswood.
+- Roaming Naiads - Feared as a water-spirit by locals. Attacks those who come too close to the lake. Situated in Uladon Bog.
+- Roda Dragons - Firewyrm sleeping in the Roda Volcano. Leaves the cone for occasional raids. Situated in Roda Volcano.
+- Sprohmknights - Defectors from the town watch. They aim to bring every clan under their control. Situated in Sphrom.
+- Tribites - Cave Monster. Stay clear of its teeth that can dish out multiple attacks. Situated in Nargai Cave.
+- Tricky Spirits - Woodland fairy. Likes to play pranks on people, driving some to madness. Situated in Salikawood.
+- Tubola Bandits - Usually in their cave hideout, counting gil. Attacks any traveler carrying cash. Situated in Tubola Cave.
+- Wild Monsters - Desert fiend. Usually harmless, except when hungry. Situated in Gotor Sands.
+- Zoara Sect - Radical worshipers of Zoara. Want to destroy the world to restore the "Beginning Time". Situated in Siena Gorge.
+
+**Other clans**
+
+****
+
+**Organizations**
+
+- Acamel Tours Office
+- Belta Clockworks Co.
+- Ivalice Pharmacists Guild - Quest poster.
+- Ivalice Tourism Board
+- Eluut Civilian Militia
+- Geology Labs
+- Royal Mage Academy - A group of scholarly mages led by Babus Swain that personally serve Bervenia Palace.
+
+NewPP limit report
+Cached time: 20261017015654
+Cache expiry: 2592000
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.050 seconds
+Real time usage: 0.105 seconds
+Preprocessor visited node count: 147/1000000
+Post‐expand include size: 8664/2097152 bytes
+Template argument size: 23/2097152 bytes
+Highest expansion depth: 7/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+Lua time usage: 0.007/7.000 seconds
+Lua memory usage: 648189/104857600 bytes
+
+Transclusion expansion time report (%,ms,calls,template)
+100.00% 27.655 1 Template:Navbox_setting_FFTA
+100.00% 27.655 1 -total
+ 93.28% 25.798 1 Template:Navbox
+
+ Saved in parser cache with key 1.43.9_prod_finalfantasy:pcache:idhash:605864-0!sseVary=RegularPage!FandomDesktop!LegacyGalleries and timestamp 20261017015654 and revision id 4019307. Rendering was triggered because: page-view

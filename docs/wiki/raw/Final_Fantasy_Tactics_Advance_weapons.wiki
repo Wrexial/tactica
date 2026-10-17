@@ -1,0 +1,3665 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' weapons}}
+The following is a list of the weapons that appear in ''[[Final Fantasy Tactics Advance]]'', divided by class and ordered by attack power.
+{{Toclimit|2}}
+
+== Swords ==
+Swords are light one-handed weapons that are equipable by the [[Soldier (Tactics Advance)|Soldier]], [[Warrior (Tactics Advance)|Warrior]], and [[Dragoon (Tactics Advance)|Dragoon]] job classes.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Sword
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="3"|{{LA|Blood Sword (weapon)|Blood Sword}}<br/>[[File:FFTABloodsword.PNG]]
+|18
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Soldier: Provoke (300)<br/>Dragoon: Wyrmkiller (300)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' Drains HP
+|-
+|colspan="8" style="text-align:left"|''Sword stained by the blood of many.''
+|-
+! rowspan="2"|{{LA|Broadsword|Shortsword}}<br/>[[File:FFTA - Shortsword.png]]
+|25
+|0
+|0
+|0
+|0
+|0
+|300
+|style="text-align:left"|Soldier/Warrior: First Aid (100)
+|-
+|colspan="8" style="text-align:left"|''One-handed sword in common use.''
+|-
+! rowspan="2"|{{LA|Onion Sword}}<br/>[[File:FFTA Onion Sword.PNG]]
+|29
+|5
+|0
+|5
+|0
+|10
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Order-made sword of the legendary "Onion Knight."''
+|-
+! rowspan="2"|{{LA|Silver equipment|Silver Sword}}<br/>[[File:FFTA - Silver Sword.png]]
+|30
+|0
+|0
+|0
+|2
+|2
+|900
+|style="text-align:left"|Soldier/Warrior: Speedbreak (200)
+|-
+|colspan="8" style="text-align:left"|''This sword is beautifully inlaid with silver.''
+|-
+! rowspan="2"|{{LA|Mythril Sword}}{{note|Mythril Sword gives +1 to Jump}}<br/>[[File:FFTA MythrilSword.png]]
+|33
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Soldier/Warrior: Combat Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Sword made from rare and coveted mythril ore.''
+|-
+! rowspan="2"|{{A|Victor Sword}}<br/>[[File:FFTA Victor Sword.PNG]]
+|33
+|10
+|0
+|10
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Sword given to the tourney champion. Symbol of honor.''
+|-
+! rowspan="2"|{{LA|Buster Sword}}<br/>[[File:FFTA Buster Sword.png]]
+|35
+|5
+|0
+|0
+|0
+|0
+|1600
+|style="text-align:left"|Soldier/Warrior: Mindbreak (200)<br/>Dragoon: Wyrmtamer (200)
+|-
+|colspan="8" style="text-align:left"|''Sword made for felling monsters.''
+|-
+! rowspan="3"|{{A|Gale Sword}}<br/>[[File:FFTA Gale Sword.PNG]]
+|36
+|0
+|0
+|0
+|1
+|0
+|N/A
+|style="text-align:left"|Warrior: Greased Bolt (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Wind
+|-
+|colspan="8" style="text-align:left"|''Sword so keen it could cut the wind itself.''
+|-
+! rowspan="3"|{{LA|Vitanova}}<br/>[[File:FFTA Vitanova.PNG]]
+|38
+|0
+|2
+|0
+|0
+|2
+|N/A
+|style="text-align:left"|Dragoon: Dragonheart (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Holy<br/>'''Effect:''' [absb] Holy
+|-
+|colspan="8" style="text-align:left"|''Sacred sword. Called the "Life Guardian."''
+|-
+! rowspan="2"|{{A|Burglar Sword}}<br/>[[File:FFTA - Burglar Sword.png]]
+|39
+|0
+|0
+|0
+|0
+|0
+|3000
+|style="text-align:left"|Soldier: Sensor (300)
+|-
+|colspan="8" style="text-align:left"|Weighty sword favored by rough types.
+|-
+! rowspan="2"|{{A|Restorer}}<br/>[[File:FFTA Restorer.PNG]]
+|40
+|0
+|5
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Warrior: Downsize (300)<br/>Dragoon: Lancet (300)
+|-
+|colspan="8" style="text-align:left"|''Mysterious sword. Said to "restore lost power."''
+|-
+! rowspan="3"|{{A|Laglace Sword}}<br/>[[File:FFTA Laglace Sword.PNG]]
+|41
+|0
+|5
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Ice
+|-
+|colspan="8" style="text-align:left"|''Sword made of the coldest ice. Chilly in the hand.''
+|-
+! rowspan="2"|{{LA|Chirijiraden (weapon)|Chirijiraden}}<br/>[[File:FFTA Chirijiraden.PNG]]
+|65
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''This sword was buried for fear of its power.''
+|}
+{{annotations}}
+
+== Blades ==
+Blades are light one-handed swords that are used by the [[Fighter (Tactics Advance)|Fighter]], [[Gladiator (Tactics Advance)|Gladiator]], and [[Mog Knight]] job classes.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Blade
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Materia Blade}}<br/>[[File:FFTA Materia Blade.PNG]]
+|17
+|0
+|15
+|10
+|0
+|0
+|N/A
+|style="text-align:left"|Mog Knight: Ultima Charge (999)<br/>Gladiator: Ultima Sword (999)
+|-
+|colspan="8" style="text-align:left"|''Blade inlaid with materite.''
+|-
+! rowspan="2"|{{A|Sweep Blade}}<br/>[[File:FFTA - Sweep Blade.png]]
+|28
+|0
+|0
+|0
+|0
+|0
+|1500
+|style="text-align:left"|Fighter/Gladiator: Rush (100)
+|-
+|colspan="8" style="text-align:left"|''Blade for cutting down enemies as they close in.''
+|-
+! rowspan="2"|{{LA|Mythril Blade}}{{note|Mythril Blade gives +1 to Jump}}<br/>[[File:FFTA MythrilBlade.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Fighter: Fight Combo (100)<br/>Mog Knight: Charge Combo (100)<br/>Gladiator: Sword Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Mythril blade forged and tempered with utmost care.''
+|-
+! rowspan="2"|{{A|Shadow Blade}}<br/>[[File:FFTA Shadow Blade.PNG]]
+|32
+|0
+|0
+|0
+|0
+|2
+|2500
+|style="text-align:left"|Fighter/Gladiator: Beatdown (200)<br/>Mog Knight: Mog Rush (200)
+|-
+|colspan="8" style="text-align:left"|''Blade painted black for use at night.''
+|-
+! rowspan="2"|{{A|Paraiba Blade}}<br/>[[File:FFTA Paraiba Blade.PNG]]
+|33
+|0
+|10
+|0
+|0
+|2
+|22000
+|style="text-align:left"|Mog Knight: Mog Peek (300)
+|-
+|colspan="8" style="text-align:left"|''Valuable blade set with many beautiful gemstones.''
+|-
+! rowspan="3"|{{A|Atmos Blade}}<br/>[[File:FFTA Atmos Blade.PNG]]
+|36
+|0
+|0
+|0
+|0
+|0
+|4000
+|style="text-align:left"|Fighter: Air Render (200)<br/>Mog Knight: Mog Lance (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Lightning
+|-
+|colspan="8" style="text-align:left"|''Lightning blade that makes the air around it tremble.''
+|-
+! rowspan="2"|{{LA|Sun Blade}}<br/>[[File:FFTA Sun Blade.PNG]]
+|37
+|0
+|0
+|0
+|2
+|0
+|3000
+|style="text-align:left"|Fighter/Gladiator: Blitz (200)
+|-
+|colspan="8" style="text-align:left"|''Blade said to hold the power of the sun itself.''
+|-
+! rowspan="3"|{{LA|Flametongue (weapon)|Flametongue}}<br/>[[File:FFTAFlametounge.PNG]]
+|38
+|0
+|0
+|0
+|0
+|0
+|5000
+|style="text-align:left"|Fighter: Backdraft (300)<br/>Mog Knight: Mog Attack (100)<br/>Gladiator: Fire Sword (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire
+|-
+|colspan="8" style="text-align:left"|''Blade said to lick the air like a fiery tongue.''
+|-
+! rowspan="3"|{{A|Air Blade}}<br/>[[File:FFTA Air Blade.PNG]]
+|40
+|0
+|0
+|0
+|0
+|0
+|7000
+|style="text-align:left"|Fighter: Air Blast (300)<br/>Gladiator: Bolt Sword (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Wind<br/>'''Effect:''' [null] Wind
+|-
+|colspan="8" style="text-align:left"|''Blade said to be made in the shape of a gale.''
+|-
+! rowspan="2"|{{A|Kwigon Blade}}<br/>[[File:FFTA Kwigon Blade.PNG]]
+|40
+|3
+|0
+|3
+|0
+|0
+|10000
+|style="text-align:left"|Fighter: Far Fist (200)<br/>Mog Knight: Mog Guard (200)
+|-
+|colspan="8" style="text-align:left"|''Blade that aids the flow of power through the body.''
+|-
+! rowspan="3"|{{LA|Icebrand (weapon)|Ice Brand}}<br/>[[File:FFTAIceBrand.PNG]]
+|42
+|0
+|0
+|0
+|0
+|0
+|8000
+|style="text-align:left"|Mog Knight: Mog Aid (300)<br/>Gladiator: Ice Sword (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Ice
+|-
+|colspan="8" style="text-align:left"|''Blade made of ice that will never melt.''
+|-
+! rowspan="2"|{{A|Ogun Blade}}<br/>[[File:FFTA Ogun Blade.PNG]]
+|42
+|0
+|2
+|0
+|0
+|0
+|15000
+|style="text-align:left"|Fighter/Gladiator: Wild Swing (200)
+|-
+|colspan="8" style="text-align:left"|''Deep crimson blade made to ensure victory in battle.''
+|-
+! rowspan="3"|{{A|Venus Blade}}<br/>[[File:FFTA Venus Blade.PNG]]
+|45
+|0
+|2
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|Fighter/Gladiator: Doublehand (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire<br/>'''Effect:''' [absb] Fire, [half] Water
+|-
+|colspan="8" style="text-align:left"|''Faintly warm blade made of stone.''
+|-
+! rowspan="2"|{{A|Pearl Blade}}<br/>[[File:FFTA Pearl Blade.PNG]]
+|46
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Mog Knight: Mog Shield (300)
+|-
+|colspan="8" style="text-align:left"|''Blade as smooth as the skin of a pearl.''
+|-
+! rowspan="2"|{{A|Ayvuir Blue}}<br/>[[File:FFTA Ayuvir Blue.PNG]]
+|51
+|0
+|0
+|10
+|0
+|2
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''The hero Gaol's beloved left-hand blade.''
+|-
+! rowspan="2"|{{A|Ayvuir Red}}<br/>[[File:FFTA Ayuvir Red.PNG]]
+|62
+|10
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''The hero Gaol's beloved right-hand blade.''
+|-
+! rowspan="2"|{{LA|Adamant Blade|Adaman Blade}}<br/>[[File:FFTA Adaman Blade.PNG]]
+|65
+|15
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Blade made of adamantite with a deep green luster.''
+|-
+! rowspan="3"|{{A|Ebon Blade}}<br/>[[File:FFTA Ebon Blade.PNG]]
+|84
+|5
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="8" style="text-align:left"|Blade made of dark power. Fearsome to behold.
+|}
+{{annotations}}
+
+== Sabers ==
+Sabers are the swords of choice of [[Blue Mage (Tactics Advance)|Blue Mages]].
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Saber
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{A|Blue Saber}}<br/>[[File:FFTA - Blue Saber.png]]
+|25
+|0
+|0
+|0
+|2
+|0
+|1000
+|style="text-align:left"|Blue Mage: Learning (400)
+|-
+|colspan="8" style="text-align:left"|''Saber wielded by blue mage acolytes.''
+|-
+! rowspan="2"|{{LA|Shamshir (weapon)|Shamshir}}<br/>[[File:FFTA Shamshir.PNG]]
+|31
+|0
+|0
+|0
+|0
+|2
+|2200
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Wider saber with a clear curve to the blade.''
+|-
+! rowspan="2"|{{LA|Mythril Saber}}{{note|Mythril Saber gives +1 to Jump}}<br/>[[File:FFTA MythrilSaber.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Blue Mage: Blue Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Saber made of processed mythril ore.''
+|-
+! rowspan="3"|{{LA|Aqua Saber (weapon)|Aqua Saber}}<br/>[[File:FFTA Aqua Saber.PNG]]
+|36
+|0
+|0
+|0
+|0
+|6
+|3700
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Water
+|-
+|colspan="8" style="text-align:left"|''Ultramarine saber infused with the power of the sea.''
+|-
+! rowspan="3"|{{LA|Soul Sabre|Soulsaber}}<br/>[[File:FFTA Soulsaber.PNG]]
+|39
+|0
+|0
+|10
+|0
+|5
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire
+|-
+|colspan="8" style="text-align:left"|''Divine blade that suffers no neophyte to wield it.''
+|-
+! rowspan="2"|{{A|Harpe}}<br/>[[File:FFTA Harpe.PNG]]
+|42
+|0
+|5
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Saber used by a legendary hero to slay a beast.''
+|-
+! rowspan="2"|{{A|Manganese}}<br/>[[File:FFTA Manganese.PNG]]
+|47
+|0
+|10
+|0
+|0
+|3
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Saber painted with a rare bluish hue.''
+|-
+! rowspan="2"|{{A|Tulwar}}<br/>[[File:FFTA Tulwar.PNG]]
+|55
+|10
+|0
+|10
+|2
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Saber with hand guard. Used by the palace guards.''
+|}
+{{annotations}}
+
+== Knightswords ==
+Knightswords are heavy one-handed swords and include some of the most powerful weapons. They are equipped by the [[Paladin (Tactics Advance)|Paladin]], [[Defender (Tactics Advance)|Defender]], and [[Templar (Tactics Advance)|Templar]] job classes.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Knightsword
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="3"|{{LA|Apocalypse (weapon)|Apocalypse}}<br/>[[File:FFTAApocalypse.PNG]]
+|32
+|0
+|0
+|0
+|0
+|0
+|3000
+|style="text-align:left"|Templar: Rasp (100)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="8" style="text-align:left"|''Black blade that embodies the devastation of war.''
+|-
+! rowspan="2"|{{LA|Mythril equipment|Mythril Brand}}{{note|Mythril Brand gives +1 to Jump}}<br/>[[File:FFTA MythrilBrand.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Paladin: Knight Combo (100)<br/>Defender: Defend Combo (100)<br/>Templar: Sacred Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Mythril knightsword made with painstaking care.''
+|-
+! rowspan="3"|{{A|Sequence}}{{note|Sequence gives +1 to Move and Jump. Attack grows with each additional Sequence obtained.}}<br/>[[File:FFTA Sequence.PNG]]
+|32
+|2
+|5
+|2
+|2
+|2
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' Grows over time (Weapon Attack +1) each time the player completes "Mission: Battle Tourney", up to a maximum of 255.
+|-
+|colspan="8" style="text-align:left"|''The legendary sword slept for years. Now it lives...''
+|-
+! rowspan="2"|{{LA|Lion Heart (weapon)|Lionheart}}<br/>[[File:FFTA Lionheart.png]]
+|34
+|2
+|0
+|1
+|0
+|0
+|4000
+|style="text-align:left"|Paladin/Defender: Defense (200)
+|-
+|colspan="8" style="text-align:left"|''Sword wielded by knights of a legendary king.''
+|-
+! rowspan="2"|{{LA|Ragnarok (weapon)|Ragnarok}}<br/>[[File:FFTARagnarok.PNG]]
+|36
+|0
+|5
+|0
+|0
+|0
+|7000
+|style="text-align:left"|Paladin/Defender: Drop Weapon (200)<br/>Templar: Silence (200)
+|-
+|colspan="8" style="text-align:left"|''Sword made to end battles.''
+|-
+! rowspan="2"|{{LA|Defender (weapon)|Defender}}<br/>[[File:FFTADefender.PNG]]
+|37
+|0
+|0
+|0
+|0
+|0
+|5000
+|style="text-align:left"|Paladin: Nurse (100)<br/>Defender: Hibernate (100)
+|-
+|colspan="8" style="text-align:left"|''Unadorned, practical sword.''
+|-
+! rowspan="3"|{{LA|Save the Queen|SaveTheQueen}}<br/>[[File:FFTA - Save the Queen.png]]
+|45
+|3
+|0
+|3
+|0
+|5
+|N/A
+|style="text-align:left"|Paladin: Cover (200)<br/>Defender: Expert Guard (300)<br/>Templar: Astra (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Holy<br/>'''Effect:''' [enhn] Holy
+|-
+|colspan="8" style="text-align:left"|''Sacred sword. Prayers are inscribed upon the blade.''
+|-
+! rowspan="2"|{{LA|Lohengrin}}<br/>[[File:FFTA Lohengrin.PNG]]
+|46
+|0
+|0
+|0
+|0
+|0
+|12000
+|style="text-align:left"|Defender: Aura (300)<br/>Templar: Haste (200)
+|-
+|colspan="8" style="text-align:left"|''Sword worthy of a noble knight.''
+|-
+! rowspan="3"|{{LA|Excalibur (weapon)|Excalibur}}<br/>[[File:FFTA Excalibur.PNG]]
+|47
+|0
+|2
+|0
+|1
+|5
+|N/A
+|style="text-align:left"|Paladin: Holy Blade (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Holy<br/>'''Effect:''' [enhn] Holy, [absb] Holy
+|-
+|colspan="8" style="text-align:left"|''Only the truest of knights may wield this sword.''
+|-
+! rowspan="2"|{{LA|Arc Sword|Arch Sword}}<br/>[[File:FFTA Arch Sword.PNG]]
+|48
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Paladin: Saint Cross (300)<br/>Templar: Soul Sphere (300)
+|-
+|colspan="8" style="text-align:left"|''Sword made as a testament to a leader's power.''
+|-
+! rowspan="2"|{{LA|Nagrarok}}{{note|Nagrarok gives +1 to Move}}<br/>[[File:FFTA Nagrarok.PNG]]
+|75
+|0
+|0
+|0
+|6
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Knightsword made like Ragnarok, but better.''
+|-
+! rowspan="2"|{{LA|Excalibur II|Excalibur2}}<br/>[[File:FFTA Excalibur2.PNG]]
+|87
+|0
+|3
+|0
+|4
+|5
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Improved version of Excalibur. Very sharp.''
+|}
+{{annotations}}
+
+== [[Greatsword (weapon type)|Greatswords]] ==
+Greatswords are two-handed swords used by the [[Human|hume]] [[Soldier (Tactics Advance)|Soldier]] and [[Paladin (Tactics Advance)|Paladin]] job classes. As such, shields cannot be equipped at the same time as a greatsword unless they have the Monkey Grip ability. They have high Attack Power and usually provide protection from some status ailment, but give no bonuses to other stats.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Greatsword
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{A|Barong}}<br/>[[File:FFTA - Barong.png]]
+|30
+|0
+|0
+|0
+|0
+|0
+|900
+|style="text-align:left"|Soldier: Powerbreak (200)<br/>Paladin: Parley (200)
+|-
+|colspan="8" style="text-align:left"|''Heavy, but well-balanced greatsword.''
+|-
+! rowspan="3"|{{LA|Ancient Sword}}<br/>[[File:FFTAAncientsword.PNG]]
+|32
+|0
+|0
+|0
+|0
+|0
+|2000
+|style="text-align:left"|Soldier: Magicbreak (200)<br/>Paladin: Subdue (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Petrify
+|-
+|colspan="8" style="text-align:left"|''Ancient techniques were used to make this sword.''
+|-
+! rowspan="3"|{{LA|Diamond Sword (weapon)|Diamond Sword}}<br/>[[File:FFTA - Diamond Sword.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Soldier: Mug (300)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Slow
+|-
+|colspan="8" style="text-align:left"|''Diamond shards make this blade exceptionally sharp.''
+|-
+! rowspan="3"|{{LA|Vigilante}}<br/>[[File:FFTA - Vigilante.png]]
+|37
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Soldier: Monkey Grip (300)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Confusion
+|-
+|colspan="8" style="text-align:left"|''Sword made in honor of brave warriors.''
+|-
+! rowspan="3"|{{LA|Hardedge}}<br/>[[File:FFTA Hardedge.PNG]]
+|42
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Doom
+|-
+|colspan="8" style="text-align:left"|''This sword is as straight and heavy as an iron bar.''
+|-
+! rowspan="3"|{{LA|Ice equipment|Iceprism}}<br/>[[File:FFTA Iceprism.PNG]]
+|45
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Ice<br/>'''Effect:''' [null] Fire/Silence
+|-
+|colspan="8" style="text-align:left"|''This sword was a gift from a snow fairy.''
+|-
+! rowspan="3"|{{LA|Oblige (weapon)|Oblige}}<br/>[[File:FFTA Oblige.PNG]]
+|48
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Charm
+|-
+|colspan="9" style="text-align:left"|''Sword of nobles. Symbol of courage and benevolence.''
+|-
+! rowspan="3"|{{A|Zankplus}}<br/>[[File:FFTA Zankplus.PNG]]
+|49
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Poison
+|-
+|colspan="8" style="text-align:left"|''Powerful sword with a blade shaped like a cross.''
+|-
+! rowspan="3"|{{A|Lurebreaker}}<br/>[[File:FFTA Lurebreaker.PNG]]
+|51
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Sleep
+|-
+|colspan="8" style="text-align:left"|''Sharp sword tempered under a full moon.''
+|-
+! rowspan="3"|{{A|Master Sword}}<br/>[[File:FFTA Master Sword.PNG]]
+|59
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] KO
+|-
+|colspan="8" style="text-align:left"|''Only master swordsmen may wield this weapon.''
+|}
+
+== Broadswords ==
+Broadswords are two-handed swords, and so a shield cannot be equipped at the same time unless they have the Monkey Grip ability. They are used by the [[bangaa]] jobs Warrior and Defender.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Broadsword
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Falchion}}<br/>[[File:FFTA - Falchion.png]]
+|27
+|5
+|0
+|0
+|0
+|0
+|1200
+|style="text-align:left"|Warrior: Magicbreak (200)
+|-
+|colspan="8" style="text-align:left"|''Heavy broadsword, made for hewing limbs.''
+|-
+! rowspan="3"|{{A|Samson Sword}}<br/>[[File:FFTA Samson Sword.PNG]]
+|32
+|5
+|0
+|0
+|0
+|0
+|2500
+|style="text-align:left"|Warrior: Powerbreak (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Earth
+|-
+|colspan="8" style="text-align:left"|''Broadsword named after the strongest of heroes.''
+|-
+! rowspan="2"|{{A|Striborg}}<br/>[[File:FFTA Striborg.PNG]]
+|33
+|5
+|0
+|0
+|0
+|0
+|5000
+|style="text-align:left"|Warrior: [[Body Slam]] (300)<br/>Defender: Mow Down (200)
+|-
+|colspan="8" style="text-align:left"|''Sword said to change the tides of battle.''
+|-
+! rowspan="2"|{{A|Predator}}<br/>[[File:FFTA Predator.PNG]]
+|37
+|5
+|0
+|0
+|0
+|0
+|4000
+|style="text-align:left"|Defender: Last Berserk (300)
+|-
+|colspan="8" style="text-align:left"|''Sword of the berserker, dangerous to all around.''
+|-
+! rowspan="3"|{{LA|Vajra (weapon)|Vajra}}<br/>[[File:FFTA Vajra.PNG]]
+|45
+|5
+|0
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Defender: Meltdown (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' Lightning<br/>'''Effect:''' [enhn] Lightning
+|-
+|colspan="8" style="text-align:left"|''Sword once wielded by the god of another land.''
+|-
+! rowspan="2"|{{A|El Cid Sword}}<br/>[[File:FFTA El Cid Sword.PNG]]
+|47
+|10
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Defender: Tremor (100)
+|-
+|colspan="8" style="text-align:left"|''Sword wielded by the protector of the land.''
+|-
+! rowspan="2"|{{A|Tabarise}}<br/>[[File:FFTA Tabarise.PNG]]
+|47
+|5
+|0
+|0
+|2
+|2
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''This sword is popular for its light weight.''
+|-
+! rowspan="2"|{{LA|Claymore (weapon)|Claymore}}<br/>[[File:FFTA Claymore.PNG]]
+|49
+|5
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Warrior: Monkey Grip (300)
+|-
+|colspan="8" style="text-align:left"|''Well-sharpened sword held by a chosen few.''
+|-
+! rowspan="2"|{{A|Beastsword}}<br/>[[File:FFTA Beastsword.PNG]]
+|50
+|5
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Broadsword found in a rockbeast's back.''
+|-
+! rowspan="2"|{{LA|Rhomphaia}}<br/>[[File:FFTA Rhomphaia.PNG]]
+|57
+|5
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Sword of the giants. Too heavy to hold in one hand.''
+|-
+! rowspan="2"|{{A|Eclipse}}<br/>[[File:FFTA Eclipse.PNG]]
+|76
+|5
+|5
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Double-edged sword made during a solar eclipse.''
+|-
+! rowspan="2"|{{A|Estreledge}}<br/>[[File:FFTA Estreledge.PNG]]
+|77
+|5
+|0
+|5
+|0
+|0
+|25000
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Faintly luminescent sword made of a fallen star.''
+|}
+
+== Knives ==
+Knives are light melee weapons used by [[Human|hume]] and [[moogle]] [[Thief (Tactics Advance)|Thieves]], as well as the [[Juggler (Tactics Advance)|Juggler]] job. They generally boost Speed and Evasion.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Knife
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{A|Jack Knife}}<br/>[[File:FFTA Jack Knife.PNG]]
+|22
+|0
+|0
+|0
+|0
+|1
+|200
+|style="text-align:left"|Thief: Steal: Gil (100)<br/>Juggler: Gil Toss (100)
+|-
+|colspan="8" style="text-align:left"|''Folded knife small enough to fit in one's palm.''
+|-
+! rowspan="2"|{{LA|Scramasax}}<br/>[[File:FFTA Scramasax.PNG]]
+|29
+|0
+|0
+|0
+|0
+|1
+|900
+|style="text-align:left"|Thief: Steal: Shield (200)<br/>Juggler: Ball (200)
+|-
+|colspan="8" style="text-align:left"|''Impressively large dagger.''
+|-
+! rowspan="2"|{{LA|Kris (weapon)|Kris Knife}}<br/>[[File:FFTA KrisKnife.png]]
+|30
+|0
+|0
+|5
+|0
+|1
+|3000
+|style="text-align:left"|Juggler: Hurl (100)
+|-
+|colspan="8" style="text-align:left"|''Knife with a beautifully adorned blade and hilt.''
+|-
+! rowspan="2"|{{LA|Jambiya}}<br/>[[File:FFTA Jambiya.PNG]]
+|31
+|0
+|2
+|0
+|0
+|1
+|1700
+|style="text-align:left"|Thief: Steal: Access. (300)<br/>Juggler: Dagger (300)
+|-
+|colspan="8" style="text-align:left"|''Knife curved like an animal horn.''
+|-
+! rowspan="2"|{{LA|Mythril Knife}}{{note|Mythril Knife gives +1 to Jump}}<br/>[[File:FFTA MythrilKnife.png]]
+|32
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Thief: Thief Combo (100)<br/>Juggle Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Knife with a lustrous mythril blade.''
+|-
+! rowspan="3"|{{A|Rondell Dagger}}<br/>[[File:FFTA Rondell Dagger.PNG]]
+|33
+|0
+|0
+|0
+|0
+|1
+|10000
+|style="text-align:left"|Thief: Steal: Armor (300)<br/>Juggler: Ring (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Immobilize, Disable
+|-
+|colspan="8" style="text-align:left"|''Knife with a textured, easy-to-hold grip.''
+|-
+! rowspan="2"|{{A|Kard}}<br/>[[File:FFTA Kard.PNG]]
+|35
+|0
+|0
+|0
+|0
+|2
+|7000
+|style="text-align:left"|Thief: Steal: Helm (300)
+|-
+|colspan="8" style="text-align:left"|''Thin-bladed knife with a sharp point.''
+|-
+! rowspan="2"|{{A|Tiptaptwo}}<br/>[[File:FFTA Tiptaptwo.PNG]]
+|35
+|0
+|0
+|9
+|15
+|0
+|27000
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Knife made for multiple, swift attacks.''
+|-
+! rowspan="2"|{{LA|Khukuri}}<br/>[[File:FFTA Khukuri.PNG]]
+|style="text-align:center"|37
+|0
+|0
+|0
+|2
+|1
+|5000
+|style="text-align:left"|Thief: Steal: Exp (100)<br/>Juggler: Firebomb (300)
+|-
+|colspan="8" style="text-align:left"|''Knife with a curved blade for maximum lethality.''
+|-
+! rowspan="2"|{{A|Tonberrian}}<br/>[[File:FFTA Tonberrian.PNG]]
+|37
+|0
+|0
+|0
+|10
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Knife made for driving off tonberries and their ilk.''
+|-
+! rowspan="2"|{{LA|Zwill Crossblade|Zorlin Shape}}<br/>[[File:FFTA Zorlin Shape.PNG]]
+|38
+|0
+|0
+|0
+|1
+|1
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Knife tempered by a famous blacksmith.''
+|-
+! rowspan="2"|{{LA|Sword Breaker}}<br/>[[File:FFTA Sword Breaker.PNG]]
+|39
+|0
+|0
+|0
+|0
+|2
+|N/A
+|style="text-align:left"|Thief: Steal: Weapon (300)
+|-
+|colspan="8" style="text-align:left"|''Knife set with a prong to entangle swords.''
+|-
+! rowspan="2"|{{LA|Cinquedea}}<br/>[[File:FFTA Cinquedea.PNG]]
+|57
+|0
+|0
+|0
+|5
+|2
+|N/A
+|style="text-align:left"|Thief: Steal: Ability (300)
+|-
+|colspan="8" style="text-align:left"|''Broad knife, designed in the shape of a hand.''
+|-
+! rowspan="2"|{{LA|Orichalcum (weapon)|Orichalcum}}<br/>[[File:FFTA Orichalcum.PNG]]
+|60
+|0
+|2
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Thief: Steal: JP (200)<br/>Juggler: Smile (300)
+|-
+|colspan="8" style="text-align:left"|''Knife made of the rare alloy, orichalcum.''
+|}
+{{annotations}}
+
+== Rapiers ==
+Rapiers are a type of narrow sword. They are used by the [[viera]] jobs [[Fencer (Tactics Advance)|Fencer]], [[Elementalist (Tactics Advance)|Elementalist]], and [[Red Mage (Tactics Advance)|Red Mage]].
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Rapier
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Stinger (weapon)|Stinger}}<br/>[[File:FFTA Stinger.PNG]]
+|25
+|0
+|0
+|0
+|2
+|0
+|400
+|style="text-align:left"|Fencer: Swarmstrike (100)<br/>Red Mage: Thunder (100)
+|-
+|colspan="9" style="text-align:left"|''Slender sword made for thrusting, not slashing.''
+|-
+! rowspan="2"|{{A|Fleuret}}<br/>[[File:FFTA - Fleuret.png]]
+|27
+|0
+|0
+|0
+|2
+|0
+|800
+|style="text-align:left"|Elementalist: Earth Heal (200)<br/>Red Mage: Cure (100)
+|-
+|colspan="8" style="text-align:left"|''Thrusting sword with a hand guard above the hilt.''
+|-
+! rowspan="3"|{{A|Scarlette}}<br/>[[File:FFTA Scarlette.PNG]]
+|27
+|0
+|2
+|0
+|2
+|0
+|1500
+|style="text-align:left"|Elementalist: Fire Whip (200)<br/>Red Mage: Fire (100)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire
+|-
+|colspan="8" style="text-align:left"|''Sword with a brilliant, fiery crimson blade.''
+|-
+! rowspan="2"|{{LA|Mythril Rapiers|Mythril Rapier}}{{note|Mythril Rapier gives +1 to Jump}}<br/>[[File:FFTA MythrilRapier.png]]
+|32
+|0
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|Fencer: Lunge Combo (100)<br/>Elementalist: Spirit Combo (100)<br/>Red Mage: Red Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Sword with a slender, tempered mythril blade.''
+|-
+! rowspan="2"|{{LA|Estoc}}<br/>[[File:FFTA Estoc.PNG]]
+|32
+|0
+|0
+|0
+|2
+|0
+|3000
+|style="text-align:left"|Fencer: Featherblow (200)<br/>Elementalist: Heavy Dust (200)<br/>Red Mage: Sleep (200)
+|-
+|colspan="8" style="text-align:left"|''Though slender, this sword can cut through metal.''
+|-
+! rowspan="2"|{{A|Madu}}<br/>[[File:FFTA Madu.PNG]]
+|33
+|0
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|Red Mage: Doublecast (999)
+|-
+|colspan="8" style="text-align:left"|''Sword with an extra blade on its pommel.''
+|-
+! rowspan="3"|{{A|Djinn Flyssa}}<br/>[[File:FFTA Djinn Flyssa.PNG]]
+|34
+|0
+|2
+|0
+|2
+|2
+|N/A
+|style="text-align:left"|Fencer: Swallowtail (300)<br/>Elementalist: Shining Air (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Wind<br/>'''Effect:''' [enhn] Wind, [null] Wind
+|-
+|colspan="8" style="text-align:left"|''Sword made to recall a twisting whirling wind.''
+|-
+! rowspan="2"|{{LA|Mage Masher (weapon)|Mage Masher}}<br/>[[File:FFTA Mage Masher.PNG]]
+|34
+|0
+|5
+|10
+|2
+|0
+|8000
+|style="text-align:left"|Fencer: Manastrike (300)<br/>Red Mage: Barrier (300)
+|-
+|colspan="8" style="text-align:left"|''This sword was once used to hunt down rogue mages.''
+|-
+! rowspan="2"|{{LA|Flamberge (sword)|Flamberge}}<br/>[[File:FFTA Flamberge.PNG]]
+|35
+|5
+|0
+|0
+|2
+|0
+|5000
+|style="text-align:left"|Fencer: Piercethrough (200)<br/>Elementalist: White Flame (100)<br/>Red Mage: Blizzard (100)
+|-
+|colspan="8" style="text-align:left"|''Thrusting sword with a wavy blade.''
+|-
+! rowspan="2"|{{LA|Silver equipment|Silver Rapier}}<br/>[[File:FFTA Silver Rapier.PNG]]
+|35
+|0
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|Fencer: Shadowstick (200)<br/>Elementalist: Sliprain (200)<br/>Red Mage: Poison (100)
+|-
+|colspan="8" style="text-align:left"|''Thrusting sword with a beautiful lace-like guard.''
+|-
+! rowspan="3"|{{LA|Colichemarde}}<br/>[[File:FFTA Colichermarde.PNG]]
+|36
+|0
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|Red Mage: Magic Pow+ (300)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Berserk
+|-
+|colspan="8" style="text-align:left"|''Sword made to preserve reason in battle.''
+|-
+! rowspan="2"|{{LA|Joyeuse}}<br/>[[File:FFTA Joyeuse.PNG]]
+|37
+|0
+|0
+|5
+|2
+|0
+|N/A
+|style="text-align:left"|Fencer: Nighthawk (200)<br/>Elementalist: Evil Gaze (300)
+|-
+|colspan="8" style="text-align:left"|''Sword named after the joy of victory.''
+|-
+! rowspan="3"|{{A|Epeprism}}{{note|Epeprism gives +1 to Jump}}<br/>[[File:FFTA Epeprism.PNG]]
+|37
+|0
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|Elementalist: Elementalshift (300)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [half] Holy/Dark
+|-
+|colspan="8" style="text-align:left"|''Sword that shifts colors when it is swung.''
+|-
+! rowspan="2"|{{A|Gupti Aga}}<br/>[[File:FFTA Gupti Aga.PNG]]
+|38
+|0
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|Fencer: Checkmate (300)
+|-
+|colspan="9" style="text-align:left"|''Sword with a Y-shaped pommel.''
+|-
+! rowspan="3"|{{A|Diabolique}}<br/>[[File:FFTA Diabolique.PNG]]
+|41
+|0
+|0
+|5
+|2
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark<br/>'''Effect:''' [null] Dark
+|-
+|colspan="8" style="text-align:left"|''Blood-red rapier said to hold a demon in its blade.''
+|-
+! rowspan="3"|{{A|Aerial Hole}}<br/>[[File:FFTA Aerial Hole.PNG]]
+|43
+|0
+|8
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Wind
+|-
+|colspan="8" style="text-align:left"|''Called the windsword for its sweeping strike.''
+|-
+! rowspan="2"|{{A|Last Letter}}<br/>[[File:FFTA Last Letter.PNG]]
+|45
+|0
+|0
+|0
+|2
+|3
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Shining rapier. Swordsmith Pemier's 26th piece.''
+|-
+! rowspan="3"|{{LA|Femme Fatale}}<br/>[[File:FFTA Femme Fatale.PNG]]
+|49
+|0
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Doom
+|-
+|colspan="8" style="text-align:left"|''Blood-red rapier able to cut the hand of fate.''
+|}
+{{annotations}}
+
+== Katana ==
+Katana are sleek swords equipped by [[Ninja (Tactics Advance)|Ninjas]] and [[Assassin (Tactics Advance)|Assassins]].
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Katana
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="3"|{{LA|Zanmato (weapon)|Zanmato}}<br/>[[File:FFTA Zanmato.PNG]]
+|22
+|0
+|2
+|0
+|0
+|0
+|M/A
+|style="text-align:left"|Assassin: Ultima Masher (999)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Holy<br/>'''Effect:''' [enhn] Holy, [half] Dark
+|-
+|colspan="8" style="text-align:left"|''Giant sword engraved with words of destruction.''
+|-
+! rowspan="2"|{{LA|Kunai|Ninja Knife}}<br/>[[File:FFTA Ninja Knife.PNG]]
+|31
+|0
+|0
+|0
+|0
+|0
+|2000
+|style="text-align:left"|Ninja: Throw (100)
+|-
+|colspan="8" style="text-align:left"|''This ninja sword can be used for many purposes.''
+|-
+! rowspan="3"|{{LA|Murasame}}<br/>[[File:FFTAMurasame.PNG]]
+|31
+|0
+|0
+|0
+|0
+|0
+|5000
+|style="text-align:left"|Ninja: Water Veil (200)<br/>Assassin: Aphonia (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Water
+|-
+|colspan="8" style="text-align:left"|''Dew rises on this sword's blade to wash it of blood.''
+|-
+! rowspan="2"|{{LA|Mythril equipment|Mythril Epee}}{{note|Mythril Epee gives +1 to Jump}}<br/>[[File:FFTA MythrilEpee.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Ninja: Ninja Combo (100)<br/>Assassin: Killer Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Tempered blade made from highly polished mythril.''
+|-
+! rowspan="3"|{{LA|Ashura (weapon)|Ashura}}<br/>[[File:FFTAAshura.PNG]]
+|33
+|0
+|0
+|0
+|0
+|0
+|7000
+|style="text-align:left"|Ninja: Fire Veil (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire
+|-
+|colspan="8" style="text-align:left"|''Fiery sword that leads its wielder to battle.''
+|-
+! rowspan="2"|{{A|Petalchaser}}<br/>[[File:FFTA Petalchaser.PNG]]
+|34
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Assassin: Last Breath (300)
+|-
+|colspan="8" style="text-align:left"|''Sword said to ring when sheathed after battle.''
+|-
+! rowspan="2"|{{LA|Osafune}}<br/>[[File:FFTA Osafune.PNG]]
+|35
+|5
+|0
+|0
+|0
+|0
+|8000
+|style="text-align:left"|Ninja: Earth Veil (200)
+|-
+|colspan="9" style="text-align:left"|''Masterful sword that can cut through an iron helm.''
+|-
+! rowspan="2"|{{LA|Kotetsu (weapon)|Kotetsu}}<br/>[[File:FFTA Kotetsu.PNG]]
+|37
+|0
+|0
+|0
+|0
+|0
+|10000
+|style="text-align:left"|Ninja: Wood Veil (200)<br/>Assassin: Rockseal (300)
+|-
+|colspan="8" style="text-align:left"|''Crudely forged, but deadly sharp blade.''
+|-
+! rowspan="3"|{{LA|Ame no Murakumo (weapon)|Heaven's Cloud}}<br/>[[File:FFTA Heaven's Cloud.PNG]]
+|39
+|0
+|0
+|5
+|0
+|0
+|15000
+|style="text-align:left"|Ninja: Unspell (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Holy<br/>'''Effect:''' [absb] Holy
+|-
+|colspan="8" style="text-align:left"|''Divine blade taken from an evil dragon's tail.''
+|-
+! rowspan="2"|{{LA|Kikuichimonji}}<br/>[[File:FFTA - Kikuichimonji.png]]
+|40
+|0
+|0
+|5
+|0
+|0
+|12000
+|style="text-align:left"|Ninja: Metal Veil (200)<br/>Assassin: Nightmare (300)
+|-
+|colspan="8" style="text-align:left"|''Sword so beautiful it seems a shame to use it.''
+|-
+! rowspan="2"|{{A|Nosada}}<br/>[[File:FFTA Nosada.PNG]]
+|42
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Ninja: Double Sword (999)
+|-
+|colspan="8" style="text-align:left"|''War blade made in a foreign land.''
+|-
+! rowspan="2"|{{A|Charfire}}<br/>[[File:FFTA Charfire.PNG]]
+|47
+|0
+|0
+|0
+|2
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Blade of unknown origin with a fiery shadow.''
+|-
+! rowspan="2"|{{A|Silkmoon}}<br/>[[File:FFTA Silkmoon.PNG]]
+|55
+|0
+|0
+|0
+|0
+|2
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Exquisitely sharp sword fashioned after a flower.''
+|-
+! rowspan="2"|{{LA|Masamune (weapon)|Masamune}}<br/>[[File:FFTA Masamune.PNG]]
+|65
+|0
+|0
+|0
+|0
+|0
+|25000
+|style="text-align:left"|Ninja/Assassin: Oblivion (300)
+|-
+|colspan="8" style="text-align:left"|''Famous sword known for the wave design on its blade.''
+|-
+! rowspan="2"|{{A|Masamune 100}}<br/>[[File:FFTA Masamune 100.PNG]]
+|79
+|0
+|5
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Masamune that will not dull even after 100 years.''
+|}
+{{annotations}}
+
+== Staves ==
+Staves are magical weapons used by the [[White Mage (Tactics Advance)|White Mage]], [[Bishop (Tactics Advance)|Bishop]], and [[Summoner (Tactics Advance)|Summoner]] job classes.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Staff
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="3"|{{LA|White Staff}}<br/>[[File:FFTA - White Staff.png]]
+|19
+|0
+|0
+|5
+|0
+|0
+|500
+|style="text-align:left"|White Mage: Cure (100)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' "Fight" hit cures Doom
+|-
+|colspan="8" style="text-align:left"|''Pure white staff, blessed by a white archmage.''
+|-
+! rowspan="2"|{{LA|Staff of Protection|Guard Staff}}<br/>[[File:FFTA Guard Staff.PNG|28x24px]]
+|21
+|5
+|0
+|5
+|0
+|0
+|800
+|style="text-align:left"|White Mage: Protect (100)<br/>Summoner: Ifrit (200)
+|-
+|colspan="8" style="text-align:left"|''Staff magicked to protect its wielder.''
+|-
+! rowspan="3"|{{LA|Judgment Staff (weapon)|Judge Staff}}<br/>[[File:FFTA Judge Staff.PNG]]
+|21
+|0
+|3
+|5
+|0
+|0
+|1500
+|style="text-align:left"|White Mage: Shell (100)<br/>Bishop: Aero (200)<br/>Summoner: Ramuh (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Lightning
+|-
+|colspan="8" style="text-align:left"|''This staff was struck by Ramuh's lightning.''
+|-
+! rowspan="2"|{{A|Pure Staff}}<br/>[[File:FFTA Pure Staff.PNG]]
+|23
+|0
+|0
+|5
+|0
+|0
+|3000
+|style="text-align:left"|White Mage: Esuna (200)<br/>Summoner: Unicorn (200)
+|-
+|colspan="8" style="text-align:left"|''Staff of cleansing. Purifies its wielder.''
+|-
+! rowspan="2"|{{A|Bless Staff}}<br/>[[File:FFTA Bless Staff.PNG]]
+|23
+|0
+|0
+|5
+|0
+|0
+|4000
+|style="text-align:left"|White Mage: Life (200)<br/>Bishop: Dispel (200)
+|-
+|colspan="8" style="text-align:left"|''Staff said to spread the blessings of the gods.''
+|-
+! rowspan="3"|{{A|Spring Staff}}<br/>[[File:FFTA Spring Staff.PNG]]
+|28
+|0
+|0
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|White Mage: Curaga (300)<br/>Bishop: Water (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Water<br/>'''Effect:''' [null] Water
+|-
+|colspan="8" style="text-align:left"|''Staff adorned with sacred water symbols.''
+|-
+! rowspan="3"|{{LA|Healing Staff|Cure Staff}}<br/>[[File:FFTA Cure Staff.PNG]]
+|29
+|0
+|0
+|5
+|0
+|0
+|7000
+|style="text-align:left"|White Mage/Bishop: Cura (200)<br/>Summoner: Kirin (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' "Fight" hit heals HP
+|-
+|colspan="8" style="text-align:left"|''Healing staff.''
+|-
+! rowspan="3"|{{A|Snake Staff}}<br/>[[File:FFTA Snake Staff.PNG]]
+|29
+|0
+|0
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Bishop: Break (200)<br/>Summoner: Shiva (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Petrify
+|-
+|colspan="8" style="text-align:left"|''Staff carved with snake designs.''
+|-
+! rowspan="2"|{{A|Garnet Staff}}<br/>[[File:FFTA Garnet Staff.PNG]]
+|31
+|5
+|0
+|5
+|0
+|0
+|9000
+|style="text-align:left"|Bishop: Barrier (300)<br/>Summoner: Carbuncle (200)
+|-
+|colspan="8" style="text-align:left"|''Staff set with a powerful garnet jewel.''
+|-
+! rowspan="2"|{{LA|Marvelous Cheer (weapon)|Cheer Staff}}<br/>[[File:FFTA Cheer Staff.PNG]]
+|32
+|0
+|0
+|5
+|0
+|2
+|N/A
+|style="text-align:left"|White Mage: Auto-Life (200)<br/>Bishop: Judge (300)<br/>Summoner: Madeen (300)
+|-
+|colspan="8" style="text-align:left"|''Strange colored staff said to energize its bearer.''
+|-
+! rowspan="2"|{{LA|Mythril Staff}}{{note|Mythril Staff gives +1 to Jump}}<br/>[[File:FFTA MythrilStaff.png|28x24px]]
+|32
+|0
+|0
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|White Mage: White Combo (100)<br/>Bishop: Pray Combo (100)<br/>Summoner: Summon Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Staff made of mythril.''
+|-
+! rowspan="3"|{{LA|Nirvana|Nirvana Staff}}<br/>[[File:FFTA Nirvana Staff.PNG]]
+|34
+|0
+|0
+|10
+|0
+|0
+|N/A
+|style="text-align:left"|White Mage: Full-Life (300)<br/>Bishop: Holy (300)<br/>Summoner: Phoenix (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Holy
+|-
+|colspan="8" style="text-align:left"|''Staff held by those who have cast off base desire.''
+|-
+! rowspan="2"|{{LA|Dream Watcher}}<br/>[[File:FFTA Dream Watcher.PNG]]
+|43
+|0
+|10
+|15
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''This staff protects the sleep of the good.''
+|-
+! rowspan="2"|{{LA|Power Staff}}<br/>[[File:FFTA Power Staff.PNG]]
+|45
+|6
+|0
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Large, vivifying staff made from a desert tree.''
+|}
+{{annotations}}
+
+== Rods ==
+Rods are equipped by the [[Black Mage (Tactics Advance)|Black Mage]], [[Time Mage (Tactics Advance)|Time Mage]], and [[Illusionist (Tactics Advance)|Illusionist]] job classes.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Rod
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Rod (weapon)|Rod}}<br/>[[File:FFTA Rod.PNG]]
+|18
+|0
+|2
+|0
+|0
+|0
+|600
+|style="text-align:left"|Black Mage: Fire (100), Thunder (100), Blizzard (100)
+|-
+|colspan="8" style="text-align:left"|''Rod used as a focus for magical power.''
+|-
+! rowspan="3"|{{A|Sapere Aude}}{{note|Sapere Aude gives +1 to Move and Jump. Additional Sapere Audes add +1 to Magic Power.}}<br/>[[File:FFTA Sapere Aude.PNG]]
+|18
+|2
+|5
+|2
+|2
+|2
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' Can grow over time (Magic Power +1) each time you complete '''''Mission: Mage Tourney''''', up to a maximum of 255.
+|-
+|colspan="8" style="text-align:left"|''Rod proving mastery of the magic arts.''
+|-
+! rowspan="3"|{{LA|Firewheel Rod}}<br/>[[File:FFTA Firewheel Rod.PNG]]
+|21
+|0
+|2
+|0
+|0
+|0
+|1500
+|style="text-align:left"|Black Mage: Fira (200)<br/>Time Mage: Haste (200)<br/>Illusionist: Prominence (100)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire
+|-
+|colspan="8" style="text-align:left"|''Rod that flames when waved through the air.''
+|-
+! rowspan="3"|{{LA|Thunder Rod}}<br/>[[File:FFTA Thunder Rod.PNG]]
+|21
+|0
+|2
+|0
+|0
+|0
+|1500
+|style="text-align:left"|Black Mage: Thundara (200)<br/>Time Mage: Reflect (300)<br/>Illusionist: Tempest (100)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Lightning
+|-
+|colspan="8" style="text-align:left"|''Rod that calls lightning with a great roar.''
+|-
+! rowspan="3"|{{LA|Ice equipment|Sleet Rod}}<br/>[[File:FFTA Sleet Rod.PNG]]
+|21
+|0
+|2
+|0
+|0
+|0
+|1500
+|style="text-align:left"|Black Mage: Blizzara (200)<br/>Time Mage: Silence (200)<br/>Illusionist: Freezeblink (100)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Ice
+|-
+|colspan="8" style="text-align:left"|''Rod that freezes the very air, calling a blizzard.''
+|-
+! rowspan="3"|{{A|Terre Rod}}<br/>[[File:FFTA Terre Rod.PNG]]
+|23
+|0
+|2
+|0
+|0
+|0
+|2700
+|style="text-align:left"|Time Mage: Slow (200)<br/>Illusionist: Soil Evidence (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Earth<br/>'''Effect:''' [enhn] Earth
+|-
+|colspan="8" style="text-align:left"|''Rod made of an unearthed dragon bone.''
+|-
+! rowspan="2"|{{A|Force Rod}}<br/>[[File:FFTA Force Rod.PNG]]
+|25
+|0
+|5
+|0
+|0
+|0
+|5000
+|style="text-align:left"|Time Mage: Quarter (200)
+|-
+|colspan="8" style="text-align:left"|''Rod that draws out its bearer's inner strength.''
+|-
+! rowspan="3"|{{LA|Flame Rod}}<br/>[[File:FFTA Flame Rod.PNG]]
+|27
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Black Mage: Firaga (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire<br/>'''Effect:''' [enhn] Fire
+|-
+|colspan="8" style="text-align:left"|''Rod made of crystallized flame.''
+|-
+! rowspan="3"|{{LA|Lightning equipment|Thor Rod}}<br/>[[File:FFTA Thor Rod.PNG]]
+|27
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Black Mage: Thundaga (300)<br/>Time Mage: Quicken (300)<br/>Illusionist: Wild Tornado (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Lightning<br/>'''Effect:''' [enhn] Lightning
+|-
+|colspan="8" style="text-align:left"|''Rod made of stilled lightning.''
+|-
+! rowspan="3"|{{A|Chill Rod}}<br/>[[File:FFTA Chill Rod.PNG]]
+|27
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Black Mage: Blizzaga (300)<br/>Time Mage: Stop (300)<br/>Illusionist: Deluge (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Ice<br/>'''Effect:''' [enhn] Ice
+|-
+|colspan="8" style="text-align:left"|''Rod made of hardened snow.''
+|-
+! rowspan="2"|{{LA|Stardust Rod}}<br/>[[File:FFTA Stardust Rod.PNG]]
+|29
+|0
+|5
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Time Mage: Demi (300)<br/>Illusionist: Stardust (300)
+|-
+|colspan="9" style="text-align:left"|''Rod engraved with the symbols of the zodiac.''
+|-
+! rowspan="3"|{{A|Heretic Rod}}<br/>[[File:FFTA Heretic Rod.PNG]]
+|31
+|0
+|20
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="8" style="text-align:left"|''Lethal looking rod covered with inverse runes.''
+|-
+! rowspan="2"|{{LA|Mythril Rod}}{{note|Mythril Rod gives +1 to Jump}}<br/>[[File:FFTA MythrilRod.png]]
+|32
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Black Mage: Black Combo (100)<br/>Time Mage: Time Combo (100)<br/>Illusionist: Spell Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Rod with outstanding mythril engraving work.''
+|-
+! rowspan="3"|{{LA|Crown Scepter|Princess Rod}}<br/>[[File:FFTA Princess Rod.PNG]]
+|35
+|5
+|2
+|5
+|0
+|0
+|20000
+|style="text-align:left"|Illusionist: Star Cross (300)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [enhn] Wind/Water/Earth
+|-
+|colspan="8" style="text-align:left"|''Rod held by the female guards of the queen.''
+|}
+{{annotations}}
+
+== Maces ==
+Maces are one-handed weapons used by the [[Sage (Tactics Advance)|Sage]] and [[Alchemist (Tactics Advance)|Alchemist]] job classes. They can also be equipped by [[Runeseeker]] [[Babus Swain]], but he cannot learn new skills from them. Maces generally give a nice boost to the Magic Resistance stat and are the source of some of the most powerful spells, including [[Meteor (ability)|Meteor]] and [[Giga Flare]].
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mace
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Zeus Mace}}<br/>[[File:FFTA Zeus Mace.PNG]]
+|15
+|0
+|5
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Sage: Ultima Blow (999)
+|-
+|colspan="8" style="text-align:left"|''Holy mace made to drive out evil.''
+|-
+! rowspan="2"|{{A|Energy Mace}}<br/>[[File:FFTA - Energy Mace.png]]
+|29
+|0
+|2
+|5
+|0
+|0
+|3500
+|style="text-align:left"|Sage: Drain (100)<br/>Alchemist: Rasp (100)
+|-
+|colspan="8" style="text-align:left"|''Mace that can feel the flow of energy.''
+|-
+! rowspan="2"|{{LA|Battle Mace}}<br/>[[File:FFTA Battle Mace.PNG]]
+|31
+|0
+|0
+|0
+|0
+|0
+|2000
+|style="text-align:left"|Sage: Water (200), Aero (200)
+|-
+|colspan="8" style="text-align:left"|''Rod with a heavy metal head for striking.''
+|-
+! rowspan="2"|{{A|Sage Crosier}}<br/>[[File:FFTA Sage Crosier.PNG]]
+|31
+|0
+|8
+|8
+|0
+|0
+|9000
+|style="text-align:left"|Alchemist: Astra (200)
+|-
+|colspan="8" style="text-align:left"|''Mace to be wielded by one of wisdom and skill.''
+|-
+! rowspan="2"|{{LA|Mythril Mace}}{{note|Mythril Mace gives +1 to Jump}}<br/>[[File:FFTA MythrilMace.png|28x24px]]
+|32
+|0
+|2
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Sage: Wise Combo (100)<br/>Alchemist: Gold Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Mace with a mythril-plated head.''
+|-
+! rowspan="2"|{{A|Druid Mace}}<br/>[[File:FFTA Druid Mace.PNG]]
+|33
+|0
+|3
+|5
+|0
+|0
+|6000
+|style="text-align:left"|Sage: Blind (100)<br/>Alchemist: Poison (100)
+|-
+|colspan="9" style="text-align:left"|''Golden mace once used as a ceremonial object.''
+|-
+! rowspan="2"|{{LA|Morning Star (weapon)|Morning Star}}<br/>[[File:FFTA Morning Star.PNG]]
+|33
+|0
+|2
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Alchemist: Mag Power+ (300)
+|-
+|colspan="9" style="text-align:left"|''Mace ending in a metal-spiked ball.''
+|-
+! rowspan="2"|{{A|Life Crosier}}<br/>[[File:FFTA Life Crosier.PNG]]
+|35
+|0
+|2
+|10
+|0
+|0
+|N/A
+|style="text-align:left"|Sage: Raise (300)<br/>Alchemist: Death (300)
+|-
+|colspan="8" style="text-align:left"|''Mace of giving... and taking life.''
+|-
+! rowspan="3"|{{A|Mandragora}}<br/>[[File:FFTA Mandragora.PNG]]
+|37
+|0
+|2
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Sage: Bio (300)<br/>Alchemist: Toad (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Earth<br/>'''Effect:''' [absb] Earth, [null] Poison
+|-
+|colspan="8" style="text-align:left"|''Mace fashioned out of poisonous mandragora.''
+|-
+! rowspan="3"|{{A|Lotus Mace}}<br/>[[File:FFTA Lotus Mace.PNG]]
+|37
+|0
+|2
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Sage: Giga Flare (300)<br/>Alchemist: Flare (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire<br/>'''Effect:''' [enhn] Fire
+|-
+|colspan="8" style="text-align:left"|''Mace made of Ifrit's fire.''
+|-
+! rowspan="2"|{{LA|Scorpion Tail (weapon)|Scorpion Tail}}<br/>[[File:FFTA Scorpion Tail.PNG]]
+|38
+|0
+|2
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|Alchemist: Meteor (300)
+|-
+|colspan="8" style="text-align:left"|''Mace with a head like a scorpion tail.''
+|-
+! rowspan="2"|{{LA|Vesper}}<br/>[[File:FFTA Vesper.PNG]]
+|39
+|0
+|2
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Mace of kings. Shines in even the deepest darkness.''
+|-
+! rowspan="2"|{{A|Cactus Stick}}<br/>[[File:FFTA Cactus Stick.PNG]]
+|62
+|0
+|2
+|5
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Mace bristling with sharp cactus thorns.''
+|-
+! rowspan="2"|{{A|Battle Scythe}}{{note|Unobtainable - [[Dummied content|game code only]]}}
+|?
+|?
+|?
+|?
+|?
+|?
+|?
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|(no programmed description - [[Dummied content|Dummied]])
+|-
+|}
+{{annotations}}
+
+== Bows ==
+Bows are ranged weapons that can be equipped by the [[Human|hume]] and [[viera]] [[Archer (Tactics Advance)|Archer]] job. Each bow has a set range. The number given in the table represents the farthest an Archer will be able to shoot an arrow if the target tile is equal to or less than the height of the tile that the Archer is standing on. Various obstacles, including higher target terrain, may obstruct an arrow and cause it to miss.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Bow
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:6%"|Range
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Longbow}}<br/>[[File:FFTA - Longbow.png]]
+|19
+|0
+|0
+|0
+|0
+|0
+|5
+|300
+|style="text-align:left"|Archer: Boost (100)
+|-
+|colspan="9" style="text-align:left"|''Unornamented, commonly found longbow.''
+|-
+! rowspan="2"|{{A|Char Bow}}<br/>[[File:FFTA Char Bow.PNG]]
+|21
+|0
+|0
+|0
+|0
+|0
+|5
+|700
+|style="text-align:left"|Archer: Blackout (200)
+|-
+|colspan="9" style="text-align:left"|''Bow stained with charcoal for use in ambushes.''
+|-
+! rowspan="2"|{{LA|Silver Bow}}<br/>[[File:FFTA Silver Bow.PNG]]
+|23
+|0
+|0
+|0
+|0
+|0
+|6
+|2500
+|style="text-align:left"|Archer: Burial (300)
+|-
+|colspan="9" style="text-align:left"|''Bow made with silver for increased power and range.''
+|-
+! rowspan="2"|{{A|Thorn Bow}}<br/>[[File:FFTA Thorn Bow.PNG]]
+|25
+|0
+|0
+|0
+|0
+|0
+|5
+|1500
+|style="text-align:left"|Archer: Aim: Legs (200)
+|-
+|colspan="9" style="text-align:left"|''Bow adorned with long, cruel thorns.''
+|-
+! rowspan="2"|{{LA|Artemis Bow}}<br/>[[File:FFTA Artemis Bow.PNG]]
+|27
+|0
+|0
+|0
+|0
+|0
+|7
+|N/A
+|style="text-align:left"|Archer: Cupid (200)
+|-
+|colspan="9" style="text-align:left"|''Bow said to belong to the goddess of the hunt.''
+|-
+! rowspan="2"|{{A|Nail Bow}}<br/>[[File:FFTA Nail Bow.PNG]]
+|29
+|0
+|0
+|0
+|0
+|0
+|5
+|4000
+|style="text-align:left"|Archer: Aim: Arm (200)
+|-
+|colspan="9" style="text-align:left"|''Bow that shoots nail-like projectiles.''
+|-
+! rowspan="2"|{{LA|Mythril Bow}}{{note|Mythril Bow gives +1 to Jump}}<br/>[[File:FFTA MythrilBow.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|5
+|N/A
+|style="text-align:left"|Archer: Bow Combo (100)
+|-
+|colspan="9" style="text-align:left"|''Bow made of mythril with a mythril string.''
+|-
+! rowspan="2"|{{LA|Yoichi Bow}}<br/>[[File:FFTA Yoichi Bow.PNG]]
+|33
+|0
+|0
+|0
+|0
+|0
+|5
+|N/A
+|style="text-align:left"|Archer: Take Aim (300)
+|-
+|colspan="9" style="text-align:left"|''Songs have been sung about this bow from afar.''
+|-
+! rowspan="2"|{{A|Target Bow}}<br/>[[File:FFTA Target Bow.PNG]]
+|35
+|0
+|0
+|0
+|0
+|5
+|5
+|N/A
+|style="text-align:left"|Archer: Concentrate (300)
+|-
+|colspan="9" style="text-align:left"|''Some machinist designed this high-powered bow.''
+|-
+! rowspan="2"|{{LA|Perseus Bow}}<br/>[[File:FFTA Perseus Bow.PNG]]
+|42
+|0
+|0
+|0
+|0
+|2
+|6
+|N/A
+|style="text-align:left"|Archer: Faster (300)
+|-
+|colspan="9" style="text-align:left"|''Crimson longbow made for defeating monsters.''
+|-
+! rowspan="2"|{{A|Crescent Bow}}<br/>[[File:FFTA Crescent Bow.PNG]]
+|45
+|0
+|0
+|0
+|0
+|0
+|5
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''Bow adorned with star and moon symbols.''
+|-
+! rowspan="2"|{{A|Malbow}}<br/>[[File:FFTA Malbow.PNG]]
+|55
+|0
+|0
+|0
+|0
+|0
+|5
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''Fetid bow made of malboro tentacles.''
+|}
+{{annotations}}
+
+== Greatbows ==
+Greatbows are more powerful bows able to be equipped by the [[Human|hume]] [[Hunter (Tactics Advance)|Hunter]] job and the [[Sniper (Tactics Advance)|Sniper]] and [[Assassin (Tactics Advance)|Assassin]] [[viera]] jobs. Their attack system is identical to that of bows.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Greatbow
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:6%"|Range
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="3"|{{LA|Seventh Heaven (weapon)|Seventh Heaven}}<br/>[[File:FFTA Seventh Heaven.PNG]]
+|15
+|0
+|0
+|0
+|0
+|5
+|5
+|23000
+|style="text-align:left"|Hunter: Ultima Shot (999)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Holy
+|-
+|colspan="9" style="text-align:left"|''Divine bow used to adorn the throne of the gods.''
+|-
+! rowspan="3"|{{LA|Ranger Bow}}<br/>[[File:FFTA Ranger Bow.PNG]]
+|23
+|0
+|0
+|0
+|0
+|0
+|5
+|2000
+|style="text-align:left"|Hunter: Capture (200)<br/>Assassin: Ague (200)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Earth
+|-
+|colspan="9" style="text-align:left"|''Supple bow favored by expert archers.''
+|-
+! rowspan="3"|{{LA|Windslash Bow}}<br/>[[File:FFTA Windslash Bow.PNG]]
+|25
+|0
+|0
+|0
+|0
+|2
+|5
+|3000
+|style="text-align:left"|Hunter: Oust (200)<br/>Sniper: Conceal (100)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Wind
+|-
+|colspan="9" style="text-align:left"|''Arrows shot from this bow fly true in any wind.''
+|-
+! rowspan="2"|{{A|Cranequin}}<br/>[[File:FFTA Cranequin.PNG]]
+|29
+|0
+|0
+|0
+|0
+|0
+|5
+|5000
+|style="text-align:left"|Hunter: Sonic Boom (200)<br/>Sniper: Beso Toxico (200)
+|-
+|colspan="9" style="text-align:left"|''Great strength is needed to use this bow.''
+|-
+! rowspan="2"|{{A|Twin Bow}}<br/>[[File:FFTA Twin Bow.PNG]]
+|31
+|0
+|0
+|0
+|0
+|0
+|5
+|8000
+|style="text-align:left"|Hunter: Advice (100)<br/>Sniper: Doubleshot (300)
+|-
+|colspan="9" style="text-align:left"|''Bow modified to fire multiple arrows quickly.''
+|-
+! rowspan="3"|{{LA|Elfin Bow|Fey Bow}}<br/>[[File:FFTA Fey Bow.PNG]]
+|31
+|0
+|0
+|0
+|0
+|2
+|6
+|N/A
+|style="text-align:left"|Hunter: Aim: Vitals (300)<br/>Sniper: Aim: Armor (300)<br/>Assassin: Shadowbind (300)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Wind
+|-
+|colspan="9" style="text-align:left"|''Light bow made by forest fairies.''
+|-
+! rowspan="2"|{{LA|Mythril equipment|Mythril Shot}}{{note|Mythril Shot gives +1 to Jump}}<br/>[[File:FFTA MythrilShot.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|5
+|N/A
+|style="text-align:left"|Hunter: Hunt Combo (100)<br/>Sniper: Sniper Combo (100)
+|-
+|colspan="9" style="text-align:left"|''This is a stronger version of a common mythril bow.''
+|-
+! rowspan="2"|{{LA|Hunting Bow|Hunt Bow}}<br/>[[File:FFTA Hunt Bow.PNG]]
+|33
+|0
+|0
+|0
+|0
+|0
+|5
+|40000
+|style="text-align:left"|Hunter: Hunting (200)<br/>Sniper: Aim: Wallet (200)
+|-
+|colspan="9" style="text-align:left"|''Hunter's bow. Made for striking critical blows.''
+|-
+! rowspan="3"|{{A|Hades Bow}}<br/>[[File:FFTA - Hades' Bow.png]]
+|33
+|0
+|0
+|0
+|0
+|0
+|5
+|N/A
+|style="text-align:left"|Hunter: Sidewinder (300)<br/>Sniper: Death Sickle (300)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="9" style="text-align:left"|''Dark bow. Its arrows are invitations to hell.''
+|-
+! rowspan="3"|{{A|Nike Bow}}<br/>[[File:FFTA Nike Bow.PNG]]
+|37
+|5
+|0
+|0
+|0
+|0
+|5
+|N/A
+|style="text-align:left"|Hunter: Weapon Atk + (300)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Lightning
+|-
+|colspan="9" style="text-align:left"|''Bow blessed by the goddess of battle.''
+|-
+! rowspan="2"|{{A|Marduk Bow}}<br/>[[File:FFTA Marduk Bow.PNG]]
+|39
+|0
+|0
+|0
+|0
+|0
+|7
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''This bow is said to choose the ones who wield it.''
+|-
+! rowspan="2"|{{A|Master Bow}}<br/>[[File:FFTA Master Bow.PNG]]
+|41
+|0
+|0
+|0
+|0
+|2
+|5
+|N/A
+|style="text-align:left"|Hunter: Addle (300)<br/>Sniper: Aim: Weapon (300)
+|-
+|colspan="9" style="text-align:left"|''Amateurs find this bow too hard to even pull back.''
+|-
+! rowspan="3"|{{LA|Arbalest}}<br/>[[File:FFTA Arbalest.PNG]]
+|42
+|0
+|0
+|0
+|0
+|0
+|7
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Earth
+|-
+|colspan="9" style="text-align:left"|''Great, destructive bow that shakes the ground.''
+|-
+! rowspan="2"|{{LA|Gastrophetes|Gastra Bow}}<br/>[[File:FFTA Gastra Bow.PNG]]
+|51
+|0
+|0
+|0
+|0
+|0
+|7
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''This giant bow is strong but difficult to fire.''
+|-
+! rowspan="3"|{{A|Max's Oathbow}}<br/>[[File:FFTA Max's Oathbow.PNG]]
+|61
+|0
+|2
+|0
+|0
+|0
+|6
+|N/A
+|style="text-align:left"|Sniper: Doom Archer (300)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="9" style="text-align:left"|''Black lacquer bow used as a sign of a demonic pact.''
+|}
+{{annotations}}
+
+== Spears ==
+Spears are melee attack weapons that have a two-panel range, and allow the user to pierce through more than one enemy in range by using "Fight". They can be equipped by the [[bangaa]] [[Templar (Tactics Advance)|Templar]] and [[Dragoon (Tactics Advance)|Dragoon]] job classes. They are also required for the Dragoon [[Jump (ability)|Jump]] command, and some give a bonus to the Jump stat.
+
+=== Weapon stats ===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Spear
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:6%"|Jump
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Javelin (weapon)|Javelin}}<br/>[[File:FFTA - Javelin.png]]
+|31
+|0
+|0
+|0
+|0
+|0
+|0
+|3000
+|style="text-align:left"|Templar: Warcry (100)<br/>Dragoon: Jump (100)
+|-
+|colspan="9" style="text-align:left"|''Spear with a small but sharp tip.''
+|-
+! rowspan="2"|{{LA|Mythril Spear}}<br/>[[File:FFTA MythrilSpear.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|2
+|N/A
+|style="text-align:left"|Dragoon: Dragon Combo (100)
+|-
+|colspan="9" style="text-align:left"|''Spear that takes advantage of mythril's light weight.''
+|-
+! rowspan="3"|{{LA|Flame equipment|Lava Spear}}<br/>[[File:FFTA Lava Spear.PNG]]
+|33
+|0
+|0
+|0
+|0
+|0
+|0
+|5000
+|style="text-align:left"|Dragoon: Fire Breath (300)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Fire
+|-
+|colspan="9" style="text-align:left"|''Fiery spear with a tip that glows like magma.''
+|-
+! rowspan="3"|{{LA|Ice Lance}}<br/>[[File:FFTA Ice Lance.PNG]]
+|35
+|0
+|0
+|0
+|0
+|0
+|0
+|8000
+|style="text-align:left"|Dragoon: Ice Breath (300)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Ice
+|-
+|colspan="9" style="text-align:left"|''The breath of Shiva keeps this ice spear sharp.''
+|-
+! rowspan="3"|{{LA|Gae Bolg (weapon)|Gae Bolg}}<br/>[[File:FFTA Gae Bolg.PNG]]
+|39
+|0
+|0
+|0
+|0
+|0
+|0
+|14000
+|style="text-align:left"|Dragoon: Bolt Breath (300)
+|-
+|colspan="9" style="text-align:left"|'''Element:''' Lightning
+|-
+|colspan="9" style="text-align:left"|''Spear like one born by a half-beast hero of old.''
+|-
+! rowspan="2"|{{LA|Partisan (weapon)|Partisan}}<br/>[[File:FFTA Partisan.PNG]]
+|42
+|0
+|0
+|0
+|0
+|0
+|1
+|10000
+|style="text-align:left"|Templar: Cheer (100)
+|-
+|colspan="9" style="text-align:left"|''Spear with a head split like arrow feathers.''
+|-
+! rowspan="2"|{{LA|Dragon Whisker}}<br/>[[File:FFTA Dragon Whisker.PNG]]
+|45
+|0
+|0
+|0
+|0
+|0
+|1
+|18000
+|style="text-align:left"|Dragoon: Bangaa Cry (300)
+|-
+|colspan="9" style="text-align:left"|''Spear made of fused metal and dragon scales.''
+|-
+! rowspan="2"|{{LA|Kain's Lance (weapon)|Kain's Lance}}<br/>[[File:FFTA Kain's Lance.PNG]]
+|47
+|0
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Templar: Lifebreak (300)
+|-
+|colspan="9" style="text-align:left"|''Black spear that belonged to a legendary dragoon.''
+|-
+! rowspan="2"|{{LA|Trident}}<br/>[[File:FFTA Trident.PNG]]
+|50
+|0
+|2
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Templar: Weapon Atk + (300)
+|-
+|colspan="9" style="text-align:left"|''Seagod spear that instills courage in combat.''
+|-
+! rowspan="2"|{{A|Beastspear}}<br/>[[File:FFTA Beastspear.PNG]]
+|51
+|10
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''Spear stuck in the back of a rockbeast.''
+|-
+! rowspan="2"|{{A|Bangaa Spike}}<br/>[[File:FFTA Bangaa Spike.PNG]]
+|53
+|5
+|2
+|5
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''Treasured spear of the bangaa tribes.''
+|-
+! rowspan="2"|{{A|Odin Lance}}<br/>[[File:FFTA Odin Lance.PNG]]
+|55
+|0
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''Strange symbols cover this spear of the gods.''
+|}
+
+== Instruments ==
+Instruments are one-handed musical items that the [[Beastmaster (Tactics Advance)|Beastmaster]] and [[Animist (Tactics Advance)|Animist]] job classes can use as weapons.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Sword
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Demon equipment|Demon Bell}}<br/>[[File:FFTA Demon Bell.PNG]]
+|22
+|0
+|0
+|0
+|0
+|0
+|400
+|style="text-align:left"|Beastmaster: Bomb (200), Flan (200), Goblin (200)
+|-
+|colspan="8" style="text-align:left"|''Red bell rung at night to ward off demons.''
+|-
+! rowspan="3"|{{LA|Bloodstring Harp|Blood Strings}}<br/>[[File:FFTA - Blood Strings.png]]
+|22
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Beastmaster: Tonberry (200)<br/>Animist: Friend (300)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' Drain HP
+|-
+|colspan="8" style="text-align:left"|''This harp can drain men's strength with its song.''
+|-
+! rowspan="3"|{{A|Glass Bell}}<br/>[[File:FFTA Glass Bell.PNG]]
+|25
+|0
+|0
+|1
+|0
+|0
+|1000
+|style="text-align:left"|Beastmaster: Flan (200), Lamia (200)<br/>Animist: Sheep Count (100)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Sleep
+|-
+|colspan="8" style="text-align:left"|''Glass bell with a beautiful timbre.''
+|-
+! rowspan="2"|{{LA|Battle Trumpet|War Trumpet}}<br/>[[File:FFTA War Trumpet.PNG]]
+|25
+|0
+|0
+|0
+|0
+|1
+|1700
+|style="text-align:left"|Beastmaster: Goblin (200), Panther (200)<br/>Animist: Catnip (100)
+|-
+|colspan="8" style="text-align:left"|''Trumpet for playing the march into battle.''
+|-
+! rowspan="2"|{{LA|Fairie Harp|Fairy Harp}}<br/>[[File:FFTA Fairy Harp.PNG]]
+|29
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Beastmaster: Fairy (200), Bug (200)<br/>Animist: Tail Wag (200)
+|-
+|colspan="8" style="text-align:left"|''Fairies while away the hours playing these harps.''
+|-
+! rowspan="2"|{{LA|Conch Shell}}<br/>[[File:FFTA Conch Shell.PNG]]
+|31
+|2
+|0
+|0
+|0
+|0
+|3000
+|style="text-align:left"|Beastmaster: Rockbeast (200)
+|-
+|colspan="8" style="text-align:left"|''Flute made by boring holes in a twisted conch shell.''
+|-
+! rowspan="3"|{{LA|Earth Bell}}<br/>[[File:FFTA Earth Bell.PNG]]
+|31
+|3
+|0
+|0
+|0
+|0
+|5000
+|style="text-align:left"|Beastmaster: Dragon (200)<br/>Animist: 100% Wool (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Earth<br/>'''Effect:''' [absb] Earth
+|-
+|colspan="8" style="text-align:left"|''Clayware bell made of earth from many lands.''
+|-
+! rowspan="3"|{{A|Aona Flute}}<br/>[[File:FFTA Aona Flute.PNG]]
+|32
+|0
+|0
+|2
+|0
+|0
+|N/A
+|style="text-align:left"|Beatmaster: Bomb (200), Malboro (200)<br/>Animist: Frogsong (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Poison
+|-
+|colspan="8" style="text-align:left"|''Many masters have played this very flute.''
+|-
+! rowspan="2"|{{LA|Mythril Bell}}{{note|Mythril Bell gives +1 to Jump}}<br/>[[File:FFTA MythrilBell.png]]
+|32
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Beastmaster: Beast Combo (100)<br/>Animist: Animal Combo (100)
+|-
+|colspan="8" style="text-align:left"|''The mythril in this bell gives it its soft ring.''
+|-
+! rowspan="3"|{{LA|Black Quena}}<br/>[[File:FFTA Black Quena.PNG]]
+|33
+|0
+|0
+|2
+|0
+|0
+|7000
+|style="text-align:left"|Beastmaster: Undead (200), Floateye (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="8" style="text-align:left"|''Black flute. Its music can put spirits to rest.''
+|-
+! rowspan="3"|{{A|Satyr Flute}}<br/>[[File:FFTA Satyr Flute.PNG]]
+|35
+|0
+|0
+|0
+|0
+|1
+|10000
+|style="text-align:left"|Animist: Chocobo Rush (300)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Charm
+|-
+|colspan="8" style="text-align:left"|''Flute in the shape of a half-beast lover of music.''
+|-
+! rowspan="3"|{{A|Heal Chime}}<br/>[[File:FFTA Heal Chime.PNG]]
+|39
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Animist: Cuisine (300)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Holy<br/>'''Effect:''' [null] Doom
+|-
+|colspan="8" style="text-align:left"|''The clear ringing of this bell heals the soul.''
+|-
+! rowspan="3"|{{LA|Dark equipment|Dark Fiddle}}<br/>[[File:FFTA Dark Fiddle.PNG]]
+|45
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Once-famous instrument, now long forgotten.''
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark<br/>'''Effect:''' [null] Silence
+|-
+! rowspan="3"|{{A|Fell Castanets}}<br/>[[File:FFTA Fell Castanets.PNG]]
+|47
+|0
+|0
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="8" style="text-align:left"|''These castanets sound like the footfalls of death.''
+|}
+{{annotations}}
+
+== Knuckles ==
+Knuckles are one-handed melee weapons that are equipped by the [[White Monk (Tactics Advance)|White Monk]] and [[Gadgeteer]] job classes.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Sword
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{LA|Metal Knuckles (weapon)|Hard Knuckles}}<br/>[[File:FFTA Hard Knuckles.PNG]]
+|29
+|0
+|0
+|0
+|0
+|1
+|500
+|style="text-align:left"|White Monk: Whirlwind (100)<br/>Gadgeteer: Silver Disc (200)
+|-
+|colspan="8" style="text-align:left"|''Metal knuckles made for combat.''
+|-
+! rowspan="3"|{{LA|Rising Sun}}<br/>[[File:FFTARisingSun.PNG]]
+|31
+|0
+|0
+|0
+|0
+|1
+|1000
+|style="text-align:left"|White Monk: Exorcism (300)<br/>Gadgeteer: Red Spring (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire
+|-
+|colspan="8" style="text-align:left"|''The sun's heat infuses these fiery knuckles.''
+|-
+! rowspan="2"|{{LA|Mythril Claws}}{{note|Mythril Claws give +1 to Jump}}<br/>[[File:FFTA MythrilClaws.png]]
+|32
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|White Monk: Monk Combo (100)<br/>Gadgeteer: Gadget Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Knuckles with sharp mythril claws.''
+|-
+! rowspan="2"|{{LA|Poison Knuckle|Sick Knuckles}}<br/>[[File:FFTA Sick Knuckles.PNG]]
+|35
+|0
+|0
+|0
+|0
+|1
+|2000
+|style="text-align:left"|Gadgeteer: Green Gear (200)
+|-
+|colspan="8" style="text-align:left"|''Poison claws jut from these knuckles.''
+|-
+! rowspan="2"|{{LA|Cat Claws}}<br/>[[File:FFTA Cat Claws.PNG]]
+|35
+|0
+|0
+|0
+|2
+|1
+|N/A
+|style="text-align:left"|White Monk: Chakra (200)<br/>Gadgeteer: Gold Battery (200)
+|-
+|colspan="8" style="text-align:left"|''Small knuckles with sharp, raking claws.''
+|-
+! rowspan="2"|{{LA|Survivor (weapon)|Survivor}}<br/>[[File:FFTA Survivor.PNG]]
+|37
+|2
+|0
+|0
+|0
+|2
+|N/A
+|style="text-align:left"|White Monk: Revive (300)<br/>Gadgeteer: Yellow Spring (200)
+|-
+|colspan="8" style="text-align:left"|''These powerful knuckles are light and sturdy.''
+|-
+! rowspan="2"|{{A|Dream Claws}}<br/>[[File:FFTA Dream Claws.PNG]]
+|39
+|0
+|0
+|0
+|0
+|1
+|3200
+|style="text-align:left"|Gadgeteer: Chroma Gem (200)
+|-
+|colspan="8" style="text-align:left"|''Few awaken from the sleep these knuckles can cause.''
+|-
+! rowspan="3"|{{A|White Fangs}}<br/>[[File:FFTA White Fangs.PNG]]
+|39
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|White Monk: Holy Sign (200)<br/>Gadgeteer: Blue Screw (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Ice
+|-
+|colspan="8" style="text-align:left"|''These knuckles' "white fangs" bring good luck.''
+|-
+! rowspan="3"|{{LA|Godhand (weapon)|Godhand}}<br/>[[File:FFTA Godhand.PNG]]
+|39
+|0
+|3
+|0
+|1
+|5
+|N/A
+|style="text-align:left"|White Monk: Far Fist (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Holy
+|-
+|colspan="8" style="text-align:left"|''Knuckles known as the "Hands of the Creator."''
+|-
+! rowspan="3"|{{LA|Tiger Fangs}}<br/>[[File:FFTA Tiger Fangs.PNG]]
+|41
+|0
+|0
+|0
+|0
+|2
+|N/A
+|style="text-align:left"|White Monk: Earth Render (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Lightning
+|-
+|colspan="8" style="text-align:left"|''Knuckles made to resemble the claws of a beast.''
+|-
+! rowspan="2"|{{LA|Kaiser Knuckles}}<br/>[[File:FFTA - Kaiser Claw.png]]
+|42
+|0
+|0
+|0
+|0
+|1
+|5700
+|style="text-align:left"|White Monk: Air Render (200)
+|-
+|colspan="8" style="text-align:left"|''Knuckles lethal as a spear or sword.''
+|-
+! rowspan="3"|{{A|Death Claws}}<br/>[[File:FFTA Death Claws.PNG]]
+|43
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Gadgeteer: Black Ingot (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark
+|-
+|colspan="8" style="text-align:left"|''Knuckles with eerie red claws.''
+|-
+! rowspan="2"|{{A|Magic Hands}}<br/>[[File:FFTA Magic Hands.PNG]]
+|52
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Knuckles so lightweight you forget they're on.''
+|-
+! rowspan="2"|{{A|Greaseburst}}<br/>[[File:FFTA Greaseburst.PNG]]
+|59
+|0
+|0
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Storms can start with one blow from these knuckles.''
+|}
+{{annotations}}
+
+== Souls ==
+Souls are unique one-handed weapons that are used by [[nu mou]] [[Morpher]]s. They can only be obtained after a [[Hunter (Tactics Advance)|Hunter]] captures a monster and sends it to the [[Monster Bank]]. A soul can then be obtained from the monster and the Morpher can learn that monster's skills.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Soul
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="3"|{{A|Goblin Soul}}<br/>[[File:FFTA Goblin Soul.PNG]]
+|32
+|0
+|2
+|0
+|0
+|1
+|N/A
+|style="text-align:left"|Morpher: Goblin (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [half] Ice
+|-
+|colspan="8" style="text-align:left"|''Brown, clouded soul. Dropped by goblinkind.''
+|-
+! rowspan="2"|{{LA|Mythril equipment|Mythril Soul}}{{note|Mythril Soul gives +1 to Jump}}<br/>[[File:FFTA MythrilSoul.png]]
+|32
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Mopher: Morph Combo (100)
+|-
+|colspan="8" style="text-align:left"|''Mythril magically formed into a soul.''
+|-
+! rowspan="3"|{{A|Flan Soul}}<br/>[[File:FFTA Flan Soul.PNG]]
+|34
+|10
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Morpher: Flan (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [half] Lightning
+|-
+|colspan="8" style="text-align:left"|''Soft, rubbery soul. Dropped by flankind.''
+|-
+! rowspan="3"|{{A|Bomb Soul}}<br/>[[File:FFTA - Bomb Soul.png]]
+|36
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Morpher: Bomb (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Fire<br/>'''Effect:''' [half] Fire
+|-
+|colspan="8" style="text-align:left"|''Wavering, fiery soul. Dropped by bombkind.''
+|-
+! rowspan="3"|{{A|Bug Soul}}<br/>[[File:FFTA Bug Soul.PNG]]
+|39
+|2
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Morpher: Bug (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Earth<br/>'''Effect:''' [null] Dark
+|-
+|colspan="8" style="text-align:left"|''Soul like the bark of a tree. Dropped by bugkind.''
+|-
+! rowspan="3"|{{A|Panther Soul}}<br/>[[File:FFTA Panther Soul.PNG]]
+|39
+|0
+|2
+|0
+|0
+|2
+|N/A
+|style="text-align:left"|Morpher: Panther (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Berserk
+|-
+|colspan="8" style="text-align:left"|''Vivid red soul. Dropped by pantherkind.''
+|-
+! rowspan="3"|{{A|Lamia Soul}}<br/>[[File:FFTA Lamia Soul.PNG]]
+|41
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Morpher: Lamia (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Water<br/>'''Effect:''' [null] Sleep
+|-
+|colspan="8" style="text-align:left"|''Beautiful, watery soul. Dropped by lamiakind.''
+|-
+! rowspan="3"|{{LA|Dragon equipment|Dragon Soul}}
+[[File:FFTA Dragon Soul.PNG]]
+|43
+|5
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Morpher: Dragon (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [absb] Earth
+|-
+|colspan="8" style="text-align:left"|''Soul like a dragon's eye. Dropped by dragonkind.''
+|-
+! rowspan="3"|{{A|Eye Soul}}<br/>[[File:FFTA Eye Soul.PNG]]
+|45
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|Morpher: Floateye (200)
+|-
+|colspan="8" style="text-align:left"|'''Element:''' Dark<br/>'''Effect:''' [null] Doom
+|-
+|colspan="8" style="text-align:left"|''Ahrimankind soul. So deep, it seems bottomless.''
+|-
+! rowspan="3"|{{A|Malboro Soul}}<br/>[[File:FFTA Malboro Soul.PNG]]
+|47
+|0
+|2
+|2
+|0
+|0
+|N/A
+|style="text-align:left"|Malboro (200)
+|-
+|colspan="8" style="text-align:left"|'''Effect:''' [null] Poison
+|-
+|colspan="8" style="text-align:left"|''Sticky, green soul. Dropped by malborokind.''
+|-
+! rowspan="2"|{{A|Dread Soul}}<br/>[[File:FFTA Dread Soul.PNG]]
+|49
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''A warm aura surrounds this benevolent soul.''
+|-
+! rowspan="2"|{{A|[[Lucavi|Rukavi Soul]]}}<br/>[[File:FFTA Rukavi Soul.PNG]]
+|67
+|0
+|2
+|0
+|0
+|0
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''This soul howls and growls as though it were alive.''
+|}
+{{annotations}}
+
+== Guns ==
+Guns are long-range weapons that can be equipped by [[moogle]] [[Gunner (Tactics Advance)|Gunners]]. They have low Attack but their learned skills inflict a myriad of status effects. Bullets fired by the "Fight" command can be intercepted by obstacles, terrain, or other units in the line of fire. Gunmanship skills bypass this.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Gun
+!style="width:6%"|Atk
+!style="width:6%"|Def
+!style="width:6%"|Mag Pwr.
+!style="width:6%"|Mag Rst.
+!style="width:6%"|Spd
+!style="width:6%"|Eva
+!style="width:6%"|Range
+!style="width:8%"|Cost
+!style="width:30%"|Skills (AP)
+|-
+! rowspan="2"|{{A|Aiot Gun}}<br/>[[File:FFTA Aiot Gun.PNG]]
+|27
+|0
+|0
+|0
+|0
+|0
+|8
+|2000
+|style="text-align:left"|Gunner: Fireshot (100)
+|-
+|colspan="9" style="text-align:left"|''This simple firearm is easy to use and easy to clean.''
+|-
+! rowspan="2"|{{LA|Silver Rifle|Silver Cannon}}<br/>[[File:FFTA Silver Cannon.PNG]]
+|31
+|0
+|0
+|0
+|0
+|0
+|7
+|3000
+|style="text-align:left"|Gunner: Blindshot (100)
+|-
+|colspan="9" style="text-align:left"|''This gun uses special, rounded bullets.''
+|-
+! rowspan="2"|{{LA|Riot Gun}}<br/>[[File:FFTA Riot Gun.PNG]]
+|31
+|0
+|0
+|0
+|0
+|0
+|8
+|5000
+|style="text-align:left"|Gunner: Boltshot (100)
+|-
+|colspan="9" style="text-align:left"|''This gun has a long barrel for added accuracy.''
+|-
+! rowspan="2"|{{A|Chaos Rifle}}<br/>[[File:FFTA Chaos Rifle.PNG]]
+|33
+|0
+|0
+|0
+|0
+|0
+|8
+|8000
+|style="text-align:left"|Gunner: Confushot (200)
+|-
+|colspan="9" style="text-align:left"|''This long rifle can drop a target in seconds.''
+|-
+! rowspan="2"|{{A|Lost Gun}}<br/>[[File:FFTA Lost Gun.PNG]]
+|31
+|0
+|0
+|0
+|0
+|0
+|8
+|N/A
+|style="text-align:left"|Gunner: Silenshot (200)
+|-
+|colspan="9" style="text-align:left"|''Gun made with ancient machinist techniques.''
+|-
+! rowspan="2"|{{LA|Mythril Gun}}{{note|Mythril Gun gives +1 to Jump}}<br/>[[File:FFTA MythrilGun.png]]
+|32
+|0
+|0
+|0
+|0
+|0
+|8
+|N/A
+|style="text-align:left"|Gunner: Gun Combo (100)
+|-
+|colspan="9" style="text-align:left"|''Gun with a mythril barrel.''
+|-
+! rowspan="2"|{{LA|Peacemaker (gun)|Peacemaker}}<br/>[[File:FFTA - Peacemaker.png]]
+|33
+|0
+|0
+|0
+|0
+|0
+|8
+|N/A
+|style="text-align:left"|Gunner: Charmshot (300)
+|-
+|colspan="9" style="text-align:left"|''Beautifully wrought gun. A deadly work of art.''
+|-
+! rowspan="2"|{{A|Giot Gun}}<br/>[[File:FFTA Giot Gun.PNG]]
+|37
+|0
+|0
+|0
+|0
+|0
+|8
+|N/A
+|style="text-align:left"|Gunner: Iceshot (100)
+|-
+|colspan="9" style="text-align:left"|''High caliber gun with tremendous power.''
+|-
+! rowspan="2"|{{A|Longbarrel}}<br/>[[File:FFTA Longbarrel.PNG]]
+|39
+|0
+|0
+|0
+|0
+|0
+|8
+|N/A
+|style="text-align:left"|Gunner: Concentrate (300)
+|-
+|colspan="9" style="text-align:left"|''This famous gun is said to always hit its mark.''
+|-
+! rowspan="2"|{{LA|Outsider (weapon)|Outsider}}<br/>[[File:FFTA Outsider.PNG]]
+|41
+|0
+|0
+|0
+|0
+|0
+|9
+|N/A
+|style="text-align:left"|Gunner: Stopshot (300)
+|-
+|colspan="9" style="text-align:left"|''This gun was used in an assassination.''
+|-
+! rowspan="2"|{{A|Bindsnipe}}<br/>[[File:FFTA Bindsnipe.PNG]]
+|47
+|0
+|0
+|0
+|0
+|0
+|8
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''Heavy, but powerful rifle. Accurate and easy to aim.''
+|-
+! rowspan="2"|{{A|Calling Gun}}<br/>[[File:FFTA Calling Gun.PNG]]
+|59
+|0
+|0
+|0
+|0
+|0
+|8
+|N/A
+|style="text-align:left"|None
+|-
+|colspan="9" style="text-align:left"|''Lost gun of old, once used to summon fabulous beasts.''
+|}
+{{annotations}}
+
+==Other appearances==
+===''[[Pictlogica Final Fantasy]]''===
+<gallery>
+PFF Aqua Saber Icon.png|Aqua Saber.
+PFF Arc Edge Icon.png|Arch Edge Rank 5 icon.
+PFF Arc Edge Icon 2.png|Arch Edge Rank 6 icon.
+PFF Arc Edge Icon 3.png|Arch Edge Rank 7 icon.
+PFF Atomos Blade Icon.png|Atomos Blade Rank 5 icon.
+PFF Atomos Blade 2 Icon.png|Atomos Blade Rank 6 icon.
+PFF Fell Castanets Icon.png|Fell Castanets.
+PFF Giot Gun Icon.png|Giot Gun.
+PFF Iceprism Icon.png|Iceprism.
+PFF Oblige Icon.png|Oblige Rank 5 icon.
+PFF Oblige Icon 2.png|Oblige Rank 6 icon.
+PFF Vigilante Icon.png|Vigilante Rank 5 icon.
+PFF Vigilante Icon 2.png|Vigilante Rank 6 icon.
+PFF Vigilante Icon 3.png|Vigilante Rank 7 icon.
+</gallery>
+{{Equipment section|Pictlogica Final Fantasy}}
+
+===''[[Final Fantasy Airborne Brigade]]''===
+<gallery>
+FFAB Black Quena R.png|Black Quena (R).
+FFAB Firewheel Rod R.png|Firewheel Rod (R).
+FFAB Glass Bell R.png|Glass Bell (R).
+FFAB Black Quena R+.png|Black Quena (R+).
+FFAB Firewheel Rod R+.png|Firewheel Rod (R+).
+FFAB Glass Bell R+.png|Glass Bell (R+).
+FFAB Mythril Bell SR.png|Mythril Bell (SR).
+FFAB Rondell Dagger SR.png|Rondell Dagger (SR).
+FFAB Mythril Bell SR+.png|Mythril Bell (SR+).
+FFAB Rondell Dagger SR+.png|Rondell Dagger (SR+).
+FFAB Adaman Blade SSR.png|Adaman Blade (SSR).
+FFAB Beastsword SSR.png|Beastsword (SSR).
+FFAB Lurebreaker SSR.png|Lurebreaker (SSR).
+FFAB Magic Hands SSR.png|Magic Hands (SSR).
+FFAB Soulsaber SSR.png|Soulsaber (SSR).
+FFAB Adaman Blade SSR+.png|Adaman Blade (SSR+).
+FFAB Beastsword SSR+.png|Beastsword (SSR+).
+FFAB Lurebreaker SSR+.png|Lurebreaker (SSR+).
+FFAB Magic Hands SSR+.png|Magic Hands (SSR+).
+FFAB Soulsaber SSR+.png|Soulsaber (SSR+).
+</gallery>
+{{Equipment section|Final Fantasy Airborne Brigade}}
+
+===''[[Final Fantasy Record Keeper]]''===
+
+<gallery>
+FFRK Staff of Blessings FFT.png|Bless Staff.
+FFRK Burglar Sword FFTA.png|Burglar Sword.
+FFRK Defender FFTA.png|Defender.
+FFRK Firewheel Rod FFTA.png|Firewheel Rod.
+FFRK Hardedge FFT.png|Hardedge.
+FFRK Jackknife FFTA.png|Jack Knife.
+FFRK Cleansing Staff FFT.png|Pure Staff.
+FFRK Restorer FFTA.png|Restorer.
+FFRK Spring Staff FFT.png|Spring Staff.
+FFRK White Staff FFTA.png|White Staff.
+</gallery>
+{{Equipment section|Final Fantasy Record Keeper}}
+
+{{navbox FFTA}}
+{{navbox weapons}}
+[[Category:Weapons in Final Fantasy Tactics Advance]]
+[[Category:Weapon lists|TA]]

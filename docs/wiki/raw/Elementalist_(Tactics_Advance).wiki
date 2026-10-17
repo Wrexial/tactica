@@ -1,0 +1,188 @@
+{{DISPLAYTITLE:Elementalist (''Tactics Advance'')}}
+{{infobox job
+|name=Elementalist
+|release=FFTA
+|japanese=精霊使い
+|romaji=Seirei Tsukai
+|lit=Spirit Envoy
+|image=Ffta-viera-elementalist.jpg
+|portrait=[[File:FFTA-job-Elementalist-por.png|50px|Player]] [[File:Ffta-job-elementalist-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-elementalist.gif|20px|Player]] [[File:Ffta-job-elementalist-enemy-sprite.png|Enemy|20px]]
+|obtained=*Learn one [[Fencer (Tactics Advance)|Fencer]] A-Ability
+*Learn one [[White Mage (Tactics Advance)|White Mage]] A-Ability
+|required=[[Fencer (Tactics Advance)|Fencer]], [[White Mage (Tactics Advance)|White Mage]]
+|characters=[[Viera]]
+|stats=*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 50
+*Stat growth: mid-tier magic job with stats almost identical to the [[Red Mage (Tactics Advance)|Red Mage]]
+|weapons=[[Final Fantasy Tactics Advance weapons#Rapiers|Rapiers]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Female-only ornament|ornaments]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]], [[Final Fantasy Tactics Advance armor#Robes|robes]], and [[Final Fantasy Tactics Advance armor#Shields|shields]]
+|command abilities=*[[Spirit Magic (Tactics Advance)|Spirit Magic]]
+*[[#Spirit Combo|Spirit Combo]] (combo)
+|support abilities=*[[Absorb MP (ability)|Absorb MP]] (reaction)
+|recurring appearance=Elementalist (job)
+}}
+{{Quote|Turns the power of nature spirits into magic|Description}}
+'''Elementalist''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]''. Available to [[viera]], Elementalists use the power of the [[Element (term)|elements]] to deal elemental damage and perhaps inflict a status ailment. Out of all of the viera jobs, Elementalist is second best for well-rounded [[level]]ing up, but it has a far lower overall [[Stats|stat]] range to the [[Assassin (Tactics Advance)|Assassin]].
+
+==Growth==
+The Elementalist is the viera's mid-tier magic job. Their stats are almost identical to the [[Red Mage (Tactics Advance)|Red Mage]], although the Elementalist has higher MP, slightly higher Magic Power, and slightly lower Speed.
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.8 C+
+|4.2 B-
+|8.1 B-
+|7.6 C
+|8.8 B+
+|7.6 C
+|1.1 D
+|}
+{{clear}}
+==Abilities==
+===[[Spirit Magic (Tactics Advance)|Spirit Magic]]===
+{{Quote|Elementalist command. Draw on spirit power to attack.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!Skill
+!Equipment
+!AP
+!MP
+!Range
+!Power
+|-
+! rowspan=2|{{A|Fire Whip}}
+|[[Final Fantasy Tactics Advance weapons#Scarlette|Scarlette]]
+|100
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Ring of flame. Damages and disables target.''
+|-
+! rowspan=2|{{A|Earth Heal}}
+|[[Final Fantasy Tactics Advance weapons#Fleuret|Fleuret]]
+|200
+|12
+|4
+|40
+|-
+|colspan=5 style="text-align:left"|''Focuses power from the earth to heal HP.''
+|-
+! rowspan=2|{{A|White Flame}}
+|[[Final Fantasy Tactics Advance weapons#Flamberge|Flamberge]]
+|100
+|24
+|3
+|40
+|-
+|colspan=5 style="text-align:left"|''Soothing fairy fire. Heals HP.''
+|-
+! rowspan=2|{{A|Shining Air}}
+|[[Final Fantasy Tactics Advance weapons#Djinn Flyssa|Djinn Flyssa]]
+|200
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Rush of air. Damages and inflicts darkness.''
+|-
+! rowspan=2|{{A|Evil Gaze}}
+|[[Final Fantasy Tactics Advance weapons#Joyeuse|Joyeuse]]
+|300
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Fiendish presence. Deals damage and confuses.''
+|-
+! rowspan=2|{{A|Heavy Dust}}
+|[[Final Fantasy Tactics Advance weapons#Estoc|Estoc]]
+|200
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Lobs a chunk of earth to damage and immobilize.''
+|-
+! rowspan=2|{{A|Sliprain}}
+|[[Final Fantasy Tactics Advance weapons#Silver Rapier|Silver Rapier]]
+|200
+|12
+|4
+|30
+|-
+|colspan=5 style="text-align:left"|''Drops damaging water ball to slow target.''
+|-
+! rowspan=2|{{LA|Barrier Shift|Elementalshift}}
+|[[Final Fantasy Tactics Advance weapons#Epeprism|Epeprism]]
+|300
+|6
+|4
+|—
+|-
+|colspan=5 style="text-align:left"|''Randomly shifts resistance to elements in target.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Absorb MP (ability)|Absorb MP}}
+|[[Final Fantasy Tactics Advance armor#Lordly Robe|Lordly Robe]]
+|style="text-align: left"|''Absorbs MP used to cast a spell against you.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Spirit Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Rapier|Mythril Rapier]]
+|style="text-align: left"|''Well-balanced combo ability for elementalists.''
+|100
+|}
+
+== Overview ==
+Skilled in physical and magical combat, the Elementalist is a nice all-around job whose abilities are comparable to [[Ninja (Tactics Advance)|Ninja's]], both using ranged status effect magic. Elementalists provide ranged magic support while also sporting some healing abilities. The Elementalist class is required to access the [[Summoner (Tactics Advance)|Summoner]] and Assassin classes. Due to being so well-rounded, Elementalists will only ever be about average. They won't deal outstanding damage or have amazing speed and lack area damage abilities and rapiers are not among the stronger weapons in the game. Overall, Elementalist is a good all-around class able to handle physical combat and use some support magic and serves as a vital part on the class routes to Assassin and Summoner.
+
+Since Elementalists are so average, their enemy variants can be beaten by units more specialized in offense or support than they are. Like Ninjas, their status magic can be annoying, but Elementalists are not as fast or strong. They can have some healing abilities, but it's nothing that offensive units would not be able to outwork. Defensive units able to cure themselves have little to fear from Elementalists.
+
+Elementalists cannot use [[Staff (weapon type)|staves]] despite wielding one in their official artwork.
+
+==Gallery==
+<gallery>
+FFTA Fire Whip.png|Fire Whip.
+FFTA Earth Heal.png|Earth Heal.
+FFTA White Flame.png|White Flame.
+FFTA Shining Air.png|Shining Air.
+FFTA Evil Gaze.png|Evil Gaze.
+FFTA Heavy Dust.png|Heavy Dust.
+FFTA Sliprain.png|Sliprain.
+FFTA Elementalshift.png|Elementalshift.
+</gallery>{{Gallery incomplete|Spirit Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Chamán (Final Fantasy Tactics Advance)]]
+[[it:Elementalista (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

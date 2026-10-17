@@ -1,0 +1,215 @@
+{{DISPLAYTITLE:Sage (''Tactics Advance'')}}
+{{infobox job
+|name=Sage
+|release=FFTA
+|japanese=セージ
+|romaji=Sēji
+|image=Ffta-nu-mou-sage.jpg
+|portrait=[[File:FFTA-job-Sage-por.png|50px|Player]] [[File:Ffta-job-sage-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-sage.gif|20px|Player]] [[File:Ffta-job-sage-enemy-sprite.png|Enemy|20px]]
+|obtained=*Learn two [[Beastmaster (Tactics Advance)|Beastmaster]] A-Abilities
+*Learn three [[White Mage (Tactics Advance)|White Mage]] A-Abilities
+|required=[[Beastmaster (Tactics Advance)|Beastmaster]], [[White Mage (Tactics Advance)|White Mage]]
+|characters=[[Nu mou]] [[Quin]]
+|stats=*Move Rate: 4
+*Jump Rate: 3
+*Evade Rate: 50
+*Stat growth: High MP, poor Speed, high HP, Attack and Magic Power, mediocre Defense and Resistance
+|weapons=[[Final Fantasy Tactics Advance weapons#Maces|Maces]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]], [[Final Fantasy Tactics Advance armor#Robes|robes]] and [[Final Fantasy Tactics Advance armor#Shields|shields]]
+|command abilities=*[[Sagacity Skill]]
+*[[#Wise Combo|Wise Combo]] (combo)
+|support abilities=*[[#Weapon Def+|Weapon Def+]]
+*[[Shieldbearer (ability)|Shieldbearer]]
+*[[Reflex (evasion ability)|Reflex]] (reaction)
+|recurring appearance=Sage (job)
+}}
+{{Quote|Learned users of sagacious magic.|Description}}
+'''Sage''' is a [[Final Fantasy Tactics jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' exclusive to [[nu mou]]. Sages are similar to [[Alchemist (Tactics Advance)|Alchemists]] in that they have some status ailment magic and wield [[Mace (weapon type)|maces]]. While Sages have the highest stat total of all jobs, they are tied for the slowest job. It is to a nu mou's advantage to learn the Sagacity Skill, especially the powerful spells Ultima Blow and Giga Flare, and consider blending in levels of [[Morpher]] to help alleviate the speed weakness of Sages.
+
+==Growth==
+Sages have the highest MP growth, and are tied with [[Paladin (Tactics Advance)|Paladins]], [[Templar (Tactics Advance)|Templars]], and nu mou [[Illusionist (Tactics Advance)|Illusionists]] for the slowest speed growth. Compared to other nu mou jobs, Sages have high HP, Attack, and Magic Power, allowing them to be equally effective with magic spells as they are with physical attacks and Ultima Blow. They have mediocre Defense and Resistance.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.6 B
+|8.8 S
+|8.4 B+
+|7.6 B+
+|9.2 A-
+|7.6 D+
+|0.8 E
+|}
+
+==Abilities==
+===[[Sagacity Skill]]===
+{{Quote|Sage command. Use new and different magic.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+! style="width:10%" |Power
+! style="width:10%" |Range
+|-
+! rowspan=2|{{LA|Drain (ability)|Drain}}
+|[[Final Fantasy Tactics Advance weapons#Energy Mace|Energy Mace]]
+|100
+|12
+|30
+|4
+|-
+|colspan=5 style="text-align:left"|''Steals target's strength, adding to your HP.''
+|-
+! rowspan=2|{{LA|Blind (ability)|Blind}}
+|[[Final Fantasy Tactics Advance weapons#Druid Mace|Druid Mace]]
+|100
+|12
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Spray inky gas. Inflicts blind.''
+|-
+! rowspan=2|{{LA|Water (ability)|Water}}
+|[[Final Fantasy Tactics Advance weapons#Battle Mace|Battle Mace]]
+|200
+|12
+|34
+|3
+|-
+|colspan=5 style="text-align:left"|''Envelops target in a damaging sphere of water.''
+|-
+! rowspan=2|{{LA|Aero}}
+|[[Final Fantasy Tactics Advance weapons#Battle Mace|Battle Mace]]
+|200
+|12
+|34
+|3
+|-
+|colspan=5 style="text-align:left"|''Creates damaging whorl of wind.''
+|-
+! rowspan=2|{{LA|Curaise|Raise}}
+|[[Final Fantasy Tactics Advance weapons#Life Crosier|Life Crosier]]
+|300
+|22
+|45
+|4
+|-
+|colspan=5 style="text-align:left"|''Great healing magic. Heals HP and revives KO'd units. Deals damage to zombies.''<br>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Gigaflare|Giga Flare}}
+|[[Final Fantasy Tactics Advance weapons#Lotus Mace|Lotus Mace]]
+|300
+|40
+|65
+|3
+|-
+|colspan=5 style="text-align:left"|''More powerful version of "flare." Area affect.''
+|-
+! rowspan=2|{{LA|Bio (ability)|Bio}}
+|[[Final Fantasy Tactics Advance weapons#Mandragora|Mandragora]]
+|300
+|12
+|45
+|3
+|-
+|colspan=5 style="text-align:left"|''Creates viscous waves to damage and poison target.''
+|-
+! rowspan=2|{{A|Ultima Blow}}
+|[[Final Fantasy Tactics Advance weapons#Zeus Mace|Zeus Mace]]
+|999
+|60
+|x3
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Powerful sage attack born from ultima magic.''<br>'''Element:''' As Weapon
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Reflex (evasion ability)|Reflex}}
+|[[Final Fantasy Tactics Advance armor#Mirage Vest|Mirage Vest]]
+|style="text-align:left"|''Predict and avoid a regular attack.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Weapon Def+}}
+|[[Final Fantasy Tactics Advance armor#Dark Gear|Dark Gear]]
+|style="text-align:left"|''Reduces damage from weapon attacks.''
+|300
+|-
+!{{LA|Shieldbearer (ability)|Shieldbearer}}
+|[[Final Fantasy Tactics Advance armor#Round Shield|Round Shield]]
+|style="text-align:left"|''Enables shield-wielding, regardless of job.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Wise Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Mace|Mythril Mace]]
+|style="text-align:left"|''Ranged combo ability for sages.''
+|100
+|}
+
+== Overview ==
+Sages are only concerned with offense, as their high-powered spells and incredible MP make them excellent spellslingers. Having decent Attack and wielding maces, they can even handle some physical combat, especially when using Ultima Blow. Their Raise, Blind, and Bio provide support for the team. Giga Flare, in particular, is a fearful spell that can be made even stronger by equipping the [[Lotus Mace (Tactics Advance)|Lotus Mace]]. Sages are not without their flaws, however, having mediocre defense and resistance, with resistance specifically being subpar in comparison to other mages. They can be so slow their amazing spells seem to go to waste and Sages are difficult to acquire in the early game, for how long it takes to get one. Overall, Sages are excellent mages with even some physical capabilities, and although slow, their high power can shut down opponents in a single attack.
+
+When fighting enemy Sages, Silence works wonders, and Blind will do almost as well, demolishing their spells' accuracy. Sages hit harder physically than most mages, but their attack power is manageable, bar Ultima Blow. Raise and Bio can create unfortunate situations and their spells can do massive damage. As Sages' defense and resistance are nothing to be worried about, the best strategy is to get to them fast and down them, hopefully before they even get a turn.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Sage NuMou TCG.png|right|100px]]
+Sage appears as an Aqua-elemental card.
+{{clear|right}}
+
+==Gallery==
+<gallery>
+FFTA Drain.png|Drain.
+FFTA Blind.png|Blind.
+FFTA Water.png|Water.
+FFTA Aero.png|Aero.
+FFTA Raise.png|Raise.
+FFTA Giga Flare.png|Giga Flare.
+FFTA Bio.png|Bio.
+</gallery>{{Gallery incomplete|Ultima Blow|Wise Combo}}
+
+==Etymology==
+{{Etym|Sage}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Sabio (Final Fantasy Tactics Advance)]]
+[[it:Saggio (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

@@ -1,0 +1,76 @@
+The '''Advanced Law''' {{J|アドバンストロウ|Adobansutorou}} is a plot device and an action ability in ''[[Final Fantasy Tactics Advance]]''. Advanced Laws are the strongest of law cards available to a Judge and only the Judgemaster can use them.
+
+==Story==
+The advanced law is used three times, in "Mission #009: Antilaws", "Mission #018: Quiet Sands", and the first part of "Mission #024: Royal Valley" by [[Cid Randell|Judgemaster Cid]].
+
+===Antilaws===
+Cid uses an Advanced Law on [[Ezel Berbier]], the wanted Hermetic. This law prevents Ezel from using any ability at all. However, Ezel brings out one of his [[Law system (Tactics Advance)|Antilaws]], which neutralizes the Advanced Law and allows him to teleport himself and [[Marche Radiuju|Marche]] to safety.
+
+===Quiet Sands===
+The law is used on [[Llednar Twem]] who confronts Marche, threatening him with the Omega spell, but Cid warns him that the crystal will break if Llednar uses the spell. Llednar then engages Marche, however around two full turns into the fight he prepares to use Omega but is sent off by Cid for a violation of the Advanced Law, and he is sent to jail immediately.
+
+===Royal Valley===
+Llednar once again engages Marche at the entrance to the royal palace. However, an Advanced Antilaw made from amber from [[Siena Gorge]] has been crafted in anticipation of this event. The Judgemaster uses this Advanced Law to destroy the "Fortune" Law placed upon Llednar, and Marche is able to defeat him. Upon falling, the Biskmatar turns to stone and fractures.
+
+==Action ability==
+{{Quote|Judgemaster command. Laws reserved for Judgemaster.|Description}}
+Advanced Law is the [[Judgemaster (Tactics Advance)|Judgemaster]] job's action ability of Cid when he joins the Clan.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Abate}}
+|32
+|—
+|Infinite
+|-
+|colspan=3 style="text-align:left"|''Skips judge's turn once to allow law violation.''
+|-
+! rowspan=2|{{A|Judge Sword}}
+|—
+|As Weapon
+|As Weapon
+|-
+|colspan=3 style="text-align:left"|''Slash to damage and steal JP.''
+|-
+! rowspan=2|{{LA|Bind (ability)|Bind}}
+|16
+|—
+|3
+|-
+|colspan=3 style="text-align:left"|''Immobilizes and disables target for arrest.''
+|-
+! rowspan=2|{{A|JP Gift}}
+|—
+|—
+|1
+|-
+|colspan=3 style="text-align:left"|''Give own JP to a deserving friend.''
+|-
+! rowspan=2|{{A|Yellow Clip}}
+|8
+|—
+|1
+|-
+|colspan=3 style="text-align:left"|''Nullifies a yellow card from record.''
+|}
+
+==Gallery==
+<gallery>
+Judgemaster.PNG|Cid using an Advanced Law.
+FFTA Abate.png|Abate.
+FFTA Judge Sword.png|Judge Sword.
+FFTA Bind.png|Bind.
+FFTA JP Gift.png|JP Gift.
+FFTA Yellow Clip.png|Yellow Clip.
+FFTA Judge Sword Sprite.png|Judge Sword's sprite.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Final Fantasy Tactics Advance]]
+[[Category:Recurring command abilities]]

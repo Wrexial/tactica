@@ -1,0 +1,124 @@
+{{Expand|FFD|FFCC|FFCC|FFCC|Type0|FFV|FFIII|FFII|FFI|Info on formulas, character/job specifics, etc.}}
+[[File:RoF Defense Stat Icon.png|right]]
+'''Defense''' {{J|防御|Bōgyo}}, also called '''Defence''', '''Def''' and '''DP''', is a recurring statistic throughout the [[Final Fantasy series|''Final Fantasy'' series]], and refers to the amount of damage taken from physical attacks. Defense is normally provided through armor, helmet, and glove equipment, though sometimes can be provided by weapons and accessories. It can sometimes be interchanged with '''[[Vitality (stat)|Vitality]]'''.
+
+== Appearances ==
+=== ''[[Final Fantasy]]'' ===
+{{Section|Final Fantasy}}
+
+=== ''[[Final Fantasy II]]'' ===
+Defense is the sum of the character's and his/her equipment's defense power. The higher the value, the less damage sustained when attacked.
+{{Section|Final Fantasy II}}
+
+=== ''[[Final Fantasy III]]'' ===
+{{Section|Final Fantasy III}}
+
+=== ''[[Final Fantasy IV]]'' ===
+Defense is determined by the armor the character has equipped.
+
+The formula for [[Defense (Final Fantasy IV)|Defense]] is:
+* Maximum amount possible is 239.
+:<math>(Sta/2) + EqDef</math>
+
+The formula for Defense Multiplier is:
+* Maximum is 18.
+:<math>(Agi/8) + (Lv/16)</math>
+
+==== ''[[Final Fantasy IV -Interlude-]]'' ====
+Defense is determined by the armor the character has equipped.
+
+==== ''[[Final Fantasy IV: The After Years]]'' ====
+Defense is determined by the armor the character has equipped.
+
+=== ''[[Final Fantasy V]]'' ===
+{{Section|Final Fantasy V}}
+
+=== ''[[Final Fantasy VI]]'' ===
+[[Defense (Final Fantasy VI)|Defense]] factors negatively into the ultimate total damage in the damage modification of the calculation at the end. The modification is ignored if the attack is defense-ignoring.
+
+The formula is:
+:<math>(Damage * (255 - Defense) / 256) + 1</math>
+
+The +1 at the end ensures that an attack never deals 0 damage, and can always only deal 1.
+
+=== ''[[Final Fantasy VII]]'' ===
+The formula for [[Defense (Final Fantasy VII)|Defense]] (damage reduction) is:
+:<math>Def = Vit + Armor Defense Bonus</math>
+
+The formula for [[Defense% (Final Fantasy VII)|Defense%]] (evasion):
+:<math>Def\% = [Dex / 4] + Armor Defense\% Bonus</math>
+
+At 255 Defense, the player will take about half damage from physical attacks.
+
+=== ''[[Final Fantasy VIII]]'' ===
+[[Vitality (stat)|Vitality]] is the stat used for Defense.
+
+=== ''[[Final Fantasy IX]]'' ===
+Defense determines the units' resistance to physical attacks. The Defend command allows the character to guard thus keeping their defense up. The [[Gamble Defense]] support ability makes the user's Defense stat fluctuate randomly when attacked between 0 and Defense x2, but due to the way damage is calculated, the benefits of this diminish the higher the character's Defense is.
+
+=== ''[[Final Fantasy X]]'' ===
+[[Defense (Final Fantasy X)|Defense]] can be increased by activating defense nodes on the [[Sphere Grid]].[[Defense Sphere]]s can be farmed in the [[Monster Arena]] to further boost Defense.
+
+Defense+??% armor abilities do not increase the Defense stat, but directly reduce physical damage received. Just because an attack's damage is affected by the Defense stat does not make it a physical attack; if the attack is not physical, Defense+??% will not reduce it even if a higher Defense stat will. The defensive effect of [[Cheer (Final Fantasy X)|Cheer]] works the opposite way; if the attack is not reduced by Defense, Cheer will not reduce it, but it doesn't matter whether the attack is physical or not.
+
+==== ''[[Final Fantasy X-2]]'' ====
+Certain [[Final Fantasy X-2 accessories|accessories]], such as [[Adamantite (Final Fantasy X-2)|Adamantite]] or [[Crystal Gloves (Final Fantasy X-2)|Crystal Gloves]], increase Defense statistics. [[Garment Grid]]s, such as [[Valiant Lustre]], can also increase Defense to a substantial degree. The [[DEF Up (Final Fantasy X-2)|DEF Up]] status boosts Defense temporarily, whereas [[DEF Down (Final Fantasy X-2)|DEF Down]] lowers it.
+
+The color for the Defense gauge in the menu is yellow.
+
+==== ''[[Final Fantasy X-2: Last Mission]]'' ====
+{{Section|Final Fantasy X-2: Last Mission}}
+
+=== ''[[Final Fantasy XII]]'' ===
+[[Final Fantasy XII armor#Heavy armor|Heavy armor]] boosts [[Defense (Final Fantasy XII)|Defense]] the most, while Light Armor gives some Defense, but also also raises HP. Shields don't raise Defense at all, and only add to Evasion. Other than equipment, leveling up is the only means of boosting a character's Defense stat.
+
+=== ''[[Final Fantasy XIII]]'' ===
+Physical Wall nullifies a portion of the attacker's attack power; such as having Physical Wall of 5 would take 5 points off the attacker's attack stat. Physical Wall can be added by equipping [[Final Fantasy XIII accessories|accessories]].
+
+=== ''[[Final Fantasy XIV]]'' ===
+Physical defense affects damage taken by physical attacks. Generally speaking, heavier armor has higher physical defense than light cloth armor.
+
+=== ''[[Final Fantasy Tactics]]'' ===
+The characters do not have a defense stat. Damage is calculated based on a formula for each attack. When armor is equipped, it increases the character's max HP, and possibly how often they evade attacks, but not a stat that reduces damage like a "defense" stat would.
+
+However, there are effects that increase a character's resistance to attacks and thus increase their "defense". An example is the Protect spell, and damage can be greatly reduced based on the character's Zodiac Compatibility.
+
+=== ''[[Final Fantasy Type-0]]'' ===
+{{Section|Final Fantasy Type-0}}
+
+=== ''[[Final Fantasy Crystal Chronicles]]'' ===
+{{Section|Final Fantasy Crystal Chronicles}}
+
+==== ''[[Final Fantasy Crystal Chronicles: Ring of Fates]]'' ====
+{{Section|Final Fantasy Crystal Chronicles: Ring of Fates}}
+
+==== ''[[Final Fantasy Crystal Chronicles: Echoes of Time]]'' ====
+{{Section|Final Fantasy Crystal Chronicles: Echoes of Time}}
+
+==== ''[[Final Fantasy Crystal Chronicles: The Crystal Bearers]]'' ====
+Defense, represented by the [[Earth (element)|earth element]], is one of [[Layle]]'s five stats, which, like the other four, can be increased by equipping [[accessories]]. Defense determines how much damage Layle takes from enemies.
+
+=== ''[[Final Fantasy Mystic Quest]]'' ===
+The higher the number, the less damage the character will take. All armor increase defense power.
+
+=== ''[[Final Fantasy Adventure]]'' ===
+DP stands for Defense Power, this stat determines how Sumo endures magic and physical attacks. The higher the DP is, the lesser the HP loss.
+
+=== ''[[The Final Fantasy Legend]]'' ===
+Defense is shorten to Def. The greater the number, the less damage the character will take.
+
+=== ''[[Final Fantasy Legend II]]'' ===
+Defense is abbreviated to [[DEF (Legend II)|DEF]], this stat impacts damage received by physical attacks. As with [[STR (Legend II)|STR]], this stat can be increased after a battle in which a [[Human (Legend series)|human]] or [[mutant]] defends with a shield or uses other defense-related items such as the [[Defend (Legend II)|Defend]], although this growth is very rare in humans. Def caps at 99 and can be raised higher through the equipment of armor.
+
+=== ''[[Final Fantasy Legend III]]'' ===
+The Defense stat decreases the degree of damage inflicted by enemies.
+
+=== ''[[Final Fantasy Dimensions]]'' ===
+{{Section|Final Fantasy Dimensions}}
+
+=== ''[[Final Fantasy Explorers]]'' ===
+P-Defense: defense against physical elements.
+{{Section|Final Fantasy Explorers}}
+
+{{navbox stats}}
+[[Category:Recurring stats]]

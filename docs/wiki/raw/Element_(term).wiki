@@ -1,0 +1,301 @@
+[[File:FF4HoL Strong Fire.png|thumb|250px|The party uses Fire magic against an opponent weak to the Fire element, dealing increased damage, in ''[[Final Fantasy: The 4 Heroes of Light]]''.]]
+{{Quote|Fire, ice, and lightning are the three principle elements. They are represented by the spells Fire, Blizzard, and Thunder, respectively.|Scholar in Advanced Battle Tactics}}
+<!-- Don't add Non-Elemental here. They're opposites. One thing can either have one the following elemental properties, or not. -->
+'''Elements''' {{J|属性|Zokusei}} are special properties assigned to abilities, equipment, and even combatants that reflect their nature or natural affinities. They are present in almost every ''[[Final Fantasy series|Final Fantasy]]'' game. Characters and monsters may be weak to, resistant to, immune to, or absorb these special properties.
+
+Elements are often based on aspects of the natural world, such as fire, ice, lightning, or water, but may also be based on more abstract concepts, such as divine power. Many elements also exist to describe the manner in which an attack strikes its target, such as cutting, piercing, or blunt force attacks.
+
+Elements play an important role during [[Battle (term)|battle]]. They hold sway the survival of player characters against certain enemies. Manipulating elements often times mean life or death. The most commonly-recurring elements are Fire, Ice, Lightning, Wind, Earth, Water, Holy, and Dark. Many of these elements have a recurring [[summoned monsters|summon]] based around them.
+
+Most games feature Fire, Ice, and Lightning being in a trinity of sorts, although occasionally a fourth element will be added to expand the central set, such as [[Poison (element)|Poison]], [[Water (element)|Water]], or [[Wind (element)|Wind]]. Each of these primary elements generally has three or four levels of [[Magic (command)|magic]] associated with it, although some games may have as many [[Magic tier system|levels of magic]] for additional elements as well. Some games, notably ''[[Final Fantasy IV]],'' ''[[Final Fantasy X]]'', and [[Final Fantasy VII Remake Series|''Final Fantasy VII Remake Series'']], have fewer than eight elements. ''Final Fantasy IV'' does not feature a Water element; although several abilities, such as [[Flood (spell)|Flood]] and [[Tsunami]], have water-based visual effects, these abilities are all either Ice-elemental or non-elemental, though they became Water-elemental when the element was featured in the 3D remake. ''Final Fantasy X'', meanwhile, does not feature Earth, Wind, or Dark elements. The ''Final Fantasy VII Remake Series'' only features four elements compared to the originals nine. These include the standard three Fire, Ice, and Lightning, along with Wind.
+
+{{See|Non-elemental}}
+
+==Elements==
+===Recurring===
+====Fire====
+{{Main|Fire (element)}}
+[[File:FFRK Fire Element.png|50px|right|Fire icon from ''[[Final Fantasy Record Keeper]]''.]]
+One of the three standard elements. Most plant or undead enemies are weak against it, as well as beasts. [[Fire (ability)|Fire]] and [[Flare (ability)|Flare]] are the standard magics associated with the element. Fire-based attacks are usually shown to be effective against Ice-based enemies, most notably in ''Final Fantasy X'' where Fire and Ice are opposed, though Fire may sometimes be opposed to Water instead. 
+
+[[Ifrit]] and [[Phoenix]] are the prominent recurring summons of the fire element. In addition, [[Belias]] serves as the recurring fire-elemental summons in [[Ivalice]] titles, while [[Brynhildr (summon)|Brynhildr]] serves a similar role in the ''[[Final Fantasy XIII]]'' subseries.
+
+<gallery>
+FFIV Fire PSP.png|Fire, the base fire-elemental spell.
+FFXIV ARR Flare.png|Flare, a recurring powerful fire-elemental spell
+Ifrit from FFVII Remake.png|Ifrit, the recurring Fire-elemental summon.
+FF4PSP Bomb.png|A [[Bomb (creature)|Bomb]], the most well-known enemy aligned with Fire.
+</gallery>
+
+====Ice====
+{{Main|Ice (element)}}
+[[File:FFRK Ice Element.png|50px|right|Ice icon from ''[[Final Fantasy Record Keeper]]''.]]
+Ice is one of the three standard elements, and is easily defeated with Fire, and vice versa. [[Blizzard (ability)|Blizzard]] is its standard spell, while [[Freeze (ability)|Freeze]] serves as the strongest form. Ice spells are typically effective against Fire-based enemies, particularly in ''Final Fantasy X'', in which the Ice and Fire elements are diametrically opposed, while in ''Final Fantasy XII'', Ice-based attacks are effective against enemies with Lightning affinities. In ''Final Fantasy IV'', Ice spells are effective against reptiles and amphibians. 
+
+[[Shiva]] is the sole recurring summon representing this element. In Ivalice, the recurring summon of ice is [[Mateus (Ivalice)|Mateus]].
+
+<gallery>
+FFVIII Blizzard.png|Blizzard, the base ice-elemental spell.
+FFVII Freeze.png|Freeze, a recurring powerful ice-elemental spell.
+Shiva FFVIIR.png|Shiva, the recurring Ice-elemental summon.
+FFT Blizzard.png|Snowstorm, the recurring enemy ability.
+</gallery>
+
+====Lightning====
+{{Main|Lightning (element)}}
+[[File:FFRK Lightning Element.png|50px|right|Lightning icon from ''[[Final Fantasy Record Keeper]]''.]]
+Lightning is also one of the three standard elements. [[Thunder (ability)|Thunder]] is lightning's most basic spell, while [[Burst (lightning ability)|Burst]] serves as the strongest form of lightning magic. Machines are known to be damaged greatly when struck with lightning-based attacks, but, depending on the game, could sometimes greatly absorb it. Lightning is often effective against water-based monsters, as is the case in ''Final Fantasy X''. In ''Final Fantasy XII'', lightning-based attacks are effective against ice-based enemies. While Lightning is typically effective against aquatic enemies, many games have a few lightning-using aquatic enemies which absorb the element instead. 
+
+[[Ramuh]] and [[Ixion]] are often the recurring summons for this element. Several subseries have featured their own unique lightning summons as well; [[Adrammelech]] serving the role in Ivalice titles, while [[Odin (Final Fantasy XIII)|Odin]] being the lightning Eidolon in the ''[[Final Fantasy XIII]]'' subseries.
+
+<gallery>
+FFIX Thunder.png|Thunder, the base lightning-elemental spell.
+Burst Black Magic from FFXI.jpg|Burst, a recurring powerful lightning-elemental spell.
+DFF2015 Ramuh.png|Ramuh, the recurring lightning-elemental summon.
+FFTA2 Thunder Breath.png|Thunder Breath, the recurring enemy ability.
+</gallery>
+
+====Water====
+[[File:FFRK Water Element.png|50px|right|Water icon from ''[[Final Fantasy Record Keeper]]''.]]
+{{Main|Water (element)}}
+All Water-based enemies will absorb this element. [[Water (ability)|Water]] is the basic elemental spell for this element, while [[Flood (spell)|Flood]] serves as the strongest spell of the element. Fire-based enemies are greatly affected by this element. In ''Final Fantasy X'', wherein Water-based attacks are very effective against Lightning-based enemies.
+
+[[Leviathan]], [[Bismarck (creature)|Bismarck]], and [[Siren (creature)|Siren]] are often the recurring summons for this element. In Ivalice, the recurring summon of water is [[Famfrit]].
+
+<gallery>
+Water-FFVIII.png|Water, the base water-elemental spell.
+Flood from FFVI 2014.jpg|Flood, a recurring powerful water-elemental spell.
+FFIX Aqua Breath.png|Aqua Breath, a recurring water-elemental [[Blue Magic]] spell.
+Leviathan (FFXI).png|Leviathan, the recurring water-elemental summon.
+</gallery>
+
+====Earth====
+{{Main|Earth (element)}}
+[[File:FFRK Earth Element.png|75px|right|Earth icon from ''[[Final Fantasy Record Keeper]]''.]]
+Earth-based attacks manipulate the ground, and will usually not affect airborne enemies or those imbued with the [[Float (status)|Float]] status. Most plant enemies absorb the earth element. [[Stone (ability)|Stone]] is the standard three tier magic carrying this element, with [[Quake (ability)|Quake]] being the recurring strongest form that attacks multiple targets. However, ''[[Final Fantasy VII]]'' also features three levels of Quake spells. 
+
+[[Cactuar|Cactuar]],  [[Brothers (Final Fantasy VIII)|Brothers]], [[Golem]], [[Hecatoncheir (Final Fantasy XIII)|Hecatoncheir]], [[Midgardsormr]], and [[Titan (summon)|Titan]] are several recurring summons associated with this element. In Ivalice, the recurring summon of earth is [[Hashmal]].
+
+<gallery>
+Stone from FFXI.jpg|Stone, a base earth-elemental spell.
+MAG using Quake from FFIII Pixel Remaster.jpg|Quake, a recurring powerful earth-elemental spell.
+Titan from FFXIV battle render.png|Titan, the recurring Earth-elemental summon.
+</gallery>
+
+====Wind====
+{{Main|Wind (element)}}
+[[File:FFRK Wind Element.png|50px|right|Wind icon from ''[[Final Fantasy Record Keeper]]''.]]
+Wind-elemental attacks are often effective against aerial enemies, though in some games, aerial enemies may absorb them. Earth-based enemies are usually weak against this element. [[Aero (ability)|Aero]] and [[Tornado (ability)|Tornado]] are some of the spells that belong to this element. 
+
+The recurring summons for this element include [[Fenrir (creature)|Fenrir]], [[Garuda]], [[Sylph]], [[Typhon]], and [[Valefor (summon)|Valefor]]. In Ivalice, the recurring summon of wind is [[Chaos]].
+
+<gallery>
+FFIX Aero.png|Aero, the recurring base wind-elemental spell.
+Tornado from FFVI Pixel Remaster.jpg|Tornado, a recurring powerful wind-elemental spell.
+Garuda XIV CG.jpg|Garuda, a recurring wind-elemental summon.
+</gallery>
+
+====Holy====
+{{Main|Holy (element)}}
+[[File:FFRK Holy Element.png|50px|right|Holy icon from ''[[Final Fantasy Record Keeper]]''.]]
+Holy, also known as Light, is a higher level element. The spells [[Banish (ability)|Banish]] and [[Dia (ability)|Dia]] serve as the recurring three tier holy magics in titles, with [[Holy (ability)|Holy]] serving as the strongest recurring offensive spell of this element. [[Undead]] and dark-based enemies tend to be susceptible to holy attacks. Undead enemies are also often damaged by healing spells such as [[Cure (ability)|Cure]], which are sometimes considered holy-elemental. A notable exception is the first ''Final Fantasy'', in which the [[Dia (ability)|Dia]] spell line is used. 
+
+In ''Final Fantasy IV'', several weapons, including most of [[Cecil Harvey|Cecil's]] [[Paladin (job)|Paladin]] swords and [[Kain Highwind|Kain's]] [[Holy Lance (weapon)|Holy Lance]], are holy-elemental. 
+
+[[Alexander (summon)|Alexander]] is the most recurring summon for this element, with [[Carbuncle]], [[Lakshmi]], and [[Madeen]] also appearing as secondary recurring holy summons. In [[Ivalice]], the recurring summon of holy is [[Ultima (Ivalice)|Ultima]].
+
+<gallery>
+WoFF Banish.png|Banish, the recurring base holy-elemental spell.
+FFIX Holy.png|Holy, the recurring powerful holy-elemental spell.
+FFL2 AlexanderGod.png|Alexander, a recurring Holy-elemental summon.
+FFIIIDS Excalibur.png|Excalibur, a recurring high-ranked weapon aligned with the Holy element.
+</gallery>
+
+====Dark====
+{{Main|Dark (element)}}
+[[File:FFRK Dark Element.png|50px|right|Dark icon from ''[[Final Fantasy Record Keeper]]''.]]
+Dark, also known as Shadow, is another higher level element. Since ''Final Fantasy XII'', Dark has become a more prominent element in titles. The [[Dark (elemental ability)|Dark]] spells serve as the recurring three tier magics for the element, with no recurring powerful form. The [[Dark Knight (job)|Dark Knight]] ability, [[Darkness (Dark Knight ability)|Darkness]], has served as a recurring dark-elemental ability in the series since its initial appearance in ''[[Final Fantasy IV]]''{{note|Darkness did non-elemental damage to all foes in the 2D releases of ''Final Fantasy IV'' but the Dark element is applied in the 3D remake.}}. All of these abilities are very effective against Holy-based enemies, but most undead monsters are resistant to the dark element. 
+
+Several titles have also featured [[Dark sword (weapon type)|Dark Sword]] weapons to obtain, being dark-elemental and often used by Dark Knights.
+
+Some recurring summons of the dark element include [[Anima (summon)|Anima]], [[Diabolos]], [[Fenrir (creature)|Fenrir]], and [[Hades (summon)|Hades]].  [[Zodiark (summon)|Zodiark]] sometimes serves as the dark-elemental summon in titles set in Ivalice.
+
+<gallery>
+FFXII Dark.png|Dark, the recurring base dark-elemental spell.
+FFIV Dark Wave PSP.png|Darkness, a recurring dark-elemental ability which consumes the user's HP.
+FFLTNS Diabolos Alpha Artwork.jpg|Diabolos, a recurring dark-elemental summon.
+</gallery>
+
+====Poison====
+{{Main|Poison (element)}}
+[[File:FFRK Poison Element.png|50px|right|Poison icon from ''[[Final Fantasy Record Keeper]]''.]]
+Poison is an element present in several main entries and spin-off titles. [[Bio (ability)|Bio]] serves as the recurring three tier poison magics in titles, with [[Scourge (poison ability)|Scourge]] and [[Poison (ability)|Poison]] sometimes being aligned with the element. Holy-elemental targets are sometimes weak against the poison element. When inflicted with the status ailment [[Poison (status)|Poison]], an undead or poison-elemental enemy will heal itself with an effect similar to [[Regen (status)|Regen]]. In newer titles, the Poison element is sometimes replaced with with the [[Dark (element)|Dark]] element.
+
+[[Doomtrain (Final Fantasy VIII)|Doomtrain]] from ''[[Final Fantasy VIII]]'' is the only recurring poison summon, later appearing in ''[[Final Fantasy Record Keeper]]'' as a poison-elemental Soul Break summon.
+
+<gallery>
+Bio from FFVI Pixel Remaster.jpg|Bio, the most recurring poison-elemental spell.
+Bioblaster from FFVI Pixel Remaster.jpg|Bioblaster, a recurring poison-elemental ability.
+Doomtrain-ffviii.png|Doomtrain, a recurring poison-elemental summon.
+</gallery>
+
+====Restorative====
+{{Main|Restorative}}
+Restorative is also sometimes considered an element, and usually associated with either healing or reviving abilities. Other times they are classified as Holy-elemental in some games, despite the Holy spell damaging enemies which Cure would heal.
+
+<gallery>
+FFIIIDS Curaja.png|Curaja in ''[[Final Fantasy III]]'' (DS).
+FFVII White Wind.png|White Wind in ''[[Final Fantasy VII]]''.
+FFMQ Cure Attack.png|[[Benjamin]] attacking with Cure.
+</gallery>
+
+====Shoot====
+{{Main|Shoot (element)}}
+Shoot, also known as [[Throw (ability)|Throw]], Projectile or Projec, is an element that is possessed by weapons, usually [[Bow (weapon type)|Bows]] but also throwing weapons such as [[Shuriken (weapon)|shuriken]]. They are effective against aerial enemies.
+
+<gallery>
+FFMQ Shoot Icon.png|Icon from ''[[Final Fantasy Mystic Quest]]''.
+FFIV Yoichi's Bow.png|The Yoichi's Bow from ''[[Final Fantasy IV]]'' (GBA).
+FF7 Magic shuriken.jpg|The Magic Shuriken from ''[[Final Fantasy VII]]''.
+</gallery>
+
+====Gravity====
+{{Main|Gravity (element)}}
+Gravity appears as an element in ''[[Final Fantasy VII]]'', ''[[Before Crisis -Final Fantasy VII-]]'', and ''[[Final Fantasy X-2]]'', it is related to the spell [[Gravity (ability)|Gravity]], also known as Demi. These spells deal damage [[fractional damage|based on the target's current or maximum HP]]. The recurring summon Diabolos usually uses gravity-based attacks, although gravity doesn't always function as an element. In the Ivalice Alliance games, [[Zeromus (Ivalice)|Zeromus]] is the [[Scion (Ivalice)|Scion]] associated with the element of Gravity.
+
+<gallery>
+FFVII Demi.png|Demi, a recurring Gravity spell.
+FFX-2 Demi Sword.png|Demi Sword in ''[[Final Fantasy X-2]]''.
+</gallery>
+
+====Physical====
+{{Main|Physical (element)}}
+Physical is an element that appears in ''[[Final Fantasy XIII]]'', ''[[Final Fantasy XIII-2]]'', ''[[Lightning Returns: Final Fantasy XIII]]'', ''[[Final Fantasy Mystic Quest]]'' and ''[[The Final Fantasy Legend]]'' subseries for the Game Boy and it was known as both Weapon and Damage. It is one of two basic elements in ''Final Fantasy XIII'', the other being Magic. In the games that this element appears, all physical attacks fall under this element including all damage caused by weapons and special physical attack skills. Usually, the spell [[Protect (ability)|Protect]] can reduce the damage received from physical attacks.
+
+<gallery>
+Physical Icon FFXIII.png|Icon from ''Final Fantasy XIII''.
+FFMQ Damage Icon.png|Icon from ''Final Fantasy Mystic Quest''.
+FFLIII Liz King Attacked.png|[[Arthur (Legend III)|Arthur]] attacking a [[Final Fantasy Legend III enemies#Liz King|Liz King]] in ''[[Final Fantasy Legend III]]''.
+</gallery>
+
+====Magic====
+{{Main|Magical (element)}}
+An element exclusive to ''Final Fantasy XIII'', ''Final Fantasy XIII-2'', and ''Lightning Returns: Final Fantasy XIII'', it is one of two basic elements alongside Physical. The Magic element applies to all spells which fall into categories such as Medic's restoration magic spells and Ravager's offensive magic spells. The spell that can reduce the damage received, as well as also reduces potency of received healing through magic, is [[Shell (ability)|Shell]].
+
+<gallery>
+Magical Icon FFXIII.png|Icon from ''Final Fantasy XIII''.
+Ruin FFXIII.png|[[Sazh Katzroy|Sazh]] casts [[Ruin (ability)|Ruin]], a non-elemental magic spell in ''Final Fantasy XIII''.
+</gallery>
+
+===Game-specific===
+====Dia====
+In the original NES versions, Dia is not programmed as an element. Instead, the Dia spells are scripted to check whether the target has the [[Undead]] [[enemy type|type]]. If so, they deal non-elemental damage to the target; otherwise, they have no effect.
+
+Dia is, however, listed as an elemental weakness in the [[Bestiary (term)|Bestiary]] in some remakes, including [[Final Fantasy I & II: Dawn of Souls|Dawn of Souls]].
+
+<gallery>
+FFI PSP Dia.png|Dia is a simple element featuring only a family of spells.
+</gallery>
+
+====Status====
+This element seems to be used by status-inflicting spells which don't fit into any other category, including the [[Sleep (ability)|Sleep]], [[Blind (ability)|Blind]], [[Slow (ability)|Slow]], [[Stun (ability)|Hold]], [[Confuse (ability)|Confuse]], Sleepra, Slowra, [[Stun (ability)|Stun]], Blind, [[Silence (ability)|Mute]] and [[Fear (ability)|Fear]] spells and various enemy abilities. Resistance is provided by the NulDeath and NulAll spells and Ribbons.
+{{Section|Final Fantasy}}
+
+====Poison/Stone====
+This element is used by abilities associated with poison and/or petrification, including the [[Scourge (poison ability)|Scourge]] and [[Break (ability)|Break]] spells and various enemy abilities. Resistance is provided by the NulAll spell, the Aegis Shield and Ribbons.
+{{Section|Final Fantasy}}
+
+====Time====
+This element is used by abilities associated with space and/or time, including the [[Stop (ability)|Stop]] and [[Warp (ability)|Warp]] spells and various enemy abilities. Resistance is provided by the NulAll spell, the Black Robe and Ribbons.
+{{Section|Final Fantasy}}
+
+====Body====
+An element exclusive to ''Final Fantasy II'', and the rarest of the status elements. It involves movement of a character, and the spells [[Blind (ability)|Blind]], [[Silence (ability)|Silence]], [[Slow (ability)|Slow]], and [[Stun (ability)|Stun]] all fall under this element.
+
+<gallery>
+FFII iPod Stun.png|Stun
+FFII iPod Blind.png|Blind
+FFII iPod Slow.png|Slow
+</gallery>
+
+====Matter====
+An element exclusive to ''Final Fantasy II''. It is primarily the element of instant death attacks, with the exception of the [[Death (ability)|Death]] spell itself. Besides Death, abilities that KO or change a character's form fall under this element such as [[Warp (ability)|Warp]], [[Teleport]], [[Mini (ability)|Mini]], [[Toad (ability)|Toad]], [[Break (ability)|Break]] as well as [[Swap]] and [[Stop (ability)|Stop]]. All Undead enemies are immune to this element.
+
+<gallery>
+FFII iPod Toad.png|Toad
+FFII iPod Stop.png|Stop
+FFII iPod Swap.PNG|Swap
+</gallery>
+
+====Mind====
+An element that appears in ''Final Fantasy I'' and ''Final Fantasy II'', which was named in the ''[[Final Fantasy Origins]]'' release. Mind element attacks involve manipulation of the mind, includes [[Rasp (ability)|Sap]], [[Sleep (ability)|Sleep]], [[Fear (ability)|Fear]], [[Fog (ability)|Fog]], [[Confuse (ability)|Confuse]], and [[Curse (ability)|Curse]]. Many status abilities in the game fall under this element.
+
+In ''[[Final Fantasy Pixel Remaster|Pixel Remaster]]'', this element was renamed to '''Spirit''' in ''Final Fantasy I'' and '''Spectral''' in ''Final Fantasy II''.
+<gallery>
+FFII iPod Rasp.PNG|Sap
+FFII iPod Fog.PNG|Fog
+FFII PSP Curse.png|Curse
+</gallery>
+
+====Death====
+An element exclusive to ''Final Fantasy'' and ''Final Fantasy II''. It contains only one spell, [[Death (ability)|Death]]. This limits the spell's effectiveness in battle, as enemies will often be immune to the Death element.
+
+<gallery>
+FFII iPod Death.png|Death
+</gallery>
+
+====Comet====
+Comet appears as an element in ''[[Before Crisis -Final Fantasy VII-]]''. The eponymous [[Comet (ability)|spell]] is usually a non-elemental attack in the ''Final Fantasy'' series, but the damage dealt to certain enemies through Comet and [[Cometeor (ability)|Cometeo]] in ''Before Crisis'' is unrelated to the damage dealt by other non-elemental attacks. Notably, the [[Typhon]] summon is Comet-elemental.
+{{clear}}
+
+====Hidden====
+{{main|Hidden (Final Fantasy VII)}}
+Hidden is an element exclusive to the original Japanese release of ''Final Fantasy VII''. It does not have much of an explanation, and only applies to a handful of Enemy Attacks and [[Aeris (Final Fantasy VII party member)|Aeris's]] [[Limit (Final Fantasy VII)|Limit Breaks]]. By junctioning an [[Elemental (Final Fantasy VII)|Elemental]] [[Materia (Final Fantasy VII equipment)|Materia]] with a regular Materia (one that does not have a normal Elemental property), Hidden elemental attacks can be absorbed.
+
+<gallery>
+FFVII Limit Break Aeris Planetprotector.jpg|Planet Protector, one of Aeris's limit breaks. It bestows immunity to the party.
+FFVII Limit Break Aeris Healingwind.jpg|Healing Wind, one of Aeris's limit breaks. It heals the party's HP.
+FFVII Ultima Beam.png|Ultima Beam, [[Ultimate Weapon (Final Fantasy VII)|Ultimate Weapon's]] signature attack.
+</gallery>
+
+====Drain====
+{{Main|Drain (element)}}
+An element exclusive to ''Final Fantasy Mystic Quest'', there are only three enemy abilities possessing this element. There is also an unused special protection related to drain, called Reverse Drain.
+
+====Axe====
+An element exclusive to ''Final Fantasy Mystic Quest''. [[Benjamin]] and [[Kaeli]]'s axes have this element, so does [[Reuben]]'s [[Morning Star (weapon)|Morning Star]]. Useful against the tree-type, crab-type, turtle-type and worm-type monsters.
+
+====Bomb====
+An element exclusive to ''Final Fantasy Mystic Quest''. [[Benjamin]]'s [[Bomb (weapon type)|Bombs]] have this element. Only two types of enemies have this weakness: [[Gather]]-type and slime-type monsters.
+
+====Spacetime====
+An element exclusive to ''Final Fantasy Crystal Chronicles: Echoes of Time''.
+
+The spells [[Slow (ability)|Slow]] and [[Gravity (ability)|Gravity]] possess this element. It can be boosted by equipping the Violet Essence bonus on a piece of equipment.
+{{Section|Final Fantasy Crystal Chronicles: Echoes of Time}}
+
+====Stun====
+An element exclusive to ''Final Fantasy Crystal Chronicles: Echoes of Time''.
+
+The spell [[Quake (ability)|Quake]] and a [[Lilty]]'s Hammer/Spoon attack possess this element. It can be boosted by equipping the Siver Essence bonus on a piece of equipment. This will increase the chance of stunning an enemy.
+{{Section|Final Fantasy Crystal Chronicles: Echoes of Time}}
+
+====Jump====
+In ''[[Final Fantasy Record Keeper]]'', most [[Dragoon (Record Keeper ability type)|Dragoon]] abilities and some [[Soul Break]]s are classed as jump attacks. Certain [[Record Materia]] specifically affect damage of jump attacks, and some bosses are specially affected by jump attacks. Most versions of [[Garuda (Final Fantasy III)]] take extra damage from jump attacks, while [[Barbariccia]]'s tornado form is broken by jump attacks. The battle against the [[Demon Wall (Final Fantasy XII)]] guarding the Crushdown [[Nightmare (Record Keeper)|Nightmare]] Record prevents jump abilities and Soul Breaks from being used.
+
+==Notes==
+{{Annotations}}
+==Etymology==
+{{Etym|Element}}
+
+{{navbox elements}}
+{{navbox recurring}}
+
+
+[[de:Element]]
+[[es:Elemento (Término)]]
+[[pl:Element (termin)]]
+[[pt-br:Elemento (Termo)]]
+[[ru:Стихия (термин)]]
+[[Category:Elements]]
+[[Category:Gameplay]]

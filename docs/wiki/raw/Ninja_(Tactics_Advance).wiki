@@ -1,0 +1,211 @@
+{{DISPLAYTITLE:Ninja (''Tactics Advance'')}}
+{{infobox job
+|name=Ninja
+|release=FFTA
+|japanese=忍者
+|romaji=Ninja
+|image=Ffta-h-ninja.jpg
+|portrait=[[File:Ffta-job-ninja-por.png|50px|Player]] [[File:Ffta-job-ninja-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-ninja.gif|20px|Player]] [[File:Ffta-job-ninja-enemy-sprite.png|Enemy|20px]]
+|obtained=Learn two [[Thief (Tactics Advance)|Thief]] A-Abilities
+|required=[[Thief (Tactics Advance)|Thief]]
+|characters=[[Human|Humes]]
+|stats=*Move Rate: 4
+*Jump Rate: 3
+*Evade Rate: 60
+*Stat growth: balanced between physical and magical, poor HP, outstanding Speed 
+|weapons=[[Final Fantasy Tactics Advance weapons#Katanas|Katanas]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Ninja Skill]]
+*[[#Ninja Combo|Ninja Combo]] (combo)
+|support abilities=*[[Dual Wield|Double Sword]]
+*[[Critical: Haste|Last Haste]] (reaction)
+|recurring appearance=Ninja (job)
+}}
+{{Quote|Uses ninja skills and double swords.|Description}}
+'''Ninja''' is a [[Human|hume]] [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]''. It is one of the most praised jobs as its [[Speed (stat)|Speed]] growth and Attack power are outstanding. Ninja wields [[Katana (weapon type)|katanas]] and can master veils to hinder the opponent by inflicting [[status effect|status ailments]]. Ninja's downside is that its veils are weak, despite the Ninja's favorable [[Magic Power|Magic]] growth. The Ninja can be seen as a counterpart to the [[viera]] job of [[Assassin (Tactics Advance)|Assassin]].
+
+==Growth==
+Ninja is balanced between physical and magical capabilities, although like the viera's Assassin, suffers from poor [[HP (stat)|HP]] growth. Ninja has the highest Speed growth of all hume classes.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.8 D+
+|2.1 D
+|8.4 B
+|7.2 C-
+|8.1 B-
+|7.6 C
+|2.1 A+
+|}
+
+==Abilities==
+===[[Ninja Skill]]===
+{{Quote|Ninja command. Fight with techs from a foreign land.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Throw (ability)|Throw}}
+|[[Final Fantasy Tactics Advance weapons#Ninja Knife|Ninja Knife]]
+|100
+|—
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Throw stocked item to deal damage.''
+|-
+! rowspan=2|{{A|Wood Veil}}
+|[[Final Fantasy Tactics Advance weapons#Kotetsu|Kotetsu]]
+|200
+|4
+|15
+|4
+|-
+|colspan=5 style="text-align:left"|''Wood jutsu. Damage and immobilize target.''
+|-
+! rowspan=2|{{LA|Katon|Fire Veil}}
+|[[Final Fantasy Tactics Advance weapons#Ashura|Ashura]]
+|200
+|4
+|15
+|4
+|-
+|colspan=5 style="text-align:left"|''Fire jutsu. Damages and confuses target.''
+|-
+! rowspan=2|{{LA|Doton (ability)|Earth Veil}}
+|[[Final Fantasy Tactics Advance weapons#Osafune|Osafune]]
+|200
+|4
+|15
+|4
+|-
+|colspan=5 style="text-align:left"|''Earth jutsu. Damages and slows target.''
+|-
+! rowspan=2|{{A|Metal Veil}}
+|[[Final Fantasy Tactics Advance weapons#Kikuichimonji|Kikuichimonji]]
+|200
+|4
+|15
+|4
+|-
+|colspan=5 style="text-align:left"|''Metal jutsu. Damages and inflicts darkness.''
+|-
+! rowspan=2|{{LA|Suiton (ability)|Water Veil}}
+|[[Final Fantasy Tactics Advance weapons#Murasame|Murasame]]
+|200
+|4
+|15
+|4
+|-
+|colspan=5 style="text-align:left"|''Water jutsu. Damages and silences target.''
+|-
+! rowspan=2|{{LA|Dispel|Unspell}}
+|[[Final Fantasy Tactics Advance weapons#Heaven's Cloud|Heaven's Cloud]]
+|300
+|4
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Neutralizes status enhancements.''
+|-
+! rowspan=2|{{LA|Oblivion (ninjutsu)|Oblivion}}
+|[[Final Fantasy Tactics Advance weapons#Masamune|Masamune]]
+|300
+|24
+|—
+|1
+|-
+|colspan=5 style="text-align:left"|''Attack to the head. Addles target.''
+|}
+
+Throw does a normal 100% damage Magic Power-based attack, using [1.5 * Weapon Power] as the Power of the attack.
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Critical: Haste|Last Haste}}
+|[[Final Fantasy Tactics armor#Ninja Gear|Ninja Gear]]
+|style="text-align:left"|''Become hasted if severely wounded.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Dual Wield|Double Sword}}
+|[[Final Fantasy Tactics Advance weapons#Katana|Nosada]]
+|style="text-align:left"|''Enables two attacks with weapons in both hands.''
+|999
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Ninja Combo}}
+|[[Mythril Epee (Tactics Advance)|Mythril Epee]]
+|style="text-align:left"|''Failproof combo ability for ninjas.''
+|100
+|}
+
+== Overview ==
+Known for its overwhelming speed and strength, the Ninja is also notorious for having one of the most coveted support abilities, [[Double Sword]], which allows a hume to equip two one-handed weapons simultaneously, increasing attack strength and allowing the character to learn weapon abilities at an otherwise impossible rate. Even if a Ninja is unnecessary for the party, most players use this class just for Double Sword, which allows the wielder to master other jobs faster.
+
+As a combatant, the Ninja has almost unparalleled speed. Being the second fastest class the Ninja is only outpaced by Assassins or other Ninjas. Its other stats are offense oriented, boasting high attack and even decent magic power. Ninja is a popular candidate for using [[Thief (Tactics Advance)|Thief]] abilities, seeing their speed and because Thief abilities are required to unlock the job in the first place. The Ninja's ranged abilities inflict useful status effects, giving them a degree of support as well. Although only wielding katanas, they are powerful weapons.
+
+The Ninja's HP is low while their defense and resistance are meager, making it a poor tank. Double Sword, despite all its usefulness, is time-consuming to master. Though the Ninja has surprisingly high magic power, the low base power of its abilities makes it unable to inflict significant magical damage.
+
+Overall, the Ninja is one of the best classes. Double Sword is among the most broken support abilities making this class appealing even if the player never plans to use Ninja in combat.
+
+It is almost impossible to outpace enemy Ninjas. One of the classic strategies is to let the Ninja attack the party's tankier units, like a [[Paladin (Tactics Advance)|Paladin]] or [[Mog Knight]], and then down the Ninja once the team gets moving. However, even the tanky units can struggle against Ninja, who can inflict statuses like immobilize to make one's defensive units useless. The player should not leave a ranged unit or mage in the Ninja's attack range. As long as the player is careful with the positioning of their ranged units, enemy Ninjas can be dealt with effectively. Like their basic counterpart, the Thief, going for reckless abilities like Beatdown or Mog Rush does not pay off due to their high evasion.
+
+==Gallery==
+<gallery>
+FFTA Throw.png|Throw.
+FFTA Wood Veil.png|Wood Veil.
+FFTA Fire Veil.png|Fire Veil.
+FFTA Earth Veil.png|Earth Veil.
+FFTA Metal Veil.png|Metal Veil.
+FFTA Water Veil.png|Water Veil.
+FFTA Unspell.png|Unspell.
+FFTA Oblivion.png|Oblivion.
+</gallery>{{Gallery incomplete|Ninja Combo}}
+
+==Etymology==
+{{Etym|Ninja}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Ninja (Final Fantasy Tactics Advance)]]
+[[it:Ninja (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

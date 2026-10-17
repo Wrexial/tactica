@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lines of Glory — FFTA → Napoleonic Mapping</title>
+<style>
+  :root {
+    --ink: #1c2431;
+    --ink-soft: #4a5568;
+    --parch: #f5eeda;
+    --parch-2: #efe4c8;
+    --card: #fffaf0;
+    --gold: #b8891f;
+    --gold-soft: #d9b95c;
+    --line: #d8cba6;
+    --france: #2b4f9e;
+    --britain: #9e2b2b;
+    --prussia: #3a3a3a;
+    --russia: #2f6b45;
+    --austria: #a8791f;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #fff7e2 0%, transparent 60%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.012) 0 2px, transparent 2px 4px),
+      var(--parch);
+    line-height: 1.5;
+  }
+  header.hero {
+    text-align: center;
+    padding: 54px 20px 34px;
+    background: linear-gradient(180deg, #141b28, #232f45 70%, #2c3a55);
+    color: #f4e9cf;
+    border-bottom: 4px solid var(--gold);
+  }
+  .hero .kicker {
+    letter-spacing: .38em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--gold-soft);
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 6vw, 60px);
+    margin: 0 0 6px;
+    letter-spacing: .02em;
+  }
+  .hero p.sub { margin: 6px auto 0; max-width: 760px; color: #cdd6e6; font-size: 15px; }
+  .hero .chips { margin-top: 18px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .chip {
+    font-size: 11.5px; padding: 5px 11px; border-radius: 999px;
+    background: rgba(255,255,255,.09); border: 1px solid rgba(217,185,92,.4);
+    color: #f0e4c6;
+  }
+  nav.tabs {
+    position: sticky; top: 0; z-index: 40;
+    display: flex; gap: 4px; overflow-x: auto;
+    padding: 10px 14px;
+    background: rgba(20,27,40,.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid #0c111b;
+  }
+  nav.tabs a {
+    color: #cdd6e6; text-decoration: none; font-size: 13px; white-space: nowrap;
+    padding: 7px 12px; border-radius: 7px; border: 1px solid transparent;
+  }
+  nav.tabs a:hover { background: rgba(217,185,92,.14); color: #fff; border-color: rgba(217,185,92,.35); }
+  main { max-width: 1180px; margin: 0 auto; padding: 26px 18px 80px; }
+  section { margin: 30px 0; scroll-margin-top: 64px; }
+  section > h2 {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 8px;
+    margin: 0 0 4px;
+  }
+  section > p.lead { color: var(--ink-soft); margin: 8px 0 18px; font-size: 14.5px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 1px 0 #fff inset, 0 6px 18px rgba(60,45,10,.06);
+    padding: 18px;
+  }
+  .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .search {
+    flex: 1 1 260px; min-width: 200px;
+    padding: 10px 14px; font-size: 14px;
+    border: 1px solid var(--line); border-radius: 8px; background: #fffdf6;
+  }
+  .search:focus { outline: 2px solid var(--gold-soft); border-color: var(--gold); }
+  .hint { font-size: 12.5px; color: var(--ink-soft); }
+
+  /* Decisions */
+  .decisions { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+  .dec {
+    border: 1px solid var(--line); border-left: 5px solid var(--gold);
+    background: var(--card); border-radius: 8px; padding: 12px 14px;
+  }
+  .dec .id { font-weight: 700; color: var(--gold); font-size: 12px; letter-spacing: .08em; }
+  .dec h3 { margin: 3px 0 6px; font-size: 15px; font-family: Georgia, serif; }
+  .dec p { margin: 0; font-size: 13.5px; color: var(--ink-soft); }
+  .dec .lock { float: right; font-size: 10.5px; color: #2f6b45; border: 1px solid #9cc4a8; background:#eef7f0; border-radius: 999px; padding: 1px 8px; }
+
+  /* Powers */
+  .powers { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+  .power { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--card); }
+  .power .bar { height: 6px; }
+  .power .body { padding: 14px; }
+  .power h3 { margin: 0 0 2px; font-family: Georgia, serif; }
+  .power .race { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--gold); }
+  .power p { margin: 8px 0 0; font-size: 13px; color: var(--ink-soft); }
+
+  /* Tabs for role trees */
+  .subtabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .subtabs button {
+    font: inherit; font-size: 13px; cursor: pointer; padding: 7px 14px;
+    border-radius: 999px; border: 1px solid var(--line); background: #fffdf6; color: var(--ink);
+  }
+  .subtabs button.active { background: var(--ink); color: #f5eeda; border-color: var(--ink); }
+  .power-block { display: none; }
+  .power-block.active { display: block; }
+  .power-block .doctrine { font-size: 13px; color: var(--ink-soft); margin: 0 0 12px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { background: var(--parch-2); font-size: 12px; text-transform: uppercase; letter-spacing: .07em; color: #6b5a2a; }
+  .scroll thead th { position: sticky; top: 0; z-index: 5; }
+  tbody tr:hover { background: #fff7e2; }
+  td.arrow { color: var(--gold); font-weight: 700; }
+  .wrap { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--card); }
+  .scroll { max-height: 560px; overflow: auto; }
+  .tag { font-size: 11px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
+  footer { text-align: center; color: var(--ink-soft); font-size: 12.5px; padding: 26px 18px 60px; }
+  footer a { color: var(--gold); }
+  .empty { padding: 22px; text-align: center; color: var(--ink-soft); display: none; }
+  @media print { nav.tabs, .toolbar { display: none; } .power-block { display: block !important; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">FFTA → Napoleonic Wars</div>
+  <h1>Lines of Glory</h1>
+  <p class="sub">Complete systems mapping from <em>Final Fantasy Tactics Advance</em> to a Napoleonic-era
+  small-squad tactics game. Detail scale · grounded · square-isometric. All 16 design decisions locked.</p>
+  <div class="chips">
+    <span class="chip">D0–D15 LOCKED</span>
+    <span class="chip">5 powers · 39 posts</span>
+    <span class="chip">8 elements · 43 conditions</span>
+    <span class="chip">Élan · Honour · Drill</span>
+    <span class="chip">Working title</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <a href="#decisions">Decisions</a>
+  <a href="#dictionary">Naming</a>
+  <a href="#powers">Powers</a>
+  <a href="#roles">Role trees</a>
+  <a href="#guards">Guard Sorties</a>
+  <a href="#resources">Resources</a>
+  <a href="#elements">Elements</a>
+  <a href="#conditions">Conditions</a>
+  <a href="#campaign">Campaign</a>
+  <a href="#enemies">Enemies</a>
+  <a href="#combat">Combat</a>
+</nav>
+
+<main>
+  <div class="toolbar">
+    <input id="search" class="search" type="search" placeholder="Search every table… (e.g. Élan, rifle, Bleeding, Lancer)" />
+    <span class="hint" id="count"></span>
+  </div>
+
+  <section id="decisions">
+    <h2>Locked decisions</h2>
+    <p class="lead">The frozen retheme contract. Changing any of these means revising <code>docs/NAPOLEONIC_MAPPING.md</code> deliberately.</p>
+    <div class="decisions" id="decisionGrid"></div>
+  </section>
+
+  <section id="dictionary">
+    <h2>Naming dictionary</h2>
+    <p class="lead">Every FFTA term gets exactly one Napoleonic display name. Code keys stay FFTA-shaped; display fields carry the fiction.</p>
+    <div class="wrap scroll"><table class="searchable"><thead><tr><th>FFTA</th><th></th><th>Lines of Glory</th><th>Notes</th></tr></thead><tbody id="dictBody"></tbody></table></div>
+  </section>
+
+  <section id="powers">
+    <h2>Powers (races)</h2>
+    <p class="lead">The five FFTA races map to five great-power military schools by doctrine — not stereotype. Each keeps a role tree, a Guard Sortie and depot discounts.</p>
+    <div class="powers" id="powerGrid"></div>
+  </section>
+
+  <section id="roles">
+    <h2>Role trees</h2>
+    <p class="lead">All FFTA jobs keep their mechanical kit; only fiction, names and models change. Shared jobs become common posts.</p>
+    <div class="subtabs" id="roleTabs"></div>
+    <div id="roleBlocks"></div>
+  </section>
+
+  <section id="guards">
+    <h2>Guard Sorties (Totema)</h2>
+    <p class="lead">Each power's national elite formation, summoned with 10 Honour. Effects preserved from the Totema.</p>
+    <div class="wrap"><table class="searchable"><thead><tr><th>Power</th><th>FFTA Totema</th><th></th><th>Guard Sortie</th><th>Effect preserved</th></tr></thead><tbody id="guardBody"></tbody></table></div>
+  </section>
+
+  <section id="resources">
+    <h2>Resources</h2>
+    <p class="lead">Élan is the reworked ability resource; it also acts as morale (low → Shaken, zero → Routed).</p>
+    <div class="wrap"><table class="searchable"><thead><tr><th>FFTA</th><th></th><th>Lines of Glory</th><th>Rule</th></tr></thead><tbody id="resBody"></tbody></table></div>
+  </section>
+
+  <section id="elements">
+    <h2>Elements</h2>
+    <p class="lead">Eight elements kept and reflavoured, so Articles of War can forbid specific elements.</p>
+    <div class="wrap"><table class="searchable"><thead><tr><th>FFTA</th><th></th><th>Lines of Glory</th><th>Used by</th></tr></thead><tbody id="elemBody"></tbody></table></div>
+  </section>
+
+  <section id="conditions">
+    <h2>Status conditions</h2>
+    <p class="lead">All FFTA statuses mapped to battlefield conditions. Effects are preserved; only the cause changes.</p>
+    <div class="wrap scroll"><table class="searchable"><thead><tr><th>FFTA status</th><th></th><th>Condition</th><th>Effect preserved</th></tr></thead><tbody id="condBody"></tbody></table></div>
+  </section>
+
+  <section id="campaign">
+    <h2>Campaign layer</h2>
+    <p class="lead">An open contract sandbox with a story spine, fought on a customizable Campaign Map.</p>
+    <div class="wrap"><table class="searchable"><thead><tr><th>FFTA system</th><th></th><th>Lines of Glory</th><th>Preserved behaviour</th></tr></thead><tbody id="campBody"></tbody></table></div>
+  </section>
+
+  <section id="enemies">
+    <h2>Enemies &amp; irregulars</h2>
+    <p class="lead">Monsters become irregular and auxiliary troops; capture becomes the Auxiliary Barracks and Foreign Drill.</p>
+    <div class="wrap"><table class="searchable"><thead><tr><th>FFTA archetype</th><th></th><th>Lines of Glory</th></tr></thead><tbody id="enemyBody"></tbody></table></div>
+  </section>
+
+  <section id="combat">
+    <h2>Combat mechanics</h2>
+    <p class="lead">The FFTA engine stays; labels and fiction change. Damage formulas remain the wiki's, renamed Steel (physical) and Powder (magical).</p>
+    <div class="wrap"><table class="searchable"><thead><tr><th>FFTA mechanic</th><th></th><th>Lines of Glory</th><th>Notes</th></tr></thead><tbody id="combatBody"></tbody></table></div>
+  </section>
+
+  <div class="empty" id="empty">No rows match your search.</div>
+</main>
+
+<footer>
+  Generated from <a href="../docs/NAPOLEONIC_MAPPING.md">docs/NAPOLEONIC_MAPPING.md</a> ·
+  text ©️ the project · FFTA names © Square Enix, referenced for study only.
+</footer>
+
+<script>
+/* ------------------------------ data ------------------------------ */
+const decisions = [
+  ["D0","Battle scale","Detachment scale — one specialist / small crew per unit; battles are small decisive actions inside a larger war."],
+  ["D1","Ability resource name","Élan."],
+  ["D2","Player faction","Multinational free company — recruit specialists from all five powers."],
+  ["D3","Ability kits","Keep FFTA's kit shapes (cost, range, power, status); rename and refavour."],
+  ["D4","Élan as morale","Yes — a low pool risks Shaken; zero risks Routed."],
+  ["D5","Elements","Keep all 8, reflavoured."],
+  ["D6","Naming policy","Fictionalized evocative names with historical flavour."],
+  ["D7","Theatre & timeline","Peninsular + Central Europe, fictionalized, 1808–1815."],
+  ["D8","Tone","Adventurous-historical, not gratuitous."],
+  ["D9","Grounded vs fantastical","Grounded — no literal spells; 'magic' is tech, medicine, signals and morale."],
+  ["D10","Grid geometry","Square-isometric, with FFTA's 4-directional facing."],
+  ["D11","Lethality model","Hybrid leaning FFTA attrition, tightened by Élan / morale."],
+  ["D12","Art direction","Minimalist board-game first; art pass later."],
+  ["D13","Campaign structure","Open contract sandbox with a story spine."],
+  ["D14","Game title","Lines of Glory (working title); project codename Tactica."],
+  ["D15","Multiplayer scope","Stretch goal; keep engine determinism from day one."]
+];
+
+const dictionary = [
+  ["Ivalice / world map","The Theatre / Campaign Map","A fictionalized Europe"],
+  ["Clan","Company (the Corps)","The player's formation"],
+  ["Clan title","Regimental Honours","Reputation perks"],
+  ["Unit","Soldier / Stand","Individual specialist"],
+  ["Job","Role / Post","e.g. Rifleman, Surgeon"],
+  ["Race","Power (military school)","France, Britain, Russia, Austria, Prussia"],
+  ["A-Ability","Action","Active skill"],
+  ["R-Ability","Reaction","Triggered response"],
+  ["S-Ability","Trait","Passive"],
+  ["C-Ability","Volley ability","Chains with adjacent allies"],
+  ["MP","Élan","Per-unit ability resource"],
+  ["JP (Judge Points)","Honour","Fuels Volleys & Guard Sorties"],
+  ["AP (Ability Points)","Drill","Learns abilities from kit"],
+  ["XP","Experience","Levels"],
+  ["Gil","Crowns","Currency"],
+  ["Law","Article of War","Daily standing order"],
+  ["Judge","Provost Marshal","Neutral enforcer"],
+  ["Yellow Card","Reprimand","Warning"],
+  ["Red Card","Court-Martial","Unit removed"],
+  ["Law / Antilaw card","Standing Order / Counter-Order","Issued by an Adjutant"],
+  ["Advanced Law","General Order","Company privilege"],
+  ["Jagd","No-Man's Land","No provost; losses permanent"],
+  ["Totema","Guard Sortie","National elite formation"],
+  ["Combo","Volley","Massed fire with neighbours"],
+  ["Monster Bank","Auxiliary Barracks","Captured / cajoled irregulars"],
+  ["Pub","Officers' Mess / Billet","Mission board"],
+  ["Shop","Quartermaster's Stores","Buy / sell"],
+  ["Mission (regular)","Battle","Story / campaign action"],
+  ["Mission (encounter)","Skirmish","Rival free company"],
+  ["Mission (dispatch)","Detachment","Send unit(s) away"],
+  ["Mission (area)","Pacification","Control a region"],
+  ["Area token","Campaign Marker","Placeable map tile"]
+];
+
+const powers = [
+  {race:"Hume", power:"France", color:"var(--france)", identity:"Versatile; widest role list; balanced.", doctrine:"Combined arms, conscription, aggression."},
+  {race:"Viera", power:"Britain", color:"var(--britain)", identity:"Fast; ranged / precision; speed-based.", doctrine:"Professional light troops, rifles, cavalry."},
+  {race:"Bangaa", power:"Prussia", color:"var(--prussia)", identity:"Tough; melee; little magic.", doctrine:"Disciplined heavy infantry, shock."},
+  {race:"Nu mou", power:"Russia", color:"var(--russia)", identity:"Technical specialists; one melee role.", doctrine:"Massed artillery, engineers, resilience."},
+  {race:"Moogle", power:"Austria", color:"var(--austria)", identity:"Support, status, firearms; defensive.", doctrine:"Defensive lines, skirmishers, technical support."}
+];
+
+const roleTrees = {
+  France: {color:"var(--france)", doctrine:"Combined arms, conscription, aggression.", rows:[
+    ["Soldier","Fusilier","Musket + bayonet","Basic fighter, broad actions"],
+    ["Thief","Forager","Sabre + pistol","Steal gear, disarm, disengage"],
+    ["Archer","Marksman","Hunting piece","Ranged damage"],
+    ["White Mage","Surgeon","Medical kit","Healing, cleanse"],
+    ["Black Mage","Artilleryman","Field gun","Elemental damage"],
+    ["Fighter","Grenadier","Heavy musket + sabre","Raw physical power"],
+    ["Paladin","Colour Guard","Sabre + standard","Protect allies, defensive buffs"],
+    ["Ninja","Hussar","Sabre + pistol (mounted)","Fast, dual strike, evasion"],
+    ["Hunter","Chasseur","Rifle","Long-range, tracking, capture"],
+    ["Blue Mage","Intelligence Officer","Sabre + documents","Learns enemy actions"],
+    ["Illusionist","Bombardier","Incendiary shells","AoE to a target class"]
+  ]},
+  Britain: {color:"var(--britain)", doctrine:"Professional light troops, rifles, cavalry.", rows:[
+    ["Fencer","Sabreur","Sabre","Fast melee chains"],
+    ["White Mage","Surgeon (common)","Medical kit","Healing, cleanse"],
+    ["Archer","Rifleman","Baker-type rifle","Ranged damage"],
+    ["Sniper","Sharpshooter","Long rifle","Very long-range precision"],
+    ["Red Mage","Adjutant","Sabre + pistol","Mixed blade/ranged, utility"],
+    ["Elementalist","Rocketeer","Congreve-style rockets","Elemental AoE"],
+    ["Assassin","Long Rifle","Rifle + knife","Assassination, concealment"],
+    ["Summoner","Commodore","Naval signals","Off-map heavy bombardment"]
+  ]},
+  Prussia: {color:"var(--prussia)", doctrine:"Disciplined heavy infantry, shock.", rows:[
+    ["Warrior","Line Grenadier","Musket + bayonet","Heavy basic melee/ranged"],
+    ["White Monk","Assault Pioneer","Bayonet + tools","Martial strikes + self-heal"],
+    ["Bishop","Chaplain","Cross + sabre","Holy support, protect/cleanse"],
+    ["Defender","Cuirassier","Heavy sabre + breastplate","Tanky melee"],
+    ["Dragoon","Lancer","Lance","Reach attacks, charge / 'jump'"],
+    ["Gladiator","Shock Grenadier","Sabre","High-damage single strikes"],
+    ["Templar","Line Officer","Sabre","Command auras, dispel, buffs"]
+  ]},
+  Russia: {color:"var(--russia)", doctrine:"Massed artillery, engineers, resilience.", rows:[
+    ["Beastmaster","Partisan","Sabre + whistle","Recruit / control irregulars"],
+    ["Black Mage","Artilleryman (common)","Field gun","Elemental damage"],
+    ["White Mage","Surgeon (common)","Medical kit","Healing, cleanse"],
+    ["Alchemist","Sapper","Grenades + tools","Items, bombs, sabotage"],
+    ["Illusionist","Signaller","Flags + rockets","AoE signalling strikes"],
+    ["Morpher","Impersonator","Disguise kit","Assume captured identities"],
+    ["Sage","Master Gunner","Heavy ordnance","High-tier artillery"],
+    ["Time Mage","Staff Officer (common)","Maps + dispatch","Tempo (haste / slow / stop)"]
+  ]},
+  Austria: {color:"var(--austria)", doctrine:"Defensive lines, skirmishers, technical support.", rows:[
+    ["Animist","Scout","Horn + hounds","Calls support creatures"],
+    ["Black Mage","Artilleryman (common)","Field gun","Elemental damage"],
+    ["Thief","Forager (common)","Sabre","Steal, disengage"],
+    ["Gunner","Fusilier","Carbine","Reliable ranged"],
+    ["Mog Knight","Lancer","Lance","Reach, mounted-style charge"],
+    ["Time Mage","Staff Officer (common)","Maps + dispatch","Tempo"],
+    ["Juggler","Grenadier","Grenades + knives","Thrown weapons, gambits"],
+    ["Gadgeteer","Engineer","Gadgets + tools","Random / utility devices"]
+  ]}
+};
+
+const guards = [
+  ["France","Mateus","The Old Guard","Devastating all-enemy assault"],
+  ["Britain","Exodus","The Heavy Brigade","Draining charge (Élan drain)"],
+  ["Prussia","Adrammelech","The Death's Head Hussars","Piercing shock attack"],
+  ["Russia","Ultima","The Grand Battery","Massive artillery barrage"],
+  ["Austria","Famfrit","The Kaiser's Bombardiers","Multi-hit explosive fire"]
+];
+
+const resources = [
+  ["MP","Élan","Spent by actions; regenerates over turns; doubles as morale"],
+  ["JP (max 10)","Honour (max 10)","From legal kills + commended acts; fuels Volleys & Guard Sorties"],
+  ["AP","Drill","Earned by actions; masters gear-bound abilities"],
+  ["XP","Experience","Levels"],
+  ["Gil","Crowns","Economy"]
+];
+
+const elements = [
+  ["Fire","Incendiary","Shells, combustibles"],
+  ["Ice","Cold","Winter / attrition"],
+  ["Lightning","Shock","Concussion, artillery"],
+  ["Earth","Siege","Mines, earthworks, debris"],
+  ["Water","Deluge","Rivers, naval, soaked powder"],
+  ["Wind","Smoke","Obscuration, dispersal"],
+  ["Holy","Colours","Inspiration, blessings"],
+  ["Dark","Terror","Atrocity, psychological"]
+];
+
+const conditions = [
+  ["Poison","Bleeding","Damage over time"],
+  ["Blind","Dazed","Reduced hit"],
+  ["Silence","Deafened","Blocks commands / casting"],
+  ["Sleep","Unconscious","Cannot act, wakes on hit"],
+  ["Confuse","Panicked","Attacks randomly / allies"],
+  ["Berserk","Frenzied","Auto-attack nearest"],
+  ["Charm","Turned","Acts for the enemy"],
+  ["Stop","Stunned","Loses turns"],
+  ["Petrify","Broken","Effectively out of action"],
+  ["Frog","Disarmed","Restricted to weak actions"],
+  ["Zombie","Fevered","Inverted healing / damage"],
+  ["Doom","Mortally Wounded","Countdown to KO"],
+  ["KO","Out of Action","Down; may be revived"],
+  ["Haste / Slow","Double-Quick / Bogged","Tempo up / down"],
+  ["Regen","Steadied","Heal over time"],
+  ["Protect / Shell","Formed / Braced","Physical / magical defence"],
+  ["Reflect","Deflected","Bounce attacks"],
+  ["Boost","Rallied","Temporary attack up"],
+  ["Defense","Entrenched","Temporary defence up"],
+  ["Cover","Covering Fire","Redirect / absorb hits"],
+  ["Immobilize","Pinned","Cannot move"],
+  ["Disable","Lamed","Cannot act"],
+  ["Addle","Bewildered","Cannot use actions"],
+  ["Astra","Adjutant's Orders","One-time immunity"],
+  ["Auto-Life","Last Rites","Auto-revive once"],
+  ["Hibernate","Bivouacked","Skip turns to recover"],
+  ["Conceal","Camouflaged","Hidden"],
+  ["Quicken","Inspired","Immediate extra turn"],
+  ["Expert Guard","Parry","Perfect block"],
+  ["Advice","Counsel","Higher crit"],
+  ["Control","Suborned","Player-controlled enemy"],
+  ["MPow / WAtk / WDef / MRes up-down","Powder / Steel / Guard / Faith modifiers","Stat up / down"]
+];
+
+const campaign = [
+  ["Regular missions","Battles","Story / campaign set pieces"],
+  ["Encounter missions","Skirmishes","Rival free company roams the map"],
+  ["Dispatch missions","Detachments","Send units away for N days"],
+  ["Area missions","Pacifications","Liberate regions for discounts"],
+  ["Pub + fee + requirements","Officers' Mess contracts","Entry fee, item / post / unit gates"],
+  ["Equipment-bound AP learning","Drill by kit","Gear teaches abilities"],
+  ["Job-unlock thresholds","Post prerequisites","N actions from a post"],
+  ["Primary / secondary job","Primary post / Attached post","Stats from primary, kit from any mastered post"],
+  ["World map + area tokens","Campaign Map + Markers","Place tiles, shape the theatre, treasure hunts"],
+  ["Shops + race discount","Depots","Power-specific discounts"],
+  ["Monster Bank","Auxiliary Barracks","Store captured irregulars"],
+  ["Calendar + daily laws","Campaign date + daily orders","Laws rotate by day"],
+  ["Recruit by race in towns","Recruiting offices","By power"],
+  ["Link-cable multiplayer","Online skirmish","Command-replay netcode"]
+];
+
+const enemies = [
+  ["Goblin / soldier-type","Militia / deserters"],
+  ["Bomb / Flan","Petard crews / powder teams"],
+  ["Malboro-type","Guerrilla bands"],
+  ["Floateye","Scout balloon / observer"],
+  ["Dragon-type","Heavy cavalry / armoured train"],
+  ["Boss monsters","Named enemy generals / guard formations"],
+  ["Summoned creatures","Massed battery / cavalry wave"]
+];
+
+const combat = [
+  ["Charge Time Battle","Orders Tempo","Speed-driven turn order; integer ticks"],
+  ["Facing (front/side/back)","Facing","Flank / rear bonuses"],
+  ["Height","Elevation","Hills, redoubts, rooftops"],
+  ["Move / Jump","Move / Climb","Terrain + height cost"],
+  ["Knockback","Shove","Cavalry impact, explosions"],
+  ["Counter / Reaction","Reaction","Riposte, Return Fire"],
+  ["Volley (Combo)","Volley","Adjacent allies chain, costs Honour"],
+  ["Guard Sortie (Totema)","Guard Sortie","10 Honour, whole-field"],
+  ["Range / Line of Sight","Range / Line of Sight","Smoke and terrain can block"]
+];
+
+/* ------------------------------ render ------------------------------ */
+const $ = (id) => document.getElementById(id);
+
+$("decisionGrid").innerHTML = decisions.map(d => `
+  <div class="dec">
+    <span class="lock">locked</span>
+    <div class="id">${d[0]}</div>
+    <h3>${d[1]}</h3>
+    <p>${d[2]}</p>
+  </div>`).join("");
+
+$("dictBody").innerHTML = dictionary.map(r =>
+  `<tr><td>${r[0]}</td><td class="arrow">→</td><td><strong>${r[1]}</strong></td><td>${r[2]}</td></tr>`).join("");
+
+$("powerGrid").innerHTML = powers.map(p => `
+  <div class="power">
+    <div class="bar" style="background:${p.color}"></div>
+    <div class="body">
+      <div class="race">${p.race}</div>
+      <h3>${p.power}</h3>
+      <p>${p.identity}</p>
+      <p><em>${p.doctrine}</em></p>
+    </div>
+  </div>`).join("");
+
+$("roleTabs").innerHTML = Object.keys(roleTrees).map((name,i) =>
+  `<button class="${i===0?"active":""}" data-power="${name}">${name}</button>`).join("");
+
+$("roleBlocks").innerHTML = Object.entries(roleTrees).map(([name,data],i) => `
+  <div class="power-block ${i===0?"active":""}" data-power="${name}">
+    <p class="doctrine"><span class="tag" style="border-color:${data.color};color:${data.color}">${name}</span> ${data.doctrine}</p>
+    <div class="wrap"><table class="searchable"><thead><tr><th>FFTA job</th><th></th><th>Post</th><th>Weapons / flavour</th><th>Kit preserved</th></tr></thead><tbody>
+      ${data.rows.map(r => `<tr><td>${r[0]}</td><td class="arrow">→</td><td><strong>${r[1]}</strong></td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+    </tbody></table></div>
+  </div>`).join("");
+
+$("roleTabs").addEventListener("click", (e) => {
+  const btn = e.target.closest("button"); if (!btn) return;
+  document.querySelectorAll("#roleTabs button").forEach(b => b.classList.toggle("active", b===btn));
+  document.querySelectorAll("#roleBlocks .power-block").forEach(b => b.classList.toggle("active", b.dataset.power===btn.dataset.power));
+});
+
+const fill3 = (id, rows, a, b, c) => {
+  $(id).innerHTML = rows.map(r => `<tr><td>${r[a]}</td><td class="arrow">→</td><td><strong>${r[b]}</strong></td><td>${r[c]}</td></tr>`).join("");
+};
+// guard table has an extra Totema column; rebuild properly
+$("guardBody").innerHTML = guards.map(r =>
+  `<tr><td>${r[0]}</td><td>${r[1]}</td><td class="arrow">→</td><td><strong>${r[2]}</strong></td><td>${r[3]}</td></tr>`).join("");
+fill3("resBody", resources, 0, 1, 2);
+fill3("elemBody", elements, 0, 1, 2);
+fill3("condBody", conditions, 0, 1, 2);
+fill3("campBody", campaign, 0, 1, 2);
+$("enemyBody").innerHTML = enemies.map(r => `<tr><td>${r[0]}</td><td class="arrow">→</td><td><strong>${r[1]}</strong></td></tr>`).join("");
+fill3("combatBody", combat, 0, 1, 2);
+
+/* ------------------------------ search ------------------------------ */
+const search = $("search"), empty = $("empty"), count = $("count");
+function runSearch() {
+  const q = search.value.trim().toLowerCase();
+  let visible = 0, total = 0;
+  document.querySelectorAll("table.searchable tbody").forEach(tb => {
+    tb.querySelectorAll("tr").forEach(tr => {
+      total++;
+      const match = !q || tr.textContent.toLowerCase().includes(q);
+      tr.style.display = match ? "" : "none";
+      if (match) visible++;
+    });
+  });
+  // Sections with no matching rows get a soft dim.
+  document.querySelectorAll("section").forEach(sec => {
+    const tb = sec.querySelector("table.searchable tbody");
+    if (!tb) return;
+    const any = [...tb.querySelectorAll("tr")].some(tr => tr.style.display !== "none");
+    sec.style.opacity = (q && !any) ? ".35" : "1";
+  });
+  empty.style.display = (q && visible === 0) ? "block" : "none";
+  count.textContent = q ? `${visible} of ${total} rows match` : `${total} mapped rows`;
+}
+search.addEventListener("input", runSearch);
+runSearch();
+</script>
+</body>
+</html>

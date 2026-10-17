@@ -1,0 +1,55 @@
+{{DISPLAYTITLE:Rune (''Tactics Advance'')}}
+{{Quote|Runeseeker command. Use all forms of magic.|Description}}
+'''Rune''' {{J|ルーン|Rūn}} is the action ability for the [[Runeseeker]] in ''[[Final Fantasy Tactics Advance]]''.
+
+==Rune==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Explode}}
+|24
+|40
+|3
+|-
+|colspan=3 style="text-align:left"|''Explosive magical power. Deals enormous damage.''
+|-
+! rowspan=2|{{A|Stillness}}
+|24
+|—
+|3
+|-
+|colspan=3 style="text-align:left"|''Freezes time and space to stop units in an area.''
+|-
+! rowspan=2|{{LA|Gravity (ability)|Quarter}}
+|10
+|—
+|3
+|-
+|colspan=3 style="text-align:left"|''Small gravity field. Saps 1/4 of target's HP.''
+|-
+! rowspan=2|{{LA|Graviga|Demi}}
+|24
+|—
+|3
+|-
+|colspan=3 style="text-align:left"|''Gravity field. Saps 1/2 of target's HP.''
+|}
+
+==Gallery==
+<gallery>
+FFTA Explode.png|Explode
+FFTA Stillness.png|Stillness
+FFTA Demi.png|Demi
+FFTA Quarter.png|Quarter
+</gallery>
+
+==Etymology==
+{{Etym|Rune}}
+
+{{navbox abilities FFTA}}
+[[Category:Rune abilities in Final Fantasy Tactics Advance]]
+[[Category:Magic in Final Fantasy Tactics Advance]]

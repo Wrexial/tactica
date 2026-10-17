@@ -1,0 +1,257 @@
+{{DISPLAYTITLE:White Mage (''Tactics Advance'')}}
+{{infobox job
+|name=White Mage
+|release=FFTA
+|japanese=白魔道士
+|romaji=Shiromadōshi
+|image=<gallery>
+Ffta-h-whitemage.jpg|Hume
+Ffta-viera-whitemage.jpg|Viera
+Ffta-nu-mou-whitemage.jpg|Nu mou
+</gallery>
+|portrait=[[File:ffta-job-human-white-mage-por.png|50px|Hume player]] [[File:Ffta-job-human-white-mage-enemy.png|Enemy hume|50px]]<br/>[[File:Ffta-job-viera-white-mage.png|50px|Viera player]] [[File:Ffta-job-viera-white-mage-enemy.png|Enemy viera|50px]]<br/>[[File:job-nu-mou-white-mage-por.png|50px|Nu mou player]] [[File:Ffta-job-nu-mou-whie-mage-enemy.png|Enemy nu mou|50px]]
+|sprite=[[File:FFTA-job-whtmageH.gif|20px|Hume player]] [[File:Ffta-job-human-white-mage-enemy-sprite.png|Enemy hume|20px]] [[File:FFTA-job-whtmageV.gif|20px|Viera player]] [[File:Ffta-job-viera-white-mage-enemy-sprite.png|Enemy viera|20px]] [[File:FFTA-job-whtmageNM.gif|20px|Nu mou player]] [[File:Ffta-job-nu-mou-white-mage-enemy-sprite.png|Enemy nu mou|20px]]
+|obtained=Default
+|characters=[[Human|Humes]], [[viera]], [[nu mou]]
+|stats=*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 40
+*Stat growth: Magic-oriented
+|weapons=[[Final Fantasy Tactics Advance weapons#Staves|Staves]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Female-only ornament|ornaments]] (viera), [[Final Fantasy Tactics Advance armor#Clothing|clothing]] and [[Final Fantasy Tactics Advance armor#Robes|robes]]<br/>Can't equip shields
+|command abilities=*[[White Magic (Tactics Advance)|White Magic]]
+*[[#White Combo|White Combo]] (combo)
+|support abilities=*[[Turbo MP]]
+|recurring appearance=White Mage
+}}
+{{Quote|Uses white magic to heal and aid allies.|Description}}
+The '''White Mage''' [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' to [[Human|humes]], [[viera]], and [[nu mou]]. The White Mage learns the general [[White Magic (Tactics Advance)|White Magic]] abilities, such as [[Cure (ability)|Cure]] and [[Raise (Life 1)|Life]]. They wield staves. The White Magic they use to aid allies is also effective in dealing damage to [[Zombie (Tactics Advance)|Zombies]] and [[Vampire (Tactics Advance)|Vampires]]. The best race to use the White Mage is the nu mou due to their superior magic [[Stat growth|growth]]. Viera should only use the White Mage when necessary (i.e. to unlock more powerful jobs). White Mages, as always, provide fantastic support.
+
+==Growth==
+===Hume===
+Hume White Mages are mediocre when compared to both other White Mage types and other hume magic classes. Their Speed, Defense, HP and MP are slightly higher than the hume [[Black Mage (Tactics Advance)|Black Mage]], but the Black Mage has higher Magic Power and Resistance growths. Compared to the other White Mages, there is nothing a hume White Mage can do that a different race cannot do better. It is best to avoid [[level]]ing up as a hume White Mage, since there are better stat growths available elsewhere.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.1 D+
+|4.8 B
+|6.2 D-
+|7.3 C-
+|8.4 B
+|8.2 B-
+|style="text-align:center"|1.2 D+
+|}
+
+===Viera===
+Viera White Mages are slightly faster and have higher HP than nu mou White Mages, as well as tied in Magic Power, but they have lower Defense, Resistance, and MP. They are the ideal starting class for a viera specializing in magic.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|6.2 D+
+|4.8 B
+|6.2 D-
+|7.2 C-
+|8.8 B+
+|7.6 C
+|1.2 D+
+|}
+
+===Nu mou===
+Nu mou White Mages have the highest Resistance and MP of the three White Mages, as well as tied with the viera in Magic Power. Compared to the nu mou Black Mage, they have slightly higher HP, MP, Defense and Speed, but the Black Mage has higher Attack, Magic Power and Resistance.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|5.8 D
+|5.6 A-
+|5.7 E
+|7.3 C-
+|8.8 B+
+|8.4 B
+|1.1 D
+|}
+
+==Abilities==
+===[[White Magic (Tactics Advance)|White Magic]]===
+{{Quote|White mage command. Help allies with healing magic.|Description}}
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Cure (ability)|Cure}}
+|[[White Staff (Tactics Advance)|White Staff]]
+|100
+|6
+|40
+|4
+|-
+|colspan=5 style="text-align:left"|''Eases pain and heals HP. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Cura}}
+|[[Cure Staff (Tactics Advance)|Cure Staff]]
+|200
+|10
+|60
+|4
+|-
+|colspan=5 style="text-align:left"|''Heals a lot of HP. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Curaga}}
+|[[Spring Staff (Tactics Advance)|Spring Staff]]
+|300
+|16
+|80
+|4
+|-
+|colspan=5 style="text-align:left"|''Heals a great deal of HP. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Esuna (ability)|Esuna}}
+|[[Pure Staff (Tactics Advance)|Pure Staff]]
+|200
+|18
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Purifying light. Remedies status ailments.''
+|-
+! rowspan=2|{{LA|Raise (Life 1)|Life}}
+|[[Bless Staff (Tactics Advance)|Bless Staff]]
+|200
+|10
+|90
+|4
+|-
+|colspan=5 style="text-align:left"|''Revives KO'd unit. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Arise|Full-Life}}
+|[[Nirvana Staff (Tactics Advance)|Nirvana Staff]]
+|300
+|20
+|100
+|4
+|-
+|colspan=5 style="text-align:left"|''Revives KO'd unit, and heals HP to max. Deals damage to zombies.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Reraise (ability)|Auto-Life}}
+|[[Cheer Staff (Tactics Advance)|Cheer Staff]]
+|200
+|18
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Auto-raises KO'd unit.''<br/>'''Element:''' Holy
+|-
+! rowspan=2|{{LA|Shell (ability)|Shell}}
+|[[Judge Staff (Tactics Advance)|Judge Staff]]
+|100
+|6
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Envelops target in holy veil. Raises magic res.''
+|-
+! rowspan=2|{{LA|Protect (ability)|Protect}}
+|[[Guard Staff (Tactics Advance)|Guard Staff]]
+|100
+|6
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Enveloping white cloud. Raises weapon defense.''
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Turbo MP}}
+|[[White Robe (Tactics Advance)|White Robe]]
+|style="text-align:left"|''Doubles MP use for better damage and hit rate.''
+|300
+|}
+
+===Combo===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|White Combo}}
+|[[Mythril Staff (Tactics Advance)|Mythril Staff]]
+|style="text-align:left"|''Ranged combo ability for white mages.''
+|100
+|}
+
+== Overview ==
+[[File:FFTA Life.png|Life.|thumb]]
+White Mage provides healing and support for allies. Accessible from the start, it is an ideal class for units who specialize in support rather than combat. White Mage can heal groups of allies from a distance and has access to Life, Full Life, and Auto Life, which help to prevent potential disasters in areas like the [[Jagd]]s. Life, in particular, is one of the earliest reviving abilities obtainable. Shell and Protect bestow allies higher survivability, while Esuna cleanses the most common status effects. With decently high Magic Resistance and the right robes, White Mages can resist enemy magic. Since their healing abilities are holy-elemental, they can damage the scarce undead enemies in the game. Even after a character can move on from the class, White Mage abilities are great for any would-be healer to have.
+
+However, the White Mage's stat growth is unremarkable, bar decently high Magic Resistance. The more advanced mage classes offer superior stat growth in all areas. The stat growths between the three variations are not significantly different, but the hume White Mage has the lowest Magic Attack, while the nu mou White Mage is the slowest. This class is incapable of physical combat, and no staff has particularly high attack power. Becoming a White Mage is outside the realm of possibility for units like [[Fighter (Tactics Advance)|Fighters]].
+
+Overall, the White Mage is a capable healer throughout the entire game. Its stats are easily outclassed, but its abilities are worthy to have on any mage.
+
+Enemy White Mages are easily defeated by physical combat. Offensive units can outspeed and take out White Mages before they get to move. Silence disables them for a while. Any enemy units near a White Mage will likely survive longer than usual, so it is better to attack the White Mage than potentially waste damage on another unit. Physical ranged units, like [[Hunter (Tactics Advance)|Hunters]] and [[Gunner (Tactics Advance)|Gunners]], can heavily damage White Mages while staying away from danger.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+All three races capable of being a White Mage appear. Each card is of a different element: the nu mou White Mage is Wind-elemental, the hume is Earth-elemental, and the viera is Aqua-elemental.
+
+<gallery>
+WhiteMage NuMou TCG.png|Trading Card.
+WhiteMage Hume TCG.png|Trading Card.
+WhiteMage Viera TCG.png|Trading Card.
+</gallery>
+
+==Gallery==
+<gallery>
+FFTA Cure.png|Cure.
+FFTA Cura.png|Cura.
+FFTA Curaga.png|Curaga.
+FFTA Esuna.png|Esuna.
+FFTA Full-Life.png|Full-Life.
+FFTA Auto-Life.png|Auto-Life.
+FFTA Shell.png|Shell.
+FFTA Protect.png|Protect.
+</gallery>{{Gallery incomplete|White Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Mago blanco (Final Fantasy Tactics Advance)]]
+[[it:Mago bianco (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

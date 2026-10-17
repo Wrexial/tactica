@@ -1,0 +1,71 @@
+{{DISPLAYTITLE:Zombie (''Tactics Advance'')}}
+[[File:Zombie - Status.gif|right]]
+[[File:FFTA-spr-zombie.gif|left]]
+{{Quote|Dark magic animates these walking corpses.|Description}}
+'''Zombies''' are [[undead]] enemies in ''[[Final Fantasy Tactics Advance]]''. As such, they are weak to [[Fire (element)|Fire]] and [[Cure (ability)|Cure]] spells, and will revive themselves three turns after being [[Knocked Out]]. They are less dangerous than the other undead enemy, the [[Vampire (Tactics Advance)|Vampire]], having no teleportation abilities and less-than-spectacular [[HP (stat)|HP]] and movement stats. As they are in permanent Zombie status, burying skills will remove them from battle.
+
+{{See|Zombie (enemy)}}
+
+==Abilities==
+===Rot===
+{{Quote|Zombie command. Drain life from an enemy.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Drain Touch}}
+|''Evil touch. Drains and absorbs HP from target.''
+|10
+|-
+!{{LA|Miasma (ability)|Miasma}}
+|''Calls forth ill humors to damage and poison target.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Mission #046: Prof in Trouble
+|Two Ice Flans flank the three Zombies(called Lost Ones) that are closing in on [[Professor Auggie]].
+|-
+!Turf Defense Mission: Help Ahli!
+|Three Zombies and a Vampire rise from the dead to attempt a takeover of [[Jagd Ahli|Ahli]].
+|-
+!Mission #048: S.O.S
+|[[Marche Radiuju|Marche]] assists [[Ritz Malheur|Ritz]] in driving off an enemy clan which includes two Zombies.
+|-
+!Mission #080: Earth Sigil
+|The Redwing of Earth, [[Lich]], is a Zombie. He has no special abilities compared to normal Zombies.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Aisenfield (Tactics Advance)|Aisenfield]]
+|style="text-align: center"|Aisen Ghosts
+|Despite the Clan name, the two Zombies are the only undead enemies in this encounter.
+|}
+
+==Etymology==
+{{Etym|Zombie}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

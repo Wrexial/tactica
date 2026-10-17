@@ -1,0 +1,40 @@
+[[File:Ozmonfield.png|thumb|right|250px|The Gertai Band in Ozmonfield.]]
+{{Quote|Gentle rolling plains with occasional insect plagues.|Description}}
+The '''Ozmonfield''' {{J|オズモーネ平原|Ozumōne Heigen}} is a location in ''[[Final Fantasy Tactics Advance]]''. It is a version of the [[Ozmone Plain]] that appears in ''[[Final Fantasy XII]]''. Though both games are set in the same world of [[Ivalice]], the ''Final Fantasy Tactics Advance'' Ivalice is in fact a dream world version of the world in ''[[Final Fantasy XII]]'', and so some place names are bound to be similar, but not exactly the same. Ozmonfield is unlocked after "Mission #066: Dargon's Aid" is completed and is the site of "Mission #090: Clan Law". It can be freed in "Mission #263: Ozmonfield" after the main game is cleared.
+
+==Missions==
+*"Mission #090: Clan Law"
+{{Quote|We clans were made to steal work, to gain turf, were we not? All you fat and lazy clans, get ready for a rude awakening!|Secret Clan Coalition}}
+*"Mission #263: Ozmonfield
+{{Quote|The chomper beetles found in Ozmonfield are eating my chocobo feed. Please use this "bug-B-gone" to drive them away!|Dalaben, Ranch Manager}}
+
+==Encounters==
+===Gertai Band===
+{{Quote|Shady group that once controlled half of Ivalice. Rivals with the Bardo Band.|Description}}
+Members:
+*[[Assassin (Tactics Advance)|Assassin]] (Viera)
+*[[Blue Mage (Tactics Advance)|Blue Mage]] (Human)
+*[[Juggler (Tactics Advance)|Juggler]] (Moogle)
+*[[Ninja (Tactics Advance)|Ninja]] (Human)
+*[[Sniper (Tactics Advance)|Sniper]] (Viera)
+
+==Turf Defense==
+===Help Ozmon!===
+{{Quote|The Gertai Band is raising chomper beetles in Ozmonfield. I don't know what they're up to, but it's nothing good, I'm sure.|Town Rumor}}
+Reward: 4000 gil. Available: 30 days.
+*Assassin
+*Blue Mage
+*Ninja
+*Sniper
+
+==Gallery==
+<gallery>
+Ozmon Field 1.PNG|Ozmonfield.
+Ozmon Field 2.PNG|Ozmonfield.
+Plain-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Plains]]
+[[Category:Locations in Final Fantasy Tactics Advance]]

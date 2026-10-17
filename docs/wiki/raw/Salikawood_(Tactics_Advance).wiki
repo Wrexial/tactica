@@ -1,0 +1,49 @@
+{{DISPLAYTITLE:Salikawood (''Tactics Advance'')}}
+[[File:TASalikawood.png|right|thumb|250px|Tricky Spirits in Salikawood.]]
+{{Quote|The chirping of birds can always be heard here. An abandoned keep stands in the middle of the wood.|Description}}
+'''Salikawood''' {{J|サリカ樹林|Sarika jurin}} is the woodland location in ''[[Final Fantasy Tactics Advance]]''. The first fight with [[Babus Swain]] in "Mission #010: Emerald Keep" occurs here. Rumors of a giant emerald [[Crystal (term)|crystal]] bring Babus and [[Marche Radiuju|Marche]] to the same location in the wood, where Marche lets slip that he knows [[Mewt Randell|Prince Mewt]] and Babus attempted to apprehend him. It can be freed in "Mission #248: The Salikawood" after "Mission #012: Jagd Hunt" is completed.
+
+==Missions==
+*"Mission #010: Emerald Keep"
+{{Quote|The Royal Mage Academy has given up their research for the giant emerald crystal of Salika Keep. Treasure hunters, now's your chance!|Levey, Search Team Member}}
+*"Mission #035: Salika Keep"
+{{Quote|Gaol, lover of the moon maiden Evelyn, was out with Lini the Moogle when the keeplord of Salika invited them... to die!|"The Hero Gaol, Chapter 4"}}
+*"Mission #081: The Redwings"
+{{Quote|The Redwings base has been found in the Salikawood. Dark Knight Grissom, the Redwings boss is there. Godspeed.|The Mysterious Minstrel}}
+*"Mission #093: Flan Breakout"
+{{Quote|There's been an outbreak of flan near our logging site! They'll eat all the trees, and we'll be out of a job! Help!|Dals, Lumberjack}}
+*"Mission #248: The Salikawood"
+{{Quote|I plan on cutting a path though the Salikawood. I'll do some reforesting, too! I can't pay much, but I really need help.|Laycher, Innkeeper}}
+
+==Encounters==
+===Tricky Spirits===
+{{Quote|Woodland fairy. Likes to play pranks on people, driving some to madness.|Description}}
+*[[Sprite (Tactics Advance)|Sprite]] x2
+*[[Titania (Tactics Advance)|Titania]]
+*[[Red Cap (Tactics Advance)|Red Cap]]
+*[[Cream (Tactics Advance)|Cream]]
+
+==Turf Defense==
+===Help Salika!===
+{{Quote|These trickster spirits lured me into the woods, and it took me a day to find my way out! Somebody do something about them!|Town rumor}}
+*[[Sprite (Tactics Advance)|Sprite]] x2
+*[[Titania (Tactics Advance)|Titania]]
+*[[Red Cap (Tactics Advance)|Red Cap]]
+
+==Gallery==
+<gallery>
+Salika Wood 1.PNG|Salikawood.
+Salika Wood 2.PNG|Salikawood.
+Salika Wood 3.PNG|Salikawood.
+Salika Wood 4.PNG|Salikawood.
+Salika Wood 5.PNG|Salikawood.
+Forest-ffta-icon.png|Icon.
+</gallery>
+
+==Etymology==
+{{Etym|Salix}}
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Forests]]

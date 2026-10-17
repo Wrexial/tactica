@@ -1,0 +1,37 @@
+[[File:UladonBog.png|thumb|right|250px|Clan Nutsy versus Roaming Naiads.]]
+{{Quote|Deep and dangerous bogland dotted with islands.|Description}}
+'''Uladon Bog''' {{J|ウラドノ湿地|Uradono Shicchi}} is a swamp location in ''[[Final Fantasy Tactics Advance]]''. It is unlocked after completing "Mission #015: Scouring Time" and is the site of "Mission #016 The Big Find".
+
+In this mission, yet another clan attempts to turn [[Marche Radiuju|Marche]] in for the bounty on his head placed by [[Bervenia Palace]]. After the clan is defeated, Marche catches a fleeting glimpse of a hidden person and begins to think that someone is spying on him. Uladon Bog is also the site of "Mission #028: Wanted!" and "Mission #085: Foreign Fiend". It can be freed in "Mission #252: Uladon Bog".
+
+==Encounters==
+===Roaming Naiads===
+{{Quote|Feared as a water-spirit by locals. Attacks those who come too close to the lake.|Description}}
+*[[Ice Flan (Tactics Advance)|Ice Flan]]
+*[[Lamia (Tactics Advance)|Lamia]]
+*[[Lilith (Tactics Advance)|Lilith]]
+*[[Icedrake]]
+*[[Sprite (Tactics Advance)|Sprite]]
+
+==Turf Defense==
+===Help Uladon!===
+{{Quote|The naiads are trying to destroy the bridge over the swamp, and if they succeed, no one will be able to get across!|Town rumor}}
+*[[Icedrake]]
+*[[Ice Flan (Tactics Advance)|Ice Flan]]
+*[[Lamia (Tactics Advance)|Lamia]]
+*[[Lilith (Tactics Advance)|Lilith]]
+
+==Gallery==
+<gallery>
+Uladon Bogt 1.PNG|Uladon Bog (1).
+Uladon Bogt 2.PNG|Uladon Bog (2).
+Uladon Bogt 3.PNG|Uladon Bog (3).
+River-ffta-icon.png|Icon.
+</gallery>
+
+==Etymology==
+{{Etym|Bog}}
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]

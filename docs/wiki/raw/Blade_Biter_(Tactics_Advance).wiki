@@ -1,0 +1,68 @@
+{{DISPLAYTITLE:Blade Biter (''Tactics Advance'')}}
+[[File:FFTA - Blade Biter Portrait.png|right]]
+[[File:FFTA-spr-bladebiter.gif|left]]
+{{Quote|Tougher toughskin. Chews weapons with sharp teeth.|Description}}
+The '''Blade Biter''' in ''[[Final Fantasy Tactics Advance]]'' is a purple turtle-like monster with extremely high Defense and high Attack stats. Being a stronger version of normal [[Toughskin (Tactics Advance)|Toughskin]], it has the capability to permanently destroy weapons and unleash a devastatingly powerful attack when at critically low HP. Melee attackers should take care not to get their weapons crushed, especially if they are rare or one of a kind. Like its lesser cousin, it also possesses the Resonate ability to further decrease the usefulness of most physical weapons.
+
+Unlike most monsters, the Blade Biter has no abilities that can be learned as Blue Magic.
+
+==Abilities==
+===Crush===
+{{Quote|Blade biter command. Crush weapons in powerful jaws.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Limit Glove}}
+|''Deals heavy damage when own life is threatened.''<br>If the Blade Biter is in critical HP level, this ability can do over 900 damage.
+|-
+!{{A|Munch}}
+|''Crushes weapons with sharp teeth and powerful jaws. Monster takes damage.''
+|-
+!Resonate
+|''Back sword quivers to create resonance. [[Disable (status)|Disable]] target.''<br>Works on target's with metallic weapons.
+|}
+
+===Support===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{A|Weapon Atk+}}
+|''Improves weapon attacks to deal more damage.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Mission: Help Nubs!
+|The Blade Biter here is flanked by two Toughskins and controlled by a [[Beastmaster (Tactics Advance)|Beastmaster]]. Black Magic is very important in this fight.
+|-
+!Turf Defense Mission: Mission: Help Nargai!
+|The Blade Biter here can be troublesome if it runs off to a corner and uses Resonate to disable any physical attackers. Try to catch it with a strong [[Blizzard (ability)|Blizzard]] spell before it does so.
+|-
+!Mission #083: Foreign Fiend
+|The lone level 38 Blade Biter here is actually a foreign Adamantoise. Inflict it with the Disable or [[Stop (status)|Stop]] status effects and use it to level up the party members quickly.
+|-
+!Mission #017: Old Friends
+|Be careful to not let the Blade Biter sneak up and destroy one of the melee units' weapons while the [[Summoner (Tactics Advance)|Summoner]] and [[Elementalist (Tactics Advance)|Elementalist]] are throwing spells.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Nargai Cave]]
+|style="text-align: center"|Tribites
+|Make sure the mage does not venture into the range of the [[Red Panther (Tactics Advance)|Panthers]] when attempting to reach the Blade Biter with a spell.
+|}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

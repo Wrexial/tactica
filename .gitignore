@@ -1,0 +1,27 @@
+# Node / build
+node_modules/
+dist/
+build/
+coverage/
+*.log
+.env
+.env.*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Test artifacts
+playwright-report/
+test-results/
+.vitest/
+
+# Wiki scraper cache (fully reproducible from the script; not committed)
+docs/wiki/.cache/
+
+# Python
+__pycache__/
+*.pyc

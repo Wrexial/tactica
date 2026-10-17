@@ -1,0 +1,86 @@
+{{DISPLAYTITLE:Ice Flan (''Tactics Advance'')}}
+[[File:FFTA-IceFlan.jpg|200px|right]]
+[[File:FFTA-spr-IceFlan.gif|left]]
+{{Quote|Blue, jelly-like monster. Absorbs ice damage.|Description}}
+The '''Ice Flan''' is an enemy in ''[[Final Fantasy Tactics Advance]]'' that is related to the [[Cream (Tactics Advance)|Cream]] and the [[Jelly (Tactics Advance)|Jelly]]. Like most jellies in the [[Final Fantasy series|''Final Fantasy'' series]], its Defense is phenomenally high, but it is extremely weak to certain elemental spells. The Ice Flan absorbs [[Ice (element)|Ice]]. It is advisable to use [[Lightning (element)|Lightning]], [[Water (element)|Water]], [[Wind (element)|Wind]], [[Earth (element)|Earth]], [[Holy (element)|Holy]], and especially [[Fire (element)|Fire]]-based spells to defeat it.
+
+{{See|Ice Flan}}
+
+==Abilities==
+===Chill===
+{{Quote|Ice flan command. Attack with frozen body.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Acid}}
+|''Corrosive liquid. Inflicts random status ailment.''
+|12
+|-
+!{{LA|Blizzard (ability)|Blizzard}}
+|''Creates chunk of ice to deal damage.''
+|—
+|-
+!{{LA|Blizzara (ability)|Blizzara}}
+|''Powerful blizzard spell. Fires a larger chunk of ice.''
+|—
+|-
+!{{LA|Blizzaga (ability)|Blizzaga}}
+|''Most powerful blizzard spell.''
+|—
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Mission: Help Kudik!
+|An Ice Flan shows up in the frosty cliffs of [[Kudik Peaks|Kudik]].
+|-
+!Turf Defense Mission: Help Uladon!
+|The Ice Flan from the Roaming Naiads returns in this mission.
+|-
+!Mission #046: Prof in Trouble
+|Two Ice Flans flank the three [[Zombie (Tactics Advance)|Zombies]] that are closing in on [[Professor Auggie]].
+|-
+!Mission #007: Diamond Rain
+|An Ice Flan is at the rear of this monster force.
+|-
+!Mission #078: Water Sigil
+|The [[Four Fiends|Falgabird]] of Water, [[Kraken]], is a level 20 Ice Flan. It is not anything special, and can be dispatched with a simple [[Fira (ability)|Fira]] spell.
+|-
+!Mission #109: Snow Fairy
+|When the [[Sprite (Tactics Advance)|Snow Fairy]] does not receive a Cyril Ice, it calls in an Ice Flan to attack the party.
+|-
+!Mission #093: Flan Breakout!
+|Two Ice Flans are three other flans appear in this mission. Phantasm Skills are very useful in dispatching them all.
+|-
+!Mission #065: Exploration
+|An Ice Flan stations itself on a rampart in the northwest part of the field.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Uladon Bog]]
+|style="text-align: center"|Roaming Naiads
+|Two Ice-based monsters are in this clan, an Ice Flan and an [[Icedrake]].
+|}
+
+==Gallery==
+<gallery>
+FFTA IceFlan Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Flan}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

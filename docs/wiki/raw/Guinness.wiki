@@ -1,0 +1,63 @@
+{{infobox character
+|name=Guinness
+|release=FFTA
+|japanese=ギネス
+|romaji=Ginesu
+|image=FFTA-Guinness por.gif
+|sprite=[[File:FFTA Guiness.png|24px]]
+|home=[[St. Ivalice]]
+|race=[[Human]]
+|gender=Male
+|type=npc
+}}
+{{Quote|It's Mewt's fault for being so lame!|Guinness}}
+'''Guinness''' is a character from ''[[Final Fantasy Tactics Advance]]''. A resident of [[St. Ivalice]], Guinness attends the same school where [[Marche Radiuju]] enrolled after moving into town, where he is the D.J.—a popular student who gets to use the public address system.
+
+==Story==
+[[File:StIvaliceSchool.png|right|thumb|Guinness and other students in a snowball fight.]]
+Guinness is in cahoots with two other kids, [[Lyle]] and [[Colin (Tactics Advance)|Colin]]. The three kids are school bullies who enjoy taunting and bullying [[Mewt Randell]] and other kids at school. During the snowball "fight", the bullies ganged up upon Mewt. Mr. Leslaie saw this and stopped the "fight" immediately, sending them off to his office.
+
+It is unknown what happened to them when St. Ivalice was transformed by the [[Gran Grimoire]], until Marche and [[Clan Nutsy]] accepted the quest "Prof in Trouble" to save the [[nu mou]] Professor [[Professor Auggie|Auggie]] in [[Lutia Pass]]. Here, they found out that the three bullies have been turned into [[Zombie (Tactics Advance)|Zombies]] and attacking passers-by. Marche and the clan defeated them with ease.
+
+When St. Ivalice was reverted to its initial state, so did the three bullies, although Marche and Mewt have gathered much courage to go against them. After the game, Lyle, Colin, and himself will also be [[Vampire (Tactics Advance)|Vampires]] in the mission "Mortal Snow", where the clan will recruit [[Ritz Malheur]].
+
+==Stats==
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!width="25%"|Move Rate
+!width="25%"|Jump Rate
+!width="25%"|Evade Rate
+|-
+|3
+|2
+|50
+|}
+
+==Growth==
+Like the other school children, Guinness's DJ job class has its own unique stat growth rate programmed into the game, though it cannot be accessed without a cheat device. However, because it is only used in a tutorial, its stats are quite low and has no abilities.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!width="10%"|HP
+!width="10%"|MP
+!width="10%"|Attack
+!width="10%"|Defense
+!width="10%"|Magic Power
+!width="10%"|Magic Resistance
+!width="10%"|Speed
+|-
+|2.6 E
+|0.0 E
+|2.2 E
+|2.8 E
+|0.0 E
+|0.0 E
+|0.9 D
+|}
+
+==Etymology==
+Guinness is most likely named after a famous brand of Irish Beer which shares the same name.
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]

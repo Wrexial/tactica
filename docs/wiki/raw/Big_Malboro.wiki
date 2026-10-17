@@ -1,0 +1,71 @@
+[[File:FFTA-spr-BigMalboro.gif|left]]
+[[File:FFTA BigMalboro Portrait.gif|right]]
+{{Quote|Powerful malboro that smells even worse.|Description}}
+'''Big Malboro''' in ''[[Final Fantasy Tactics Advance]]'' is a lavender version of the notorious [[Malboro (Tactics Advance)|Malboro]]. In addition to its repugnant odor, it uses horrible sounds to inflict negative status effects and remove positive ones. It has the most HP of any other monster genus, but other than that, is not much more difficult than its green-skinned cousin. Like Malboros, Big Malboros have access to Bad Breath and Goo. Bad Breath inflicts many status effects on one unit, rendering them useless. Goo immobilizes targets in melee range.
+
+Big Malboros are capturable along with their normal variants. This way, [[Morpher]]s are able to use the Big Malboro's Soundwave ability, which dispels all beneficial status effects from enemies. Dispel is a rarity in this game, especially those that have range and effect an area. Together, Malboros and Big Malboros provide Morphers with great status effects and support, but with no damaging capabilities. Because of this, their usefulness depends on whether the player's playstyle favors status effects. Unusually, Malboros and Big Malboros will only eat Ethers and Elixirs, not accepting Curealls.
+
+==Abilities==
+===Reek===
+{{Quote|Big malboro command. Spew poison and eerie sounds.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Bad Breath}}
+|''Incredibly foul breath causes status ailments.''<br>Inflicts five of the following ailments chosen at random: [[Blind (status)|Blind]], [[Confuse (status)|Confuse]], [[Toad (status)|Frog]], [[Poison (status)|Poison]], [[Silence (status)|Silence]], [[Sleep (status)|Sleep]], [[Slow (status)|Slow]].
+|20
+|-
+!{{A|Goo}}
+|''Sticky ooze. [[Immobilize (status)|Immobilizes]] target.''
+|—
+|-
+!{{A|Soundwave}}
+|''Grating noise. Neutralizes status enhancements.''
+|—
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Mission: Help Eluut!
+|A Malboro and Big Malboro begin on the northwest side of the map.
+|-
+!Mission #100: Fiend Run
+|A Big Malboro and three other monsters have escaped from the Monster Bank.
+|-
+!Mission #085: Foreign Fiend
+|Clan Borzoi has imported a Neochu, a powerful level 42 Big Malboro. Defeat the Ochu before tackling this purple 500+ HP beast.
+|-
+!Mission #022: To Ambervale
+|A slew of the most difficult species of monsters, including a Big Malboro, prevent [[Marche Radiuju|Marche]] from searching for amber peacefully.
+|-
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Materiwood]]
+|style="text-align: center"|Lost Monsters
+|A Malboro and Big Malboro work in tandem in this clan.
+|-
+|}
+
+==Gallery==
+<gallery>
+FFTA BigMalboro Portrait.gif|Portrait.
+</gallery>
+
+==Etymology==
+{{Etym|Malboro}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

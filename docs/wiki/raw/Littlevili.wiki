@@ -1,0 +1,45 @@
+{{infobox character
+|name=Littlevili
+|release=FFTA
+|japanese=リトルヴィリ
+|romaji=Ritoruviri
+|image=Ffta-viera-sniper.jpg
+|portrait=[[File:FFTA-job-Sniper-por.png|Portrait.]]
+|sprite=[[File:FFTA-job-sniper.gif|Sprite.]]
+|race=[[Viera]]
+|gender=Female
+|type=playable
+|job=[[Sniper (Tactics Advance)|Sniper]]
+}}
+'''Littlevili''', a [[viera]], is one of six special recruits in ''[[Final Fantasy Tactics Advance]]''.
+
+==Recruitment==
+Littlevili has a 1-in-5 chance of joining [[Clan Nutsy]] after completion of "Mission #043 Clan League", which itself is accessible after completion of the following missions: "#022 To Ambervale", "Yellow Powerz", "Blue Geniuses", "Brown Rabbits", and "White Kupos".
+
+The last four must be done without surrendering or otherwise losing once. Unlike "Mission #063 Missing Prof" for [[Quin]], Clan League is repeatable after completing the encounter side missions, therefore, Littlevili can be recruited at anytime.
+
+==Abilities==
+Like all secret characters, Littlevili joins four levels above the average of the entire clan. Littlevili is recruited as a [[Sniper (Tactics Advance)|Sniper]], and as a bonus she has two abilities already mastered: Doubleshot and Doom Archer.
+
+===Sharpshoot===
+{{Quote|Sniper command. Strike at foe's gear, gil and life.}}
+{|class="full-width FFTA article-table"
+|-
+!style="width:20%"|Skill
+!style="width:80%"|Effect
+|-
+!Doubleshot
+|Attack twice in quick succession. Half power for each attack.
+|-
+!Doom Archer
+|Deals HP and MP damage equal to total HP lost. The damage dealt to each is randomly split.
+|}
+
+==Vili==
+Vili, Littlevili's assumed older sister, is the Sniper leader of the Brown Rabbits and is also the leader in the Clan League. She is also a Sniper.
+
+{{navbox characters FFTA}}
+
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Secret characters]]
+[[Category:Viera]]

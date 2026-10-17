@@ -1,0 +1,202 @@
+{{DISPLAYTITLE:Defender (''Tactics Advance'')}}
+:''For the weapon, see [[Defender (Tactics Advance weapon)]]
+{{infobox job
+|name=Defender
+|release=FFTA
+|japanese=守護騎士
+|romaji=Shugokishi
+|image=Ffta-bangaa-defender.jpg
+|portrait=[[File:ffta-job-defender.png|50px|Player]] [[File:Ffta-job-defender-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-defender.gif|20px|Player]] [[File:Ffta-job-defender-enemy-sprite.png|Enemy|20px]]
+|obtained=Learn two [[Warrior (Tactics Advance)|Warrior]] abilities
+|required=[[Warrior (Tactics Advance)|Warrior]]
+|characters=[[Bangaa]]
+|stats=
+*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 35
+*Stat growth: high HP, Attack and Defense, but little else
+|weapons=[[Final Fantasy Tactics Advance weapons#Knightswords|Knightswords]] and [[Final Fantasy Tactics Advance weapons#Broadswords|broadswords]]
+|armor=[[Final Fantasy Tactics Advance armor#Helms|Helms]], [[Final Fantasy Tactics Advance armor#Robes|robes]] and [[Final Fantasy Tactics Advance armor#Heavy Armor|heavy armor]]<br/>Can't equip shields
+|command abilities=*[[Defend (Tactics Advance)|Defend]]
+*[[#Defend Combo|Defend Combo]] (combo)
+|support abilities=*[[#Last Berserk|Last Berserk]] (reaction)
+|recurring appearance=Defender (job)
+}}
+{{Quote|Bangaa elites. Trained for defense.|Description}}
+'''Defender''' is a [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]'' for [[bangaa]]. Defenders wield [[broadsword]]s and [[Knight sword (weapon type)|knightswords]] and are tanks when it comes to Weapon Defense. While they are somewhat similar to [[Paladin (Tactics Advance)|Paladins]], Defenders prefer to help themselves rather than others.
+
+==Growth==
+Defenders are well set in their ways of simply being a huge wall. They have high HP, Attack and Defense, but little else across the rest of their [[stats]]. The [[Templar (Tactics Advance)|Templar]] has slightly higher defense growth than the Defender.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|8.4 A-
+|1.1 E
+|8.8 B+
+|9.4 A-
+|6.5 D
+|7.2 C-
+|0.9 D-
+|}
+
+==Abilities==
+===[[Defend (Tactics Advance)|Defend]]===
+{{Quote|Defender command. Protect yourself and your allies.|Description}}
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Tremor (ability)|Tremor}}
+|[[Final Fantasy Tactics Advance weapons#El Cid Sword|El Cid Sword]]
+|100
+|30
+|Self
+|-
+|colspan=4 style="text-align:left"|''Slam weapon on ground to knock back nearby units.''
+|-
+! rowspan=2|{{LA|Meltdown (suicide ability)|Meltdown}}
+|[[Final Fantasy Tactics Advance weapons#Vajra|Vajra]]
+|200
+|—
+|Self
+|-
+|colspan=4 style="text-align:left"|''Self-KO. Deals area damage equal to own HP.''
+|-
+! rowspan=2|{{A|Defense}}
+|[[Final Fantasy Tactics Advance weapons#Lionheart|Lionheart]]
+|200
+|—
+|Self
+|-
+|colspan=4 style="text-align:left"|''Raises weapon def. and magic res. for one turn.''
+|-
+! rowspan=2|{{A|Drop Weapon}}
+|[[Final Fantasy Tactics Advance weapons#Ragnarok|Ragnarok]]
+|200
+|—
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Quickly toss weapon out of hand and back into stock.''
+|-
+! rowspan=2|{{A|Hibernate}}
+|[[Final Fantasy Tactics Advance weapons#Defender|Defender]]
+|100
+|—
+|Self
+|-
+|colspan=4 style="text-align:left"|''Hibernate to remedy status ailments. Vulnerable while asleep.''
+|-
+! rowspan=2|{{A|Mow Down}}
+|[[Final Fantasy Tactics Advance weapons#Striborg|Striborg]]
+|200
+|40
+|Self
+|-
+|colspan=4 style="text-align:left"|''Damages surrounding units, at the cost of speed and evasion for a turn.''
+|-
+! rowspan=2|{{LA|Aura (ability)|Aura}}
+|[[Final Fantasy Tactics Advance weapons#Lohengrin|Lohengrin]]
+|300
+|—
+|Self
+|-
+|colspan=4 style="text-align:left"|''Enhances aura to bestow auto-life and auto-regen.''
+|-
+! rowspan=2|{{A|Expert Guard}}
+|[[Final Fantasy Tactics Advance weapons#Save the Queen|Save the Queen]]
+|300
+|—
+|Self
+|-
+|colspan=4 style="text-align:left"|''Prevents all MP and HP damage for one turn.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Last Berserk}}
+|[[Final Fantasy Tactics Advance weapons#Predator|Predator]]
+|style="text-align:left"|''Go berserk if severely wounded.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Weapon Def+}}
+|[[Final Fantasy Tactics Advance armor#Diamond Armor|Diamond Armor]]
+|style="text-align:left"|''Reduces damage from weapon attacks.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Defend Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Brand|Mythril Brand]]
+|style="text-align:left"|''Easily chained combo ability for defenders.''
+|100
+|}
+
+== Overview ==
+Defenders are nothing short of hardy; their excellent defense and great HP give them have only a few things to worry about. Aura, in particular, gives them massive staying power with gradual health regeneration and auto-revive. This, combined with Meltdown, could make for a particularly powerful setup. Expert Guard makes them immune to damage for one turn, which allows them to survive until support arrives.
+
+Defenders have strong area attacks that protect their personal space, but they don't help other allies too well. Defenders' magic resistance is meager and they fall to mage opponents. While Expert Guard prevents damage, it does not protect against status effects. With their slow speed, Defenders may fall to faster units dispatching them before they even act. Overall, Defenders can hold their own in battle like their hume counterpart, the [[Paladin (Tactics Advance)|Paladin]]. However, Defenders are not useful for support, and fear mages like most other physical classes.
+
+Against Defenders, using magic is key. Slow and clunky, nearly any ranged unit can keep wailing on Defenders while keeping their distance. Defenders have area abilities that make their melee combat zone dangerous to approach. Aura can make Defenders everlasting tanks; the player may need to kill them twice, or even three times. Defenders struggle to get rid of status effects, so inflicting them is optimal when damage is not possible. As with other slow units, dispatching them before they can even act is the best way of offense against them.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Defender TCG.png|right|100px]]
+Defender appears ion a card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Tremor.png|Tremor.
+FFTA Meltdown.png|Meltdown.
+FFTA Drop Weapon.png|Drop Weapon.
+FFTA Hibernate.png|Hibernate.
+FFTA Mow Down.png|Mow Down.
+FFTA Aura.png|Aura.
+FFTA Expert Guard.png|Expert Guard.
+FFTA Last Berserk.png|Last Berserk.
+</gallery>{{Gallery incomplete|Defense|Defend Combo}}
+
+==Trivia==
+* Artwork for the Defender depicts him with a [[Final Fantasy Tactics Advance weapons#Spears|spear]], a weapon type the class cannot naturally equip.
+
+{{navbox abilities FFTA}}
+
+
+[[es:Defensor (Final Fantasy Tactics Advance)]]
+[[it:Difensore (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

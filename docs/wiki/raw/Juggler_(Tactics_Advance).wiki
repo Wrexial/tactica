@@ -1,0 +1,179 @@
+{{DISPLAYTITLE:Juggler (''Tactics Advance'')}}
+{{infobox job
+|name=Juggler
+|release=FFTA
+|japanese=曲芸士
+|romaji=Kyokugeishi
+|image=Ffta-moogle-juggler.jpg
+|portrait=[[File:ffta-job-juggler.png|50px|Player]] [[File:Ffta-job-juggler-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-juggler.gif|Player|20px]] [[File:Ffta-job-juggler-enemy-sprite.png|Enemy|20px]]
+|obtained=Learn two [[Thief (Tactics Advance)|Thief]] A-Abilities
+|required=[[Thief (Tactics Advance)|Thief]]
+|characters=[[Moogle]]s
+|stats=*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 40
+|weapons=[[Final Fantasy Tactics Advance weapons#Knives|Knives]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Stunt]]
+*[[#Juggle Combo|Juggle Combo]] (combo)
+|support abilities=*[[Sticky Fingers (ability)|Catch]] (reaction)
+*[[#Return Fire|Return Fire]] (reaction)
+|recurring appearance=Juggler
+}}
+{{Quote|Festive moogle job. Attacks and entertains.|Description}}
+'''Juggler''' is a [[Final Fantasy Tactics Advance jobs|job]] from ''[[Final Fantasy Tactics Advance]]'' available to [[moogle]]s. Jugglers use special items against their foes, and almost all of them inflict a status ailment. Their [[#Dagger|Dagger]] ability inflicts the [[Disable (status)|Disable]] status and damages the opponent, making the Juggler a good job for stalling. The ability [[Gunner (Tactics Advance)#Concentrate|Concentrate]] from the [[Gunner (Tactics Advance)|Gunner]] class improves the special stunts' hit rate.
+
+==Growth==
+The Juggler is a unique job; it has high Speed, the best Defense and acceptable Attack, but the rest of its stats are mediocre. [[Mog Knight]]s have more balanced defenses and higher Attack, but lose out on the excellent Speed.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|-
+|6.8 B-
+|1.6 D-
+|8.2 B-
+|9.9 S
+|6.4 D
+|6.4 D
+|1.7 B
+|}
+
+==Abilities==
+===[[Stunt]]===
+{{Quote|Juggler command. Attack with hoops and balls.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Hurl}}
+|[[Final Fantasy Tactics Advance weapons#Kris Knife|Kris Knife]]
+|100
+|—
+|4
+|-
+|colspan=4 style="text-align:left"|''Throw stocked item to deal damage.''
+|-
+! rowspan=2|{{A|Ring}}
+|[[Final Fantasy Tactics Advance weapons#Rondell Dagger|Rondell Dagger]]
+|200
+|—
+|4
+|-
+|colspan=4 style="text-align:left"|''Throw hoop to stop target.''
+|-
+! rowspan=2|{{LA|Molotov Cock (ability)|Firebomb}}
+|[[Final Fantasy Tactics Advance weapons#Khukuri|Khukuri]]
+|300
+|30
+|4
+|-
+|colspan=4 style="text-align:left"|''Damaging molotov cocktail. Induces berserker rage.''
+|-
+! rowspan=2|{{A|Ball}}
+|[[Final Fantasy Tactics Advance weapons#Scramamax|Scramasax]]
+|200
+|—
+|4
+|-
+|colspan=4 style="text-align:left"|''Smacks head with ball to confuse target.''
+|-
+! rowspan=2|{{LA|Dagger (ability)|Dagger}}
+|[[Final Fantasy Tactics Advance weapons#Jambiya|Jambiya]]
+|300
+|35
+|4
+|-
+|colspan=4 style="text-align:left"|''Thrown dagger deals damage and disables target.''
+|-
+! rowspan=2|{{LA|Smile (ability)|Smile}}
+|[[Final Fantasy Tactics Advance weapons#Orichalcum|Orichalcum]]
+|300
+|—
+|4
+|-
+|colspan=4 style="text-align:left"|''Spreads the joy to allow ally to act immediately.''
+|-
+! rowspan=2|{{LA|Gil Toss}}
+|[[Final Fantasy Tactics Advance weapons#Jack Knife|Jack Knife]]
+|100
+|—
+|4
+|-
+|colspan=4 style="text-align:left"|''Throws gil to deal damage. Gil thrown is lost.''
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Sticky Fingers (ability)|Catch}}
+|[[Final Fantasy Tactics Advance armor#Chain Plate|Chain Plate]]
+|style="text-align:left"|''Catches thrown item and places it in stock.''
+|300
+|-
+!{{A|Return Fire}}
+|[[Final Fantasy Tactics Advance armor#Power Sash|Power Sash]]
+|style="text-align:left"|''Catch arrow shot at you and shoot it back.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Juggle Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril|Mythril Knife]]
+|style="text-align:left"|''Easily chained combo ability for jugglers.''
+|100
+|}
+
+== Overview ==
+The Juggler is a great support job with high speed, good attack and defense. With the best knives, Jugglers can do decent damage. They have a selection of ranged abilities that inflict detrimental status effects at no MP cost. Smile, in particular, allows groups of Jugglers to become infinitely mobile "Smile Trains". Smile can provide a sudden turn to a usually slow ally. Overall, Jugglers have more than a few tricks up their sleeve, especially with the [[Animist (Tactics Advance)|Animist]] Call abilities.
+
+Despite their jolly appearance, enemy Jugglers are nothing to scoff at. Their high speed and status effects allow them to pick off units one by one. Since their abilities don't cost MP, Silence does not work. Possessing extraordinary defense, they can withstand a good amount of physical damage. Mages must approach with caution, as the Juggler's abilities can make mages suddenly useless. Disabling or stopping them may be wise to prevent them from messing up units with their own status effects.
+
+==Other appearances==
+===''[[Final Fantasy Trading Card Game]]''===
+[[File:Juggler2 TCG.png|right|100px]]
+Juggler appears with an ice-elemental card.
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA Hurl.png|Hurl.
+FFTA Ring.png|Ring.
+FFTA Firebomb.png|Firebomb.
+FFTA Ball.png|Ball.
+FFTA Dagger.png|Dagger.
+FFTA Smile.png|Smile.
+FFTA Gil Toss.png|Gil Toss.
+</gallery>{{Gallery incomplete|Juggle Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Malabarista (Final Fantasy Tactics Advance)]]
+[[it:Giocoliere (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

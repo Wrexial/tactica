@@ -1,0 +1,834 @@
+{{FA|December 1, 2007}}
+{{infobox race
+|name=Moogle
+|japanese=モーグリ
+|romaji=Mōguri
+|lit=
+|image=Many Mogs.jpg
+|distinctions=Short, white/pink fur, bat/gothic wings, pom-pom antenna
+}}
+{{Quote|These mysterious beings tend to flock around humans, closer to man than beast. They communicate via their network Mognet and their distinctive cry of 'Kupo!' and fluffy appearance endear them to all.|''[[Theatrhythm Final Fantasy]]'' [[Theatrhythm Final Fantasy CollectaCards|CollectaCard]] description}}
+'''Moogle''' is a recurring race in the [[Final Fantasy series|''Final Fantasy'' series]]. They first appeared in ''[[Final Fantasy III]]'' and have appeared in some capacity in every main series game since, with the exception of ''[[Final Fantasy IV]]''.
+
+The importance of moogles to the plot varies, ranging from playable characters to cameos. Several—such as [[Mog]], [[Stiltzkin]], [[Artemicion]], and [[Montblanc]]—have made repeated appearances. Moogles occasionally appear as a [[summoned monsters|summoned monster]], usually to grant beneficial effects to the party.
+
+Moogles are one of the ''Final Fantasy'' series's mascots, alongside [[chocobo]]s and [[Cactuar|cactuar]]s. They have appeared in numerous merchandise and dolls of them appear in the games themselves, commonly in the games set in a more realistic environment where moogles do not appear as a race. They also make guest appearances in other media.
+
+==Profile==
+[[File:FF3 Moogle Art.jpg|thumb|Concept artwork for the very first moogle.]]
+Although their appearance has changed, they are characterized by their small wings, usually pink or white fur, and a pom-pom on their heads. Moogles are mild-tempered and enjoy eating vines and [[Kupo Nut]]s.
+
+Moogles' "pom pom" is a red ball of fur on a thin, wiry antenna that springs from their heads, which they are sensitive about being touched. A moogle's wings are commonly dark, Gothic, or bat-like design, as to juxtapose their otherwise harmless appearance and bubbly nature. Moogles resemble small mammals, ranging from rodents to felines or marsupials.
+
+Many games have included color variations for moogles' fur and pom-pom. Their proportions vary: in games set in [[Ivalice]], they have larger ears than in other games and, in the [[Final Fantasy Crystal Chronicles series|''Final Fantasy Crystal Chronicles'' series]], their bodies are rounder with shorter limbs, if any at all. In the earliest games, moogles lacked their trademark pom-pom.
+
+Moogles' size varies from several feet tall to only a foot tall if not less, but in comparison to [[human]]s, moogles are universally diminutive. In most games, moogles do not wear clothes, the exception being games set in Ivalice, where they are one of the world's primary races. The moogles' favorite food is the Kupo Nut. In some games, moogles can fly, with ''[[Dissidia Final Fantasy (2008)|Dissidia Final Fantasy]]'' explaining that they do this by inhaling air to inflate themselves and float and only use their wings to steer. In the [[Lightning Saga|''Final Fantasy XIII'' trilogy]], however, they use their wings to fly and it is believed that they can fly several meters above the ground, but are simply too afraid to do so.
+
+A common theme in moogles' names is based on the word "Mog". In Japan, the moogle Mog from ''Final Fantasy VI'' is known to have stated that his blood type is Black-footed Duck type {{j|黒足アヒル型|kuroashi ahiru kei}}. This suggests that moogles have different blood types with their own moogle terminology.
+
+Moogles are intelligent and industrious, though in some games, they are wary of human contact. Because of their size, many playable moogles specialize in gadgetry, tinkering, and engineering. Even in games where moogles do not mind humans, they often maintain separate societies. Moogles can communicate across long distances, a feat often attributed to the moogle mail service, [[Mognet]].
+
+In earlier games, moogles spoke only with their trademark cry "[[Kupo (term)|kupo]]" and variations of such. In later games, moogles can speak the human language, but often punctuate their sentences with "kupo" as a verbal tic. In some Japanese versions, they use the pronoun ''mogu'' in place of the word "I", as a young girl would use ''atashi'' and a young boy would use ''boku''.
+
+==Appearances==
+===''[[Final Fantasy II]]''===
+[[File:FFII Prototype Characters.jpg|thumb|A development document showing sprites and descriptions of scrapped races, including one which had a design that would eventually be used for the moogles.]]
+The moogle's design was first created for ''Final Fantasy II'', where they were originally called the {{J|クライオン|Kuraion|Kryon|fmt=j(r)}}.{{note|''Final Fantasy Ultimania Archive Volume 1'', which covers the first six ''Final Fantasy'' titles, translates クライオン as "Kryon" and the term for a traveling group thereof as "mild".}} The Kryon were to be a nomadic race who lived in cold, icy climates and traveled in groups called milds. Once every three years, the Kryon would travel to the edge of their snowy homeland to trade, marry, and fish. They would have considered the site of these gatherings to be sacred grounds. They would also have followed their leaders on winter migrations to warm lands. The Kryon were ultimately scrapped, along with three other race concepts, though their sprite and some of their race details evolved into the [[Beaver]] race in the finished game. The design created for the Kryon would later be used for moogles when they debuted in ''Final Fantasy III''.{{clear}}
+
+===''[[Final Fantasy III]]''===
+[[File:FFIII - Moogle.gif|thumb|left]]
+[[File:Moogle Red from FFIII Pixel Remaster sprite.png|left|Pixel Remaster sprite]]
+[[File:Mog ffiiids.png|right|thumb|50px]]
+Moogles debut as bodyguards for the sage [[Doga]]; they are an intelligent race wielding great magical power. A notable moogle is Mog. In the 3D remakes, talking to moogles can initiate [[Mognet (Final Fantasy III)|Mognet]], where players can transfer letters to friends with the game or send a letter to other game residents.
+
+Moogles did not say "kupo", but instead said "nyaa", the Japanese onomatopoeia for a cat's meow. In the 3D release, this is changed to "kupo".{{clear}}
+
+===''[[Final Fantasy V]]''===
+[[File:MoogleFF5.gif|thumb]]
+A [[Moogle Village (Final Fantasy V)|Moogle Village]] is located in [[Galuf's world]] and, after [[Bartz Klauser|Bartz]], [[Lenna Charlotte Tycoon|Lenna]], [[Galuf Halm Baldesion|Galuf]], and [[Faris Scherwiz|Faris]] rescue a stray moogle, it leads the party there. [[Krile Mayer Baldesion|Krile]] has a moogle friend, which is the only one to speak the common language.
+
+Moogles use telepathy to keep in touch with each other over distances and are wary of humans. If the party wears a [[Moogle costume]], they can open a [[Treasure chest (object)|treasure chest]] in the village. This is the first time in the series that characters can dress as moogles.
+
+The stray moogle the party rescues takes a liking to Lenna, who calms it down following its misfortune in the [[Underground Waterway (Final Fantasy V)|Underground Waterway]] and becomes able to understand what it wants. Lenna tells the party to follow it to the Moogle Village and, as a reward, the party is allowed to take the items in the village's treasure room.
+
+Later, a moogle emerges in [[Great Forest of Moore]] from underground and saves the party when [[Exdeath]] burns the forest. Another moogle is seen in the underground cave when the party waits the flames to die out.
+
+In the iOS version, meeting a moogle for the first time earns the player the [[Final Fantasy V achievements|achievement]] "Kupo".
+
+<gallery>
+FF5Moogles.jpg|Moogles in the intro FMV for the ''Anthology'' version.
+Krile & Moogle.jpg|Krile and her pet moogle.
+FFV-iOS-Ach-Kupo.png|Achievement icon.
+</gallery>
+
+===''[[Final Fantasy VI]]''===
+[[File:Mog (Final Fantasy VI) small.png|thumb|40px]]
+[[File:FF6 Mog Sprite iOS.png|thumb|40px]]
+Moogles play a larger role than in previous appearances. [[Mog (Final Fantasy VI)|Mog]] is the series' first playable moogle and there are [[Ten Moogles|ten others]] who [[Guest|join temporarily]]. Mog and the moogles live in the [[Narshe Mines (South Passage)|Narshe Mines]] and help [[Locke Cole|Locke]] rescue [[Terra Branford|Terra]]. They are said to avoid humans, but they sometimes help miners who get lost in the mountain.
+
+The moogles differ from the original sprite designs of previous titles; while maintaining the simple pom-pom unclothed model, the motif of squinted or closed eyes was established and has since become a staple of the moogles' design.
+
+Only Mog is accustomed to being around humans and, through a series of telepathic dreams with [[Ramuh (Final Fantasy VI)|Ramuh]], learns to speak like humans. Following the [[Cataclysm (Final Fantasy VI)|cataclysm]], it appears all of the moogles except Mog died out and their cave in [[Narshe]] is abandoned. Mog has returned to the cavern and dwells there alone when the party finds him.
+
+[[Strago Magus|Strago]] and [[Relm Arrowny|Relm]] can [[Alternate outfit|dress up]] as moogles in battle by equipping the [[Moogle Suit (Final Fantasy VI)|Moogle Suit]].
+
+In the mobile/Steam version, the moogles appear in the hints provided by the game. When toggled, a hint will appear from the moogles directing the player on what to do next, often finishing their sentence with "kupo!"
+
+<gallery>
+FFVI PC Moogle Home.png|The moogles' cave in [[Narshe Mines (South Passage)|Narshe Mines]].
+FFVI Android Playthrough Hints.png|A Moogle appears from the game hints.
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy VII]]''===
+[[File:FF7Mog.png|thumb|60px]]
+{{main|Moogle (Final Fantasy VII)}}
+Moogles in the original ''[[Final Fantasy VII]]'' appear mainly as toys or mascots. They are prominent throughout the [[Gold Saucer (Final Fantasy VII)|Gold Saucer]] and appear in the [[minigame]] [[Wonder Square (Final Fantasy VII)#Mog House|Mog House]]. The most prominent of these is [[Cait Sith (Final Fantasy VII party member)|Cait Sith's]] robot moogle, which he rides. Another prominent moogle is the [[Chocobo & Moogle]] summon, first appearing in ''Final Fantasy VII''. ''[[Crisis Core -Final Fantasy VII-]]'' also sees a moogle used in a summon.
+
+In [[Final Fantasy VII Remake Series|''Final Fantasy VII Remake Series'']], they are referred to again by the name "moogle". Moogle medals are used to purchase rare items from [[Moggie (VII Remake)|Moggie]] in ''[[Final Fantasy VII Remake]]'', a merchant child who dresses like a moogle. [[Yuffie Kisaragi]] sports a [[moogle costume]], and in her "[[Final Fantasy VII Rebirth outfits#Yuffie|Wutai Pop Star]]" outfit, there is a moogle accessory on her obi at the back. In ''[[Final Fantasy VII Rebirth]]'', live moogles appear. These moogles, living in mogstools, are seen in [[Moogle Intel]] objectives and also trade in moogle medals.{{clear}}
+
+===''[[Final Fantasy VIII]]''===
+{{main|MiniMog}}
+[[File:FF8-Minimog.png|thumb|125px]]
+The only moogle is the MiniMog, a "pseudo-[[Guardian Force]]" summoned with the command "MiniMog". It has a feline appearance, differing from the other canon moogle character designs. The [[MiniMog (card)|MiniMog]] is also a [[Triple Triad (Final Fantasy VIII)|Triple Triad]] card.
+
+A mention on moogles is given by [[Selphie Tilmitt|Selphie]] in [[Balamb Town]] harbor when talking to a traveling chef, when she names "Ms. Moogle's cake" her favorite, a cake with "lots and lots of fruit on top, covered with fluffy cream." Moogles are mentioned in an alternate answer for the password [[Squall Leonhart|Squall]] is supposed to give to the [[Forest Owls]]. The correct password is "but the Owls are still around", but one of the alternate choices is "but the moogles are still here." Additionally, a basketball fan in [[Trabia Garden]] states that he thinks the MogMog Moogle team will make it to the finals and play against the Mach "Chacobos". Another student corrects his pronunciation.
+
+===''[[Final Fantasy IX]]''===
+{{Main|Moogle (Final Fantasy IX)}}
+[[File:FFIX-Moogle Concept1.jpg|thumb]]
+Moogles are found all over the world, often in far-away lands and long abandoned locations that no one else steps foot in anymore. Moogles serve a gameplay purpose by acting as save points, hosting shops in places that are far away from towns, and delivering letters via Mognet. Each moogle that appears on the field is named.
+
+Notable moogles include [[Stiltzkin]], a traveling moogle who sells merchandise; [[Artemicion]], the head of Mognet in need of assistance; [[Mene]], curator of the [[Chocobo's Forest (Final Fantasy IX)|Chocobo's Forest]] and [[Choco]]'s only friend, who operates the [[Chocobo Hot and Cold]] minigame; and [[Mog (Final Fantasy IX)|Mog]], a female moogle who hangs out with Eiko and sports an unusually orange pom-pom.{{clear}}
+
+===''[[Final Fantasy X]]''===
+[[File:FFX Weapon - Moogle.png|thumb|50px]]
+Moogles do not appear outside of folklore. However, some of the [[Final Fantasy X weapons#Lulu's Dolls|dolls]] that [[Lulu (Final Fantasy X party member)|Lulu]] uses as weapons are moogles.
+
+[[Yoshitaka Amano]]'s {{foot|artwork of the game|[[File:Amano-TidusYuna.jpg|250x250px]]}} features a moogle.{{clear}}
+
+====''[[Final Fantasy X-2]]''====
+[[Yuna]] is dressed in a moogle suit in [[Luca (Final Fantasy X)|Luca]] while [[Leblanc]] performs her concert and can be found in Chapter 1. Yuna's [[Mascot]] [[dressphere]] appearance is the same moogle suit. A moogle, that only Yuna can see appears in Chapter 5 in Luca. Following it helps her recall the memories of her and [[Tidus]] during their time in Luca and grants an [[Episode Complete]] for the area.
+
+<gallery>
+Moogle FFX2.jpg|Yuna as a moogle.
+Yuna_Moogle_Luca_Dock.png|Yuna sees a moogle at Luca dock.
+</gallery>
+
+===''[[Final Fantasy XI]]''===
+[[File:FFXI-Moogle.jpg|thumb|left|150px|A moogle.]]
+Moogles serve two purposes. A moogle resides in a player's home, known as a [[Mog House (Final Fantasy XI)|Mog House]], to watch over the house and allow access to several options, including stored items, gardening, the delivery box, and [[job system#Final Fantasy XI|job changing]]. They resemble the Itahana moogle from ''Final Fantasy IX'', likely because of his collaboration with other character designers for the title.
+
+Secondly, there are many event festivals that roughly correlate with many seasonal holidays in both Japan and abroad (i.e. Tanabata is The Summerfest, Valentine's Day is Valentione's Day, Halloween is The Harvest Festival, etc.). Moogles administrate these in-game events and offer various rewards for completion.
+
+[[File:XI Killer moogle.jpg|thumb]]
+Moogles function as an extension of the remaining active development team. As the game is patched and expansions are released, patch notes, updates, special event items, and Bonanza Lotteries are delivered by the Mog House Management Union (MHMU) to the playerbase, sometimes literally. Each zone was originally coded with data for several NPC targets titled "moogle", some visible in the farthest corners of maps to players using third-party tools in preparation for such future events.
+
+Moogles play an active role in the story and progress of the core game. Nomad Moogles act as mobile Mog Houses, appearing in secondary and tertiary towns and habitations. One moogle next to [[Maat]] in [[Grand Duchy of Jeuno|Jeuno]] is involved with every [[level]] cap increase that a player must face after reaching Lv.50; furthermore, another moogle has appeared to manage the Magian Weapon augmentation system.
+
+The moogle is a small constellation in the Southern sky; the red star slightly separated from the rest represents the moogle's unique head-piece. According to a folk-tale, this moogle is Kupilfin and has flown towards Titan out of concern for Daemalus.
+
+An entire downloadable add-on expansion titled ''[[Final Fantasy XI: A Moogle Kupo d'Etat - Evil in Small Doses|A Moogle Kupo d'Etat: Evil in Small Doses]]'' was released in 2009, dealing with political turmoil in the moogles' world, culminating in an unforgettable fight against an unlikely combatant.
+
+<gallery>
+FFXI Porter Moogle.png|Porter Moogle.
+</gallery>
+
+===''[[Final Fantasy XII]]''===
+[[File:Moogle FFXII.jpg|thumb|150px]]
+Moogles appear in almost every city, but are especially plentiful in the [[Bhujerba]]. Their design is a vast departure from any other in the main series and is a result of the [[Ivalice Alliance]] title released three years prior: ''[[Final Fantasy Tactics Advance]]''.
+
+The moogles' features are more lagomorphic, with rabbit ears, extended pom-poms, and they are garbed for Ivalice society. Moogles can have either off-white or black fur and their pom-poms come in various shades. As with the other non-human races, moogles are [[wikipedia:Sexual dimorphism|non-dimorphic]]; gender can mainly be assumed by the clothing they wear. They range from 80–120&nbsp;cm (2'7"–3'11") in height. Apart from a minority of moogles actually small enough for their wings to support, they generally cannot fly.
+
+The most notable encounter is with the [[six moogle siblings]]: [[Montblanc]] is the head of [[Clan Centurio (Final Fantasy XII)|Clan Centurio]]; [[Nono]] serves as [[Balthier]]'s mechanic (and, with Montblanc, comes directly from ''Final Fantasy Tactics Advance''); [[Gurdy (Final Fantasy XII)|Gurdy]] runs the [[Chocobo (Final Fantasy XII)|chocobo]] rental service, while her twin brother, [[Hurdy (Final Fantasy XII)|Hurdy]], and the two remaining brothers, [[Sorbet (Final Fantasy XII)|Sorbet]] and [[Horne (Final Fantasy XII)|Horne]], operate a transportation system called "The [[Moogling]]" in [[Rabanastre (Final Fantasy XII)|Rabanastre]] that allows players to teleport to other parts of the city.
+
+In certain regions, moogles call themselves with the pronoun "mog", but typically end their sentences with "kupo". Their intelligence and lifestyles are similar to [[Human|humes]], which makes it easy for moogles to live among the hume cities. They have dexterous hands, giving them an edge in the field of engineering and playing musical instruments. It is said that moogles built the first [[Airship (term)|airship]], a masterpiece of technological advancement.
+
+There are moogles so advanced that they learn the ultimate technology called Etoria. Most moogles contribute to society with engineering capabilities. Their center of development is the moogle city of Goug in southwestern Ordalia, considered the capital of technological progress in Ivalice.<ref name="MoogleBio">Final Fantasy XII Scenario Ultimania Page 89. ISBN 4-7575-1696-7</ref> Not all moogles become engineers; there are a few who become knights or mages (allusions to the jobs of ''Tactics Advance''). Throughout [[Ivalice (Final Fantasy XII)|Ivalice]]'s history, moogle technology has been used in hume wars by most of the races.
+
+<gallery>
+FF12Montblanc.jpg|[[Montblanc]].
+Nono1.png|[[Nono]].
+Sorbet1.png|[[Sorbet (Final Fantasy XII)|Sorbet]].
+Hurdy1.png|[[Hurdy (Final Fantasy XII)|Hurdy]].
+Horne1.png|[[Horne (Final Fantasy XII)|Horne]].
+Gurdy1.png|[[Gurdy (Final Fantasy XII)|Gurdy]].
+FFXII-MoogleOrchestra CG.jpg|Moogle musicians.
+FF12 - Moogle Model.png|Moogle character model.
+FF12 - Moogle Prisoner.png|Moogle prisoner.
+FFXII Ivalice moogles.png|Three moogle layabouts in the [[Salikawood (Final Fantasy XII)|Salikawood]].
+</gallery>
+{{clear}}
+
+====''[[Final Fantasy XII: Revenant Wings]]''====
+[[File:Nono RW.PNG|thumb|left|100px]]
+Moogles appear, although the only one of any importance to the story is [[Nono]]. The other moogles are enemy [[Sky pirate (Final Fantasy XII)|sky pirates]], who take the jobs of [[Fusilier (Revenant Wings)|Fusilier]], [[Time Mage (Revenant Wings)|Time Mage]], and [[Black Mage (Revenant Wings)|Black Mage]].{{clear}}
+
+====''[[Fortress]]''====
+[[File:Fortress - Moogles.jpg|thumb|175px]]
+Moogles were set to appear in this cancelled spinoff installment.{{clear}}
+
+===''[[Final Fantasy XIII]]''===
+[[File:FFXIII Moogle.png|thumb|100px|Moogleworks shop logo.]]
+There is a shop called [[Retail Network#Moogleworks|Moogleworks]] in the [[Retail Network]]. There is also a valuable item called a "[[Final Fantasy XIII items#Moogle Puppet|Moogle Puppet]]", which can be sold for a premium.{{clear}}
+
+====''[[Final Fantasy XIII-2]]''====
+{{See|Mog (Final Fantasy XIII-2)}}
+[[File:XIII-2 Moogle artwork.png|thumb|150px|Mog]]
+A moogle named [[Mog (Final Fantasy XIII-2)|Mog]] accompanies [[Serah Farron|Serah]] on her journey and can transform into a [[starseeker|bow-and-sword hybrid weapon]] for her to use during combat. Mog's appearance differs from the concept of moogles seen in ''Final Fantasy XIII'', which suggests that he may belong to a different subspecies, like how [[Chocobo (Final Fantasy XIII)|chocobos]] from [[Cocoon (Final Fantasy XIII)|Cocoon]] are different from the [[Gran Pulse]] variety.
+
+When asked about bringing moogles back in ''Final Fantasy XIII-2'', Director [[Motomu Toriyama]] said that making a moogle a mascot-type character is a kind of fan service and is intended as a symbol for the ''Final Fantasy'' series as a whole. Mog performs a number of important roles for the player by acting as a guide in the field sections, making use of his special abilities, such as to search things out. Mog is integrated into the battle encounter system, called [[Mog Clock]], based around the motif of the clock it carries.
+
+In a [[Brain Blast]] quiz, it is revealed that a baby moogle is called a "moogling". In the "Mog Confidential" [[fragment]] entry, it is said that moogles can fly due to their crystalline magic baubles conjuring an anti-gravity field. The moogles' wings are said to be just for show.{{clear}}
+
+====''[[Lightning Returns: Final Fantasy XIII]]''====
+[[Lightning (Final Fantasy XIII)|Lightning]] discovers a [[Moogle Village (Lightning Returns)|Moogle Village]] deep in the Jagd Woods in the [[Wildlands]]. The village is attacked by [[Dryad (Lightning Returns)|Dryads]] and Lightning sets out to defend it. The village is inhabited by many moogles with Mog as their leader. The moogles keep to themselves and only come out to roam the woods [[Day and night cycle|at night]], people rarely spotting a sight of them. Though moogles can fly, they tend to fear heights and thus do not venture above the tree-tops. On the [[Lightning Returns: Final Fantasy XIII days|world's final day]], Mog arrives to help Lightning by opening a [[shop]] for her.
+
+There is a [[Lightning Returns: Final Fantasy XIII downloadable content|downloadable]] set of moogle attire called [[Lightning Returns: Final Fantasy XIII garbs#Moogle Queen|Moogle Queen]]. It is made up of a shield in the shape of Mog's face, a Mog Clock weapon with a miniature Mog, and an outfit with miniature moogles attached to a bodysuit, which emits squeaky noises when running. Wearing the suit around the Moogle Village at night causes three moogles to appear and greet Lightning. Mog-related [[Lightning Returns: Final Fantasy XIII adornments|adornments]] also exist.
+
+===''[[Final Fantasy XIV]]''===
+{{Quote|Do not be fooled by their winsome personae, for moogles are a highly intelligent race of creatures capable of creating utter chaos with the unique brand of elemental magicks at their disposal. For the most part, they are content to keep to themselves, choosing to roam the Twelveswood hidden behind glamours rendering them invisible to all but the most spiritually acute.|[[Triple Triad (Final Fantasy XIV)|Triple Triad]] card description.}}
+[[File:ARR Moogles.png|thumb|150px|Moogles.]]
+Moogles are a rare race in [[Source (Final Fantasy XIV)|the Source]]. They assist the five "Spoken" races with communication with the [[Elemental (enemy)|elementals]] and speak "Mooglespeak", a language only a few [[Eorzea]]ns, or those with the [[Echo (Final Fantasy XIV)|Echo]], can understand. Moogles originated in the [[Churning Mists]] during the beginning days of Hydaelyn. According to the legend of [[Good King Moggle Mog XII]], they served [[the Twelve]] until a terrible war had the moogle king lead his subjects to the realm of mortals in secret so they could live in peace. While Mog XII was forced to remain behind alongside those among their kin who stayed in what would become Moghome, the remaining moogles found refuge in the Twelveswood in [[Gridania]]. While the moogles found in the Twelveswood generally have names derived from the word "kupo", those that remain in Moghome have names derived from the name "Mog".
+
+Before the [[Seventh Umbral Era]], moogles were infrequently seen yet commonly talked about, such as by children who sometimes asked a moogle to repair a broken item after bringing it to a mushroom ring in a forest. At that time, the [[Ascian]]s taught a zealous band of moogles called the Moogleguard to summon a [[primal]] in the form of [[Good King Moggle Mog XII]].
+
+After the Calamity, the moogles began to a more active role in ''A Realm Reborn''; a pair of moogles shows up in the Gridanian introduction sequence. They claim that "normal folks" cannot see them, which one demonstrates by drinking an oblivious Bremondt's booze; Alphinaud and Alisae seem to witness the moogles, but say nothing. One of the moogles featured here later assists the player during a main story quest. Moogles are now willing to carry letters (and attached items) for players. A series of quests introduced in patch 2.3 touches on this new aspect of moogle involvement in society.
+
+In ''[[Final Fantasy XIV: Heavensward]]'', the moogles of Twelveswood learn of their Moghome kin as [[Kan-E-Senna]] wants to establish peaceful relations between the two tribes.
+
+''[[Final Fantasy XIV: Stormblood]]'' introduces more moogles who live in [[Dalmasca (Final Fantasy XIV)|Dalmasca]]. [[Montblanc (Final Fantasy XIV)|Montblanc]] comes from a nomadic tribe that roams the deserts. The members of the Majestic Imperial Theater Company mention upon first meeting Montblanc that their troupe's moogle costumes look nothing like the real thing and the descriptions of said costumes resemble the rabbit-like moogles from the [[Ivalice Alliance]] games.
+
+There are five [[Minion (Final Fantasy XIV)|minions]] the player can acquire based in moogles: the [[Minion (Final Fantasy XIV)#Wind-up Moogle|Wind-up Moogle]], the [[Minion (Final Fantasy XIV)#Wind-up Delivery Moogle|Wind-up Delivery Moogle]], the [[Minion (Final Fantasy XIV)#Set of Primogs|Set of Primogs]], the Taoist Moogle, and the Bridesmoogle. A little moogle can also be seen in the [[Minion (Final Fantasy XIV)#Demon Box|Demon Box]] minion.
+
+One moogle-themed [[Mount (Final Fantasy XIV)|mount]], the Fat Moogle, is available for purchase through the [[Mog Station]]. The fat moogle is a gargantuan moogle with a bench hanging under it. The bench can fit two people at once and any player in a [[Party#Final Fantasy XIV|party]] with someone controlling the fat moogle can ride it with them, but only the player who summoned it can control it. Against all odds, the mount also has the ability to fly.
+
+<gallery>
+Moogle FFXIV Art 1.jpg|Artwork.
+Ff14-moogle-delivery-box.jpg|Moogle delivery box.
+Moogle FFXIV Art 2.jpg|Artwork of moogles delivering mail.
+FFXIV Delivery Moogle.png|Delivery Moogle render.
+Moogle Delivery.jpg|A Delivery Moogle in Vesper Bay.
+FFXIV mount fatmog.png|Fat Moogle mount.
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy XV]]''===
+[[File:Moogle FFXV.png|thumb|150px|A moogle doll.]]
+According to [[Tetsuya Nomura]], moogles were to appear in ''[[Final Fantasy Versus XIII]]''. They resembled their ''Final Fantasy Type-0'' counterparts.<ref name="andriasang.com">http://andriasang.com/comz50/ff_versus_xiii_moogles/</ref>
+
+At Tokyo Game Show in September 2015, Square Enix revealed that it would not include moogles in ''Final Fantasy XV''.<ref name="UUlOMlv_">{{Refwebsite| page url = http://www.novacrystallis.com/2015/09/tgs-2015-new-final-fantasy-xv-story-beats-chocobos-fishing-and-more-in-latest-atr/| page name = TGS 2015: New Final Fantasy XV story beats, chocobos, fishing and more in latest ATR| site url = http://www.novacrystallis.com| site name = Nova Crystallis| access time = 15:10, May 13, 2018 (UTC)}}</ref> However, the company later held a poll asking fans whether moogles should make an appearance.<ref name="0IONxEbu">{{Refwebsite| page url = http://gematsu.com/2015/11/final-fantasy-xv-will-have-not-very-chatty-moogle| page name = Final Fantasy XV will have a ‘not very chatty’ Moogle| site url = http://gematsu.com| site name = Gematsu| access time = 15:10, May 13, 2018 (UTC)}}</ref> Responses to the presence of moogles were positive and, on October 4, 2016, it was revealed that the creatures would appear in the form of special items.
+
+After liberating the power plant in [[Lestallum]] from [[Daemon (Final Fantasy XV)|daemons]], the player can talk to [[Iris Amicitia|Iris]] in the town to get a [[Moogle Plushie (equipment)|moogle plushie]]. It can be used from the item menu as a decoy during battle. When it gets damaged, Iris can repair it. There is also a toy moogle in [[Cindy Aurum]]'s [[car|tow-truck]] and a moogle [[Fishing (Final Fantasy XV)|fishing]] [[Final Fantasy XV lures|lure]].
+
+The first DLC, the Holiday Pack, added the [[Moogle Chocobo Carnival]] to the city of [[Altissia]]. It ran from January to February 2017 and repeated in the summer. At the street fair to celebrate moogles and chocobos, the attendees dress in costumes, play fairground games, do artwork, and have a photographic hunt for hidden moogle dolls.
+
+<gallery>
+Moogle Concept Artwork FFXV.png|Concept art of the moogle doll.
+Hammerhead-truck-moogle-FFXV.png|Moogle in the tow-truck's window.
+Iris-Link-Strike-FFXV.png|[[Iris Amicitia|Iris]] using a moogle plushie in a [[link-strike]].
+Moogle-at-Carnival-FFXV.png|Moogle mascot at the Moogle Chocobo Carnival.
+</gallery>
+
+===''[[Final Fantasy XVI]]''===
+[[File:Nektar final fantasy 16.jpg|thumb|150px|Nektar.]]
+A moogle named [[Nektar (Final Fantasy XVI)|Nektar]] lives in Cid's hideaway and manages bounties. Moogles have their own language and [[Clive Rosfield]] is one of the few humans who understands it.
+
+[[Gav Weir|Gav]] wears a pendant charm with a picture of a moogle. In [[Valisthea]]n folklore, moogles are spirit creatures sometimes depicted as mischievous imps and other times as clumsy helpers in man's daily labors. Moogles are said to like sweet food and steal cakes overnight. Though often believed to be creatures of folklore, moogles do exist and are believed to have been more common in ancient times.{{cite|FFXVI|The Folklorist's Fabulary}}
+
+===''[[Final Fantasy Tactics]]''===
+{{Main|Moogle (Tactics)}}
+[[File:FFT Moogle.png|thumb|left|141x141px]]
+It is said that moogles once existed and lived in the [[Siedge Weald]] and became extinct, along with many other races, during the [[Cataclysm (Ivalice)|cataclysm]] that nearly decimated [[Ivalice (Tactics)|Ivalice]].
+
+Moogle ("Mogri" in the North American [[PlayStation]] version), is a [[Summon (Tactics)|Summon]] ability learned by the [[Summoner (Tactics)|summoner]] job. When invoked, it casts Moogle Charm, which recovers a small amount of HP to [[Unit (term)#Final Fantasy Tactics|units]] within the effect radius. It costs 8 MP, has a speed of 34, and needs 110 JP to learn. The ability is later outclassed by the [[Faerie (Tactics)|Faerie]] summon, which has increased healing potency.
+
+The creatures from the [[Pig (Tactics)|pig]] monster family slightly resemble traditional moogles, but without pompoms or wings.{{clear}}
+
+===''[[Final Fantasy Tactics Advance]]''===
+[[File:Ffta-moogle.jpg|thumb|left|100px]]
+Moogles appear as playable characters. Notable moogles include the brothers Montblanc and Nono. They have rabbit-like ears and wear long-sleeved clothing topped with an elaborate pom-pom. This moogle design is specific to the Ivalice Alliance games and was first introduced here; later, several specific characters would be featured as mainstays in ''Final Fantasy XII''.
+
+The moogles' [[Totema]] is [[Famfrit#Final Fantasy Tactics Advance|Famfrit]], who calls the moogles the "white ones", possibly since the generic moogle has white fur, though variations exist.
+
+Because of their small stature, moogles excel at jobs that involve engineering and dexterity—such as [[Thief (Tactics Advance)|Thief]], [[Gadgeteer]], and [[Juggler (Tactics Advance)|Juggler]]—although, while some moogles excel in the magickal arts, others clad themselves in heavy armor as [[Moogle Knight (Tactics A2)|Moogle Knights]], fighting on the front lines with their [[bangaa]] and hume combatants.{{clear}}
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+{{Quote|This short-statured race is distinguished by the pom poms on their heads and bat-like wings on their backs. They have no love for water, and will not venture in the shallowest of pools. Moogles are accomplished machinists, and they boast a great many unique jobs all their own.|Description}}
+[[File:Ffta2-moogle.jpg|thumb|100px]]
+Moogles appear as playable characters and have access to ten jobs, including two new jobs: [[Chocobo Knight (Tactics A2)|Chocobo Knight]] and [[Flintlock (Tactics A2)|Flintlock]]. Notable moogles include Hurdy, part of the main cast, and Montblanc, appearing as a secondary character. Both are playable.
+
+While units are now able to perform actions while standing in water, moogles and [[nu mou]] are no longer able to enter water unless they have [[Final Fantasy Tactics A2: Grimoire of the Rift accessories#Winged Boots|Winged Boots]] equipped.
+
+The pride moogles take in their pom-poms is a point of humor, including the story mission where the player faces [[Dreamhare (Tactics A2)|Mooglebanes]], enemies purported to eat moogle pom-poms.
+
+Moogles can be obtained in these locations during Goldsun or Silversun:
+*[[Bisga Greenlands]] - Animist, Thief, Black Mage
+*[[Goug (Tactics A2)|Goug]] - Moogle Knight, Fusilier, Tinker, Time Mage
+*[[Neslowe Passage]] - Chocobo Knight, Juggler, Flintlock
+
+<gallery>
+FFTA2 MoogleIntro.png|Moogle introduction.
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy Tactics S]]''===
+<gallery>
+FFTS Musician.png|Musician.
+</gallery>
+{{Section|Final Fantasy Tactics S}}
+{{clear}}
+
+===''[[Final Fantasy Type-0]]''===
+[[File:FFType0-MoogleRender.png|thumb|left|75px|A moogle.]]
+Moogles appear in [[Akademeia]] as strategic advisers to the classes. The [[Class Zero]]'s moogle is [[Moglin (Type-0)|Moglin]], who helps the cadets during [[Missions (Type-0)|missions]] and oversees [[lectures]] during the cadets' free time. In the world of [[Orience]], the word "moogle" is an acronym for "Military Operation Organization Guidance Logistics Expert". There are thirteen moogles within Akademeia known as the [[Cranberry Knights]], each assigned to a class that teaches [[Agito Cadet]]s. The game's writer, [[Hiroki Chiba]], originally meant to include a scene where the knights were featured, but forgot to do so before the game was finished.<ref name="andriasang.com" />{{clear}}
+
+===''[[Final Fantasy Crystal Chronicles]]''===
+[[File:Ffcc moogle.jpg|thumb|left|100px]]
+Moogles live among other tribes and in various [[dungeon]]s, where they stamp the player's special card to allow the player to play a Mario Kart-esque minigame called [[Blazin' Caravans]]. They appear armless, puffy, and are usually flying around. When playing a single player game, a moogle named Mog will carry the player's [[Crystal Chalice]], allowing them to move around in the dungeons.
+
+[[File:CC Moogle Paint.png|thumb|The Moogle paint feature in action.]]
+The [[Moogle Paint]] feature allows players to paint a moogle. Moogles deliver mail once the player collects a drop of [[Myrrh]]. Moogles are unaffected by the [[Miasma (term)|Miasma]], which causes the traveling moogle [[Stiltzkin (Crystal Chronicles)|Stiltzkin]] to worry that moogles are like monsters, but his journey leads him to [[Mag Mell]], where he discovers that moogles have more connections to the [[Carbuncle (Crystal Chronicles)|Carbuncles]] than monsters. The moogles Stiltzkin and Artemicion appear in the prequel game that takes places many years before the original game, which could mean moogles can live for a long time, just like the Carbuncles.{{clear}}
+
+====''[[Final Fantasy Crystal Chronicles: Ring of Fates]]''====
+[[File:Ffccrof artwork moogle.jpg|thumb|100px]]
+[[File:Ffccrof moogle.gif|thumb|left|100px]]
+Moogles appear through out dungeons to help the party out and give them stamps, which again unlock Blazing Caravans. Stiltzkin from the original game leads the group of moogles secretly trying to help out the main characters.
+
+They place signs where needed and will appear when a new character joins the party to teach the player about their skills and abilities. Artemicion runs a shop that gives players HP, ATK, DEF, and Magicite/Item Pocket upgrades. The Moogle Paint feature returns with a major upgrade.
+
+====''[[Final Fantasy Crystal Chronicles: Echoes of Time]]''====
+[[File:Ffcc-eot moogle.jpg|thumb|80px]]
+Moogles help out Adventurers by putting up signs in dungeons. They work under Stiltzkin, who gives out quests the Adventurers can take.{{clear}}
+
+====''[[Final Fantasy Crystal Chronicles: My Life as a King]]''====
+[[File:Ffccking moogle.jpg|thumb|left|100px]]
+A group of Moogles known as the [[Moogle Brothers]] appears in the [[Padarak]] to help out the young [[King Leo (Crystal Chronicles)|King Leo]]. Most moogles' names begin with "Mog", such as Mogmune and [[Cid#Final Fantasy Crystal Chronicles: My Life as a King|Mogcid]].
+
+They help in various ways, such as helping in creating new buildings and informing King Leo of citizens who need help so he can assign a new behest to solve their problem. Stiltzkin helps King Leo figure out the fate of his father.{{clear}}
+
+====''[[Final Fantasy Crystal Chronicles: The Crystal Bearers]]''====
+[[File:Ffcc-tcb moogle.jpg|thumb|left|125px]]
+Moogles are slightly taller and have arms. Moogles serve many purposes: mail man, garbage picker, and a waiter in the [[Selkie (Crystal Chronicles)|Selkie]] train.
+
+Regular moogles can be met. Moogles man the moogle shops, which can synthesize equipment, sell materials and equipment, and create new logos for [[Layle]]'s jacket. The game holds a moogle woods area home to many moogles normally accessible only by the Selkie train (Layle, with the help of his powers, can also access this area through a portal and a hidden path behind a waterfall from the [[Old Lett Aqueduct]] area).
+
+It is said that the moogle shops started from the moogle village due to one ambitious young moogle. There are three moogles that the player can talk to: Stiltzkin, who provides hints and info; Artemicion, who is said to be linked to 188 crimes; and [[Layle Moogle]], who resides between existence and oblivion and the [[Alfitaria Capital City]] entrance during a [[New Game Plus|New Game+]]. Talking to him allows the player to play minigames.
+
+<gallery>
+Mail moogle.jpg|Mail Moogle.
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy Adventure]]''===
+[[File:FFA Moogle Sprite.png|thumb]]
+The Moog status will reduce [[Sumo]]'s defense power to 0 and scramble the player's directional inputs. Therefore, even the weakest enemies will deal a lot of damage to him. Sumo will turn into an image of the moogle when afflicted. Due to an oversight, the Potion of Moogle (Mole Whiskers) cannot be used in the original. There are two ways to cure it: the first is to let time pass by and the second is to [[Ask]] [[Chocobo (Adventure)|Chocobo]] as long as they are in the party.
+
+===''[[Final Fantasy Dimensions]]''===
+[[File:FFD Moogle.png|thumb|left|165px|A moogle.]]
+Moogles' primary role is centered around facilitating the side quest content. This involves providing the player with information on earning the ability to summon the various [[Eidolon (Dimensions)|Eidolons]], as well as allowing access to the [[superboss]]es. In some areas, moogles can be found selling items. Moogles are also summonable.{{clear}}
+
+===''[[Final Fantasy Dimensions II]]''===
+{{Main|Moogle (Dimensions II summon)}}
+[[File:FFD2 Morrow Moogle Art.png|thumb|200px|Artwork of the Moogle Eidolon.]]
+The Moogles are a race of Eidolons that come from the world of [[Eidola]]. Before the events of the Mysidia Crisis, Moogles were Eidolons that attended to the needs of humanity and lived among them during the Ancient Era of Mysidia. However, after the events of the Mysidia Crisis, the Moogles fled to their home realm of Eidola. After the events of the Crystal of Time arc, the Moogles return to humanity in an attempt to mend the broken relationship from before.
+
+A Moogle by the name of [[Mog (Dimensions II)|Mog]] also appears as [[Chronos (Dimensions II)|Chrono's]] attendant in the Rift.
+
+In addition, the Moogle appears as a dark-elemental Eidolon for [[Morrow]] to equip and teaches him Festal Cant abilities.{{clear}}
+
+===''[[Dissidia Final Fantasy (2008)|Dissidia Final Fantasy]]'' (2008)===
+[[File:DFFMoogle.png|thumb|200px|Moogle being summoned.]]
+[[File:Tidus throws a Moogle.png|thumb|200px|Tidus throws a moogle ball.]]
+Moogles are responsible for the every day [[Mognet (Dissidia)|Mognet]]. There is a moogle [[Summons (Dissidia)|summonstone]] that uses artwork of the ''Final Fantasy XI'' version, which, when summoned, randomly copies the effect of any other summon, save for [[Shinryu (Dissidia)|Shinryu]]. Moogle can be obtained as a Stage Bonus on the [[Destiny Odyssey III]] storyline in the Japanese version and is found on the first stage of [[Inward Chaos]] in the English version.
+
+A new cutscene in the North American, European, and ''Universal Tuning'' releases plays when the player acquires the moogle summon, with the moogle presenting itself to the player's character and agreeing to help them. If [[Terra Branford (Dissidia PSP)|Terra]] is the player character, the scene will be extended to show her cuddling the moogle. The moogle appears to be based on the ''[[Kingdom Hearts]]'' depiction of moogles, albeit with comically proportioned body parts. After viewing the scene with [[Tidus (Dissidia PSP)|Tidus]], he will sometimes use a Moogle Ball for his attacks that use [[blitzball]]s.
+
+The Summon Compendium expands on the species, explaining their ability to fly and says that moogles saying "kupo" and those saying "nyaa" may be different species altogether.{{clear}}
+
+====''[[Dissidia 012 Final Fantasy]]''====
+[[File:Dissidia012-MoogleArt.PNG|thumb|70px|Moogle artwork.]]
+Moogles return with a larger role. They run [[Moogle Shop (Dissidia 012)|Moogle Shop]]s on the new world map and players can purchase equipment and [[Dissidia 012 Final Fantasy skills|skills]] from them in exchange for "[[KP]]" (Kupo Points) earned in [[gateway]]s. The moogle [[Summon (Dissidia 012)|summonstone]] returns, found on the fifth floor of the "Chasm of the Rotting Land" gateway in [[Confessions of the Creator]].
+
+In Confessions of the Creator, [[Cid of the Lufaine]] takes on the form of a moogle. It is mentioned that in this hypothetical world, where all others have been destroyed, moogles are the only lifeform remaining.
+
+As an easter egg, a trio of moogles sometimes appear in the photos in the Theater.
+
+<gallery>
+D012 Moogle Render.png|In-game model.
+</gallery>
+
+==== ''[[Dissidia Final Fantasy NT]]''====
+[[File:Dissidia15-Moogle.png|thumb|100px|A Moogle.]]
+Moogles appear with a modified design, showing a more similar appearance to their ''Kingdom Hearts'' counterparts than their predecessors. They appear in the battle menu screens. Moogles provide advice in tutorial screens and battles.
+{{Section|Dissidia Final Fantasy NT}}
+{{clear}}
+
+====''[[Dissidia Final Fantasy Opera Omnia]]''====
+[[File:DFFOO Mog.png|thumb|120px]]
+A moogle named [[Mog (Opera Omnia)|Mog]] appeared as the main character, summoned by the crystals to help them prevent the destruction of the world. Mog was the only character that could communicate with [[Materia (Dissidia)|Materia]] and [[Spiritus]].
+
+The prologue/opening movie stated that Mog was an ancient moogle. Mog's interactions with Materia and Spiritus supported this statement.
+
+Mog was a summon during the April Fools' 2019 event on the Japanese client for ''Dissidia Final Fantasy Opera Omnia''. It was a summon that removed any debuffs on Terra and increased her ATK by 10% and her Love (a non-existent stat) by 10 points while active.
+
+[[Mog (Opera Omnia playable character)|Mog from ''Final Fantasy VI'']] can also be recruited in Act 3 of the core storyline. Players could also obtain weapons and armor in the likeness of moogles for several of the title's other characters as well.
+
+<gallery>
+DFFOO Prologue 02 Ancient Moogle.png|Mog's introduction as the "ancient moogle" in the prologue/opening movie.
+DFFOO Spirit Moogle Summon.png|Spirit Moogle summon.
+</gallery>
+{{clear}}
+
+===''[[Pictlogica Final Fantasy]]''===
+Moogles appeared as NPCs that could assist the player with finding premium Memoria. The moogle in the game looked like a the ''Final Fantasy VI'' pixel moogle.
+
+<gallery>
+PFF Moogle.png|Promotional image for the 1 million download celebration<!--https://dengekionline.com/elem/000/000/807/807812/-->
+</gallery>
+
+===''[[Theatrhythm Final Fantasy]]''===
+[[File:Theatrhythm Moogle.png|thumb|75px|Moogle.]]
+Moogles appear as NPCs that give treasure to players during field events. The ability [[Sight#Theatrhythm Final Fantasy|Sight]] increases the player's chance of encountering one.{{clear}}
+
+====''[[Theatrhythm Final Fantasy Curtain Call]]''====
+{{Quote|These mysterious beings tend to flock around humans, closer to man than beast. They communicate via their network Mognet and their distinctive cry of "Kupo!" and fluffy appearance endear them to all.|CollectaCard}}
+Moogles appear during [[Field Music Sequence]]s and award the player random items. The ability Sight increases the chance of encountering moogles by 7%.
+
+===''[[Final Fantasy Airborne Brigade]]''===
+{{Quote|We moogles look different in almost every FINAL FANTASY game. I wonder why, kupo...|Mog}}
+Moogles were guides to new players. Physically resembling moogles from ''Theatrhythm Final Fantasy'', these moogles offered advice and tips throughout gameplay. A moogle helped walk a beginning player through the tutorial, as well as running a Mog's Advice section, offering rewards should the player take quizzes on gameplay information or perform various tasks designed to acclimate the player to the game's mechanics. A moogle appeared when a player found a Gate Crystal to take them to the realm of the [[Esper (Airborne Brigade)|Espers]].
+
+<gallery>
+FFAB Mascot Female.png|Female Mascot.
+Moogle Balloon Brigade.png|Moogle Balloon.
+</gallery>
+
+===''[[Final Fantasy Artniks]]''===
+Moogles appear as playable cards. The artwork featured for the Moogle cards comes from ''Final Fantasy Tactics'' and ''Final Fantasy Type-0''.
+
+<gallery>
+Type0 Class One Moogle N F Artniks.png|Class First Moogle (N).
+Type0 Class Two Moogle Artniks.png|Class Second Moogle (N).
+Type0 Class Three Moogle N I Artniks.png|Class Third Moogle (N).
+Type0 Class Twelve Moogle R I Artniks.png|Class Twelfth Moogle (R).
+FFT Moogle R+ I Artniks.png|''Tactics'' Moogle (R+).
+</gallery>
+{{Section|Final Fantasy Artniks}}
+{{clear}}
+
+===''[[Final Fantasy All the Bravest]]''===
+[[File:Mog ATB.png|thumb|45px|Mog's sprite.]]
+{{Quote|These weird little creatures are best known for saying "kupo" a lot, and not much else, really.|Description}}
+Mog was an exclusive character available from the Premium Character Shop as a random downloadable content. He used the Stardust Jitterbug ability during battle. A moogle also explained the gameplay in the tutorial and appeared and told the player they were "wiped out" when all of one's units died.
+
+===''[[Final Fantasy Record Keeper]]''===
+{{main|Dr. Mog}}
+Dr. Mog is the representative moogle, functioning as a story character, tutor, and items broker. He is a Record Keeper, a member of a secret society of magic-wielding historians dedicated to preserving the memories of the ''Final Fantasy'' series through living artwork known as Records. As darkness casts a pall over the Hall of Records and corrupts the Records within, Dr. Mog uses his magic to send his apprentice, [[Tyro (Record Keeper)|Tyro]], into the corrupted Records to liberate them.
+
+Two moogles are also playable:
+*Mog from ''Final Fantasy VI'', as a fighter-mage.
+*Montblanc from ''Final Fantasy Tactics Advance'', as a Black Mage.
+
+===''[[Mobius Final Fantasy]]''===
+{{main|Mog (Mobius)}}
+[[File:MobiusFF Mog.png|thumb|100px|Mog.]]
+Mog was a moogle that [[Wol (Mobius)|Wol]] met early in his journey, saving the little creature from the monsters' attack. He was a model edit of Mog from ''Final Fantasy XIII-2'' with feline eyes, cat-like nose, flower-shaped collar, and sock-like objects on his feet. A moogle also appeared in the [[Choco/Mog|Chocobo & Moogle]] ability card.
+
+<gallery>
+Mobius Dark Moogle Fire.png|Dark Moogle (Fire).
+Mobius Dark Moogle Water.png|Dark Moogle (Water).
+Mobius Dark Moogle Wind.png|Dark Moogle (Wind).
+Mobius Dark Moogle Earth.png|Dark Moogle (Earth).
+MFF Moogle.jpg|Moogle card.
+Mobius - Chocobo & Moogle FFVII R3 Ability Card.png|Chocobo & Moogle.
+</gallery>
+{{clear}}
+
+===''Chocobo'' series===
+{{main|Mog (Chocobo series)}}
+[[File:Dueler X.png|thumb|left|125px]]
+Mog is always out to steal the spotlight from [[Chocobo (Chocobo series)|Chocobo]]. In ''[[Final Fantasy Fables: Chocobo Tales]]'' and ''[[Final Fantasy Fables: Chocobo's Dungeon]]'', Mog (left) calls himself Dueler X and Dungeon Hero X, respectively.{{clear}}
+
+===''[[Final Fantasy: Unlimited]]''===
+[[File:U Moogle.jpg|thumb|100px]]
+[[Kuroki Kaze|Kaze]] finds his old partner, a moogle called [[Moogle Kupo]], whose pompom is yellow. He possesses various powers, glowing when he activates them, using them to seek out Kaze and to fix his [[Magun]]. He indicates in "[[Moogle: Nostalgic Memories]]" that it gives him a shock when he becomes confused, though he may just be joking. Moogle can power up Kaze's Magun, letting him summon more powerful versions of previous summons. Moogles were common in Kaze's homeworld, [[Windaria]].
+
+In the final episode, Moogle Kupo sacrifices himself and changes into a soil sample, Soul Gun Metal, to help Kaze summon [[Bahamut#Final Fantasy: Unlimited|Bahamut]]. In the [[wikipedia:Animax Asia|Animax Asia]] dub, his name is Mogli, though in the official English dub released on DVD by ADV films, he is still Moogle Kupo.
+
+In the English ADV release, he is listed in the credits for the Japanese cast under the name "Moogle Kupow". Additionally, in the English subtitles, he is shown using "kupo" at the end of each sentence, like the majority of the moogles in ''Final Fantasy IX'', though this is not reflected in the audio, although he does use "kupo" in his speech during the episode "[[Kaze: The Glory of Life]]".{{clear}}
+
+===''[[Final Fantasy Trading Card Game]]''===
+Moogles are represented by several cards. Some are generic moogles, others are specific characters. The moogle cards rely on drawing cards and otherwise have various effects that increase in potency the more moogles the player controls. To differentiate them, all but one moogle bears a title after their name.
+
+<gallery>
+Moogle TCG.png|Moogle [1-142U] Chapter series card.
+4-016C.jpg|Montblanc [4-016C] Chapter series card.
+4-030C.jpg|Hurdy [4-030C] Chapter series card.
+4-042C.jpg|Nono [4-042C] Chapter series card.
+4-060C.jpg|Sorbet [4-060C] Chapter series card.
+Gurdy TCG.png|Gurdy [4-069C] Chapter series card.
+Horne TCG.png|Horne [4-097C] Chapter series card.
+Mog Type0 TCG.png|Moogle -Class Zero- [4-098U] Chapter series card.
+Moogle Class2 TCG.png|Moogle -Class Second- [5-023C] Chapter series card.
+Moogle Class1 TCG.png|Moogle -Class First- [5-024C] Chapter series card.
+Moogle Class3 TCG.png|Moogle -Class Third- [5-047C] Chapter series card.
+Moogle Class9 TCG.png|Moogle -Class Ninth- [5-048C] Chapter series card.
+Moogle Class8 TCG.png|Moogle -Class Eighth- [5-070C] Chapter series card.
+Moogle Class6 TCG.png|Moogle -Class Sixth- [5-071C] Chapter series card.
+Mog TCG.png|Mog [5-072R] Chapter series card.
+Mog2 TCG.png|Mog [5-073U] Chapter series card.
+Moogle Class7 TCG.png|Moogle -Class Seventh- [5-097C] Chapter series card.
+Moogle Class5 TCG.png|Moogle -Class Fifth- [5-098C] Chapter series card.
+Moogle Class11 TCG.png|Moogle -Class Eleventh- [5-120C] Chapter series card.
+Moogle Class10 TCG.png|Moogle -Class Tenth- [5-121C] Chapter series card.
+Moogle Class12 TCG.png|Moogle -Class Twelfth- [5-141C] Chapter series card.
+Moogle Class4 TCG.png|Moogle -Class Fourth- [5-142C] Chapter series card.
+Moogle Theatrhythm TCG.png|Moogle (THEATRHYTHM) [5-143C] Chapter series card.
+Nono TCG.png|Nono [6-038C] Chapter series card.
+Montblanc TCG.png|Montblanc [8-012C] Chapter series card.
+Hurdy TCG.png|Hurdy [8-023C] Chapter series card.
+Mog Panda TCG.png|Moogle (XIII-2) [8-027C] Chapter series card.
+Stiltzkin TCG.png|Stiltzkin [9-068U] Chapter series card.
+BlackMage Moogle TCG.png|Black Mage [11-010C] Chapter series card.
+Mog XIII-2 TCG.png|Moogle (XIII-2) [11-037U] Chapter series card.
+Mog3 TCG.png|Mog [11-058S] Chapter series card.
+Artemicion TCG.png|Artemicion [12-096U] Chapter series card.
+MoogleBrothers TCG.png|Moogle Brothers [13-188U] Chapter series card.
+Mog5 TCG.png|Moogle (XIII-2) [14-035U] Chapter series card.
+Mog IX TCG.png|Mog (IX) [14-117R] Chapter series card.
+GoodKingMoggleMogXII TCG.png|Good King Moggle Mog XII [15-034S] Chapter series card.
+MoogleTribe TCG.png|Moogle Tribe [15-041C] Chapter series card.
+Mog6 TCG.png|Mog [15-062R] Chapter series card.
+Moogle PR.png|Moogle (XIII-2) [PR-026] Chapter series card.
+Moogle PR TCG.png|Moogle (XI) [PR-038] Chapter series card.
+Montblanc PR TCG.png|Montblanc [PR-039] Chapter series card.
+Mog Treasure TCG.png|Moogle (XIII-2) [T-001] Chapter series card.
+Moogle 1-172C from FFTCG Opus.jpg|Moogle [1-172C] Opus series card.
+Mog (IX) 3-141C from FFTCG Opus.jpg|Mog (IX) [3-141C] Opus series card.
+Moogle (Class Zero Cadet) 3-150S from FFTCG Opus.jpg|Moogle (Class Zero Cadet) [3-150S] Opus series card.
+Nono 4-066R from FFTCG Opus.jpg|Nono [4-066R] Opus series card.
+Moogle 4-069H from FFTCG Opus.jpg|Moogle [4-069H] Opus series card.
+Moogle (THEATRHYTHM) 4-139C from FFTCG Opus.jpg|Moogle (THEATRHYTHM) [4-139C] Opus series card.
+Mog (VI) 4-140H from FFTCG Opus.jpg|Mog (VI) [4-140H] Opus series card.
+Hurdy 5-043R from FFTCG Opus.jpg|Hurdy [5-043R] Opus series card.
+Mog (MOBIUS) 5-093C from FFTCG Opus.jpg|Mog (MOBIUS) [5-093C] Opus series card.
+Mog (XIII-2) 5-153S from FFTCG Opus.jpg|Mog (XIII-2) [5-153S] Opus series card.
+Moogle (XI) 6-058R from FFTCG Opus.jpg|Moogle (XI) [6-058R] Opus series card.
+Moogle Brothers 6-081R from FFTCG Opus.jpg|Moogle Brothers [6-081R] Opus series card.
+</gallery>
+
+===''[[Final Fantasy Portal App]]''===
+Assorted Moogles from throughout the series appeared as [[Triple Triad (Portal App)|Triple Triad]] cards.
+
+Moogle appeared as an opponent carrying ''[[Final Fantasy XIV]]'' cards. On November 10, 2015, the Moogle opponent was replaced by [[Y'shtola Rhul|Y'shtola]] using the same decks, cards, and rules. In the release note, it was reported that Moogle may appear again later. On Easy, the Moogle used the rules Three Open and Plus. On Normal, he used Plus. On Hard, he used Three Open, Same, and Plus and the rare five star ''Final Fantasy XIV'' cards were able to be won from him, among others. He used the trading rule One.
+
+<gallery>
+276a Class First Moogle.png|Class First Moogle from ''[[Final Fantasy Type-0]]''.
+276b Class First Moogle.png|Class First Moogle from ''[[Final Fantasy Type-0]]''.
+276c Class First Moogle.png|Class First Moogle from ''[[Final Fantasy Type-0]]''.
+277a Class Second Moogle.png|Class Second Moogle from ''[[Final Fantasy Type-0]]''.
+277b Class Second Moogle.png|Class Second Moogle from ''[[Final Fantasy Type-0]]''.
+277c Class Second Moogle.png|Class Second Moogle from ''[[Final Fantasy Type-0]]''.
+278a Class Third Moogle.png|Class Third Moogle from ''[[Final Fantasy Type-0]]''.
+278b Class Third Moogle.png|Class Third Moogle from ''[[Final Fantasy Type-0]]''.
+278c Class Third Moogle.png|Class Third Moogle from ''[[Final Fantasy Type-0]]''.
+279a Class Fourth Moogle.png|Class Fourth Moogle from ''[[Final Fantasy Type-0]]''.
+279b Class Fourth Moogle.png|Class Fourth Moogle from ''[[Final Fantasy Type-0]]''.
+279c Class Fourth Moogle.png|Class Fourth Moogle from ''[[Final Fantasy Type-0]]''.
+280a Class Fifth Moogle.png|Class Fifth Moogle from ''[[Final Fantasy Type-0]]''.
+280b Class Fifth Moogle.png|Class Fifth Moogle from ''[[Final Fantasy Type-0]]''.
+280c Class Fifth Moogle.png|Class Fifth Moogle from ''[[Final Fantasy Type-0]]''.
+281a Class Sixth Moogle.png|Class Sixth Moogle from ''[[Final Fantasy Type-0]]''.
+281b Class Sixth Moogle.png|Class Sixth Moogle from ''[[Final Fantasy Type-0]]''.
+281c Class Sixth Moogle.png|Class Sixth Moogle from ''[[Final Fantasy Type-0]]''.
+282a Class Seventh Moogle.png|Class Seventh Moogle from ''[[Final Fantasy Type-0]]''.
+282b Class Seventh Moogle.png|Class Seventh Moogle from ''[[Final Fantasy Type-0]]''.
+282c Class Seventh Moogle.png|Class Seventh Moogle from ''[[Final Fantasy Type-0]]''.
+283a Class Eighth Moogle.png|Class Eighth Moogle from ''[[Final Fantasy Type-0]]''.
+283b Class Eighth Moogle.png|Class Eighth Moogle from ''[[Final Fantasy Type-0]]''.
+283c Class Eighth Moogle.png|Class Eighth Moogle from ''[[Final Fantasy Type-0]]''.
+284a Class Ninth Moogle.png|Class Ninth Moogle from ''[[Final Fantasy Type-0]]''.
+284b Class Ninth Moogle.png|Class Ninth Moogle from ''[[Final Fantasy Type-0]]''.
+284c Class Ninth Moogle.png|Class Ninth Moogle from ''[[Final Fantasy Type-0]]''.
+285a Class Tenth Moogle.png|Class Tenth Moogle from ''[[Final Fantasy Type-0]]''.
+285b Class Tenth Moogle.png|Class Tenth Moogle from ''[[Final Fantasy Type-0]]''.
+285c Class Tenth Moogle.png|Class Tenth Moogle from ''[[Final Fantasy Type-0]]''.
+286a Class Eleventh Moogle.png|Class Eleventh Moogle from ''[[Final Fantasy Type-0]]''.
+286b Class Eleventh Moogle.png|Class Eleventh Moogle from ''[[Final Fantasy Type-0]]''.
+286c Class Eleventh Moogle.png|Class Eleventh Moogle from ''[[Final Fantasy Type-0]]''.
+287a Class Twelfth Moogle.png|Class Twelfth Moogle from ''[[Final Fantasy Type-0]]''.
+287b Class Twelfth Moogle.png|Class Twelfth Moogle from ''[[Final Fantasy Type-0]]''.
+287c Class Twelfth Moogle.png|Class Twelfth Moogle from ''[[Final Fantasy Type-0]]''.
+292a Moglin.png|Moglin from ''[[Final Fantasy Type-0]]''.
+292b Moglin.png|Moglin from ''[[Final Fantasy Type-0]]''.
+292c Moglin.png|Moglin from ''[[Final Fantasy Type-0]]''.
+343a Mog.png|Mog from ''[[Mobius Final Fantasy]]''.
+343b Mog.png|Mog from ''[[Mobius Final Fantasy]]''.
+343c Mog.png|Mog from ''[[Mobius Final Fantasy]]''.
+388a Good King Moggle Mog XII.png|Good King Moggle Mog XII from ''[[Final Fantasy XIV]]''.
+388b Good King Moggle Mog XII.png|Good King Moggle Mog XII from ''[[Final Fantasy XIV]]''.
+388c Good King Moggle Mog XII.png|Good King Moggle Mog XII from ''[[Final Fantasy XIV]]''.
+521a Moogle.png|Moogle from ''[[Final Fantasy XIV]]''.
+521b Moogle.png|Moogle from ''[[Final Fantasy XIV]]''.
+521c Moogle.png|Moogle from ''[[Final Fantasy XIV]]''.
+557a Moogle.png|Moogle from ''World of Final Fantasy''.
+557b Moogle.png|Moogle from ''World of Final Fantasy''.
+557c Moogle.png|Moogle from ''World of Final Fantasy''.
+</gallery>
+
+===''[[Final Fantasy Brave Exvius]]''===
+<gallery>
+FFBE 586 Moogle.png|Moogle (4★).
+FFBE 587 Moogle.png|Moogle (5★).
+FFBE 588 Moogle.png|Moogle (6★).
+FFBE 560 Trust Moogle.png|Trust Moogle (1★).
+FFBE 338 Trust Moogle.png|Trust Moogle (3★).
+FFBE 339 Trust Moogle.png|Trust Moogle (4★).
+FFBE 302 Trust Moogle.png|Trust Moogle (5★).
+</gallery>
+{{Section|Final Fantasy Brave Exvius}}
+
+====''[[War of the Visions: Final Fantasy Brave Exvius]]''====
+<gallery>
+Moogle from WotV artwork.png|Moogle artwork.
+</gallery>
+{{Section|War of the Visions: Final Fantasy Brave Exvius}}
+
+===''[[World of Final Fantasy]]''===
+{{main|Moogle (World of Final Fantasy)}}
+====Who's Who====
+=====Moogle=====
+:''CV: Bailey Gambertoglio / Sumire Morohashi''
+
+:''Notes: Plundering pirate / Avid reader / Told the twins about the keys in the prophecy''
+
+:''A Series Regular''
+:''Since their first appearance in a FINAL FANTASY game, the moogles and their trademark "kupo" have gone on to appear in a number of stories inside and outside the FF universe. They're something of a mascot.''
+
+:''In'' FINAL FANTASY VI, ''moogles popped up on a black screen to provide players with hints. That seems to have cemented their role in FF history as guides and purveyors of various player-friendly services.''
+
+:''In our tale, Mog conveniently shows up to tell the twins about the keys they need. Does that make him a "deus ex mogina"?''
+
+:''Transfig Fashion''
+:''So, you may be wondering if a kupirate is just a regular moogle in fancy clothes. Not so! Just like with any other Mirage, Mog here is able to transfig in and out of kupirate form. It certainly helps him save closet space.''
+
+:''Moogle Mischief''
+:''Most moogles you'll meet are unrepentant pranksters, and this one's no different. Playfulness appears to be built right into their pom-poms.''
+
+:''Old Friends''
+:''Mog, the Cactuar Conductor, and the Master Tonberry go way back. In another time and another place (okay, actually another game), they were originally going to team up as the "Cranberry Knights". Sadly, due to unavoidable circumstances, that particular tale had to go untold. Their personalities, however, live on in their adventures in Grymoire.''
+
+:''First World of Origin''
+:''FINAL FANTASY III''
+
+<gallery>
+WoFF Moogle.png|Moogle.
+WoFF Kupirate.png|Kupirate.
+WoFF Moogles.jpg|Moogles.
+</gallery>
+{{Section|World of Final Fantasy}}
+
+===''[[Stranger of Paradise Final Fantasy Origin]]''===
+[[File:Stranger-of-Paradise-Final-Fantasy-Origin Moogle.png|thumb|100px]]
+A moogle spirit from [[World B]] appears before [[Jack Garland]] and his party during the "Different Future" DLC episode. The entity proclaims itself as born from [[Cosmos (Dissidia)|the will of harmony]] and attempts to lead Jack to become the God of Discord, seemingly to take [[Chaos (Dissidia)|Chaos']] place following his defeat in ''[[Dissidia Final Fantasy (2008)|Dissidia]]''.
+
+
+==Non-''Final Fantasy'' guest appearances==
+{{Expand|Condense list of guest appearances}}
+===''[[w:c:assassinscreed:Assassin's Creed: Origins|Assassin's Creed: Origins]]''===
+[[File:Assassin's Creed Origins Moogle Doll.png|thumb|180px|Moogle doll in ''Assassin's Creed: Origins''.]]
+A Moogle doll can be found in front of a trunk in Layla Hassan's base during the present day scenarios.{{clear}}
+
+=== ''Hanjuku Hero'' ===
+Moogle appears in ''Hanjuku Hero: Aa, Sekaiyo Hanjukunare...!'' and ''Hanjuku Hero tai 3D'' as an Egg Monster.
+
+<gallery>
+Moogle Hanjuku Hero.png|Moogle (Artwork)
+Hanjuku Hero - Moogle.png|Moogle (Sprite) from ''Hanjuku Hero: Aa, Sekaiyo Hanjukunare...!''
+</gallery>
+
+===''[[Fortune Street]]''===
+In ''[[Dragon Quest & Final Fantasy in Itadaki Street Special]]'', the Moogle appears as an unlockable playable character. It is Rank B (often invests 99 in stocks, 999G in shops, and buys out if necessary).
+
+<gallery>
+Itadaki-Moogle.png|Moogle.
+Itadaki-MooglePortrait.png|Moogle's portrait.
+ItagakiStmog.png|Moogle in ''Itadaki Street Special''.
+</gallery>
+
+===''[[Dragon Quest]]''===
+[[File:Dragon Quest X Moogle.jpg|thumb|Moogle's quest.]]
+In ''[[w:c:dragonquest:Dragon Quest X|Dragon Quest X]]'' a moogle from ''Final Fantasy XIV: A Realm Reborn'' will give players a quest. If they complete this, they can get a Cactuar Mask.
+
+In ''Dragon Quest Tact'', a moogle can join the player's party during a [[collaboration]] event with ''[[War of the Visions: Final Fantasy Brave Exvius]]''. It is capable of casting [[Cure (ability)|Cure]], Mog Barrier, and [[Holy (ability)|Holy]].
+
+<gallery>
+DQT Moogle.png|Moogle.
+</gallery>
+
+{{clear}}
+
+===''[[Star Ocean]]''===
+[[File:SOA Enter the Moogle.png|thumb|100px|A Lapis moogle pops out from a space warp.]]
+In [[w:c:starocean:Star Ocean: Anamnesis|''Star Ocean: Anamnesis'']], a moogle accompanied the ''Brave Exvius'' cast in the crossover Vision of New Beginnings, when they were warped to an unknown area of the Milky Way galaxy. He could detect dimensional vortices and tried to use this ability to find a way back home, with little success.
+
+During the same event, players could obtain a Moogle Plush accessory as a drop from the Misery 2 difficulty battle or via [[gacha]] in a "box draw".{{clear}}
+
+===''[[Kingdom Hearts]]''===
+{{For KHWiki|Moogle}}
+[[File:KH Moogle.png|thumb|left|60px]]
+In ''{{KHWiki|Kingdom Hearts (game)|Kingdom Hearts}}'', moogles wander around Traverse Town and own a synthesis shop there. Another moogle in [[Cid Highwind/Other appearances#Kingdom Hearts|Cid's]] accessory shop speaks about the tournaments in {{KHWiki|Olympus Coliseum}}, though later on in the game, when the tournaments have been beaten, he begins to suspect {{KHWiki|Sora}} of being the champion (which is undoubtedly true). In the ''Final Mix'' version, a special gummi ship blueprint called Moogles can be obtained by completing Traverse Town {{KHWiki|Gummi Ship}} Mission 3.
+
+[[File:Moogle shops Chain of Memories.jpg|thumb|The Moogle Shop in ''Chain of Memories''.]]
+In ''{{KHWiki|Kingdom Hearts:Chain of Memories}}'', moogles appear in "Moogle Rooms", a special room generated by a map card of the same name. Inside, Sora can cash in his unwanted cards for "moogle points" and spend accumulated moogle points on purchasing new card packs. There is a chance the moogle will give Sora a free card pack when the player first speaks to it in an area. The moogle(s) in ''Chain of Memories'' are not given a name other than the collective "Moogle".
+
+In ''{{KHWiki|Kingdom Hearts II}}'', the moogles run synthesis shops. However, unlike ''Kingdom Hearts'', only holograms of the moogles appear. According to the journal, this is because the moogles are tired of people touching their pom-poms and started doing business this way. The only moogles that do not appear as holograms are Mog in Hollow Bastion/Radiant Garden and Elmina in Twilight Town. All of the moogle shop owners have names related to ''Final Fantasy'' moogles (e.g. "Stiltzkin's Synthesis Shop"). A clip on [[Selphie Tilmitt/Other appearances#Kingdom Hearts|Selphie's]] purse has the shape of a moogle. A special gummi ship blueprint called Moogles can be obtained by receiving an S-Rank in the {{KHWiki|Splash Island}} (Mission 2). It costs 946 munny and requires 94x Material-G, Firaga-G, Blizzaga-G, 2x Thunder-G, 2x Storm-G, Bubble Helm-G blocks.
+
+[[File:Organization XIII Moogle.png|thumb|left|75px|A moogle in an Organization XIII coat.]]
+In ''{{KHWiki|Kingdom Hearts 358/2 Days}}'', a single moogle, wearing the black coat akin to those worn by Organization XIII, can be found in The World That Never Was and in Twilight Town in front of the Train Station appearing after Roxas has left Organization XIII (claiming that Roxas is too good of a source of income to abandon). Like other moogles, it runs a shop and synthesizes items. It may either be a Nobody moogle, or hired by the Organization. However, it is most likely simply an artistic choice to emphasize the adorable nature of said moogle.
+
+In ''{{KHWiki|Kingdom Hearts Birth by Sleep}}'', a moogle awards the player with medals won in Multiplayer Mode and they continue running shops via holograms. A real moogle appears in the Mirage Arena, trading rare items and commands for medals won in the arena challenges and in Radiant Garden.
+
+Moogles continue their role as shopkeepers in ''{{KHWiki|Kingdom Hearts 3D: Dream Drop Distance}}'' and run the Flick Rush minigame and medal shop in Traverse Town. They are the only representatives of the ''Final Fantasy'' series (outside the usual dash of attack and item names).
+
+They appear as munny medals in ''Kingdom Hearts Union χ[Cross]''. Players can have their avatar dress as a moogle.
+
+In ''{{KHWiki|Kingdom Hearts III}}'', moogles run the synthesis shops. They reward the player postcards when they purchase enough items and, if they spend enough munny, they may reward the M.O.G. Card, which allows the player to buy special items. In the Ocean Between, a constellation appears that, when photographed, takes the form of a moogle and unlocks a special Moogle Gummiship and the Moogle Gazer title.
+
+<gallery>
+KHUX Moogle ★ Medal.png|''Kingdom Hearts Union χ[Cross]''.
+KHUX Moogle 3★ Medal.png|''Kingdom Hearts Union χ[Cross]''.
+KHUX Moogle 5★ Medal.png|''Kingdom Hearts Union χ[Cross]''.
+KHUX Moogle 6★ Medal.png|''Kingdom Hearts Union χ[Cross]''.
+</gallery>
+{{clear}}
+
+===''[[Mario Hoops 3-on-3]]''===
+[[File:M3on3-moogle.png|thumb|left|60px|Moogle, as he appears in ''Mario Hoops 3-on-3''.]]
+Courtesy of the game's developer, Square Enix, the moogle appears as a secret character in the [https://www.mariowiki.com/Mario Mario] sports game ''Mario Hoops 3-on-3''. The moogle's special shot is "Moogle Dance". It resembles the moogles from the ''Crystal Chronicles'' games, which have only been released for Nintendo systems.
+
+Although the game predated ''The Crystal Bearers'', it mostly resembles the design of moogles as they appeared in that game, having visible arms and a smaller-looking body overall.{{clear}}
+
+===''[[Mario Sports Mix]]''===
+[[File:Mariosports moogle.png|thumb|120px]]
+Moogle reappeared in ''Mario Sports Mix'' for the Nintendo Wii alongside the same four unlockable ''Final Fantasy'' characters with which it debuted. Moogle is unlocked by beating the Mushroom Cup.{{clear}}
+
+===[[w:c:mana:Mana (series)|''Mana'']] ===
+Following on its introduction in ''Final Fantasy Adventure'', the moogle appears as a recurring, albeit rare status condition throughout the series. While "moogled", a party member's defense will instantly drop to near zero and they often cannot be controlled properly for a time.
+
+The Moogle Claw also became a recurring knuckle from ''Secret of Mana'' onward, used by Monk-type classes and other characters. It is typically a low-to-mid-level weapon where it appears.
+
+Moogles have only made one appearance as a race, also in ''Secret of Mana''. They live in a secluded village in the Upper Land and are extremely timid creatures.
+
+In other cases, the moogle is mostly a cosmetic addition. It appears as an Easter egg in the 2D ''Secret of Mana'', then as a costume set in the 2018 3D remake. Moogles also made various appearances in the short-lived ''Rise of Mana''.
+
+<gallery>
+SOMMoogle.PNG|Moogle from ''Secret of Mana''.
+SoM Moogle Balloon.png|thumb|Level 8 Balloon (SeoM 2D).
+Moogle Seiken Densetsu 3.gif|''Trials of Mana''.
+RoM Moogle.png|Moogle in ''Rise of Mana''.
+RoM Moogle in battle.png|Moogle in battle.
+</gallery>
+
+{{clear}}
+
+===''[[Lord of Vermilion]]''===
+Moogle makes an appearance in the series as an obtainable unit card.
+
+<gallery>
+LoV Moogle Artwork.png|Moogle's card artwork for the ''Lord of Vermilion''.
+MoogleLOV2.jpg|Front of Moogle's card for ''Lord of Vermillion 2''.
+LoV - Moogle Back.jpg|Back of Moogle's card.
+</gallery>
+{{clear}}
+
+===''Monster Strike''===
+[[File:Monster Strike Moogle.png|thumb|150px]]
+{{Section}}
+{{clear}}
+
+===''[[Puzzle & Dragons]]''===
+Moogles appeared as part of the ''Crystal Defenders'' and ''Final Fantasy'' collaborations.
+
+<gallery>
+PAD Moogle.png|Moogle.
+PAD Black Mage.png|Black Mage.
+PAD Black Mage2.png|Black Mage's evolution.
+PAD Black Mage3.png|Black Mage's ultimate evolution.
+PAD Chocobo Knight.png|Chocobo Knight (Red).
+PAD Chocobo Knight2.png|Chocobo Knight (Blue).
+PAD Chocobo Knight3.png|Chocobo Knight (Green).
+PAD Flintlock 1.png|Flintlock.
+PAD Flintlock 2.png|Flintlock's evolution.
+PAD Juggler.png|Juggler.
+PAD Juggler2.png|Juggler's evolution.
+PAD Juggler3.png|Juggler's ultimate evolution.
+PAD Tinker.png|Tinker.
+PAD Tinker2.png|Tinker's evolution.
+PAD Tinker3.png|Tinker's ultimate evolution.
+PAD Tinker Santa.PNG|Tinker Santa.
+PAD Tinker Santa 2.PNG|Tinker Santa.
+PAD Moogle & Carbuncle.PNG|Moogle & Carbuncle.
+PAD Moogle & Carbuncle 2.PNG|Moogle & Carbuncle.
+PAD Moogle & Carbuncle 3.PNG|Moogle & Carbuncle.
+</gallery>
+
+===''[[wikipedia:Yo-kai Watch 3|Yo-kai Watch 3]]''===
+[[File:Mooglinyan YW3.jpg|thumb|150px]]
+As part of the collaboration between Square Enix and Level-5, a new yo-kai called Mooglinyan will be available. It appears as a combination of Moogle and Nyan, a family of cat yo-kai.
+
+===''Super Smash Bros.''===
+The Moogle appears as part of the {{SmashWiki|Chocobo#Spirit|Chocobo & Moogle}} Spirit, based on [[Chocobo & Moogle (VII Remake)|the summon]] from ''Final Fantasy VII Remake''. The Spirit battle includes a grey {{SmashWiki|Kirby_(SSBU)|Kirby}} to represent the Moogle. The Spirit was added in Version 10.1.0 that added Sephiroth as a DLC character.
+
+==Other media==
+In ''[[w:c:dota:Dota 2|Dota 2]]'', the chocobo mount and Moglin from ''Final Fantasy Type-0 HD'' were available for a limited time as a courier and ward respectively as bonuses for those who pre-purchased ''Final Fantasy Type-0 HD'' for Steam before its release date.
+
+In ''[[wikipedia:Gunslinger Stratos 2|Gunslinger Stratos 2]]'', a Moogle costume was released in November 2014.
+
+In ''[[Dragon Quest|Dragon Quest IX: Sentinels of the Starry Skies]]'', the enemy "Teeny Sanguini" resembles the ''Crystal Chronicles'' moogles due to the shape of its ears, body, wings, and coloring.
+
+A moogle appears in the ''[[Final Fantasy 25th Anniversary]]'' logo for the series.
+
+Square Enix's cafe [[Artnia]] served pancakes with a moogle motif. Square Enix's [[Eorzea Cafe]] served a dish called "Mini pan cake of Mogli" with a description that translates to: ''Pint-sized pancakes perfect for little Moogles. Fun to look at, and to eat, perhaps...''
+<gallery>
+Moglin-Type-0-in-Dota2.png|Moglin Ward in ''Dota 2''.
+GS2 Moogle.png|Costume in ''Gunslinger Stratos''.
+Moogle Dessert.png|Moogle pancakes served in Artnia.
+</gallery>
+
+==Musical themes==
+{{audio|filename=Mog.ogg|title="Mog's Theme" from ''Final Fantasy VI''}}
+{{main|Moogle Theme}}
+The "Moogle Theme", originally known as "Critter Tripper Fritter!?", first appeared in ''Final Fantasy V'' and has served as the leitmotif of the race ever since.{{clear}}
+
+==Behind the scenes==
+[[File:NamingwayDS.png|thumb|70px|Namingway.]]
+While there are no moogles in ''[[Final Fantasy IV]]'', the [[Hummingway]]s appear to be their equivalent. They live on the [[Red Moon (Final Fantasy IV)|Red Moon]], isolated from humans, and, in the 3D versions, resemble the moogles of Ivalice, but lack the iconic pompom. This carries into their appearances in ''[[Final Fantasy IV: The After Years]]'', where they operate shops via holograms of themselves, similar to the moogles of the ''Kingdom Hearts'' series.{{Clear}}
+
+==Etymology==
+{{Etym|Moogle}}
+
+==Notes==
+===Annotations===
+{{annotations}}
+===Citations===
+{{citations}}
+
+{{navbox setting FFVI}}
+{{navbox setting FFIX}}
+{{navbox races}}
+{{navbox summons}}
+
+
+[[de:Mogry]]
+[[es:Moguri]]
+[[fi:Moogle]]
+[[ja:モーグリ]]
+[[ru:Мугл (раса)]]
+
+
+[[Category:Moogles| ]]
+[[Category:Races]]
+[[Category:Beastmen]]
+[[Category:Recurring summons]]

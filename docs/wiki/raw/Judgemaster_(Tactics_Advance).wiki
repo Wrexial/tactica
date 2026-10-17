@@ -1,0 +1,113 @@
+{{DISPLAYTITLE:Judgemaster (''Tactics Advance'')}}
+{{infobox job
+|name=Judgemaster
+|release=FFTA
+|japanese=ジャッジマスター
+|romaji=Jajjimasutā
+|image=Ffta-cid.jpg
+|portrait=[[File:FFTA-JudgeCid-por.png|50px]]
+|sprite=[[File:FFTA-JudgeCid.png|20px]]
+|obtained=Default
+|characters=[[Cid Randell]]
+|stats=*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 40
+*Stat growth: moderately high HP, Attack and Magic Power, superb Defense and Resistance, poor Speed
+|weapons=[[Final Fantasy Tactics Advance weapons#Knightswords|Knightswords]], [[Final Fantasy Tactics Advance weapons#Greatswords|greatswords]]
+|armor=[[Final Fantasy Tactics Advance armor#Helms|Helms]], [[Final Fantasy Tactics Advance armor#Robes|robes]], [[Final Fantasy Tactics Advance armor#Heavy Armor|heavy armor]] and [[Final Fantasy Tactics Advance armor#Shields|shields]]
+|command abilities=*[[Advanced Law]]
+}}
+{{Quote|Head judge in Ivalice, and a strong fighter.|Description}}
+'''Judgemaster''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' available to [[Cid Randell]], the head of the [[Judge (Tactics Advance)|Judges]] who oversee the [[Law system (Tactics Advance)|law]] and order in [[Ivalice (Tactics Advance)|Ivalice]]. His [[stat growth]] is identical to the [[Paladin (Tactics Advance)|Paladin]] job, and he can use Paladin equipment. Cid uses the action ability Advanced Law, similar to the way he does on two occasions in the story, to tilt the odds in the player team's favor.
+
+==Growth==
+Like Paladins, Cid has moderately high HP, Attack and Magic Power, as well as superb defense and resistance. However, his main downfall is his speed growth, which is tied with [[Templar (Tactics Advance)|Templars]], [[Sage (Tactics Advance)|Sages]] and [[nu mou]] [[Illusionist (Tactics Advance)|Illusionists]] for the slowest job.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.6 B+
+|2.2 D
+|8.1 B-
+|9.2 A-
+|7.2 C-
+|8.8 B+
+|0.8 E
+|}
+
+==Abilities==
+===[[Advanced Law]]===
+{{Quote|Judgemaster command. Laws reserved for Judgemaster.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Abate}}
+|32
+|—
+|Infinite
+|-
+|colspan=3 style="text-align:left"|''Skips judge's turn once to allow law violation.''<br/>Abate is the only ability that can be used on a Judge.
+|-
+! rowspan=2|{{A|Judge Sword}}
+|—
+|As Weapon
+|As Weapon
+|-
+|colspan=3 style="text-align:left"|''Slash to damage and steal JP.''
+|-
+! rowspan=2|{{LA|Bind (ability)|Bind}}
+|16
+|—
+|3
+|-
+|colspan=3 style="text-align:left"|''Immobilizes and disables target for arrest.''
+|-
+! rowspan=2|{{A|JP Gift}}
+|—
+|—
+|1
+|-
+|colspan=3 style="text-align:left"|''Give own JP to a deserving friend.''
+|-
+! rowspan=2|{{A|Yellow Clip}}
+|8
+|—
+|1
+|-
+|colspan=3 style="text-align:left"|''Nullifies a yellow card from record.''
+|}
+
+== Overview ==
+Cid takes charge of the battlefield with his Paladin-like stats that give him excellent survivability. He equips knightswords and heavy armor. His unique abilities break several of the game's otherwise staple rules, but like some of the other [[secret character]]s, Cid cannot change into any other class. He cannot learn any [[Final Fantasy Tactics Advance reaction abilities|reaction]], [[Final Fantasy Tactics Advance support abilities|support]], or [[Final Fantasy Tactics Advance abilities|combo abilities]]. The player must have completed all 300 [[Missions (Tactics Advance)|missions]] to even get the chance to recruit Cid. There needs to be room in the player's clan for Cid to join. Aside from his abilities breaking the rules, Cid's ability set is lacking. He is very slow and cannot be hasted.
+
+The Judgemaster can't use [[Yellow Card]]s or [[Red Card (Tactics Advance)|Red Cards]] in battle while the normal Judges can.
+
+==Gallery==
+<gallery>
+Judgemaster.PNG|Cid using an Advanced Law.
+FFTA Abate.png|Abate.
+FFTA Judge Sword.png|Judge Sword.
+FFTA Bind.png|Bind.
+FFTA JP Gift.png|JP Gift.
+FFTA Yellow Clip.png|Yellow Clip.
+FFTA Judge Sword Sprite.png|Judge Sword's sprite.
+</gallery>
+
+{{navbox abilities FFTA}}
+
+
+[[es:Don Juez (Final Fantasy Tactics Advance)]]
+[[it:Giudice Mastro]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

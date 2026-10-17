@@ -1,0 +1,39 @@
+{{Quote|Biskmatar command. Use negative powered magic.|Description}}
+'''Dark Magic''' {{J|闇魔法|Yami Mahō}} is the action ability for the [[Biskmatar]] in ''[[Final Fantasy Tactics Advance]]''.
+
+==Dark Magic==
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{A|Omega}}
+|10
+|As Weapon
+|As Weapon
+|-
+|colspan=3 style="text-align:left"|''As powerful as ultima. Deals massive damage.''
+|-
+! rowspan=2|{{A|Abyss}}
+|12
+|48
+|3
+|-
+|colspan=3 style="text-align:left"|''Calls forth decay to damage and poison target.''
+|-
+|}
+
+==Gallery==
+<gallery>
+FFTA Omega.png|Omega.
+FFTA Abyss.png|Abyss.
+</gallery>
+
+==Etymology==
+{{Etym|Dark magic}}
+
+{{navbox abilities FFTA}}
+[[Category:Magic in Final Fantasy Tactics Advance]]
+[[Category:Dark Magic]]

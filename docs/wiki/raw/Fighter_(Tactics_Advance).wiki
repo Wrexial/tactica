@@ -1,0 +1,198 @@
+{{DISPLAYTITLE:Fighter (''Tactics Advance'')}}
+{{infobox job
+|name=Fighter
+|release=FFTA
+|japanese=闘士
+|romaji=Tōshi
+|image=Ffta-h-fighter.jpg
+|portrait=[[File:FFTA-job-Fighter-por.png|50px|Player]] [[File:Ffta-job-fighter-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-fighter.gif|20px|Player]] [[File:Ffta-job-fighter-enemy-sprite.png|Enemy|20px]]
+|obtained=*Learn two [[Soldier (Tactics Advance)|Soldier]] abilities
+|required=[[Soldier (Tactics Advance)|Soldier]]
+|characters=[[Human|Hume]]
+|stats=*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 45
+*Stat growth: all-out physical attacker
+|weapons=[[Final Fantasy Tactics Advance weapons#Blades|Blades]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]] and [[Final Fantasy Tactics Advance armor#Clothing|clothing]]<br/>Can't equip shields
+|command abilities=*[[Fighter Tech]]
+|support abilities=*[[Doublehand]]
+*[[#Fight Combo|Fight Combo]] (combo)
+*[[Bonecrusher]] (reaction)
+*[[Strike Back|Strikeback]] (reaction)
+|recurring appearance=Fighter (Ivalice)
+}}
+{{Quote|Masters the use of many swords for offense.|Description}}
+'''Fighters''' are the powerhouses of the [[human|hume]] in ''[[Final Fantasy Tactics Advance]]''. Fighters have many useful abilities that can overwhelm opponents from close range or far away, and with access to support abilities, like Strikeback or Doublehand, they can easily defeat the opposition due to their high Attack stats.
+
+==Growth==
+The Fighter class is an all-out physical attacker without much in the way of magical power or resistance. Their speed is on par with most hume, [[bangaa]], and [[nu mou]].
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.2 B-
+|1.1 E
+|9.2 A-
+|8.1 B-
+|5.6 E
+|6.8 D+
+|1.1 D
+|}
+
+==Abilities==
+===[[Fighter Tech]]===
+{{Quote|Fighter command. Use many different sword techs.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Pummel (Rush ability)|Rush}}
+|[[Final Fantasy Tactics Advance weapons#Sweep Blade|Sweep Blade]]
+|100
+|As Weapon
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Full-on bull rush. Pushes target back.''<br>Can knock back target. Element is same as equipped weapon.
+|-
+! rowspan=2|{{A|Wild Swing}}
+|[[Final Fantasy Tactics Advance weapons#Ogun Blade|Ogun Blade]]
+|200
+|As Weapon
+|Self
+|-
+|colspan=4 style="text-align:left"|''Swinging weapon attack. Hits to front, back, side.''<br>Element is same as equipped weapon.
+|-
+! rowspan=2|{{A|Beatdown}}
+|[[Final Fantasy Tactics Advance weapons#Shadow Blade|Shadow Blade]]
+|200
+|As Weapon
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Aggressive attack. Low hit rate, but very damaging.''<br>Double damage, halved Accuracy. Element is same as equipped weapon.
+|-
+! rowspan=2|{{LA|Blitz (Tactics)|Blitz}}
+|[[Final Fantasy Tactics Advance weapons#Sun Blade|Sun Blade]]
+|200
+|As Weapon
+|As Weapon
+|-
+|colspan=4 style="text-align:left"|''Uses aggression to sense and attack target. High hit rate, low damage.''<br>Halved damage, double Accuracy. Element is same as equipped weapon.
+|-
+! rowspan=2|{{A|Air Render}}
+|[[Final Fantasy Tactics Advance weapons#Atmos Blade|Atmos Blade]]
+|200
+|45
+|3
+|-
+|colspan=4 style="text-align:left"|''Releases aggression. Can damage at a distance.''
+|-
+! rowspan=2|{{LA|Aurablast|Far Fist}}
+|[[Final Fantasy Tactics Advance weapons#Kwigon Blade|Kwigon Blade]]
+|200
+|35
+|4
+|-
+|colspan=4 style="text-align:left"|''Unleashed aggression deals area damage at a distance.''
+|-
+! rowspan=2|{{LA|Air Blast}}
+|[[Final Fantasy Tactics Advance weapons#Air Blade|Air Blade]]
+|300
+|35
+|Cone
+|-
+|colspan=4 style="text-align:left"|''Creates damaging whirl-wind in front of you.''
+|-
+! rowspan=2|{{A|Backdraft}}
+|[[Final Fantasy Tactics Advance weapons#Flametongue|Flametongue]]
+|300
+|60
+|1
+|-
+|colspan=4 style="text-align:left"|''Releases aggression. Self-damaging fire attack.''<br>1/4 of the damage dealt is dealt to the unit as recoil.
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Bonecrusher}}
+|[[Final Fantasy Tactics Advance armor#Ninja Gear|Ninja Gear]]
+|style="text-align:left"|''Powerful counterattack (1.5 x normal atk.) after taking weapon damage.''
+|300
+|-
+!{{LA|Strike Back|Strikeback}}
+|[[Final Fantasy Tactics Advance armor#Wygar|Wygar]]
+|style="text-align:left"|''Block enemy attack and counterattack. Ineffective vs. A-abil.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Doublehand}}
+|[[Final Fantasy Tactics Advance weapons#Venus Blade|Venus Blade]]
+|style="text-align:left"|''Hold one-handed weapon in two hands.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Fight Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Blade|Mythril Blade]]
+|style="text-align:left"|''Easily chained combo ability for fighters.''
+|100
+|}
+
+== Overview ==
+Aggressive and moderately fast, Fighter can dish out great single-target and area damage. With excellent attack growth and powerful blades, Fighter is well equipped to handle the otherwise tough units, like [[Defender (Tactics Advance)|Defenders]] and [[Templar (Tactics Advance)|Templars]]. The class is easy to acquire early on, as its unlocking criteria are not difficult to achieve. Fighter abilities are also easy to access since many blades are purchasable in even the early game.
+
+While the Fighter can deal massive damage to mages, the opposite also holds true. With horrible MP and magic power growth, Fighter cannot become an effective mage. The job lacks supporting/healing abilities, so a Fighter cannot help teammates or debuff enemies. The job is not the fastest around, so even faster units like [[Ninja (Tactics Advance)|Ninjas]] or [[Assassin (Tactics Advance)|Assassins]] can exploit the Fighter's meager defense. Overall, Fighter is the physical powerhouse of humes and one of the most physically inclined classes who likes to get things done before being exposed to status effects and enemy magic.
+
+Magic is deadly against enemy Fighters, but the player must protect their mages too, since Fighters have powerful ranged combat options as well. Status effects like Blind or attack reduction significantly reduce Fighters' powerful offense. Even faster units, like Ninjas, can dispatch Fighters before they can inflict any lethal damage. Fighters do have access to some powerful reaction abilities, making them intimidating to go against in melee combat. They cannot inflict status effects, so other support classes can go crazy on them.
+
+==Gallery==
+<gallery>
+FFTA-job-Fighter-icon.png|Icon.
+FFTA Rush.png|Rush.
+FFTA Wild Swing.png|Wild Swing.
+FFTA Air Render.png|Air Render.
+FFTA Far Fist.png|Far Fist.
+FFTA Air Blast.png|Air Blast.
+FFTA Backdraft.png|Backdraft.
+</gallery>{{Gallery incomplete|Fight Combo}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Luchador (Final Fantasy Tactics Advance)]]
+[[it:Combattente (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

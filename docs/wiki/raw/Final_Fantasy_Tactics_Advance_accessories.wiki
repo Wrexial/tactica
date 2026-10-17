@@ -1,0 +1,310 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' accessories}}
+{{Table incomplete|Prices}}
+{{Expand|Adding info on how to obtain accessories}}
+The following is a list of the accessories present in ''[[Final Fantasy Tactics Advance]]''.
+
+==Shoes==
+Shoes add very little to defense and resistance comparatively, but have the largest increases of evade, jump, and movement. They can be equipped by any job, but do not teach any abilities. Shoes also are the only inventory item unable to be stolen.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Shoes
+!style="width:8%"|Attack
+!style="width:8%"|Defense
+!style="width:8%"|Mag Power
+!style="width:8%"|Mag Resis.
+!style="width:10%"|Evade
+!style="width:8%"|Cost
+!style="width:30%"|Special Effect
+|-
+! rowspan="2"|{{LA|Battle Boots}}<br/>[[File:FFTA Battle Boots.PNG]]
+|0
+|7
+|0
+|0
+|0
+|1000
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Hard leather boots.''
+|-
+! rowspan="2"|{{A|Spiked Boots}}<br/>[[File:FFTA Spiked Boots.PNG]]
+|0
+|4
+|0
+|0
+|0
+|1500
+|style="text-align:left"|Jump +1
+|-
+|colspan="8" style="text-align:left"|''Spiked boots for better jumping.''
+|-
+! rowspan="2"|{{LA|Sprint Shoes|Dash Boots}}<br/>[[File:FFTA Dash Boots.PNG]]
+|0
+|2
+|0
+|0
+|0
+|2000
+|style="text-align:left"|Move +1
+|-
+|colspan="8" style="text-align:left"|''Speedy shoes for faster movement.''
+|-
+! rowspan="2"|{{LA|Red Shoes|Red Boots}}<br/>[[File:FFTA Red Boots.PNG]]
+|0
+|3
+|0
+|5
+|2
+|
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Red shoes dyed with medicinal herbs.''
+|-
+! rowspan="2"|{{LA|Winged Boots|Feather Boots}}<br/>[[File:FFTA Feather Boots.PNG]]
+|0
+|3
+|0
+|0
+|0
+|
+|style="text-align:left"|Can walk on water
+|-
+|colspan="8" style="text-align:left"|''Feather boots. Their wearer can walk on water.''
+|-
+! rowspan="2"|{{LA|Germinas Boots|Germinas}}<br/>[[File:FFTA Germinas.PNG]]
+|0
+|3
+|0
+|0
+|0
+|
+|style="text-align:left"|Jump +2
+|-
+|colspan="8" style="text-align:left"|''Sturdy boots for climbing. Greatly improves jumps.''
+|-
+! rowspan="2"|{{A|Galmia Shoes}}<br/>[[File:FFTA Galmia Shoes.png]]
+|0
+|3
+|0
+|0
+|0
+|
+|style="text-align:left"|Jump up or down any elevation; cannot enter water
+Speed +2
+|-
+|colspan="8" style="text-align:left"|''Boots by the popular designer "Galmia Pepe". Walk to any height with ease, but not in water.''
+|-
+! rowspan="2"|{{A|Fairy Shoes}}<br/>[[File:FFTA Fairy Shoes.PNG]]
+|0
+|3
+|2
+|0
+|0
+|
+|style="text-align:left"|Allows teleportation, ignoring elevation
+|-
+|colspan="8" style="text-align:left"|''Feathered boots that can fly anywhere.''
+|-
+! rowspan="2"|{{A|Caligula}}<br/>[[File:FFTA Caligula.PNG]]
+|3
+|10
+|0
+|0
+|0
+|
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Boots worn by royal guards in the age of kings.''
+|-
+! rowspan="2"|{{A|Ninja Tabi}}<br/>[[File:FFTA Ninja Tabi.PNG]]
+|0
+|3
+|0
+|0
+|0
+|
+|style="text-align:left"|Move +2
+|-
+|colspan="8" style="text-align:left"|''Boots allowing fast movement worn by spies.''
+|}
+
+==Gloves==
+Gloves offer the best stat increases of all of the other accessories. They can be equipped by any job, but do not teach any abilities.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Arms
+!style="width:8%"|Attack
+!style="width:8%"|Defense
+!style="width:8%"|Mag Power
+!style="width:8%"|Mag Resis.
+!style="width:10%"|Evade
+!style="width:8%"|Cost
+!style="width:30%"|Special Effect
+|-
+! rowspan="2"|{{LA|Gauntlet (equipment)|Gauntlets}}<br/>[[File:FFTA Gauntlets.PNG]]
+|5
+|5
+|0
+|0
+|0
+|2000
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Gloves that stretch from elbow to finger.''
+|-
+! rowspan="2"|{{LA|Thief Gloves|Thief Armlets}}<br/>[[File:FFTA Thief Armlets.PNG]]
+|3
+|3
+|0
+|0
+|0
+|
+|style="text-align:left"|Improves chance to steal
+|-
+|colspan="8" style="text-align:left"|''Armlets made to allow maximum finger movement.''
+|-
+! rowspan="2"|{{LA|Bracer|Bracers}}<br/>[[File:FFTA Bracers.PNG]]
+|5
+|12
+|0
+|0
+|0
+|
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Leather bracers made so as to not hinder the hands.''
+|-
+! rowspan="2"|{{LA|Genji Gloves|Genji Armlets}}<br/>[[File:FFTA Genji Armlets.PNG]]
+|5
+|10
+|2
+|5
+|0
+|
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''These colorful armlets are beautifully adorned.''
+|-
+! rowspan="2"|{{LA|Flame equipment|Fire Mitts}}<br/>[[File:FFTA Fire Mitts.PNG]]
+|0
+|8
+|0
+|10
+|0
+|
+|style="text-align:left"|[null]Fire
+|-
+|colspan="8" style="text-align:left"|''Specially fire-proofed gloves. Good pot holders.''
+|-
+! rowspan="2"|{{A|Bone Armlets}}<br/>[[File:FFTA Bone Armlets.PNG]]
+|3
+|6
+|0
+|8
+|5
+|
+|style="text-align:left"|None
+|-
+|colspan="8" style="text-align:left"|''Armlets made of animal bone to ward off attacks.''
+|}
+
+==Other==
+Assorted accessories that can be equipped to any job, but do not teach any abilities. They can null the most status ailments of all the armor pieces, except the Ribbon.
+
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:15%"|Accessory
+!style="width:8%"|Defense
+!style="width:8%"|Mag Power
+!style="width:8%"|Mag Resis.
+!style="width:10%"|Speed
+!style="width:8%"|Cost
+!style="width:30%"|Special Effect
+|-
+! rowspan="2"|{{A|Fortune Ring}}<br/>[[File:FFTA Fortune Ring.PNG]]
+|3
+|0
+|5
+|0
+|10000
+| style="text-align:left" |[null] Sleep and Doom.
+|-
+|colspan="6" style="text-align:left"|''Ring set with a stone of power.''
+|-
+! rowspan="2"|{{LA|Magic Ring}}<br/>[[File:FFTA Magic Ring.PNG]]
+|0
+|3
+|10
+|0
+|
+|style="text-align:left"|None
+|-
+|colspan="6" style="text-align:left"|''Ring engraved with magic-enhancing symbols.''
+|-
+! rowspan="2"|{{LA|Angel Ring}}<br/>[[File:FFTA Angel Ring.PNG]]
+|0
+|0
+|0
+|0
+|
+| style="text-align:left" |[null] Blind, Silence, Poison, Slow, Disable, Immobilize, Frog, Doom, and Zombie.<br/>Auto-Life enabled.
+|-
+|colspan="6" style="text-align:left"|''Ring of blessing said to have been made by angels.''
+|-
+! rowspan="2"|{{A|Scarab}}<br/>[[File:FFTA Scarab.PNG]]
+|2
+|0
+|8
+|0
+|10000
+| style="text-align:left" |[null] Disable, Immobilize, and Frog.
+|-
+|colspan="6" style="text-align:left"|''Scarab brooch that glitters like a rainbow.''
+|-
+! rowspan="2"|{{LA|Ruby Earring}}<br/>[[File:FFTA Ruby Earring.PNG]]
+|3
+|0
+|6
+|0
+|
+| style="text-align:left" |[null] Confuse and Charm.
+[half] Shadow.
+|-
+|colspan="6" style="text-align:left"|''Earrings with tear-shaped rubies.''
+|-
+! rowspan="2"|{{A|Star Armlet}}<br/>[[File:FFTA Star Armlet.PNG]]
+|4
+|6
+|4
+|2
+|15000
+| style="text-align:left" |[null] Slow and Stop.
+|-
+|colspan="6" style="text-align:left"|''Armband worn by a great diviner of old.''
+|-
+! rowspan="2"|{{A|Mindu Gem}}<br/>[[File:FFTA Mindu Gem.PNG]]
+|3
+|0
+|3
+|0
+|
+| style="text-align:left" |[null] Blind, Silence, Poison, Confuse, Frog, and Stone.
+[half] Lightning.
+|-
+|colspan="6" style="text-align:left"|''The legends say this is the soul of Mindu.''
+|}
+
+==Other appearances==
+===''[[Final Fantasy Record Keeper]]''===
+
+<gallery>
+FFRK Ruby Earring FFTA.png|Ruby Earring.
+</gallery>
+{{Equipment section|Final Fantasy Record Keeper}}
+
+{{navbox FFTA}}
+{{navbox accessories}}
+[[Category:Accessories in Final Fantasy Tactics Advance]]
+[[Category:Accessory lists]]

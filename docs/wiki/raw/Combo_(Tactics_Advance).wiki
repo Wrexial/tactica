@@ -1,0 +1,311 @@
+{{DISPLAYTITLE:Combo (''Tactics Advance'')}}
+[[File:FFTA Combo Ability Icon.png|left]]
+[[File:FFTA Combo.png|right|thumb|250px|Combo in ''Final Fantasy Tactics Advance''.]]
+{{Quote|All allies with combo abilities attack together.|Description}}
+'''Combos''' {{j|コンボアビリティ|Konbo Abiriti}} is an action ability in ''[[Final Fantasy Tactics Advance]]'' that allow party members to initiate or join in on a combo. Combos are usable once the character has at least one [[Judge Points|Judge Point]].
+
+The initial attack has 100% accuracy, ignores [[Final Fantasy Tactics Advance reaction abilities|reaction abilities]], and deals damage equal to a basic attack. Other characters with a combo set may join in if they are within the range of their equipped combo ability (some can join in up to six spaces away, others have to be right next to the victim).
+
+Each joining unit has a specific range, accuracy, and percent of damage added, when adding to a combo. Combos with more range or damage added are usually less accurate.
+
+If one or more members successfully add in, then extra Judge Points further increases damage, as so:
+
+<math>Final Multiplier = [Multiplier \times (10 + 4 \times JP) / 10]</math>
+
+where Multiplier is the sum of all additional attacks that "connect". Only the JP of the initiator is considered for this formula.
+
+While powerful, combos can be difficult to learn. They are learned from [[Mythril equipment#Final Fantasy Tactics Advance|Mythril Weapons]]—which can only be obtained as rewards for defeating another [[clan]] or via trading from [[Nono]]'s shop.
+
+== List of Combo abilities ==
+{| class="sortable full-width FFTA article-table" style="text-align:center"
+|- 
+!width="15%"|Ability
+!width="15%"|Equipment
+!width="45%"|Effect
+!width="5%"|AP
+!Range
+!Power
+!Hit
+!width="20%"|Image
+|-
+!{{A|Combat Combo}}
+|[[Mythril Sword (Tactics Advance)|Mythril Sword]]
+|style="text-align:left"|''Failproof combo ability for soldiers & warriors''
+|100
+|1
+|10%
+|100%
+|-
+!{{A|Knight Combo}}
+|[[Mythril Brand]]
+|style="text-align:left"|''Failproof combo ability for paladins.''
+|100
+|1
+|10%
+|100%
+|-
+!{{A|Fight Combo}}
+|[[Mythril Blade (Tactics Advance)|Mythril Blade]]
+|style="text-align:left"|''Easily chained combo ability for fighters.''
+|100
+|1
+|15%
+|70%
+|-
+!{{A|Thief Combo}}
+|[[Mythril Knife (Tactics Advance)|Mythril Knife]]
+|style="text-align:left"|''Failproof combo ability for thieves.''
+|100
+|2
+|5%
+|70%
+|-
+!{{A|Ninja Combo}}
+|[[Mythril Epee]]
+|style="text-align:left"|''Failproof combo ability for ninjas.''
+|100
+|2
+|5%
+|100%
+|-
+!{{A|White Combo}}
+|[[Mythril Staff (Tactics Advance)|Mythril Staff]]
+|style="text-align:left"|''Ranged combo ability for white mages.''
+|100
+|4
+|5%
+|60%
+|-
+!{{A|Black Combo}}
+|[[Mythril Rod (Tactics Advance)|Mythril Rod]]
+|style="text-align:left"|''Ranged combo ability for black mages.''
+|100
+|4
+|5%
+|60%
+|-
+!{{A|Spell Combo}}
+|[[Mythril Rod (Tactics Advance)|Mythril Rod]]
+|style="text-align:left"|''Ranged combo ability for illusionists.''
+|100
+|4
+|10%
+|40%
+|-
+!{{A|Blue Combo}}
+|[[Mythril Saber (Tactics Advance)|Mythril Saber]]
+|style="text-align:left"|''Ranged combo ability for blue mages.''
+|100
+|4
+|10%
+|40%
+|-
+!{{A|Bow Combo}}
+|[[Mythril Bow (Tactics Advance)|Mythril Bow]]
+|style="text-align:left"|''Long-ranged combo ability for archers.''
+|100
+|6
+|5%
+|40%
+|-
+!{{A|Hunt Combo}}
+|[[Mythril Shot]]
+|style="text-align:left"|''Ranged combo ability for hunters.''
+|100
+|4
+|8%
+|50%
+|-
+!{{A|Animal Combo}}
+|[[Mythril Bell (Tactics Advance)|Mythril Bell]]
+|style="text-align:left"|''Failproof combo ability for animists.''
+|100
+|1
+|12%
+|100%
+|-
+!{{A|Charge Combo}}
+|[[Mythril Blade (Tactics Advance)|Mythril Blade]]
+|style="text-align:left"|''Easily chained combo ability for mog knights.''
+|100
+|1
+|15%
+|70%
+|-
+!{{A|Gun Combo}}
+|[[Mythril Gun (Tactics Advance)|Mythril Gun]]
+|style="text-align:left"|''Long-ranged combo ability for gunners.''
+|100
+|5
+|5%
+|40%
+|-
+!{{A|Juggle Combo}}
+|[[Mythril Knife (Tactics Advance)|Mythril Knife]]
+|style="text-align:left"|''Easily chained combo ability for jugglers.''
+|100
+|3
+|10%
+|70%
+|-
+!{{A|Gadget Combo}}
+|[[Mythril Claws (Tactics Advance)|Mythril Claws]]
+|style="text-align:left"|''Long-ranged combo ability for gadgeteers.''
+|100
+|6
+|12%
+|30%
+|-
+!{{A|Time Combo}}
+|[[Mythril Rod (Tactics Advance)|Mythril Rod]]
+|style="text-align:left"|''Ranged combo ability for time mages.''
+|100
+|4
+|5%
+|60%
+|-
+!{{A|Beast Combo}}
+|[[Mythril Bell (Tactics Advance)|Mythril Bell]]
+|style="text-align:left"|''Failproof combo ability for beastmasters.''
+|100
+|1
+|12%
+|100%
+|-
+!{{A|Morph Combo}}
+|[[Mythril Soul]]
+|style="text-align:left"|''Ranged combo ability for morphers.''
+|100
+|2
+|10%
+|100%
+|-
+!{{A|Gold Combo}}
+|[[Mythril Mace (Tactics Advance)|Mythril Mace]]
+|style="text-align:left"|''Ranged combo ability for alchemists.''
+|100
+|2
+|10%
+|60%
+|-
+!{{A|Wise Combo}}
+|[[Mythril Mace (Tactics Advance)|Mythril Mace]]
+|style="text-align:left"|''Ranged combo ability for sages.''
+|100
+|2
+|10%
+|60%
+|-
+!{{A|Monk Combo}}
+|[[Mythril Claws (Tactics Advance)|Mythril Claws]]
+|style="text-align:left"|''Very easy chained combo ability for white monks.''
+|100
+|2
+|12%
+|90%
+|-
+!{{A|Pray Combo}}
+|[[Mythril Staff (Tactics Advance)|Mythril Staff]]
+|style="text-align:left"|''Ranged combo ability for bishops.''
+|100
+|4
+|8%
+|60%
+|-
+!{{A|Sacred Combo}}
+|[[Mythril Brand]]
+|style="text-align:left"|''Failproof combo ability for templars.''
+|100
+|1
+|12%
+|100%
+|-
+!{{A|Dragon Combo}}
+|[[Mythril Spear (Tactics Advance)|Mythril Spear]]
+|style="text-align:left"|''Failproof combo ability for dragoons''
+|100
+|2
+|10%
+|100%
+|-
+!{{A|Defend Combo}}
+|[[Mythril Brand]]
+|style="text-align:left"|''Easily chained combo ability for defenders.''
+|100
+|1
+|15%
+|70%
+|-
+!{{A|Sword Combo}}
+|[[Mythril Blade (Tactics Advance)|Mythril Blade]]
+|style="text-align:left"|''Failproof combo ability for gladiators.''
+|100
+|1
+|10%
+|100%
+|-
+!{{A|Lunge Combo}}
+|[[Mythril Rapier (Tactics Advance)|Mythril Rapier]]
+|style="text-align:left"|''Failproof combo ability for fencers.''
+|100
+|1
+|10%
+|100%
+|-
+!{{A|Spirit Combo}}
+|[[Mythril Rapier (Tactics Advance)|Mythril Rapier]]
+|style="text-align:left"|''Well-balanced combo ability for elementalists.''
+|100
+|3
+|10%
+|60%
+|-
+!{{A|Red Combo}}
+|[[Mythril Rapier (Tactics Advance)|Mythril Rapier]]
+|style="text-align:left"|''Easily chained combo ability for red mages.''
+|100
+|2
+|10%
+|70%
+|-
+!{{A|Summon Combo}}
+|[[Mythril Staff (Tactics Advance)|Mythril Staff]]
+|style="text-align:left"|''Ranged combo ability for summoners.''
+|100
+|4
+|10%
+|40%
+|-
+!{{A|Killer Combo}}
+|[[Mythril Epee]]
+|style="text-align:left"|''Failproof combo ability for assassins.''
+|100
+|2
+|10%
+|100%
+|-
+!{{A|Sniper Combo}}
+|[[Mythril Shot]]
+|style="text-align:left"|''Ranged combo ability for snipers.''
+|100
+|4
+|8%
+|50%
+|
+|}
+
+== Other appearances ==
+=== ''[[Final Fantasy Record Keeper]]'' ===
+
+<gallery>
+FFRK Black Combo.png|Black Combo.
+FFRK Knight Combo.png|Knight Combo.
+</gallery>{{Gallery incomplete|Combat Combo}}
+{{Ability section|Final Fantasy Record Keeper}}
+
+== Etymology ==
+{{Etym|Combo}}
+
+{{navbox setting FFTA}}
+[[Category:Combo abilities in Final Fantasy Tactics Advance]]
+[[Category:Abilities in Final Fantasy Tactics Advance]]

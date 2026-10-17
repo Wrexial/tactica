@@ -1,0 +1,31 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' abilities}}
+Abilities in ''[[Final Fantasy Tactics Advance]]'' are in four categories: action abilities, reaction abilities, support abilities, and combo abilities.
+
+Abilities are taught by equipment; action abilities are only learned from [[Final Fantasy Tactics Advance weapons|weapons]], while weapons, [[Final Fantasy Tactics Advance armor|hats, shields and armor]] teach a [[Unit (term)|unit]] an R- or S- ability. While the equipment which provides the ability is equipped, a unit "masters" an ability by gaining enough [[Ability Points]]. If their equipment is changed before this occurs, their AP will remain where it was for that ability. Mastered abilities may be used at any time.
+
+==List of abilities==
+===Action abilities===
+[[File:FFTA Action Ability Icon.png|right]]
+{{main|Final Fantasy Tactics Advance action abilities}}
+Action abilities are actively used, often special attacks such as magic. They are equipped in sets belonging to a job, two of which may be used at once.
+
+===Reaction abilities===
+[[File:FFTA Reaction Ability Icon.png|right]]
+{{main|Final Fantasy Tactics Advance reaction abilities}}
+Reaction abilities are used when certain conditions are met after a unit is attacked and often being variants of Counterattack or [[Critical ability|SOS abilities]].
+
+===Support abilities===
+[[File:FFTA Support Ability Icon.png|right]]
+{{main|Final Fantasy Tactics Advance support abilities}}
+Support abilities are generally in use at all times, and usually enhance other capabilities, or else have effects such as wielding a two-handed weapon in one hand, or using two weapons.
+
+===Combo abilities===
+[[File:FFTA Combo Ability Icon.png|right]]
+{{main|Combo (Tactics Advance)}}
+Combo abilities allow party members to initiate or join in on a combo. Combos are usable once the character has at least one Judge Point.
+
+{{navbox abilities FFTA}}
+{{navbox FFTA}}
+
+[[es:Lista de habilidades de Final Fantasy Tactics Advance]]
+[[Category:Abilities in Final Fantasy Tactics Advance]]

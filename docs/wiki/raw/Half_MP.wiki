@@ -1,0 +1,74 @@
+[[File:FFT Half MP.png|right|thumb|250px|Half MP in effect. Here, Bahamut costs 30 MP where normally he costs 60 MP to cast.]]
+{{Quote|Halves MP usage in battle.|''[[Final Fantasy Dimensions]]'' description}}
+'''Half MP''', also known as '''Half of MP''', '''Half MP Cost''' {{J|消費MP半減|Shōhi MP Hangen}}, '''Mental Discipline''', or '''MP Efficiency''', is a recurring [[support ability]] that reduces [[MP (stat)|MP]] cost by half. In some games, MP costs can be [[One MP Cost|reduced to one]] using a similar ability. It is generally granted by the [[Gold Hairpin]] and [[Luminous Robe]].
+
+{{See|One MP Cost|Spellspring|Magic Efficiency Materia}}
+
+==Appearances==
+===''[[Final Fantasy IV]]''===
+MP Efficiency would have been an [[Augment (Final Fantasy IV)|Augment ability]] in the 3D version, but was [[Dummied content|dummied out]] for an unknown reason. The only thing that can be found is a text description found within the data.
+
+===''[[Final Fantasy V]]''===
+The headgear [[Gold Hairpin (Final Fantasy V)|Gold Hairpin]] cuts MP cost in half during [[Battle (term)|battle]]. It can be found in [[Pyramid of Moore]] and [[Barrier Tower]], and [[Steal (Final Fantasy V)|stolen]] from [[Famed Mimic Gogo]].
+
+===''[[Final Fantasy VI]]''===
+The [[Gold Hairpin (Final Fantasy VI)|Gold Hairpin]] relic cuts MP cost in half. It can be found in [[Narshe]] (by saving [[Lone Wolf the Pickpocket]] instead of [[Mog (Final Fantasy VI)|Mog]]), [[Mt. Zozo]], and the [[Ancient Castle (Final Fantasy VI)|Ancient Castle]]. They can also be obtained through the [[Dragon's Neck Coliseum]] by betting the [[Crystal Orb (Final Fantasy VI)|Crystal Orb]], [[Dragon Horn (Final Fantasy VI)|Dragon Horn]], or [[Ribbon (Final Fantasy VI)|Ribbon]].
+
+===''[[Final Fantasy IX]]''===
+{{Main|Half MP (Final Fantasy IX)}}
+Half MP is a [[Final Fantasy IX support abilities|support ability]] learned by [[Vivi (Final Fantasy IX party member)|Vivi]], [[Dagger (Final Fantasy IX gameplay)|Dagger]], [[Quina (Final Fantasy IX party member)|Quina]], and [[Eiko (Final Fantasy IX party member)|Eiko]]. It halves MP costs during battle. It is learned from the [[Add-on (Final Fantasy IX)|Add-on]] [[Protect Ring (Final Fantasy IX)|Protect Ring]] and from the [[Light Robe (Final Fantasy IX)|Light Robe]]. Mastering Half MP requires 140 AP for Vivi, 125 AP for Dagger, 90 AP for Quina, and 120 AP for Eiko. Eleven [[Magic Stone (Final Fantasy IX)|Magic Stones]] are required to equip it.
+
+===''[[Final Fantasy X]]''===
+{{Main|Half MP Cost (Final Fantasy X)}}
+Half MP Cost is an auto-ability for weapons that halves MP costs. It can be customized to a weapon by using [[Twin Stars (Final Fantasy X)|Twin Star]] x20. Half MP Cost weapons [[item drop#Final Fantasy X|drop]] from [[Adamantoise (Final Fantasy X)|Adamantoise]] and [[Sanctuary Keeper]]. Its upgrade is [[One MP Cost (Final Fantasy X)|One MP Cost]].
+
+====''[[Final Fantasy X-2]]''====
+The [[Gold Hairpin (Final Fantasy X-2)|Gold Hairpin]] accessory and [[Font of Power]] [[Garment Grid]] grants the wearer [[Half MP Cost (Final Fantasy X-2)|Half MP Cost]].
+
+===''[[Final Fantasy XI]]''===
+The [[Scholar (Final Fantasy XI)|Scholar]] job has two [[Scholar (Final Fantasy XI)#Strategems|Strategems]] that reduce the MP costs of certain types of magic by half.
+
+====Penury====
+Penury is only available while under the effect of [[Light Arts]]. It reduces the MP cost of the next white magic spell cast by 50%. It is learned by a Scholar at level 10. Its recast Time is a Stratagem Charge.It lasts for 1 white magic spell or 60 seconds, whichever occurs first. The 50% reduction in MP cost does not stack with the 10% reduction from Light Arts, meaning that the spell costs 50% of the normal MP cost rather than the Scholar's reduced MP cost from casting in the proper art. [[Conserve MP]] can still activate while Penury is in effect.
+
+====Parsimony====
+Parsimony is only available while under the effect of [[Dark Arts (Final Fantasy XI)|Dark Arts]]. It reduces the MP cost of the next black magic spell cast by 50%. It can be learned by a Scholar at level 10. Its recast time is a Stratagem Charge. It lasts for 1 black magic spell or 60 seconds, whichever occurs first. The 50% reduction in MP cost does not stack with the 10% reduction from Dark Arts, meaning that the spell costs 50% of the normal MP cost rather than the Scholar's reduced MP cost from casting in the proper art. [[Conserve MP]] can still activate while Parsimony is in effect.
+
+===''[[Final Fantasy XII]]''===
+The [[Sage's Ring (Final Fantasy XII)|Sage Ring]] cuts MP cost in half. One can be found in [[Great Crystal (Final Fantasy XII)|Great Crystal]] (only with [[Diamond Armlet (Final Fantasy XII)|Diamond Armlet]]) and it is also a reward in the [[Hunt Club|Rare Game Hunt Club]] if the player gives the most trophies to Stok. In addition, the Channeling [[Augments (Final Fantasy XII)|augments]] permanently reduces MP cost by 10% of the default value.
+
+===''[[Final Fantasy XIV]]''===
+{{Quote|Reduces MP cost of next attack spell by half, and restores MP when spell is cast.|Description}}
+{{Ability section|Final Fantasy XIV}}
+
+===''[[Final Fantasy Tactics]]''===
+{{Main|Halve MP (Tactics)}}
+Halve MP (also known as Half of MP) is a [[Final Fantasy Tactics support abilities|support ability]] learned from the [[Summoner (Tactics)|summoner]] job for 900 JP. All actions that require MP for this unit will have their costs halved.
+
+===''[[Final Fantasy Tactics Advance]]''===
+{{Quote|Cuts the amount of MP used for abilities by half.|Description}}
+[[Half MP (Tactics Advance)|Half MP]] is learned by the [[Summoner (Tactics Advance)|Summoner]], [[Illusionist (Tactics Advance)|Illusionist]], and [[Bishop (Tactics Advance)|Bishop]] classes through the [[Luminous Robe|Light Robe]] for 300 AP. It cuts the MP cost of the user's skills by half.
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+Halve MP is learned by the [[Summoner (Tactics A2)|Summoner]], [[Illusionist (Tactics A2)|Illusionist]], and [[Bishop (Tactics A2)|Bishop]] classes through the [[Luminous Robe (Tactics A2)|Luminous Robe]] for 400 AP. It halves the MP cost of the user's skills.
+
+===''[[Final Fantasy Dimensions]]''===
+[[Mental Discipline (Dimensions)|Mental Discipline]] is the final ability of the [[White Mage (Dimensions)|White Mage]] class, requiring 450 AP to learn. It requires 2 slots in order to use. Mental Discipline only stays in effect during battle, and reduces the cost of all skills that use MP by half, including [[Magic (term)|Magic]], Class Skills and even [[Fusion Ability|Fusion Abilities]].
+
+==Gallery==
+<gallery>
+FFVI Half MP.png|''[[Final Fantasy VI]]''.
+Half MP from FFIX Remastered.png|''[[Final Fantasy IX|Final Fantasy IX Remastered]]''.
+</gallery>
+
+==Etymology==
+Parsimony means extreme or excessive economy or frugality, or stinginess. It implies conservation for the sake of prosperity.
+
+Penury means extreme poverty, destitution, scarcity, or insufficiency. It implies conservation out of necessity.
+
+{{navbox support abilities}}
+
+
+[[it:Dimezza MP]]
+[[Category:Recurring support abilities]]
+[[Category:Positive status effects]]

@@ -1,0 +1,38 @@
+[[File:JagdHelje.png|thumb|right|250px|Jagd Emissaries waiting to ambush Clan Nutsy.]]
+{{Quote|Lawless "jagd" where ghostly voices are heard.|Description}}
+'''Jagd Helje''' {{j|ヤクトヘルジェ|Yakuto Heruje}} is a [[Jagd]] location from ''[[Final Fantasy Tactics Advance]]''. It becomes accessible to the player's [[clan]] after completion of "Mission #064: Den of Evil", and therefore it does not become available in any particular order in relation to the two other Jagds. Jagd Helje is the site of "Mission #029: Wanted!" and "Mission #095: Carrot!" It can be freed in "Mission #260: Jagd Helje" after the main game is cleared.
+
+==Missions==
+*"Mission #029: Wanted!"
+{{Quote|This Month's Wanted! Killer Rayne: 45000 gil<br/>Fearsome female assassin<br/>Said to know all the skills of her trade<br/>Hiding in Jagd Helje}}
+*"Mission #095: Carrot!"
+{{Quote|Oh my, what to do? My pet, Carrot, is hiding in her house and won't come out! Bring a spear, you may need it!|Mrs. Nanabu}}
+*"Mission #260: Jagd Helje"
+{{Quote|I dropped something very important to me in a ruin in Jagd Helje. Please find it!|Ekal, Astrologer}}
+
+==Encounters==
+===Jagd Emissaries===
+{{Quote|Appears from the jagds to spread ill-will and chaos. Detests the laws in all its forms.|Description}}
+*[[Ninja (Tactics Advance)|Ninja]] ([[Human]])
+*[[Summoner (Tactics Advance)|Summoner]] ([[Viera]])
+*[[Gladiator (Tactics Advance)|Gladiator]] ([[Bangaa]])
+*[[Sniper (Tactics Advance)|Sniper]] ([[Viera]])
+*[[Ahriman (Tactics Advance)|Ahriman]]
+*[[Lamia (Tactics Advance)|Lamia]]
+
+==Turf Defense==
+===Help Helje!===
+{{Quote|A lot of monsters are coming from Ozmonfield lately. We don't need more dangers in the jagds--we got enough already!|Town rumor}}
+*[[Coeurl (Tactics Advance)|Coeurl]]
+*[[Lamia (Tactics Advance)|Lamia]]
+*[[Red Cap (Tactics Advance)|Red Cap]]
+*[[Sprite (Tactics Advance)|Sprite]]
+
+==Gallery==
+<gallery>
+Dungeon-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]

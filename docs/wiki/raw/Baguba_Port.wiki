@@ -1,0 +1,31 @@
+[[File:BagubaPort.png|thumb|right|250px|Baguba during an engagement.]]
+{{Quote|Moogle town with a large mercantile airship port|Description}}
+'''Baguba Port''' {{J|貿易港バクーバ|Bōekikō Bakūba}} is a town from ''[[Final Fantasy Tactics Advance]]'', specifically a [[moogle]] town. This town serves as a port for every trade ship in [[Ivalice (Tactics Advance)|Ivalice]], most notably, [[Airship (term)|airships]].
+
+This is one of two towns, the other being [[Muscadet]], in which there is no other function than the Pub or the Shop. When going to the town for the first time, this is also where [[Marche Radiuju|Marche]] meets [[Nono]], [[Montblanc]]'s younger brother. Out of the five towns, Baguba Port is the fourth town located. It is also the home of the [[clan]] "White Kupos", the primarily moogle clan fought as part of the Clan League (after the Brown Rabbits are defeated).
+
+==Locations==
+===Warehouse Alley Armor===
+The local shop owned by the sleepy Mog brothers. All their items are sold directly from port warehouses in the area.
+
+===The Golden Gil===
+The local tavern, a popular place for airship crews to settle in and hang out.
+
+==Encounters==
+===Gaja Band===
+{{Quote|Bandit clan. Rides the high-speed airship, the "Accelerator". Get them on the ground.|Description}}
+*Dragoon
+*Gunner
+*Hunter
+*Ninja
+*Red Mage
+
+==Gallery==
+<gallery>
+Town-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Towns]]

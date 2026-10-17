@@ -1,0 +1,207 @@
+{{DISPLAYTITLE:Templar (''Tactics Advance'')}}
+{{infobox job
+|name=Templar
+|release=FFTA
+|japanese=神殿騎士
+|romaji=Shindenkishi
+|image=Ffta-bangaa-templar.jpg
+|portrait=[[File:ffta-job-templar.png|50px|Player]] [[File:Ffta-job-templar-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-templar.gif|20px|Player]] [[File:Ffta-job-templar-enemy-sprite.png|Enemy|20px]]
+|obtained=Learn two [[White Monk (Tactics Advance)|White Monk]] A-Abilities
+|required=[[White Monk (Tactics Advance)|White Monk]]
+|characters=[[Bangaa]]
+|stats=*Move Rate: 3
+*Jump Rate: 2
+*Evade Rate: 40
+*Stat growth: Moderate HP and MP, good Attack, Magic Power and Resistance, extremely high Defense, poor Speed
+|weapons=[[Final Fantasy Tactics Advance weapons#Knightswords|Knightswords]] and [[Final Fantasy Tactics Advance weapons#Spears|spears]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Helms|helms]], [[Final Fantasy Tactics Advance armor#Robes|robes]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]] and [[Final Fantasy Tactics Advance armor#Heavy Armor|heavy armor]]<br/>Can't equip shields
+|command abilities=*[[Sacred Tech]]
+*[[#Sacred Combo|Sacred Combo]] (combo)
+|support abilities=*[[#Weapon Atk+|Weapon Atk+]]
+*[[Bonecrusher]] (reaction)
+|recurring appearance=Templar (job)
+}}
+{{Quote|Strong with weapons and enhancement magic.|Description}}
+'''Templar''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' available to [[bangaa]]. Templars are semi-magical bangaa that wield powerful spears and knightswords. While their Attack growth is decent, Speed growth would have the player considering leveling up as a [[White Monk (Tactics Advance)|White Monk]] instead. Using a [[Final Fantasy Tactics Advance armor#Black Robe|Black Robe]] and the [[Dragoon (Tactics Advance)|Dragoon's]] abilities can lead to massive elemental damage. As the only other class able to use spears, Templars have access to the Jump ability.
+
+They can equip every type of armor, except [[Female-exclusive equipment|female]] armor, such as Minerva Plate and Rubber Suit.
+
+==Growth==
+Templars are nicely balanced between Attack, Defense and Magic Power, although they only truly excel in defense, and are tied with [[Paladin (Tactics Advance)|Paladins]], [[Sage (Tactics Advance)|Sages]], and [[nu mou]] [[Illusionist (Tactics Advance)|Illusionists]] as the slowest job.
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|7.2 B
+|3.2 C
+|8.2 B-
+|9.7 A+
+|8.4 B+
+|7.2 C-
+|0.8 E
+|}
+
+==Abilities==
+===[[Sacred Tech]]===
+{{Quote|Templar command. Use aid magic and your sword.|Description}}
+
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:10%"|Equipment
+!style="width:10%"|AP
+!style="width:10%"|MP
+!style="width:10%"|Power
+!style="width:10%"|Range
+|-
+! rowspan=2|{{LA|Astra (ability)|Astra}}
+|[[Final Fantasy Tactics Advance weapons#Save the Queen|Save the Queen]]
+|200
+|8
+|—
+|4
+|-
+|colspan=5 style="text-align:left"|''Confers one-time status affliction protection.''
+|-
+! rowspan=2|{{LA|Warcry}}
+|[[Final Fantasy Tactics Advance weapons#Javelin|Javelin]]
+|300
+|—
+|—
+|Self
+|-
+|colspan=5 style="text-align:left"|''Reduces the speed of nearby units.''
+|-
+! rowspan=2|{{LA|Rasp (ability)|Rasp}}
+|[[Final Fantasy Tactics Advance weapons#Apocalypse|Apocalypse]]
+|100
+|24
+|60
+|3
+|-
+|colspan=5 style="text-align:left"|''Deals damage to MP.''
+|-
+! rowspan=2|{{A|Cheer}}
+|[[Final Fantasy Tactics Advance weapons#Partisan|Partisan]]
+|100
+|—
+|—
+|Self
+|-
+|colspan=5 style="text-align:left"|''Focuses power to increase damage on next weapon atk.''
+|-
+! rowspan=2|{{LA|Silence (ability)|Silence}}
+|[[Final Fantasy Tactics Advance weapons#Ragnarok|Ragnarok]]
+|200
+|8
+|—
+|3
+|-
+|colspan=5 style="text-align:left"|''Steals voice, silencing target.''
+|-
+! rowspan=2|{{A|Soul Sphere}}
+|[[Final Fantasy Tactics Advance weapons#Arch Sword|Arch Sword]]
+|300
+|—
+|As Weapon
+|4
+|-
+|colspan=5 style="text-align:left"|''Soul-stealing aura. Deals damage to MP.''<br>Element is the same as equipped weapon.
+|-
+! rowspan=2|{{LA|Haste (ability)|Haste}}
+|[[Final Fantasy Tactics Advance weapons#Lohengrin|Lohengrin]]
+|200
+|24
+|—
+|3
+|-
+|colspan=5 style="text-align:left"|''Meddle with time's flow to increase speed.''
+|-
+! rowspan=2|{{LA|Lifebreak}}
+|[[Final Fantasy Tactics Advance weapons#Kain's Lance|Kain's Lance]]
+|300
+|—
+|—
+|As Weapon
+|-
+|colspan=5 style="text-align:left"|''Deals damage equal to amount of HP lost.''<br>'''Element:''' Dark
+|}
+
+===Reaction===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{LA|Bonecrusher}}
+|[[Final Fantasy Tactics Advance armor#Carabini Mail|Carabini Mail]]
+|style="text-align:left"|''Powerful counterattack (1.5 x normal atk.) after taking weapon damage.''
+|300
+|}
+
+===Support===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Weapon Atk+}}
+|[[Final Fantasy Tactics Advance weapons#Trident|Trident]]
+|style="text-align:left"|''Increases damage from weapon attacks.''
+|300
+|}
+
+===Combo===
+{|class="half-width FFTA article-table" style="text-align:center"
+|-
+!style="width:10%"|Skill
+!style="width:5%"|Equipment
+!style="width:30%"|Effect
+!style="width:5%"|AP
+|-
+!{{A|Sacred Combo}}
+|[[Final Fantasy Tactics Advance weapons#Mythril Brand|Mythril Brand]]
+|style="text-align:left"|''Failproof combo ability for templars.''
+|100
+|}
+
+== Gameplay ==
+Templars are tough to KO and offer a variety of support. Their HP is middling for a defensive/support unit, but their defense makes up for it. They can equip knightswords, which include some of the game's most powerful weapons. Templars are fit to fight enemy mages due to the anti-mage nature of their abilities. Templars are slow, however; they will often be the last ones to go in a turn. It is ill-advised to pair Templars with offensive units, as their slow speed, move, and jump will leave them in the dust.
+
+Using [[Dragoon (Tactics Advance)|Dragoon]] abilities as secondaries is a nice fit, since it gives Templars access to Jump as well as the elemental breath abilities. Using [[Bishop (Tactics Advance)|Bishop]] commands is recommended, since this gives Templars healing, offensive magic, and even more support. Due to their surprising compatibility with abilities from other jobs, and great staying power, Templars are fit for teams that like to take things at a medium pace.
+
+Templars' magic resistance is bite-size compared to their massive defense, so when fighting enemy Templars the player should use magic. Silence disables a lot of their supporting abilities, which will force them into melee combat. Templars are no slouch in physical combat, being able to wield powerful spears and knightswords, but they are less painful than others. Bonecrusher, though inconsistent, is nothing to sneeze at, as counters from this can be painful. Since they are so slow, the player should hit them preemptively. Having faster units means that the player can kill the enemy Templar before its first move, or at least heavily damage it.
+
+==Gallery==
+<gallery>
+FFTA Astra.png|Astra.
+FFTA Warcry.png|Warcry.
+FFTA Rasp.png|Rasp.
+FFTA Cheer.png|Cheer.
+FFTA Silence.png|Silence.
+FFTA Soul Sphere.png|Soul Sphere.
+FFTA Haste.png|Haste.
+FFTA Lifebreak.png|Lifebreak.
+</gallery>{{Gallery incomplete|Sacred Combo}}
+
+==Etymology==
+{{Etym|Knights Templar}}
+
+{{navbox abilities FFTA}}
+
+
+[[es:Templario (Final Fantasy Tactics Advance)]]
+[[it:Templare (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

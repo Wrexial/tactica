@@ -1,0 +1,22 @@
+'''Roda Volcano''' is a location in the world of [[Ivalice]]. It is an active volcano, and many strange things have happened there.
+
+==Appearances==
+===''[[Final Fantasy XII: Revenant Wings]]''===
+
+{{Main|Feol Warren}}
+[[File:rodavolcano-ff12rw.PNG|right]]
+Roda Volcano is home to the [[Viera#Final Fantasy XII: Revenant Wings|feol viera]], a sub-branch of the viera banished for being half-bloods. The party goes to Roda Volcano to rescue the feol viera from the [[Judge of Wings]], but are too late to stop her.
+
+===''[[Final Fantasy Tactics Advance]]''===
+
+{{Main|Roda Volcano (Tactics Advance)}}
+Roda Volcano is a mountain location, and is the only place in [[Ivalice (Tactics Advance)|Ivalice]] besides [[Tubola Cave]] where lava flows. The [[Totema]] [[Ultima (Tactics Advance)|Ultima]] is battled here.
+
+==Etymology ==
+The word 'Roda' means 'wheel' in Portuguese, Malay and Indonesian.
+
+{{navbox setting XIIRW}}
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy XII: Revenant Wings]]
+[[Category:Locations in Final Fantasy Tactics Advance]]

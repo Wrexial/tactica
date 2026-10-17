@@ -1,0 +1,83 @@
+{{DISPLAYTITLE:Malboro (''Tactics Advance'')}}
+[[File:FFTA-Malboro.jpg|right]]
+[[File:FFTA-spr-Malboro.gif|left]]
+{{Quote|Disturbing creature that gives off quite an odor.|Description}}
+The notorious '''Malboro''' is a monster in ''[[Final Fantasy Tactics Advance]]''. It is a large green monster with many eyes, tentacles, and a horrible odor. Its Stench commands cause status ailments. It has no reaction or support commands. It has a more dangerous relative with more HP, the [[Big Malboro]].
+
+As with all ''Tactics Advance'' enemies, Malboros leave behind remains when defeated. Malboro's defeated form is unique, as it still resembles its full form, albeit a bit shrunk.
+
+Malboros are capturable along with their bigger cousins, Big Malboros. Their abilities can be used together if a player has both monsters captured. The Malboro's other ability, Goo, immobilizes a target only in melee range, which mostly defeats the purpose of immobilization. Malboro abilities don't deal damage, but do provide a supply of status effects, especially with Bad Breath. Unusually, Malboros and Big Malboros only eat Ethers and Elixirs, and will not accept Curealls.
+
+{{See|Malboro}}
+
+==Abilities==
+===Stench===
+{{Quote|Malboro command. Poison with slime and breath.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Bad Breath}}
+|''Incredibly foul breath causes status ailments.''<br>Inflicts five of the following ailments chosen at random: [[Blind (status)|Blind]], [[Confuse (status)|Confuse]], [[Toad (status)|Frog]], [[Poison (status)|Poison]], [[Silence (status)|Silence]], [[Sleep (status)|Sleep]], [[Slow (status)|Slow]].
+|20
+|-
+!{{A|Goo}}
+|''Sticky ooze. [[Immobilize (status)|Immobilizes]] target.''
+|—
+|}
+
+Malboro's signature Bad Breath ability inflicts myriads of critical status effects, cutting down even the toughest fighters with ease. The only true way to avoid this is to wear equipment that nullify status effects. Bad Breath is learnable as [[Blue Magic (Tactics Advance)|Blue Magic]], but unless properly equipped, the [[Blue Mage (Tactics Advance)|Blue Mage]] will get pelted with status effects. It is important to not accidentally cast Astra or Mog Shield on the Blue Mage, as then Bad Breath will not work.
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Eluut!
+|A Malboro and Big Malboro start off on the northwest side of the map.
+|-
+!Mission #032: Tower Ruins
+|A Malboro and two Dragons are the difficult monsters in this mission.
+|-
+!Mission #085: Foreign Fiend
+|Clan Borzoi has imported an Ochu, which is a powerful level 36 Malboro. Defeat it quickly before the Neochu approaches the party.
+|-
+!Mission #105: Smuggle Bust
+|A group of smugglers are attempting to sneak two Malboros and two suspicious boxes out of [[Baguba Port]].
+|-
+!Mission #054: For A Song
+|The search for a song is interrupted by a group of monsters, including a smelly Malboro.
+|-
+!Mission #095: Carrot!
+|Carrot the level 48 Malboro isn't coming back to its owner without some external force applied.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Gotor Sands]]
+|style="text-align:center"|Wild Monsters
+|Avoid having physical attacks disabled by the Malboro or risk severe damage from the [[Coeurl (Tactics Advance)|Coeurl]] and [[Icedrake]].
+|-
+![[Materiwood]]
+|style="text-align:center"|Lost Monsters
+|A Malboro and Big Malboro work in tandem in this clan.
+|}
+
+==Gallery==
+<gallery>
+FFTA Malboro Portrait.gif|Portrait.
+Malboro (FFTA).jpg
+</gallery>
+
+==Etymology==
+{{Etym|Malboro}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

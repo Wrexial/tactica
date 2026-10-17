@@ -1,0 +1,64 @@
+{{DISPLAYTITLE:Cyril (''Tactics Advance'')}}
+[[File:Cyril.PNG|thumb|right|The town of Cyril.]]
+{{Quote|Busy town. The monster bank is on its outskirts.|Description}}
+'''Cyril''' {{j|始まりの街シリル|Hajimari no machi Shiriru|Cyril, city of beginnings}} is the [[Human|hume]] [[town]] from ''[[Final Fantasy Tactics Advance]]''. It is here that [[Marche Radiuju]] begins his adventure in [[Ivalice (Tactics Advance)|Ivalice]] and also where his first engagement is held.
+
+Later, [[Montblanc]] is introduced and Marche becomes a part of his clan.
+
+==Locations==
+[[File:Cyril.jpg|right|thumb|200px|Cyril, a pleasant but busy town.]]
+===The Prancing Chocobo===
+"The Prancing Chocobo" is the name of the pub in Cyril. It is a popular clan watering hole and where the recent pub rumors can be read and missions can be accepted or canceled. Its name is a reference to "The Prancing Pony" from ''The Lord of the Rings''.
+
+===Ramsen Armory===
+The "Ramsen Armory" is the name of the local shop in Cyril. Here, discounts are given on weaponry wielded by humes.
+
+Discounts are given on:
+*Swords ([[Soldier (Tactics Advance)|Soldier]])
+*Blades ([[Fighter (Tactics Advance)|Fighter]])
+*Sabers ([[Blue Mage (Tactics Advance)|Blue Mage]])
+*Knightswords ([[Paladin (Tactics Advance)|Paladin]])
+*Greatswords (Soldier)
+*Knives ([[Thief (Tactics Advance)|Thief]])
+*Katanas ([[Ninja (Tactics Advance)|Ninja]])
+*Staves ([[White Mage (Tactics Advance)|White Mage]])
+*Rods ([[Black Mage (Tactics Advance)|Black Mage]]/[[Illusionist (Tactics Advance)|Illusionist]])
+*Bows ([[Archer (Tactics Advance)|Archer]])
+*Greatbows ([[Hunter (Tactics Advance)|Hunter]])
+
+===Monster Bank===
+{{Quote|Welcome to the monster bank. Your monster awaits!|Monster Bank Morpher}}
+[[File:CyrilMonsterBank.png|right|thumb|200px|The monster bank on Cyril's outskirts.]]
+{{Main|Monster Bank}}
+The "Monster Bank" is the holding place for all monsters captured by Hunters. It is similar to a zoo, as there are holding pens for all of the monsters. It is run by a [[Morpher]], who has a unique bond with the monsters. In order to develop a powerful Morpher, one will have to capture as many monsters as possible, and then raise them by feeding them.
+{{clear}}
+
+==Liberation of Cyril==
+Early in the game, after completion of "#068 Fowl Thief!", "#194 Free Cyril" is unlocked. It is a simple three day dispatch assignment. Afterward, Cyril is liberated and never will come under attack.
+
+==Encounters==
+===Cyril Band===
+
+{{Quote|Main turf: Cyril. Targets travelers, never townspeople.|Description}}
+*[[White Monk (Tactics Advance)|White Monk]] (Bangaa)
+*[[Thief (Tactics Advance)|Thief]] (Hume)
+*Thief (Moogle)
+*[[Archer (Tactics Advance)|Archer]] (Hume)
+*[[Soldier (Tactics Advance)|Soldier]] (Hume)
+
+==Gallery==
+<gallery>
+Cyril 1.PNG|Cyril.
+Cyril 2.PNG|Cyril.
+Cyril 3.PNG|Cyril.
+Cyril 4.PNG|Cyril.
+Cyril 5.PNG|Cyril.
+Town-ffta-icon.png|Icon.
+</gallery>
+
+==Etymology==
+{{Etym|Cyril}}
+
+{{navbox setting FFTA}}
+[[Category:Locations in Final Fantasy Tactics Advance]]
+[[Category:Towns]]

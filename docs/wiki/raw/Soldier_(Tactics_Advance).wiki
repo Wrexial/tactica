@@ -1,0 +1,196 @@
+{{DISPLAYTITLE:Soldier (''Tactics Advance'')}}
+{{infobox job
+|name=Soldier
+|release=FFTA
+|japanese=ソルジャー
+|romaji=Sorujā
+|image=Ffta-h-soldier.png
+|portrait=[[File:FFTA-job-Soldier-por.png|50px|Player]] [[File:Ffta-job-soldier-enemy.png|Enemy|50px]]
+|sprite=[[File:FFTA-job-soldier.gif|20px|Player]] [[File:Ffta-job-soldier-enemy-sprite.png|Enemy|20px]]
+|obtained=Default
+|characters=[[Human|Humes]], [[Marche Radiuju|Marche]]
+|stats=*Move Rate: 4
+*Jump Rate: 2
+*Evade Rate: 50
+*Stat growth: high HP, Attack and Defense, low MP, Magic Power and Resistance, average Speed
+|weapons=[[Final Fantasy Tactics Advance weapons#Swords|Swords]], [[Final Fantasy Tactics Advance weapons#Greatswords|greatswords]]
+|armor=[[Final Fantasy Tactics Advance armor#Hats|Hats]], [[Final Fantasy Tactics Advance armor#Helms|helms]], [[Final Fantasy Tactics Advance armor#Clothing|clothing]], [[Final Fantasy Tactics Advance armor#Heavy Armor|heavy armor]] and [[Final Fantasy Tactics Advance armor#Shields|shields]]
+|command abilities=*[[Battle Tech (Tactics Advance)|Battle Tech]]
+*[[#Combat Combo|Combat Combo]] (combo)
+|support abilities=*[[#Monkey Grip|Monkey Grip]]
+*[[Shieldbearer (ability)|Shieldbearer]]
+|recurring appearance=Soldier
+}}
+{{Quote|Masters techs to slow and damage opponents.|Description}}
+<br />
+
+== Appearance ==
+The Soldier is, unsurprisingly, a soldier equipped for simple melee combat. They wear a blue tunic, a blue beret, a pair of bluish-gray shorts and white boots. A breastplate is attached to the front of their torso and a red cape also dangles behind them. Enemy Soldiers have red clothes instead of blue.
+
+== Profile ==
+'''Soldier''' is a [[Final Fantasy Tactics Advance jobs|job]] in ''[[Final Fantasy Tactics Advance]]'' exclusive to [[Human|humes]]. The Soldier is the basic melee unit of the humes with great HP and Attack growth, but low Magic and Resistance. Soldiers can use their Battle Techs to heal themselves, or alter the stats of their opponents. Soldiers are only useful in the beginning of the game, as they quickly become outclassed by the more advanced jobs. [[Marche Radiuju|Marche]] and a fellow hume [[clan]] member start out as Soldiers.
+
+The [[Warrior (Tactics Advance)|Warrior]] job is the [[bangaa]] version of the Soldier job, but with a slightly altered action ability.
+
+==Stat growths==
+The Soldier has high HP, Attack and Defense, with low MP, Magic Power, and Resistance. It has average Speed.
+
+{| class="half-width FFTA article-table" style="text-align:center"
+|- 
+!HP
+!MP
+!Atk
+!Def
+!Mag Pwr
+!Mag Res
+!Spd
+|-
+|8.4 A-
+|1.1 E
+|8.8 B+
+|8.8 B+
+|6.0 D-
+|7.2 C-
+|1.1 D
+|}
+
+==Abilities==
+===[[Battle Tech (Tactics Advance)|Battle Tech]]===
+{{Quote|Soldier & warrior command. Soften up enemy defenses.|Description}}
+
+{| class="half-width FFTA article-table" style="text-align:center"
+|- 
+! style="width:5%" |Name
+! style="width:10%" |Equipment
+! style="width:5%" |AP
+! style="width:5%" |Range
+|-
+! rowspan="2"  |{{LA|First Aid (ability)|First Aid}}
+|[[Shortsword (Tactics Advance)|Shortsword]]
+|100
+|Self
+|-
+| colspan="3" style="text-align:left" |''Disinfects wounds to heal HP and remedy status.''
+|-
+! rowspan="2"  |{{LA|Power Break (ability)|Powerbreak}}
+|[[Barong (Tactics Advance)|Barong]]
+|200
+|Weapon Range
+|-
+| colspan="3" style="text-align:left" |''Weakens a target's weapon attacks.''
+|-
+! rowspan="2"  |{{LA|Mind Break|Mindbreak}}
+|[[Buster Sword (Tactics Advance)|Buster Sword]]
+|200
+|Weapon Range
+|-
+| colspan="3" style="text-align:left" |''Reduces target's magic power.''
+|-
+! rowspan="2"  |{{LA|Magic Break (ability)|Magicbreak}}
+|[[Ancient Sword (Tactics Advance)|Ancient Sword]]
+|200
+|Weapon Range
+|-
+| colspan="3" style="text-align:left" |''Deals damage to MP.''
+|-
+! rowspan="2"  |{{LA|Rend Speed|Speedbreak}}
+|[[Silver Sword (Tactics Advance)|Silver Sword]]
+|200
+|Weapon Range
+|-
+| colspan="3" style="text-align:left" |''Reduces target's speed.''
+|-
+! rowspan="2"  |{{LA|Mug (ability)|Mug}}
+|[[Diamond Sword (Tactics Advance)|Diamond Sword]]
+|300
+|Weapon Range
+|-
+| colspan="3" style="text-align:left" |''Damages target and steals carried gil.''
+|-
+! rowspan="2"  |{{LA|Provoke (ability)|Provoke}}
+|[[Blood Sword (Tactics Advance)|Blood Sword]]
+|300
+|1
+|-
+| colspan="3" style="text-align:left" |''Provokes enemy until they fly into a berserker rage.''
+|-
+! rowspan="2"  |{{LA|Scan (ability)|Sensor}}
+|[[Burglar Sword (Tactics Advance)|Burglar Sword]]
+|300
+|4
+|-
+| colspan="3" style="text-align:left" |''Detects hidden equipment held by enemy.''
+|}
+
+The formula for how much [[gil]] is stolen with Mug is as follows:
+
+:<math>Gil Earned = [10\% Damage] + \mbox{Rand}\{0..10\}</math>
+
+===Support===
+{| class="half-width FFTA article-table" style="text-align:center"
+|- 
+! style="width:10%" |Skill
+! style="width:5%" |Equipment
+! style="width:30%" |Effect
+! style="width:5%" |AP
+|-
+!  |{{A|Monkey Grip}}
+|[[Vigilante (Tactics Advance)|Vigilante]]
+| style="text-align:left" |''Enables holding a two-handed weapon in one hand.''
+|300
+|-
+!  |{{LA|Shieldbearer (ability)|Shieldbearer}}
+|[[Bronze Shield (Tactics Advance)|Bronze Shield]]<br />[[Opal Shield (Tactics Advance)|Opal Shield]]
+| style="text-align:left" |''Enables shield-wielding, regardless of job.''
+|300
+|}
+
+===Combo===
+{| class="half-width FFTA article-table" style="text-align:center"
+|- 
+! style="width:10%" |Skill
+! style="width:5%" |Equipment
+! style="width:30%" |Effect
+! style="width:5%" |AP
+|-
+!  |{{A|Combat Combo}}
+|[[Mythril Sword (Tactics Advance)|Mythril Sword]]
+| style="text-align:left" |''Failproof combo ability for soldiers & warriors.''
+|100
+|}
+
+== Overview ==
+<br />[[File:FFTA Sensor.png|Sensor.|thumb|left]]
+Soldier is possibly the worst class in the game, tied with the Warrior. They have high HP, respectable attack and defense, but little else. With bad MP growth and magic power, they can't use spells to any effect. Soldiers are locked to melee weapons, and the class lacks ranged abilities (besides Sensor, which deals no damage). While Sensor can be useful, the [[Mog Knight]]'s Mog Peek is similar, with Mog Knight being overall a superior class.
+
+[[File:FFTA Provoke.png|Provoke.|thumb]]
+Soldier has average speed. While not slow, it will not act first. Soldier has four useful abilities that lower an opponent's stats, but being unable to wield ranged weapons means these support abilities will never become ranged in their Soldier class. Instead of buffs, Soldier's best techs are the following three. Mug, stealing a few coins of [[gil]] while dealing nearly as much damage as Fight, serves as a Reaction-bypass (example: Reflex) and a Fight-law loophole. Provoke is useful, but [[moogle]] [[Juggler (Tactics Advance)|Juggler]]s have the superior [[Firebomb (Tactics Advance)|Firebomb]]. First Aid can heal nigh-any status problem, like poison and immobilize, though the [[Paladin (Tactics Advance)|Paladin's]] [[Nurse (Tactics Advance)|Nurse]] leaves this Battle Tech useless in the case. While a Soldier's defense is decent, its low resistance makes them weak against mages, unable to survive even with their high HP. The real loss with the Soldier is that, as a beginner class before not one, but two useful classes, the only truly useful abilities available wind up only available later on, leaving upgrade-Soldiers—like Marche—forced to learn the near-useless Speedbreak in the beginning of the game.
+
+Enemy Soldiers are easy to kill, as almost any kind of mage or class with ranged abilities can dispatch of them quickly. Their lack (usually, but not always) of the only abilities that make Soldiers painful to fight leaves them more open than ally Soldiers. Being able to destroy MP, induce [[Berserk (Tactics Advance)|Berserk]] and heal statuses, high level Soldiers or any possessors of said Battle Techs can be a hideous stall if not taken care of quickly.
+
+==Other appearances==
+===''[[Final Fantasy Record Keeper]]''===
+[[File:FFRK First Aid FFT.png|right|thumb|150px]]
+{{Ability section|Final Fantasy Record Keeper}}
+{{clear}}
+
+==Gallery==
+<gallery>
+FFTA-job-Soldier-icon.png|Icon.
+FFTA First Aid.png|First Aid.
+FFTA Powerbreak.png|Powerbreak.
+FFTA Mindbreak.png|Mindbreak.
+FFTA Magicbreak.png|Magicbreak.
+FFTA Speedbreak.png|Speedbreak.
+FFTA Mug.png|Mug.
+</gallery>{{Gallery incomplete|Provoke, Sensor and Combat Combo}}
+
+==Etymology==
+{{Etym|Soldier}} In the case of enlistment, this puts in place the Soldier's greenhorn status before becoming a higher-level militant.
+
+{{navbox abilities FFTA}}
+
+
+[[es:Soldado (Final Fantasy Tactics Advance)]]
+[[it:Soldato (Tactics Advance)]]
+[[Category:Jobs in Final Fantasy Tactics Advance]]

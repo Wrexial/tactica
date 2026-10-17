@@ -1,0 +1,72 @@
+{{DISPLAYTITLE:Titania (''Tactics Advance'')}}
+[[File:FFTA - Titania Portrait.png|right]]
+[[File:FFTA-spr-titania.gif|left]]
+{{Quote|Powerful sprite. Wields holy magic.|Description}}
+The '''Titania''' in ''[[Final Fantasy Tactics Advance]]'' is a powerful enemy that belies its elegant appearance. Its Attack power is high, even surpassing [[Malboro (Tactics Advance)|Malboro]] and [[Red Panther (Tactics Advance)|Red Panther]]. Its Holy-elemental spells protect its allies and decimate its enemies. Titania has Auto-Float status.
+
+==Abilities==
+===Fluoresce===
+{{Quote|Titania command. Destroy foes with searing light.|Description}}
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+!MP
+|-
+!{{LA|Angel Whisper (ability)|Angel Whisper}}
+|''Angelic sigh. Heals HP and bestows auto-raise. Deals damage to zombies.''
+|24
+|-
+!{{LA|Level ? Holy|LV?D Holy}}
+|''Holy damage to units with same one's digit in level and days.''
+|—
+|}
+
+===Reaction===
+{|class="full-width FFTA article-table" style="text-align:center"
+|-
+!style="width:120px"|Ability
+!Effect
+|-
+!{{LA|Counter (ability)|Counter}}
+|''Follows up enemy attack with a counterattack.''
+|}
+
+==Appearances==
+===Missions===
+{|class="full-width FFTA article-table"
+|-
+!style="width:30%"|Mission
+!style="width:70%"|Information
+|-
+!Turf Defense Mission: Help Salika!
+|A Titania begins the battle at the opposite side of the map as the party.
+|-
+!Mission #058: Royal Ruins
+|A Titania is a guardian of [[Nargai Cave|Nargai Cave's]] mysterious statues.
+|-
+!Mission #018: Quiet Sands
+|In the first part of this mission, [[Llednar Twem]] summons two Titanias to assist him.
+|-
+!Mission #054: For A Song
+|Help out Summoner Leanan by clearing the path of strong monsters, including a Titania.
+|-
+!Mission #063: Missing Professor
+|The Titania is the strongest enemy here.
+|}
+
+===Clan encounters===
+{|class="full-width FFTA article-table"
+|-
+!style="width:15%"|Home base
+!style="width:15%"|Clan
+!style="width:70%"|Information
+|-
+![[Salikawood (Tactics Advance)|Salikawood]]
+|style="text-align: center"|Tricky Spirits
+|The not-so-delicate Spirits include one Titania, which will probably be the first Titania encountered.
+|}
+
+==Etymology==
+{{Etym|Titania}}
+[[Category:Enemies in Final Fantasy Tactics Advance]]

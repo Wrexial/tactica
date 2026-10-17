@@ -1,0 +1,329 @@
+[[File:FFIX Morrid's Tower WM.png|thumb|250px|World Map in ''[[Final Fantasy IX]]''.]]
+The '''world map''' {{J|ワールドマップ|Wārudo Mappu}}, also known as the '''overworld''', plays a prominent role in many games of the [[Final Fantasy series|''Final Fantasy'' series]]. It is a smaller-scale representation of the world that is used to make travel less time-consuming and easier for the player. On it, the player can move about between various locations including [[town]]s, [[dungeon]]s, and other areas, as well as fight monsters in [[random encounter]]s. Later games in the main series, starting with ''[[Final Fantasy X]]'', did away with an explorable world map and replaced it with groups of large, fully-scaled, interconnected areas, while some modern spin-offs, such as ''[[Final Fantasy Type-0]]'', continue to use it.
+
+The games offer various modes of transportation to the player. In most games, the player is initially forced to walk to each location, but other modes of transportation become available as the game progresses and the player is required to overcome geological obstacles. These modes include [[List of boats|boats]], [[Airship (term)|airships]], [[hovercraft]], and [[chocobo]]s.
+
+The game's [[main theme]], if not a variation of it, usually plays on the world map, with the exception being ''[[Final Fantasy VIII]]''. Certain games in the series, especially ''[[Final Fantasy IV]]'', have more than one overworld theme, because there is more than one overworld map.
+
+Most of the world maps in the ''Final Fantasy'' series are made up of two-dimensional square tiles, and since these tile maps wrap on both the X and Y axis, the spacial relationships between all the tiles could only be accurately represented in three dimensional geometry as a [[Wikipedia:Torus|torus]].
+{{See|Final Fantasy worlds|Minimap}}
+
+==Appearances==
+===''[[Final Fantasy]]''===
+{{See|Final Fantasy world}}
+[[File:World map from FFI NES.png|thumb|250px|World Map.]]
+The world map is made up of three continents. The world's geography includes [[forest]]s, [[mountain]]s, [[Desert (location)|deserts]], and a volcano. The player can use a boat to travel by sea, a [[Canoe (Final Fantasy)|canoe]] to travel by river, and an airship to travel anywhere with a clearing available. Points of interest in this world are the [[Chaos Shrine (Final Fantasy)|Chaos Shrine]], [[Cornelia (Final Fantasy)|Cornelia]], [[Cavern of Ice]], [[Crescent Lake]], [[Mount Gulg (Final Fantasy)|Mount Gulg]] and the [[Citadel of Trials]].
+
+<gallery>
+Ff12fammap1.jpg|Official art of the world map.
+FFI GBA World Map.png|World map (GBA).
+FFI PSP World Map Menu.png|World map (PSP).
+FFI PSP World Map.png|World map as seen from the Flying Fortress (PSP).
+FF1 3DS WorldMap1.jpg|
+FF1 3DS WorldMap2.jpg|
+FF1 3DS WorldMap3.jpg|
+FF1 3DS WorldMap4.jpg|
+</gallery>
+
+===''[[Final Fantasy II]]''===
+
+[[File:Final Fantasy II World Famicom (thumb).png|thumb|250px|World Map.]]
+The world map is unique in that it is connected all around the world as one giant land mass. Most of the map can be accessed from the start, but strong enemies usually appear if the player strays too far from the path they are meant to take. Many areas are also inaccessible, and the party will not be able to enter them from the world map until later in the story. [[Mysidia (Final Fantasy II)|Mysidia]] and the [[Cave of Mysidia]] can be theoretically accessed once the player obtains the [[canoe]], very early in the game, but in the case of the latter, most of the area is inaccessible due to a Doppelganger blocking the path.
+
+Notable locations include [[Fynn]], [[Altair (Final Fantasy II)|Altair]], [[Palamecia Castle]] and [[Pandaemonium (Final Fantasy II)|Pandaemonium]]. A [[Snowfield]] takes up a large portion of the north of the map.
+
+The world map is accessible through the Ring key item, and by pressing {{button|nintendo|b}}+{{button|nintendo|select}} on the overworld in the NES version.<!-- Check for other versions and get screenshots of the world map in them -->
+
+<gallery>
+FFII NES World Map.png|In-game world map (NES).
+FFII PSX World Map.png|In-game world map (PS).
+FFII GBA World Map.png|In-game world map (GBA).
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy III]]''===
+
+{{See|Final Fantasy III locations}}
+Several maps appear for the first time. The party starts off on a floating continent, but later finds that the "continent" is but an island levitating above the face of a huge world. This surface world also goes through some changes. When first discovered, the world has been flooded as a result of the [[Water Crystal (term)|Water Crystal]] being taken over by [[Xande (Final Fantasy III)|Xande]], leaving only a few patches of land accessible to the player. Later, the waters recede, revealing three large continents.
+
+<gallery>
+FFIII NES World Map.png|World map seen through the [[Sight]] spell (NES).
+FF3 Floating overworld.png|Floating Continent.
+FF3 Overworld beforekraken.png|Overworld before Kraken is defeated.
+Ff3 worldmap.png|The overworld after defeating Kraken.
+FFIIIDS Surface World - Before Kraken Map.PNG|Overworld Map (Before Kraken) (DS).
+Ff3DS worldmap.gif|Overworld (After Kraken) (DS).
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy IV]]''===
+
+There are three world maps: the [[Blue Planet (Final Fantasy IV)#Overworld|Overworld]], the [[Blue Planet (Final Fantasy IV)#Underworld|Underworld]], and the [[Red Moon (Final Fantasy IV)|Red Moon]]; however the Moon and Underworld are relatively small. The Overworld is the largest and the place where the majority of the game takes place. It consists of oceans, mountains, plains, and forests and contains a number of towns, [[castle]]s, and other accessible areas.
+
+The Underworld is the second world map and is cave-like. Its terrain consists of lava and caves with a few towns and castles, as well as the ground entrance to the [[Tower of Babel]]. The Underworld is unique in that one cannot cross from one side of the map to another by continuously going in the same direction.
+
+The Moon is the third and final world map made up of a few caves and the [[Crystal Palace]]. Its terrain is plain, consisting of caves and craters. It is the smallest world map in the series.
+
+While moving on the world map, if the player presses the {{button|nintendo|x}} very quickly, they can enter the [[Menu (Final Fantasy IV)|menu]] while the character is mid-transition. If the player then uses a [[Final Fantasy IV items#Tent|Tent]], the game's collision detection is off by a tile by the time normal gameplay resumes. With this the player can trigger a [[bypass event glitch]].
+
+<gallery>
+Overworldmapff4official.jpg|Overworld Map.
+Underworldmapff4official.jpg|Underworld Map.
+Moonworldmapff4official.jpg|Red Moon.
+FFIVDS World Map 1.png|Overworld Map (DS).
+FFIVDS Underworld Map.png|Underworld Map (DS).
+FFIVDS Moon Map.png|Red Moon Map (DS).
+FFIV PSP World Map.png|World map via Sight (PSP).
+</gallery>
+
+====''[[Final Fantasy IV: The After Years]]''====
+
+{{Section|Final Fantasy IV: The After Years}}
+
+===''[[Final Fantasy V]]''===
+{{See|Planet R}}
+There are three world maps: [[Bartz's world]], [[Galuf's world]], and both worlds combined, the [[merged world]]. The game adds two additional theoretical world maps: the underwater map for Galuf's world used to sneak into the [[Barrier Tower]], and the underwater map for the merged world. The [[List of submarines|submarine]] opens many optional places to visit, such as the [[Walse Tower|Sunken Tower]].
+
+Another quasi-world map appears when the player allows [[Cid Previa|Cid]] and [[Mid Previa|Mid]] to upgrade the airship using [[Adamantite (Final Fantasy V)|Adamantite]]. This gives [[List of airships#Final Fantasy V|the airship]] the opportunity to fly at higher altitudes, which allows the player to reach the [[Ronka Ruins]]. Once this area is completed, the player can no longer reach those high altitudes.
+
+There is also a key item simply called [[World Map (Final Fantasy V item)|World Map]].
+
+<gallery>
+FFVmap-world1.gif|[[Bartz's world]].
+FFVmap-world2.gif|[[Galuf's world]].
+FFVmap-world3.gif|[[merged world]].
+FFV World Map Sprite.png|World Map sprite (SNES).
+FFV World Map Field Sprite iOS.png|World Map sprite (2013).
+</gallery>
+
+===''[[Final Fantasy VI]]''===
+
+There are two world maps: the [[World of Balance]] and the [[World of Ruin (Final Fantasy VI)|World of Ruin]]. The story begins in the World of Balance, and after [[Kefka Palazzo]] changes the positions of the [[Warring Triad (Final Fantasy VI)|Warring Triad]], [[Cataclysm (Final Fantasy VI)|the world changes to the World of Ruin]]. Traveling options include airship, ferries and chocobos, which can be rented from [[Chocobo Stable (Final Fantasy VI)|stables]] in towns and forests.
+
+<gallery>
+VI-worldofbalance map.jpg|World of Balance.
+VI-worldofruin map.jpg|World of Ruin Map.
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy VII]]''===
+{{See|Planet (Final Fantasy VII)}}
+[[File:FFVII World Map.jpg|thumb|250px|The Planet overworld.]]
+The game has three world map modules: the Overworld, the [[Bottom of the Sea]], and the transitional area south of the base of [[Gaea's Cliff (field)|Gaea's Cliff]]. As a first for the series, these map modules are rendered in 3D geometry and feature camera views capable of 360 degrees of rotation.
+
+==== Overworld map ====
+The Overworld map is the primary map module. The player can freely use [[Tent (Final Fantasy VII)|Tents]], and save their game. They travel the map by [[buggy]] and ''[[Tiny Bronco]]'' before the summoning of [[Meteor (Final Fantasy VII)|Meteor]], and by [[Highwind (Final Fantasy VII transportation)|airship]] and [[Submarine (Final Fantasy VII transportation)|submarine]] thereafter. [[Chocobo (Final Fantasy VII)|Chocobos]] can be [[Chocobo (Final Fantasy VII enemy)|captured]] and [[Chocobo breeding (Final Fantasy VII)|bred]] and [[Chocobo (Final Fantasy VII transportation)|used to traverse]] otherwise impassable terrain.
+
+A few regions of the Overworld map have no [[Final Fantasy VII battle system#Random encounters|random encounters]], including the forest around [[Bone Village (field)|Bone Village]], which is the [[Sleeping Forest]].
+
+The bridges in the [[Wutai Area]] have no battles, and the player cannot open the [[Menu (Final Fantasy VII)|menu]] when standing on a bridge. It appears this was not originally intended; the game has a set of formations assigned to that area with the bridge background. It is likely that the developers simply disabled menu and battle transitions on bridges to prevent the game from potentially soft-locking. Crossing the bridges causes them to sway, and the variable for their position is not saved when the game changes from one module to another, so they must be returned to their default positions. If the player were to open the menu or enter a [[Final Fantasy VII battle system|battle]] while standing on a bridge, upon returning to the world map, they might be moved to an inaccessible location and find themselves unable to progress.
+
+Most of the Overworld is in daylight, but [[Midgar Area]] and [[North Crater]] are always night, and [[Cosmo Area]] is always dusk.
+
+The Overworld map undergoes a handful of changes, the most major ones occurring after Meteor's summoning; the skybox texture is replaced with one depicting Meteor looming over the Planet, newly-formed craters and fissures deny access to some locations on foot, and in the International release, the superboss [[Ruby Weapon (Final Fantasy VII)|Ruby Weapon]] appears in the [[Gold Saucer Area]] desert and initiates a battle if touched. The field models of some visitable locations change after completing certain story events: the [[Temple of the Ancients (field)|Temple of the Ancients]] is replaced with a square crater, [[Mideel (field)|Mideel]] is replaced with a demolished version, [[Rocket Town (Final Fantasy VII field)|Rocket Town]]'s rocket disappears, as does the [[Condor (Final Fantasy VII)|Condor]] from [[Fort Condor (field)|Fort Condor]], and the [[Sister Ray]] is removed from [[Junon (Final Fantasy VII field)|Junon]] and is installed at [[Midgar]].
+
+==== Bottom of the Sea map ====
+The Bottom of the Sea map module is accessible via the [[Submarine (Final Fantasy VII transportation)|submarine]]. The player can freely transition between the Overworld and the Bottom of the Sea by surfacing and diving. This map module includes only the central ocean and a few subterranean passages; one such passage leads to a location called [[??? (Final Fantasy VII field)|???]], otherwise only accessible through certain breeds of Chocobo. There are no random encounters here, although the superboss [[Emerald Weapon (Final Fantasy VII)|Emerald Weapon]] wanders the floor and will initiate a battle if touched. This map module uses the same minimap display as the Overworld map.
+
+==== Great Glacier / Gaea's Cliff transition ====
+The third map module is used for a small transitional area, and connects [[Great Glacier (Final Fantasy VII field)|Great Glacier]] to the base of Gaea's Cliff. This square-shaped area is viewed from a top-down perspective, and the player cannot manually control the camera. Periodically, the camera will rotate in increments of 90 degrees in an attempt to disorient the player; the player can counter this by planting a trail of flags, or by observing the direction of the grain of the ground textures. To exit this area, the player must navigate [[Cloud Strife|Cloud]] to one of the four edges of the map. Only the northern edge connects to Gaea's Cliff; the other edges bring the player back to Great Glacier. Additionally, an exit point at the center of the screen leads to a dead-end cave containing an [[All (Final Fantasy VII)|All Materia]]. There are random encounters.
+{{clear}}
+
+===''[[Final Fantasy VIII]]''===
+
+{{See|Final Fantasy VIII world}}
+[[File:FFVIIImap.jpg|thumb|250px|World map.]]
+There is a single world map, but with 32 locations to be explored. It is the first and only map to date to feature an optional 3D globe in place of the traditional minimap. While traveling on foot, the player can use the roads to avoid random encounters. Other ways to travel the map are by [[Road transportation (Final Fantasy VIII)|rental car]], [[Chocobo (Final Fantasy VIII)|chocobo]], [[Rail transportation (Final Fantasy VIII)|train]], [[Balamb Garden]], or [[Ragnarok (Final Fantasy VIII)|airship]].
+
+The area around [[Deling City]] is always night, and around [[Dollet]], it is always dusk. During the [[Lunatic Pandora]] event, the area near and around [[Tears' Point]] is enveloped in an ominous red aura with the Lunatic Pandora itself hovering over the point. The artificial sea-haven for artisans, [[Fishermans Horizon]], is located in the center of the map's main ocean, and a causeway rail bridge known as [[Horizon Bridge]] spanning either direction from the town connecting [[Galbadia]] to [[Esthar]], bifurcates the body of water making early transportation with Balamb Garden cumbersome.
+
+During the [[time compression]], most of the world map locations [[Point of no return|become inaccessible]] and various "warp points" appear across the world for the player to travel in and out of [[Ultimecia Castle]]. Despite this, the options to travel via airship and chocobo remain available, though the player must first [[Chocobo Forest (Final Fantasy VIII)|obtain a chocobo]] to travel to the airship.
+{{clear}}
+
+===''[[Final Fantasy IX]]''===
+{{See|Gaia (Final Fantasy IX)}}
+[[File:FFIXmap-world.gif|thumb|250px|Gaia overworld map.]]
+There are two world maps. At first, the party is granted a map of the known civilized world: the [[Mist Continent]], listed in the inventory as the "Continental Map." After certain conditions are met, the player receives an ancient map detailing all of [[Gaia (Final Fantasy IX)|Gaia]], which is an expansion of the first map. The player can travel the map by [[choco]]bo, [[Blue Narciss|boat]], or [[List of airships#Final Fantasy IX|airship]]. Gaia comprises four major landmasses and their surrounding islands: the Mist Continent to the southeast, the [[Outer Continent (Final Fantasy IX)|Outer Continent]] to the northeast, the [[Lost Continent]] in the northwest, and the [[Forgotten Continent]] in the southwest.
+
+An endless night shrouds the Dark City [[Treno]], and rain falls upon the city of [[Burmecia]], while the greatest landmass of the Forgotten Continent is forever locked in twilight (though the vast archipelago in its southern region remains sunny). The overall lucidity of the skies varies in the presence of [[Mist (Final Fantasy IX)|Mist]]. Being a product of the [[Iifa Tree (Final Fantasy IX)|Iifa Tree]] and its roots, this Mist only permeates the Mist Continent and around the tree itself on the secluded western half of the Outer Continent.
+
+During the endgame many locales become inaccessible (likely because of disc capacity concerns, as the original version was released on four discs with the ending cut scenes taking considerable space on the disc); they are sealed off with the Iifa Tree's roots, and the world becomes enveloped in Mist. The world map is similar to the original ''Final Fantasy'' world map.
+
+Chocobo footprints on the world map let the player summon [[Choco]] by the use of [[Gysahl Greens (Final Fantasy IX)|Gysahl Greens]]. [[Chocobo Hot and Cold#Hidden treasures|Secret chocobo treasures]] can be found from bubbling areas on the sea, and cracks in the mountains. Small circular shadows denote the location of [[Chocobo's Air Garden]], and using a [[Final Fantasy IX items#Dead Pepper|Dead Pepper]] on a flying Choco in these locations allows the player access to the final [[Chocobo Hot and Cold]] location. Pressing {{button|ps|square symbol}} button summons a [[Moogle (Final Fantasy IX)|moogle]] to save the game on the world map.
+{{clear}}
+
+===''[[Final Fantasy XI]]''===
+
+World maps may be accessed through the Region section of the main [[menu]]. There are three maps, each with its own purpose. The Middle Lands map displays areas participating in [[Conquest]] and the region that currently owns them, and also displays the current influence in the region and the player's current [[Signet|Conquest Points]]. It does not display regions in the Middle Lands of [[Vana'diel]] that are not participating in Conquest, such as [[Promyvion]].
+
+The Aradjiah map displays the areas of [[Besieged]], and each of the various faction's current strength, the number of prisoners they have, and the number of Archaic Mirrors they possess. It also displays an adventurer's current [[Imperial Standing]].
+
+The [[Shadowreign]] era map displays the fronts of [[Campaign]], as well as their current owners. It also displays the influence the current owning faction has in the region, as well as whether or not a battle is currently taking place. It also keeps track of an [[Adventurer (Final Fantasy XI)|adventurer's]] Allied Notes.
+
+<gallery>
+FFXI Middle Lands.jpg|The Middle Lands of Vana'diel, Quon and Mindartia.
+FFXI Aradjiah.jpg|The continent of Aradjiah, in the East.
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy XII: Revenant Wings]]''===
+
+[[File:Map Lemurés2 RW.PNG|thumb|200px|The Purvama of Lemurés.]]
+The first chapter takes place in the same [[Ivalice (Final Fantasy XII)|Ivalice]] as ''[[Final Fantasy XII]]''. After the acquisition of the ''[[Galbana]]'', the [[Purvama]] of [[Lemurés (Revenant Wings)|Lemurés]] is accessible and plays host to the majority of the story's events. Later on, the party may freely travel between Lemurés, Ivalice, and the lofty [[Keep of Forgotten Time]].
+
+The player is able to travel by airship very early on, and the world map itself requires little walking.
+{{clear}}
+
+===''[[Final Fantasy Tactics]]''===
+
+{{See|Ivalice (Tactics)}}
+[[File:FFTIvalice.png|thumb|250px|The map of Ivalice, without the specific locations.]]
+Ivalice is made up of a series of locations represented by glowing dots on a 2D map, which the player can see at all times when not in battle. [[Ramza Beoulve|Ramza]] can move between these dots, and each space traversed takes up one [[Calendar system#Final Fantasy Tactics|day]].
+
+Blue dots signal a peaceful town or city, green dots signal an area where a random battle has a 50% chance of occurring, and red dots signal a location where a storyline mission will be forced upon moving onto the dot.
+
+[[Midlight's Deep (Tactics)|Midlight's Deep]] can be unlocked after completing the battles in [[Mullonde]]. When the player enters [[Port City of Warjilis]] again, a scene will play, and then Midlight's Deep [[bonus dungeon]] appears on the world map.
+
+The location dot of [[Necrohol of Mullonde]], the [[Final dungeon (term)|final dungeon]], is never explicitly stated within the game nor shown on the world map, but it is located within the game's data. The dot on the game's map is directly located in the middle of the sea above Midlight's Deep and below Lake Poescas. There is no road leading to the dot, and the dot cannot be accessed under normal circumstances.
+{{clear}}
+
+===''[[Final Fantasy Tactics Advance]]''===
+
+{{See|Ivalice (Tactics Advance)}}
+[[File:FFTA world.png|thumb|180px|Ivalice.]]
+Ivalice is the location that is traversed, but its geography is different from that of ''Final Fantasy Tactics''. The world map is a 2D plane made up of a total of 24 location symbols. With a few exceptions, a new area can be placed in blank circles on the world map whenever [[Marche Radiuju|Marche]] completes certain missions. Moving between spaces on the map, symbolic or blank, takes one [[Calendar of Ivalice|day]].
+{{clear}}
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+
+{{See|Jylland}}
+[[File:FFTA2 Ivalice.jpg|thumb|250px|Map of Jylland.]]
+A 2D region of Ivalice called Jylland is the story's setting. This Ivalician area spans two continents; Loar in the west and Ordalia in the east. [[Airship (term)|Airships]] are used to travel between these two continents, from [[Moorabella]] in the west to [[Fluorgis]] in the east. Jylland is comprised of five territories, in which there are many smaller territories and locations. All locations are set, and traveling between locations does not necessarily take up one day.
+
+<gallery>
+FFTA2 World Map.png|In-game world map.
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy Crystal Chronicles]]''===
+
+{{See|Final Fantasy Crystal Chronicles locations}}
+[[File:Ffcc worldmap.jpg|thumb|250px|World map.]]
+The world is split into nine areas, each one containing dungeons or settlements. The dungeons and settlements are represented by little icons that represent the area. The [[Tipa Caravan]] moves across the map by selecting a location; along the way, random events can be witnessed on the path. To enter another area, the caravan must past through the [[Miasma Stream]], which, depending upon the year in the game, can only be passed if the [[Crystal Chalice]] element matches the Miasma Stream's element for that year.
+{{clear}}
+
+====''[[Final Fantasy Crystal Chronicles: Ring of Fates]]''====
+
+[[File:Ffccrof worldmap.jpg|thumb|250px|World map.]]
+The map is made up of one area with towns and dungeons represented by small portraits on a 3D map. The entire map can be viewed freely, but new dungeons only appear as the player progresses.
+{{clear}}
+
+====''[[Final Fantasy Crystal Chronicles: My Life as a King]]''====
+
+[[File:Ffccmlaak worldmap.jpg|thumb|250px|World map.]]
+The map is used to assign quests for the adventurers sent out by [[King Leo (Crystal Chronicles)|King Leo]]. None of the locations (besides Padarak) are seen, and they are only explored by the adventurers. As they explore and defeat the bosses in each dungeon new locations show up on the map.
+{{clear}}
+
+====''[[Final Fantasy Crystal Chronicles: Echoes of Time]]''====
+
+[[File:Ffcceot worldmap.jpg|thumb|250px|Overworld.]]
+Dungeons and towns are represented by icons. When connecting with friends, other icons will appear, such as character polygons or new locations. Characters can freely move around on the map, except that there are no enemies nor monsters to fight against.
+{{clear}}
+
+====''[[Final Fantasy Crystal Chronicles: The Crystal Bearers]]''====
+
+{{Section|Final Fantasy Crystal Chronicles: The Crystal Bearers}}
+
+===''[[Final Fantasy Type-0]]''===
+
+{{See|Orience}}
+[[File:Oriense World Map.png|thumb|World map.]]
+The player can travel the world map on foot, by [[Chocobo (Type-0)|chocobo]], or by [[Setzer (Type-0)|airship]]. While there are monsters that roam about the map, there are also random encounters the player can get into. The enemies that are visible on the world map are tough optional enemies the party can take on as a challenge.
+
+Towns on the map have the emblem of the peristylium that currently controls it above them. Only the towns that are under [[Dominion of Rubrum]]'s control can be entered. The party can leave [[Akademeia]] to enter the world map. This is done during storyline [[Missions (Type-0)|missions]], or during free time by expending six hours, or twelve hours to engage in an [[Expert Trial]]. Some areas on the world map are landlocked and can only be accessed via caves or the airship. The [[weather]] changes randomly on the world map. [[Regional Dominance]] missions take place on the world map.
+{{clear}}
+
+===''[[Final Fantasy Mystic Quest]]''===
+
+[[File:FFMQ - World Map Artwork.png|thumb|250px|Artwork of the world map.]]
+The player controls [[Benjamin]] on the world map. At first, the map is nearly all hidden by clouds except for the Earth Region and the strongholds of the [[Vile Four]] situated in the other regions. By defeating the Vile Four in their respective dungeons, new regions will be revealed as the clouds disperse. When a [[Crystal (term)|crystal]] is freed, that region will be restored to normal.
+{{clear}}
+
+===''[[Final Fantasy Adventure]]''===
+
+[[File:Mystic Quest Map.gif|thumb|250px|World map.]]
+The world is one huge continent, containing grasslands, a marsh, a coastal beach, a forest, three deserts, snowfields, a mountainous region, and two small islands.
+{{clear}}
+
+===''[[Final Fantasy Legend II]]''===
+
+There are thirteen worlds the player will explore during their journey, each different from one another. Each of them are separated from one another, but they are all connected to the Celestial World by the [[Pillar of Sky]].
+
+===''[[Final Fantasy Legend III]]''===
+
+There are two types of world maps for the original world: the Overworld and the Seafloor. There are three different versions of the Overworld and Seafloor maps: the Past, Present, and Future versions of the original world are all different from one another. There is also the Floatland map, which is only accessible in the Future World. The last two maps are Pureland: the Overworld and the Underworld.
+
+<gallery>
+Overworld Map - Past.png|Overworld Map (Past).
+Overworld Map - Present.png|Overworld Map (Present).
+Overworld Map - Future.png|Overworld Map (Future).
+Seafloor Map - Past.png|Seafloor Map (Past).
+Seafloor Map - Present.png|Seafloor Map (Present).
+Seafloor Map - Future.png|Seafloor Map (Future).
+Floatland Map.png|Floatland Map.
+Pureland Overworld Map.png|Pureland Overworld.
+Pureland Underworld Map.png|Pureland Underworld.
+</gallery>
+{{clear}}
+
+===''[[Final Fantasy: The 4 Heroes of Light]]''===
+
+{{See|Final Fantasy: The 4 Heroes of Light locations}}
+[[File:T4HoLWorld-Map.png|thumb|250px|World map.]]
+[[File:FFT4HoL Map Icon.png|thumb|left]]
+The player controls the lead character of their party on the map, although [[Brandt]]'s icon is always displayed on the map view as an indicator of the player's location, regardless of whether Brandt is actually in the party or not. The map is 3D, but the player cannot rotate the map like in most other games. Some locations on the world map can only be entered by transforming into an animal with the [[Transformation Staff]].
+
+Initially, the player has no map view while on the world map, but they are given the map of the world during the story. The map is not as detailed as in other ''Final Fantasy'' games, and is merely an artwork of the world and does not have the locations displayed on it, although it does show the player's current position.
+{{clear}}
+
+===''[[Final Fantasy Dimensions]]''===
+[[File:FFD World Map.png|thumb|250px|World map.]]
+For the majority of the story, the world has been split into two halves, the [[World of Light]] and [[World of Darkness (Dimensions)|World of Darkness]], meaning that the world map is also segmented. Early in Chapter 4 the world has become whole again and changes into the [[World of Dusk]], and the map is given to the [[Warriors of Light]] and [[Warriors of Darkness|Darkness]] by [[Dr. Lugae (Dimensions)|Dr. Lugae]]. It contains every location ever visited by both parties, and extra locations that were not. All of these locations are accessible by airship by the end of the game.
+{{clear}}
+
+===''[[Final Fantasy Dimensions II]]''===
+{{Section|Final Fantasy Dimensions II}}
+
+===''[[Dissidia 012 Final Fantasy]]''===
+
+{{main|World B}}
+[[File:Dissidia 012 World.jpg|thumb|250px|World map.]]
+A 3D world map is used for most of the story; the classic "Game Board" is used for dungeons. Certain actions earn the player Kupo Points (KP), which can be used at the [[Moogle#Dissidia 012 Final Fantasy|Moogle Shops]] located around the world map. The player can form parties to travel the world map with. The map shown is similar to the original ''Final Fantasy'' world map, although in a post-apocalyptic atmosphere, with all cities in ruins.
+{{clear}}
+
+===''[[Final Fantasy Airborne Brigade]]''===
+
+[[File:FFAB World Map.jpg|thumb|180px|World map.]]
+{{Location section|Final Fantasy Airborne Brigade}}
+
+===''[[Final Fantasy Brave Exvius]]''===
+{{Main|Lapis (Brave Exvius)|Paladia|Farplane (Brave Exvius)|Levonia}}
+Each season had its own world map: [[Lapis (Brave Exvius)|Lapis]], [[Paladia]], [[Farplane (Brave Exvius)|The Farplane]], and [[Levonia]]. Locations were represented by icons in smaller maps.
+
+{{clear}}
+
+===''[[World of Final Fantasy]]''===
+{{Main|Grymoire}}
+
+Grymoire has six major continents and a smaller one that the player travels in a linear fashion on foot as the locations are mostly interconnected with each other. The [[Main Gate]] in [[Nine Wood Hills]] pulls up a [[Map (World of Final Fantasy)|map]] of Grymoire that allows the player to fast-travel to any location there that has a Gate linked up to it. Gates in Grymoire do not link to each other so the player must return to Nine Wood Hills to travel to the location they want. The player can travel to [[Coliseum (World of Final Fantasy)|The Coliseum]] from the Main Gate.
+
+In Chapter 21, "[[Chaos in Grymoire]]", the player has access to the airship and can use it to fast-travel to any location on the map. The player may also use the airship to manually explore the world map itself for any [[Murkrift]]s, and in a post-game file in the ''Maxima'' version, unmarked locations that house [[Puzzle Switch]]es to unlock a superboss.
+
+{{navbox locations}}
+{{navbox recurring}}
+
+
+[[de:Weltkarte]]
+[[pl:World Map]]
+[[Category:Gameplay]]
+[[Category:Locations]]

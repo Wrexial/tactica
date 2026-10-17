@@ -1,0 +1,189 @@
+{{infobox race
+|name=Viera
+|japanese=ヴィエラ
+|romaji=Viera
+|lit=
+|image=XII Viera.JPG
+|home=[[Ivalice]], [[Source (Final Fantasy XIV)|the Source]], [[First|the First]]
+|distinctions=[[Human]]oid, leporine features. long ears, pointed feet
+|affiliation=Various
+|playable=[[Fran (Final Fantasy XII)|Fran]]
+|members=Various
+|enemies=Various
+}}
+{{Quote|The viera may begin as part of the Wood, but the Wood is not the only end that we may choose.|[[Fran (Final Fantasy XII)|Fran]]}}
+'''Viera''' is a race in the [[Final Fantasy series|''Final Fantasy'']] series, mainly found in [[Ivalice]]. They first appeared in ''[[Final Fantasy Tactics Advance]]''. Despite most viera featured in the franchise being female, and earlier titles seeing only female viera appear, male viera do exist.<ref name="Viera Ultimania">[[Final Fantasy XII Scenario Ultimania]] Page 88. ISBN 4-7575-1696-7</ref>
+
+==Characteristics==
+===Physiology===
+The viera have leporine features, pointed feet, long ears and limbs. They generally wear stilettos, due to the shape of their feet. Their trademark long ears grant them exceptionally good hearing, although they are said to have excellent senses overall. It is said that the viera's superb hearing allows them to sense changes in the weather and the movement of all living things in the woods they inhabit. Their lifespan is roughly three times that of [[human|hume]]s. They grow much like humes as children, but upon reaching adulthood, around 20 years of age,<ref name ="matsuno tweets">{{ref| id = matsuno tweets | platform = twitter | tweet-id = 1395975434538340354 | author-id = YasumiMatsuno | title = 松野泰己 on Twitter: 補足します。 性別については誕生時に確定しています。ただ、外見的に男女の違いがないため、性別を判定できません。二次成長で身体的な特徴が顕著になり、性別がはっきりするというわけです。 成人後（20歳前後？）、老化が極めて緩慢になるため、外見はほぼ若いまま歳を重ねることになります。| author = Yasumi Matsuno | access-date = 22 May 2021 | archive-date = 22 May 2021 | archive-url = https://web.archive.org/web/20210522174349/https://twitter.com/YasumiMatsuno/status/1395975434538340354 | date = 21 May 2021}}</ref> the viera's physical ageing slows down, and they retain their youthful appearance until old age.<ref name="Viera Ultimania"/>
+
+The viera are sensitive to [[Mist (Final Fantasy XII)|Mist]]—if they are exposed to high concentrations of it, they will enter a berserk state referred to as a Mist frenzy. When experiencing a Mist frenzy, viera are strong enough that they can tear apart metal shackles and kill armored [[Human|humes]] while unarmed.<ref name = "ffxii">{{ref | id = ffxii | game = FFXII | date = 16 March 2006}}</ref>
+
+[[File:Viera Archer RW.png|left|100px|Viera Archer in ''Final Fantasy XII: Revenant Wings''.]]
+Not only do the viera's ears allow them to hear over great distances, they also allow them to listen to the voice of the "Green Word". They can put this ability to great use, either to communicate with the world around them, or to summon monsters from other worlds.
+
+Most viera have white hair, but some dye theirs to other colors if they live among the humes;<ref>{{Refbook|title=[[Final Fantasy XII Signature Series Guide]]|page=004}}</ref> brunette viera {{Show image|RandomViera.jpg}} are not uncommon sights in [[Rabanastre (Final Fantasy XII)|Rabanastre]]. Viera tend to have dark skin, and their ears are covered in short fur and are usually mottled with brown specks at the tips, though different tribes of the viera can have lighter skin and more pigmented hair.
+
+The biological sex of viera is determined at birth, but cannot be distinguished until they hit puberty, where gradually their sex becomes apparent.<ref name ="matsuno tweets"/><ref name="Dramaturge">{{ref| id= Dramaturge | game = FFXIV | title = ''Final Fantasy XIV'' | section = [[Return to Ivalice]], [https://imgur.com/a/FhPtF4B conversation] with the [[Wandering Dramaturge]] | date = 2017-2019}}</ref>
+
+===Culture===
+The viera are a reclusive race that mostly live in forests, hidden away from other civilizations. Under their laws, which they call the Green Word, viera are forbidden to leave their home and live among others with those that do branded outcasts, though increasingly more do so as time goes on. Generally a society of hunters and gatherers, viera live off the land. Different professions within their societies include salve-makers and wood-warders.
+
+Males and females live apart, coming into contact with each other periodically.<ref name="Viera Ultimania"/> Male viera return to the village to collect the male children who reach puberty to teach them the ways of the hunt. Males live alone, serving as solo defenders of the forest from intruders and evil, and only communicate with the females when needing to mate, trade or collect the male adolescents.<ref name="Dramaturge"/>
+
+==Appearances==
+===''[[Final Fantasy XII]]''===
+[[File:Viera race.jpg|left|120px|thumb|Veena viera.]]
+[[File:FFXII-VieraCG render.jpg|100px|thumb|right|Rava viera.]]
+The viera live deep within wooded areas, earning them the name "People of the Wood." They have two distinct clans, the Veena which have lighter fur and the Rava which have darker fur and hair colors. They have excellent senses, and their hair is usually white. Males and females live separately, only making contact and communication when the need arises.<ref name="Viera Ultimania"/> Viera have superb eyesight and their sense of hearing allows them to hear even the slightest sound, which comes in handy if they are being hunted themselves.
+
+Viera communities have two jobs the viera can take: Salve-Maker and Wood-Warder. Those who wish to become Salve-Makers must complete the rite of passage of catching the [[Vorpal Bunny (Final Fantasy XII)|Vorpal Bunny]], which appears every seven years. Its tail is used to create Vision Dust, which keeps [[Eruyt Village]] hidden from outsiders. However, not all villagers are required to take a job.
+
+Having lost their ancient homelands to war over 450 years ago, some viera began to question their way of life and went off to live among the humes. This is against their law, referred to as the "Green Word," which forbids contact with the outside world. According to [[Jote (Final Fantasy XII)|Jote]], Fran's sister and the leader of the viera who remain in Eruyt Village, once a viera breaks this law, they are considered viera no more and are regarded as outcasts. The viera of Eruyt Village can communicate with the [[Golmore Jungle (Final Fantasy XII)|Golmore Jungle]], referred to as the "Wood"; an outcast's senses become dimmed, and they become unable to do this. Whether a viera can regain the ability to communicate with the Wood is unknown.
+
+Notable viera:
+*[[Fran (Final Fantasy XII)|Fran]] – [[Sky pirate (Final Fantasy XII)|sky pirate]] [[Balthier]]'s companion.
+*[[Jote (Final Fantasy XII)|Jote]] – Fran's older sister, leader of Eruyt Village.
+*[[Mjrn]] – Fran's younger sister.
+*[[Krjn]] – member of [[Clan Centurio (Final Fantasy XII)|Clan Centurio]].
+*[[Ktjn]] – Krjn's sister.
+*[[Relj]] - a viera residing on [[Mt Bur-Omisace]].
+
+All viera encountered in combat, with the exception of [[Fran (Final Fantasy XII)|Fran]], are weak to [[Earth (element)|Earth]].
+
+====''[[Final Fantasy XII: Revenant Wings]]''====
+[[File:Midia RW.png|right|100px|Mydia is a feol viera.]]
+"Feol Viera" {{J|フォル・ヴィエラ|Foru Viera}}, a sub-branch of the viera, have blonde hair and shorter ears than the other viera. Feol are the descendants of the [[aegyl]] leader [[Feolthanos]] who fell in love with a full-blooded viera, giving birth to the race that carries his name. Fran states this variety of viera are often called "the Exiled" as they are seen as abominations by their full-blooded kin. The feol have the longest lifespan among the viera. Fran also states their particular kind didn't obey the rules of the Green Word, which was to stay within the forest villages they were born in, so Feolthanos's wife was looked down upon as well as her descendants.
+
+Feolthanos didn't want to part with them completely, but as they have no wings, the feol couldn't join him in [[Lemurés (Revenant Wings)|Lemurés]]. Feolthanos left the [[Airship (term)|airship]] ''[[Galbana]]'' containing a piece of his [[Anima (Revenant Wings)|anima]] and a book to his family in the hopes that one day they would use them to come to him on Lemurés.
+
+The feol [[Judge of Wings|Mydia]] used the ''Galbana'' to journey to Feolthanos, but was corrupted by his evil power. When she returns to [[Ivalice (Final Fantasy XII)|Ivalice]] as the [[Judge of Wings]], she slaughters her own race at the [[Roda Volcano]] to prevent them from being used by Feolthanos like she had been.
+
+===''[[Final Fantasy XIV]]''===
+{{Main|Viera (Final Fantasy XIV)}}
+[[File:FFXIV Viera Render.png|right|90px]]
+The viera are a playable race for the ''[[Final Fantasy XIV: Shadowbringers|Shadowbringers]]'' expansion, though only female viera are available as part of this expansion. Their starter gear is based on Fran's outfit from ''Final Fantasy XII''. Male viera are playable as part of the ''[[Final Fantasy XIV: Endwalker|Endwalker]]'' expansion, marking their first appearance in the series.
+
+Viera first appeared in the game in the ''A Requiem for Heroes'' patch for the expansion ''[[Final Fantasy XIV: Stormblood|Stormblood]]'', where this world's version of [[Fran Eruyt|Fran]] appears as a non-playable character as part of [[Return to Ivalice]] storyline.
+
+According to the ''[[Encyclopedia Eorzea II]]'', the viera made up five percent of the late [[Dalmasca (Final Fantasy XIV)|Kingdom of Dalmasca's]] population.
+
+The viera refer to [[Aether (Final Fantasy XIV)|aether]] as [[Mist (term)|Mist]], as demonstrated by Fran at [[Orbonne Monastery (Final Fantasy XIV)|Orbonne Monastery]].
+
+In the alternate world of the [[First]], the viera are called viis.
+{{clear}}
+
+===''[[Final Fantasy Tactics Advance]]''===
+[[File:Ffta-viera.jpg|left|80px]]
+The viera's light frame make them best suited to [[Final Fantasy Tactics Advance jobs|jobs]] that involve speed, like [[Archer (Tactics Advance)|Archer]] and [[Assassin (Tactics Advance)|Assassin]], even though they are skilled in many other jobs as well. Due to their ability to communicate with the spirit world they're the only race that can use the [[Summoner (Tactics Advance)|Summoner]] and the [[Elementalist (Tactics Advance)|Elementalist]] jobs.
+
+The viera mostly reside in the town of [[Muscadet]] deep in the woods, although they are also seen working in [[clan]]s everywhere. They have naturally white hair, which is considered the most beautiful color by the viera and is therefore a blessing.<ref name="WhiteHair">Final Fantasy Tactics Advance Radio Edition, Vol. 3 (Chapter 10)</ref> Enemy viera sprites also sport green and purple-tinted hair, although this may simply be a result of game mechanics created to help differentiate ally sprites from opponents more easily.
+
+The [[Totema]] of the viera is [[Exodus (Tactics Advance)|Exodus]]. It takes the shape of a giant tree, reflecting the viera's connections to nature.
+
+[[Shara]] is the only notable viera, with her human partner, [[Ritz Malheur]], being able to access the viera jobs and equipment.
+{{clear}}
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+[[File:Ffta2-viera.jpg|right|120px]]
+{{Quote|Often called the People of the Wood, the viera are a lithe and swift race. Like humes, they can fill a great variety of roles on the battlefield.|Description}}
+The viera have access to ten jobs, with two new jobs introduced; [[Spellblade (Tactics A2)|Spellblade]] and [[Green Mage (Tactics A2)|Green Mage]].
+
+[[Penelo]], even though she's a hume, has access to all viera jobs and is considered as one.
+
+If one accesses the cheat code that enables a viera character to equip multiple weapons regardless of job types, they can attack twice like the [[Dual Wield]] support ability. This only works the same like the Hume Dual Wield effects. Unusually, viera that equip two bows/greatbows at a time may attack twice; this is not similar to the Dual Wield ability, but the Sniper's Doubleshot A-ability. The [[Assassin (Tactics A2)|Assassins,]] the viera job that can equip both the katana and greatbows, however equipping both at the same time will cause the game to glitch or to freeze.
+
+When using Penelo who can access viera jobs, if she is to use her [[Dancer (Tactics A2)|Dancer]] job, the player should only use the cheat if she wears multiple knives, swords, staves, rods, and the like which humes can equip that correspond with the Dual Wield ability.
+
+;Notable viera
+*'''Alys the Ensorceled''', one of four leaders in [[Duelhorn#Alys the Ensorceled|Duelhorn]].
+*'''[[Witch of the Fens]]''', a Red Mage who brews rare concoctions in [[Tramdine Fens]].
+*'''[[Veis]]''', the assassin of House Bowen.[[File:LV-Aloutte.png|right]]
+*'''[[Syrenead Sie Hyskarias|Syrenead]]''', a Green Mage owner of an Ivory Wyrm.
+*'''Aluette''', a Fencer member of [[Prima Donna (clan)|Prima Donna.]]
+*'''Valentyne''', a Spellblade also from [[Prima Donna (clan)|Prima Donna.]]
+*'''Ruuj''', the Red King of [[Cinquleur]].
+*'''Verre''', the Green King of [[Cinquleur]].
+
+;Recruiting
+Viera can be obtained in these locations during Ashleaf or Mistleaf:
+*'''[[Camoa]]''' - [[Fencer (Tactics A2)|Fencer]], [[Archer (Tactics A2)|Archer]], [[White Mage (Tactics A2)|White Mage]], [[Green Mage (Tactics A2)|Green Mage]], [[Red Mage (Tactics A2)|Red Mage]]
+*'''[[Rupie Mountains]]''' - [[Elementalist (Tactics A2)|Elementalist]], [[Spellblade (Tactics A2)|Spellblade]], [[Summoner (Tactics A2)|Summoner]], [[Assassin (Tactics A2)|Assassin]], [[Sniper (Tactics A2)|Sniper]]
+
+===''[[Final Fantasy Tactics S]]''===
+The viera make an appearance as one of the playable races. Viera retain all of the jobs introduced for them in ''Final Fantasy Tactics A2: Grimoire of the Rift'' although the Summoner job remains unavailable. New jobs were introduced for the viera race, of which include the [[Dancer (job)|Dancer]] and the [[Onion Knight (job)|Onion Knight]] jobs. Special viera units were also introduced, possessing a viera job while maintaining a unique appearance.
+
+<gallery>
+FFTS Viera Onion Knight Artwork.png|Viera Onion Knight.
+FFTS_Piane_Portrait.png|Piane.
+FFTS_Sophie_Portrait.png|Sophie.
+FFTS_Dancer_SR_Portrait.png|Viera Dancer.
+</gallery>
+
+===''[[Dissidia 012 Final Fantasy]]''===
+Viera are mentioned in the daily [[Mognet (Dissidia 012)|Mognet]]. Regarding the situation after receiving a mail about Penelo being kidnapped, if the player replies and says they like viera, this mail will be sent the next day.
+
+:<big>Vieras Are Hot, Kupo</big>
+{{Quote|So, {player's name}...<br/>You have a thing for vieras do ya, kupo? They kinda scare me cuz my eyes could never look into theirs, but they sure are a sight to see, kupopo! Um... where were we, kupo?|Mognet}}
+
+==Non-''Final Fantasy'' guest appearances==
+===''[[Puzzle & Dragons]]''===
+Viera appeared as part of the ''Crystal Defenders'' collaboration.
+
+<gallery>
+PAD Archer.png|Archer.
+PAD Archer2.png|Archer's evolution.
+PAD Archer3.png|Archer's ultimate evolution.
+PAD Fencer.png|Fencer.
+PAD Fencer2.png|Fencer's evolution.
+PAD Fencer3.png|Fencer's ultimate evolution.
+PAD Fencer4.png|Fencer (Christmas).
+PAD Fencer5.png|Fencer's evolution (Christmas).
+</gallery>
+
+==Behind the scenes==
+[[File:Viera-in-Phon-Coast-FFXII-TZA.jpg|thumb|Talking to traveling viera as Fran.]]
+In ''Final Fantasy XII'', the player can speak with 31 viera total throughout the game. If spoken to with Fran as the party leader (only possible when outside of town areas), they give different dialogue.
+
+While the Japanese script for ''Final Fantasy XII'' lacked specific accents, the localizers chose to differentiate the various Ivalician mannerisms and cultures through speech, using voice models for important characters. As the voice model for Fran was the Icelandic singer Bjork, viera were given Icelandic accents.<ref name="edge">EDGE #278 ''Tale of Tales Meet Alexander O Smith the translator who's brought some of Japan's biggest RPGs to the West'' p. 94</ref>
+
+In ''Final Fantasy XII'' and the ''Tactics'' series, viera have three toes per foot while in ''Revenant Wings'' and ''Final Fantasy XIV'' they have four.
+
+Male viera made their first ever appearance with the release of ''[[Final Fantasy XIV: Endwalker]]''.
+
+==Gallery==
+<gallery>
+FF12 - Viera Model.png|Salve Maker viera in ''Final Fantasy XII''.
+FF12 - Viera Model 2.png|Wood Warder viera in ''Final Fantasy XII''.
+FF12 - Viera Model 3.png|A viera NPC in ''Final Fantasy XII''.
+RandomViera.jpg|Two viera during the opening [[Full motion video|FMV]] in ''Final Fantasy XII''.
+Viera_FFXII Official Strategy Guide.png|Viera in ''Final Fantasy XII'' Official Strategy Guide Book.
+FFXIITZA Artwork3.png|Promotional artwork for ''Final Fantasy XII: The Zodiac Age''.
+FFXII Viera.png|Artwork by Ryōma Itō.
+FFTA2_VieraIntro.png|Viera introduction in ''Tactics A2''.
+File:Male Viera from FFXIV artwork.png|Male viera in ''[[Final Fantasy XIV]]''.
+File:Male Viera from FFXIV render 1.png|Male viera in ''[[Final Fantasy XIV]]''.
+File:Male Viera from FFXIV render 2.png|Male viera in ''[[Final Fantasy XIV]]''.
+</gallery>
+
+==Etymology==
+{{Etym|Viera}}
+
+==Citations==
+{{citations}}
+
+{{navbox setting FFXII}}
+{{navbox setting FFTA}}
+{{navbox setting FFTA2}}
+{{navbox CrystD}}
+{{navbox CDVS}}
+{{navbox Ival}}
+{{navbox races}}
+
+
+[[de:Viera]]
+[[fr:Vieras]]
+[[pt-br:Viera]]
+[[Category:Races in Ivalice]]
+[[Category:Races]]

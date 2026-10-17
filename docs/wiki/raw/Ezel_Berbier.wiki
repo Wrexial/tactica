@@ -1,0 +1,82 @@
+{{infobox character
+|name=Ezel Berbier
+|release=FFTA
+|japanese=エゼル・バルビエ
+|romaji=Ezeru Barubie
+|image=Ffta-ezel.jpg
+|portrait=[[File:FFTA-Ezel-por.png|Portrait (''Final Fantasy Tactics Advance''.]] [[File:TA2-Ezel-sprh.png|Portrait (''Final Fantasy Tactics A2: Grimoire of the Rift'').]]
+|sprite=[[File:FFTA ezel.gif|Sprite (''Final Fantasy Tactics Advance'').]]
+|race=[[nu mou]]
+|gender=Male
+|type=playable
+|job=[[Hermetic]]
+|japanese voice actor=Wataru Takagi ([[Final Fantasy Tactics Advance Radio Edition|Radio Drama]])
+}}
+{{Quote|Laws are no fun at all.|Ezel Berbier}}
+'''Ezel Berbier''' is the creator of [[Law system (Tactics Advance)|Anti-Laws]] in the world of [[Ivalice (Tactics Advance)|Ivalice]] in ''[[Final Fantasy Tactics Advance]]'' and ''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''. He is not a big fan of laws, and tries to annoy the [[Judge (Tactics Advance)|Judges]] whenever he can.
+
+==Profile==
+===Appearance===
+Ezel's clothing is similar to the standard [[Alchemist (Tactics Advance)|Alchemist]] class, but purple. He has blue eyes and a skin color darker than most [[nu mou]], which fades to pink as it reaches the tip of his nose as well as his ear holes, which hold many multicolored earrings.
+
+===Personality===
+Ezel Berbier is known as a trouble maker by most Ivalice citizens and is pictured as a mad scientist-type character. He is called an "eccentric loony" at least once, but shrugs it off as jealousy for his genius. He has a general dislike of laws and authority, and is often seen sporting a mischievous smile.
+
+Ezel also seems to be quite materialistic, as he tends to charge extremely high amounts of gil for his creations, charging as much as 80,000 gil for a card, which although not totally unjustified as his creations tend to be unique and fairly strong, often ends to the annoyance and anger of his clients, and with him as a target.
+
+Despite his peculiar quirks, Ezel can be quite supportive, especially to parties that lend him a hand such as Marche or Luso, aiding them in their quest with his creations or giving them helpful advice.
+
+==Story==
+{{spoiler}}
+===''[[Final Fantasy Tactics Advance]]''===
+
+[[File:EzelCardShop.png|thumb|right|200px|Ezel's underground card shop.]]
+Ezel is a nu mou whom [[Marche Radiuju]] rescues after defeating [[Famfrit (Tactics Advance)|Famfrit]]. [[Cid Randell|Judgemaster Cid]] arrives and tries to arrest him by preventing him from acting with an [[Advanced Law]], but Ezel merely uses an Anti-Law to nullify it, and teleports to safety. Ezel offers to trade Anti-Laws with Marche and the rest of [[Clan Nutsy]] at any time at his secret [[shop]] in [[Cadoan]]. Ezel later helps Cid create an Anti-Law to render [[Llednar Twem]] vulnerable to Marche's attacks.
+
+Ezel can be recruited after completing the mission "Reconciliation". He joins as a Hermetic. If dismissed, he can be re-recruited through the mission "Bored!".
+
+====''[[Final Fantasy Tactics A2: Grimoire of the Rift]]''====
+
+Ezel appears in the epilogue to the mission "I've been had, kupo!", having been unwittingly saved from the mission's mark. As thanks, he provides the [[clan]] a law card with the ability to protect the Judge from magicks used against it. This card would prove its use in future battles against [[Khamja]].
+
+Ezel reappears as part of the mission "I want to forget", in which he hears out [[Luso Clemens|Luso's]] concerns about helping his client become a zombie; and suggests the use of a Lethean draught instead. Later, in the mission "A Small Favor", the clan is asked to deliver an [[Ether]] to Ezel at various locations. After completing this mission a few times, Ezel makes the decision to leave Jylland, thanking Luso via letter.
+{{endspoiler}}
+
+==Gameplay==
+In the global versions of ''Final Fantasy Tactics Advance'', the player is given the opportunity to recruit Ezel after the mission "Reconciliation". He is initially equipped with a Druid Mace, Gaia Gear, and Black Hat, and has already mastered all of his Hermetic abilities. His [[stat growth]] is identical to an [[Alchemist (Tactics Advance)|Alchemist]], which emphasizes Magic Power and Magic Resistance at the cost of Speed.
+
+==Musical theme==
+In ''Final Fantasy Tactics Advance'', the theme "Law Card" plays during Ezel's appearances. The theme also plays when the Marche arrives in Ezel's Card Shop.
+
+==Other appearances==
+===''[[Final Fantasy XIV]]''===
+Ezel is mentioned as the teacher of Lugg Aenc, a nu mou in [[Norvrandt]]. Lugg Aenc named their porxie familiar Ezel II after Ezel.
+
+===''[[Final Fantasy Artniks]]''===
+
+<gallery>
+FFTA Ezel SR I Artniks.png|''Final Fantasy Artniks''.
+</gallery>
+{{Section|Final Fantasy Artniks}}
+{{clear}}
+
+===''[[Final Fantasy Trading Card Game]]''===
+Ezel appears in ''Final Fantasy Trading Card Game'' as Water- and Wind-elemental Forward cards.
+
+<gallery>
+Ezel TCG.png|Ezel [6-073U] Chapter series card.
+Ezel 4-053R from FFTCG Opus.jpg|Ezel [4-053R] Opus series card.
+</gallery>
+
+==Etymology==
+Ezel is a biblical name of Hebrew origin which means "separation" or "departure". It is a Turkish word derived from the Arabic word (Azal / أزل), meaning "beginningless" or "pre-eternal". It is also the Dutch word for "donkey", an animal he resembles, and "fool", which could either mean how he appears to others due to his childlike nature or a reference to the Fool tarot card. His last name, Berbier, is Greek for "barbarian".
+
+{{navbox characters FFTA}}
+{{navbox FFTA2}}
+
+
+[[es:Ézel Berbier]]
+[[it:Ezel Berbier]]
+[[Category:Characters in Final Fantasy Tactics Advance]]
+[[Category:Characters in Final Fantasy Tactics A2: Grimoire of the Rift]]
+[[Category:Nu mou]]

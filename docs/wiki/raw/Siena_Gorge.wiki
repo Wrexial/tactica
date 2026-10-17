@@ -1,0 +1,31 @@
+[[File:SienaGorge.png|thumb|right|250px|The Zoara Sect engages Clan Nutsy.]]
+{{Quote|Deep valley. A source of amber, like Deti Plains.|Description}}
+'''Siena Gorge''' {{j|シエンナ峡谷|Shien'na kyōkoku}} is a mountain location in ''[[Final Fantasy Tactics Advance]]''. It can be placed on the World Map after "Mission #022: To Ambervale" is completed and is the site of "Mission #023: Over the Hill".
+
+[[Ritz Malheur]] attempts to stop [[Marche Radiuju]] from reaching the [[Ambervale]] by attacking him here, but Marche defeats her. Ritz then agrees not to interfere as Marche proceeds to Ambervale to confront [[Mewt Randell]] and [[Remedi|Queen Remedi]]. Siena Gorge is also the site of "Mission #056: New Antilaw" and "Mission #099: The Fey Blade". It can be freed in "Mission #258: Siena Gorge" after "Mission #022: To Ambervale" is completed.
+
+==Encounters==
+===Zoara Sect===
+{{Quote|Radical worshipers of Zoara. Want to destroy the world to restore the "Beginning Time".|Description}}
+*[[Gladiator (Tactics Advance)|Gladiator]] (Bangaa)
+*[[Sage (Tactics Advance)|Sage]] (Nu Mou)
+*[[Time Mage (Tactics Advance)|Time Mage]] (Nu Mou)
+*[[Templar (Tactics Advance)|Templar]] (Bangaa)
+*[[Illusionist (Tactics Advance)|Illusionist]] (Human)
+
+==Turf Defense==
+===Help Siena!===
+{{Quote|Many strange people are gathering every night in Siena Gorge, chanting and casting spells. I'm scared. Please go and see.|Town Rumor}}
+*Gladiator
+*Sage
+*Templar
+*Time Mage
+
+==Gallery==
+<gallery>
+Mountain-ffta-icon.png|Icon.
+</gallery>
+
+{{navbox setting FFTA}}
+
+[[Category:Locations in Final Fantasy Tactics Advance]]

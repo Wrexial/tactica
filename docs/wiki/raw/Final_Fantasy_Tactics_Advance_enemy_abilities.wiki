@@ -1,0 +1,823 @@
+{{DISPLAYTITLE:''Final Fantasy Tactics Advance'' enemy abilities}}
+This article lists the [[enemy abilities|enemy abilities]] used in ''[[Final Fantasy Tactics Advance]]'', which enemies use them, and what the ability does. For or more detailed look at the abilities, visit the individual enemy pages.
+
+{{Toc|attributes=style="margin:auto;text-align:center"
+|-
+|align="center"| 
+[[#A|A]] - [[##|#]] - [[#B|B]] - [[#C|C]] - [[#D|D]] - [[#E|E]] - [[#F|F]] - [[#G|G]] - [[#H|H]] - [[#I|I]] - [[#J|J]] - [[#K|K]] - [[#L|L]] - [[#M|M]] - [[#N|N]] - [[#O|O]] - [[#P|P]] - [[#R|R]] - [[#S|S]] - [[#T|T]] - [[#V|V]] - [[#W|W]] - [[#Y|Y]] - [[#Z|Z]]<br/><br/>[[#Gallery|Gallery]]
+}}
+
+==Enemy abilities==
+===#===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|100% Wool}}
+|Bestows [[Shell (status)|Shell]] and [[Protect (status)|Protect]].
+|[[Reaker]]
+|style="text-align:center"|—
+|style="text-align:center"|Self
+|}
+
+===A===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Abyss}}
+|Deals area damage and may inflict [[Poison (status)|Poison]].
+|[[Biskmatar]]
+|style="text-align:center"|48 MPow
+|style="text-align:center"|3
+|-
+!{{LA|Acid}}
+|Corrosive liquid. Inflicts a random status ailment.
+|[[Cream (Tactics Advance)|Cream]], [[Ice Flan (Tactics Advance)|Ice Flan]], [[Jelly (Tactics Advance)|Jelly]]
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{A|Alpha}}
+|The fatherspell of [[#Omega|Omega]] and [[Ultima (ability)|Ultima]]. Deals devastating ranged Area Damage.
+|[[Remedi|Li-grim]]
+|style="text-align:center"|99 WAtk
+|style="text-align:center"|4
+|-
+!{{A|Amber Gleam}}
+|[[Dispel|Neutralizes]] all enemies status enhancements. (Target All)
+|Li-grim
+|style="text-align:center"|—
+|style="text-align:center"|Infinite
+|-
+!{{LA|Angel Whisper (ability)|Angel Whisper}}
+|Angelic sigh. Heals HP and bestows [[Reraise (status)|Auto-Life]] on one ally. Deals damage to zombies.<br/>'''Element:''' Holy
+|[[Titania (Tactics Advance)|Titania]]
+|style="text-align:center"|30 MPow
+|style="text-align:center"|3
+|}
+
+===B===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Bad Breath}}
+|Incredibly foul breath inflicts five of the following status ailments, chosen at random: [[Blind (status)|Blind]], [[Confuse (status)|Confuse]], [[Toad (status)|Frog]], [[Poison (status)|Poison]], [[Silence (status)|Silence]], [[Sleep (status)|Sleep]], [[Slow (status)|Slow]].
+|[[Big Malboro]], [[Malboro (Tactics Advance)|Malboro]]
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{A|Blank Card}}
+|Changes Law to next set of laws for the day.
+|Official
+|style="text-align:center"|—
+|style="text-align:center"|Infinite
+|-
+!{{LA|Blaster (ability)|Blaster}}
+|Releases shining energy, [[Petrify (status)|Petrifying]] target.
+|[[Coeurl (Tactics Advance)|Coeurl]]
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{LA|Blizzaga (ability)|Blizzaga}}
+|Most powerful Ice spell. Fires a huge chunk of ice at a cross-shaped area.
+|Ice Flan
+|style="text-align:center"|50 MPow
+|style="text-align:center"|4
+|-
+!{{LA|Blizzara (ability)|Blizzara}}
+|Powerful Ice spell. Fires a larger chunk of ice at a cross-shaped area.
+|Ice Flan
+|style="text-align:center"|40 MPow
+|style="text-align:center"|4
+|-
+!{{LA|Blizzard (ability)|Blizzard}}
+|First Ice spell. Fires a chunk of ice at a cross-shaped area.
+|Ice Flan
+|style="text-align:center"|30 MPow
+|style="text-align:center"|4
+|-
+!{{A|Block Arrows}}
+|Guards against bow and greatbow attacks.
+|[[Vampire (Tactics Advance)|Vampire]]
+|style="text-align:center"|—
+|style="text-align:center"|—
+|-
+!{{LA|Self-Destruct|Blowup}}
+|Self-KO. Deals massive damage to adjacent enemies.
+|[[Bomb (Tactics Advance)|Bomb]], [[Grenade (Tactics Advance)|Grenade]]
+|style="text-align:center"|15 MPow
+|style="text-align:center"|Self
+|-
+!{{LA|Thunder Breath|Bolt Breath}}
+|Electrically charged cloud. Deals lightning damage in a T-shaped area emanating from the caster.
+|[[Thundrake]]
+|style="text-align:center"|40 WAtk
+|style="text-align:center"|Cone
+|-
+!{{A|Breath of God}}
+|Envelops surrounding units and deals damage.
+|[[Adrammelech (Tactics Advance)|Adrammelech]], [[Famfrit (Tactics Advance)|Famfrit]], [[Mateus (Tactics Advance)|Mateus]]
+|style="text-align:center"|40 WAtk
+|style="text-align:center"|4
+|}
+
+===C===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Chill}}
+|Spreads chill from caster, causing area cold damage.
+|Grenade
+|style="text-align:center"|40 MPow
+|style="text-align:center"|Self
+|-
+!{{A|Circle}}
+|Mystical circle. Lowers target's weapon attack and magic power. Inflicts WAtk DOWN and MPow DOWN statuses.
+|[[Ahriman (Tactics Advance)|Ahriman]]
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{LA|Counter (ability)|Counter}}
+|Follows up enemy attack with a counterattack.
+|Adrammelech, Ahriman, [[Antlion (Tactics Advance)|Antlion]], Bomb, Famfrit, [[Firewyrm]], [[Floateye (Tactics Advance)|Floateye]], [[Goblin (Tactics Advance)|Goblin]], [[Icedrake]], Jelly, [[Lamia (Tactics Advance)|Lamia]], [[Lilith (Tactics Advance)|Lilith]], Reaker, [[Red Cap (Tactics Advance)|Red Cap]], [[Red Panther (Tactics Advance)|Red Panther]], [[Sprite (Tactics Advance)|Sprite]], Thundrake, Titania, [[Toughskin (Tactics Advance)|Toughskin]], [[Zombie (Tactics Advance)|Zombie]]
+|style="text-align:center"|—
+|style="text-align:center"|—
+|}
+
+===D===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Gravity (ability)|Demi}}
+|Deals damage equal to 1/2 of targets current HP.
+|Famfrit
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{A|Descent}}
+|Summons a Random [[Totema]].
+|Li-grim
+|style="text-align:center"|—
+|style="text-align:center"|Infinite
+|-
+!{{LA|Bewitching Gaze|Devil Gaze}}
+|Gaze [[Silence (status)|Silences]] and inflicts [[Blind (status)|Darkness]] in an area two spaces in front of the Floateye.
+|Floateye
+|style="text-align:center"|—
+|style="text-align:center"|Cone
+|-
+!{{LA|Dragon Force (ability)|Dragon Force}}
+|Releases the Dragon soul within. All stats improve for duration of the battle. Inflicts WAtk UP, WDef UP, MPow UP, and MRes UP statuses.
+|Thundrake
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{LA|Drain Touch}}
+|Evil touch. Absorbs HP in the amount to damage dealt to target.
+|Zombie
+|style="text-align:center"|20 WAtk
+|style="text-align:center"|1
+|}
+
+===F===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Fira (ability)|Fira}}
+|Powerful Fira spell. Fires a larger ball of flame at a cross-shaped area.
+|Jelly
+|style="text-align:center"|40 MPow
+|style="text-align:center"|4
+|-
+!{{LA|Firaga (ability)|Firaga}}
+|Most powerful Fire spell. Deals incredible fire damage in a cross-shaped area.
+|Jelly
+|style="text-align:center"|50 MPow
+|style="text-align:center"|4
+|-
+!{{LA|Fire (ability)|Fire}}
+|First Fire spell. Generates a damaging ball of flame at a cross-shaped area.
+|Jelly
+|style="text-align:center"|30 MPow
+|style="text-align:center"|4
+|-
+!{{LA|Flamethrower|Fire Breath}}
+|Incendiary breath. Deals fire damage in a T-shaped area emanating from the caster.
+|Firewyrm
+|style="text-align:center"|40 WAtk
+|style="text-align:center"|Cone
+|-
+!{{A|Firestream}}
+|Fire damage to all units in line.
+|Adrammelech
+|style="text-align:center"|35 WAtk
+|style="text-align:center"|Line
+|-
+!{{A|Flame Attack}}
+|Spews fire from within to deal fire damage. Attacks one enemy within a 3-panel range.
+|Bomb
+|style="text-align:center"|40 MPow
+|style="text-align:center"|3
+|-
+!{{A|Friend}}
+|Summons random spirit from [[Summoner (Tactics Advance)|Summoners]] skillset.
+|Reaker
+|style="text-align:center"|—
+|style="text-align:center"|4
+|-
+!{{A|Furycircle}}
+|Damages and knocks back surrounding units.
+|Biskmatar
+|style="text-align:center"|50 WAtk
+|style="text-align:center"|Self
+|}
+
+===G===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Goblin Punch}}
+|Deals damage based on Weapon Attack power, then slightly varied positively or negatively.
+|Goblin
+|style="text-align:center"|30 WAtk
+|style="text-align:center"|1
+|-
+!{{A|Goo}}
+|Sticky ooze. [[Immobilize (status)|Immobilizes]] target.
+|Big Malboro, Malboro
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{LA|Guard-Off}}
+|Fire breath. Lower target's weapon def. and magic resis. Inflicts WDef DOWN and MRes DOWN statuses.
+|Firewyrm
+|style="text-align:center"|—
+|style="text-align:center"|1
+|}
+
+===H===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Slap|Hand Slap}}
+|Flat handed slap. Deals damage and delays target's next turn.
+|Lamia
+|style="text-align:center"|45 WAtk
+|style="text-align:center"|1
+|-
+!{{LA|Hastebreak}}
+|Slows target. [[Stop (status)|Stops]] [[Haste (status)|Hasted]] target.
+|Coeurl
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{A|Heart Render}}
+|MP damage equal to target's HP. Element is same as equipped weapon.
+|Biskmatar
+|style="text-align:center"|As Weapon
+|style="text-align:center"|As Weapon
+|-
+!{{A|Howl of Rage}}
+|Lowers Speed of surrounding units. Inflicts Speed DOWN status.
+|Adrammelech
+|style="text-align:center"|—
+|style="text-align:center"|Self
+|}
+
+===I===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Ice Breath}}
+|Icy cold breath. Deals damage in a T-shaped area emanating from the caster.
+|Icedrake
+|style="text-align:center"|40 WAtk
+|style="text-align:center"|Cone
+|}
+
+===J===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Judge Sword}}
+|Lawcard that summons the judge sword to Damage and steals up to two [[Judge Points]]. Element is same as equipped weapon.
+|[[Judge (Tactics Advance)|Judge]]
+|style="text-align:center"|As Weapon
+|style="text-align:center"|As Weapon
+|}
+
+===K===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Karma (ability)|Karma}}
+|Deals damage for each unit the target has KO'd.
+|[[Tonberry (Tactics Advance)|Tonberry]]
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{A|Kiss}}
+|Sweet kiss. [[Charm (status)|Charms]] and [[Doom (status)|dooms]] one target.
+|Lilith
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{LA|Chef's Knife|Knife}}
+|Knife stab. Reduces HP to one-tenth of maximum HP.
+|[[Masterberry]], Tonberry
+|style="text-align:center"|—
+|style="text-align:center"|1
+|}
+
+===L===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Lawshift}}
+|Primal power. Randomly changes the laws to three new laws.
+|Li-grim
+|style="text-align:center"|—
+|style="text-align:center"|Infinite
+|-
+!{{A|Life Render}}
+|Damages and may inflict [[Doom (status)|Doom]]. Element is same as equipped weapon.
+|Biskmatar
+|style="text-align:center"|As Weapon
+|style="text-align:center"|As Weapon
+|-
+!{{LA|Flash of Steel (ability)|Lightspeed}}
+|Damages unit and bypasses reaction ability.
+|Adrammelech, Famfrit
+|style="text-align:center"|45 WAtk
+|style="text-align:center"|1
+|-
+!{{LA|Limit Glove}}
+|Deals heavy damage when own life is threatened. If the Blade Biter has a critical HP level, this skill can do over 900 damage.
+|[[Blade Biter (Tactics Advance)|Blade Biter]]
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{A|Logos}}
+|Word of God. Lowers Attack Power, Magic Power, and may inflict Charm.
+|Ultima Crystal
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{LA|LV3 Def-Less|LV 3 Def-Less}}
+|Lowers weapon defense and magic resistance of enemies whose level is divisible by 3.
+|Antlion, [[Jawbreaker]]
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{LA|Level 5 Death|LV 5 Death}}
+|Inflicts [[Knocked Out]] to units with levels divisible by 5.<br/>'''Element:''' Dark
+|Antlion, [[Jawbreaker]]
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{LA|Level ? Holy|LV?D Holy}}
+|Deals harsh holy damage to all units with a level equal to the current day.
+|Titania
+|style="text-align:center"|65 MPow
+|style="text-align:center"|Infinite
+|-
+!{{LA|LV? S-Flare}}
+|Dark damage to all units with same last digit level as caster. For example, a 29 level caster would hit units which level ends in 9 (9, 19, 29, 39, 49).
+|Vampire
+|style="text-align:center"|55 WAtk
+|style="text-align:center"|Infinite
+|}
+
+===M===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Magi}}
+|Primal chaos deals massive damage to all enemies. (Target All)
+|Li-grim
+|style="text-align:center"|50 MPow
+|style="text-align:center"|Infinite
+|-
+!{{LA|Magic Hammer (ability)|Magic Hammer}}
+|Mystical hammer. Deals damage to MP.
+|Red Cap
+|style="text-align:center"|38 WAtk
+|style="text-align:center"|3
+|-
+!{{LA|Matra Magic}}
+|Switches target's HP and MP.
+|Toughskin
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{LA|Meteorite (ability)|Meteorite}}
+|Shoots a small meteor to damage one enemy.
+|Sprite
+|style="text-align:center"|50 MPow
+|style="text-align:center"|3
+|-
+!{{LA|Miasma (ability)|Miasma}}
+|Area damage and [[Poison (status)|Poison]].
+|Vampire, Zombie
+|style="text-align:center"|20 WAtk
+|style="text-align:center"|3
+|-
+!{{LA|Mighty Guard (ability)|Mighty Guard}}
+|Raises Weapon Def. and Magic Res. for one battle.
+|Icedrake
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{A|Mog Aid}}
+|Recover some HP and cure status ailments.
+|Reaker
+|style="text-align:center"|35 MPow
+|style="text-align:center"|Self
+|-
+!{{A|Mog Attack}}
+|Damages and knocks back target. Element is same as equipped weapon.
+|Reaker
+|style="text-align:center"|As Weapon
+|style="text-align:center"|As Weapon
+|-
+!{{A|Mog Rush}}
+|Double damage, Half accuracy. Element is same as equipped weapon.
+|Reaker
+|style="text-align:center"|As Weapon
+|style="text-align:center"|As Weapon
+|-
+!{{A|Munch}}
+|Crushes weapons with sharp teeth and powerful jaws. Monster takes damage.
+|Blade Biter
+|style="text-align:center"|47 WAtk
+|style="text-align:center"|1
+|-
+!{{A|Mutilate}}
+|Absorbs HP from target.
+|Red Cap
+|style="text-align:center"|—
+|style="text-align:center"|1
+|}
+
+===N===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Night}}
+|Call to the darkness. Puts all units but the caster to [[Sleep (status)|sleep]].
+|Lamia
+|style="text-align:center"|—
+|style="text-align:center"|Infinite
+|}
+
+===O===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Omega}}
+|As powerful as [[Ultima (ability)|Ultima]]. Deals massive double damage. Element is same as equipped weapon.
+|Biskmatar, Li-grim
+|style="text-align:center"|As Weapon
+|style="text-align:center"|As Weapon
+|}
+
+===P===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Palaistra}}
+|Damage to surrounding units. Element is same as equipped weapon.
+|Judge
+|style="text-align:center"|As Weapon
+|style="text-align:center"|Self
+|-
+!{{LA|Poisonous Frog|Poison Frog}}
+|Turns target into a [[Toad (status)|Frog]] and [[Poison (status)|poisons]].
+|Lamia, Lilith
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{A|Presence}}
+|Damages and knocks back a unit using the fear of god.
+|Famfrit
+|style="text-align:center"|50 WAtk
+|style="text-align:center"|1
+|}
+
+===R===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Rend}}
+|Attacks target's weak spot to deal damage.
+|Red Panther
+|style="text-align:center"|35 WAtk
+|style="text-align:center"|1
+|-
+!{{LA|Resonance|Resonate}}
+|Back quivers to create resonance. May [[Disable (status)|Disable]] enemies with metallic weapons equipped.
+|Blade Biter
+|style="text-align:center"|—
+|style="text-align:center"|Infinite
+|-
+!{{A|Reveal}}
+|Finds and reveals any [[Invisible (status)|Concealed]] units.
+|Coeurl, Red Panther
+|style="text-align:center"|
+|style="text-align:center"|-
+|-
+!Ripcircle
+|Damages surrounding units.
+|Biskmatar
+|45 WAtk
+|Self
+|-
+!{{LA|Roulette}}
+|Instantly KOs a unit chosen at random on the battlefield. Must have Auto-Life in order to learn successfully.<br/>'''Element:''' Dark
+|Ahriman
+|style="text-align:center"|—
+|style="text-align:center"|Infinite
+|}
+
+===S===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Transfusion (ability)|Sacrifice}}
+|Self-KO. Fully heals one adjacent allies HP and cures status ailments.
+|Jelly
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{LA|Sandstorm (ability)|Sandstorm}}
+|Dark tornado. Damages and inflicts [[Blind (status)|Darkness]] on enemies adjacent to caster.<br/>'''Element:''' Earth
+|Antlion
+|style="text-align:center"|40 WAtk
+|style="text-align:center"|Self
+|-
+!{{A|Shieldbearer}}
+|Allows shieldwielding, regardless of job.
+|Reaker
+|style="text-align:center"|—
+|style="text-align:center"|—
+|-
+!{{LA|Slow (ability)|Slow}}
+|Inflicts the [[Slow (status)|Slow]] status.
+|Famfrit
+|style="text-align:center"|—
+|style="text-align:center"|—
+|-
+!{{LA|Snowball (ability)|Snowball}}
+|Deals 1 point of damage to a single target.
+|[[Colin (Tactics Advance)|Colin]], [[Lyle]], [[Guinness]]
+|style="text-align:center"|—
+|style="text-align:center"|4
+|-
+!{{A|Rasp|Soul Sphere}}
+|Area MP damage. Element is same as equipped weapon.
+|Adrammelech
+|style="text-align:center"|As Weapon
+|style="text-align:center"|4
+|-
+!{{A|Soundwave}}
+|Grating noise. Neutralizes status enhancements, similar to [[Dispel]]. Only removes [[Reraise (status)|Auto-Life]], [[Regen (status)|Regen]], [[Invisible (status)|Conceal]], [[Shell (status)|Shell]], and [[Protect (status)|Protect]].
+|Big Malboro
+|style="text-align:center"|—
+|style="text-align:center"|3
+|-
+!{{A|Spellbind}}
+|Dark arm that attacks soul, damages, [[Slow (status)|Slows]], and delays next turn of one target.
+|Mateus
+|style="text-align:center"|50 WAtk
+|style="text-align:center"|4
+|-
+!{{A|Star Cross}}
+|Uses the power of the stars to deal [[Holy (element)|Holy]] damage to all enemies.
+|Mateus
+|style="text-align:center"|17 MPow
+|style="text-align:center"|Infinite
+|-
+!{{LA|Stare|Stare}}
+|Fearsome gaze. [[Confuse (status)|Confuses]] all units facing the caster with 100% accuracy.
+|Floateye
+|style="text-align:center"|—
+|style="text-align:center"|Cone
+|-
+!{{A|Suffocate}}
+|Choking attack. Target loses next turn.
+|Jawbreaker
+|style="text-align:center"|—
+|style="text-align:center"|1
+|}
+
+===T===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Tail Wag}}
+|Inflicts [[Charm (status)|Charm]].
+|Reaker
+|style="text-align:center"|—
+|style="text-align:center"|1
+|-
+!{{LA|Thundaga (ability)|Thundaga}}
+|Most powerful Thunder spell. Fires a huge bolt of lightning at a cross-shaped area.
+|Cream, Mateus
+|style="text-align:center"|50 MPow
+|style="text-align:center"|4
+|-
+!{{LA|Thundara (ability)|Thundara}}
+|Powerful Thunder spell. Fires a larger bolt of lightning at a cross-shaped area.
+|Cream
+|style="text-align:center"|40 MPow
+|style="text-align:center"|4
+|-
+!{{LA|Thunder (ability)|Thunder}}
+|First Thunder spell. Fires a bolt of lightning at a cross-shaped area.
+|Cream
+|style="text-align:center"|30 MPow
+|style="text-align:center"|4
+|-
+!{{LA|Twister (ability)|Twister}}
+|Whipping whirlwind. Reduces HP by half in a cross- shaped area.
+|Lilith
+|style="text-align:center"|—
+|style="text-align:center"|3
+|}
+
+===V===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Voodoo}}
+|This attack carries a powerful, deadly curse. Deals more than 900 damage.
+|Masterberry
+|style="text-align:center"|—
+|style="text-align:center"|1
+|}
+
+===W===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Weapon Atk +}}
+|Improves weapon attacks to deal more damage.
+|Blade Biter, Bomb, Grenade, Lamia, Vampire
+|style="text-align:center"|—
+|style="text-align:center"|—
+|-
+!{{A|Weapon Def +}}
+|Reduces damage from weapon attacks.
+|Floateye, Goblin, Toughskin
+|style="text-align:center"|—
+|style="text-align:center"|—
+|-
+!{{LA|White Wind}}
+|Fluttering fairy wings. Restores HP equal to own HP in a cross-shaped area.
+|Sprite
+|style="text-align:center"|—
+|style="text-align:center"|3
+|}
+
+===Y===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{LA|Yellow Card}}
+|Adds a Yellow Card to the target. If not removed by Judgemaster Cid's Yellow Clip ability, a penalty will result like the unit was actually carded normally. The reason for being carded will be random. Despite no weapon damage being dealt, it is counterable with Bonecrusher.
+|Judge
+|style="text-align:center"|—
+|style="text-align:center"|1
+|}
+
+===Z===
+{|class="full-width FFTA article-table"
+|-
+!width="15%"|Ability
+!width="45%"|Description
+!width="20%"|Enemies
+!width="10%"|Power
+!width="10%"|Range
+|-
+!{{A|Zombify}}
+|Inflicts [[Zombie (status)|Zombie]]<br/>'''Element:''' Dark
+|Vampire
+|style="text-align:center"|45 WAtk
+|style="text-align:center"|1
+|}
+
+==Gallery==
+{{See|Final Fantasy Tactics Advance enemy abilities/Gallery}}
+
+{{navbox FFTA}}
+{{navbox enemy abilities}}
+[[Category:Enemy abilities in Final Fantasy Tactics Advance]]
+[[Category:Enemy ability lists]]
