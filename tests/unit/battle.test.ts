@@ -21,7 +21,8 @@ import {
   previewTurns,
   speedLookup,
 } from "../../src/engine/turn";
-import { createUnit, withHp, type Unit, type UnitInit } from "../../src/engine/unit";
+import { createUnit, withHp, withPosition, type Unit, type UnitInit } from "../../src/engine/unit";
+import type { Objective } from "../../src/engine/objectives";
 import type { StatBlock } from "../../src/data/schema";
 
 /* --------------------------------------------------------------------------
@@ -633,5 +634,173 @@ describe("step — determinism", () => {
     const state = createBattle(1, makeSetup());
     expect(findUnit(state, FAST)?.id).toBe(FAST);
     expect(findUnit(state, asUnitId("unit-ghost"))).toBeUndefined();
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T031 — win/lose objectives
+ *
+ * These pin the task's "done when": annihilation, rout, survive-N and
+ * capture/defend objectives each conclude the battle and emit a single
+ * `battleEnded` event with the outcome stated from the company's point of view.
+ * ------------------------------------------------------------------------ */
+
+const OBJECTIVE_MAP = createTerrainMap(6, 4, "field");
+
+/** A company soldier and one hostile, so enemy-counting objectives are real. */
+function objectiveRoster(): Unit[] {
+  return [
+    makeUnit(FAST, coord(1, 1), { stats: { ...BASE_STATS, spd: 30 } }),
+    makeUnit(SLOW, coord(3, 2), { side: "enemy", stats: { ...BASE_STATS, spd: 10 } }),
+  ];
+}
+
+function makeObjectiveBattle(
+  objective: Objective,
+  units: readonly Unit[] = objectiveRoster(),
+): BattleState {
+  return createBattle(1815, { map: OBJECTIVE_MAP, units, objective });
+}
+
+/** Put the named soldier out of action, leaving the rest of the state intact. */
+function downed(state: BattleState, unitId: UnitId): BattleState {
+  return {
+    ...state,
+    units: state.units.map((unit) => (unit.id === unitId ? withHp(unit, 0) : unit)),
+  };
+}
+
+/** The `battleEnded` events in a stream (there must never be more than one). */
+function battleEndedEvents(events: readonly BattleEvent[]): BattleEvent[] {
+  return events.filter((event) => event.kind === "battleEnded");
+}
+
+describe("step — win/lose objectives (T031)", () => {
+  it("annihilation: wins when the last enemy is out of action", () => {
+    const start = makeObjectiveBattle({ kind: "annihilation" });
+    const enemy = start.units.find((unit) => unit.side === "enemy") as Unit;
+
+    const result = step(downed(start, enemy.id), wait(downed(start, enemy.id)));
+    expect(result.state.phase).toBe("finished");
+    expect(result.state.outcome).toBe("companyVictory");
+    expect(battleEndedEvents(result.events)).toHaveLength(1);
+    // Nothing opens a turn after the battle has ended.
+    expect(result.events[result.events.length - 1]?.kind).toBe("battleEnded");
+  });
+
+  it("annihilation: loses if the company is wiped out", () => {
+    // The enemy is fastest, so it holds the turn while the company is down.
+    const start = makeObjectiveBattle({ kind: "annihilation" }, [
+      makeUnit(FAST, coord(1, 1), { stats: { ...BASE_STATS, spd: 10 } }),
+      makeUnit(SLOW, coord(3, 2), { side: "enemy", stats: { ...BASE_STATS, spd: 30 } }),
+    ]);
+    expect(start.currentActorId).toBe(SLOW);
+
+    const wiped = downed(start, FAST);
+    const result = step(wiped, wait(wiped));
+    expect(result.state.outcome).toBe("companyDefeat");
+    expect(battleEndedEvents(result.events)).toHaveLength(1);
+  });
+
+  it("rout: breaks the enemy once enough soldiers are out of action", () => {
+    const start = makeObjectiveBattle({ kind: "rout", defeated: 1 });
+    const enemy = start.units.find((unit) => unit.side === "enemy") as Unit;
+
+    const first = step(start, wait(start));
+    expect(first.state.phase).toBe("active");
+    expect(first.state.objective?.turnsElapsed).toBe(1);
+
+    const broke = step(downed(first.state, enemy.id), wait(downed(first.state, enemy.id)));
+    expect(broke.state.phase).toBe("finished");
+    expect(broke.state.outcome).toBe("companyVictory");
+    expect(broke.events.map((event) => event.kind)).toContain("battleEnded");
+  });
+
+  it("survive: wins when the mission clock reaches the required turns", () => {
+    const start = makeObjectiveBattle({ kind: "survive", turns: 2 });
+
+    const first = step(start, wait(start));
+    expect(first.state.phase).toBe("active");
+    expect(first.state.objective).toMatchObject({ turnsElapsed: 1 });
+
+    const second = step(first.state, wait(first.state));
+    expect(second.state.phase).toBe("finished");
+    expect(second.state.outcome).toBe("companyVictory");
+    expect(battleEndedEvents(second.events)).toHaveLength(1);
+  });
+
+  it("capture: seizes the point when a company soldier occupies it", () => {
+    const start = makeObjectiveBattle({ kind: "capture", at: coord(3, 1) });
+    const actor = start.currentActorId as UnitId;
+
+    const result = step(start, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1), coord(3, 1)],
+    });
+    expect(result.rejection).toBeUndefined();
+    expect(result.state.phase).toBe("finished");
+    expect(result.state.outcome).toBe("companyVictory");
+    expect(result.events[result.events.length - 1]?.kind).toBe("battleEnded");
+  });
+
+  it("defend: holds the point for the required turns", () => {
+    const start = makeObjectiveBattle({ kind: "defend", at: coord(1, 1), turns: 2 });
+
+    const first = step(start, wait(start));
+    expect(first.state.phase).toBe("active");
+    expect(first.state.objective?.heldTurns).toBe(1);
+
+    const second = step(first.state, wait(first.state));
+    expect(second.state.phase).toBe("finished");
+    expect(second.state.outcome).toBe("companyVictory");
+  });
+
+  it("defend: fails if the enemy takes the point", () => {
+    const start = makeObjectiveBattle({ kind: "defend", at: coord(3, 2), turns: 3 });
+    const result = step(start, wait(start));
+    expect(result.state.phase).toBe("finished");
+    expect(result.state.outcome).toBe("companyDefeat");
+    expect(battleEndedEvents(result.events)).toHaveLength(1);
+  });
+
+  it("rejects every later command once the objective has ended the battle", () => {
+    const start = makeObjectiveBattle({ kind: "survive", turns: 1 });
+    const finished = step(start, wait(start)).state;
+    expect(finished.phase).toBe("finished");
+
+    const actor = finished.units[0].id;
+    const result = step(finished, { kind: "wait", unitId: actor });
+    expect(result.rejection?.reason).toBe("battle-over");
+    expect(result.state).toBe(finished);
+  });
+
+  it("leaves a sandbox battle (no objective) running", () => {
+    const start = createBattle(1815, { map: OBJECTIVE_MAP, units: objectiveRoster() });
+    let state = start;
+    for (let i = 0; i < 6 && state.currentActorId !== null; i++) {
+      state = step(state, { kind: "wait", unitId: state.currentActorId }).state;
+    }
+    expect(state.objective).toBeNull();
+    expect(state.phase).toBe("active");
+  });
+
+  it("rejects a malformed objective at creation", () => {
+    const malformed = { kind: "rout", defeated: 0 } as unknown as Objective;
+    expect(() => makeObjectiveBattle(malformed)).toThrow(BattleSetupError);
+  });
+
+  it("carries objective progress through a move made earlier in the state", () => {
+    const start = makeObjectiveBattle({ kind: "capture", at: coord(2, 1) });
+    const actor = start.currentActorId as UnitId;
+    const moved: BattleState = {
+      ...start,
+      units: start.units.map((unit) =>
+        unit.id === actor ? withPosition(unit, coord(2, 1)) : unit,
+      ),
+    };
+    const result = step(moved, wait(moved));
+    expect(result.state.outcome).toBe("companyVictory");
+    expect(result.events.some((event) => event.kind === "battleEnded")).toBe(true);
   });
 });

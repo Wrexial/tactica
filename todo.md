@@ -253,7 +253,7 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - done: Mouse/touch/keyboard select tiles; move range and path preview render.
 
 ### T031 — Win/lose conditions
-- status: todo
+- status: done
 - deps: [T022]
 - files: src/engine/objectives.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts

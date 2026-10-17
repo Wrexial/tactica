@@ -59,6 +59,13 @@ import { isCommand, type Command } from "./commands";
 import type { BattleEvent, BattleOutcome } from "./events";
 import { coordKey, inBounds } from "./grid";
 import { isValidId, type UnitId } from "./ids";
+import {
+  assertObjective,
+  createObjectiveTracker,
+  resolveObjectiveTurn,
+  type Objective,
+  type ObjectiveTracker,
+} from "./objectives";
 import type { Seed } from "./rng";
 import type { TerrainMap } from "./terrain";
 import {
@@ -145,6 +152,13 @@ export interface BattleSetup {
    * wait, but every `act` command is refused with `unknown-ability`.
    */
   readonly abilities?: readonly ActionSpec[];
+  /**
+   * Optional win/lose objective (T031). When present, the battle concludes with
+   * a single `battleEnded` event as soon as the objective is met or the company
+   * is wiped out. Omit it for a sandbox action that only ends when a caller
+   * says so.
+   */
+  readonly objective?: Objective;
 }
 
 /** Whether the battle is still being fought or has concluded. */
@@ -178,6 +192,12 @@ export interface BattleState {
   readonly phase: BattlePhase;
   /** Set when {@link phase} is `finished`; otherwise `null`. */
   readonly outcome: BattleOutcome | null;
+  /**
+   * Live win/lose objective progress (T031), or `null` for a sandbox battle
+   * with no automatic ending. Scored once per completed Orders Tempo turn by
+   * {@link settleObjective}.
+   */
+  readonly objective: ObjectiveTracker | null;
   /**
    * Whether the opening events (`battleStarted`, `unitDeployed`) and the first
    * `turnStarted` have been emitted. The first {@link step} announces the
@@ -214,6 +234,16 @@ function assertSetup(setup: BattleSetup): void {
   }
   if (units.length === 0) {
     throw new BattleSetupError("a battle needs at least one soldier");
+  }
+
+  if (setup.objective !== undefined) {
+    try {
+      assertObjective(setup.objective, "battle objective");
+    } catch (error) {
+      throw new BattleSetupError(
+        error instanceof Error ? error.message : "battle objective is malformed",
+      );
+    }
   }
 
   const seenIds = new Set<string>();
@@ -315,6 +345,8 @@ export function createBattle(seed: Seed, setup: BattleSetup): BattleState {
     currentActorId: null,
     phase: "active",
     outcome: null,
+    objective:
+      setup.objective === undefined ? null : createObjectiveTracker(setup.objective),
     started: false,
   };
 
@@ -564,7 +596,8 @@ export interface BattleStepResult {
  *    T024);
  * 3. `turnEnded` for the actor, then advance Orders Tempo — resolving any
  *    charges that elapse while waiting — and `turnStarted` for the next
- *    soldier.
+ *    soldier; if a win/lose objective is met (T031) the battle instead emits a
+ *    single `battleEnded`, freezes and admits no further commands.
  *
  * If {@link validateCommand} refuses the command, this returns immediately with
  * the input state unchanged, no events and a {@link BattleStepResult.rejection}.
@@ -600,9 +633,42 @@ export function step(state: BattleState, command: Command): BattleStepResult {
   events.push({ kind: "turnEnded", tick, unitId: actor.id });
   const next = endTurn(working, actor.id);
   working = resolveCompletedCharges(next.state, next.resolved, events);
+
+  // Score the win/lose objective (T031) before opening the next turn. When it
+  // fires, the battle freezes, records the outcome and emits `battleEnded`
+  // instead of a `turnStarted` for a turn that will never be taken.
+  working = settleObjective(working, events);
+  if (working.phase === "finished") {
+    return { state: working, events };
+  }
+
   if (next.actorId !== null) {
     events.push({ kind: "turnStarted", tick: working.tempo.tick, unitId: next.actorId });
   }
 
   return { state: working, events };
+}
+
+/**
+ * Advance the battle's win/lose objective by one completed Orders Tempo turn
+ * (T031). Returns the state unchanged for a sandbox battle (`objective === null`)
+ * or one that has already finished; otherwise it stores the advanced tracker
+ * and, once the objective is met or the company is wiped out, freezes the
+ * battle and appends the single `battleEnded` event.
+ */
+function settleObjective(state: BattleState, events: BattleEvent[]): BattleState {
+  if (state.objective === null || state.phase === "finished") return state;
+
+  const resolution = resolveObjectiveTurn(state.objective, state.units);
+  if (!resolution.finished) {
+    return { ...state, objective: resolution.tracker };
+  }
+
+  events.push({ kind: "battleEnded", tick: state.tempo.tick, outcome: resolution.outcome });
+  return {
+    ...state,
+    objective: resolution.tracker,
+    phase: "finished",
+    outcome: resolution.outcome,
+  };
 }

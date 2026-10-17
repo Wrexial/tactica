@@ -43,6 +43,11 @@ import { parseCommand, serializeCommand, type Command } from "./commands";
 import { BATTLE_OUTCOMES } from "./events";
 import { coordKey, inBounds, isFacing, type Coord, type Grid } from "./grid";
 import { isValidId, type EquipmentId } from "./ids";
+import {
+  copyObjective,
+  isObjectiveTracker,
+  type ObjectiveTracker,
+} from "./objectives";
 import type { RngState, Seed } from "./rng";
 import {
   MAX_HEIGHT,
@@ -388,6 +393,14 @@ function isUnitArray(value: unknown): value is Unit[] {
   return Array.isArray(value) && value.length > 0 && value.every(isUnit);
 }
 
+function toObjectiveTracker(tracker: ObjectiveTracker): ObjectiveTracker {
+  return {
+    objective: copyObjective(tracker.objective),
+    turnsElapsed: tracker.turnsElapsed,
+    heldTurns: tracker.heldTurns,
+  };
+}
+
 function isTempoCharge(value: unknown): value is TempoCharge {
   return (
     isRecord(value) &&
@@ -443,6 +456,7 @@ export function isBattleState(value: unknown): value is BattleState {
   if (value.currentActorId !== null && !isValidId(value.currentActorId)) return false;
   if (!isOneOf(BATTLE_PHASES, value.phase)) return false;
   if (value.outcome !== null && !isOneOf(BATTLE_OUTCOMES, value.outcome)) return false;
+  if (value.objective !== null && !isObjectiveTracker(value.objective)) return false;
   if (typeof value.started !== "boolean") return false;
 
   const grid = value.map.grid;
@@ -570,6 +584,8 @@ export function parseBattleState(value: unknown, label = "battle state"): Battle
     currentActorId: value.currentActorId,
     phase: value.phase,
     outcome: value.outcome,
+    objective:
+      value.objective === null ? null : toObjectiveTracker(value.objective),
     started: value.started,
   };
 }
