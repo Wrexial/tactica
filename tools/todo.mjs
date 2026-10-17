@@ -14,10 +14,17 @@
  *   node tools/todo.mjs show T001 [--json]
  *   node tools/todo.mjs prompt T001
  *   node tools/todo.mjs check
+ *   node tools/todo.mjs commits            # audit: done tasks vs. their commits
+ *   node tools/todo.mjs split [--base <ref>] [--yes] [--dry-run]
  *   node tools/todo.mjs mark T001 done
  *   node tools/todo.mjs verify T001
  *   node tools/todo.mjs run [--agent "<cmd>"] [--from T001] [--until T010]
- *                           [--phase 0] [--limit N] [--dry-run] [--commit]
+ *                           [--phase 0] [--limit N] [--dry-run]
+ *                           [--no-commit] [--no-split]
+ *
+ * `run` commits after each task by default (one commit per task); `--no-commit`
+ * opts out. Before a run, any `done` tasks left uncommitted by a previous run
+ * are split into one commit each (`--no-split` opts out).
  *
  * Agent command template placeholders: {promptFile} {id} {title} {file}
  * Recommended (cross-platform) agent command:
@@ -281,9 +288,123 @@ function runVerify(task) {
   return { ok: res.status === 0, skipped: false, code: res.status };
 }
 
-function gitCommit(task) {
-  spawnSync("git", ["add", "-A"], { stdio: "inherit" });
-  spawnSync("git", ["commit", "-m", `feat(${task.id}): ${task.title}`], { stdio: "inherit" });
+function git(args) {
+  const res = spawnSync("git", args, { cwd: ROOT, encoding: "utf8" });
+  return {
+    ok: res.status === 0,
+    code: res.status ?? 1,
+    out: (res.stdout ?? "").trim(),
+    err: (res.stderr ?? "").trim(),
+  };
+}
+
+const isGitRepo = () => git(["rev-parse", "--is-inside-work-tree"]).out === "true";
+const taskSubject = (task) => `feat(${task.id}): ${task.title}`;
+
+/** Find a commit whose subject references this task id ("feat(T014): ..."). */
+function findTaskCommit(id) {
+  const r = git(["log", "--all", "--format=%H%x09%s"]);
+  if (!r.ok) return null;
+  for (const line of r.out.split("\n")) {
+    const tab = line.indexOf("\t");
+    if (tab === -1) continue;
+    if (line.slice(tab + 1).includes(`(${id})`)) return line.slice(0, tab);
+  }
+  return null;
+}
+
+function dirtyFiles() {
+  const files = new Set();
+  const r = git(["status", "--porcelain", "-uall"]);
+  if (!r.ok) return files;
+  for (const line of r.out.split("\n")) {
+    if (line.trim().length < 4) continue;
+    let path = line.slice(3).trim();
+    const arrow = path.lastIndexOf(" -> ");
+    if (arrow !== -1) path = path.slice(arrow + 4);
+    files.add(path.replace(/^"(.*)"$/, "$1"));
+  }
+  return files;
+}
+
+function commitPaths(paths, message) {
+  if (!paths.length) return false;
+  if (!git(["add", "--", ...paths]).ok) return false;
+  return git(["commit", "-m", message]).ok;
+}
+
+function commitAll(task) {
+  git(["add", "-A"]);
+  return git(["commit", "-m", taskSubject(task)]).ok;
+}
+
+/**
+ * Attribute changed files to done tasks via their `files:` lists. A file owned
+ * by exactly one task goes to that task; ambiguous (shared) or unreferenced
+ * files go to a trailing "chore" commit.
+ */
+function buildSplitPlan(candidates, changed) {
+  const changedSet = new Set(changed);
+  const owners = new Map(); // file -> Set(taskId)
+  for (const t of candidates) {
+    for (const f of t.files) {
+      if (!changedSet.has(f)) continue;
+      if (!owners.has(f)) owners.set(f, new Set());
+      owners.get(f).add(t.id);
+    }
+  }
+
+  const byTask = new Map(); // taskId -> files[]
+  const chore = [];
+  for (const [f, set] of owners) {
+    if (set.size === 1) {
+      const id = [...set][0];
+      if (!byTask.has(id)) byTask.set(id, []);
+      byTask.get(id).push(f);
+    } else {
+      chore.push(f);
+    }
+  }
+  for (const f of changed) if (!owners.has(f)) chore.push(f);
+
+  const plan = [];
+  for (const t of candidates) {
+    const files = byTask.get(t.id);
+    if (files && files.length) plan.push({ label: t.id, message: taskSubject(t), files });
+  }
+  if (chore.length) {
+    plan.push({ label: "chore", message: "chore: project config and task board", files: chore });
+  }
+  return plan;
+}
+
+/**
+ * Commit work for tasks already marked `done` that have no dedicated commit
+ * (an interrupted run, or commits that were batched). One commit per task.
+ * Returns how many commits were made.
+ */
+function splitPending(tasks, { dryRun = false } = {}) {
+  const dirty = dirtyFiles();
+  if (!dirty.size) return 0;
+  const candidates = tasks.filter(isDone);
+  if (!candidates.length) return 0;
+  const plan = buildSplitPlan(candidates, [...dirty]);
+  if (!plan.length) {
+    console.log("  (no done tasks map to uncommitted changes)");
+    return 0;
+  }
+  if (dryRun) {
+    for (const p of plan) console.log(`  would commit ${p.label} (${p.files.length} file(s))`);
+    return plan.length;
+  }
+  let made = 0;
+  for (const p of plan) {
+    if (commitPaths(p.files, p.message)) {
+      console.log(`  committed ${p.label} (${p.files.length} file(s))`);
+      made++;
+    }
+  }
+  return made;
 }
 
 /* ----------------------------- CLI ----------------------------- */
@@ -384,6 +505,72 @@ function main() {
     process.exit(r.ok ? 0 : 1);
   }
 
+  if (cmd === "commits") {
+    if (!isGitRepo()) return fail("Not a git repository.");
+    const done = tasks.filter(isDone);
+    let missing = 0;
+    for (const t of done) {
+      const sha = findTaskCommit(t.id);
+      if (sha) console.log(`  ✓ ${t.id}  ${sha.slice(0, 8)}  ${t.title}`);
+      else {
+        missing++;
+        console.log(`  · ${t.id}  --------  (no dedicated commit)  ${t.title}`);
+      }
+    }
+    console.log(`\n${done.length - missing}/${done.length} done task(s) have a dedicated commit.`);
+    return;
+  }
+
+  if (cmd === "split") {
+    if (!isGitRepo()) return fail("Not a git repository.");
+    const base = typeof arg("base") === "string" ? arg("base") : null;
+    const dryRun = has("dry-run") || !has("yes");
+
+    if (!base) {
+      // Uncommitted mode: split dirty changes across done tasks by their files.
+      const dirty = dirtyFiles();
+      if (!dirty.size) return console.log("Nothing to split — working tree is clean.");
+      const candidates = tasks.filter(isDone);
+      const plan = buildSplitPlan(candidates, [...dirty]);
+      if (!plan.length) return console.log("No done task maps to the uncommitted files.");
+      console.log(`Split plan (${plan.length} commit(s)):`);
+      for (const p of plan) {
+        console.log(`  ${p.label.padEnd(6)} ${String(p.files.length).padStart(3)} file(s)  ${p.message}`);
+      }
+      if (dryRun) return console.log("\nDry run — re-run with --yes to commit.");
+      for (const p of plan) {
+        if (commitPaths(p.files, p.message)) console.log(`  committed ${p.label}`);
+      }
+      return;
+    }
+
+    // Rewrite mode: rebuild <base>..HEAD as one commit per done task.
+    if (git(["status", "--porcelain"]).out) {
+      return fail("Working tree must be clean to rewrite history (--base mode).");
+    }
+    if (!git(["rev-parse", "--verify", `${base}^{commit}`]).ok) {
+      return fail(`Unknown base ref: ${base}`);
+    }
+    const changed = git(["diff", "--name-only", base, "HEAD"]).out.split("\n").filter(Boolean);
+    const candidates = tasks.filter(isDone);
+    const plan = buildSplitPlan(candidates, changed);
+
+    console.log(`Rewrite plan for ${base}..HEAD (${changed.length} files → ${plan.length} commit(s)):`);
+    for (const p of plan) {
+      console.log(`  ${p.label.padEnd(6)} ${String(p.files.length).padStart(3)} file(s)  ${p.message}`);
+    }
+    console.log("\nAfter rewriting, publish with: git push --force-with-lease");
+    if (dryRun) return console.log("Dry run — re-run with --yes to rewrite history.");
+
+    if (!git(["reset", "--soft", base]).ok) return fail("git reset failed.");
+    git(["restore", "--staged", "."]);
+    for (const p of plan) {
+      if (!commitPaths(p.files, p.message)) console.error(`  ! failed to commit ${p.label}`);
+    }
+    console.log(`\n✓ Rewrote ${base}..HEAD into ${plan.length} commit(s).`);
+    return;
+  }
+
   if (cmd === "run") {
     const template = arg("agent", process.env.TODO_AGENT || null);
     const limit = Number(arg("limit", "0")) || Infinity;
@@ -402,6 +589,11 @@ function main() {
       if (idx >= 0) queue = queue.filter((t) => tasks.indexOf(t) <= idx);
     }
     if (phase) queue = queue.filter((t) => phaseContains(t.phase, phase));
+
+    // Fix up tasks a previous run completed but never committed (one commit each).
+    if (!has("no-commit") && !has("no-split") && isGitRepo()) {
+      if (splitPending(tasks, { dryRun: dry }) > 0 && !dry) console.log("");
+    }
 
     if (dry) {
       const preview = queue.slice(0, limit === Infinity ? 10 : limit);
@@ -436,7 +628,10 @@ function main() {
         break;
       }
       setStatus(file, t, "done");
-      if (has("commit")) gitCommit(t);
+      if (!has("no-commit") && isGitRepo()) {
+        if (commitAll(t)) console.log(`  committed ${t.id}`);
+        else console.log(`  (no changes to commit for ${t.id})`);
+      }
       console.log(`✓ ${t.id} done`);
       ran++;
     }
