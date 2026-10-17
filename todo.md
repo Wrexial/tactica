@@ -503,7 +503,7 @@ deterministic.
 - done: Five national Guard Sorties cost 10 Honour, hit the whole field, and must be unlocked via story.
 
 ### T063 — Standing / Counter-Orders
-- status: todo
+- status: done
 - deps: [T055]
 - files: src/engine/actions/orders.ts
 - verify: npm run test -- --run tests/unit/orders.test.ts
