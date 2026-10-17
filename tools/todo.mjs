@@ -120,7 +120,10 @@ function parseTasks(text) {
       } else if (key === "deps") {
         cur.deps = parseDeps(val);
       } else if (key === "files") {
-        cur.files = val.split(",").map((s) => s.trim()).filter(Boolean);
+        cur.files = val
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
       } else if (key === "verify") {
         cur.verify = val === "—" || val === "-" || val === "" ? null : val;
       } else if (key === "done") {
@@ -151,6 +154,15 @@ function parseTasks(text) {
 
 const byId = (tasks) => new Map(tasks.map((t) => [t.id, t]));
 const isDone = (t) => t && t.status === "done";
+
+function phaseContains(phase, filter) {
+  if (!filter) return true;
+  const f = String(filter).trim();
+  const num = phase.match(/^Phase\s+(\d+)/i);
+  // A bare number matches that phase exactly (so `0` does not match `Phase 10`).
+  if (/^\d+$/.test(f) && num) return Number(num[1]) === Number(f);
+  return phase.toLowerCase().includes(f.toLowerCase());
+}
 
 function actionable(tasks, task) {
   const map = byId(tasks);
@@ -184,7 +196,9 @@ function validate(tasks) {
   }
   // Cycle detection (DFS).
   const map = byId(tasks);
-  const WHITE = 0, GREY = 1, BLACK = 2;
+  const WHITE = 0,
+    GREY = 1,
+    BLACK = 2;
   const color = new Map(tasks.map((t) => [t.id, WHITE]));
   const stack = [];
   const visit = (id) => {
@@ -211,10 +225,7 @@ function setStatus(file, task, status) {
   const lines = readFileSync(file, "utf8").split(/\r?\n/);
   if (task.statusLine < 0) throw new Error(`${task.id}: no status line to update`);
   const current = lines[task.statusLine];
-  lines[task.statusLine] = current.replace(
-    /^(\s*-\s*status:\s*).*$/,
-    `$1${status}`,
-  );
+  lines[task.statusLine] = current.replace(/^(\s*-\s*status:\s*).*$/, `$1${status}`);
   writeFileSync(file, lines.join("\n"), "utf8");
   task.status = status;
 }
@@ -298,7 +309,9 @@ function main() {
       process.exit(1);
     }
     const done = tasks.filter(isDone).length;
-    console.log(`✓ ${tasks.length} tasks, graph valid (${done} done, ${tasks.length - done} remaining).`);
+    console.log(
+      `✓ ${tasks.length} tasks, graph valid (${done} done, ${tasks.length - done} remaining).`,
+    );
     return;
   }
 
@@ -306,7 +319,7 @@ function main() {
     const phaseFilter = arg("phase");
     const statusFilter = arg("status");
     let rows = tasks;
-    if (phaseFilter) rows = rows.filter((t) => t.phase.toLowerCase().includes(String(phaseFilter).toLowerCase()));
+    if (phaseFilter) rows = rows.filter((t) => phaseContains(t.phase, phaseFilter));
     if (statusFilter) rows = rows.filter((t) => t.status === statusFilter);
     if (has("json")) return console.log(JSON.stringify(rows, null, 2));
     let lastPhase = "";
@@ -316,7 +329,9 @@ function main() {
         lastPhase = t.phase;
       }
       const dep = t.deps.length ? ` deps:${t.deps.join(",")}` : "";
-      console.log(`  ${t.status === "done" ? "✓" : " "} ${t.id}  ${t.status.padEnd(7)}${dep}  ${t.title}`);
+      console.log(
+        `  ${t.status === "done" ? "✓" : " "} ${t.id}  ${t.status.padEnd(7)}${dep}  ${t.title}`,
+      );
     }
     const done = tasks.filter(isDone).length;
     console.log(`\n${done}/${tasks.length} done`);
@@ -354,7 +369,8 @@ function main() {
   if (cmd === "mark") {
     const status = process.argv[4];
     if (!task) return fail(`Unknown task: ${id}`);
-    if (!STATUSES.includes(status)) return fail(`Invalid status "${status}". Use: ${STATUSES.join(", ")}`);
+    if (!STATUSES.includes(status))
+      return fail(`Invalid status "${status}". Use: ${STATUSES.join(", ")}`);
     setStatus(file, task, status);
     console.log(`${task.id} → ${status}`);
     return;
@@ -385,12 +401,15 @@ function main() {
       const idx = tasks.findIndex((t) => t.id === until);
       if (idx >= 0) queue = queue.filter((t) => tasks.indexOf(t) <= idx);
     }
-    if (phase) queue = queue.filter((t) => t.phase.toLowerCase().includes(String(phase).toLowerCase()));
+    if (phase) queue = queue.filter((t) => phaseContains(t.phase, phase));
 
     if (dry) {
       const preview = queue.slice(0, limit === Infinity ? 10 : limit);
       console.log(`Dry run — ${queue.length} candidate task(s); showing ${preview.length}.`);
-      if (!template) console.log(`(set --agent "<cmd>" or TODO_AGENT to execute, e.g. --agent 'pi --print "@{promptFile}"')\n`);
+      if (!template)
+        console.log(
+          `(set --agent "<cmd>" or TODO_AGENT to execute, e.g. --agent 'pi --print "@{promptFile}"')\n`,
+        );
       for (const t of preview) {
         console.log(`\n===== ${t.id} — ${t.title} =====\n`);
         console.log(buildPrompt(t));

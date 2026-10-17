@@ -24,7 +24,7 @@ Milestones: **MVP** = Phases 0–6 · **Beta** = 7–10 · **Polish** = 11 · **
 ## Phase 0 — Foundation
 
 ### T001 — Bootstrap Vite + React + TypeScript (strict)
-- status: todo
+- status: done
 - deps: []
 - files: package.json, tsconfig.json, vite.config.ts, index.html, src/main.tsx
 - verify: npm run build
@@ -34,7 +34,7 @@ Initialise the project with Vite, React and TypeScript in `strict` mode. Add the
 core npm scripts (`dev`, `build`, `preview`, `typecheck`). No game logic yet.
 
 ### T002 — Lint & format tooling
-- status: todo
+- status: done
 - deps: [T001]
 - files: eslint.config.js, .prettierrc, package.json
 - verify: npm run lint
@@ -44,7 +44,7 @@ Add ESLint (typescript-eslint) + Prettier with `lint`, `format`, `format:check`
 scripts. Enforce no `any` without an inline justification comment.
 
 ### T003 — Vitest unit-test setup
-- status: todo
+- status: done
 - deps: [T001]
 - files: vitest.config.ts, tests/unit/smoke.test.ts
 - verify: npm run test -- --run
@@ -54,7 +54,7 @@ Configure Vitest for `tests/unit` and `src/**/*.test.ts`. Add the one-shot test
 script used by CI.
 
 ### T004 — Playwright e2e setup
-- status: todo
+- status: done
 - deps: [T001]
 - files: playwright.config.ts, tests/e2e/smoke.spec.ts
 - verify: npm run test:e2e
@@ -63,21 +63,21 @@ script used by CI.
 Configure Playwright with a preview-server webServer entry and one smoke spec.
 
 ### T005 — Source layer skeleton + import boundaries
-- status: todo
+- status: done
 - deps: [T001]
 - files: src/engine/, src/data/, src/ai/, src/app/, src/render/, src/ui/, src/persist/
 - verify: npm run typecheck
 - done: Empty modules exist per `agents.md` §6; an ESLint rule forbids `src/engine` importing from `render`/`ui`/`app`.
 
-### T006 — .gitignore + CI pipeline
-- status: todo
+### T006 — Netlify build config
+- status: done
 - deps: [T001, T002, T003]
-- files: .gitignore, .github/workflows/ci.yml
+- files: netlify.toml, .nvmrc, .gitignore
 - verify: npm run build
-- done: CI runs install → lint → test → build on push/PR; artifacts ignored.
+- done: netlify.toml builds `npm run build` into `dist` with an SPA redirect and a pinned Node version (`.nvmrc`); CI/deploys are handled by Netlify (user-managed).
 
 ### T007 — Placeholder battlefield canvas + HUD shell
-- status: todo
+- status: done
 - deps: [T001, T005]
 - files: src/render/scene.ts, src/ui/App.tsx, src/main.tsx
 - verify: npm run build
@@ -98,7 +98,7 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 - done: Every loaded data def has a non-empty Napoleonic `name` and no `TBD`/placeholder strings.
 
 ### T010 — README + docs wiring
-- status: todo
+- status: done
 - deps: [T001]
 - files: README.md
 - verify: —
