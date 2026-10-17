@@ -299,7 +299,7 @@ deterministic.
 - done: `MagicPower − TargetMagicRes/2`, then × `Power/100`.
 
 ### T035 — Weapon-type variants
-- status: todo
+- status: done
 - deps: [T033]
 - files: src/data/weapons.ts
 - verify: npm run test -- --run tests/unit/damage.test.ts

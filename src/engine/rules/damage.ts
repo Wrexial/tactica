@@ -327,3 +327,176 @@ export function computePowderDamage(
   const base = computeBaseDamage(magicPower, targetMagicRes, formula);
   return applyPower(base, power, formula);
 }
+
+/* --------------------------------------------------------------------------
+ * Weapon-family variants (T035)
+ *
+ * FFTA's own physical section gives one shared formula, so the weapon-type
+ * variants come from the **Final Fantasy Tactics** list on the same page
+ * (`docs/wiki/pages/Attack_(command).md`), the tactical series FFTA descends
+ * from. There, the damage is `offense(attacker stats) × weapon power`, with the
+ * offense factor differing per weapon family:
+ *
+ * - Swords / spears / knightswords → `PA × WP`
+ * - Knives / longbows → `(PA + Spd) / 2 × WP`
+ * - Staves → `MA × WP`
+ * - Instruments → `(PA + MA) / 2 × WP`
+ * - Physical guns → `WP²` (no attacker stat)
+ *
+ * Tactica re-authors those shapes as **data-driven coefficients** rather than a
+ * hard-coded switch. A {@link WeaponFormula} extends the shared
+ * {@link DamageFormula} with an integer-weighted **offense basis** (how the
+ * attacker's `atk`/`spd`/`mag` and the weapon's own power combine) plus a
+ * `weaponPowerMode` for the gun's square term. Everything else — the halved
+ * defence subtraction and the `Power/100` multiplier — is the same kernel used
+ * by Steel and Powder, so a variant cannot silently diverge from the core
+ * maths.
+ *
+ * The concrete coefficients are **authored balance data** in
+ * `src/data/weapons.ts` (one entry per {@link WeaponType}), inspired by but not
+ * copied from the reference (`agents.md` §3, §10). This module knows nothing
+ * about specific weapon ids: callers pass the family's formula in.
+ * ------------------------------------------------------------------------ */
+
+/** How a weapon family combines its offense factor with the weapon's power. */
+export type WeaponPowerMode = "multiply" | "square";
+
+/**
+ * A weapon family's damage recipe: the shared {@link DamageFormula} kernel plus
+ * an integer-weighted offense basis.
+ *
+ * ```text
+ * statTerm = atkWeight×atk + spdWeight×spd + magWeight×mag
+ * factor   = trunc(statTerm / offenseDivisor)
+ * offense  = factor × weaponPower            (mode "multiply")
+ *          = weaponPower × weaponPower       (mode "square")
+ * damage   = SteelKernel(offense, targetWeaponDef, power)
+ * ```
+ *
+ * Weight `0` means the family ignores that stat; `offenseDivisor: 1` means no
+ * averaging. The gun's `WP²` term is expressed with all weights `0` and
+ * `weaponPowerMode: "square"`, so no ability or weapon id is special-cased.
+ */
+export interface WeaponFormula extends DamageFormula {
+  /** Weight on the attacker's `atk` (FFTA physical attack / `PA`). */
+  readonly atkWeight: number;
+  /** Weight on the attacker's `spd` (FFTA speed / `Sp`). */
+  readonly spdWeight: number;
+  /** Weight on the attacker's `mag` (FFTA magic attack / `MA`). */
+  readonly magWeight: number;
+  /** Divisor applied to the weighted stat sum (the `/2` in `(PA+Spd)/2`). */
+  readonly offenseDivisor: number;
+  /** Whether the offense factor multiplies weapon power, or is squared power. */
+  readonly weaponPowerMode: WeaponPowerMode;
+}
+
+/**
+ * Input to {@link computeWeaponOffense}: the attacker's three offensive stats
+ * and the equipped weapon's power. All four are non-negative integers.
+ */
+export interface WeaponOffenseInput {
+  /** The attacker's effective `atk` (`PA`) stat. `>= 0`. */
+  readonly atk: number;
+  /** The attacker's effective `spd` (`Sp`) stat. `>= 0`. */
+  readonly spd: number;
+  /** The attacker's effective `mag` (`MA`) stat. `>= 0`. */
+  readonly mag: number;
+  /** The equipped weapon's Weapon Power (`WP`). `>= 0`. */
+  readonly weaponPower: number;
+}
+
+/**
+ * Input to {@link computeWeaponDamage}: a {@link WeaponOffenseInput} plus the
+ * defender's Weapon Def and the action's Power term, exactly as Steel expects.
+ */
+export interface WeaponDamageInput extends WeaponOffenseInput {
+  /** The target's effective Weapon Def (`def`). `>= 0`. */
+  readonly targetWeaponDef: number;
+  /** The action's Power term; see {@link SteelDamageInput.power}. */
+  readonly power: number;
+}
+
+function assertWeaponFormula(formula: WeaponFormula): void {
+  assertFormula(formula);
+  for (const [label, value] of [
+    ["atkWeight", formula.atkWeight],
+    ["spdWeight", formula.spdWeight],
+    ["magWeight", formula.magWeight],
+  ] as const) {
+    if (!Number.isInteger(value) || value < 0) {
+      throw new RangeError(`weapon formula ${label} must be a non-negative integer`);
+    }
+  }
+  if (!Number.isInteger(formula.offenseDivisor) || formula.offenseDivisor < 1) {
+    throw new RangeError(
+      `weapon formula offenseDivisor must be an integer >= 1, received ${String(
+        formula.offenseDivisor,
+      )}`,
+    );
+  }
+  if (formula.weaponPowerMode !== "multiply" && formula.weaponPowerMode !== "square") {
+    throw new RangeError(
+      `weapon formula weaponPowerMode must be "multiply" or "square", received ${String(
+        formula.weaponPowerMode,
+      )}`,
+    );
+  }
+}
+
+/**
+ * Resolve a weapon family's effective Weapon Attack from the attacker's stats
+ * and the equipped weapon's power. This is the only step that differs between
+ * weapon types; it is split out so targeting/forecast UI (T086) can preview the
+ * offense term without running the full damage kernel.
+ *
+ * ```ts
+ * // sabre: PA × WP
+ * computeWeaponOffense({ atk: 20, spd: 9, mag: 4, weaponPower: 5 }, sabre); // 100
+ * // rifle: (PA + Spd) / 2 × WP, truncated
+ * computeWeaponOffense({ atk: 20, spd: 9, mag: 4, weaponPower: 5 }, rifle); // 70
+ * // gun: WP²
+ * computeWeaponOffense({ atk: 20, spd: 9, mag: 4, weaponPower: 7 }, gun);   // 49
+ * ```
+ *
+ * Throws a `RangeError` for malformed inputs; returns a non-negative integer.
+ * The caller's input and formula are never mutated.
+ */
+export function computeWeaponOffense(input: WeaponOffenseInput, formula: WeaponFormula): number {
+  const { atk, spd, mag, weaponPower } = input;
+  assertNonNegativeInteger(atk, "weapon offense.atk");
+  assertNonNegativeInteger(spd, "weapon offense.spd");
+  assertNonNegativeInteger(mag, "weapon offense.mag");
+  assertNonNegativeInteger(weaponPower, "weapon offense.weaponPower");
+  assertWeaponFormula(formula);
+
+  if (formula.weaponPowerMode === "square") {
+    return weaponPower * weaponPower;
+  }
+
+  const statTerm = formula.atkWeight * atk + formula.spdWeight * spd + formula.magWeight * mag;
+  const factor = Math.floor(statTerm / formula.offenseDivisor);
+  return factor * weaponPower;
+}
+
+/**
+ * Compute Steel damage for a specific weapon family: resolve the family's
+ * offense term with {@link computeWeaponOffense}, then run the shared
+ * {@link computeSteelDamage} kernel.
+ *
+ * ```ts
+ * const sabre = { ...WeaponFormula, atkWeight: 1, spdWeight: 0, magWeight: 0,
+ *                 offenseDivisor: 1, weaponPowerMode: "multiply" };
+ * computeWeaponDamage(
+ *   { atk: 20, spd: 9, mag: 4, weaponPower: 5, targetWeaponDef: 10, power: 100 },
+ *   sabre,
+ * ); // (20×5 − 10/2) × 100/100 = 95
+ * ```
+ *
+ * Throws a `RangeError` for malformed inputs or formulas; returns a
+ * non-negative integer.
+ */
+export function computeWeaponDamage(input: WeaponDamageInput, formula: WeaponFormula): number {
+  const { targetWeaponDef, power, ...offense } = input;
+  const weaponAtk = computeWeaponOffense(offense, formula);
+  return computeSteelDamage({ weaponAtk, targetWeaponDef, power }, formula);
+}

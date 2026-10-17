@@ -5,12 +5,18 @@ import {
   computeBaseDamage,
   computePowderDamage,
   computeSteelDamage,
+  computeWeaponDamage,
+  computeWeaponOffense,
   POWDER_FORMULA,
   STEEL_FORMULA,
   type DamageFormula,
   type PowderDamageInput,
   type SteelDamageInput,
+  type WeaponFormula,
+  type WeaponOffenseInput,
 } from "../../src/engine/rules/damage";
+import { getWeaponFamily, WEAPON_FAMILIES } from "../../src/data/weapons";
+import { WEAPON_TYPES } from "../../src/data/schema";
 
 /* --------------------------------------------------------------------------
  * T033 — Steel (physical) damage
@@ -169,9 +175,9 @@ describe("computePowderDamage", () => {
     // base = 30 − floor(11 / 2) = 30 − 5 = 25; × 100 / 100 = 25.
     expect(computePowderDamage(powderInput({ targetMagicRes: 11 }))).toBe(25);
     // base = 20 − floor(7 / 2) = 20 − 3 = 17; × 33 / 100 = 5.61 → 5.
-    expect(
-      computePowderDamage(powderInput({ magicPower: 20, targetMagicRes: 7, power: 33 })),
-    ).toBe(5);
+    expect(computePowderDamage(powderInput({ magicPower: 20, targetMagicRes: 7, power: 33 }))).toBe(
+      5,
+    );
   });
 
   it("floors at zero when the defender's Magic Resistance exceeds the attack", () => {
@@ -280,5 +286,210 @@ describe("STEEL_FORMULA", () => {
 describe("POWDER_FORMULA", () => {
   it("encodes the scraped FFTA magical coefficients as our authored balance data", () => {
     expect(POWDER_FORMULA).toEqual({ defenseDivisor: 2, powerDivisor: 100 });
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T035 — Weapon-type variants
+ *
+ * Pins the task's "done when": the per-family formulas from
+ * `docs/wiki/pages/Attack_(command).md` (the Final Fantasy Tactics variant
+ * list), re-authored as data in `src/data/weapons.ts`. The engine exposes the
+ * generic `computeWeaponOffense` / `computeWeaponDamage`; the data supplies the
+ * coefficients, so no weapon id is special-cased in code.
+ * ------------------------------------------------------------------------ */
+
+describe("computeWeaponOffense", () => {
+  function offense(overrides: Partial<WeaponOffenseInput> = {}): WeaponOffenseInput {
+    return { atk: 20, spd: 10, mag: 8, weaponPower: 5, ...overrides };
+  }
+
+  it("scales a melee family off the attacker's atk (PA × WP)", () => {
+    // floor((1×20 + 0 + 0)/1) × 5 = 100.
+    expect(computeWeaponOffense(offense(), WEAPON_FAMILIES.sabre.formula)).toBe(100);
+    expect(computeWeaponOffense(offense(), WEAPON_FAMILIES.lance.formula)).toBe(100);
+    // The melee shape ignores spd and mag entirely.
+    expect(computeWeaponOffense(offense({ spd: 99, mag: 99 }), WEAPON_FAMILIES.sabre.formula)).toBe(
+      100,
+    );
+  });
+
+  it("averages atk and spd for precision families ((PA + Spd)/2 × WP)", () => {
+    // floor((20 + 10)/2) = 15; 15 × 5 = 75.
+    expect(computeWeaponOffense(offense(), WEAPON_FAMILIES.rifle.formula)).toBe(75);
+    expect(computeWeaponOffense(offense(), WEAPON_FAMILIES.bow.formula)).toBe(75);
+    // Truncation is observable with an odd sum: floor((21 + 10)/2) = 15.
+    expect(computeWeaponOffense(offense({ atk: 21 }), WEAPON_FAMILIES.carbine.formula)).toBe(75);
+  });
+
+  it("squares weapon power for the gun and ignores the attacker's stats (WP²)", () => {
+    expect(computeWeaponOffense(offense({ weaponPower: 7 }), WEAPON_FAMILIES.gun.formula)).toBe(49);
+    expect(
+      computeWeaponOffense(
+        offense({ weaponPower: 7, atk: 0, spd: 0, mag: 0 }),
+        WEAPON_FAMILIES.gun.formula,
+      ),
+    ).toBe(49);
+  });
+
+  it("scales a staff off the attacker's mag (MA × WP)", () => {
+    // floor((0 + 0 + 1×15)/1) × 5 = 75; atk/spd are ignored.
+    expect(computeWeaponOffense(offense({ mag: 15 }), WEAPON_FAMILIES.staff.formula)).toBe(75);
+  });
+
+  it("averages atk and mag for an instrument ((PA + MA)/2 × WP)", () => {
+    // floor((20 + 8)/2) = 14; 14 × 5 = 70.
+    expect(computeWeaponOffense(offense(), WEAPON_FAMILIES.instrument.formula)).toBe(70);
+  });
+
+  it("returns zero offense for an unloaded weapon", () => {
+    expect(computeWeaponOffense(offense({ weaponPower: 0 }), WEAPON_FAMILIES.sabre.formula)).toBe(
+      0,
+    );
+    expect(computeWeaponOffense(offense({ weaponPower: 0 }), WEAPON_FAMILIES.gun.formula)).toBe(0);
+  });
+
+  it("is deterministic and does not mutate its inputs", () => {
+    const input = offense({ atk: 13, spd: 7 });
+    const snapshot = { ...input };
+    const formula = WEAPON_FAMILIES.rifle.formula;
+
+    const first = computeWeaponOffense(input, formula);
+    const second = computeWeaponOffense(input, formula);
+
+    expect(first).toBe(second);
+    expect(input).toEqual(snapshot);
+  });
+
+  it("rejects malformed stats and formulas at the boundary", () => {
+    expect(() => computeWeaponOffense(offense({ atk: -1 }), WEAPON_FAMILIES.sabre.formula)).toThrow(
+      RangeError,
+    );
+    expect(() =>
+      computeWeaponOffense(offense({ weaponPower: 1.5 }), WEAPON_FAMILIES.sabre.formula),
+    ).toThrow(RangeError);
+
+    const badDivisor: WeaponFormula = { ...WEAPON_FAMILIES.sabre.formula, offenseDivisor: 0 };
+    expect(() => computeWeaponOffense(offense(), badDivisor)).toThrow(RangeError);
+
+    const badWeight: WeaponFormula = { ...WEAPON_FAMILIES.sabre.formula, spdWeight: -1 };
+    expect(() => computeWeaponOffense(offense(), badWeight)).toThrow(RangeError);
+
+    const badMode = {
+      ...WEAPON_FAMILIES.sabre.formula,
+      weaponPowerMode: "divide" as unknown as WeaponFormula["weaponPowerMode"],
+    };
+    expect(() => computeWeaponOffense(offense(), badMode)).toThrow(RangeError);
+  });
+});
+
+describe("computeWeaponDamage", () => {
+  it("runs the family offense through the shared Steel kernel", () => {
+    const base = { atk: 20, spd: 10, mag: 8, weaponPower: 5, targetWeaponDef: 10, power: 100 };
+
+    // sabre: offense 100 → (100 − 5) × 100/100 = 95.
+    expect(computeWeaponDamage(base, WEAPON_FAMILIES.sabre.formula)).toBe(95);
+    // rifle: offense 75 → (75 − 5) × 100/100 = 70.
+    expect(computeWeaponDamage(base, WEAPON_FAMILIES.rifle.formula)).toBe(70);
+    // instrument: offense 70 → (70 − 5) × 100/100 = 65.
+    expect(computeWeaponDamage(base, WEAPON_FAMILIES.instrument.formula)).toBe(65);
+  });
+
+  it("applies the action Power term after the variant offense", () => {
+    // gun: offense 49, base 49 − 5 = 44, then × 50/100 = 22.
+    expect(
+      computeWeaponDamage(
+        { atk: 0, spd: 0, mag: 0, weaponPower: 7, targetWeaponDef: 10, power: 50 },
+        WEAPON_FAMILIES.gun.formula,
+      ),
+    ).toBe(22);
+    // staff: offense 60, base 60 − 4 = 56, then × 200/100 = 112.
+    expect(
+      computeWeaponDamage(
+        { atk: 0, spd: 0, mag: 15, weaponPower: 4, targetWeaponDef: 8, power: 200 },
+        WEAPON_FAMILIES.staff.formula,
+      ),
+    ).toBe(112);
+  });
+
+  it("floors a variant hit at zero when the defender's guard wins", () => {
+    expect(
+      computeWeaponDamage(
+        { atk: 3, spd: 3, mag: 3, weaponPower: 1, targetWeaponDef: 1000, power: 100 },
+        WEAPON_FAMILIES.sabre.formula,
+      ),
+    ).toBe(0);
+  });
+
+  it("is deterministic and does not mutate its inputs", () => {
+    const input = {
+      atk: 20,
+      spd: 10,
+      mag: 8,
+      weaponPower: 5,
+      targetWeaponDef: 12,
+      power: 175,
+    };
+    const snapshot = { ...input };
+    const formula = WEAPON_FAMILIES.blade.formula;
+
+    const first = computeWeaponDamage(input, formula);
+    const second = computeWeaponDamage(input, formula);
+
+    expect(first).toBe(second);
+    expect(input).toEqual(snapshot);
+  });
+});
+
+describe("WEAPON_FAMILIES (T035 data)", () => {
+  it("authors a validated family for every WeaponType", () => {
+    expect(Object.keys(WEAPON_FAMILIES).sort()).toEqual([...WEAPON_TYPES].sort());
+    for (const type of WEAPON_TYPES) {
+      const family = getWeaponFamily(type);
+      expect(family.id).toBe(type);
+      expect(family.name.trim()).not.toBe("");
+      expect(family.description.trim()).not.toBe("");
+      expect(family.flavour.trim()).not.toBe("");
+    }
+  });
+
+  it("pins the required reference variants (sabre, lance, rifle, gun, instrument)", () => {
+    expect(WEAPON_FAMILIES.sabre.formula).toMatchObject({
+      atkWeight: 1,
+      offenseDivisor: 1,
+      weaponPowerMode: "multiply",
+    });
+    expect(WEAPON_FAMILIES.lance.formula).toMatchObject({
+      atkWeight: 1,
+      offenseDivisor: 1,
+      weaponPowerMode: "multiply",
+    });
+    expect(WEAPON_FAMILIES.rifle.formula).toMatchObject({
+      atkWeight: 1,
+      spdWeight: 1,
+      offenseDivisor: 2,
+      weaponPowerMode: "multiply",
+    });
+    expect(WEAPON_FAMILIES.gun.formula).toMatchObject({
+      weaponPowerMode: "square",
+      atkWeight: 0,
+      spdWeight: 0,
+      magWeight: 0,
+    });
+    expect(WEAPON_FAMILIES.instrument.formula).toMatchObject({
+      atkWeight: 1,
+      magWeight: 1,
+      offenseDivisor: 2,
+      weaponPowerMode: "multiply",
+    });
+  });
+
+  it("keeps the shared Steel kernel coefficients on every family", () => {
+    for (const type of WEAPON_TYPES) {
+      expect(WEAPON_FAMILIES[type].formula).toMatchObject({
+        defenseDivisor: 2,
+        powerDivisor: 100,
+      });
+    }
   });
 });
