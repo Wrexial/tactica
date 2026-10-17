@@ -5,6 +5,7 @@ import { createDemoBattle } from "../app/demoScenario";
 import { createInputController, type InputController } from "../app/input";
 import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
+import { Menus } from "./Menus";
 import { Mess } from "./Mess";
 import { PostScreen } from "./PostScreen";
 import { TempoTray } from "./TempoTray";
@@ -35,7 +36,9 @@ export function App() {
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
   const [animations, setAnimations] = useState<readonly BattleAnimation[]>([]);
-  const [view, setView] = useState<"battle" | "posts" | "mess" | "map" | "depot">("battle");
+  const [view, setView] = useState<"battle" | "menus" | "posts" | "mess" | "map" | "depot">(
+    "battle",
+  );
   const controllerRef = useRef(controller);
 
   const applyController = useCallback((next: BattleController) => {
@@ -134,6 +137,15 @@ export function App() {
           onClick={() => setView("battle")}
         >
           Field
+        </button>
+        <button
+          type="button"
+          className={view === "menus" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-menu"
+          aria-pressed={view === "menus"}
+          onClick={() => setView("menus")}
+        >
+          Camp Orders
         </button>
         <button
           type="button"
@@ -243,6 +255,7 @@ export function App() {
           />
         )}
 
+        {view === "menus" && <Menus onClose={() => setView("battle")} />}
         {view === "posts" && <PostScreen />}
         {view === "mess" && <Mess />}
         {view === "map" && <CampaignMap />}

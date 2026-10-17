@@ -658,7 +658,7 @@ deterministic.
 - done: Upcoming turn order is visualised.
 
 ### T084 — Menu suite
-- status: todo
+- status: done
 - deps: [T052, T071, T075]
 - files: src/ui/Menus.tsx
 - verify: npm run test:e2e
