@@ -83,6 +83,7 @@ import {
 import {
   ABILITY_SLOT_KEYS,
   attachedPostOf,
+  canEquipItem,
   createPostAssignment,
   derivePostStats,
   primaryPostOf,
@@ -480,18 +481,8 @@ function unitPost(unit: Unit): PostDef {
 
 /** Whether a soldier on `assignment` may fill `slot` with `item`. */
 function canEquip(unit: Unit, item: EquipmentDef): boolean {
-  const post = unitPost(unit);
-  if (!post.equipSlots.includes(item.slot)) return false;
-  if (item.restrictedTo.includes(unit.power)) return false;
-  if (
-    item.slot === "weapon" &&
-    item.weaponType !== undefined &&
-    post.weaponTypes.length > 0 &&
-    !post.weaponTypes.includes(item.weaponType)
-  ) {
-    return false;
-  }
-  return true;
+  // The post's kit list is the baseline; `canEquipItem` owns the rule (T051).
+  return canEquipItem(unitPost(unit), item, unit.power);
 }
 
 /** Every item a soldier may put in `slot`, in canonical authoring order. */

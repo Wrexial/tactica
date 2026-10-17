@@ -429,7 +429,7 @@ deterministic.
 - done: UI gates post changes by unlock requirements and shows drill progress.
 
 ### T053 — Progression validation + tests
-- status: todo
+- status: done
 - deps: [T047, T048, T049, T051]
 - files: tests/unit/progression.test.ts
 - verify: npm run test -- --run tests/unit/progression.test.ts

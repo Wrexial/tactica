@@ -66,7 +66,14 @@ import {
   type MasteredByPost,
   type PostKey,
 } from "../../data/posts";
-import type { AbilityClass, PostDef, PowerKey, StatBlock, StatGrowth } from "../../data/schema";
+import type {
+  AbilityClass,
+  EquipmentDef,
+  PostDef,
+  PowerKey,
+  StatBlock,
+  StatGrowth,
+} from "../../data/schema";
 import {
   asPostId,
   asSkillsetId,
@@ -364,6 +371,56 @@ export function deriveUnitPostStats(
   options: PostStatOptions = {},
 ): StatBlock {
   return derivePostStats({ level: unit.level, assignment, ...options });
+}
+
+/* --------------------------------------------------------------------------
+ * Kit legality
+ * ------------------------------------------------------------------------ */
+
+/**
+ * Whether a soldier holding `post` — optionally of `power` — may equip `item`.
+ *
+ * FFTA's job equipment list is the baseline legality: a post may fill only the
+ * slots it declares (`PostDef.equipSlots`) and may carry only the weapon
+ * families it is trained to use (`PostDef.weaponTypes`, T050). A piece of kit
+ * may additionally bar a whole power (`EquipmentDef.restrictedTo`). Stat
+ * modifiers, elements and `teaches` bindings are unaffected — this only answers
+ * "may the item be worn at all?".
+ *
+ * The rule is pure and data-driven, and mirrors the gating the equip screen
+ * draws: pass `power` to include the item's power restriction, or omit it when
+ * authoring or previewing kit without a soldier.
+ *
+ * ```ts
+ * canEquipItem(POSTS.rifleman, EQUIPMENT["baker-rifle"], "britain");      // true
+ * canEquipItem(POSTS.rifleman, EQUIPMENT["charleville-musket"], "britain"); // false
+ * canEquipItem(POSTS.rifleman, EQUIPMENT["pavise-shield"], "britain");     // false
+ * ```
+ */
+export function canEquipItem(post: PostDef, item: EquipmentDef, power?: PowerKey): boolean {
+  if (!post.equipSlots.includes(item.slot)) return false;
+  if (power !== undefined && item.restrictedTo.includes(power)) return false;
+  if (
+    item.slot === "weapon" &&
+    item.weaponType !== undefined &&
+    post.weaponTypes.length > 0 &&
+    !post.weaponTypes.includes(item.weaponType)
+  ) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Every item from `items` that the soldier may legally equip, in the order
+ * supplied. A convenience over {@link canEquipItem} for the equip screen.
+ */
+export function equippableItems(
+  post: PostDef,
+  items: readonly EquipmentDef[],
+  power?: PowerKey,
+): readonly EquipmentDef[] {
+  return items.filter((item) => canEquipItem(post, item, power));
 }
 
 /* --------------------------------------------------------------------------
