@@ -28,7 +28,9 @@ import {
   elevationDeltaFor,
 } from "../app/targetingPreview";
 import { actionSpecOf } from "../engine/actions/resolve";
+import { findAbility } from "../data/abilities";
 import { asContractId } from "../engine/ids";
+import type { BattleEvent } from "../engine/events";
 import type { Objective } from "../engine/objectives";
 import { isOutOfAction } from "../engine/unit";
 import type { ContractDef } from "../data/schema";
@@ -167,6 +169,13 @@ export function App() {
   const [fieldEpoch, setFieldEpoch] = useState(0);
   const campaignRef = useRef(campaign);
   campaignRef.current = campaign;
+
+  // The last order's events, tracked by identity so its animation cues and
+  // screen-reader announcement play exactly **once**. The controller object is
+  // replaced on every cursor move, selection and menu step, so keying the
+  // effects on the controller replays the last march's animation each time.
+  const playedEventsRef = useRef<readonly BattleEvent[] | null>(null);
+  const announcedEventsRef = useRef<readonly BattleEvent[] | null>(null);
 
   const applyController = useCallback((next: BattleController) => {
     // Update the ref synchronously so fast key sequences never read a stale
@@ -379,14 +388,21 @@ export function App() {
       unitAt: (unitId) => unitById.get(unitId)?.at,
       unitName: (unitId) => unitById.get(unitId)?.name,
     });
-    scene.playAnimations(cues);
-    setAnimations(cues);
+    // Replay a dispatch's cues only when it actually produced new events; the
+    // unit/overlay sync above still runs on every controller change.
+    if (controller.lastEvents !== playedEventsRef.current) {
+      playedEventsRef.current = controller.lastEvents;
+      scene.playAnimations(cues);
+      setAnimations(cues);
+    }
   }, [controller, targeting]);
 
   // T109 — read the resolved battle events aloud through the live region, so a
   // screen-reader player hears the same report the battle log shows. The
   // description is pure (`describeEvents`) and skips bookkeeping events.
   useEffect(() => {
+    if (controller.lastEvents === announcedEventsRef.current) return;
+    announcedEventsRef.current = controller.lastEvents;
     const text = describeEvents(controller.lastEvents, {
       unitName: (unitId) => controller.battle.units.find((unit) => unit.id === unitId)?.name,
     });
@@ -640,7 +656,9 @@ export function App() {
                           applyController(chooseAction(controllerRef.current, option.id))
                         }
                       >
-                        <span className="action-menu__name">{option.id}</span>
+                        <span className="action-menu__name">
+                          {findAbility(option.id)?.name ?? option.id}
+                        </span>
                         <span className="action-menu__cost">
                           {t("hud.elanCost", { amount: option.spec.mpCost })}
                         </span>

@@ -21,6 +21,8 @@
 
 import { useMemo } from "react";
 
+import { findAbility } from "../data/abilities";
+
 import type { BattleState } from "../engine/battle";
 import type { Target } from "../engine/commands";
 import type { UnitId } from "../engine/ids";
@@ -181,7 +183,7 @@ export function Forecast({ battle, actorId, spec, target, options }: ForecastPro
       <header className="forecast__header">
         <h3>{t("forecast.title")}</h3>
         <span className="forecast__ability" data-testid="forecast-ability">
-          {forecast.abilityId}
+          {findAbility(forecast.abilityId)?.name ?? forecast.abilityId}
         </span>
       </header>
 
