@@ -842,7 +842,7 @@ deterministic.
 - done: Royalty-free SFX for UI, volleys, guns and cards.
 
 ### T108 — Music
-- status: todo
+- status: done
 - deps: [T107]
 - files: src/audio/music.ts
 - verify: npm run build
