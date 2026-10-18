@@ -23,6 +23,7 @@ import { Menus } from "./Menus";
 import { Mess } from "./Mess";
 import { PostScreen } from "./PostScreen";
 import { Saves } from "./Saves";
+import { Settings } from "./Settings";
 import { TempoTray } from "./TempoTray";
 import { animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
@@ -60,7 +61,7 @@ export function App() {
   const [animations, setAnimations] = useState<readonly BattleAnimation[]>([]);
   const [inputReady, setInputReady] = useState(false);
   const [view, setView] = useState<
-    "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves"
+    "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves" | "settings"
   >("battle");
   const controllerRef = useRef(controller);
   const viewRef = useRef(view);
@@ -291,6 +292,15 @@ export function App() {
         >
           Saves
         </button>
+        <button
+          type="button"
+          className={view === "settings" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-settings"
+          aria-pressed={view === "settings"}
+          onClick={() => setView("settings")}
+        >
+          Settings
+        </button>
       </nav>
 
       <main className="stage">
@@ -424,6 +434,7 @@ export function App() {
         {view === "map" && <CampaignMap />}
         {view === "depot" && <Depot />}
         {view === "saves" && <Saves />}
+        {view === "settings" && <Settings />}
       </main>
     </div>
   );
