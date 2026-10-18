@@ -810,7 +810,7 @@ deterministic.
 - done: Volume, text speed, damage numbers, colour-blind mode and keybinds.
 
 ### T104 — Error boundary + save migrations
-- status: todo
+- status: done
 - deps: [T100]
 - files: src/app/ErrorBoundary.tsx, src/persist/migrations.ts
 - verify: npm run test -- --run tests/unit/persist.test.ts

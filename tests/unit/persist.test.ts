@@ -41,6 +41,20 @@ import {
 import { createPostAssignment, derivePostStats } from "../../src/engine/progression/posts";
 import { createUnit } from "../../src/engine/unit";
 
+import {
+  CAMPAIGN_MIGRATIONS,
+  SAVE_ENVELOPE_MIGRATIONS,
+  SaveMigrationError,
+  applyMigrations,
+  defineMigrations,
+  deserializeCampaignMigrated,
+  loadCampaignMigrated,
+  migrateCampaignPayload,
+  migrateSaveEnvelope,
+  readPayloadVersion,
+  type MigrationTable,
+} from "../../src/persist/migrations";
+
 /* --------------------------------------------------------------------------
  * T100 — SaveStore + IndexedDB
  *
@@ -597,5 +611,197 @@ describe("campaign SaveStore round-trip", () => {
       code: "invalid-company",
     });
     await store.close();
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T104 — Error boundary + save migrations
+ *
+ * Pins the "done when": **graceful failures** (an error boundary, covered in
+ * `tests/unit/errorBoundary.test.ts`) and **versioned save migrations**. The
+ * registered tables ship empty at the v1 baseline, so the machinery is
+ * exercised here with a synthetic v1 → v2 → v3 chain, then confirmed against a
+ * real campaign.
+ * ------------------------------------------------------------------------ */
+
+/** The error code a thrown {@link SaveMigrationError} carried, for compact asserts. */
+function migrationErrorCode(run: () => unknown): string | undefined {
+  try {
+    run();
+    return undefined;
+  } catch (error) {
+    return error instanceof SaveMigrationError ? error.code : `unexpected: ${String(error)}`;
+  }
+}
+
+/** A three-step synthetic table used to prove the ordering/versioning rules. */
+function migrationChain(): MigrationTable {
+  return defineMigrations("test save", [
+    {
+      from: 1,
+      to: 2,
+      summary: "introduce Crowns",
+      migrate: (payload) => ({ ...payload, crowns: 0 }),
+    },
+    {
+      from: 2,
+      to: 3,
+      summary: "rename crowns to gold",
+      migrate: (payload) => {
+        const { crowns, ...rest } = payload;
+        return { ...rest, gold: crowns };
+      },
+    },
+  ]);
+}
+
+describe("applyMigrations", () => {
+  it("is an identity for a payload already at the target version", () => {
+    const payload = { version: 1, seed: "campaign-1815" };
+    const result = applyMigrations(payload, { table: migrationChain(), target: 1 });
+    expect(result.migrated).toBe(false);
+    expect(result.applied).toEqual([]);
+    expect(result.fromVersion).toBe(1);
+    expect(result.toVersion).toBe(1);
+    expect(result.payload).toBe(payload);
+  });
+
+  it("runs every step in order and stamps the version after each one", () => {
+    const result = applyMigrations(
+      { version: 1, seed: "campaign-1815" },
+      { table: migrationChain(), target: 3 },
+    );
+
+    expect(result.migrated).toBe(true);
+    expect(result.fromVersion).toBe(1);
+    expect(result.toVersion).toBe(3);
+    expect(result.applied.map((step) => `${step.from}->${step.to}`)).toEqual(["1->2", "2->3"]);
+    expect(result.payload).toEqual({ version: 3, seed: "campaign-1815", gold: 0 });
+  });
+
+  it("never mutates the input payload", () => {
+    const payload = { version: 1, seed: "campaign-1815" };
+    applyMigrations(payload, { table: migrationChain(), target: 3 });
+    expect(payload).toEqual({ version: 1, seed: "campaign-1815" });
+  });
+
+  it("starts a partial chain from the record's own version", () => {
+    const result = applyMigrations(
+      { version: 2, seed: "campaign-1815", crowns: 12 },
+      { table: migrationChain(), target: 3 },
+    );
+    expect(result.applied.map((step) => step.from)).toEqual([2]);
+    expect(result.payload).toEqual({ version: 3, seed: "campaign-1815", gold: 12 });
+  });
+
+  it("rejects corrupt and future records", () => {
+    const table = migrationChain();
+    expect(migrationErrorCode(() => applyMigrations(null, { table, target: 3 }))).toBe("corrupt");
+    expect(migrationErrorCode(() => applyMigrations({ seed: "x" }, { table, target: 3 }))).toBe(
+      "corrupt",
+    );
+    expect(migrationErrorCode(() => applyMigrations({ version: 0 }, { table, target: 3 }))).toBe(
+      "corrupt",
+    );
+    expect(migrationErrorCode(() => applyMigrations({ version: 9 }, { table, target: 3 }))).toBe(
+      "newer-version",
+    );
+    expect(() => applyMigrations(null, { table, target: 3 })).toThrow(/not a JSON object/);
+  });
+
+  it("rejects a version with no registered step", () => {
+    const gapped: MigrationTable = [
+      { from: 2, to: 3, summary: "gap", migrate: (payload) => payload },
+    ];
+    expect(migrationErrorCode(() => applyMigrations({ version: 1 }, { table: gapped, target: 3 }))).toBe(
+      "no-migration",
+    );
+  });
+
+  it("rejects a step that returns a non-object", () => {
+    const bad: MigrationTable = [
+      {
+        from: 1,
+        to: 2,
+        summary: "break it",
+        migrate: () => null as unknown as Record<string, unknown>,
+      },
+    ];
+    expect(migrationErrorCode(() => applyMigrations({ version: 1 }, { table: bad, target: 2 }))).toBe(
+      "corrupt",
+    );
+  });
+
+  it("reads a version field or explains what is wrong", () => {
+    expect(readPayloadVersion({ version: 4 })).toBe(4);
+    expect(() => readPayloadVersion({})).toThrow(RangeError);
+    expect(() => readPayloadVersion([])).toThrow(RangeError);
+  });
+});
+
+describe("defineMigrations", () => {
+  it("accepts a contiguous, one-step-at-a-time table", () => {
+    const table = migrationChain();
+    expect(table.map((step) => step.from)).toEqual([1, 2]);
+    expect(Object.isFrozen(table)).toBe(true);
+    expect(SAVE_ENVELOPE_MIGRATIONS).toEqual([]);
+    expect(CAMPAIGN_MIGRATIONS).toEqual([]);
+  });
+
+  it("rejects gaps, duplicates and non-sequential jumps at construction", () => {
+    const noop = (payload: Record<string, unknown>) => payload;
+    expect(() =>
+      defineMigrations("t", [{ from: 1, to: 3, summary: "jump", migrate: noop }]),
+    ).toThrow(/exactly one version/);
+    expect(() =>
+      defineMigrations("t", [
+        { from: 1, to: 2, summary: "a", migrate: noop },
+        { from: 1, to: 2, summary: "duplicate", migrate: noop },
+      ]),
+    ).toThrow(/more than one migration/);
+    expect(() =>
+      defineMigrations("t", [
+        { from: 1, to: 2, summary: "a", migrate: noop },
+        { from: 3, to: 4, summary: "gap", migrate: noop },
+      ]),
+    ).toThrow(/every version needs a step/);
+  });
+});
+
+describe("campaign migrations", () => {
+  it("passes a current-version campaign through unchanged", () => {
+    const save = createCampaignSave(campaignInit());
+    expect(migrateCampaignPayload(save)).toEqual(save);
+    expect(migrateCampaignPayload(save).version).toBe(CAMPAIGN_SAVE_VERSION);
+  });
+
+  it("rejects a campaign from a newer format", () => {
+    const save = createCampaignSave(campaignInit());
+    expect(migrationErrorCode(() => migrateCampaignPayload({ ...save, version: 99 }))).toBe(
+      "newer-version",
+    );
+  });
+
+  it("loads and parses a campaign through the migration-aware path", async () => {
+    const store = createMemorySaveStore();
+    const save = createCampaignSave(campaignInit());
+    await store.save("alpha", save, { label: "The Greycoats" });
+
+    await expect(loadCampaignMigrated(store, "alpha")).resolves.toEqual(save);
+    await expect(loadCampaignMigrated(store, "missing")).resolves.toBeNull();
+    await store.close();
+  });
+
+  it("parses JSON through the migration-aware path", () => {
+    const save = createCampaignSave(campaignInit());
+    expect(deserializeCampaignMigrated(serializeCampaign(save))).toEqual(save);
+    expect(() => deserializeCampaignMigrated("{ not json")).toThrow(CampaignSaveError);
+  });
+});
+
+describe("save envelope migrations", () => {
+  it("carries a current envelope through unchanged", () => {
+    const envelope = { version: SAVE_FORMAT_VERSION, savedAt: 7, label: "Alpha", data: { x: 1 } };
+    expect(migrateSaveEnvelope(envelope)).toEqual(envelope);
   });
 });

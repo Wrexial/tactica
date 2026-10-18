@@ -10,10 +10,10 @@
  *
  * ```
  *   SavedCampaign ─┐
- *                  ├─► saveCampaign / loadCampaign ─► SaveStore slot
+ *                  ├─► saveCampaign / loadCampaignMigrated ─► SaveStore slot
  *   campaign state ┘
  *                  ├─► serializeCampaign   ─► export JSON
- *                  └─► deserializeCampaign ─► import JSON
+ *                  └─► deserializeCampaignMigrated ─► import JSON
  * ```
  *
  * ## What this screen owns
@@ -65,9 +65,9 @@ import {
   createCampaignSave,
   createIndexedDbSaveStore,
   createMemorySaveStore,
-  deserializeCampaign,
+  deserializeCampaignMigrated,
   isIndexedDbAvailable,
-  loadCampaign,
+  loadCampaignMigrated,
   saveCampaign,
   serializeCampaign,
   type CampaignSave,
@@ -335,7 +335,7 @@ export function Saves({
   const handleLoad = async (slot: string): Promise<void> => {
     setBusy(true);
     try {
-      const loaded = await loadCampaign(store, slot);
+      const loaded = await loadCampaignMigrated(store, slot);
       if (loaded === null) {
         pushLedger("error", `${slot} is empty.`);
         return;
@@ -397,7 +397,7 @@ export function Saves({
   /** Validate pasted JSON and adopt it as the working campaign. */
   const handleImport = (): void => {
     try {
-      const imported = deserializeCampaign(importText);
+      const imported = deserializeCampaignMigrated(importText);
       setCampaign(imported);
       onChange?.(imported);
       pushLedger("success", `Imported ${campaignLabel(imported)} from JSON.`);
