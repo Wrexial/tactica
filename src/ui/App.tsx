@@ -10,20 +10,22 @@ import {
 } from "../app/battleController";
 import {
   activeContractName,
-  advanceCampaignBattle,
+  campaignAiHoldsTurn,
   campaignBattleController,
   createCampaignState,
   createDemoCampaign,
   dismissCampaignResult,
   resolveCampaignBattle,
+  runCampaignTurn,
   startCampaignBattle,
   type CampaignState,
 } from "../app/campaignController";
 import { createDemoBattle } from "../app/demoScenario";
 import {
-  advanceSkirmishBattle,
   createSkirmishBattle,
   resolveSkirmishBattle,
+  runSkirmishTurn,
+  skirmishAiHoldsTurn,
   SKIRMISH_NAME,
 } from "../app/skirmishScenario";
 import { createInputController, type InputController } from "../app/input";
@@ -64,7 +66,7 @@ import { Settings } from "./Settings";
 import { LobbyScreen } from "./Lobby";
 import { TempoTray } from "./TempoTray";
 import { Tutorial } from "./Tutorial";
-import { animationsForEvents, type BattleAnimation } from "../render/animations";
+import { ANIMATION_TICK_MS, animationDurationMs, animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
 import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
@@ -138,6 +140,20 @@ function outcomeLabel(outcome: string, t: Translator): string {
   }
 }
 
+/** Beat between a resolved animation and the next AI turn, in milliseconds. */
+const AI_THINK_MS = 450;
+
+/** Slack added to an animation batch before field orders unlock, in ms. */
+const ANIMATION_BUFFER_MS = 140;
+
+/** Milliseconds per Orders Tempo tick; `0` when the player prefers reduced motion. */
+function animationTickMs(): number {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return ANIMATION_TICK_MS;
+  }
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : ANIMATION_TICK_MS;
+}
+
 /**
  * Application shell: a full-bleed battlefield canvas with a DOM HUD overlaid.
  *
@@ -154,6 +170,11 @@ export function App() {
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
   const [animations, setAnimations] = useState<readonly BattleAnimation[]>([]);
+  // While `busy`, an animation batch is still playing: the AI waits and the
+  // player cannot commit orders, so neither races the other's resolution.
+  const [busy, setBusy] = useState(false);
+  const busyRef = useRef(false);
+  const busyTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   // The Orders entry the pointer (or keyboard focus) is over, so its reach can
   // be previewed on the field before the order is chosen.
   const [previewActionId, setPreviewActionId] = useState<AbilityId | null>(null);
@@ -206,27 +227,31 @@ export function App() {
     );
   }, []);
 
-  // T121 — the campaign field loop. While the enemy holds the turn, the AI
-  // runner (T119) takes every consecutive hostile turn and hands control back
-  // to the company; when the objective fires, the reducer settles the action
-  // and a result is shown.
+  // T121 — the campaign field loop, paced one hostile turn at a time. Each
+  // burst of AI events plays out (and holds `busy`) before the next enemy acts,
+  // so the action reads like a sequence of turns rather than one jump.
   useEffect(() => {
-    if (campaign.contractId === null || campaign.result !== null) return;
-    const update = advanceCampaignBattle(campaign);
-    if (update.state === campaign) return;
-    setCampaign(update.state);
-    const next = campaignBattleController(update.state);
-    if (next !== null) applyController({ ...next, lastEvents: update.events });
-  }, [campaign, applyController]);
+    if (busy || !campaignAiHoldsTurn(campaign)) return;
+    const timer = setTimeout(() => {
+      const update = runCampaignTurn(campaignRef.current);
+      setCampaign(update.state);
+      const next = campaignBattleController(update.state);
+      if (next !== null) applyController({ ...next, lastEvents: update.events });
+    }, AI_THINK_MS);
+    return () => clearTimeout(timer);
+  }, [campaign, busy, applyController]);
 
-  // Quick Battle: while the enemy holds the turn, the Field AI takes every
-  // consecutive hostile turn and hands control back to the company.
+  // Quick Battle: pace the hostile phase one turn at a time, between animations.
   useEffect(() => {
-    if (fieldMode !== "skirmish") return;
-    const update = advanceSkirmishBattle(controllerRef.current.battle);
-    if (update === null) return;
-    applyController({ ...createBattleController(update.battle), lastEvents: update.events });
-  }, [controller, fieldMode, applyController]);
+    if (busy || fieldMode !== "skirmish") return;
+    if (!skirmishAiHoldsTurn(controllerRef.current.battle)) return;
+    const timer = setTimeout(() => {
+      const update = runSkirmishTurn(controllerRef.current.battle);
+      if (update === null) return;
+      applyController({ ...createBattleController(update.battle), lastEvents: update.events });
+    }, AI_THINK_MS);
+    return () => clearTimeout(timer);
+  }, [controller, busy, fieldMode, applyController]);
 
   // T102 — rolling autosave: every change to the working campaign is written to
   // the dedicated autosave slot, so the company always has a restore point.
@@ -245,6 +270,9 @@ export function App() {
   // T109 — accessibility basics: mirror the OS motion preference and the saved
   // colour-blind palette onto the root, and create the shared live region.
   useEffect(() => installAccessibility(), []);
+
+  // Drop any pending animation-gate timer on unmount.
+  useEffect(() => () => clearTimeout(busyTimerRef.current), []);
 
   // Announce the active screen for screen-reader users as they move in and out
   // of the camp. Harmless on the first mount and on every subsequent change.
@@ -416,6 +444,8 @@ export function App() {
         canvas,
         getCamera: () => scene.camera,
         getController: () => controllerRef.current,
+        // Orders are ignored while an animation or the AI phase resolves.
+        getLocked: () => busyRef.current,
         onControllerChange: applyController,
         getView: () => (viewRef.current === "battle" ? "battle" : "menu"),
         onBack: returnToField,
@@ -466,6 +496,18 @@ export function App() {
       playedEventsRef.current = controller.lastEvents;
       scene.playAnimations(cues);
       setAnimations(cues);
+      // Hold orders until the batch has finished playing, so the AI (or the
+      // player) cannot act on top of an unresolved action.
+      const duration = animationDurationMs(cues, animationTickMs());
+      if (duration > 0) {
+        busyRef.current = true;
+        setBusy(true);
+        clearTimeout(busyTimerRef.current);
+        busyTimerRef.current = setTimeout(() => {
+          busyRef.current = false;
+          setBusy(false);
+        }, duration + ANIMATION_BUFFER_MS);
+      }
     }
   }, [controller, targeting, targetRangeTiles]);
 

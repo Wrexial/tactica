@@ -13,14 +13,17 @@ import {
 import { CONDITION_KIND_COLORS } from "../../src/render/units";
 import {
   ANIMATED_EVENT_KINDS,
+  ANIMATION_TICK_MS,
   ARTILLERY_KEYWORDS,
   ELEMENT_COLORS,
   POPUP_COLORS,
+  animationDurationMs,
   animationsForEvents,
   animationsOfKind,
   artilleryElement,
   isArtilleryAbility,
   serializeAnimations,
+  type AnimationBase,
   type AnimationContext,
 } from "../../src/render/animations";
 
@@ -478,5 +481,25 @@ describe("queries", () => {
       CONTEXT,
     );
     expect(JSON.parse(serializeAnimations(cues))).toEqual(cues);
+  });
+});
+
+describe("animation pacing", () => {
+  const cue = (tick: number, duration: number): AnimationBase => ({
+    kind: "popup",
+    tick,
+    duration,
+    label: "fx",
+  });
+
+  it("measures a batch by its last-started cue's end", () => {
+    const cues = [cue(4, 2), cue(6, 5)];
+    // base tick 4; the second cue ends at (6 - 4) + 5 = 7 ticks.
+    expect(animationDurationMs(cues)).toBe(7 * ANIMATION_TICK_MS);
+  });
+
+  it("is zero under reduced motion or for an empty batch", () => {
+    expect(animationDurationMs([cue(0, 9)], 0)).toBe(0);
+    expect(animationDurationMs([])).toBe(0);
   });
 });

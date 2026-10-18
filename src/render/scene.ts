@@ -29,7 +29,12 @@ import {
   type TerrainType,
 } from "../engine/terrain";
 import type { Unit } from "../engine/unit";
-import { artilleryColor, type BattleAnimation, type MoveAnimation } from "./animations";
+import {
+  ANIMATION_TICK_MS,
+  artilleryColor,
+  type BattleAnimation,
+  type MoveAnimation,
+} from "./animations";
 import { worldToScreen } from "./iso";
 import { createOverlay, type BattleOverlay } from "./overlay";
 import { unitDrawOps, type UnitDrawOp } from "./units";
@@ -81,7 +86,6 @@ export interface Scene {
 const sceneChains = new WeakMap<HTMLCanvasElement, Promise<void>>();
 
 /** Milliseconds one Orders Tempo tick maps to when pacing an animation. */
-const ANIMATION_TICK_MS = 180;
 
 /**
  * Whether the visitor asked for reduced motion. Read once per scene so the

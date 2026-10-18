@@ -393,6 +393,38 @@ export function advanceCampaignBattle(state: CampaignState): CampaignUpdate {
   return { state: next, battle: run.state, events: run.events };
 }
 
+/** Whether the live campaign battle is waiting on an AI-controlled soldier. */
+export function campaignAiHoldsTurn(state: CampaignState): boolean {
+  return (
+    state.contractId !== null &&
+    state.battle !== null &&
+    state.result === null &&
+    aiHoldsTurn(state.battle)
+  );
+}
+
+/**
+ * Take exactly **one** AI soldier's turn in the live campaign battle (and settle
+ * it if that turn ends the action), so the caller can pace the enemy phase one
+ * action at a time. Returns the unchanged state when no AI soldier holds turn.
+ */
+export function runCampaignTurn(state: CampaignState): CampaignUpdate {
+  const battle = state.battle;
+  if (state.contractId === null || battle === null || state.result !== null) {
+    return { state, battle, events: [] };
+  }
+  if (battle.phase === "finished") return settleCampaignBattle(state, battle);
+  if (!aiHoldsTurn(battle)) return { state, battle, events: [] };
+
+  const run = runAiUntilPlayer(battle, { policy: DEFAULT_CONTROL_POLICY, maxTurns: 1 });
+  if (run.state.phase === "finished") {
+    const settled = settleCampaignBattle(state, run.state);
+    return { state: settled.state, battle: null, events: run.events };
+  }
+  const next: CampaignState = { ...state, battle: run.state };
+  return { state: next, battle: run.state, events: run.events };
+}
+
 /**
  * Auto-battle the **rest** of the action: hand both the enemy and the company
  * to the AI (T098) and run until the objective resolves, then apply the

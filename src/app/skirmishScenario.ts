@@ -251,15 +251,36 @@ export interface SkirmishUpdate {
  * every command goes through `step`.
  */
 export function advanceSkirmishBattle(battle: BattleState): SkirmishUpdate | null {
-  if (battle.phase === "finished") return null;
-  const actorId = battle.currentActorId;
-  if (actorId === null) return null;
-  const actor = findUnit(battle, actorId);
-  if (actor === undefined || !isAiControlled(actor, DEFAULT_CONTROL_POLICY)) return null;
+  if (!skirmishAiHoldsTurn(battle)) return null;
 
   const run = runAiUntilPlayer(battle, {
     policy: DEFAULT_CONTROL_POLICY,
     ai: AGGRESSIVE_FIELD_AI,
+  });
+  if (run.state === battle) return null;
+  return { battle: run.state, events: run.events };
+}
+
+/** Whether the quick battle is waiting on an AI-controlled soldier. */
+export function skirmishAiHoldsTurn(battle: BattleState): boolean {
+  if (battle.phase === "finished") return false;
+  const actorId = battle.currentActorId;
+  if (actorId === null) return false;
+  const actor = findUnit(battle, actorId);
+  return actor !== undefined && isAiControlled(actor, DEFAULT_CONTROL_POLICY);
+}
+
+/**
+ * Take exactly **one** AI soldier's turn in the quick battle, so the caller can
+ * pace a whole enemy phase one action at a time (animation, pause, next).
+ * Returns `null` when no AI soldier holds the turn or nothing changed.
+ */
+export function runSkirmishTurn(battle: BattleState): SkirmishUpdate | null {
+  if (!skirmishAiHoldsTurn(battle)) return null;
+  const run = runAiUntilPlayer(battle, {
+    policy: DEFAULT_CONTROL_POLICY,
+    ai: AGGRESSIVE_FIELD_AI,
+    maxTurns: 1,
   });
   if (run.state === battle) return null;
   return { battle: run.state, events: run.events };

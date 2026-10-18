@@ -632,6 +632,12 @@ export interface InputControllerOptions {
   readonly onOpenMenu?: () => void;
   /** Reads connected gamepads. Defaults to `navigator.getGamepads`. */
   readonly getGamepads?: () => readonly (Gamepad | null | undefined)[];
+  /**
+   * Whether field orders are temporarily locked (e.g. an animation or the AI
+   * phase is resolving). Cursor movement and camp menus stay live; only the
+   * orders that would commit a soldier are ignored while locked.
+   */
+  readonly getLocked?: () => boolean;
 }
 
 /** A live input binding. Call {@link InputController.dispose} on unmount. */
@@ -656,6 +662,7 @@ export function createInputController(options: InputControllerOptions): InputCon
     getView = () => "battle",
     onBack,
     onOpenMenu,
+    getLocked = () => false,
     getGamepads = () =>
       typeof navigator !== "undefined" && typeof navigator.getGamepads === "function"
         ? navigator.getGamepads()
@@ -694,6 +701,7 @@ export function createInputController(options: InputControllerOptions): InputCon
     dragged = false;
     if (!wasClick) return; // a camera drag, handled by the scene
     if (event.pointerType === "mouse" && event.button !== 0) return;
+    if (locked()) return;
     const at = tileForPointer(event.clientX, event.clientY);
     if (at !== null) onControllerChange(clickTile(getController(), at));
   };
@@ -706,6 +714,9 @@ export function createInputController(options: InputControllerOptions): InputCon
   /* ---- shared intents --------------------------------------------------- */
 
   const menuMode = (): boolean => isMenuMode(getView());
+
+  /** Field orders are ignored while an animation or the AI phase resolves. */
+  const locked = (): boolean => !menuMode() && getLocked();
 
   const handleDirection = (direction: Direction): void => {
     if (menuMode()) {
@@ -720,6 +731,7 @@ export function createInputController(options: InputControllerOptions): InputCon
       activateFocused();
       return;
     }
+    if (locked()) return;
     const controller = getController();
     if (ordersAwait(controller, controller.cursor) && focusOrdersMenu()) return;
     onControllerChange(activateCursor(controller));
@@ -736,6 +748,7 @@ export function createInputController(options: InputControllerOptions): InputCon
 
   const handleOrders = (): void => {
     if (getView() !== "battle") return;
+    if (locked()) return;
     focusOrdersMenu();
   };
 

@@ -50,6 +50,31 @@ import { conditionIcon } from "./units";
  * Cue vocabulary
  * ------------------------------------------------------------------------ */
 
+/**
+ * Milliseconds one Orders Tempo tick maps to when pacing an animation. The
+ * scene and `animationDurationMs` share it so the app can queue the next
+ * battler only once the prior action has actually finished playing.
+ */
+export const ANIMATION_TICK_MS = 180;
+
+/**
+ * The wall-clock length of a batch of cues: the last-started cue's end, in
+ * milliseconds. `tickMs` is {@link ANIMATION_TICK_MS} normally and `0` under
+ * reduced motion. Returns `0` for an empty batch.
+ */
+export function animationDurationMs(
+  animations: readonly AnimationBase[],
+  tickMs: number = ANIMATION_TICK_MS,
+): number {
+  if (animations.length === 0) return 0;
+  const base = animations[0].tick;
+  let ticks = 0;
+  for (const animation of animations) {
+    ticks = Math.max(ticks, animation.tick - base + animation.duration);
+  }
+  return ticks * tickMs;
+}
+
 /** Every animation family the renderer knows how to play. */
 export const ANIMATION_KINDS = ["move", "volley", "artillery", "popup"] as const;
 export type AnimationKind = (typeof ANIMATION_KINDS)[number];

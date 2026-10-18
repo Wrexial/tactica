@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { DEFAULT_CONTROL_POLICY, autoBattleAllies } from "../../src/app/autoBattle";
 import { AGGRESSIVE_FIELD_AI, runAiUntilPlayer } from "../../src/app/battleRunner";
-import { advanceSkirmishBattle, createSkirmishBattle } from "../../src/app/skirmishScenario";
+import { advanceSkirmishBattle, createSkirmishBattle, runSkirmishTurn, skirmishAiHoldsTurn } from "../../src/app/skirmishScenario";
 import { step } from "../../src/engine/battle";
 
 /**
@@ -47,6 +47,21 @@ describe("quick battle scene", () => {
 
   it("does not act while the company holds the turn", () => {
     expect(advanceSkirmishBattle(createSkirmishBattle())).toBeNull();
+  });
+
+  it("takes exactly one hostile turn at a time", () => {
+    // Pass the company's opening turns until an enemy holds the turn.
+    let battle = createSkirmishBattle();
+    for (let guard = 0; guard < 8 && battle.phase === "active" && !skirmishAiHoldsTurn(battle); guard++) {
+      const actor = battle.units.find((unit) => unit.id === battle.currentActorId)!;
+      battle = step(battle, { kind: "wait", unitId: actor.id }).state;
+    }
+    expect(skirmishAiHoldsTurn(battle)).toBe(true);
+
+    const update = runSkirmishTurn(battle);
+    expect(update).not.toBeNull();
+    // Exactly one Orders Tempo turn closed — the caller paces the rest.
+    expect(update!.events.filter((event) => event.kind === "turnEnded")).toHaveLength(1);
   });
 
   it("takes enemy turns and hands control back to the company", () => {
