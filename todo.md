@@ -971,7 +971,7 @@ if company allies should also be automated. Keep it pure and deterministic
 (seeded RNG lives in state) and guard against a turn that never yields.
 
 ### T120 — Campaign progression: accept, outcome, day
-- status: todo
+- status: done
 - deps: [T101, T118, T031, T055, T076]
 - files: src/app/campaign.ts, tests/unit/campaignProgression.test.ts
 - verify: npm run test -- --run tests/unit/campaignProgression.test.ts

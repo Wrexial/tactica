@@ -6,3 +6,4 @@
 export * from "./autoBattle";
 export * from "./battleRunner";
 export * from "./battleSetup";
+export * from "./campaign";
