@@ -537,13 +537,31 @@ interface EndTurnResult {
  * the only place the flag is reset.
  */
 function endTurn(state: BattleState, actorId: UnitId): EndTurnResult {
-  const spent = spendTurn(state.tempo, actorId);
-  const next = advanceToNextTurn(spent, battleSpeedOf(state));
+  const speedOf = battleSpeedOf(state);
+  const isDowned = (id: UnitId): boolean => {
+    const unit = state.units.find((candidate) => candidate.id === id);
+    return unit === undefined || isOutOfAction(unit);
+  };
+
+  let tempo = spendTurn(state.tempo, actorId);
+  let next = advanceToNextTurn(tempo, speedOf);
+  const resolved: ResolvedCharge[] = [];
+
+  // A casualty can still be holding a ready turn — killed by a charge or a
+  // reaction that landed on somebody else's turn — and the engine refuses to
+  // order an out-of-action soldier. Spend that turn and advance again so the
+  // battle never soft-locks on a downed officer.
+  while (next !== null && isDowned(next.actorId)) {
+    resolved.push(...next.resolved);
+    tempo = spendTurn(next.state, next.actorId);
+    next = advanceToNextTurn(tempo, speedOf);
+  }
+
   if (next === null) {
     return {
-      state: { ...state, tempo: spent, currentActorId: null, hasMovedThisTurn: false },
+      state: { ...state, tempo, currentActorId: null, hasMovedThisTurn: false },
       actorId: null,
-      resolved: [],
+      resolved,
     };
   }
   return {
@@ -554,8 +572,28 @@ function endTurn(state: BattleState, actorId: UnitId): EndTurnResult {
       hasMovedThisTurn: false,
     },
     actorId: next.actorId,
-    resolved: next.resolved,
+    resolved: [...resolved, ...next.resolved],
   };
+}
+
+/**
+ * Skip any **out-of-action** soldier that still holds the turn, resolving the
+ * charges their skipped turns elapse on the way. `endTurn` already skips
+ * casualties present when the turn advances; this catches the ones made by a
+ * charge that resolved *after* the next actor was chosen, so `step` can never
+ * park the battle on a soldier nobody may command. Pure and loop-guarded.
+ */
+function skipDownedActors(state: BattleState, events: BattleEvent[]): BattleState {
+  let working = state;
+  for (let guard = 0; guard < 64; guard++) {
+    if (working.phase === "finished" || working.currentActorId === null) break;
+    const actor = working.units.find((unit) => unit.id === working.currentActorId);
+    if (actor === undefined || !isOutOfAction(actor)) break;
+    events.push({ kind: "turnEnded", tick: working.tempo.tick, unitId: actor.id });
+    const next = endTurn(working, actor.id);
+    working = resolveCompletedCharges(next.state, next.resolved, events);
+  }
+  return working;
 }
 
 /**
@@ -678,6 +716,9 @@ export function step(state: BattleState, command: Command): BattleStepResult {
   events.push({ kind: "turnEnded", tick, unitId: actor.id });
   const next = endTurn(working, actor.id);
   working = resolveCompletedCharges(next.state, next.resolved, events);
+  // Charges resolved above may have downed the soldier who was just handed the
+  // turn; skip any that are, so the battle keeps moving (T117/playability).
+  working = skipDownedActors(working, events);
 
   // Score the win/lose objective (T031) before opening the next turn. When it
   // fires, the battle freezes, records the outcome and emits `battleEnded`
