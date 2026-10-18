@@ -47,6 +47,8 @@ import type { UnitId } from "../engine/ids";
 import type { UnitSide } from "../engine/unit";
 import { powerUniform, roleCategory, type RoleCategory } from "../render/units";
 import { useTranslation, type MessageKey } from "../i18n";
+import { Tooltip } from "./Tooltip";
+import { UnitInfo } from "./UnitInfo";
 import { DEFAULT_TEMPO_PREVIEW, upcomingTurnOrder } from "./tempoOrder";
 
 /* --------------------------------------------------------------------------
@@ -142,47 +144,53 @@ export function TempoTray({ battle, count = DEFAULT_TEMPO_PREVIEW, onSelect }: T
                 data-power={entry.unit.power}
                 data-current={entry.isCurrent}
               >
-                <button
-                  type="button"
-                  className="tempo-entry__card"
-                  // Keep the tray out of the battle keyboard loop (T030): the
-                  // canvas owns arrow/Enter navigation, so these chips must not
-                  // steal focus (T087 will add deliberate tray navigation).
-                  tabIndex={-1}
-                  onPointerDown={(event) => event.preventDefault()}
-                  onClick={onSelect === undefined ? undefined : () => onSelect(entry.unitId)}
-                  aria-label={`${t("tempo.entryAria", {
-                    rank: entry.rank,
-                    name: entry.unit.name,
-                    role: t(ROLE_LABEL_KEYS[role]),
-                    power: t(POWER_LABEL_KEYS[entry.unit.power]),
-                  })}${entry.isCurrent ? `, ${t("tempo.onTurn")}` : ""}`}
+                <Tooltip
+                  side="top"
+                  bubbleTestId={`tempo-info-${index}`}
+                  label={<UnitInfo unit={entry.unit} />}
                 >
-                  <span className="tempo-entry__rank" aria-hidden="true">
-                    {entry.rank}
-                  </span>
-                  <span
-                    className="tempo-entry__swatch"
-                    style={{ backgroundColor: coat }}
-                    aria-hidden="true"
-                  />
-                  <span className="tempo-entry__body">
-                    <span className="tempo-entry__name">{entry.unit.name}</span>
-                    <span className="tempo-entry__meta">
-                      {t("tempo.entryMeta", {
-                        role: t(ROLE_LABEL_KEYS[role]),
-                        power: t(POWER_LABEL_KEYS[entry.unit.power]),
-                        speed: entry.unit.stats.spd,
-                        side: t(SIDE_LABEL_KEYS[entry.unit.side]),
-                      })}
+                  <button
+                    type="button"
+                    className="tempo-entry__card"
+                    // Keep the tray out of the battle keyboard loop (T030): the
+                    // canvas owns arrow/Enter navigation, so these chips must not
+                    // steal focus (T087 will add deliberate tray navigation).
+                    tabIndex={-1}
+                    onPointerDown={(event) => event.preventDefault()}
+                    onClick={onSelect === undefined ? undefined : () => onSelect(entry.unitId)}
+                    aria-label={`${t("tempo.entryAria", {
+                      rank: entry.rank,
+                      name: entry.unit.name,
+                      role: t(ROLE_LABEL_KEYS[role]),
+                      power: t(POWER_LABEL_KEYS[entry.unit.power]),
+                    })}${entry.isCurrent ? `, ${t("tempo.onTurn")}` : ""}`}
+                  >
+                    <span className="tempo-entry__rank" aria-hidden="true">
+                      {entry.rank}
                     </span>
-                  </span>
-                  {entry.isCurrent && (
-                    <span className="tempo-entry__now" data-testid={`tempo-entry-${index}-now`}>
-                      {t("tempo.onTurn")}
+                    <span
+                      className="tempo-entry__swatch"
+                      style={{ backgroundColor: coat }}
+                      aria-hidden="true"
+                    />
+                    <span className="tempo-entry__body">
+                      <span className="tempo-entry__name">{entry.unit.name}</span>
+                      <span className="tempo-entry__meta">
+                        {t("tempo.entryMeta", {
+                          role: t(ROLE_LABEL_KEYS[role]),
+                          power: t(POWER_LABEL_KEYS[entry.unit.power]),
+                          speed: entry.unit.stats.spd,
+                          side: t(SIDE_LABEL_KEYS[entry.unit.side]),
+                        })}
+                      </span>
                     </span>
-                  )}
-                </button>
+                    {entry.isCurrent && (
+                      <span className="tempo-entry__now" data-testid={`tempo-entry-${index}-now`}>
+                        {t("tempo.onTurn")}
+                      </span>
+                    )}
+                  </button>
+                </Tooltip>
               </li>
             );
           })}

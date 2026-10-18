@@ -3294,3 +3294,108 @@ body {
   margin: 2px 0 0;
   font-family: monospace;
 }
+
+/* ------------------------------------------------------------------------
+ * Tooltips & info (UX)
+ *
+ * A `.tip` wraps a trigger and reveals a `.tip__bubble` on hover or keyboard
+ * focus (`:focus-within`), so no open/close state lives in JavaScript. The
+ * `data-side` attribute chooses which way the bubble opens; HUD tooltips open
+ * left (off the field), tray tooltips open upward.
+ * ---------------------------------------------------------------------- */
+
+.tip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.tip__trigger {
+  display: inline-grid;
+  place-items: center;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.35rem;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.55;
+  cursor: help;
+}
+
+.tip__trigger:hover,
+.tip__trigger:focus-visible {
+  opacity: 1;
+}
+
+.tip__bubble {
+  position: fixed;
+  z-index: 60;
+  width: max-content;
+  min-width: 11rem;
+  max-width: 19rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  background: var(--navy);
+  color: var(--parchment);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+  letter-spacing: normal;
+  text-transform: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.tip__title {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--gold-soft);
+  font-weight: 700;
+}
+
+.tip__text {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.tip__flavour {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-style: italic;
+  opacity: 0.72;
+}
+
+.tip__stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.1rem 0.75rem;
+  margin: 0;
+}
+
+.tip__stats > div {
+  display: contents;
+}
+
+.tip__stats dt {
+  color: var(--gold-soft);
+}
+
+.tip__stats dd {
+  margin: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The HUD opens its bubbles to the left so they never run off the field. */
+.hud .tip__bubble {
+  text-align: left;
+}

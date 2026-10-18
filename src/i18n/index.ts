@@ -176,6 +176,43 @@ const en = {
   "hud.battleLog": "Battle log",
   "hud.battleLogLabel": "Battle animations",
   "hud.ordersLabel": "Orders",
+  "hud.help.tempo":
+    "The soldier taking the current Orders Tempo turn. Turns are not round-robin — higher Speed acts more often.",
+  "hud.help.phase":
+    "What the field is asking of you: select a soldier, plan a march, aim an order, then confirm it.",
+  "hud.help.cursor": "The tile your movement or aim is pointed at.",
+  "hud.help.selected": "The soldier you have picked. Only the acting soldier may be given orders.",
+  "hud.help.moveRange":
+    "Tiles the selected soldier can reach this turn, given their Move rate, terrain and Climb.",
+  "hud.help.plannedMarch":
+    "The march you have queued. Moving does not end the turn — resolve an order (or Wait) to close it.",
+  "hud.help.targetReach": "Tiles the chosen order can reach from the soldier's position.",
+  "hud.help.area": "The tiles the order's effect covers — friends and foes alike.",
+  "hud.help.dangerZone":
+    "Tiles the enemy could strike next turn. Do not leave a soldier standing in the open.",
+  "hud.help.elevation":
+    "Height difference between the soldier and the cursor. High ground helps the blow and can block line of sight.",
+  "tip.moreInfo": "More information",
+  "unit.move": "Move",
+  "unit.climb": "Climb",
+  "unit.conditions": "Conditions",
+  "ability.class": "Type",
+  "ability.class.action": "Action",
+  "ability.class.reaction": "Reaction",
+  "ability.class.support": "Support",
+  "ability.class.combo": "Volley",
+  "ability.cost": "Cost",
+  "ability.range": "Range",
+  "ability.power": "Power",
+  "ability.charge": "Charge",
+  "ability.chargeValue": "{ticks} ticks",
+  "ability.element": "Element",
+  "ability.target": "Target",
+  "ability.target.self": "Self",
+  "ability.target.ally": "Ally",
+  "ability.target.enemy": "Enemy",
+  "ability.target.any": "Any",
+  "ability.target.tile": "Tile",
 
   /* ---------------------------------------------------------------------- */
   /* Settings                                                               */

@@ -52,6 +52,8 @@ import { announce, describeEvents, installAccessibility } from "./a11y";
 import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
 import { Forecast } from "./Forecast";
+import { AbilityInfo } from "./AbilityInfo";
+import { InfoTip, Tooltip } from "./Tooltip";
 import { targetForCursor } from "./battleForecast";
 import { Menus } from "./Menus";
 import { Mess } from "./Mess";
@@ -621,29 +623,77 @@ export function App() {
           </p>
           <dl>
             <div>
-              <dt>{t("hud.tempo")}</dt>
+              <dt>
+                {t("hud.tempo")}{" "}
+                <InfoTip
+                  testId="hud-help-tempo"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.tempo")}
+                />
+              </dt>
               <dd data-testid="hud-actor">{actor?.name ?? t("common.none")}</dd>
             </div>
             <div>
-              <dt>{t("hud.phase")}</dt>
+              <dt>
+                {t("hud.phase")}{" "}
+                <InfoTip
+                  testId="hud-help-phase"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.phase")}
+                />
+              </dt>
               <dd data-testid="hud-phase">{controller.phase}</dd>
             </div>
             <div>
-              <dt>{t("hud.cursor")}</dt>
+              <dt>
+                {t("hud.cursor")}{" "}
+                <InfoTip
+                  testId="hud-help-cursor"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.cursor")}
+                />
+              </dt>
               <dd data-testid="hud-cursor">{cursorLabel}</dd>
             </div>
             <div>
-              <dt>{t("hud.selected")}</dt>
+              <dt>
+                {t("hud.selected")}{" "}
+                <InfoTip
+                  testId="hud-help-selected"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.selected")}
+                />
+              </dt>
               <dd data-testid="hud-selected">{selected?.name ?? t("common.none")}</dd>
             </div>
             <div>
-              <dt>{t("hud.moveRange")}</dt>
+              <dt>
+                {t("hud.moveRange")}{" "}
+                <InfoTip
+                  testId="hud-help-move-range"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.moveRange")}
+                />
+              </dt>
               <dd data-testid="hud-move-range">
                 {t("common.tiles", { count: controller.moveRange.length })}
               </dd>
             </div>
             <div>
-              <dt>{t("hud.plannedMarch")}</dt>
+              <dt>
+                {t("hud.plannedMarch")}{" "}
+                <InfoTip
+                  testId="hud-help-planned-march"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.plannedMarch")}
+                />
+              </dt>
               <dd data-testid="hud-path">
                 {controller.pendingPath === null
                   ? t("common.none")
@@ -651,25 +701,57 @@ export function App() {
               </dd>
             </div>
             <div>
-              <dt>{t("hud.targetReach")}</dt>
+              <dt>
+                {t("hud.targetReach")}{" "}
+                <InfoTip
+                  testId="hud-help-target-reach"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.targetReach")}
+                />
+              </dt>
               <dd data-testid="hud-target-range">
                 {t("common.tiles", { count: controller.targetTiles.length })}
               </dd>
             </div>
             <div>
-              <dt>{t("hud.area")}</dt>
+              <dt>
+                {t("hud.area")}{" "}
+                <InfoTip
+                  testId="hud-help-area"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.area")}
+                />
+              </dt>
               <dd data-testid="hud-target-area">
                 {t("common.tiles", { count: targeting.areaTiles.length })}
               </dd>
             </div>
             <div>
-              <dt>{t("hud.dangerZone")}</dt>
+              <dt>
+                {t("hud.dangerZone")}{" "}
+                <InfoTip
+                  testId="hud-help-danger-zone"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.dangerZone")}
+                />
+              </dt>
               <dd data-testid="hud-danger-zone">
                 {t("common.tiles", { count: targeting.danger.length })}
               </dd>
             </div>
             <div>
-              <dt>{t("hud.elevation")}</dt>
+              <dt>
+                {t("hud.elevation")}{" "}
+                <InfoTip
+                  testId="hud-help-elevation"
+                  side="left"
+                  title={t("tip.moreInfo")}
+                  label={t("hud.help.elevation")}
+                />
+              </dt>
               <dd data-testid="hud-elevation">{formatElevation(targeting.elevation, t)}</dd>
             </div>
           </dl>
@@ -698,23 +780,29 @@ export function App() {
                 <ul>
                   {controller.actions.map((option) => (
                     <li key={option.id}>
-                      <button
-                        type="button"
-                        className="action-menu__button"
-                        data-testid={`action-${option.id}`}
-                        data-affordable={option.affordable}
-                        disabled={!option.affordable}
-                        onClick={() =>
-                          applyController(chooseAction(controllerRef.current, option.id))
-                        }
+                      <Tooltip
+                        side="left"
+                        bubbleTestId={`order-info-${option.id}`}
+                        label={<AbilityInfo abilityId={option.id} spec={option.spec} />}
                       >
-                        <span className="action-menu__name">
-                          {findAbility(option.id)?.name ?? option.id}
-                        </span>
-                        <span className="action-menu__cost">
-                          {t("hud.elanCost", { amount: option.spec.mpCost })}
-                        </span>
-                      </button>
+                        <button
+                          type="button"
+                          className="action-menu__button"
+                          data-testid={`action-${option.id}`}
+                          data-affordable={option.affordable}
+                          disabled={!option.affordable}
+                          onClick={() =>
+                            applyController(chooseAction(controllerRef.current, option.id))
+                          }
+                        >
+                          <span className="action-menu__name">
+                            {findAbility(option.id)?.name ?? option.id}
+                          </span>
+                          <span className="action-menu__cost">
+                            {t("hud.elanCost", { amount: option.spec.mpCost })}
+                          </span>
+                        </button>
+                      </Tooltip>
                     </li>
                   ))}
                 </ul>
