@@ -824,7 +824,7 @@ deterministic.
 - done: Texture atlas, lazy map loading, memory check.
 
 ### T106 — Deploy + how to play
-- status: todo
+- status: done
 - deps: [T104]
 - files: README.md, .github/workflows/deploy.yml
 - verify: npm run build
