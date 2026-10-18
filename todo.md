@@ -956,7 +956,7 @@ and deployment tiles), then write `src/app/battleSetup.ts` on top of
 existing `src/app/demoScenario.ts`.
 
 ### T119 — Deterministic enemy AI turn runner
-- status: todo
+- status: done
 - deps: [T117, T095, T098]
 - files: src/app/battleRunner.ts, tests/unit/battleRunner.test.ts
 - verify: npm run test -- --run tests/unit/battleRunner.test.ts

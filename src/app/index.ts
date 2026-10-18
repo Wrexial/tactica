@@ -4,4 +4,5 @@
  * (T027+).
  */
 export * from "./autoBattle";
+export * from "./battleRunner";
 export * from "./battleSetup";
