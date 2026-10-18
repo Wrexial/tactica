@@ -919,12 +919,98 @@ peer, empty, missing kit/prisoner, id-collision and overfull-pen reasons.
 
 ---
 
+## Phase 13 — The campaign loop (playable game)
+
+### T117 — Resolve ability effects through `step`
+- status: todo
+- deps: [T041, T042, T043]
+- files: src/engine/actions/resolve.ts, src/engine/battle.ts, tests/unit/combat.test.ts, tests/unit/determinism.test.ts
+- verify: npm run test -- --run tests/unit/combat.test.ts tests/unit/determinism.test.ts
+- done: An `act` committed through `step` applies its damage/healing/conditions via `executeAbility` (T041), runs reactions (T042) and support traits (T043), and yields byte-identical state for a fixed seed and command log.
+
+`declareOrResolveAction` (`src/engine/actions/resolve.ts`) emits
+`abilityUsed`/`abilityResolved` and spends Élan but never calls the executor —
+see the "Ability effects are not wired into `step`" note under *Research & open
+questions*. Nothing takes damage, so no objective can ever be met and T113's
+headless skirmish ends in a ceasefire. Compose `executeAbility` into the
+pipeline for both instant actions and `resolveCompletedCharges`, run reactions
+and support traits, and emit the executor's events in order. Keep `step` pure
+and deterministic: all randomness from the battle's seeded RNG. The
+replay/determinism suite must stay byte-identical while a live `act` now reduces
+HP and can KO.
+
+### T118 — Deploy a battle from a contract
+- status: todo
+- deps: [T117, T068, T070, T091, T092]
+- files: src/app/battleSetup.ts, src/data/enemies/, src/data/maps/battleMaps.ts, tests/unit/battleSetup.test.ts
+- verify: npm run test -- --run tests/unit/battleSetup.test.ts
+- done: `buildBattleFromContract` returns a deterministic `BattleState` from a `Company`, a combat `ContractDef` and its `BattleMapDef`: the roster on the map's `company` tiles, authored enemies on its `enemy` tiles, the map's `objective`, and the company's learned actions; a combat contract with no map (or a map with no order of battle) fails loudly.
+
+Battle maps already name a `contractId`, `deployment` and `objective`
+(`src/data/maps/battleMaps.ts`), but nothing maps an `EnemyDef` to a tile and
+nothing assembles a campaign battle. Author an **order of battle** per battle
+map (a small data table keyed by map/contract id that binds enemy ids, levels
+and deployment tiles), then write `src/app/battleSetup.ts` on top of
+`createBattle`, `battleMapToTerrainMap` and the roster's derived stats
+(T018/T051). No `Math.random`; the seed is a parameter. Follow the shape of the
+existing `src/app/demoScenario.ts`.
+
+### T119 — Deterministic enemy AI turn runner
+- status: todo
+- deps: [T117, T095, T098]
+- files: src/app/battleRunner.ts, tests/unit/battleRunner.test.ts
+- verify: npm run test -- --run tests/unit/battleRunner.test.ts
+- done: `runAiTurn(state, unitId)` plans the current non-company actor through `src/ai/utility.ts` and commits the resulting move/act commands through the same `step` path the player uses; `runAiUntilPlayer(state)` advances past consecutive AI actors, stops on a company actor or a finished battle, and is deterministic and loop-guarded.
+
+`src/ai/utility.ts` already exposes `chooseTurn`/`chooseCommand` and
+`src/app/autoBattle.ts` wraps them for allies, but the Field battle has no AI at
+all: enemy turns never resolve, so a battle cannot reach its objective. Add
+`src/app/battleRunner.ts` that drives enemy turns through `step` with the
+command shapes `battleController` already uses. Reuse `autoBattleAllies` (T098)
+if company allies should also be automated. Keep it pure and deterministic
+(seeded RNG lives in state) and guard against a turn that never yields.
+
+### T120 — Campaign progression: accept, outcome, day
+- status: todo
+- deps: [T101, T118, T031, T055, T076]
+- files: src/app/campaign.ts, tests/unit/campaignProgression.test.ts
+- verify: npm run test -- --run tests/unit/campaignProgression.test.ts
+- done: Pure functions over a `CampaignSave` accept a contract (pay the fee, mark it posted), apply a finished battle's outcome (Crowns/Drill/XP/kit rewards, Honour, casualties and removals), advance the day, rotate the daily Articles of War and append history — returning a new `CampaignSave` with no mutation and no randomness.
+
+`CampaignSave` (T101) already bundles the company, map, calendar, depot,
+progress and history, and the primitives exist (`advanceDay`,
+`spendCrowns`/`addCrowns`, `awardHonours`, drill/XP from T048/T049,
+`createCalendar` for the next day's Articles), but nothing applies a battle
+result to the campaign. Write the reducer in `src/app/campaign.ts` using the
+`src/persist` factories; it must never mutate its input. Cover a win with
+rewards and an item, a loss with casualties, an objective failure, and a day
+boundary that rotates the Articles.
+
+### T121 — Wire the campaign loop into the app
+- status: todo
+- deps: [T119, T120, T071, T102]
+- files: src/app/campaignController.ts, src/ui/App.tsx, src/ui/Mess.tsx, tests/e2e/campaign.spec.ts
+- verify: npm run test:e2e -- tests/e2e/campaign.spec.ts
+- done: Taking a postable combat contract in the Officers' Mess launches its battle on the Field (player company vs. AI), the battle resolves to the map's objective outcome, rewards and the day advance are applied, the campaign autosaves, and the player sees a result summary; the seeded demo campaign stays deterministic for tests.
+
+This is the missing glue named in the field report. Add
+`src/app/campaignController.ts` owning the working `CampaignSave` plus the
+active `BattleState`. Wire `src/ui/Mess.tsx`'s accept action to it, switch the
+Field to `buildBattleFromContract`, resolve enemy turns with `battleRunner`, and
+on `battleEnded` call the T120 reducer, autosave through `SaveStore` (T102) and
+show the outcome. Do not change `src/engine`. Author `tests/e2e/campaign.spec.ts`:
+Mess → take a contract → Field battle visible → commit an order → result summary
+→ day advanced and Crowns changed. Prefer a short, deterministic objective
+(e.g. a survive-N-turns board) so the spec is stable.
+
+---
+
 ## Research & open questions
 
 - [ ] Physical/magical damage formulas — documented (see `Attack_(command).md`, `Magic_(command).md`); only the ambiguous secondary line and the healing formula need decisions (T033/T036).
-- [ ] FFTA MP regeneration — `MP_(stat).md` FFTA section is a stub; T040 authored a default schedule (`ELAN_REGEN_AMOUNT` every `ELAN_REGEN_INTERVAL_TICKS`) and morale thresholds, still pending the Phase 13 balance pass.
+- [ ] FFTA MP regeneration — `MP_(stat).md` FFTA section is a stub; T040 authored a default schedule (`ELAN_REGEN_AMOUNT` every `ELAN_REGEN_INTERVAL_TICKS`) and morale thresholds, still pending the Phase 14 balance pass.
 - [ ] Exact Orders Tempo charge values, per-action tempo and Speed scaling (T019).
-- [x] Drill-to-mastery thresholds per ability — authored as `EquipmentDef.teaches[].ap` and resolved by `src/engine/progression/drill.ts` (T048); a Phase 13 pass may retune the per-item costs.
+- [x] Drill-to-mastery thresholds per ability — authored as `EquipmentDef.teaches[].ap` and resolved by `src/engine/progression/drill.ts` (T048); a Phase 14 pass may retune the per-item costs.
 - [ ] Post-unlock thresholds (T046).
 - [ ] Article generation frequency/pool and commended-action weighting (T055).
 - [ ] Volley damage scaling with Honour and number of linkers (T061).
