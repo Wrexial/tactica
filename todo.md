@@ -835,7 +835,7 @@ deterministic.
 ## Phase 11 — Audio, accessibility & polish
 
 ### T107 — Sound effects
-- status: todo
+- status: done
 - deps: [T082]
 - files: src/audio/sfx.ts
 - verify: npm run build
