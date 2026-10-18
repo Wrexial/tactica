@@ -5,3 +5,4 @@ export * from "./tiles";
 export * from "./overlay";
 export * from "./units";
 export * from "./animations";
+export * from "./atlas";

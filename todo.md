@@ -817,7 +817,7 @@ deterministic.
 - done: Graceful failures and versioned save migrations.
 
 ### T105 — Performance pass
-- status: todo
+- status: done
 - deps: [T080, T081]
 - files: src/render/atlas.ts
 - verify: npm run build
