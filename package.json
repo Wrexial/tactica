@@ -14,6 +14,7 @@
     "format:check": "prettier --check .",
     "test": "vitest",
     "test:e2e": "playwright test",
+    "playtest": "node scripts/playtest.mjs",
     "todo": "node tools/todo.mjs"
   },
   "dependencies": {
