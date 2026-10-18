@@ -789,7 +789,7 @@ deterministic.
 - done: A versioned `SaveStore` interface with an IndexedDB implementation and an in-memory test double.
 
 ### T101 — Save/load campaign
-- status: todo
+- status: done
 - deps: [T068, T100]
 - files: src/persist/campaign.ts
 - verify: npm run test -- --run tests/unit/persist.test.ts
