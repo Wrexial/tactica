@@ -1014,7 +1014,7 @@ T122 and T123 are independent and should land first; T124 and T130 build on the
 driver split.
 
 ### T122 — Deterministic, RNG-free Orders Tempo tie-break
-- status: todo
+- status: doing
 - deps: [T019]
 - files: src/engine/turn.ts, tests/unit/turn.test.ts, tests/unit/determinism.test.ts
 - verify: npm run test -- --run
