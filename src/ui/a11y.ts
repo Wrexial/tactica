@@ -37,6 +37,7 @@ import type { BattleEvent } from "../engine/events";
 import { type Facing } from "../engine/grid";
 import type { ConditionId, PostId, UnitId } from "../engine/ids";
 import type { Unit, UnitSide } from "../engine/unit";
+import { t, type MessageKey } from "../i18n";
 import type { SaveStore } from "../persist";
 import { createDefaultSettingsStore, loadSettings, type ColourBlindMode } from "./settingsModel";
 
@@ -375,19 +376,19 @@ export const LIVE_REGION_ID = "a11y-live-region";
 /** How urgently an announcement interrupts (ARIA `aria-live`). */
 export type AnnouncementPoliteness = "polite" | "assertive";
 
-/** Napoleonic, player-facing names for the three field sides. */
-export const SIDE_LABELS: Readonly<Record<UnitSide, string>> = {
-  company: "free company",
-  enemy: "hostile",
-  neutral: "neutral",
+/** Catalog keys for the three field sides. */
+export const SIDE_LABEL_KEYS: Readonly<Record<UnitSide, MessageKey>> = {
+  company: "a11y.side.company",
+  enemy: "a11y.side.enemy",
+  neutral: "a11y.side.neutral",
 };
 
-/** Spoken cardinal directions (identical to the mechanical keys). */
-export const FACING_LABELS: Readonly<Record<Facing, string>> = {
-  north: "north",
-  east: "east",
-  south: "south",
-  west: "west",
+/** Catalog keys for the spoken cardinal directions. */
+export const FACING_LABEL_KEYS: Readonly<Record<Facing, MessageKey>> = {
+  north: "a11y.facing.north",
+  east: "a11y.facing.east",
+  south: "a11y.facing.south",
+  west: "a11y.facing.west",
 };
 
 /** Resolvers that let the caller keep the display layer in charge of names. */
@@ -410,18 +411,24 @@ function nameFor(unitId: UnitId, resolvers: LabelResolvers): string {
  * post, strength, Élan, Honour, facing, tile and active conditions. Pure.
  */
 export function describeUnit(unit: Unit, resolvers: LabelResolvers = {}): string {
-  const parts: string[] = [unit.name, SIDE_LABELS[unit.side], `level ${unit.level}`];
+  const parts: string[] = [
+    unit.name,
+    t(SIDE_LABEL_KEYS[unit.side]),
+    t("a11y.unit.level", { level: unit.level }),
+  ];
   const post = resolvers.postName?.(unit.postId);
   if (post !== undefined) parts.push(post);
-  parts.push(`strength ${unit.hp} of ${unit.stats.hp}`);
-  parts.push(`Élan ${unit.mp} of ${unit.stats.mp}`);
-  parts.push(`Honour ${unit.judgePoints}`);
-  parts.push(`facing ${FACING_LABELS[unit.facing]}`);
-  parts.push(`tile ${unit.at.x}, ${unit.at.y}`);
+  parts.push(t("a11y.unit.strength", { hp: unit.hp, maxHp: unit.stats.hp }));
+  parts.push(t("a11y.unit.elan", { mp: unit.mp, maxMp: unit.stats.mp }));
+  parts.push(t("a11y.unit.honour", { honour: unit.judgePoints }));
+  parts.push(t("a11y.unit.facing", { facing: t(FACING_LABEL_KEYS[unit.facing]) }));
+  parts.push(t("a11y.unit.tile", { x: unit.at.x, y: unit.at.y }));
   const conditions = unit.conditions.map(
     (condition) => resolvers.conditionName?.(condition.conditionId) ?? condition.conditionId,
   );
-  if (conditions.length > 0) parts.push(`conditions ${conditions.join(", ")}`);
+  if (conditions.length > 0) {
+    parts.push(t("a11y.unit.conditions", { conditions: conditions.join(", ") }));
+  }
   return parts.join(", ");
 }
 
@@ -437,65 +444,68 @@ function signed(delta: number): string {
  * Pure, so the wording is testable and a replay reads the same every run.
  */
 export function describeEvent(event: BattleEvent, resolvers: LabelResolvers = {}): string | null {
+  const name = "unitId" in event ? nameFor(event.unitId, resolvers) : "";
   switch (event.kind) {
     case "moved":
-      return `${nameFor(event.unitId, resolvers)} marches to tile ${event.to.x}, ${event.to.y}`;
+      return t("a11y.event.moved", { name, x: event.to.x, y: event.to.y });
     case "shoved":
-      return `${nameFor(event.unitId, resolvers)} is driven back`;
+      return t("a11y.event.shoved", { name });
     case "faced":
-      return `${nameFor(event.unitId, resolvers)} turns to face ${FACING_LABELS[event.to]}`;
+      return t("a11y.event.faced", { name, facing: t(FACING_LABEL_KEYS[event.to]) });
     case "volleyStarted":
-      return `${nameFor(event.unitId, resolvers)} opens a volley with ${event.honour} Honour`;
+      return t("a11y.event.volleyStarted", { name, honour: event.honour });
     case "volleyChained":
-      return `${nameFor(event.unitId, resolvers)} chains into the volley`;
+      return t("a11y.event.volleyChained", { name });
     case "guardSortieCalled":
-      return `${nameFor(event.unitId, resolvers)} calls a Guard Sortie`;
+      return t("a11y.event.guardSortie", { name });
     case "damaged":
-      return `${nameFor(event.unitId, resolvers)} takes ${event.amount} damage${
-        event.fatal ? " and is out of action" : ""
-      }`;
+      return event.fatal
+        ? t("a11y.event.damagedFatal", { name, amount: event.amount })
+        : t("a11y.event.damaged", { name, amount: event.amount });
     case "healed":
-      return `${nameFor(event.unitId, resolvers)} recovers ${event.amount} strength`;
+      return t("a11y.event.healed", { name, amount: event.amount });
     case "missed":
-      return `${nameFor(event.unitId, resolvers)} avoids the attack`;
+      return t("a11y.event.missed", { name });
     case "outOfAction":
-      return `${nameFor(event.unitId, resolvers)} is out of action`;
+      return t("a11y.event.outOfAction", { name });
     case "revived":
-      return `${nameFor(event.unitId, resolvers)} is revived`;
+      return t("a11y.event.revived", { name });
     case "mpChanged":
-      return `${nameFor(event.unitId, resolvers)} Élan ${signed(event.delta)}`;
+      return t("a11y.event.elanChanged", { name, delta: signed(event.delta) });
     case "honourChanged":
-      return `${nameFor(event.unitId, resolvers)} Honour ${signed(event.delta)}`;
+      return t("a11y.event.honourChanged", { name, delta: signed(event.delta) });
     case "conditionApplied":
-      return `${nameFor(event.unitId, resolvers)} is affected by ${
-        resolvers.conditionName?.(event.conditionId) ?? event.conditionId
-      }`;
+      return t("a11y.event.conditionApplied", {
+        name,
+        condition: resolvers.conditionName?.(event.conditionId) ?? event.conditionId,
+      });
     case "conditionRemoved":
-      return `${nameFor(event.unitId, resolvers)} recovers from ${
-        resolvers.conditionName?.(event.conditionId) ?? event.conditionId
-      }`;
+      return t("a11y.event.conditionRemoved", {
+        name,
+        condition: resolvers.conditionName?.(event.conditionId) ?? event.conditionId,
+      });
     case "drillGained":
-      return `${nameFor(event.unitId, resolvers)} gains ${event.amount} Drill`;
+      return t("a11y.event.drillGained", { name, amount: event.amount });
     case "abilityLearned":
-      return `${nameFor(event.unitId, resolvers)} masters an ability`;
+      return t("a11y.event.abilityLearned", { name });
     case "experienceGained":
-      return `${nameFor(event.unitId, resolvers)} gains ${event.amount} experience`;
+      return t("a11y.event.experienceGained", { name, amount: event.amount });
     case "levelUp":
-      return `${nameFor(event.unitId, resolvers)} reaches level ${event.level}`;
+      return t("a11y.event.levelUp", { name, level: event.level });
     case "postUnlocked":
-      return `${nameFor(event.unitId, resolvers)} unlocks a new post`;
+      return t("a11y.event.postUnlocked", { name });
     case "articleBroken":
-      return `${nameFor(event.unitId, resolvers)} breaks an Article of War`;
+      return t("a11y.event.articleBroken", { name });
     case "reprimandIssued":
-      return `${nameFor(event.unitId, resolvers)} is issued a Reprimand`;
+      return t("a11y.event.reprimand", { name });
     case "courtMartialIssued":
-      return `${nameFor(event.unitId, resolvers)} is court-martialled and leaves the field`;
+      return t("a11y.event.courtMartial", { name });
     case "commended":
-      return `${nameFor(event.unitId, resolvers)} is commended with ${event.honour} Honour`;
+      return t("a11y.event.commended", { name, honour: event.honour });
     case "battleEnded":
-      return `The battle has ended: ${event.outcome}`;
+      return t("a11y.event.battleEnded", { outcome: event.outcome });
     case "rewardGranted":
-      return `The company is awarded ${event.crowns} Crowns`;
+      return t("a11y.event.rewardGranted", { crowns: event.crowns });
     default:
       return null;
   }

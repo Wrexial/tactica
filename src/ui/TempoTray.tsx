@@ -46,38 +46,39 @@ import type { BattleState } from "../engine/battle";
 import type { UnitId } from "../engine/ids";
 import type { UnitSide } from "../engine/unit";
 import { powerUniform, roleCategory, type RoleCategory } from "../render/units";
+import { useTranslation, type MessageKey } from "../i18n";
 import { DEFAULT_TEMPO_PREVIEW, upcomingTurnOrder } from "./tempoOrder";
 
 /* --------------------------------------------------------------------------
- * Display labels (presentation only; no balance values)
+ * Display keys (presentation only; no balance values)
  * ------------------------------------------------------------------------ */
 
-/** Player-facing names for the five great-power military schools (mapping §2). */
-const POWER_LABELS: Readonly<Record<PowerKey, string>> = {
-  france: "France",
-  britain: "Britain",
-  prussia: "Prussia",
-  russia: "Russia",
-  austria: "Austria",
+/** Catalog keys for the five great-power military schools (mapping §2). */
+const POWER_LABEL_KEYS: Readonly<Record<PowerKey, MessageKey>> = {
+  france: "power.france",
+  britain: "power.britain",
+  prussia: "power.prussia",
+  russia: "power.russia",
+  austria: "power.austria",
 };
 
-/** Player-facing names for the coarse role families (mapping §3). */
-const ROLE_LABELS: Readonly<Record<RoleCategory, string>> = {
-  line: "Line",
-  skirmisher: "Skirmisher",
-  cavalry: "Cavalry",
-  artillery: "Artillery",
-  medical: "Medical",
-  command: "Command",
-  engineer: "Engineer",
-  irregular: "Irregular",
+/** Catalog keys for the coarse role families (mapping §3). */
+const ROLE_LABEL_KEYS: Readonly<Record<RoleCategory, MessageKey>> = {
+  line: "role.line",
+  skirmisher: "role.skirmisher",
+  cavalry: "role.cavalry",
+  artillery: "role.artillery",
+  medical: "role.medical",
+  command: "role.command",
+  engineer: "role.engineer",
+  irregular: "role.irregular",
 };
 
-/** Player-facing side tags (mapping §1, §9). */
-const SIDE_LABELS: Readonly<Record<UnitSide, string>> = {
-  company: "Company",
-  enemy: "Enemy",
-  neutral: "Neutral",
+/** Catalog keys for the three field sides (mapping §1, §9). */
+const SIDE_LABEL_KEYS: Readonly<Record<UnitSide, MessageKey>> = {
+  company: "side.company",
+  enemy: "side.enemy",
+  neutral: "side.neutral",
 };
 
 /** A numeric Pixi colour (`0x2f5fa8`) as a CSS hex string (`#2f5fa8`). */
@@ -104,18 +105,19 @@ export interface TempoTrayProps {
  * acting soldier highlighted. Read-only unless an `onSelect` handler is given.
  */
 export function TempoTray({ battle, count = DEFAULT_TEMPO_PREVIEW, onSelect }: TempoTrayProps) {
+  const { t } = useTranslation();
   const entries = useMemo(() => upcomingTurnOrder(battle, count), [battle, count]);
 
   return (
-    <section className="tempo-tray" data-testid="tempo-tray" aria-label="Orders Tempo">
+    <section className="tempo-tray" data-testid="tempo-tray" aria-label={t("tempo.title")}>
       <header className="tempo-tray__header">
-        <h3>Orders Tempo</h3>
-        <p className="muted">Upcoming turn order</p>
+        <h3>{t("tempo.title")}</h3>
+        <p className="muted">{t("tempo.upcoming")}</p>
       </header>
 
       {entries.length === 0 ? (
         <p className="tempo-tray__empty" data-testid="tempo-tray-empty">
-          No soldier is ready to act.
+          {t("tempo.noneReady")}
         </p>
       ) : (
         <ol className="tempo-order" data-testid="tempo-order">
@@ -149,7 +151,12 @@ export function TempoTray({ battle, count = DEFAULT_TEMPO_PREVIEW, onSelect }: T
                   tabIndex={-1}
                   onPointerDown={(event) => event.preventDefault()}
                   onClick={onSelect === undefined ? undefined : () => onSelect(entry.unitId)}
-                  aria-label={`${entry.rank}. ${entry.unit.name}, ${ROLE_LABELS[role]}, ${POWER_LABELS[entry.unit.power]}${entry.isCurrent ? ", on turn" : ""}`}
+                  aria-label={`${t("tempo.entryAria", {
+                    rank: entry.rank,
+                    name: entry.unit.name,
+                    role: t(ROLE_LABEL_KEYS[role]),
+                    power: t(POWER_LABEL_KEYS[entry.unit.power]),
+                  })}${entry.isCurrent ? `, ${t("tempo.onTurn")}` : ""}`}
                 >
                   <span className="tempo-entry__rank" aria-hidden="true">
                     {entry.rank}
@@ -162,13 +169,17 @@ export function TempoTray({ battle, count = DEFAULT_TEMPO_PREVIEW, onSelect }: T
                   <span className="tempo-entry__body">
                     <span className="tempo-entry__name">{entry.unit.name}</span>
                     <span className="tempo-entry__meta">
-                      {ROLE_LABELS[role]} · {POWER_LABELS[entry.unit.power]} · Speed{" "}
-                      {entry.unit.stats.spd} · {SIDE_LABELS[entry.unit.side]}
+                      {t("tempo.entryMeta", {
+                        role: t(ROLE_LABEL_KEYS[role]),
+                        power: t(POWER_LABEL_KEYS[entry.unit.power]),
+                        speed: entry.unit.stats.spd,
+                        side: t(SIDE_LABEL_KEYS[entry.unit.side]),
+                      })}
                     </span>
                   </span>
                   {entry.isCurrent && (
                     <span className="tempo-entry__now" data-testid={`tempo-entry-${index}-now`}>
-                      On turn
+                      {t("tempo.onTurn")}
                     </span>
                   )}
                 </button>

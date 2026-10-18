@@ -32,6 +32,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { SaveStore } from "../persist";
+import { useTranslation, type MessageKey, type TranslationVars } from "../i18n";
 import { applyColourBlindPalette } from "./a11y";
 import {
   COLOUR_BLIND_MODES,
@@ -39,10 +40,11 @@ import {
   DEFAULT_KEYBINDS,
   DEFAULT_SETTINGS,
   KEYBIND_ACTIONS,
-  KEYBIND_LABELS,
+  KEYBIND_LABEL_KEYS,
   MODIFIER_KEYS,
+  TEXT_SPEED_LABEL_KEYS,
+  TEXT_SPEED_NOTE_KEYS,
   TEXT_SPEEDS,
-  TEXT_SPEED_NOTES,
   createDefaultSettingsStore,
   formatKey,
   loadSettings,
@@ -66,17 +68,21 @@ function describe(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
+/** A status line kept as a key so the active locale resolves it at render. */
+type StatusMessage = { readonly key: MessageKey; readonly vars?: TranslationVars } | null;
+
 /**
  * The camp settings screen: audio, reading, HUD, colour and keybind
  * preferences, read from and written to the {@link SaveStore}.
  */
 export function Settings({ store: storeProp, initial, onChange }: SettingsProps) {
+  const { t } = useTranslation();
   const store = useMemo(() => storeProp ?? createDefaultSettingsStore(), [storeProp]);
   const [settings, setSettings] = useState<SettingsValue>(() => initial ?? DEFAULT_SETTINGS);
   // Saving stays gated until the stored record has been read, so opening the
   // screen never overwrites a player's preferences with the stock defaults.
   const [hydrated, setHydrated] = useState(initial !== undefined);
-  const [status, setStatus] = useState<string>("");
+  const [status, setStatus] = useState<StatusMessage>(null);
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [capturing, setCapturing] = useState<(typeof KEYBIND_ACTIONS)[number] | null>(null);
   const onChangeRef = useRef(onChange);
@@ -94,11 +100,11 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
         const loaded = await loadSettings(store);
         if (cancelled) return;
         setSettings((current) => (dirtyRef.current ? current : loaded));
-        setStatus("");
+        setStatus(null);
         setHydrated(true);
       } catch (error) {
         if (cancelled) return;
-        setStatus(`Could not read saved settings: ${describe(error)}`);
+        setStatus({ key: "settings.readError", vars: { error: describe(error) } });
         setHydrated(true);
       }
     })();
@@ -116,7 +122,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
         const envelope = await saveSettings(store, settings);
         if (!cancelled) setSavedAt(envelope.savedAt);
       } catch (error) {
-        if (!cancelled) setStatus(`Could not save settings: ${describe(error)}`);
+        if (!cancelled) setStatus({ key: "settings.writeError", vars: { error: describe(error) } });
       }
     })();
     return () => {
@@ -171,65 +177,62 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
   const resetAll = useCallback((): void => {
     dirtyRef.current = true;
     setSettings({ ...DEFAULT_SETTINGS, keybinds: { ...DEFAULT_KEYBINDS } });
-    setStatus("Settings restored to issue defaults.");
+    setStatus({ key: "settings.defaultsRestored" });
   }, []);
 
   const resetKeybinds = useCallback((): void => {
     dirtyRef.current = true;
     setSettings((current) => ({ ...current, keybinds: { ...DEFAULT_KEYBINDS } }));
-    setStatus("Keybinds restored to issue defaults.");
+    setStatus({ key: "settings.keybindsRestored" });
   }, []);
 
   const palette = COLOUR_BLIND_PALETTES[settings.colourBlind];
 
   return (
-    <section className="settings-screen" data-testid="settings-screen" aria-label="Settings">
+    <section className="settings-screen" data-testid="settings-screen" aria-label={t("settings.label")}>
       <header className="settings-screen__header">
         <div>
-          <p className="kicker">Camp Keep · Settings</p>
-          <h2>Preferences &amp; Keybinds</h2>
-          <p className="muted">
-            Set the volume, the pace of dispatches and how the field reads — then bind the keys the
-            company answers to. Preferences are filed with the campaign record.
-          </p>
+          <p className="kicker">{t("settings.header.kicker")}</p>
+          <h2>{t("settings.header.title")}</h2>
+          <p className="muted">{t("settings.header.blurb")}</p>
         </div>
         <dl className="settings-screen__summary" data-testid="settings-summary">
           <div>
-            <dt>Volume</dt>
+            <dt>{t("settings.volume")}</dt>
             <dd data-testid="settings-summary-volume">{settings.volume}%</dd>
           </div>
           <div>
-            <dt>Text speed</dt>
-            <dd data-testid="settings-summary-text-speed">{settings.textSpeed}</dd>
+            <dt>{t("settings.textSpeed")}</dt>
+            <dd data-testid="settings-summary-text-speed">{t(TEXT_SPEED_LABEL_KEYS[settings.textSpeed])}</dd>
           </div>
           <div>
-            <dt>Damage numbers</dt>
+            <dt>{t("settings.damageNumbers")}</dt>
             <dd data-testid="settings-summary-damage-numbers">
-              {settings.damageNumbers ? "Shown" : "Hidden"}
+              {settings.damageNumbers ? t("settings.shown") : t("settings.hidden")}
             </dd>
           </div>
           <div>
-            <dt>Colour-blind</dt>
-            <dd data-testid="settings-summary-colour-blind">{palette.name}</dd>
+            <dt>{t("settings.colourBlind")}</dt>
+            <dd data-testid="settings-summary-colour-blind">{t(palette.nameKey)}</dd>
           </div>
           <div>
-            <dt>Format</dt>
+            <dt>{t("settings.format")}</dt>
             <dd data-testid="settings-summary-version">v{settings.version}</dd>
           </div>
           <div>
-            <dt>Filed</dt>
+            <dt>{t("settings.filed")}</dt>
             <dd data-testid="settings-summary-saved">
-              {savedAt === null ? "—" : new Date(savedAt).toLocaleTimeString()}
+              {savedAt === null ? t("common.none") : new Date(savedAt).toLocaleTimeString()}
             </dd>
           </div>
         </dl>
       </header>
 
       <div className="settings-screen__body">
-        <section className="settings-panel" aria-label="Audio">
-          <h3>Audio</h3>
+        <section className="settings-panel" aria-label={t("settings.audio")}>
+          <h3>{t("settings.audio")}</h3>
           <label className="settings-field" htmlFor="settings-volume">
-            <span>Master volume</span>
+            <span>{t("settings.masterVolume")}</span>
             <output data-testid="settings-volume-value">{settings.volume}%</output>
           </label>
           <input
@@ -251,7 +254,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
               data-testid="settings-mute"
               onClick={() => update({ volume: 0 })}
             >
-              Mute
+              {t("settings.mute")}
             </button>
             <button
               type="button"
@@ -259,16 +262,16 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
               data-testid="settings-volume-full"
               onClick={() => update({ volume: 100 })}
             >
-              Full
+              {t("settings.full")}
             </button>
           </div>
-          <p className="muted">The audio layer honours this once its files are in (T107).</p>
+          <p className="muted">{t("settings.audioNote")}</p>
         </section>
 
-        <section className="settings-panel" aria-label="Text speed">
-          <h3>Text speed</h3>
+        <section className="settings-panel" aria-label={t("settings.textSpeedLabel")}>
+          <h3>{t("settings.textSpeed")}</h3>
           <label className="settings-field" htmlFor="settings-text-speed">
-            <span>Dispatch pacing</span>
+            <span>{t("settings.dispatchPacing")}</span>
           </label>
           <select
             id="settings-text-speed"
@@ -279,17 +282,17 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
           >
             {TEXT_SPEEDS.map((speed) => (
               <option key={speed} value={speed}>
-                {speed}
+                {t(TEXT_SPEED_LABEL_KEYS[speed])}
               </option>
             ))}
           </select>
           <p className="muted" data-testid="settings-text-speed-note">
-            {TEXT_SPEED_NOTES[settings.textSpeed]}
+            {t(TEXT_SPEED_NOTE_KEYS[settings.textSpeed])}
           </p>
         </section>
 
-        <section className="settings-panel" aria-label="Field HUD">
-          <h3>Field HUD</h3>
+        <section className="settings-panel" aria-label={t("settings.fieldHud")}>
+          <h3>{t("settings.fieldHud")}</h3>
           <label className="settings-toggle" htmlFor="settings-damage-numbers">
             <input
               id="settings-damage-numbers"
@@ -298,18 +301,15 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
               checked={settings.damageNumbers}
               onChange={(event) => update({ damageNumbers: event.target.checked })}
             />
-            <span>Show damage numbers</span>
+            <span>{t("settings.showDamageNumbers")}</span>
           </label>
-          <p className="muted">
-            Casualty figures float over the field after each volley. Turn them off for a cleaner
-            board.
-          </p>
+          <p className="muted">{t("settings.damageNumbersNote")}</p>
         </section>
 
-        <section className="settings-panel" aria-label="Colour-blind mode">
-          <h3>Colour-blind mode</h3>
+        <section className="settings-panel" aria-label={t("settings.colourBlindMode")}>
+          <h3>{t("settings.colourBlindMode")}</h3>
           <label className="settings-field" htmlFor="settings-colour-blind">
-            <span>Palette</span>
+            <span>{t("settings.palette")}</span>
           </label>
           <select
             id="settings-colour-blind"
@@ -320,7 +320,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
           >
             {COLOUR_BLIND_MODES.map((mode) => (
               <option key={mode} value={mode}>
-                {COLOUR_BLIND_PALETTES[mode].name}
+                {t(COLOUR_BLIND_PALETTES[mode].nameKey)}
               </option>
             ))}
           </select>
@@ -328,7 +328,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
             className="settings-palette"
             data-testid="settings-palette"
             data-mode={settings.colourBlind}
-            aria-label={`${palette.name} swatches`}
+            aria-label={t("settings.paletteAria", { palette: t(palette.nameKey) })}
           >
             {palette.colours.map((colour) => (
               <span
@@ -340,27 +340,25 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
             ))}
           </div>
           <p className="muted" data-testid="settings-colour-blind-note">
-            {palette.note}
+            {t(palette.noteKey)}
           </p>
         </section>
 
-        <section className="settings-panel settings-panel--wide" aria-label="Keybinds">
-          <h3>Keybinds</h3>
-          <p className="muted">
-            Order the company answers to. Choose <em>Rebind</em>, then press a key; Escape cancels.
-          </p>
+        <section className="settings-panel settings-panel--wide" aria-label={t("settings.keybinds")}>
+          <h3>{t("settings.keybinds")}</h3>
+          <p className="muted">{t("settings.keybindsNote")}</p>
           <table className="settings-table" data-testid="settings-keybinds">
             <thead>
               <tr>
-                <th scope="col">Action</th>
-                <th scope="col">Key</th>
+                <th scope="col">{t("common.action")}</th>
+                <th scope="col">{t("common.key")}</th>
                 <th scope="col" />
               </tr>
             </thead>
             <tbody>
               {KEYBIND_ACTIONS.map((action) => (
                 <tr key={action} data-testid={`settings-keybind-${action}`}>
-                  <th scope="row">{KEYBIND_LABELS[action]}</th>
+                  <th scope="row">{t(KEYBIND_LABEL_KEYS[action])}</th>
                   <td data-testid={`settings-keybind-${action}-key`}>
                     <kbd>{formatKey(settings.keybinds[action])}</kbd>
                   </td>
@@ -373,7 +371,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
                       aria-pressed={capturing === action}
                       onClick={() => setCapturing(action)}
                     >
-                      {capturing === action ? "Press a key…" : "Rebind"}
+                      {capturing === action ? t("settings.pressAKey") : t("settings.rebind")}
                     </button>
                   </td>
                 </tr>
@@ -386,15 +384,15 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
             data-testid="settings-reset-keybinds"
             onClick={resetKeybinds}
           >
-            Reset keybinds
+            {t("settings.resetKeybinds")}
           </button>
         </section>
 
-        <section className="settings-panel" aria-label="Restore defaults">
-          <h3>Restore defaults</h3>
-          <p className="muted">Return every preference and binding to the issue settings.</p>
+        <section className="settings-panel" aria-label={t("settings.restoreLabel")}>
+          <h3>{t("settings.restoreDefaults")}</h3>
+          <p className="muted">{t("settings.restoreDefaultsNote")}</p>
           <button type="button" className="button" data-testid="settings-reset" onClick={resetAll}>
-            Reset all settings
+            {t("settings.resetAll")}
           </button>
           <p
             className="settings-status"
@@ -402,7 +400,11 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
             role="status"
             aria-live="polite"
           >
-            {status.length > 0 ? status : savedAt === null ? "Ready." : "Preferences filed."}
+            {status !== null
+              ? t(status.key, status.vars)
+              : savedAt === null
+                ? t("settings.ready")
+                : t("settings.filedStatus")}
           </p>
         </section>
       </div>

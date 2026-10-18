@@ -67,6 +67,7 @@ import {
 } from "../engine/ids";
 import { createPostAssignment, derivePostStats } from "../engine/progression/posts";
 import { createUnit } from "../engine/unit";
+import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
 /* --------------------------------------------------------------------------
  * View-model helpers
@@ -125,6 +126,7 @@ function countPost(company: Company, postId: string): number {
 function evaluateRequirement(
   company: Company,
   requirement: ContractRequirement,
+  t: Translator,
 ): RequirementStatus {
   const required = requirement.count;
   switch (requirement.kind) {
@@ -140,13 +142,13 @@ function evaluateRequirement(
     }
     case "unit": {
       const have = company.roster.length;
-      return { requirement, label: "Soldiers", have, required, met: have >= required };
+      return { requirement, label: t("mess.soldiers"), have, required, met: have >= required };
     }
     case "honour": {
       const have = company.honours;
       return {
         requirement,
-        label: "Regimental Honours",
+        label: t("mess.regimentalHonours"),
         have,
         required,
         met: have >= required,
@@ -159,29 +161,30 @@ function evaluateRequirement(
 function requirementStatuses(
   company: Company,
   contract: ContractDef,
+  t: Translator,
 ): readonly RequirementStatus[] {
-  return contract.requires.map((requirement) => evaluateRequirement(company, requirement));
+  return contract.requires.map((requirement) => evaluateRequirement(company, requirement, t));
 }
 
 /** `true` when every requirement of `contract` is satisfied by `company`. */
-function meetsContractRequirements(company: Company, contract: ContractDef): boolean {
-  return requirementStatuses(company, contract).every((status) => status.met);
+function meetsContractRequirements(company: Company, contract: ContractDef, t: Translator): boolean {
+  return requirementStatuses(company, contract, t).every((status) => status.met);
 }
 
 /* --------------------------------------------------------------------------
  * Display labels
  * ------------------------------------------------------------------------ */
 
-const KIND_LABELS: Readonly<Record<ContractKind, string>> = {
-  battle: "Battle",
-  skirmish: "Skirmish",
-  detachment: "Detachment",
-  pacification: "Pacification",
+const KIND_LABEL_KEYS: Readonly<Record<ContractKind, MessageKey>> = {
+  battle: "mess.kind.battle",
+  skirmish: "mess.kind.skirmish",
+  detachment: "mess.kind.detachment",
+  pacification: "mess.kind.pacification",
 };
 
 /** A Crowns amount (`250 Crowns`) for the fee and reward lines. */
-function crownsLabel(amount: number): string {
-  return `${amount} ${amount === 1 ? "Crown" : "Crowns"}`;
+function crownsLabel(amount: number, t: Translator): string {
+  return t("common.crownsAmount", { count: amount });
 }
 
 /* --------------------------------------------------------------------------
@@ -306,6 +309,7 @@ export interface MessProps {
  * and lets the player take a contract whose gates are open.
  */
 export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps) {
+  const { t } = useTranslation();
   const [company, setCompany] = useState<Company>(companyProp ?? DEMO_COMPANY);
   const [filter, setFilter] = useState<ContractKind | "all">("all");
   const [posted, setPosted] = useState<ReadonlySet<string>>(() => new Set<string>());
@@ -318,7 +322,7 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
   /** Accept a contract: pay its fee from the war chest and mark it posted. */
   const accept = (contract: ContractDef): void => {
     if (posted.has(contract.id)) return;
-    if (!meetsContractRequirements(company, contract)) return;
+    if (!meetsContractRequirements(company, contract, t)) return;
     if (company.crowns < contract.fee) return;
     setCompany((current) => spendCrowns(current, contract.fee));
     setPosted((current) => {
@@ -330,36 +334,36 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
   };
 
   return (
-    <section className="mess-screen" data-testid="mess-screen" aria-label="Officers' Mess">
+    <section className="mess-screen" data-testid="mess-screen" aria-label={t("mess.title")}>
       <header className="mess-screen__header">
         <div className="mess-screen__identity">
-          <p className="kicker">Garrison Town · Officers' Mess</p>
-          <h2>Mission Board</h2>
-          <p className="muted">
-            Contracts of the free company, posted by the officers of the garrison.
-          </p>
+          <p className="kicker">{t("mess.kicker")}</p>
+          <h2>{t("mess.title")}</h2>
+          <p className="muted">{t("mess.blurb")}</p>
         </div>
         <dl className="mess-screen__company" data-testid="mess-company">
           <div>
-            <dt>Company</dt>
+            <dt>{t("common.company")}</dt>
             <dd data-testid="mess-company-name">{company.name}</dd>
           </div>
           <div>
-            <dt>Crowns</dt>
+            <dt>{t("common.crowns")}</dt>
             <dd data-testid="mess-company-crowns">{company.crowns}</dd>
           </div>
           <div>
-            <dt>Honours</dt>
+            <dt>{t("common.honours")}</dt>
             <dd data-testid="mess-company-honours">{company.honours}</dd>
           </div>
           <div>
-            <dt>Roster</dt>
-            <dd data-testid="mess-company-roster">{company.roster.length} soldiers</dd>
+            <dt>{t("common.roster")}</dt>
+            <dd data-testid="mess-company-roster">
+              {t("common.soldiers", { count: company.roster.length })}
+            </dd>
           </div>
         </dl>
       </header>
 
-      <nav className="mess-filter" aria-label="Contract kind">
+      <nav className="mess-filter" aria-label={t("mess.contractKind")}>
         <button
           type="button"
           className={filter === "all" ? "mess-filter__button is-active" : "mess-filter__button"}
@@ -367,7 +371,7 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
           aria-pressed={filter === "all"}
           onClick={() => setFilter("all")}
         >
-          All
+          {t("mess.all")}
         </button>
         {CONTRACT_KINDS.map((kind) => (
           <button
@@ -378,14 +382,14 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
             aria-pressed={filter === kind}
             onClick={() => setFilter(kind)}
           >
-            {KIND_LABELS[kind]}
+            {t(KIND_LABEL_KEYS[kind])}
           </button>
         ))}
       </nav>
 
       <ul className="contract-board">
         {visible.map((contract) => {
-          const statuses = requirementStatuses(company, contract);
+          const statuses = requirementStatuses(company, contract, t);
           const requirementsMet = statuses.every((status) => status.met);
           const chapterOpen = contract.chapter === undefined || contract.chapter <= chapter;
           const affordable = company.crowns >= contract.fee;
@@ -406,19 +410,19 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
                     className={`contract-kind contract-kind--${contract.kind}`}
                     data-testid={`contract-${contract.id}-kind`}
                   >
-                    {KIND_LABELS[contract.kind]}
+                    {t(KIND_LABEL_KEYS[contract.kind])}
                   </span>
                   {!chapterOpen && (
                     <span
                       className="contract-badge"
                       data-testid={`contract-${contract.id}-chapter`}
                     >
-                      Chapter {contract.chapter}
+                      {t("mess.chapterBadge", { chapter: contract.chapter ?? 0 })}
                     </span>
                   )}
                 </div>
                 <div className="contract__fee" data-testid={`contract-${contract.id}-fee`}>
-                  {crownsLabel(contract.fee)}
+                  {crownsLabel(contract.fee, t)}
                 </div>
               </div>
 
@@ -427,23 +431,25 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
 
               <dl className="contract__meta">
                 <div>
-                  <dt>Region</dt>
-                  <dd data-testid={`contract-${contract.id}-region`}>{contract.regionId ?? "—"}</dd>
+                  <dt>{t("common.region")}</dt>
+                  <dd data-testid={`contract-${contract.id}-region`}>
+                    {contract.regionId ?? t("common.none")}
+                  </dd>
                 </div>
                 {contract.duration !== undefined && (
                   <div>
-                    <dt>Detachment</dt>
+                    <dt>{t("mess.detachment")}</dt>
                     <dd data-testid={`contract-${contract.id}-duration`}>
-                      {contract.duration} days
+                      {t("common.days", { count: contract.duration })}
                     </dd>
                   </div>
                 )}
               </dl>
 
-              <section className="contract__requirements" aria-label="Requirements">
-                <h4>Requirements</h4>
+              <section className="contract__requirements" aria-label={t("mess.requirements")}>
+                <h4>{t("mess.requirements")}</h4>
                 {statuses.length === 0 ? (
-                  <p className="muted">None — any company may take this contract.</p>
+                  <p className="muted">{t("mess.noRequirements")}</p>
                 ) : (
                   <ul className="requirement-list">
                     {statuses.map((status, index) => (
@@ -465,7 +471,7 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
                           className="requirement__status"
                           data-testid={`contract-${contract.id}-req-${index}-status`}
                         >
-                          {status.met ? "Met" : "Unmet"}
+                          {status.met ? t("common.met") : t("common.unmet")}
                         </span>
                       </li>
                     ))}
@@ -473,26 +479,25 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
                 )}
               </section>
 
-              <section className="contract__reward" aria-label="Reward">
-                <h4>Reward on success</h4>
+              <section className="contract__reward" aria-label={t("mess.reward")}>
+                <h4>{t("mess.reward")}</h4>
                 <ul className="reward-list" data-testid={`contract-${contract.id}-reward`}>
                   <li data-testid={`contract-${contract.id}-reward-crowns`}>
-                    {crownsLabel(contract.reward.crowns)}
+                    {crownsLabel(contract.reward.crowns, t)}
                   </li>
                   {contract.reward.ap > 0 && (
                     <li data-testid={`contract-${contract.id}-reward-drill`}>
-                      {contract.reward.ap} Drill
+                      {t("common.drillAmount", { count: contract.reward.ap })}
                     </li>
                   )}
                   {contract.reward.experience > 0 && (
                     <li data-testid={`contract-${contract.id}-reward-experience`}>
-                      {contract.reward.experience} Experience
+                      {t("mess.experienceAmount", { count: contract.reward.experience })}
                     </li>
                   )}
                   {contract.reward.honours > 0 && (
                     <li data-testid={`contract-${contract.id}-reward-honours`}>
-                      {contract.reward.honours}{" "}
-                      {contract.reward.honours === 1 ? "Honour" : "Honours"}
+                      {t("common.honoursAmount", { count: contract.reward.honours })}
                     </li>
                   )}
                   {contract.reward.itemIds.map((itemId) => (
@@ -501,7 +506,7 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
                       className="reward-list__item"
                       data-testid={`contract-${contract.id}-reward-item-${itemId}`}
                     >
-                      {itemLabel(itemId)} (kit)
+                      {t("mess.kitReward", { item: itemLabel(itemId) })}
                     </li>
                   ))}
                 </ul>
@@ -510,7 +515,7 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
               <div className="contract__actions">
                 {!affordable && requirementsMet && chapterOpen && !isPosted && (
                   <p className="contract__blocker" data-testid={`contract-${contract.id}-blocker`}>
-                    Insufficient Crowns — the fee is {crownsLabel(contract.fee)}.
+                    {t("mess.insufficientCrowns", { fee: crownsLabel(contract.fee, t) })}
                   </p>
                 )}
                 <button
@@ -520,7 +525,9 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
                   disabled={!canAccept}
                   onClick={() => accept(contract)}
                 >
-                  {isPosted ? "Posted" : `Take contract · ${crownsLabel(contract.fee)}`}
+                  {isPosted
+                    ? t("common.posted")
+                    : t("mess.takeContract", { fee: crownsLabel(contract.fee, t) })}
                 </button>
               </div>
             </li>

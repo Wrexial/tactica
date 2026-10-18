@@ -65,6 +65,7 @@ import {
   type PriceTier,
 } from "../engine/depot";
 import { asCompanyId, asDepotId, asRegionId } from "../engine/ids";
+import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
 /* --------------------------------------------------------------------------
  * Prototype depots (authored inline until the campaign owns a depot table)
@@ -151,23 +152,23 @@ const DEMO_INVENTORY: DepotInventory = createDepotInventory({
  * Display helpers
  * ------------------------------------------------------------------------ */
 
-const POWER_LABELS: Readonly<Record<PowerKey, string>> = {
-  france: "France",
-  britain: "Britain",
-  prussia: "Prussia",
-  russia: "Russia",
-  austria: "Austria",
+const POWER_LABEL_KEYS: Readonly<Record<PowerKey, MessageKey>> = {
+  france: "power.france",
+  britain: "power.britain",
+  prussia: "power.prussia",
+  russia: "power.russia",
+  austria: "power.austria",
 };
 
-const TIER_LABELS: Readonly<Record<PriceTier, string>> = {
-  favoured: "Favoured",
-  standard: "Standard",
-  foreign: "Foreign",
+const TIER_LABEL_KEYS: Readonly<Record<PriceTier, MessageKey>> = {
+  favoured: "depot.tier.favoured",
+  standard: "depot.tier.standard",
+  foreign: "depot.tier.foreign",
 };
 
 /** A Crowns amount (`250 Crowns`). */
-function crownsLabel(amount: number): string {
-  return `${amount} ${amount === 1 ? "Crown" : "Crowns"}`;
+function crownsLabel(amount: number, t: Translator): string {
+  return t("common.crownsAmount", { count: amount });
 }
 
 /** Player-facing name for an equipment id (falls back to the raw id). */
@@ -221,6 +222,7 @@ export function Depot({
   onBuy,
   onSell,
 }: DepotProps) {
+  const { t } = useTranslation();
   const [company, setCompany] = useState<Company>(companyProp ?? DEMO_COMPANY);
   const [inventory, setInventory] = useState<DepotInventory>(inventoryProp ?? DEMO_INVENTORY);
   const [selectedDepotId, setSelectedDepotId] = useState<string>(depots[0]?.id ?? "");
@@ -236,8 +238,8 @@ export function Depot({
 
   if (selectedDepot === undefined) {
     return (
-      <section className="depot-screen" data-testid="depot-screen" aria-label="Depot">
-        <p className="muted">No depots are open in the theatre.</p>
+      <section className="depot-screen" data-testid="depot-screen" aria-label={t("depot.label")}>
+        <p className="muted">{t("depot.noneOpen")}</p>
       </section>
     );
   }
@@ -254,7 +256,7 @@ export function Depot({
     const trade = buyKit(company, inventory, selectedDepot, itemId);
     setCompany(trade.company);
     setInventory(trade.inventory);
-    pushLog(`Bought ${itemLabel(itemId)} for ${crownsLabel(trade.paid)}.`);
+    pushLog(t("depot.boughtLog", { item: itemLabel(itemId), price: crownsLabel(trade.paid, t) }));
     onBuy?.(itemId, trade.paid);
   };
 
@@ -264,7 +266,7 @@ export function Depot({
     const trade = sellKit(company, inventory, selectedDepot, itemId);
     setCompany(trade.company);
     setInventory(trade.inventory);
-    pushLog(`Sold ${itemLabel(itemId)} for ${crownsLabel(-trade.paid)}.`);
+    pushLog(t("depot.soldLog", { item: itemLabel(itemId), price: crownsLabel(-trade.paid, t) }));
     onSell?.(itemId, -trade.paid);
   };
 
@@ -272,38 +274,35 @@ export function Depot({
     <section
       className="depot-screen"
       data-testid="depot-screen"
-      aria-label="Quartermaster's Stores"
+      aria-label={t("depot.storesLabel")}
     >
       <header className="depot-screen__header">
         <div>
-          <p className="kicker">Quartermaster's Stores · Depot</p>
-          <h2>Buy &amp; Sell</h2>
-          <p className="muted">
-            A depot favours the kit of its own power and charges more for other schools&apos; gear.
-            Trade is only open where the company stands.
-          </p>
+          <p className="kicker">{t("depot.kicker")}</p>
+          <h2>{t("depot.title")}</h2>
+          <p className="muted">{t("depot.blurb")}</p>
         </div>
         <dl className="depot-screen__company" data-testid="depot-company">
           <div>
-            <dt>Company</dt>
+            <dt>{t("common.company")}</dt>
             <dd data-testid="depot-company-name">{company.name}</dd>
           </div>
           <div>
-            <dt>Crowns</dt>
+            <dt>{t("common.crowns")}</dt>
             <dd data-testid="depot-company-crowns">{company.crowns}</dd>
           </div>
           <div>
-            <dt>Region</dt>
+            <dt>{t("common.region")}</dt>
             <dd data-testid="depot-company-region">
               {company.theatre.regionId === null
-                ? "between postings"
+                ? t("common.betweenPostings")
                 : regionLabel(company.theatre.regionId)}
             </dd>
           </div>
         </dl>
       </header>
 
-      <nav className="depot-list" aria-label="Depots">
+      <nav className="depot-list" aria-label={t("depot.depotsLabel")}>
         {depots.map((depot) => {
           const here = depot.regionId === company.theatre.regionId;
           return (
@@ -318,9 +317,12 @@ export function Depot({
             >
               <span className="depot-chip__name">{depot.name}</span>
               <span className="depot-chip__power">
-                {POWER_LABELS[depot.power]} · {regionLabel(depot.regionId)}
+                {t("depot.powerRegion", {
+                  power: t(POWER_LABEL_KEYS[depot.power]),
+                  region: regionLabel(depot.regionId),
+                })}
               </span>
-              {!here && <span className="depot-chip__closed">March there first</span>}
+              {!here && <span className="depot-chip__closed">{t("depot.marchThereFirst")}</span>}
             </button>
           );
         })}
@@ -328,22 +330,26 @@ export function Depot({
 
       {!depotOpen && (
         <p className="depot-closed" data-testid="depot-closed">
-          {regionLabel(selectedDepot.regionId)} is a day&apos;s march away — the company cannot
-          trade here from{" "}
-          {company.theatre.regionId === null ? "the road" : regionLabel(company.theatre.regionId)}.
+          {regionLabel(selectedDepot.regionId)}{" "}
+          {t("depot.marchAway", {
+            region:
+              company.theatre.regionId === null
+                ? t("depot.theRoad")
+                : regionLabel(company.theatre.regionId),
+          })}
         </p>
       )}
 
       <div className="depot-screen__body">
-        <section className="depot-panel" aria-label="Depot stock">
+        <section className="depot-panel" aria-label={t("depot.stockLabel")}>
           <h3>{selectedDepot.name}</h3>
           <table className="depot-table" data-testid="depot-stock">
             <thead>
               <tr>
-                <th scope="col">Kit</th>
-                <th scope="col">Tier</th>
-                <th scope="col">Buy</th>
-                <th scope="col">Owned</th>
+                <th scope="col">{t("depot.kit")}</th>
+                <th scope="col">{t("depot.tier")}</th>
+                <th scope="col">{t("depot.buyHeader")}</th>
+                <th scope="col">{t("common.owned")}</th>
                 <th scope="col" />
               </tr>
             </thead>
@@ -364,11 +370,11 @@ export function Depot({
                         className={`depot-tier depot-tier--${tier}`}
                         data-testid={`depot-tier-${itemId}`}
                       >
-                        {TIER_LABELS[tier]}
+                        {t(TIER_LABEL_KEYS[tier])}
                       </span>
                     </td>
                     <td data-testid={`depot-price-${itemId}`}>
-                      {price === null ? "—" : crownsLabel(price)}
+                      {price === null ? t("common.none") : crownsLabel(price, t)}
                     </td>
                     <td data-testid={`depot-owned-${itemId}`}>{owned}</td>
                     <td>
@@ -380,7 +386,7 @@ export function Depot({
                         title={enabled ? undefined : blockers.join(", ")}
                         onClick={() => handleBuy(itemId)}
                       >
-                        Buy
+                        {t("common.buy")}
                       </button>
                     </td>
                   </tr>
@@ -390,19 +396,19 @@ export function Depot({
           </table>
         </section>
 
-        <section className="depot-panel" aria-label="Company reserve">
-          <h3>Company reserve</h3>
+        <section className="depot-panel" aria-label={t("depot.reserveLabel")}>
+          <h3>{t("depot.reserve")}</h3>
           {reserve.length === 0 ? (
             <p className="muted" data-testid="depot-reserve-empty">
-              The reserve is empty.
+              {t("depot.reserveEmpty")}
             </p>
           ) : (
             <table className="depot-table" data-testid="depot-reserve">
               <thead>
                 <tr>
-                  <th scope="col">Kit</th>
-                  <th scope="col">Owned</th>
-                  <th scope="col">Sell</th>
+                  <th scope="col">{t("depot.kit")}</th>
+                  <th scope="col">{t("common.owned")}</th>
+                  <th scope="col">{t("depot.sellHeader")}</th>
                   <th scope="col" />
                 </tr>
               </thead>
@@ -418,7 +424,7 @@ export function Depot({
                       <th scope="row">{item.name}</th>
                       <td data-testid={`depot-reserve-count-${item.id}`}>{owned}</td>
                       <td data-testid={`depot-sell-price-${item.id}`}>
-                        {price === null ? "—" : crownsLabel(price)}
+                        {price === null ? t("common.none") : crownsLabel(price, t)}
                       </td>
                       <td>
                         <button
@@ -429,7 +435,7 @@ export function Depot({
                           title={enabled ? undefined : blockers.join(", ")}
                           onClick={() => handleSell(item.id)}
                         >
-                          Sell
+                          {t("common.sell")}
                         </button>
                       </td>
                     </tr>
@@ -441,10 +447,10 @@ export function Depot({
         </section>
       </div>
 
-      <section className="depot-panel" aria-label="Ledger">
-        <h3>Ledger</h3>
+      <section className="depot-panel" aria-label={t("depot.ledgerLabel")}>
+        <h3>{t("depot.ledger")}</h3>
         {log.length === 0 ? (
-          <p className="muted">No trades yet.</p>
+          <p className="muted">{t("depot.noTrades")}</p>
         ) : (
           <ol className="depot-log" data-testid="depot-log">
             {log.map((entry, index) => (

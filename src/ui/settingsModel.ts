@@ -23,6 +23,7 @@ import {
   type SaveEnvelope,
   type SaveStore,
 } from "../persist";
+import { t, type MessageKey } from "../i18n";
 
 /* --------------------------------------------------------------------------
  * Model
@@ -96,53 +97,63 @@ export const DEFAULT_SETTINGS: Settings = {
   keybinds: DEFAULT_KEYBINDS,
 };
 
-/** Human labels for each rebindable action. */
-export const KEYBIND_LABELS: Readonly<Record<KeybindAction, string>> = {
-  up: "March north",
-  down: "March south",
-  left: "March west",
-  right: "March east",
-  confirm: "Confirm order",
-  cancel: "Cancel / back",
-  orders: "Open Orders",
-  menu: "Open camp",
+/** Catalog keys for each rebindable action. */
+export const KEYBIND_LABEL_KEYS: Readonly<Record<KeybindAction, MessageKey>> = {
+  up: "settings.keybind.up",
+  down: "settings.keybind.down",
+  left: "settings.keybind.left",
+  right: "settings.keybind.right",
+  confirm: "settings.keybind.confirm",
+  cancel: "settings.keybind.cancel",
+  orders: "settings.keybind.orders",
+  menu: "settings.keybind.menu",
 };
 
-/** Blurb shown beside each text speed. */
-export const TEXT_SPEED_NOTES: Readonly<Record<TextSpeed, string>> = {
-  slow: "Messages crawl; every word lands.",
-  normal: "The standard drumbeat of the dispatches.",
-  fast: "Crisp, clipped orders.",
-  instant: "No waiting — the whole message at once.",
+/** Catalog keys for the blurb shown beside each text speed. */
+export const TEXT_SPEED_NOTE_KEYS: Readonly<Record<TextSpeed, MessageKey>> = {
+  slow: "settings.speedNote.slow",
+  normal: "settings.speedNote.normal",
+  fast: "settings.speedNote.fast",
+  instant: "settings.speedNote.instant",
+};
+
+/** Catalog keys for each text speed's display label. */
+export const TEXT_SPEED_LABEL_KEYS: Readonly<Record<TextSpeed, MessageKey>> = {
+  slow: "settings.speed.slow",
+  normal: "settings.speed.normal",
+  fast: "settings.speed.fast",
+  instant: "settings.speed.instant",
 };
 
 /** A colour-blind palette preview. */
 export interface ColourBlindPalette {
-  readonly name: string;
-  readonly note: string;
+  /** Catalog key for the palette's display name. */
+  readonly nameKey: MessageKey;
+  /** Catalog key for the palette's explanatory note. */
+  readonly noteKey: MessageKey;
   readonly colours: readonly string[];
 }
 
 /** Preview swatches for each mode; presentation only until T109 uses them. */
 export const COLOUR_BLIND_PALETTES: Readonly<Record<ColourBlindMode, ColourBlindPalette>> = {
   off: {
-    name: "Issue palette",
-    note: "The full army colours — friend, foe and neutral read at a glance.",
+    nameKey: "settings.palette.off.name",
+    noteKey: "settings.palette.off.note",
     colours: ["#22304a", "#b8891f", "#8a2f24", "#1d4d24"],
   },
   protanopia: {
-    name: "Martian (red-weak)",
-    note: "Red and green kept apart by brightness and shape.",
+    nameKey: "settings.palette.protanopia.name",
+    noteKey: "settings.palette.protanopia.note",
     colours: ["#1b3a5c", "#d9b95c", "#7a4a12", "#20303f"],
   },
   deuteranopia: {
-    name: "Grass (green-weak)",
-    note: "Green and red distinguished by a blue-safe pair.",
+    nameKey: "settings.palette.deuteranopia.name",
+    noteKey: "settings.palette.deuteranopia.note",
     colours: ["#1b3a5c", "#e0c264", "#1f6f8b", "#4a2f1a"],
   },
   tritanopia: {
-    name: "Violet (blue-weak)",
-    note: "Blue and green separated by a warm-to-cool ramp.",
+    nameKey: "settings.palette.tritanopia.name",
+    noteKey: "settings.palette.tritanopia.note",
     colours: ["#243d2c", "#c98a2b", "#6a2f4a", "#3a3a3a"],
   },
 };
@@ -212,16 +223,16 @@ export async function saveSettings(
   store: SaveStore,
   settings: Settings,
 ): Promise<SaveEnvelope<Settings>> {
-  return store.save(SETTINGS_SLOT, settings, { label: "Settings" });
+  return store.save(SETTINGS_SLOT, settings, { label: t("settings.label") });
 }
 
 /** A human-readable label for a bound key. */
 export function formatKey(key: string): string {
-  if (key === " ") return "Space";
-  if (key === "ArrowUp") return "↑ Up";
-  if (key === "ArrowDown") return "↓ Down";
-  if (key === "ArrowLeft") return "← Left";
-  if (key === "ArrowRight") return "→ Right";
+  if (key === " ") return t("settings.key.space");
+  if (key === "ArrowUp") return t("settings.key.arrowUp");
+  if (key === "ArrowDown") return t("settings.key.arrowDown");
+  if (key === "ArrowLeft") return t("settings.key.arrowLeft");
+  if (key === "ArrowRight") return t("settings.key.arrowRight");
   if (key.length === 1) return key.toUpperCase();
   return key;
 }

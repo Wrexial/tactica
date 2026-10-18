@@ -56,6 +56,7 @@ import {
   primaryPostOf,
   type PostAssignment,
 } from "../engine/progression/posts";
+import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
 /* --------------------------------------------------------------------------
  * View-model types
@@ -107,27 +108,27 @@ export interface PostScreenProps {
  * Display helpers (presentation only)
  * ------------------------------------------------------------------------ */
 
-const POWER_LABELS: Readonly<Record<PowerKey, string>> = {
-  france: "France",
-  britain: "Britain",
-  prussia: "Prussia",
-  russia: "Russia",
-  austria: "Austria",
+const POWER_LABEL_KEYS: Readonly<Record<PowerKey, MessageKey>> = {
+  france: "power.france",
+  britain: "power.britain",
+  prussia: "power.prussia",
+  russia: "power.russia",
+  austria: "power.austria",
 };
 
 const STAT_COLUMNS = ["hp", "mp", "atk", "def", "mag", "res", "spd", "move", "jump"] as const;
 type StatColumn = (typeof STAT_COLUMNS)[number];
 
-const STAT_LABELS: Readonly<Record<StatColumn, string>> = {
-  hp: "HP",
-  mp: "Élan",
-  atk: "Steel",
-  def: "Guard",
-  mag: "Powder",
-  res: "Faith",
-  spd: "Speed",
-  move: "Move",
-  jump: "Climb",
+const STAT_LABEL_KEYS: Readonly<Record<StatColumn, MessageKey>> = {
+  hp: "stat.hp",
+  mp: "stat.mp",
+  atk: "stat.atk",
+  def: "stat.def",
+  mag: "stat.mag",
+  res: "stat.res",
+  spd: "stat.spd",
+  move: "stat.move",
+  jump: "stat.jump",
 };
 
 /** Resolve a post id from authored data, or `null` when it is unknown. */
@@ -144,21 +145,30 @@ function postLabel(postId: string): string {
  * A human-readable summary of a post's unlock requirements, with progress:
  * `Requires 2 from Fusilier (1/2)`. Returns `null` for a starting post.
  */
-function requirementSummary(post: PostDef, mastered: MasteredByPost): string | null {
+function requirementSummary(
+  post: PostDef,
+  mastered: MasteredByPost,
+  t: Translator,
+): string | null {
   if (post.requires.length === 0) return null;
   return post.requires
     .map((requirement) => {
       const have = mastered[requirement.postId]?.length ?? 0;
       const shown = Math.min(have, requirement.abilities);
-      return `Requires ${requirement.abilities} from ${postLabel(requirement.postId)} (${shown}/${requirement.abilities})`;
+      return t("posts.requirement", {
+        abilities: requirement.abilities,
+        post: postLabel(requirement.postId),
+        have: shown,
+        required: requirement.abilities,
+      });
     })
     .join(" · ");
 }
 
 /** A skillset's display label, derived from its owning post (`Fusilier Kit`). */
-function skillsetLabel(skillsetId: SkillsetId): string {
+function skillsetLabel(skillsetId: SkillsetId, t: Translator): string {
   const owner = POST_LIST.find((post) => post.skillsetIds.includes(skillsetId));
-  return owner === undefined ? String(skillsetId) : `${owner.name} Kit`;
+  return owner === undefined ? String(skillsetId) : t("posts.kitSuffix", { post: owner.name });
 }
 
 /** Clamp a Drill value into `[0, required]` for the progress bar. */
@@ -243,6 +253,7 @@ const DEMO_SOLDIER: PostScreenSoldier = {
  * new primary post or attached action skillset.
  */
 export function PostScreen({ soldier = DEMO_SOLDIER, onAssignmentChange }: PostScreenProps) {
+  const { t } = useTranslation();
   const [assignment, setAssignment] = useState<PostAssignment>(soldier.assignment);
 
   const primary = primaryPostOf(assignment);
@@ -286,35 +297,40 @@ export function PostScreen({ soldier = DEMO_SOLDIER, onAssignmentChange }: PostS
   };
 
   return (
-    <section className="post-screen" data-testid="post-screen" aria-label="Change post">
+    <section className="post-screen" data-testid="post-screen" aria-label={t("posts.label")}>
       <header className="post-screen__header">
         <div className="post-screen__identity">
-          <p className="kicker">Barracks · Change Post</p>
+          <p className="kicker">{t("posts.kicker")}</p>
           <h2>{soldier.name}</h2>
           <p className="muted">
-            {POWER_LABELS[soldier.power]} · Level {soldier.level}
+            {t("posts.levelLine", {
+              power: t(POWER_LABEL_KEYS[soldier.power]),
+              level: soldier.level,
+            })}
           </p>
         </div>
         <dl className="post-screen__current">
           <div>
-            <dt>Primary post</dt>
+            <dt>{t("posts.primary")}</dt>
             <dd data-testid="post-current-primary">{primary.name}</dd>
           </div>
           <div>
-            <dt>Attached post</dt>
-            <dd data-testid="post-current-attached">{attached?.name ?? "—"}</dd>
+            <dt>{t("posts.attached")}</dt>
+            <dd data-testid="post-current-attached">{attached?.name ?? t("common.none")}</dd>
           </div>
         </dl>
       </header>
 
       <div className="post-screen__body">
-        <section className="post-screen__tree" aria-label="Role tree">
-          <h3>Role tree — {POWER_LABELS[soldier.power]}</h3>
+        <section className="post-screen__tree" aria-label={t("posts.roleTree")}>
+          <h3>
+            {t("posts.roleTreeHeading", { power: t(POWER_LABEL_KEYS[soldier.power]) })}
+          </h3>
           <ul className="post-list">
             {powerPosts.map((post) => {
               const unlocked = meetsPostRequirements(post, soldier.mastered);
               const isPrimary = post.id === assignment.primaryPostId;
-              const summary = requirementSummary(post, soldier.mastered);
+              const summary = requirementSummary(post, soldier.mastered, t);
               return (
                 <li
                   key={post.id}
@@ -328,7 +344,11 @@ export function PostScreen({ soldier = DEMO_SOLDIER, onAssignmentChange }: PostS
                         className={unlocked ? "post-badge" : "post-badge post-badge--locked"}
                         data-testid={`post-${post.id}-status`}
                       >
-                        {unlocked ? (isPrimary ? "Current" : "Unlocked") : "Locked"}
+                        {unlocked
+                          ? isPrimary
+                            ? t("posts.currentBadge")
+                            : t("posts.unlockedBadge")
+                          : t("posts.lockedBadge")}
                       </span>
                     </div>
                     <p className="post-row__desc">{post.description}</p>
@@ -345,7 +365,7 @@ export function PostScreen({ soldier = DEMO_SOLDIER, onAssignmentChange }: PostS
                     disabled={!unlocked || isPrimary}
                     onClick={() => choosePrimary(post)}
                   >
-                    {isPrimary ? "Primary" : "Set primary"}
+                    {isPrimary ? t("posts.primaryButton") : t("posts.setPrimary")}
                   </button>
                 </li>
               );
@@ -354,13 +374,11 @@ export function PostScreen({ soldier = DEMO_SOLDIER, onAssignmentChange }: PostS
         </section>
 
         <aside className="post-screen__side">
-          <section aria-label="Action skillset">
-            <h3>Action skillset</h3>
-            <p className="muted">
-              Chosen from the primary post or any post whose abilities you have mastered.
-            </p>
+          <section aria-label={t("posts.skillsetLabel")}>
+            <h3>{t("posts.actionSkillset")}</h3>
+            <p className="muted">{t("posts.skillsetNote")}</p>
             <label className="post-skillset">
-              <span>Attached command</span>
+              <span>{t("posts.attachedCommand")}</span>
               <select
                 data-testid="action-skillset"
                 value={assignment.actionSkillsetId ?? ""}
@@ -368,16 +386,16 @@ export function PostScreen({ soldier = DEMO_SOLDIER, onAssignmentChange }: PostS
               >
                 {skillsets.map((skillsetId) => (
                   <option key={skillsetId} value={skillsetId}>
-                    {skillsetLabel(skillsetId)}
+                    {skillsetLabel(skillsetId, t)}
                   </option>
                 ))}
               </select>
             </label>
           </section>
 
-          <section aria-label="Drill progress">
-            <h3>Drill progress</h3>
-            <p className="muted">Battles award Drill; master abilities bound to equipped kit.</p>
+          <section aria-label={t("posts.drillProgressLabel")}>
+            <h3>{t("posts.drillProgress")}</h3>
+            <p className="muted">{t("posts.drillNote")}</p>
             <ul className="drill-list">
               {soldier.drill.map((entry) => (
                 <li
@@ -397,25 +415,25 @@ export function PostScreen({ soldier = DEMO_SOLDIER, onAssignmentChange }: PostS
                   <progress
                     max={entry.required}
                     value={clampDrill(entry.drill, entry.required)}
-                    aria-label={`${entry.abilityName} Drill`}
+                    aria-label={`${entry.abilityName} ${t("common.drill")}`}
                   />
                   <span
                     className="drill-row__status"
                     data-testid={`drill-${entry.abilityId}-status`}
                   >
-                    {entry.mastered ? "Mastered" : "In training"}
+                    {entry.mastered ? t("common.mastered") : t("common.inTraining")}
                   </span>
                 </li>
               ))}
             </ul>
           </section>
 
-          <section aria-label="Derived stats">
-            <h3>Stats — {primary.name}</h3>
+          <section aria-label={t("posts.statsLabel")}>
+            <h3>{t("posts.statsHeading", { post: primary.name })}</h3>
             <dl className="post-stats" data-testid="post-stats">
               {STAT_COLUMNS.map((key) => (
                 <div key={key}>
-                  <dt>{STAT_LABELS[key]}</dt>
+                  <dt>{t(STAT_LABEL_KEYS[key])}</dt>
                   <dd data-testid={`post-stat-${key}`}>{stats[key]}</dd>
                 </div>
               ))}

@@ -74,6 +74,7 @@ import {
   type SaveSlotInfo,
   type SaveStore,
 } from "../persist";
+import { useTranslation, type MessageKey, type TranslationVars, type Translator } from "../i18n";
 
 /* --------------------------------------------------------------------------
  * Constants & helpers
@@ -91,10 +92,11 @@ const DEMO_DAY = 12;
 /** Tone of one ledger line, so the UI can style success against failure. */
 type StatusKind = "info" | "success" | "error";
 
-/** One line in the save ledger. */
+/** One line in the save ledger, held as a key so the locale resolves at render. */
 interface StatusEntry {
   readonly kind: StatusKind;
-  readonly message: string;
+  readonly key: MessageKey;
+  readonly vars?: TranslationVars;
 }
 
 /** Human-readable message for whatever a `catch` caught. */
@@ -103,8 +105,11 @@ function messageOf(error: unknown): string {
 }
 
 /** A compact label for a campaign (`The Greycoats · Day 12`). */
-function campaignLabel(save: CampaignSave): string {
-  return `${save.company.name} · Day ${save.company.theatre.day}`;
+function campaignLabel(save: CampaignSave, t: Translator): string {
+  return t("saves.campaignLabel", {
+    company: save.company.name,
+    day: save.company.theatre.day,
+  });
 }
 
 /** A locale timestamp for a slot's `savedAt`; presentation only. */
@@ -113,8 +118,8 @@ function formatTime(milliseconds: number): string {
 }
 
 /** A Crowns amount (`1400 Crowns`). */
-function crownsLabel(amount: number): string {
-  return `${amount} ${amount === 1 ? "Crown" : "Crowns"}`;
+function crownsLabel(amount: number, t: Translator): string {
+  return t("common.crownsAmount", { count: amount });
 }
 
 /* --------------------------------------------------------------------------
@@ -261,6 +266,7 @@ export function Saves({
   slots = DEFAULT_SAVE_SLOTS,
   onChange,
 }: SavesProps) {
+  const { t } = useTranslation();
   const store = useMemo(() => storeProp ?? createDefaultStore(), [storeProp]);
   const [campaign, setCampaign] = useState<CampaignSave>(
     () => campaignProp ?? createDemoCampaign(),
@@ -272,9 +278,12 @@ export function Saves({
   const [busy, setBusy] = useState(false);
   const [ledger, setLedger] = useState<readonly StatusEntry[]>([]);
 
-  const pushLedger = useCallback((kind: StatusKind, message: string): void => {
-    setLedger((current) => [{ kind, message }, ...current].slice(0, 12));
-  }, []);
+  const pushLedger = useCallback(
+    (kind: StatusKind, key: MessageKey, vars?: TranslationVars): void => {
+      setLedger((current) => [{ kind, key, ...(vars !== undefined ? { vars } : {}) }, ...current].slice(0, 12));
+    },
+    [],
+  );
 
   const refreshSlots = useCallback(async (): Promise<void> => {
     const infos = await store.list();
@@ -292,18 +301,18 @@ export function Saves({
     let cancelled = false;
     void (async () => {
       try {
-        await saveCampaign(store, AUTOSAVE_SLOT, campaign, { label: campaignLabel(campaign) });
+        await saveCampaign(store, AUTOSAVE_SLOT, campaign, { label: campaignLabel(campaign, t) });
         if (!cancelled) await refreshSlots();
       } catch (error) {
         if (!cancelled) {
-          pushLedger("error", `Autosave failed: ${messageOf(error)}`);
+          pushLedger("error", "saves.ledger.autosaveFailed", { error: messageOf(error) });
         }
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [campaign, store, refreshSlots, pushLedger]);
+  }, [campaign, store, refreshSlots, pushLedger, t]);
 
   const infoBySlot = useMemo(
     () => new Map(slotInfos.map((info) => [info.slot, info] as const)),
@@ -320,12 +329,12 @@ export function Saves({
   const handleSave = async (slot: string): Promise<void> => {
     setBusy(true);
     try {
-      const chosenLabel = label.trim().length > 0 ? label.trim() : campaignLabel(campaign);
+      const chosenLabel = label.trim().length > 0 ? label.trim() : campaignLabel(campaign, t);
       await saveCampaign(store, slot, campaign, { label: chosenLabel });
       await refreshSlots();
-      pushLedger("success", `Filed ${chosenLabel} in ${slot}.`);
+      pushLedger("success", "saves.ledger.filed", { label: chosenLabel, slot });
     } catch (error) {
-      pushLedger("error", `Could not save to ${slot}: ${messageOf(error)}`);
+      pushLedger("error", "saves.ledger.saveFailed", { slot, error: messageOf(error) });
     } finally {
       setBusy(false);
     }
@@ -337,14 +346,14 @@ export function Saves({
     try {
       const loaded = await loadCampaignMigrated(store, slot);
       if (loaded === null) {
-        pushLedger("error", `${slot} is empty.`);
+        pushLedger("error", "saves.ledger.emptySlot", { slot });
         return;
       }
       setCampaign(loaded);
       onChange?.(loaded);
-      pushLedger("success", `Restored ${slot} — ${campaignLabel(loaded)}.`);
+      pushLedger("success", "saves.ledger.restored", { slot, label: campaignLabel(loaded, t) });
     } catch (error) {
-      pushLedger("error", `Could not load ${slot}: ${messageOf(error)}`);
+      pushLedger("error", "saves.ledger.loadFailed", { slot, error: messageOf(error) });
     } finally {
       setBusy(false);
     }
@@ -356,12 +365,13 @@ export function Saves({
     try {
       const removed = await store.remove(slot);
       await refreshSlots();
-      pushLedger(
-        removed ? "success" : "info",
-        removed ? `Struck ${slot}.` : `${slot} was already empty.`,
-      );
+      if (removed) {
+        pushLedger("success", "saves.ledger.struck", { slot });
+      } else {
+        pushLedger("info", "saves.ledger.alreadyEmpty", { slot });
+      }
     } catch (error) {
-      pushLedger("error", `Could not strike ${slot}: ${messageOf(error)}`);
+      pushLedger("error", "saves.ledger.strikeFailed", { slot, error: messageOf(error) });
     } finally {
       setBusy(false);
     }
@@ -371,11 +381,11 @@ export function Saves({
   const handleAutosaveNow = async (): Promise<void> => {
     setBusy(true);
     try {
-      await saveCampaign(store, AUTOSAVE_SLOT, campaign, { label: campaignLabel(campaign) });
+      await saveCampaign(store, AUTOSAVE_SLOT, campaign, { label: campaignLabel(campaign, t) });
       await refreshSlots();
-      pushLedger("success", `Autosaved ${campaignLabel(campaign)}.`);
+      pushLedger("success", "saves.ledger.autosaved", { label: campaignLabel(campaign, t) });
     } catch (error) {
-      pushLedger("error", `Autosave failed: ${messageOf(error)}`);
+      pushLedger("error", "saves.ledger.autosaveFailed", { error: messageOf(error) });
     } finally {
       setBusy(false);
     }
@@ -391,7 +401,7 @@ export function Saves({
   /** Render the working campaign as canonical JSON. */
   const handleExport = (): void => {
     setExportText(serializeCampaign(campaign));
-    pushLedger("info", `Exported ${campaignLabel(campaign)} as JSON.`);
+    pushLedger("info", "saves.ledger.exported", { label: campaignLabel(campaign, t) });
   };
 
   /** Validate pasted JSON and adopt it as the working campaign. */
@@ -400,64 +410,63 @@ export function Saves({
       const imported = deserializeCampaignMigrated(importText);
       setCampaign(imported);
       onChange?.(imported);
-      pushLedger("success", `Imported ${campaignLabel(imported)} from JSON.`);
+      pushLedger("success", "saves.ledger.imported", { label: campaignLabel(imported, t) });
     } catch (error) {
-      pushLedger("error", `Import rejected: ${messageOf(error)}`);
+      pushLedger("error", "saves.ledger.importRejected", { error: messageOf(error) });
     }
   };
 
   return (
-    <section className="saves-screen" data-testid="saves-screen" aria-label="Saves">
+    <section className="saves-screen" data-testid="saves-screen" aria-label={t("saves.label")}>
       <header className="saves-screen__header">
         <div>
-          <p className="kicker">Camp Keep · Saves</p>
-          <h2>Autosave, Slots &amp; Records</h2>
-          <p className="muted">
-            The company is autosaved whenever it changes. File it into a slot, restore an earlier
-            posting, or carry the campaign in and out as JSON.
-          </p>
+          <p className="kicker">{t("saves.kicker")}</p>
+          <h2>{t("saves.title")}</h2>
+          <p className="muted">{t("saves.blurb")}</p>
         </div>
         <dl className="saves-screen__company" data-testid="saves-current">
           <div>
-            <dt>Company</dt>
+            <dt>{t("common.company")}</dt>
             <dd data-testid="saves-current-company">{campaign.company.name}</dd>
           </div>
           <div>
-            <dt>Day</dt>
+            <dt>{t("common.day")}</dt>
             <dd data-testid="saves-current-day">{campaign.company.theatre.day}</dd>
           </div>
           <div>
-            <dt>Crowns</dt>
-            <dd data-testid="saves-current-crowns">{crownsLabel(campaign.company.crowns)}</dd>
+            <dt>{t("common.crowns")}</dt>
+            <dd data-testid="saves-current-crowns">{crownsLabel(campaign.company.crowns, t)}</dd>
           </div>
           <div>
-            <dt>Roster</dt>
-            <dd data-testid="saves-current-roster">{campaign.company.roster.length} soldiers</dd>
+            <dt>{t("common.roster")}</dt>
+            <dd data-testid="saves-current-roster">
+              {t("common.soldiers", { count: campaign.company.roster.length })}
+            </dd>
           </div>
           <div>
-            <dt>Seed</dt>
+            <dt>{t("common.seed")}</dt>
             <dd data-testid="saves-current-seed">{String(campaign.seed)}</dd>
           </div>
           <div>
-            <dt>Format</dt>
+            <dt>{t("common.format")}</dt>
             <dd data-testid="saves-current-version">v{campaign.version}</dd>
           </div>
         </dl>
       </header>
 
       <div className="saves-screen__body">
-        <section className="saves-panel" aria-label="Autosave">
-          <h3>Autosave</h3>
+        <section className="saves-panel" aria-label={t("saves.autosaveLabel")}>
+          <h3>{t("saves.autosaveLabel")}</h3>
           <div
             className="saves-autosave"
             data-testid="saves-autosave"
             data-filled={autosaveInfo !== undefined}
           >
             <p className="saves-autosave__state" data-testid="saves-autosave-state">
-              {autosaveInfo === undefined ? "No autosave yet" : autosaveInfo.label}
+              {autosaveInfo === undefined ? t("saves.noAutosave") : autosaveInfo.label}
             </p>
             <p className="muted" data-testid="saves-autosave-time">
-              {autosaveInfo === undefined ? "—" : formatTime(autosaveInfo.savedAt)}
+              {autosaveInfo === undefined ? t("common.none") : formatTime(autosaveInfo.savedAt)}
             </p>
             <button
               type="button"
@@ -466,22 +475,22 @@ export function Saves({
               disabled={busy}
               onClick={() => void handleAutosaveNow()}
             >
-              Autosave now
+              {t("saves.autosaveNow")}
             </button>
           </div>
         </section>
 
-        <section className="saves-panel" aria-label="Save slots">
-          <h3>Filing slots</h3>
+        <section className="saves-panel" aria-label={t("saves.slotsLabel")}>
+          <h3>{t("saves.slots")}</h3>
           <label className="saves-label" htmlFor="saves-label-input">
-            Slot label
+            {t("saves.slotLabel")}
           </label>
           <input
             id="saves-label-input"
             className="saves-label-input"
             data-testid="saves-label"
             type="text"
-            placeholder={campaignLabel(campaign)}
+            placeholder={campaignLabel(campaign, t)}
             value={label}
             maxLength={48}
             onChange={(event) => setLabel(event.target.value)}
@@ -489,9 +498,9 @@ export function Saves({
           <table className="saves-table" data-testid="saves-slots">
             <thead>
               <tr>
-                <th scope="col">Slot</th>
-                <th scope="col">Record</th>
-                <th scope="col">Written</th>
+                <th scope="col">{t("saves.slot")}</th>
+                <th scope="col">{t("saves.record")}</th>
+                <th scope="col">{t("saves.written")}</th>
                 <th scope="col" />
               </tr>
             </thead>
@@ -503,10 +512,10 @@ export function Saves({
                   <tr key={slot} data-testid={`saves-slot-${slot}`} data-filled={filled}>
                     <th scope="row">{slot}</th>
                     <td data-testid={`saves-slot-${slot}-label`}>
-                      {info === undefined ? "Empty" : info.label}
+                      {info === undefined ? t("saves.empty") : info.label}
                     </td>
                     <td data-testid={`saves-slot-${slot}-time`}>
-                      {info === undefined ? "—" : formatTime(info.savedAt)}
+                      {info === undefined ? t("common.none") : formatTime(info.savedAt)}
                     </td>
                     <td className="saves-table__actions">
                       <button
@@ -516,7 +525,7 @@ export function Saves({
                         disabled={busy}
                         onClick={() => void handleSave(slot)}
                       >
-                        Save
+                        {t("common.save")}
                       </button>
                       <button
                         type="button"
@@ -525,7 +534,7 @@ export function Saves({
                         disabled={busy || !filled}
                         onClick={() => void handleLoad(slot)}
                       >
-                        Load
+                        {t("common.load")}
                       </button>
                       <button
                         type="button"
@@ -534,7 +543,7 @@ export function Saves({
                         disabled={busy || !filled}
                         onClick={() => void handleDelete(slot)}
                       >
-                        Strike
+                        {t("saves.strike")}
                       </button>
                     </td>
                   </tr>
@@ -550,27 +559,25 @@ export function Saves({
             disabled={busy}
             onClick={handleAdvance}
           >
-            Advance a day
+            {t("saves.advanceDay")}
           </button>
         </section>
 
-        <section className="saves-panel" aria-label="Export">
-          <h3>Export JSON</h3>
-          <p className="muted">
-            A canonical record of the campaign — seed, company, map, clock and history.
-          </p>
+        <section className="saves-panel" aria-label={t("saves.exportLabel")}>
+          <h3>{t("saves.exportJson")}</h3>
+          <p className="muted">{t("saves.exportNote")}</p>
           <button
             type="button"
             className="button"
             data-testid="saves-export"
             onClick={handleExport}
           >
-            Export
+            {t("saves.export")}
           </button>
           <textarea
             className="saves-json"
             data-testid="saves-export-json"
-            aria-label="Exported campaign JSON"
+            aria-label={t("saves.exportJsonLabel")}
             readOnly
             rows={6}
             value={exportText}
@@ -582,23 +589,20 @@ export function Saves({
               href={exportHref}
               download="lines-of-glory-campaign.json"
             >
-              Download .json
+              {t("saves.download")}
             </a>
           )}
         </section>
 
-        <section className="saves-panel" aria-label="Import">
-          <h3>Import JSON</h3>
-          <p className="muted">
-            Paste an exported record. It is validated against the engine before it replaces the
-            working campaign.
-          </p>
+        <section className="saves-panel" aria-label={t("saves.importLabel")}>
+          <h3>{t("saves.importJson")}</h3>
+          <p className="muted">{t("saves.importNote")}</p>
           <textarea
             className="saves-json"
             data-testid="saves-import-json"
-            aria-label="Campaign JSON to import"
+            aria-label={t("saves.importJsonLabel")}
             rows={6}
-            placeholder="Paste an exported campaign JSON here…"
+            placeholder={t("saves.importPlaceholder")}
             value={importText}
             onChange={(event) => setImportText(event.target.value)}
           />
@@ -609,25 +613,25 @@ export function Saves({
             disabled={busy || importText.trim().length === 0}
             onClick={handleImport}
           >
-            Import
+            {t("saves.import")}
           </button>
         </section>
 
-        <section className="saves-panel" aria-label="Ledger">
-          <h3>Ledger</h3>
+        <section className="saves-panel" aria-label={t("saves.ledgerLabel")}>
+          <h3>{t("saves.ledger")}</h3>
           {ledger.length === 0 ? (
             <p className="muted" data-testid="saves-ledger-empty">
-              No save orders yet.
+              {t("saves.noOrders")}
             </p>
           ) : (
             <ol className="saves-ledger" data-testid="saves-ledger">
               {ledger.map((entry, index) => (
                 <li
-                  key={`${index}-${entry.message}`}
+                  key={`${index}-${entry.key}`}
                   data-kind={entry.kind}
                   data-testid={`saves-ledger-${index}`}
                 >
-                  {entry.message}
+                  {t(entry.key, entry.vars)}
                 </li>
               ))}
             </ol>

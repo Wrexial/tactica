@@ -870,7 +870,7 @@ deterministic.
 - done: All UI strings via keys; no hard-coded copy.
 
 ### T116 — Adopt i18n keys across the remaining screens
-- status: todo
+- status: done
 - deps: [T111]
 - files: src/ui/Menus.tsx, src/ui/Mess.tsx, src/ui/Depot.tsx, src/ui/CampaignMap.tsx, src/ui/PostScreen.tsx, src/ui/Saves.tsx, src/ui/Settings.tsx, src/ui/Forecast.tsx, src/ui/TempoTray.tsx, src/ui/Tutorial.tsx, src/ui/a11y.ts
 - verify: npm run test -- --run tests/unit/i18n.test.ts

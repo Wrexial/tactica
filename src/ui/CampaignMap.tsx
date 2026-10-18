@@ -70,6 +70,7 @@ import {
   type RegionId,
 } from "../engine/ids";
 import { getTerrainDef } from "../engine/terrain";
+import { useTranslation, type Translator } from "../i18n";
 
 /* --------------------------------------------------------------------------
  * Authored campaign markers (prototype scaffolding until T074/T077)
@@ -166,14 +167,14 @@ function itemLabel(itemId: string): string {
 }
 
 /** A human-readable summary of one hunt's spoils. */
-function spoilsLabel(finds: readonly TreasureFind[]): string {
-  if (finds.length === 0) return "nothing but empty ground";
+function spoilsLabel(finds: readonly TreasureFind[], t: Translator): string {
+  if (finds.length === 0) return t("campaign.nothingFound");
   return finds.map((find) => `${itemLabel(find.itemId)} ×${find.count}`).join(", ");
 }
 
 /** A Crowns amount for the header. */
-function crownsLabel(amount: number): string {
-  return `${amount} ${amount === 1 ? "Crown" : "Crowns"}`;
+function crownsLabel(amount: number, t: Translator): string {
+  return t("common.crownsAmount", { count: amount });
 }
 
 /* --------------------------------------------------------------------------
@@ -213,6 +214,7 @@ export function CampaignMap({
   onTravel,
   onHunt,
 }: CampaignMapProps) {
+  const { t } = useTranslation();
   const [company, setCompany] = useState<Company>(companyProp ?? DEMO_COMPANY);
   const [map, setMap] = useState<CampaignMapState>(mapProp ?? INITIAL_MAP);
   const [selectedMarkerId, setSelectedMarkerId] = useState<MapTokenId | null>(null);
@@ -245,7 +247,12 @@ export function CampaignMap({
       canPlaceMarker(map, selectedMarker, at)
     ) {
       setMap(placeMarker(map, selectedMarker, at));
-      pushLog(`Placed ${selectedMarker.name} (${getTerrainDef(selectedMarker.terrain).name}).`);
+      pushLog(
+        t("campaign.placedLog", {
+          marker: selectedMarker.name,
+          terrain: getTerrainDef(selectedMarker.terrain).name,
+        }),
+      );
       setSelectedMarkerId(null);
       setSelectedSlot(at);
       onPlace?.(selectedMarker, at);
@@ -262,8 +269,8 @@ export function CampaignMap({
     setCompany(arrived);
     pushLog(
       plan.days === 0
-        ? `Already at ${selectedLocation.name}.`
-        : `Marched ${plan.days} day${plan.days === 1 ? "" : "s"} to ${selectedLocation.name}.`,
+        ? t("campaign.alreadyAtLog", { name: selectedLocation.name })
+        : t("campaign.marchedLog", { count: plan.days, name: selectedLocation.name }),
     );
     onTravel?.(regionId);
   };
@@ -274,56 +281,61 @@ export function CampaignMap({
     if (isHunted(map, selectedSlot)) return;
     const result = huntTreasure(map, selectedSlot);
     setMap(result.map);
-    pushLog(`Treasure hunt at ${selectedLocation.name}: ${spoilsLabel(result.finds)}.`);
+    pushLog(
+      t("campaign.huntLog", {
+        name: selectedLocation.name,
+        spoils: spoilsLabel(result.finds, t),
+      }),
+    );
     onHunt?.(selectedSlot, result.finds);
   };
 
   return (
-    <section className="map-screen" data-testid="campaign-map-screen" aria-label="Campaign Map">
+    <section className="map-screen" data-testid="campaign-map-screen" aria-label={t("campaign.label")}>
       <header className="map-screen__header">
         <div>
-          <p className="kicker">The Theatre · Campaign Map</p>
-          <h2>Lines of March</h2>
-          <p className="muted">
-            Grow the theatre with campaign markers, then march and hunt. What a hunt finds depends
-            on what a location was placed beside.
-          </p>
+          <p className="kicker">{t("campaign.kicker")}</p>
+          <h2>{t("campaign.title")}</h2>
+          <p className="muted">{t("campaign.blurb")}</p>
         </div>
         <dl className="map-screen__company" data-testid="campaign-map-company">
           <div>
-            <dt>Company</dt>
+            <dt>{t("common.company")}</dt>
             <dd data-testid="campaign-map-company-name">{company.name}</dd>
           </div>
           <div>
-            <dt>Crowns</dt>
-            <dd data-testid="campaign-map-company-crowns">{crownsLabel(company.crowns)}</dd>
+            <dt>{t("common.crowns")}</dt>
+            <dd data-testid="campaign-map-company-crowns">{crownsLabel(company.crowns, t)}</dd>
           </div>
           <div>
-            <dt>Honours</dt>
+            <dt>{t("common.honours")}</dt>
             <dd data-testid="campaign-map-company-honours">{company.honours}</dd>
           </div>
           <div>
-            <dt>Day</dt>
+            <dt>{t("common.day")}</dt>
             <dd data-testid="campaign-map-company-day">{company.theatre.day}</dd>
           </div>
           <div>
-            <dt>Region</dt>
+            <dt>{t("common.region")}</dt>
             <dd data-testid="campaign-map-company-region">
-              {company.theatre.regionId ?? "between postings"}
+              {company.theatre.regionId ?? t("common.betweenPostings")}
             </dd>
           </div>
           <div>
-            <dt>Placed</dt>
+            <dt>{t("campaign.placed")}</dt>
             <dd data-testid="campaign-map-placed-count">
-              {placementCount(map)} / {map.grid.width * map.grid.height}
+              {t("campaign.placedCount", {
+                placed: placementCount(map),
+                total: map.grid.width * map.grid.height,
+              })}
             </dd>
           </div>
         </dl>
       </header>
 
       <div className="map-screen__body">
-        <section className="map-board" aria-label="Campaign slots">
-          <h3>Campaign slots</h3>
+        <section className="map-board" aria-label={t("campaign.slotsLabel")}>
+          <h3>{t("campaign.slots")}</h3>
           <div
             className="map-grid"
             data-testid="campaign-map-grid"
@@ -356,8 +368,8 @@ export function CampaignMap({
                   data-marker={marker?.id ?? ""}
                   aria-label={
                     marker === undefined
-                      ? `Empty slot ${at.x}, ${at.y}`
-                      : `${marker.name} at ${at.x}, ${at.y}`
+                      ? t("campaign.emptySlotAria", { x: at.x, y: at.y })
+                      : t("campaign.markerAria", { name: marker.name, x: at.x, y: at.y })
                   }
                   onClick={() => handleSlot(at)}
                 >
@@ -369,7 +381,7 @@ export function CampaignMap({
                       <span className="map-cell__terrain">
                         {getTerrainDef(marker.terrain).name}
                       </span>
-                      {hunted && <span className="map-cell__flag">Hunted</span>}
+                      {hunted && <span className="map-cell__flag">{t("campaign.hunted")}</span>}
                     </>
                   )}
                 </button>
@@ -379,10 +391,10 @@ export function CampaignMap({
         </section>
 
         <aside className="map-side">
-          <section className="map-panel" aria-label="Available markers">
-            <h3>Campaign markers</h3>
+          <section className="map-panel" aria-label={t("campaign.availableMarkers")}>
+            <h3>{t("campaign.markers")}</h3>
             {availableMarkers.length === 0 ? (
-              <p className="muted">Every marker has been placed.</p>
+              <p className="muted">{t("campaign.allPlaced")}</p>
             ) : (
               <ul className="marker-palette" data-testid="campaign-marker-palette">
                 {availableMarkers.map((marker) => (
@@ -409,32 +421,34 @@ export function CampaignMap({
             )}
           </section>
 
-          <section className="map-panel" aria-label="Selected location">
-            <h3>Selected location</h3>
+          <section className="map-panel" aria-label={t("campaign.selectedLabel")}>
+            <h3>{t("campaign.selectedLocation")}</h3>
             {selectedSlot === null ? (
-              <p className="muted">Choose a slot on the map.</p>
+              <p className="muted">{t("campaign.chooseSlot")}</p>
             ) : selectedLocation === undefined ? (
               <p className="muted" data-testid="campaign-selected-empty">
-                Empty slot {selectedSlot.x}, {selectedSlot.y}
+                {t("campaign.emptySlotAria", { x: selectedSlot.x, y: selectedSlot.y })}
                 {selectedMarker === undefined
-                  ? " — pick a marker, then click here to place it."
-                  : " — click again to place the selected marker."}
+                  ? t("campaign.pickMarker")
+                  : t("campaign.placeMarker")}
               </p>
             ) : (
               <div className="location-card" data-testid="campaign-selected-location">
                 <p className="location-card__name">{selectedLocation.name}</p>
                 <dl className="location-card__meta">
                   <div>
-                    <dt>Terrain</dt>
+                    <dt>{t("common.terrain")}</dt>
                     <dd>{getTerrainDef(selectedLocation.terrain).name}</dd>
                   </div>
                   <div>
-                    <dt>Region</dt>
+                    <dt>{t("common.region")}</dt>
                     <dd data-testid="campaign-selected-region">{selectedLocation.regionId}</dd>
                   </div>
                   <div>
-                    <dt>Treasure</dt>
-                    <dd>{isHunted(map, selectedSlot) ? "Hunted" : "Unsearched"}</dd>
+                    <dt>{t("campaign.treasure")}</dt>
+                    <dd>
+                      {isHunted(map, selectedSlot) ? t("campaign.hunted") : t("common.unsearched")}
+                    </dd>
                   </div>
                 </dl>
                 <div className="location-card__actions">
@@ -444,7 +458,7 @@ export function CampaignMap({
                     data-testid="campaign-travel"
                     onClick={handleTravel}
                   >
-                    March here
+                    {t("campaign.marchHere")}
                   </button>
                   <button
                     type="button"
@@ -453,17 +467,19 @@ export function CampaignMap({
                     disabled={isHunted(map, selectedSlot)}
                     onClick={handleHunt}
                   >
-                    {isHunted(map, selectedSlot) ? "Already hunted" : "Treasure hunt"}
+                    {isHunted(map, selectedSlot)
+                      ? t("campaign.alreadyHunted")
+                      : t("campaign.treasureHunt")}
                   </button>
                 </div>
               </div>
             )}
           </section>
 
-          <section className="map-panel" aria-label="Dispatch log">
-            <h3>Dispatch log</h3>
+          <section className="map-panel" aria-label={t("campaign.dispatchLogLabel")}>
+            <h3>{t("campaign.dispatchLog")}</h3>
             {log.length === 0 ? (
-              <p className="muted">No orders issued yet.</p>
+              <p className="muted">{t("campaign.noOrders")}</p>
             ) : (
               <ol className="dispatch-log" data-testid="campaign-log">
                 {log.map((entry, index) => (

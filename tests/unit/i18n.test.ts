@@ -1,4 +1,19 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+
+import type { StatBlock } from "../../src/data/schema";
+import { coord } from "../../src/engine/grid";
+import { asPostId, asUnitId } from "../../src/engine/ids";
+import { createUnit } from "../../src/engine/unit";
+import { describeUnit } from "../../src/ui/a11y";
+import { Mess } from "../../src/ui/Mess";
+import {
+  COLOUR_BLIND_PALETTES,
+  KEYBIND_LABEL_KEYS,
+  TEXT_SPEED_LABEL_KEYS,
+  TEXT_SPEED_NOTE_KEYS,
+} from "../../src/ui/settingsModel";
 
 import {
   DEFAULT_LOCALE,
@@ -264,5 +279,64 @@ describe("resetI18n", () => {
     resetI18n();
     translate("en", "after.reset");
     expect(handler).not.toHaveBeenCalled();
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T116 — camp screens & screen-reader descriptions resolve copy through `t()`
+ * ------------------------------------------------------------------------ */
+
+describe("T116 — screen catalogs", () => {
+  it("references only registered keys from the settings model", () => {
+    const keys = [
+      ...Object.values(KEYBIND_LABEL_KEYS),
+      ...Object.values(TEXT_SPEED_LABEL_KEYS),
+      ...Object.values(TEXT_SPEED_NOTE_KEYS),
+      ...Object.values(COLOUR_BLIND_PALETTES).flatMap((palette) => [
+        palette.nameKey,
+        palette.noteKey,
+      ]),
+    ];
+    for (const key of keys) {
+      expect(hasKey("en", key), key).toBe(true);
+    }
+  });
+
+  it("renders the Officers' Mess from keys, not baked-in English", () => {
+    setLocale("pseudo");
+    const markup = renderToStaticMarkup(createElement(Mess));
+    expect(markup).toContain("⟦");
+    expect(markup).not.toContain("Mission Board");
+    expect(markup).not.toContain("Reward on success");
+  });
+
+  it("routes the screen-reader unit description through the catalog", () => {
+    const stats: StatBlock = {
+      hp: 60,
+      mp: 20,
+      atk: 12,
+      def: 8,
+      mag: 4,
+      res: 6,
+      spd: 10,
+      move: 4,
+      jump: 2,
+    };
+    const unit = createUnit({
+      id: asUnitId("unit-1"),
+      name: "Sgt. Aubry",
+      power: "france",
+      postId: asPostId("fusilier"),
+      level: 3,
+      at: coord(2, 3),
+      stats: { ...stats },
+      hp: 41,
+      mp: 7,
+    });
+    setLocale("pseudo");
+    const label = describeUnit(unit);
+    expect(label).toContain("Sgt. Aubry");
+    expect(label).toContain("⟦");
+    expect(label).not.toContain("strength 41 of 60");
   });
 });

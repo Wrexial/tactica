@@ -91,6 +91,7 @@ import {
   type PostAssignment,
 } from "../engine/progression/posts";
 import { createUnit, withEquipment, type Unit } from "../engine/unit";
+import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
 import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
@@ -114,63 +115,63 @@ const MENU_SCREENS = [
 ] as const;
 export type MenuScreen = (typeof MENU_SCREENS)[number];
 
-/** One sidebar entry: the screen it opens and the fiction it carries. */
+/** One sidebar entry: the screen it opens and the catalog keys it carries. */
 interface MenuEntry {
   readonly screen: MenuScreen;
-  readonly label: string;
-  readonly kicker: string;
-  readonly blurb: string;
+  readonly labelKey: MessageKey;
+  readonly kickerKey: MessageKey;
+  readonly blurbKey: MessageKey;
 }
 
 /** The suite's navigation, shared by the sidebar and the main-menu tiles. */
 const MENU_ENTRIES: readonly MenuEntry[] = [
   {
     screen: "main",
-    label: "Orders",
-    kicker: "Camp",
-    blurb: "The hub: every camp order from one place.",
+    labelKey: "menu.orders.label",
+    kickerKey: "menu.orders.kicker",
+    blurbKey: "menu.orders.blurb",
   },
   {
     screen: "company",
-    label: "Company",
-    kicker: "Roster",
-    blurb: "The roll of the free company, soldier by soldier.",
+    labelKey: "menu.company.label",
+    kickerKey: "menu.company.kicker",
+    blurbKey: "menu.company.blurb",
   },
   {
     screen: "post",
-    label: "Barracks",
-    kicker: "Post",
-    blurb: "Change a soldier's post and read the role tree.",
+    labelKey: "menu.barracks.label",
+    kickerKey: "menu.barracks.kicker",
+    blurbKey: "menu.barracks.blurb",
   },
   {
     screen: "equipment",
-    label: "Equipment",
-    kicker: "Kit",
-    blurb: "Inspect and swap the kit a soldier carries.",
+    labelKey: "menu.kit.label",
+    kickerKey: "menu.kit.kicker",
+    blurbKey: "menu.kit.blurb",
   },
   {
     screen: "abilities",
-    label: "Abilities",
-    kicker: "Drill",
-    blurb: "Mastered actions, reaction/trait/volley slots.",
+    labelKey: "menu.drill.label",
+    kickerKey: "menu.drill.kicker",
+    blurbKey: "menu.drill.blurb",
   },
   {
     screen: "depot",
-    label: "Quartermaster",
-    kicker: "Depot",
-    blurb: "Buy and sell kit by depot and power.",
+    labelKey: "menu.depot.label",
+    kickerKey: "menu.depot.kicker",
+    blurbKey: "menu.depot.blurb",
   },
   {
     screen: "mess",
-    label: "Officers' Mess",
-    kicker: "Contracts",
-    blurb: "Take contracts posted by the garrison.",
+    labelKey: "menu.mess.label",
+    kickerKey: "menu.mess.kicker",
+    blurbKey: "menu.mess.blurb",
   },
   {
     screen: "campaign-map",
-    label: "Campaign Map",
-    kicker: "Theatre",
-    blurb: "Place markers, march and hunt for treasure.",
+    labelKey: "menu.map.label",
+    kickerKey: "menu.map.kicker",
+    blurbKey: "menu.map.blurb",
   },
 ];
 
@@ -183,26 +184,26 @@ function isMenuScreen(value: unknown): value is MenuScreen {
  * Display labels (presentation only)
  * ------------------------------------------------------------------------ */
 
-const POWER_LABELS: Readonly<Record<PowerKey, string>> = {
-  france: "France",
-  britain: "Britain",
-  prussia: "Prussia",
-  russia: "Russia",
-  austria: "Austria",
+const POWER_LABEL_KEYS: Readonly<Record<PowerKey, MessageKey>> = {
+  france: "power.france",
+  britain: "power.britain",
+  prussia: "power.prussia",
+  russia: "power.russia",
+  austria: "power.austria",
 };
 
-const SLOT_LABELS: Readonly<Record<EquipSlot, string>> = {
-  weapon: "Weapon",
-  offhand: "Off-hand",
-  armour: "Uniform",
-  head: "Head",
-  accessory: "Accessory",
+const SLOT_LABEL_KEYS: Readonly<Record<EquipSlot, MessageKey>> = {
+  weapon: "slot.weapon",
+  offhand: "slot.offhand",
+  armour: "slot.armour",
+  head: "slot.head",
+  accessory: "slot.accessory",
 };
 
-const ABILITY_SLOT_LABELS: Readonly<Record<AbilitySlot, string>> = {
-  reaction: "Reaction",
-  trait: "Trait",
-  volley: "Volley",
+const ABILITY_SLOT_LABEL_KEYS: Readonly<Record<AbilitySlot, MessageKey>> = {
+  reaction: "slot.reaction",
+  trait: "slot.trait",
+  volley: "slot.volley",
 };
 
 /** The nine stat columns a menu shows, in roster order. */
@@ -218,16 +219,16 @@ const STAT_COLUMNS: readonly (keyof StatBlock)[] = [
   "jump",
 ];
 
-const STAT_LABELS: Readonly<Record<keyof StatBlock, string>> = {
-  hp: "HP",
-  mp: "Élan",
-  atk: "Steel",
-  def: "Guard",
-  mag: "Powder",
-  res: "Faith",
-  spd: "Speed",
-  move: "Move",
-  jump: "Climb",
+const STAT_LABEL_KEYS: Readonly<Record<keyof StatBlock, MessageKey>> = {
+  hp: "stat.hp",
+  mp: "stat.mp",
+  atk: "stat.atk",
+  def: "stat.def",
+  mag: "stat.mag",
+  res: "stat.res",
+  spd: "stat.spd",
+  move: "stat.move",
+  jump: "stat.jump",
 };
 
 /**
@@ -277,8 +278,8 @@ function itemLabel(itemId: string): string {
 }
 
 /** A Crowns amount (`250 Crowns`). */
-function crownsLabel(amount: number): string {
-  return `${amount} ${amount === 1 ? "Crown" : "Crowns"}`;
+function crownsLabel(amount: number, t: Translator): string {
+  return t("common.crownsAmount", { count: amount });
 }
 
 /* --------------------------------------------------------------------------
@@ -506,14 +507,14 @@ function statsWithKit(soldier: MenuSoldier): StatBlock {
 }
 
 /** A short stat-modifier summary for one item (`+8 Steel, +2 Speed`). */
-function itemModsSummary(item: EquipmentDef): string {
+function itemModsSummary(item: EquipmentDef, t: Translator): string {
   const entries: string[] = [];
   for (const key of STAT_COLUMNS) {
     const value = item.stats[key];
     if (value === 0) continue;
-    entries.push(`${value > 0 ? "+" : ""}${value} ${STAT_LABELS[key]}`);
+    entries.push(`${value > 0 ? "+" : ""}${value} ${t(STAT_LABEL_KEYS[key])}`);
   }
-  return entries.length === 0 ? "No stat modifier" : entries.join(", ");
+  return entries.length === 0 ? t("common.noStatModifier") : entries.join(", ");
 }
 
 /* --------------------------------------------------------------------------
@@ -546,8 +547,9 @@ function MenuSidebar({
   readonly onNavigate: (screen: MenuScreen) => void;
   readonly onClose?: (() => void) | undefined;
 }) {
+  const { t } = useTranslation();
   return (
-    <nav className="menu-sidebar" aria-label="Camp menus">
+    <nav className="menu-sidebar" aria-label={t("menu.sidebarLabel")}>
       <ul>
         {MENU_ENTRIES.map((entry) => (
           <li key={entry.screen}>
@@ -558,8 +560,8 @@ function MenuSidebar({
               aria-current={screen === entry.screen ? "page" : undefined}
               onClick={() => onNavigate(entry.screen)}
             >
-              <span className="menu-nav__kicker">{entry.kicker}</span>
-              <span className="menu-nav__label">{entry.label}</span>
+              <span className="menu-nav__kicker">{t(entry.kickerKey)}</span>
+              <span className="menu-nav__label">{t(entry.labelKey)}</span>
             </button>
           </li>
         ))}
@@ -571,8 +573,8 @@ function MenuSidebar({
           data-testid="menu-nav-field"
           onClick={onClose}
         >
-          <span className="menu-nav__kicker">Battle</span>
-          <span className="menu-nav__label">Return to the Field</span>
+          <span className="menu-nav__kicker">{t("menu.returnKicker")}</span>
+          <span className="menu-nav__label">{t("menu.returnToField")}</span>
         </button>
       )}
     </nav>
@@ -590,32 +592,30 @@ function MainMenu({
   readonly onNavigate: (screen: MenuScreen) => void;
 }) {
   const tiles = MENU_ENTRIES.filter((entry) => entry.screen !== "main");
+  const { t } = useTranslation();
   return (
-    <section className="menu-main" data-testid="menu-main" aria-label="Camp orders">
+    <section className="menu-main" data-testid="menu-main" aria-label={t("screen.campOrders")}>
       <header className="menu-panel__header">
-        <p className="kicker">Camp · Orders</p>
+        <p className="kicker">{t("menu.kicker")}</p>
         <h2>{company.name}</h2>
-        <p className="muted">
-          The free company rests between contracts. Choose an order; every rule behind it lives with
-          the data and the engine.
-        </p>
+        <p className="muted">{t("menu.blurb")}</p>
       </header>
 
       <dl className="menu-summary" data-testid="menu-summary">
         <div>
-          <dt>Crowns</dt>
-          <dd data-testid="menu-summary-crowns">{crownsLabel(company.crowns)}</dd>
+          <dt>{t("common.crowns")}</dt>
+          <dd data-testid="menu-summary-crowns">{crownsLabel(company.crowns, t)}</dd>
         </div>
         <div>
-          <dt>Honours</dt>
+          <dt>{t("common.honours")}</dt>
           <dd data-testid="menu-summary-honours">{company.honours}</dd>
         </div>
         <div>
-          <dt>Roster</dt>
-          <dd data-testid="menu-summary-roster">{soldierCount} soldiers</dd>
+          <dt>{t("common.roster")}</dt>
+          <dd data-testid="menu-summary-roster">{t("common.soldiers", { count: soldierCount })}</dd>
         </div>
         <div>
-          <dt>Day</dt>
+          <dt>{t("common.day")}</dt>
           <dd data-testid="menu-summary-day">{company.theatre.day}</dd>
         </div>
       </dl>
@@ -629,9 +629,9 @@ function MainMenu({
               data-testid={`menu-tile-${entry.screen}`}
               onClick={() => onNavigate(entry.screen)}
             >
-              <span className="menu-tile__kicker">{entry.kicker}</span>
-              <span className="menu-tile__label">{entry.label}</span>
-              <span className="menu-tile__blurb">{entry.blurb}</span>
+              <span className="menu-tile__kicker">{t(entry.kickerKey)}</span>
+              <span className="menu-tile__label">{t(entry.labelKey)}</span>
+              <span className="menu-tile__blurb">{t(entry.blurbKey)}</span>
             </button>
           </li>
         ))}
@@ -652,17 +652,21 @@ function CompanyMenu({
   readonly selectedUnitId: UnitId | null;
   readonly onSelect: (unitId: UnitId) => void;
 }) {
+  const { t } = useTranslation();
   const selected = soldiers.find((soldier) => soldier.unit.id === selectedUnitId) ?? soldiers[0];
   const stats = selected === undefined ? null : statsWithKit(selected);
 
   return (
-    <section className="menu-company" data-testid="company-screen" aria-label="Company roster">
+    <section className="menu-company" data-testid="company-screen" aria-label={t("menu.company.label")}>
       <header className="menu-panel__header">
-        <p className="kicker">Company · The Roll</p>
+        <p className="kicker">{t("menu.companyRoll")}</p>
         <h2>{company.name}</h2>
         <p className="muted">
-          {soldiers.length} under the colours · {crownsLabel(company.crowns)} in the chest ·{" "}
-          {company.honours} honours.
+          {t("menu.companySummary", {
+            soldiers: soldiers.length,
+            crowns: crownsLabel(company.crowns, t),
+            honours: company.honours,
+          })}
         </p>
       </header>
 
@@ -681,11 +685,18 @@ function CompanyMenu({
                 >
                   <span className="company-row__name">{soldier.unit.name}</span>
                   <span className="company-row__meta">
-                    {POWER_LABELS[soldier.unit.power]} · {postLabel(soldier.unit.postId)} · Lv{" "}
-                    {soldier.unit.level}
+                    {t("menu.soldierMeta", {
+                      power: t(POWER_LABEL_KEYS[soldier.unit.power]),
+                      post: postLabel(soldier.unit.postId),
+                      level: soldier.unit.level,
+                    })}
                   </span>
                   <span className="company-row__vitals">
-                    {soldier.unit.hp}/{soldier.unit.stats.hp} HP · {soldier.unit.mp} Élan
+                    {t("menu.soldierVitals", {
+                      hp: soldier.unit.hp,
+                      maxHp: soldier.unit.stats.hp,
+                      mp: soldier.unit.mp,
+                    })}
                   </span>
                 </button>
               </li>
@@ -697,31 +708,31 @@ function CompanyMenu({
           <aside className="company-detail" data-testid="company-detail">
             <h3 data-testid="company-selected-name">{selected.unit.name}</h3>
             <p className="muted">
-              {POWER_LABELS[selected.unit.power]} · Primary{" "}
+              {t(POWER_LABEL_KEYS[selected.unit.power])} · {t("posts.primary")}{" "}
               {primaryPostOf(selected.assignment).name}
               {attachedPostOf(selected.assignment) !== null
-                ? ` · Attached ${attachedPostOf(selected.assignment)?.name ?? ""}`
+                ? ` · ${t("posts.attached")} ${attachedPostOf(selected.assignment)?.name ?? ""}`
                 : ""}
             </p>
 
             <dl className="company-stats" data-testid="company-stats">
               {STAT_COLUMNS.map((key) => (
                 <div key={key}>
-                  <dt>{STAT_LABELS[key]}</dt>
+                  <dt>{t(STAT_LABEL_KEYS[key])}</dt>
                   <dd data-testid={`company-stat-${key}`}>{stats[key]}</dd>
                 </div>
               ))}
             </dl>
 
-            <h4>Kit</h4>
+            <h4>{t("menu.kitHeading")}</h4>
             <ul className="company-kit" data-testid="company-kit">
               {EQUIP_SLOTS.map((slot) => {
                 const itemId = selected.unit.equipment[slot];
                 return (
                   <li key={slot} data-testid={`company-kit-${slot}`}>
-                    <span className="company-kit__slot">{SLOT_LABELS[slot]}</span>
+                    <span className="company-kit__slot">{t(SLOT_LABEL_KEYS[slot])}</span>
                     <span className="company-kit__item">
-                      {itemId === null ? "—" : itemLabel(itemId)}
+                      {itemId === null ? t("common.none") : itemLabel(itemId)}
                     </span>
                   </li>
                 );
@@ -742,25 +753,26 @@ function EquipmentMenu({
   readonly soldier: MenuSoldier;
   readonly onEquip: (slot: EquipSlot, itemId: EquipmentId | null) => void;
 }) {
+  const { t } = useTranslation();
   const [openSlot, setOpenSlot] = useState<EquipSlot>("weapon");
   const stats = statsWithKit(soldier);
   const options = useMemo(() => kitFor(soldier.unit, openSlot), [soldier.unit, openSlot]);
   const equippedId = soldier.unit.equipment[openSlot];
 
   return (
-    <section className="menu-equipment" data-testid="equipment-screen" aria-label="Equipment">
+    <section className="menu-equipment" data-testid="equipment-screen" aria-label={t("menu.kit.label")}>
       <header className="menu-panel__header">
-        <p className="kicker">Equipment · Kit</p>
+        <p className="kicker">{t("menu.equipment")}</p>
         <h2>{soldier.unit.name}</h2>
         <p className="muted">
-          {primaryPostOf(soldier.assignment).name} may fill{" "}
-          {unitPost(soldier.unit).equipSlots.length} slots. Drill is earned by carrying kit.
+          {primaryPostOf(soldier.assignment).name} {t("menu.mayFill")}{" "}
+          {unitPost(soldier.unit).equipSlots.length} {t("menu.slots")}. {t("menu.drillNote")}
         </p>
       </header>
 
       <div className="equipment-layout">
-        <section className="equipment-slots" aria-label="Equip slots">
-          <h3>Equipped</h3>
+        <section className="equipment-slots" aria-label={t("menu.equipSlotsLabel")}>
+          <h3>{t("common.equipped")}</h3>
           <ul data-testid="equipment-slots">
             {EQUIP_SLOTS.map((slot) => {
               const itemId = soldier.unit.equipment[slot];
@@ -774,9 +786,13 @@ function EquipmentMenu({
                     aria-pressed={openSlot === slot}
                     onClick={() => setOpenSlot(slot)}
                   >
-                    <span className="equipment-slot__name">{SLOT_LABELS[slot]}</span>
+                    <span className="equipment-slot__name">{t(SLOT_LABEL_KEYS[slot])}</span>
                     <span className="equipment-slot__item" data-testid={`equipment-item-${slot}`}>
-                      {itemId === null ? (allowed ? "Empty" : "Not carried") : itemLabel(itemId)}
+                      {itemId === null
+                        ? allowed
+                          ? t("common.empty")
+                          : t("common.notCarried")
+                        : itemLabel(itemId)}
                     </span>
                   </button>
                 </li>
@@ -785,11 +801,11 @@ function EquipmentMenu({
           </ul>
         </section>
 
-        <section className="equipment-options" aria-label="Available kit">
-          <h3>{SLOT_LABELS[openSlot]} shelf</h3>
+        <section className="equipment-options" aria-label={t("menu.availableKitLabel")}>
+          <h3>{t("menu.shelfHeading", { slot: t(SLOT_LABEL_KEYS[openSlot]) })}</h3>
           {options.length === 0 ? (
             <p className="muted" data-testid="equipment-no-options">
-              This post may not carry a {SLOT_LABELS[openSlot].toLowerCase()}.
+              {t("menu.mayNotCarry", { item: t(SLOT_LABEL_KEYS[openSlot]).toLowerCase() })}
             </p>
           ) : (
             <ul data-testid={`equipment-options-${openSlot}`}>
@@ -804,13 +820,17 @@ function EquipmentMenu({
                   >
                     <div className="equipment-option__head">
                       <span className="equipment-option__name">{item.name}</span>
-                      <span className="equipment-option__mods">{itemModsSummary(item)}</span>
+                      <span className="equipment-option__mods">{itemModsSummary(item, t)}</span>
                     </div>
                     <p className="equipment-option__desc">{item.description}</p>
                     {teaches.length > 0 && (
                       <p className="equipment-option__teaches">
-                        Teaches {teaches.join(", ")} ·{" "}
-                        {item.teaches.map((teach) => `${teach.ap} Drill`).join(", ")}
+                        {t("menu.teachesLine", {
+                          abilities: teaches.join(", "),
+                          drill: item.teaches
+                            .map((teach) => t("common.drillAmount", { count: teach.ap }))
+                            .join(", "),
+                        })}
                       </p>
                     )}
                     <div className="equipment-option__actions">
@@ -821,7 +841,7 @@ function EquipmentMenu({
                         disabled={isEquipped}
                         onClick={() => onEquip(openSlot, asEquipmentId(item.id))}
                       >
-                        {isEquipped ? "Equipped" : "Equip"}
+                        {isEquipped ? t("common.equipped") : t("common.equip")}
                       </button>
                       {isEquipped && (
                         <button
@@ -830,7 +850,7 @@ function EquipmentMenu({
                           data-testid={`equipment-clear-${openSlot}`}
                           onClick={() => onEquip(openSlot, null)}
                         >
-                          Unequip
+                          {t("common.unequip")}
                         </button>
                       )}
                     </div>
@@ -841,12 +861,12 @@ function EquipmentMenu({
           )}
         </section>
 
-        <aside className="equipment-stats" aria-label="Fielded stats">
-          <h3>Fielded stats</h3>
+        <aside className="equipment-stats" aria-label={t("menu.fieldedStats")}>
+          <h3>{t("menu.fieldedStats")}</h3>
           <dl data-testid="equipment-stats">
             {STAT_COLUMNS.map((key) => (
               <div key={key}>
-                <dt>{STAT_LABELS[key]}</dt>
+                <dt>{t(STAT_LABEL_KEYS[key])}</dt>
                 <dd data-testid={`equipment-stat-${key}`}>{stats[key]}</dd>
               </div>
             ))}
@@ -859,6 +879,7 @@ function EquipmentMenu({
 
 /** The ability ledger: Drill progress, kit instruction and the equipped slots. */
 function AbilitiesMenu({ soldier }: { readonly soldier: MenuSoldier }) {
+  const { t } = useTranslation();
   const equipped: EquipmentKey[] = [];
   for (const slot of EQUIP_SLOTS) {
     const itemId = soldier.unit.equipment[slot];
@@ -867,18 +888,16 @@ function AbilitiesMenu({ soldier }: { readonly soldier: MenuSoldier }) {
   const learnedById = new Map(soldier.drill.map((entry) => [entry.abilityId, entry] as const));
 
   return (
-    <section className="menu-abilities" data-testid="abilities-screen" aria-label="Abilities">
+    <section className="menu-abilities" data-testid="abilities-screen" aria-label={t("menu.drill.label")}>
       <header className="menu-panel__header">
-        <p className="kicker">Abilities · Drill</p>
+        <p className="kicker">{t("menu.abilities")}</p>
         <h2>{soldier.unit.name}</h2>
-        <p className="muted">
-          Battles award Drill; mastering an ability bound to equipped kit makes it permanent.
-        </p>
+        <p className="muted">{t("menu.abilitiesNote")}</p>
       </header>
 
       <div className="abilities-layout">
-        <section className="abilities-list" aria-label="Ability ledger">
-          <h3>Skill ledger</h3>
+        <section className="abilities-list" aria-label={t("menu.abilityLedgerLabel")}>
+          <h3>{t("menu.skillLedger")}</h3>
           <ul data-testid="ability-list">
             {soldier.drill.map((entry) => (
               <li
@@ -897,10 +916,10 @@ function AbilitiesMenu({ soldier }: { readonly soldier: MenuSoldier }) {
                 />
                 <div className="ability-row__foot">
                   <span data-testid={`ability-${entry.abilityId}-progress`}>
-                    {entry.drill} / {entry.required} Drill
+                    {t("menu.drillFraction", { drill: entry.drill, required: entry.required })}
                   </span>
                   <span data-testid={`ability-${entry.abilityId}-status`}>
-                    {entry.mastered ? "Mastered" : "In training"}
+                    {entry.mastered ? t("common.mastered") : t("common.inTraining")}
                   </span>
                 </div>
               </li>
@@ -908,10 +927,10 @@ function AbilitiesMenu({ soldier }: { readonly soldier: MenuSoldier }) {
           </ul>
         </section>
 
-        <section className="abilities-kit" aria-label="Kit instruction">
-          <h3>Kit instruction</h3>
+        <section className="abilities-kit" aria-label={t("menu.kitInstruction")}>
+          <h3>{t("menu.kitInstruction")}</h3>
           {equipped.length === 0 ? (
-            <p className="muted">No kit carried.</p>
+            <p className="muted">{t("menu.noKit")}</p>
           ) : (
             <ul data-testid="ability-kit">
               {equipped.map((itemId) => {
@@ -926,8 +945,10 @@ function AbilitiesMenu({ soldier }: { readonly soldier: MenuSoldier }) {
                           <li key={teach.abilityId}>
                             <span>{abilityLabel(teach.abilityId)}</span>
                             <span>
-                              {teach.ap} Drill ·{" "}
-                              {learned?.mastered === true ? "Mastered" : "Not yet mastered"}
+                              {t("common.drillAmount", { count: teach.ap })} ·{" "}
+                              {learned?.mastered === true
+                                ? t("common.mastered")
+                                : t("common.notYetMastered")}
                             </span>
                           </li>
                         );
@@ -940,16 +961,16 @@ function AbilitiesMenu({ soldier }: { readonly soldier: MenuSoldier }) {
           )}
         </section>
 
-        <aside className="abilities-slots" aria-label="Equipped abilities">
-          <h3>Equipped</h3>
+        <aside className="abilities-slots" aria-label={t("menu.equippedAbilitiesLabel")}>
+          <h3>{t("common.equipped")}</h3>
           <dl data-testid="ability-slots">
             {ABILITY_SLOT_KEYS.map((slot) => {
               const abilityId = soldier.assignment.slots[slot];
               return (
                 <div key={slot}>
-                  <dt>{ABILITY_SLOT_LABELS[slot]}</dt>
+                  <dt>{t(ABILITY_SLOT_LABEL_KEYS[slot])}</dt>
                   <dd data-testid={`ability-slot-${slot}`}>
-                    {abilityId === null ? "—" : abilityLabel(abilityId)}
+                    {abilityId === null ? t("common.none") : abilityLabel(abilityId)}
                   </dd>
                 </div>
               );
@@ -976,6 +997,7 @@ export function Menus({
   initialScreen = "main",
   onClose,
 }: MenusProps) {
+  const { t } = useTranslation();
   const [soldiers, setSoldiers] = useState<readonly MenuSoldier[]>(soldiersProp ?? DEMO_SOLDIERS);
   const [screen, setScreen] = useState<MenuScreen>(initialScreen);
   const [selectedUnitId, setSelectedUnitId] = useState<UnitId | null>(
@@ -996,7 +1018,7 @@ export function Menus({
   };
 
   return (
-    <section className="menu-suite" data-testid="menus" aria-label="Camp menu suite">
+    <section className="menu-suite" data-testid="menus" aria-label={t("menu.campSuiteLabel")}>
       <MenuSidebar screen={screen} onNavigate={open} onClose={onClose} />
 
       <div className="menu-content">
@@ -1015,7 +1037,7 @@ export function Menus({
 
         {screen === "post" &&
           (selected === undefined ? (
-            <p className="muted">No soldiers on the roll.</p>
+            <p className="muted">{t("menu.noSoldiers")}</p>
           ) : (
             <PostScreen
               key={selected.unit.id}
@@ -1028,7 +1050,7 @@ export function Menus({
 
         {screen === "equipment" &&
           (selected === undefined ? (
-            <p className="muted">No soldiers on the roll.</p>
+            <p className="muted">{t("menu.noSoldiers")}</p>
           ) : (
             <EquipmentMenu
               soldier={selected}
@@ -1043,7 +1065,7 @@ export function Menus({
 
         {screen === "abilities" &&
           (selected === undefined ? (
-            <p className="muted">No soldiers on the roll.</p>
+            <p className="muted">{t("menu.noSoldiers")}</p>
           ) : (
             <AbilitiesMenu soldier={selected} />
           ))}

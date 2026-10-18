@@ -37,6 +37,7 @@ import { getAbility, isAbilityKey } from "../data/abilities";
 import { getEquipment, isEquipmentKey } from "../data/equipment";
 import type { DrillAwardResult } from "../engine/progression/drill";
 import { collectTutorialDrill, createTutorialRecruit, observeTutorialFacts } from "../app/tutorial";
+import { useTranslation } from "../i18n";
 import { announce } from "./a11y";
 import { upcomingTurnOrder } from "./tempoOrder";
 import type { BattleController } from "../app/battleController";
@@ -54,6 +55,7 @@ export interface TutorialProps {
  * battlefield {@link BattleController}; it advances as the officer plays.
  */
 export function Tutorial({ controller, onClose }: TutorialProps) {
+  const { t } = useTranslation();
   const [facts, setFacts] = useState<TutorialFacts>(EMPTY_TUTORIAL_FACTS);
   const [drill, setDrill] = useState<DrillAwardResult | null>(null);
 
@@ -117,15 +119,15 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
   const lessonIndex = current === undefined ? 0 : TUTORIAL_MISSION.lessons.indexOf(current);
 
   return (
-    <section className="tutorial" data-testid="tutorial-panel" aria-label="Tutorial exercise">
+    <section className="tutorial" data-testid="tutorial-panel" aria-label={t("tutorial.label")}>
       <header className="tutorial__header">
         <div className="tutorial__identity">
-          <p className="kicker">Drill Square</p>
+          <p className="kicker">{t("tutorial.kicker")}</p>
           <h2 data-testid="tutorial-title">{TUTORIAL_MISSION.name}</h2>
           <p className="muted">{TUTORIAL_MISSION.description}</p>
         </div>
         <button type="button" className="button" data-testid="tutorial-close" onClick={onClose}>
-          Leave exercise
+          {t("tutorial.leave")}
         </button>
       </header>
 
@@ -156,23 +158,21 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
 
       {complete ? (
         <article className="tutorial__complete" data-testid="tutorial-complete">
-          <h3>Exercise complete</h3>
-          <p>
-            You have marched, fired, read the tempo, kept the Articles and earned your first Drill.
-          </p>
+          <h3>{t("tutorial.complete")}</h3>
+          <p>{t("tutorial.completeNote")}</p>
           {drill !== null && (
             <div className="tutorial__drill">
               <p className="tutorial__drill-progress" data-testid="tutorial-drill-progress">
-                {drillProgress} / {requiredDrill} Drill
+                {t("tutorial.drillFraction", { drill: drillProgress, required: requiredDrill })}
               </p>
               <p className="tutorial__drill-result" data-testid="tutorial-drill-result">
-                {drill.trained} ability trained · {drill.mastered} mastered
-                {drillMastered ? " — the drill has taken hold." : ""}
+                {t("tutorial.drillResult", { trained: drill.trained, mastered: drill.mastered })}
+                {drillMastered ? t("tutorial.drillHeld") : ""}
               </p>
             </div>
           )}
           <button type="button" className="button" data-testid="tutorial-finish" onClick={onClose}>
-            Return to the field
+            {t("tutorial.returnToField")}
           </button>
         </article>
       ) : current !== undefined ? (
@@ -181,7 +181,12 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
           data-testid="tutorial-current-lesson"
           data-objective={current.objective}
         >
-          <p className="tutorial__eyebrow">Lesson {lessonIndex + 1} of 5</p>
+          <p className="tutorial__eyebrow">
+            {t("tutorial.lessonOf", {
+              index: lessonIndex + 1,
+              total: TUTORIAL_MISSION.lessons.length,
+            })}
+          </p>
           <h3>{current.name}</h3>
           <p className="tutorial__coach" data-testid="tutorial-coach">
             {current.coach}
@@ -192,8 +197,8 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
           </p>
 
           {current.objective === "tempo" && (
-            <section className="tutorial__tempo" aria-label="Projected turn order">
-              <h4>Order of battle</h4>
+            <section className="tutorial__tempo" aria-label={t("tutorial.projectedLabel")}>
+              <h4>{t("tutorial.orderOfBattle")}</h4>
               <ol className="tutorial__tempo-list" data-testid="tutorial-tempo-order">
                 {projected.map((entry) => (
                   <li key={`${entry.unitId}-${entry.rank}`}>
@@ -209,14 +214,14 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
                 disabled={!facts.tempoAdvanced}
                 onClick={readTempo}
               >
-                Confirm the order of battle
+                {t("tutorial.confirmTempo")}
               </button>
             </section>
           )}
 
           {current.objective === "articles" && (
-            <section className="tutorial__articles" aria-label="Articles of War">
-              <h4>Today's standing orders</h4>
+            <section className="tutorial__articles" aria-label={t("tutorial.articlesLabel")}>
+              <h4>{t("tutorial.standingOrders")}</h4>
               <ul data-testid="tutorial-articles">
                 {TUTORIAL_ARTICLES.map((article) => (
                   <li
@@ -225,7 +230,7 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
                     data-kind={article.kind}
                   >
                     <span className="tutorial__article-kind" data-kind={article.kind}>
-                      {article.kind === "forbid" ? "Forbidden" : "Commended"}
+                      {article.kind === "forbid" ? t("tutorial.forbidden") : t("tutorial.commended")}
                     </span>
                     <strong>{article.name}</strong>
                     <span>{article.description}</span>
@@ -238,19 +243,19 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
                 data-testid="tutorial-articles-ack"
                 onClick={readArticles}
               >
-                Acknowledge the standing orders
+                {t("tutorial.acknowledgeArticles")}
               </button>
             </section>
           )}
 
           {current.objective === "drill" && (
-            <section className="tutorial__drill" aria-label="Drill by kit">
-              <h4>Drill by kit</h4>
+            <section className="tutorial__drill" aria-label={t("tutorial.drillByKitLabel")}>
+              <h4>{t("tutorial.drillByKit")}</h4>
               <p data-testid="tutorial-drill-summary">
-                {weaponName} binds <strong>{abilityName}</strong>.
+                {t("tutorial.binds", { weapon: weaponName, ability: abilityName })}
               </p>
               <p className="tutorial__drill-progress" data-testid="tutorial-drill-progress">
-                {drillProgress} / {requiredDrill} Drill
+                {t("tutorial.drillFraction", { drill: drillProgress, required: requiredDrill })}
               </p>
               <button
                 type="button"
@@ -259,12 +264,12 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
                 disabled={facts.drillCollected}
                 onClick={collectDrill}
               >
-                Collect {TUTORIAL_MISSION.drillAward} Drill
+                {t("tutorial.collectDrill", { amount: TUTORIAL_MISSION.drillAward })}
               </button>
               {facts.drillCollected && drill !== null && (
                 <p className="tutorial__drill-result" data-testid="tutorial-drill-result">
-                  {drill.trained} ability trained · {drill.mastered} mastered
-                  {drillMastered ? " — the drill has taken hold." : ""}
+                  {t("tutorial.drillResult", { trained: drill.trained, mastered: drill.mastered })}
+                  {drillMastered ? t("tutorial.drillHeld") : ""}
                 </p>
               )}
             </section>
