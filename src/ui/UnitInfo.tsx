@@ -29,27 +29,27 @@ export function UnitInfo({ unit }: UnitInfoProps) {
       <strong className="tip__title">{unit.name}</strong>
       <dl className="tip__stats">
         <div>
-          <dt>{t("common.hp")}</dt>
+          <dt>{t("stat.hp")}</dt>
           <dd>
             {unit.hp} / {unit.stats.hp}
           </dd>
         </div>
         <div>
-          <dt>{t("common.elan")}</dt>
+          <dt>{t("stat.mp")}</dt>
           <dd>
             {unit.mp} / {unit.stats.mp}
           </dd>
         </div>
         <div>
-          <dt>{t("hud.tempo")}</dt>
+          <dt>{t("stat.spd")}</dt>
           <dd>{unit.stats.spd}</dd>
         </div>
         <div>
-          <dt>{t("unit.move")}</dt>
+          <dt>{t("stat.move")}</dt>
           <dd>{unit.stats.move}</dd>
         </div>
         <div>
-          <dt>{t("unit.climb")}</dt>
+          <dt>{t("stat.jump")}</dt>
           <dd>{unit.stats.jump}</dd>
         </div>
       </dl>

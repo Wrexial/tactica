@@ -66,6 +66,8 @@ import {
 } from "../engine/depot";
 import { asCompanyId, asDepotId, asRegionId } from "../engine/ids";
 import { useTranslation, type MessageKey, type Translator } from "../i18n";
+import { EquipmentInfo } from "./EquipmentInfo";
+import { Tooltip } from "./Tooltip";
 
 /* --------------------------------------------------------------------------
  * Prototype depots (authored inline until the campaign owns a depot table)
@@ -364,7 +366,15 @@ export function Depot({
 
                 return (
                   <tr key={itemId} data-testid={`depot-stock-row-${itemId}`}>
-                    <th scope="row">{item.name}</th>
+                    <th scope="row">
+                      <Tooltip
+                        side="right"
+                        bubbleTestId={`depot-info-${itemId}`}
+                        label={<EquipmentInfo item={item} />}
+                      >
+                        <span className="depot-item-name">{item.name}</span>
+                      </Tooltip>
+                    </th>
                     <td>
                       <span
                         className={`depot-tier depot-tier--${tier}`}
@@ -421,7 +431,15 @@ export function Depot({
 
                   return (
                     <tr key={item.id} data-testid={`depot-reserve-row-${item.id}`}>
-                      <th scope="row">{item.name}</th>
+                      <th scope="row">
+                        <Tooltip
+                          side="right"
+                          bubbleTestId={`depot-info-reserve-${item.id}`}
+                          label={<EquipmentInfo item={item} />}
+                        >
+                          <span className="depot-item-name">{item.name}</span>
+                        </Tooltip>
+                      </th>
                       <td data-testid={`depot-reserve-count-${item.id}`}>{owned}</td>
                       <td data-testid={`depot-sell-price-${item.id}`}>
                         {price === null ? t("common.none") : crownsLabel(price, t)}

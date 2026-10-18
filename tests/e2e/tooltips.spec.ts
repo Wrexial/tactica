@@ -63,3 +63,15 @@ test("shows a soldier's stat line from the Orders Tempo tray", async ({ page }) 
   await expect(bubble).toContainText("HP");
   await expect(bubble).toContainText("Élan");
 });
+
+test("explains a depot item's stats before you buy it", async ({ page }) => {
+  await page.goto("/");
+  await page.getByTestId("nav-depot").click();
+  await expect(page.getByTestId("depot-screen")).toBeVisible();
+
+  await page.locator(".depot-item-name").first().hover();
+  const bubble = page.locator('[data-testid^="depot-info-"]').first();
+  await expect(bubble).toBeVisible();
+  await expect(bubble).toContainText("Slot");
+  await expect(bubble).toContainText(/Weapon|Off-hand|Uniform|Head|Accessory/);
+});

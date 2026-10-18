@@ -3399,3 +3399,8 @@ body {
 .hud .tip__bubble {
   text-align: left;
 }
+
+/* Item names open a kit tooltip (Depot). */
+.depot-item-name {
+  cursor: help;
+}

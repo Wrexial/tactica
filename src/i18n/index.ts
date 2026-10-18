@@ -193,8 +193,6 @@ const en = {
   "hud.help.elevation":
     "Height difference between the soldier and the cursor. High ground helps the blow and can block line of sight.",
   "tip.moreInfo": "More information",
-  "unit.move": "Move",
-  "unit.climb": "Climb",
   "unit.conditions": "Conditions",
   "ability.class": "Type",
   "ability.class.action": "Action",
@@ -213,6 +211,9 @@ const en = {
   "ability.target.enemy": "Enemy",
   "ability.target.any": "Any",
   "ability.target.tile": "Tile",
+  "equip.slot": "Slot",
+  "equip.cost": "Cost",
+  "equip.teaches": "Teaches",
 
   /* ---------------------------------------------------------------------- */
   /* Settings                                                               */
