@@ -50,6 +50,15 @@ mark `done` → **`git commit` (one commit per task, subject `feat(T0NN): title`
 Use `--no-commit` to opt out. A task is only actionable when every dependency is
 `done`.
 
+**Keep `verify` task-scoped.** A task's `verify` should be the narrowest command
+that proves its `done:` condition — normally its own spec/test files (e.g.
+`npm run test -- --run tests/unit/grid.test.ts` or
+`npm run test:e2e -- tests/e2e/settings.spec.ts`), never the whole suite. A
+whole-suite `verify` marks a task `failed` for an **unrelated** regression,
+which is exactly the noise the board should avoid. Chain commands with `&&` when
+a task owns both unit and e2e coverage, and reserve `npm run build` /
+`npm run typecheck` for foundation/render tasks that have no dedicated tests.
+
 Template placeholders: `{promptFile}`, `{id}`, `{title}`, `{file}`.
 
 ### Commits

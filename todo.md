@@ -47,7 +47,7 @@ scripts. Enforce no `any` without an inline justification comment.
 - status: done
 - deps: [T001]
 - files: vitest.config.ts, tests/unit/smoke.test.ts
-- verify: npm run test -- --run
+- verify: npm run test -- --run tests/unit/smoke.test.ts
 - done: `npm run test -- --run` runs and passes a smoke test.
 
 Configure Vitest for `tests/unit` and `src/**/*.test.ts`. Add the one-shot test
@@ -57,7 +57,7 @@ script used by CI.
 - status: done
 - deps: [T001]
 - files: playwright.config.ts, tests/e2e/smoke.spec.ts
-- verify: npm run test:e2e
+- verify: npm run test:e2e -- tests/e2e/smoke.spec.ts
 - done: A smoke spec loads the dev/preview page and asserts the canvas exists.
 
 Configure Playwright with a preview-server webServer entry and one smoke spec.
@@ -248,8 +248,8 @@ Configure Playwright with a preview-server webServer entry and one smoke spec.
 ### T030 — Input controller + path preview
 - status: done
 - deps: [T025, T029]
-- files: src/app/input.ts, src/render/overlay.ts
-- verify: npm run test:e2e
+- files: src/app/input.ts, src/render/overlay.ts, tests/e2e/input.spec.ts
+- verify: npm run test:e2e -- tests/e2e/input.spec.ts
 - done: Mouse/touch/keyboard select tiles; move range and path preview render.
 
 ### T031 — Win/lose conditions
@@ -424,8 +424,8 @@ deterministic.
 ### T052 — Post-change screen
 - status: done
 - deps: [T051]
-- files: src/ui/PostScreen.tsx
-- verify: npm run test:e2e
+- files: src/ui/PostScreen.tsx, tests/e2e/postScreen.spec.ts
+- verify: npm run test:e2e -- tests/e2e/postScreen.spec.ts
 - done: UI gates post changes by unlock requirements and shows drill progress.
 
 ### T053 — Progression validation + tests
@@ -565,8 +565,8 @@ deterministic.
 ### T071 — Officers' Mess UI
 - status: done
 - deps: [T070, T068]
-- files: src/ui/Mess.tsx
-- verify: npm run test:e2e
+- files: src/ui/Mess.tsx, tests/e2e/mess.spec.ts
+- verify: npm run test:e2e -- tests/e2e/mess.spec.ts
 - done: Mission board with fee, requirements (item/post/unit) and reward preview.
 
 ### T072 — Detachments
@@ -646,43 +646,43 @@ deterministic.
 ### T082 — Event-driven animations
 - status: done
 - deps: [T021, T081]
-- files: src/render/animations.ts
-- verify: npm run test:e2e
+- files: src/render/animations.ts, tests/e2e/animations.spec.ts
+- verify: npm run test:e2e -- tests/e2e/animations.spec.ts
 - done: Movement, volleys, artillery and condition popups animate from engine events only.
 
 ### T083 — Orders Tempo tray
 - status: done
 - deps: [T019, T081]
-- files: src/ui/TempoTray.tsx, src/ui/tempoOrder.ts
-- verify: npm run test:e2e
+- files: src/ui/TempoTray.tsx, src/ui/tempoOrder.ts, tests/e2e/tempoTray.spec.ts
+- verify: npm run test:e2e -- tests/e2e/tempoTray.spec.ts
 - done: Upcoming turn order is visualised.
 
 ### T084 — Menu suite
 - status: done
 - deps: [T052, T071, T075]
-- files: src/ui/Menus.tsx
-- verify: npm run test:e2e
+- files: src/ui/Menus.tsx, tests/e2e/menus.spec.ts
+- verify: npm run test:e2e -- tests/e2e/menus.spec.ts
 - done: Main, company, post, equipment, abilities, depot, mess and campaign-map menus.
 
 ### T085 — Targeting UX
 - status: done
 - deps: [T028, T030]
-- files: src/render/overlay.ts
-- verify: npm run test:e2e
+- files: src/render/overlay.ts, tests/e2e/targeting.spec.ts
+- verify: npm run test:e2e -- tests/e2e/targeting.spec.ts
 - done: Range/AoE highlight, danger zones, elevation preview.
 
 ### T086 — Battle forecast
 - status: done
 - deps: [T033, T037]
-- files: src/ui/Forecast.tsx
-- verify: npm run test -- --run tests/unit/forecast.test.ts
+- files: src/ui/Forecast.tsx, tests/e2e/forecast.spec.ts
+- verify: npm run test -- --run tests/unit/forecast.test.ts && npm run test:e2e -- tests/e2e/forecast.spec.ts
 - done: Expected damage, hit chance and reaction risk before confirming.
 
 ### T087 — Keyboard & gamepad navigation
 - status: done
 - deps: [T084]
 - files: src/app/input.ts
-- verify: npm run test:e2e
+- verify: npm run test:e2e -- tests/e2e/input.spec.ts
 - done: Full menu and battle navigation without a mouse; responsive layout.
 
 ---
@@ -799,14 +799,14 @@ deterministic.
 - status: done
 - deps: [T101]
 - files: src/ui/Saves.tsx, src/ui/styles.css, tests/e2e/saves.spec.ts
-- verify: npm run test:e2e
+- verify: npm run test:e2e -- tests/e2e/saves.spec.ts
 - done: Autosave, multiple slots, JSON export/import.
 
 ### T103 — Settings
 - status: done
 - deps: [T100]
 - files: src/ui/Settings.tsx, src/ui/settingsModel.ts, src/ui/styles.css, tests/e2e/settings.spec.ts
-- verify: npm run test:e2e
+- verify: npm run test:e2e -- tests/e2e/settings.spec.ts
 - done: Volume, text speed, damage numbers, colour-blind mode and keybinds.
 
 ### T104 — Error boundary + save migrations
@@ -852,14 +852,14 @@ deterministic.
 - status: done
 - deps: [T084]
 - files: src/ui/a11y.ts, src/ui/App.tsx, src/ui/Settings.tsx, src/ui/styles.css, src/render/scene.ts, src/app/input.ts, tests/unit/a11y.test.ts, tests/e2e/a11y.spec.ts
-- verify: npm run test:e2e
+- verify: npm run test -- --run tests/unit/a11y.test.ts && npm run test:e2e -- tests/e2e/a11y.spec.ts
 - done: Keyboard nav, screen-reader labels, reduced-motion, colour-blind-safe palette.
 
 ### T110 — Tutorial mission
 - status: done
 - deps: [T071, T084]
 - files: src/data/tutorial.ts, src/app/tutorial.ts, src/ui/Tutorial.tsx, src/ui/App.tsx, src/ui/styles.css, tests/unit/tutorial.test.ts, tests/e2e/tutorial.spec.ts
-- verify: npm run test:e2e
+- verify: npm run test -- --run tests/unit/tutorial.test.ts && npm run test:e2e -- tests/e2e/tutorial.spec.ts
 - done: Teaches move/act/tempo/Articles/Drill.
 
 ### T111 — i18n scaffolding
@@ -896,8 +896,8 @@ screen can be fully keyed.
 ### T113 — Lobby & matchmaking
 - status: done
 - deps: [T112]
-- files: src/net/lobby.ts
-- verify: npm run test:e2e
+- files: src/net/lobby.ts, tests/e2e/lobby.spec.ts
+- verify: npm run test:e2e -- tests/e2e/lobby.spec.ts
 - done: 1v1 skirmish between two free companies.
 
 ### T114 — Replays, trading & spectator
