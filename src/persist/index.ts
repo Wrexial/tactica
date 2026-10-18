@@ -1,5 +1,6 @@
 /**
- * Save/load behind a versioned SaveStore interface (IndexedDB in the browser,
- * in-memory in tests). Populated from Phase 10 (T100+).
+ * Persistence layer (T100+). Save/load behind the versioned
+ * {@link SaveStore} interface, with an IndexedDB browser backend and an
+ * in-memory test double. See `src/persist/saveStore.ts`.
  */
-export {};
+export * from "./saveStore";

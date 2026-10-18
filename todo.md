@@ -782,7 +782,7 @@ deterministic.
 ## Phase 10 — Persistence & release
 
 ### T100 — SaveStore + IndexedDB
-- status: todo
+- status: done
 - deps: [T005]
 - files: src/persist/saveStore.ts
 - verify: npm run test -- --run tests/unit/persist.test.ts
