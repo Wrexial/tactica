@@ -4,6 +4,8 @@ import { coord, type Coord } from "../../src/engine/grid";
 import { isBattleEvent, type BattleEvent } from "../../src/engine/events";
 import {
   BattleSetupError,
+  advanceToDecision,
+  applyCommand,
   createBattle,
   findUnit,
   step,
@@ -899,5 +901,104 @@ describe("step — win/lose objectives (T031)", () => {
     const result = step(moved, wait(moved));
     expect(result.state.outcome).toBe("companyVictory");
     expect(result.events.some((event) => event.kind === "battleEnded")).toBe(true);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T123 — advanceToDecision / applyCommand split
+ *
+ * Peer lesson L2: "who acts next" is a reusable primitive. `advanceToDecision`
+ * is idempotent at a decision point, `applyCommand` applies exactly one command,
+ * and `step` is the thin composition that still replays byte-identically.
+ * ------------------------------------------------------------------------ */
+
+describe("advanceToDecision + applyCommand (T123)", () => {
+  it("is idempotent at a decision point", () => {
+    const state = createBattle(1815, makeSetup());
+    const advanced = advanceToDecision(state);
+
+    // A living soldier already holds the turn: same object, no events.
+    expect(advanced.state).toBe(state);
+    expect(advanced.events).toEqual([]);
+    expect(advanced.actorId).toBe(state.currentActorId);
+    expect(advanced.terminal).toBe(false);
+
+    // A native free move leaves the turn open (T115); advancing is still a no-op.
+    const moved = step(state, {
+      kind: "move",
+      unitId: state.currentActorId as UnitId,
+      path: [coord(1, 1), coord(2, 1)],
+    }).state;
+    const again = advanceToDecision(moved);
+    expect(again.state).toBe(moved);
+    expect(again.events).toEqual([]);
+    expect(again.actorId).toBe(moved.currentActorId);
+    expect(again.terminal).toBe(false);
+  });
+
+  it("applies one command, then surfaces the next actor with an advance", () => {
+    const state = createBattle(1815, makeSetup());
+    const applied = applyCommand(state, wait(state));
+
+    expect(applied.rejection).toBeUndefined();
+    // The command closed the turn and spent the charge; the next actor is not
+    // chosen until the advance half runs.
+    expect(applied.events.map((event) => event.kind)).toEqual([
+      "battleStarted",
+      "unitDeployed",
+      "unitDeployed",
+      "turnStarted",
+      "turnEnded",
+    ]);
+    expect(applied.state.currentActorId).toBeNull();
+
+    const advanced = advanceToDecision(applied.state);
+    expect(advanced.events.map((event) => event.kind)).toEqual(["turnStarted"]);
+    expect(advanced.actorId).toBe(advanced.state.currentActorId);
+    expect(advanced.state).not.toBe(applied.state);
+  });
+
+  it("step is the exact composition of the two primitives", () => {
+    const start = createBattle("la-haye-sainte", makeActionSetup([INSTANT_ACTION]));
+    const command: Command = {
+      kind: "move",
+      unitId: start.currentActorId as UnitId,
+      path: [coord(1, 1), coord(2, 1)],
+    };
+
+    const viaStep = step(start, command);
+    const applied = applyCommand(start, command);
+    const advanced = advanceToDecision(applied.state);
+
+    expect(JSON.stringify(viaStep.state)).toBe(JSON.stringify(advanced.state));
+    expect(viaStep.events).toEqual([...applied.events, ...advanced.events]);
+  });
+
+  it("replays a fixed seed and command log byte-identically", () => {
+    const play = (): string => {
+      let state = createBattle(1815, makeActionSetup([INSTANT_ACTION, SHORT_CHARGE]));
+      const commands: Command[] = [actCommand(state, INSTANT_ACTION.id)];
+      state = step(state, commands[0]).state;
+      while (state.currentActorId !== null && commands.length < 10) {
+        const command = wait(state, state.currentActorId);
+        commands.push(command);
+        state = step(state, command).state;
+      }
+      return JSON.stringify(state);
+    };
+
+    expect(play()).toBe(play());
+  });
+
+  it("reports a terminal decision once the battle has finished", () => {
+    const start = makeObjectiveBattle({ kind: "survive", turns: 1 });
+    const finished = step(start, wait(start)).state;
+    expect(finished.phase).toBe("finished");
+
+    const advanced = advanceToDecision(finished);
+    expect(advanced.terminal).toBe(true);
+    expect(advanced.actorId).toBeNull();
+    expect(advanced.state).toBe(finished);
+    expect(advanced.events).toEqual([]);
   });
 });

@@ -18,6 +18,12 @@
  * mutates its inputs, reads the DOM, uses `Math.random` or consults a clock —
  * time is the integer Orders Tempo tick.
  *
+ * T123 (peer lesson L2) splits that one entry point into two pure primitives a
+ * headless AI lookahead or balance harness can reuse:
+ * {@link applyCommand} validates and applies exactly one command, and
+ * {@link advanceToDecision} runs the clock to the next living actor. {@link step}
+ * is the ergonomic wrapper that composes them (`docs/PEER_COMBAT_LESSONS.md` §L2).
+ *
  * Scope of T022 was the create/step skeleton and the **turn lifecycle**
  * (start the battle, announce the acting soldier, end the turn, advance Orders
  * Tempo). T024 adds the **action resolution pipeline** (`act` commands:
@@ -527,6 +533,45 @@ interface EndTurnResult {
   readonly resolved: readonly ResolvedCharge[];
 }
 
+/** Result of {@link advancePastCasualties}. */
+interface AdvanceFromTempo {
+  readonly tempo: OrdersTempo;
+  readonly actorId: UnitId | null;
+  readonly resolved: readonly ResolvedCharge[];
+}
+
+/**
+ * From a scheduler whose previous turn has already been spent, advance tick by
+ * tick until a soldier is ready, **skipping and spending** any ready casualty
+ * on the way. A casualty can still be holding a ready turn — downed by a charge
+ * or reaction that landed on somebody else's turn — and the engine refuses to
+ * order an out-of-action soldier, so those turns are consumed here to stop the
+ * battle soft-locking.
+ *
+ * `state` supplies the effective speeds and liveness; `tempo` is the scheduler
+ * to advance (it may already carry one spent charge). Pure.
+ */
+function advancePastCasualties(state: BattleState, tempo: OrdersTempo): AdvanceFromTempo {
+  const speedOf = battleSpeedOf(state);
+  const isDowned = (id: UnitId): boolean => {
+    const unit = state.units.find((candidate) => candidate.id === id);
+    return unit === undefined || isOutOfAction(unit);
+  };
+
+  let current = tempo;
+  let next = advanceToNextTurn(current, speedOf);
+  const resolved: ResolvedCharge[] = [];
+
+  while (next !== null && isDowned(next.actorId)) {
+    resolved.push(...next.resolved);
+    current = spendTurn(next.state, next.actorId);
+    next = advanceToNextTurn(current, speedOf);
+  }
+
+  if (next === null) return { tempo: current, actorId: null, resolved };
+  return { tempo: next.state, actorId: next.actorId, resolved: [...resolved, ...next.resolved] };
+}
+
 /**
  * Spend the acting soldier's Orders Tempo charge and advance to the next
  * actor. `spendTurn` keeps any charge overshoot as progress toward the next
@@ -537,42 +582,16 @@ interface EndTurnResult {
  * the only place the flag is reset.
  */
 function endTurn(state: BattleState, actorId: UnitId): EndTurnResult {
-  const speedOf = battleSpeedOf(state);
-  const isDowned = (id: UnitId): boolean => {
-    const unit = state.units.find((candidate) => candidate.id === id);
-    return unit === undefined || isOutOfAction(unit);
-  };
-
-  let tempo = spendTurn(state.tempo, actorId);
-  let next = advanceToNextTurn(tempo, speedOf);
-  const resolved: ResolvedCharge[] = [];
-
-  // A casualty can still be holding a ready turn — killed by a charge or a
-  // reaction that landed on somebody else's turn — and the engine refuses to
-  // order an out-of-action soldier. Spend that turn and advance again so the
-  // battle never soft-locks on a downed officer.
-  while (next !== null && isDowned(next.actorId)) {
-    resolved.push(...next.resolved);
-    tempo = spendTurn(next.state, next.actorId);
-    next = advanceToNextTurn(tempo, speedOf);
-  }
-
-  if (next === null) {
-    return {
-      state: { ...state, tempo, currentActorId: null, hasMovedThisTurn: false },
-      actorId: null,
-      resolved,
-    };
-  }
+  const advanced = advancePastCasualties(state, spendTurn(state.tempo, actorId));
   return {
     state: {
       ...state,
-      tempo: next.state,
-      currentActorId: next.actorId,
+      tempo: advanced.tempo,
+      currentActorId: advanced.actorId,
       hasMovedThisTurn: false,
     },
-    actorId: next.actorId,
-    resolved: [...resolved, ...next.resolved],
+    actorId: advanced.actorId,
+    resolved: advanced.resolved,
   };
 }
 
@@ -661,37 +680,51 @@ export interface BattleStepResult {
 }
 
 /**
- * Apply one command to a battle and return the new state plus its events.
+ * The result of {@link advanceToDecision}: the next **decision point** (or a
+ * terminal state) plus the events emitted on the way there.
+ */
+export interface BattleAdvanceResult {
+  /**
+   * The battle at the next decision point. At a decision point this is the
+   * **same object** that was passed in, so a no-op is cheap to detect.
+   */
+  readonly state: BattleState;
+  /** Events emitted while advancing (charges, turn ends/starts, battle end). */
+  readonly events: readonly BattleEvent[];
+  /** The living soldier to command, or `null` when the battle is terminal. */
+  readonly actorId: UnitId | null;
+  /** `true` once the battle has finished or nobody can ever act. */
+  readonly terminal: boolean;
+}
+
+/**
+ * Validate and apply **exactly one** command to a battle, without advancing the
+ * Orders Tempo clock. This is the "apply" half of {@link step} (T123, peer
+ * lesson L2); call {@link advanceToDecision} afterwards to reach the next
+ * decision point.
  *
- * The lifecycle of a single successful step is:
- * 1. on the very first step, announce `battleStarted`, every `unitDeployed`
+ * The lifecycle of one successful application is:
+ * 1. on the very first call, announce `battleStarted`, every `unitDeployed`
  *    and the opening `turnStarted`;
  * 2. resolve the command's effect (for `act`, declare → charge → resolve,
  *    T024); then
  * 3. either **keep the turn open** — a `move` records that the march is spent
  *    and returns so a later `act` / `wait` / `hold` can close it (T115) — or
- *    end the turn: `turnEnded` for the actor, advance Orders Tempo (resolving
- *    any charges that elapse while waiting) and `turnStarted` for the next
- *    soldier; if a win/lose objective is met (T031) the battle instead emits a
- *    single `battleEnded`, freezes and admits no further commands.
+ *    close it: emit `turnEnded`, spend the actor's Orders Tempo charge and
+ *    leave `currentActorId` cleared. {@link advanceToDecision} then picks the
+ *    next living actor and resolves any charges that elapse while waiting.
  *
  * If {@link validateCommand} refuses the command, this returns immediately with
  * the input state unchanged, no events and a {@link BattleStepResult.rejection}.
- *
- * ```ts
- * let state = createBattle(seed, setup);
- * const first = step(state, { kind: "wait", unitId: state.currentActorId! });
- * state = first.state;
- * ```
  */
-export function step(state: BattleState, command: Command): BattleStepResult {
+export function applyCommand(state: BattleState, command: Command): BattleStepResult {
   const rejection = validateCommand(state, command);
   if (rejection !== null) {
     return { state, events: [], rejection };
   }
 
   const events: BattleEvent[] = [];
-  let working = state.started ? state : announceStart(state, events);
+  const working = state.started ? state : announceStart(state, events);
 
   const actor = working.units.find((unit) => unit.id === command.unitId);
   // `validateCommand` guarantees the actor is deployed; this narrows the type.
@@ -704,18 +737,86 @@ export function step(state: BattleState, command: Command): BattleStepResult {
   }
 
   const tick = working.tempo.tick;
-  working = resolveCommand(working, command, actor, events);
+  const applied = resolveCommand(working, command, actor, events);
 
   if (!commandEndsTurn(command.kind)) {
     // A native free move leaves the actor's Orders Tempo turn open: record the
     // spent march and return, so an `act` / `wait` / `hold` closes the turn and
     // the move stays a real command in the replay log (T115).
-    return { state: { ...working, hasMovedThisTurn: true }, events };
+    return { state: { ...applied, hasMovedThisTurn: true }, events };
   }
 
   events.push({ kind: "turnEnded", tick, unitId: actor.id });
-  const next = endTurn(working, actor.id);
-  working = resolveCompletedCharges(next.state, next.resolved, events);
+  // Spend the acting soldier's charge here; clearing `currentActorId` marks the
+  // state as mid-advance so `advanceToDecision` knows to surface the next actor.
+  return {
+    state: {
+      ...applied,
+      tempo: spendTurn(applied.tempo, actor.id),
+      currentActorId: null,
+      hasMovedThisTurn: false,
+    },
+    events,
+  };
+}
+
+/**
+ * Advance a battle to its next **decision point** — the state where a living
+ * soldier holds the turn and a command may be issued — without applying any
+ * order. This is the "advance" half of {@link step} (T123, peer lesson L2) and
+ * the primitive an AI lookahead or balance harness drives.
+ *
+ * It advances the Orders Tempo clock, resolves every charge that matures while
+ * waiting, **skips and spends** any out-of-action soldier still holding a turn
+ * and scores the win/lose objective, then opens the next turn (`turnStarted`)
+ * for the surfaced actor.
+ *
+ * **Idempotent at a decision point**: when a living soldier already holds the
+ * turn this returns the same state object, no events and no actor change, so it
+ * is always safe to call before asking for a command.
+ *
+ * `terminal: true` (with `actorId: null`) means the battle has finished or the
+ * Orders Tempo order has stalled with nobody able to act again.
+ */
+export function advanceToDecision(state: BattleState): BattleAdvanceResult {
+  const events: BattleEvent[] = [];
+
+  if (state.phase === "finished") {
+    return { state, events, actorId: null, terminal: true };
+  }
+
+  // Already at a decision point: a living soldier holds the turn. Return the
+  // *same* object so callers can cheaply detect the no-op.
+  if (state.currentActorId !== null) {
+    const actor = findUnit(state, state.currentActorId);
+    if (actor !== undefined && !isOutOfAction(actor)) {
+      return { state, events, actorId: actor.id, terminal: false };
+    }
+  }
+
+  let working = state;
+  let tempo = working.tempo;
+  const resolved: ResolvedCharge[] = [];
+
+  // An out-of-action soldier still holds the turn: announce and spend it, the
+  // same way `skipDownedActors` does inside a step. (A turn-ending command has
+  // already spent its actor and cleared `currentActorId`, so this is only hit by
+  // an external caller handing us a casualty-held turn.)
+  if (working.currentActorId !== null) {
+    events.push({ kind: "turnEnded", tick: working.tempo.tick, unitId: working.currentActorId });
+    tempo = spendTurn(tempo, working.currentActorId);
+  }
+
+  const advanced = advancePastCasualties(working, tempo);
+  resolved.push(...advanced.resolved);
+  working = {
+    ...working,
+    tempo: advanced.tempo,
+    currentActorId: advanced.actorId,
+    hasMovedThisTurn: false,
+  };
+
+  working = resolveCompletedCharges(working, resolved, events);
   // Charges resolved above may have downed the soldier who was just handed the
   // turn; skip any that are, so the battle keeps moving (T117/playability).
   working = skipDownedActors(working, events);
@@ -725,14 +826,47 @@ export function step(state: BattleState, command: Command): BattleStepResult {
   // instead of a `turnStarted` for a turn that will never be taken.
   working = settleObjective(working, events);
   if (working.phase === "finished") {
-    return { state: working, events };
+    return { state: working, events, actorId: null, terminal: true };
   }
 
-  if (next.actorId !== null) {
-    events.push({ kind: "turnStarted", tick: working.tempo.tick, unitId: next.actorId });
+  if (working.currentActorId !== null) {
+    events.push({ kind: "turnStarted", tick: working.tempo.tick, unitId: working.currentActorId });
   }
 
-  return { state: working, events };
+  return {
+    state: working,
+    events,
+    actorId: working.currentActorId,
+    terminal: working.currentActorId === null,
+  };
+}
+
+/**
+ * Apply one command to a battle and return the new state plus its events.
+ *
+ * Ergonomic wrapper over the two T123 primitives: {@link applyCommand} validates
+ * and applies the command (keeping a native free `move`'s turn open, T115), then
+ * {@link advanceToDecision} runs the clock to the next living actor and opens
+ * its turn — which is a no-op after a `move`, so the same composition is safe
+ * for every command kind.
+ *
+ * If {@link validateCommand} refuses the command, this returns immediately with
+ * the input state unchanged, no events and a {@link BattleStepResult.rejection}.
+ *
+ * ```ts
+ * let state = createBattle(seed, setup);
+ * const first = step(state, { kind: "wait", unitId: state.currentActorId! });
+ * state = first.state;
+ * ```
+ */
+export function step(state: BattleState, command: Command): BattleStepResult {
+  const applied = applyCommand(state, command);
+  if (applied.rejection !== undefined) {
+    return { state: applied.state, events: applied.events, rejection: applied.rejection };
+  }
+
+  const advanced = advanceToDecision(applied.state);
+  return { state: advanced.state, events: [...applied.events, ...advanced.events] };
 }
 
 /**

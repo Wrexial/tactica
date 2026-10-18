@@ -1033,7 +1033,7 @@ same-charge ties with the seeded stream only") and `tests/unit/determinism.test.
 behaviour change, so run the full suite and fix every fixture it moves.
 
 ### T123 — Split `advanceToDecision` from `applyCommand`
-- status: todo
+- status: done
 - deps: [T022]
 - files: src/engine/battle.ts, tests/unit/battle.test.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/determinism.test.ts tests/unit/battleRunner.test.ts
