@@ -19,7 +19,7 @@ test.beforeEach(async ({ page }) => {
 
 test("opens on the main hub with the company's war chest", async ({ page }) => {
   await expect(page.getByTestId("menu-main")).toBeVisible();
-  await expect(page.getByTestId("menu-summary-crowns")).toHaveText("1400 Crowns");
+  await expect(page.getByTestId("menu-summary-crowns")).toHaveText("1,400 Crowns");
   await expect(page.getByTestId("menu-summary-honours")).toHaveText("3");
   await expect(page.getByTestId("menu-summary-roster")).toHaveText("5 soldiers");
   await expect(page.getByTestId("menu-summary-day")).toHaveText("12");

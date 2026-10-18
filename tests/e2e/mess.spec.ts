@@ -33,7 +33,7 @@ test("posts each contract with its kind, fee and reward preview", async ({ page 
   // The reward preview names every payout the contract offers, including kit.
   await expect(page.getByTestId("contract-break-the-bridge-reward")).toBeVisible();
   await expect(page.getByTestId("contract-break-the-bridge-reward-crowns")).toHaveText(
-    "1200 Crowns",
+    "1,200 Crowns",
   );
   await expect(page.getByTestId("contract-break-the-bridge-reward-drill")).toHaveText("60 Drill");
   await expect(page.getByTestId("contract-break-the-bridge-reward-experience")).toHaveText(

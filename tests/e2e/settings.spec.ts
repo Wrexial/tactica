@@ -32,7 +32,7 @@ async function setRange(page: Page, testId: string, value: number): Promise<void
 
 test("opens on the issue defaults", async ({ page }) => {
   await expect(page.getByTestId("settings-summary-volume")).toHaveText("70%");
-  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("normal");
+  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("Normal");
   await expect(page.getByTestId("settings-summary-damage-numbers")).toHaveText("Shown");
   await expect(page.getByTestId("settings-summary-colour-blind")).toHaveText("Issue palette");
   await expect(page.getByTestId("settings-summary-version")).toHaveText("v1");
@@ -57,7 +57,7 @@ test("sets the master volume and can mute or fill it", async ({ page }) => {
 test("changes the text speed and its note", async ({ page }) => {
   await page.getByTestId("settings-text-speed").selectOption("fast");
   await expect(page.getByTestId("settings-text-speed")).toHaveValue("fast");
-  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("fast");
+  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("Fast");
   await expect(page.getByTestId("settings-text-speed-note")).toContainText("clipped");
 });
 
@@ -107,7 +107,7 @@ test("rebinds a key, returns to defaults, and resets all settings", async ({ pag
   await page.getByTestId("settings-reset").click();
 
   await expect(page.getByTestId("settings-summary-volume")).toHaveText("70%");
-  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("normal");
+  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("Normal");
   await expect(page.getByTestId("settings-summary-damage-numbers")).toHaveText("Shown");
   await expect(page.getByTestId("settings-status")).toContainText("issue defaults");
 });
@@ -125,7 +125,7 @@ test("persists preferences across a reload", async ({ page }) => {
 
   await page.getByTestId("nav-settings").click();
   await expect(page.getByTestId("settings-summary-volume")).toHaveText("25%");
-  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("slow");
+  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("Slow");
   await expect(page.getByTestId("settings-summary-damage-numbers")).toHaveText("Hidden");
   await expect(page.getByTestId("settings-summary-colour-blind")).toHaveText("Martian (red-weak)");
 });
@@ -155,7 +155,7 @@ test("tolerates a corrupt persisted settings record", async ({ page }) => {
   await page.reload();
   await page.getByTestId("nav-settings").click();
   await expect(page.getByTestId("settings-summary-volume")).toHaveText("70%");
-  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("normal");
+  await expect(page.getByTestId("settings-summary-text-speed")).toHaveText("Normal");
   await expect(page.getByTestId("settings-summary-damage-numbers")).toHaveText("Shown");
   await expect(page.getByTestId("settings-keybind-confirm-key")).toHaveText("Enter");
 });
