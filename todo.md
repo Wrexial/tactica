@@ -796,7 +796,7 @@ deterministic.
 - done: Full company, map, contract and seed/history round-trip.
 
 ### T102 — Autosave, slots & export/import
-- status: todo
+- status: done
 - deps: [T101]
 - files: src/ui/Saves.tsx
 - verify: npm run test:e2e
