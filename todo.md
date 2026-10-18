@@ -849,9 +849,9 @@ deterministic.
 - done: Original/licensed music with volume mixing.
 
 ### T109 — Accessibility
-- status: todo
+- status: done
 - deps: [T084]
-- files: src/ui/a11y.ts
+- files: src/ui/a11y.ts, src/ui/App.tsx, src/ui/Settings.tsx, src/ui/styles.css, src/render/scene.ts, src/app/input.ts, tests/unit/a11y.test.ts, tests/e2e/a11y.spec.ts
 - verify: npm run test:e2e
 - done: Keyboard nav, screen-reader labels, reduced-motion, colour-blind-safe palette.
 

@@ -83,6 +83,16 @@ const sceneChains = new WeakMap<HTMLCanvasElement, Promise<void>>();
 /** Milliseconds one Orders Tempo tick maps to when pacing an animation. */
 const ANIMATION_TICK_MS = 180;
 
+/**
+ * Whether the visitor asked for reduced motion. Read once per scene so the
+ * Pixi animations (T082) honour the same `prefers-reduced-motion` preference
+ * the UI layer mirrors onto the root (T109).
+ */
+function reducedMotionRequested(): boolean {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 /** How far (world pixels) a combat popup rises over its life. */
 const POPUP_RISE = 34;
 
@@ -198,6 +208,8 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
   let appInitialised = false;
   let dragPointerId: number | null = null;
   let lastPointer = { x: 0, y: 0 };
+  // Reduced motion collapses the tempo pacing to instant (T109).
+  const animationTickMs = reducedMotionRequested() ? 0 : ANIMATION_TICK_MS;
 
   const applyCamera = (): void => {
     world.position.set(camera.x, camera.y);
@@ -404,7 +416,7 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
         remaining.push(cue);
         continue;
       }
-      const duration = Math.max(1, cue.animation.duration) * ANIMATION_TICK_MS;
+      const duration = Math.max(1, cue.animation.duration) * animationTickMs;
       const t = Math.min(1, cue.elapsed / duration);
       if (cue.animation.kind === "move") {
         applyMove(cue.animation, t);
@@ -540,7 +552,7 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
       // playback order is the event order even when several share a dispatch.
       const baseTick = animations[0].tick;
       for (const animation of animations) {
-        const cue = createCue(animation, -(animation.tick - baseTick) * ANIMATION_TICK_MS);
+        const cue = createCue(animation, -(animation.tick - baseTick) * animationTickMs);
         if (cue !== null) activeCues.push(cue);
       }
     },

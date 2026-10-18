@@ -32,6 +32,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { SaveStore } from "../persist";
+import { applyColourBlindPalette } from "./a11y";
 import {
   COLOUR_BLIND_MODES,
   COLOUR_BLIND_PALETTES,
@@ -80,6 +81,9 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
   const [capturing, setCapturing] = useState<(typeof KEYBIND_ACTIONS)[number] | null>(null);
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
+  // Set once the player has changed anything, so a late IndexedDB read can
+  // never clobber a live edit with the stale stored record.
+  const dirtyRef = useRef(false);
 
   // Read the persisted record once on mount.
   useEffect(() => {
@@ -89,7 +93,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
       try {
         const loaded = await loadSettings(store);
         if (cancelled) return;
-        setSettings(loaded);
+        setSettings((current) => (dirtyRef.current ? current : loaded));
         setStatus("");
         setHydrated(true);
       } catch (error) {
@@ -124,7 +128,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
   useEffect(() => {
     if (typeof document === "undefined") return;
     const root = document.documentElement;
-    root.dataset.colourBlind = settings.colourBlind;
+    applyColourBlindPalette(settings.colourBlind, root);
     root.dataset.damageNumbers = settings.damageNumbers ? "on" : "off";
     root.dataset.textSpeed = settings.textSpeed;
     root.dataset.volume = String(settings.volume);
@@ -144,6 +148,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
       }
       if (MODIFIER_KEYS.has(event.key)) return;
       const action = capturing;
+      dirtyRef.current = true;
       setSettings((current) => ({
         ...current,
         keybinds: { ...current.keybinds, [action]: event.key },
@@ -155,6 +160,7 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
   }, [capturing]);
 
   const update = useCallback((patch: Partial<SettingsValue>): void => {
+    dirtyRef.current = true;
     setSettings((current) => {
       const next = { ...current, ...patch };
       onChangeRef.current?.(next);
@@ -163,11 +169,13 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
   }, []);
 
   const resetAll = useCallback((): void => {
+    dirtyRef.current = true;
     setSettings({ ...DEFAULT_SETTINGS, keybinds: { ...DEFAULT_KEYBINDS } });
     setStatus("Settings restored to issue defaults.");
   }, []);
 
   const resetKeybinds = useCallback((): void => {
+    dirtyRef.current = true;
     setSettings((current) => ({ ...current, keybinds: { ...DEFAULT_KEYBINDS } }));
     setStatus("Keybinds restored to issue defaults.");
   }, []);

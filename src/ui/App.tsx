@@ -15,6 +15,7 @@ import {
   elevationDeltaFor,
 } from "../app/targetingPreview";
 import { actionSpecOf } from "../engine/actions/resolve";
+import { announce, describeEvents, installAccessibility } from "./a11y";
 import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
 import { Forecast } from "./Forecast";
@@ -27,6 +28,18 @@ import { Settings } from "./Settings";
 import { TempoTray } from "./TempoTray";
 import { animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
+
+/** A spoken name for each top-level screen, announced when the view changes. */
+const SCREEN_LABELS: Readonly<Record<string, string>> = {
+  battle: "Battlefield",
+  menus: "Camp orders",
+  posts: "Barracks and posts",
+  mess: "Officers' mess",
+  map: "Campaign map",
+  depot: "Quartermaster",
+  saves: "Saves",
+  settings: "Settings",
+};
 
 /** A controller for the demo action, with the cursor on the acting soldier. */
 function initialController(): BattleController {
@@ -73,6 +86,16 @@ export function App() {
     controllerRef.current = next;
     setController(next);
   }, []);
+
+  // T109 — accessibility basics: mirror the OS motion preference and the saved
+  // colour-blind palette onto the root, and create the shared live region.
+  useEffect(() => installAccessibility(), []);
+
+  // Announce the active screen for screen-reader users as they move in and out
+  // of the camp. Harmless on the first mount and on every subsequent change.
+  useEffect(() => {
+    announce(SCREEN_LABELS[view] ?? "Screen");
+  }, [view]);
 
   // Keyboard/gamepad navigation between the field and the camp (T087). These
   // callbacks are stable so the scene + input effect never tears down on a view
@@ -202,6 +225,16 @@ export function App() {
     setAnimations(cues);
   }, [controller, targeting]);
 
+  // T109 — read the resolved battle events aloud through the live region, so a
+  // screen-reader player hears the same report the battle log shows. The
+  // description is pure (`describeEvents`) and skips bookkeeping events.
+  useEffect(() => {
+    const text = describeEvents(controller.lastEvents, {
+      unitName: (unitId) => controller.battle.units.find((unit) => unit.id === unitId)?.name,
+    });
+    if (text.length > 0) announce(text);
+  }, [controller]);
+
   const actor = useMemo(() => {
     const id = controller.battle.currentActorId;
     return id === null ? null : (controller.battle.units.find((unit) => unit.id === id) ?? null);
@@ -220,6 +253,24 @@ export function App() {
 
   return (
     <div className="app">
+      <a
+        className="skip-link"
+        href="#main-content"
+        data-testid="skip-link"
+        onClick={(event) => {
+          // Manage focus ourselves rather than let the fragment jump move it,
+          // so the next Tab starts inside the battlefield/camp stage.
+          event.preventDefault();
+          const target = document.getElementById("main-content");
+          if (target !== null) {
+            target.focus();
+            target.scrollIntoView({ block: "start" });
+            window.history.replaceState(null, "", "#main-content");
+          }
+        }}
+      >
+        Skip to the battlefield
+      </a>
       <header className="topbar">
         <div className="brand">
           <p className="kicker">A Napoleonic small-squad tactics RPG</p>
@@ -303,12 +354,14 @@ export function App() {
         </button>
       </nav>
 
-      <main className="stage">
+      <main className="stage" id="main-content" tabIndex={-1} aria-label="Battlefield and camp">
         <canvas
           ref={canvasRef}
           className="battlefield"
           data-testid="battle-canvas"
           data-input-ready={inputReady}
+          role="img"
+          aria-label="Battlefield"
         />
 
         <aside className="hud" hidden={view !== "battle"}>

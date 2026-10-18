@@ -757,12 +757,16 @@ export function createInputController(options: InputControllerOptions): InputCon
     }
 
     if (CONFIRM_KEYS.has(key)) {
-      // A focused control in a menu keeps the browser's native activation.
+      const target = event.target;
+      // A focused link (e.g. T109's skip link) keeps the browser's native
+      // activation, wherever it sits; so does a focused control in a menu.
+      const isLink = target instanceof HTMLElement && target.matches("a[href]");
       if (
-        menuMode() &&
-        currentControl() !== null &&
-        event.target instanceof HTMLElement &&
-        event.target.matches(FOCUSABLE_SELECTOR)
+        isLink ||
+        (menuMode() &&
+          currentControl() !== null &&
+          target instanceof HTMLElement &&
+          target.matches(FOCUSABLE_SELECTOR))
       ) {
         return;
       }
