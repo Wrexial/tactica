@@ -803,9 +803,9 @@ deterministic.
 - done: Autosave, multiple slots, JSON export/import.
 
 ### T103 — Settings
-- status: todo
+- status: failed
 - deps: [T100]
-- files: src/ui/Settings.tsx
+- files: src/ui/Settings.tsx, src/ui/settingsModel.ts, src/ui/styles.css, tests/e2e/settings.spec.ts
 - verify: npm run test:e2e
 - done: Volume, text speed, damage numbers, colour-blind mode and keybinds.
 
