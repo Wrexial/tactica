@@ -26,7 +26,7 @@ import type { OrdersTempo, TempoSpeedOf, TempoTurn } from "../../src/engine/turn
  * higher Speed acts **sooner and more often**, and the whole order is
  * **deterministic given a seed**. They also cover the supporting contract the
  * battle loop (T022) and the Orders Tempo tray (T083) rely on: pure updates,
- * JSON round-tripping, seeded tie-breaks and delayed (charging) effects.
+ * JSON round-tripping, stable id tie-breaks and delayed (charging) effects.
  * ------------------------------------------------------------------------ */
 
 const A = asUnitId("unit-a");
@@ -230,15 +230,33 @@ describe("Orders Tempo — Speed decides when and how often", () => {
 });
 
 describe("Orders Tempo — determinism", () => {
-  it("breaks same-charge ties with the seeded stream only", () => {
-    const state = makeState([A, B, C]);
+  it("breaks same-charge ties by unit id ascending without consuming the RNG", () => {
+    // Crafted same-charge setup: pass the ids in reverse so the winner can only
+    // come from the pinned total order, never insertion order.
+    const state = makeState([C, A, B]);
     const speedOf = speedLookup({ [A]: 20, [B]: 20, [C]: 20 });
 
-    const first = advanceToNextTurn(state, speedOf);
-    expect(first?.state.rng.calls).toBe(1);
-    expect(first?.state.rng.calls).toBeGreaterThan(state.rng.calls);
+    // advanceToNextTurn only *selects* the actor; it does not spend charge.
+    const selected = advanceToNextTurn(state, speedOf);
+    expect(selected?.actorId).toBe(A);
+    // Turn order is a rules quantity, not an effect roll: the shared stream is
+    // untouched, so adding/removing a combat draw cannot move it.
+    expect(selected?.state.rng.calls).toBe(state.rng.calls);
 
-    // Distinct charges mean no tie, so the RNG stream is never touched.
+    // takeTurn selects *and* spends, so the tied cycle follows the ids.
+    const first = takeTurn(state, speedOf);
+    expect(first?.actorId).toBe(A);
+    expect(first?.state.rng.calls).toBe(state.rng.calls);
+
+    const second = takeTurn(first?.state as OrdersTempo, speedOf);
+    expect(second?.actorId).toBe(B);
+    expect(second?.state.rng.calls).toBe(state.rng.calls);
+
+    const third = takeTurn(second?.state as OrdersTempo, speedOf);
+    expect(third?.actorId).toBe(C);
+    expect(third?.state.rng.calls).toBe(state.rng.calls);
+
+    // Distinct charges mean no tie, so the RNG stream is never touched either.
     const spread = makeState([A, B]);
     const spreadTurn = advanceToNextTurn(spread, speedLookup({ [A]: 10, [B]: 30 }));
     expect(spreadTurn?.state.rng.calls).toBe(0);
@@ -251,12 +269,13 @@ describe("Orders Tempo — determinism", () => {
     expect(second).toEqual(first);
   });
 
-  it("produces varied (but reproducible) orders across seeds", () => {
+  it("keeps the same pinned order across seeds (the seed no longer moves turns)", () => {
     const speedOf = speedLookup({ [A]: 20, [B]: 20, [C]: 20 });
     const sequences = ["a", "b", "c", "d"].map((seed) =>
       previewTurns(makeState([A, B, C], { seed }), speedOf, 10).join(","),
     );
-    expect(new Set(sequences).size).toBeGreaterThan(1);
+    expect(new Set(sequences).size).toBe(1);
+    expect(sequences[0].startsWith(`${A},${B},${C}`)).toBe(true);
   });
 
   it("replays a scripted run byte-for-byte from the same seed", () => {

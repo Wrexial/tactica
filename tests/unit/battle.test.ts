@@ -704,7 +704,7 @@ describe("step — determinism", () => {
     expect(play()).toBe(play());
   });
 
-  it("uses the seed to break same-charge ties", () => {
+  it("breaks same-charge ties by a stable unit-id order, independent of seed", () => {
     const tied = [
       makeUnit(FAST, coord(1, 1), { stats: { ...BASE_STATS, spd: 20 } }),
       makeUnit(SLOW, coord(3, 2), { stats: { ...BASE_STATS, spd: 20 } }),
@@ -714,9 +714,11 @@ describe("step — determinism", () => {
       const { events } = waitThrough(createBattle(seed, makeSetup(tied)), 8);
       return startedActors(events).join(",");
     };
-    expect(new Set([orderFor("alpha"), orderFor("beta"), orderFor("gamma")]).size).toBeGreaterThan(
-      1,
-    );
+    const alpha = orderFor("alpha");
+    expect(alpha).toBe(orderFor("beta"));
+    expect(alpha).toBe(orderFor("gamma"));
+    // unit-fast < unit-slow < unit-third lexicographically.
+    expect(alpha.startsWith("unit-fast,unit-slow,unit-third")).toBe(true);
   });
 
   it("exposes the deployed soldier through findUnit", () => {

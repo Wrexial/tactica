@@ -87,7 +87,7 @@ function makeSetup(): BattleSetup {
   };
 }
 
-/** A setup where every soldier ties, to force the seeded tie-break to matter. */
+/** A setup where every soldier ties, to force the stable id tie-break to matter. */
 function tiedSetup(): BattleSetup {
   return {
     map: MAP,
@@ -233,14 +233,16 @@ describe("determinism — replay from seed + command log", () => {
     );
   });
 
-  it("lets the seed decide same-charge tie-breaks", () => {
+  it("breaks same-charge ties by a stable id order, independent of the seed", () => {
     const orderFor = (seed: string): string =>
       recordScript(seed, tiedSetup(), 9)
         .commands.map((command) => command.unitId)
         .join(",");
-    expect(new Set([orderFor("alpha"), orderFor("beta"), orderFor("gamma")]).size).toBeGreaterThan(
-      1,
-    );
+    const alpha = orderFor("alpha");
+    expect(alpha).toBe(orderFor("beta"));
+    expect(alpha).toBe(orderFor("gamma"));
+    // unit-a < unit-b < unit-c lexicographically, so the tied cycle follows ids.
+    expect(alpha.startsWith("unit-a,unit-b,unit-c")).toBe(true);
   });
 
   it("refuses a replay log whose commands the rules reject", () => {

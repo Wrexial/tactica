@@ -132,7 +132,7 @@ export interface BattleRejection {
 
 /**
  * Authoring input for {@link createBattle}. `seed` is passed separately so the
- * whole battle — including Orders Tempo tie-breaks — replays from one value.
+ * whole battle — including combat/effect rolls — replays from one value.
  */
 export interface BattleSetup {
   /** The battlefield: a grid plus per-tile terrain and elevation (T014). */
@@ -180,7 +180,7 @@ export interface BattleState {
   readonly map: TerrainMap;
   /** Deployed soldiers, in stable insertion order (deterministic iteration). */
   readonly units: readonly Unit[];
-  /** The Orders Tempo scheduler, carrying its own seeded tie-break stream. */
+  /** The Orders Tempo scheduler, carrying its own seeded effect-roll stream. */
   readonly tempo: OrdersTempo;
   /** The actions this battle can resolve, keyed by ability id (T024). */
   readonly abilities: ActionCatalogue;

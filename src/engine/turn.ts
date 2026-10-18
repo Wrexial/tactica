@@ -19,12 +19,17 @@
  *   zero would quantise small Speed differences away (Speed 25 and 30 would
  *   both act every 4 ticks); carrying the remainder keeps turns proportional
  *   to Speed, which is what "acts sooner/more often" requires.
- * - **Seeded tie-breaks.** When two ready soldiers hold the *same* charge the
- *   winner is drawn from the seeded PRNG in {@link OrdersTempo.rng}. The RNG
- *   state travels inside the scheduler state, so a battle replays exactly from
- *   a seed plus the ordered command log. Combat resolution shares this stream
- *   (see `./actions/resolve.ts`, T117), so turn-order tie-breaks and effect
- *   rolls advance one deterministic sequence rather than two.
+ * - **Pinned, RNG-free tie-breaks.** When two ready soldiers hold the *same*
+ *   charge the winner is chosen by a stable total order: charge descending,
+ *   then **unit id ascending** (a locale-independent lexicographic compare).
+ *   Turn order is therefore a rules quantity, never a draw: adding or removing
+ *   a combat/effect roll cannot move it. This mirrors the peer engine's
+ *   `tieBreak` (The Unseen Hand `src/sim/scheduler.ts`; peer lesson L1) and
+ *   deliberately refuses to fall back on array/insertion order.
+ * - **One shared effect stream.** {@link OrdersTempo.rng} still travels inside
+ *   the scheduler state and is consumed only by combat resolution (see
+ *   `./actions/resolve.ts`, T117), so a battle replays exactly from a seed plus
+ *   the ordered command log.
  * - **Pure & JSON-serialisable.** No mutation of inputs, no DOM, no
  *   `Math.random`; every update returns a new {@link OrdersTempo} value.
  *
@@ -92,8 +97,8 @@ export interface TempoEntry {
 
 /**
  * The whole Orders Tempo scheduler state. Plain and JSON-serialisable so it can
- * live inside a battle save; the embedded {@link RngState} is what makes
- * tie-breaks deterministic across a save/load boundary.
+ * live inside a battle save; the embedded {@link RngState} keeps effect rolls
+ * deterministic across a save/load boundary.
  */
 export interface OrdersTempo {
   /** Charge required to act (usually {@link TEMPO_THRESHOLD}). */
@@ -102,7 +107,7 @@ export interface OrdersTempo {
   readonly tick: number;
   /** Per-soldier charge, in stable insertion order. */
   readonly entries: readonly TempoEntry[];
-  /** Seeded PRNG state used for same-charge tie-breaks and effect rolls. */
+  /** Seeded PRNG state for effect rolls only (see `./actions/resolve.ts`). */
   readonly rng: RngState;
 }
 
@@ -110,7 +115,7 @@ export interface OrdersTempo {
 export interface OrdersTempoOptions {
   /** Charge needed to act; defaults to {@link TEMPO_THRESHOLD}. */
   readonly threshold?: number;
-  /** Seed for the tie-break stream; defaults to the string `"orders-tempo"`. */
+  /** Seed for the effect-roll stream; defaults to the string `"orders-tempo"`. */
   readonly seed?: Seed;
   /**
    * Optional starting charge per unit id. Handy for scenarios that begin
@@ -193,7 +198,7 @@ function assertPositiveInteger(value: number, label: string): void {
 /**
  * Create an empty turn order for the given soldiers. Every soldier starts at
  * charge `0` (or the value supplied in `initialCharge`) and the seeded
- * tie-break stream is initialised from `seed`.
+ * effect-roll stream is initialised from `seed`.
  *
  * Throws on duplicate ids, a non-positive threshold or a fractional/negative
  * starting charge, so malformed battle setups fail at the boundary.
@@ -293,40 +298,32 @@ export function readyActorIds(state: OrdersTempo): UnitId[] {
     .map((entry) => entry.unitId);
 }
 
-/** Internal: the next actor plus any RNG-state change from breaking a tie. */
-interface ActorChoice {
-  readonly state: OrdersTempo;
-  readonly actorId: UnitId;
-}
-
 /**
- * Pick the ready soldier with the highest charge. Ties are broken by the
- * seeded PRNG; within this scheduler only a tie advances the stream, so a
- * non-tied turn order is independent of the draw order (combat resolution may
- * have advanced the same shared stream between turns). Returns `null` when
- * nobody is ready.
+ * Pick the ready soldier with the highest charge, breaking same-charge ties by
+ * **unit id ascending** (a stable, locale-independent total order). Consumes
+ * no randomness, so the turn order never depends on how many combat/effect
+ * rolls preceded the tie (peer lesson L1; The Unseen Hand `tieBreak`). The
+ * embedded {@link OrdersTempo.rng} stream is reserved for combat resolution
+ * (`./actions/resolve.ts`). Returns `null` when nobody is ready.
  */
-function chooseActor(state: OrdersTempo): ActorChoice | null {
-  const ready = state.entries.filter((entry) => entry.charge >= state.threshold);
-  if (ready.length === 0) return null;
-
-  let maxCharge = ready[0].charge;
-  for (const entry of ready) {
-    if (entry.charge > maxCharge) maxCharge = entry.charge;
+function chooseActor(state: OrdersTempo): UnitId | null {
+  let best: TempoEntry | null = null;
+  for (const entry of state.entries) {
+    if (entry.charge < state.threshold) continue;
+    if (
+      best === null ||
+      entry.charge > best.charge ||
+      (entry.charge === best.charge && entry.unitId < best.unitId)
+    ) {
+      best = entry;
+    }
   }
-  const candidates = ready.filter((entry) => entry.charge === maxCharge);
-  if (candidates.length === 1) {
-    return { state, actorId: candidates[0].unitId };
-  }
-
-  const rng = Rng.fromState(state.rng);
-  const picked = candidates[rng.nextInt(candidates.length)];
-  return { state: { ...state, rng: rng.getState() }, actorId: picked.unitId };
+  return best?.unitId ?? null;
 }
 
 /** A soldier reaching their turn, with the tick time it took. */
 export interface TempoTurn {
-  /** Scheduler after charge accumulation and the tie-break draw. */
+  /** Scheduler after charge accumulation and actor selection. */
   readonly state: OrdersTempo;
   /** The soldier whose turn it is. */
   readonly actorId: UnitId;
@@ -365,9 +362,9 @@ export function advanceToNextTurn(
 
   // Invariant: no one is ready at the start of each iteration.
   while (ticks <= maxTicks) {
-    const choice = chooseActor(current);
-    if (choice !== null) {
-      return { state: choice.state, actorId: choice.actorId, ticks, resolved };
+    const actorId = chooseActor(current);
+    if (actorId !== null) {
+      return { state: current, actorId, ticks, resolved };
     }
     if (ticks === maxTicks) break;
 

@@ -406,7 +406,9 @@ describe("step — move command", () => {
   it("rejects an illegal march without mutation", () => {
     const state = makeState([
       makeUnit(MARCHER, coord(0, 0), { stats: { ...BASE_STATS, move: 1 } }),
-      makeUnit(BLOCKER, coord(5, 3)),
+      // Slower ally, so the marcher is unambiguously the current actor (T122:
+      // equal Speed now ties by id ascending, and "unit-blocker" sorts first).
+      makeUnit(BLOCKER, coord(5, 3), { stats: { ...BASE_STATS, spd: 10 } }),
     ]);
     const command: Command = { kind: "move", unitId: MARCHER, path: STRAIGHT };
 
