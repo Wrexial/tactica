@@ -665,7 +665,7 @@ deterministic.
 - done: Main, company, post, equipment, abilities, depot, mess and campaign-map menus.
 
 ### T085 — Targeting UX
-- status: failed
+- status: done
 - deps: [T028, T030]
 - files: src/render/overlay.ts
 - verify: npm run test:e2e
@@ -803,7 +803,7 @@ deterministic.
 - done: Autosave, multiple slots, JSON export/import.
 
 ### T103 — Settings
-- status: failed
+- status: done
 - deps: [T100]
 - files: src/ui/Settings.tsx, src/ui/settingsModel.ts, src/ui/styles.css, tests/e2e/settings.spec.ts
 - verify: npm run test:e2e
