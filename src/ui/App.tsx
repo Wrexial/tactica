@@ -22,6 +22,7 @@ import { targetForCursor } from "./battleForecast";
 import { Menus } from "./Menus";
 import { Mess } from "./Mess";
 import { PostScreen } from "./PostScreen";
+import { Saves } from "./Saves";
 import { TempoTray } from "./TempoTray";
 import { animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
@@ -57,9 +58,9 @@ export function App() {
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
   const [animations, setAnimations] = useState<readonly BattleAnimation[]>([]);
-  const [view, setView] = useState<"battle" | "menus" | "posts" | "mess" | "map" | "depot">(
-    "battle",
-  );
+  const [view, setView] = useState<
+    "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves"
+  >("battle");
   const controllerRef = useRef(controller);
   const viewRef = useRef(view);
   viewRef.current = view;
@@ -276,6 +277,15 @@ export function App() {
         >
           Quartermaster
         </button>
+        <button
+          type="button"
+          className={view === "saves" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-saves"
+          aria-pressed={view === "saves"}
+          onClick={() => setView("saves")}
+        >
+          Saves
+        </button>
       </nav>
 
       <main className="stage">
@@ -403,6 +413,7 @@ export function App() {
         {view === "mess" && <Mess />}
         {view === "map" && <CampaignMap />}
         {view === "depot" && <Depot />}
+        {view === "saves" && <Saves />}
       </main>
     </div>
   );
