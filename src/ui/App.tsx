@@ -35,7 +35,8 @@ import {
 } from "../app/targetingPreview";
 import { actionSpecOf } from "../engine/actions/resolve";
 import { findAbility } from "../data/abilities";
-import { asContractId } from "../engine/ids";
+import { asContractId, type AbilityId } from "../engine/ids";
+import { tilesInRange } from "../engine/targeting";
 import type { BattleEvent } from "../engine/events";
 import type { Objective } from "../engine/objectives";
 import { isOutOfAction } from "../engine/unit";
@@ -153,6 +154,9 @@ export function App() {
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
   const [animations, setAnimations] = useState<readonly BattleAnimation[]>([]);
+  // The Orders entry the pointer (or keyboard focus) is over, so its reach can
+  // be previewed on the field before the order is chosen.
+  const [previewActionId, setPreviewActionId] = useState<AbilityId | null>(null);
   const [inputReady, setInputReady] = useState(false);
   const [view, setView] = useState<
     "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves" | "settings" | "lobby"
@@ -351,6 +355,29 @@ export function App() {
     return { areaTiles, areaHits, danger, elevation };
   }, [controller]);
 
+  // Orders hover preview: the tiles an action would reach from the selected
+  // soldier, computed without touching the engine so a browse costs nothing.
+  // Once an order is actually being aimed, the controller's own `targetTiles`
+  // take over (see `targetRangeTiles` below).
+  const previewRange = useMemo(() => {
+    if (previewActionId === null || !controller.canAct) return [];
+    if (controller.phase === "target" || controller.phase === "confirm") return [];
+    const unit =
+      controller.selectedUnitId === null
+        ? null
+        : (controller.battle.units.find((candidate) => candidate.id === controller.selectedUnitId) ??
+          null);
+    const spec = actionSpecOf(controller.battle, previewActionId);
+    if (unit === null || spec === undefined) return [];
+    return tilesInRange(controller.battle.map, unit.at, { min: 0, max: spec.range });
+  }, [previewActionId, controller]);
+
+  /** The reach the overlay should paint: a live aim, else the hover preview. */
+  const targetRangeTiles =
+    controller.phase === "target" || controller.phase === "confirm"
+      ? controller.targetTiles
+      : previewRange;
+
   // Battle forecast (T086): the aim, once chosen, is projected through the
   // engine's rules so the confirm prompt can show odds and reaction risk before
   // the order is committed. Derived purely from the controller, like targeting.
@@ -423,7 +450,7 @@ export function App() {
       controller.moveRange.map((tile) => tile.at),
       map,
     );
-    scene.overlay.setTargetRange(controller.phase === "target" ? controller.targetTiles : [], map);
+    scene.overlay.setTargetRange(targetRangeTiles, map);
     scene.overlay.setArea({ tiles: targeting.areaTiles, hits: targeting.areaHits }, map);
     scene.overlay.setElevationPreview(targeting.elevation, map);
     scene.overlay.setPath(controller.pendingPath ?? [], map);
@@ -440,7 +467,7 @@ export function App() {
       scene.playAnimations(cues);
       setAnimations(cues);
     }
-  }, [controller, targeting]);
+  }, [controller, targeting, targetRangeTiles]);
 
   // T109 — read the resolved battle events aloud through the live region, so a
   // screen-reader player hears the same report the battle log shows. The
@@ -711,7 +738,7 @@ export function App() {
                 />
               </dt>
               <dd data-testid="hud-target-range">
-                {t("common.tiles", { count: controller.targetTiles.length })}
+                {t("common.tiles", { count: targetRangeTiles.length })}
               </dd>
             </div>
             <div>
@@ -791,6 +818,18 @@ export function App() {
                           data-testid={`action-${option.id}`}
                           data-affordable={option.affordable}
                           disabled={!option.affordable}
+                          onMouseEnter={() => setPreviewActionId(option.id)}
+                          onMouseLeave={() =>
+                            setPreviewActionId((current) =>
+                              current === option.id ? null : current,
+                            )
+                          }
+                          onFocus={() => setPreviewActionId(option.id)}
+                          onBlur={() =>
+                            setPreviewActionId((current) =>
+                              current === option.id ? null : current,
+                            )
+                          }
                           onClick={() =>
                             applyController(chooseAction(controllerRef.current, option.id))
                           }

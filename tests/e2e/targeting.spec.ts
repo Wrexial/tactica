@@ -51,3 +51,20 @@ test("previews the elevation of the tile under the cursor", async ({ page }) => 
   await expect(page.getByTestId("hud-cursor")).toHaveText("9, 7");
   await expect(page.getByTestId("hud-elevation")).toHaveText("+2");
 });
+
+test("previews an order's reach on hover before it is chosen", async ({ page }) => {
+  await openBattlefield(page);
+
+  // Select the acting soldier: the Orders menu appears, no reach shown yet.
+  await page.keyboard.press("Enter");
+  await expect(page.getByTestId("action-menu")).toBeVisible();
+  await expect(page.getByTestId("hud-target-range")).toHaveText("0 tiles");
+
+  // Hovering an order reveals its reach (the same tiles the overlay paints).
+  await page.getByTestId("action-musket-fire").hover();
+  await expect(page.getByTestId("hud-target-range")).not.toHaveText("0 tiles");
+
+  // Moving off the order clears the preview.
+  await page.getByTestId("hud-actor").hover();
+  await expect(page.getByTestId("hud-target-range")).toHaveText("0 tiles");
+});
