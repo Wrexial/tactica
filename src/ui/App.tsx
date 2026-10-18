@@ -29,17 +29,18 @@ import { TempoTray } from "./TempoTray";
 import { Tutorial } from "./Tutorial";
 import { animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
+import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
-/** A spoken name for each top-level screen, announced when the view changes. */
-const SCREEN_LABELS: Readonly<Record<string, string>> = {
-  battle: "Battlefield",
-  menus: "Camp orders",
-  posts: "Barracks and posts",
-  mess: "Officers' mess",
-  map: "Campaign map",
-  depot: "Quartermaster",
-  saves: "Saves",
-  settings: "Settings",
+/** The catalog key for each top-level screen, announced when the view changes. */
+const SCREEN_KEYS: Readonly<Record<string, MessageKey>> = {
+  battle: "screen.battlefield",
+  menus: "screen.campOrders",
+  posts: "screen.barracks",
+  mess: "screen.mess",
+  map: "screen.campaignMap",
+  depot: "screen.quartermaster",
+  saves: "screen.saves",
+  settings: "screen.settings",
 };
 
 /** A controller for the demo action, with the cursor on the acting soldier. */
@@ -52,9 +53,9 @@ function initialController(): BattleController {
 }
 
 /** Human-readable elevation delta for the HUD: `level`, `+2` or `-1`. */
-function formatElevation(preview: { readonly delta: number } | null): string {
-  if (preview === null) return "—";
-  if (preview.delta === 0) return "level";
+function formatElevation(preview: { readonly delta: number } | null, t: Translator): string {
+  if (preview === null) return t("common.none");
+  if (preview.delta === 0) return t("hud.elevationLevel");
   return preview.delta > 0 ? `+${preview.delta}` : `${preview.delta}`;
 }
 
@@ -69,6 +70,7 @@ function formatElevation(preview: { readonly delta: number } | null): string {
  * re-syncs the overlay when it changes.
  */
 export function App() {
+  const { t } = useTranslation();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
@@ -98,8 +100,8 @@ export function App() {
   // Announce the active screen for screen-reader users as they move in and out
   // of the camp. Harmless on the first mount and on every subsequent change.
   useEffect(() => {
-    announce(SCREEN_LABELS[view] ?? "Screen");
-  }, [view]);
+    announce(t(SCREEN_KEYS[view] ?? "screen.fallback"));
+  }, [t, view]);
 
   // Keyboard/gamepad navigation between the field and the camp (T087). These
   // callbacks are stable so the scene + input effect never tears down on a view
@@ -253,7 +255,9 @@ export function App() {
   );
 
   const cursorLabel =
-    controller.cursor === null ? "—" : `${controller.cursor.x}, ${controller.cursor.y}`;
+    controller.cursor === null
+      ? t("common.none")
+      : `${controller.cursor.x}, ${controller.cursor.y}`;
 
   return (
     <div className="app">
@@ -273,17 +277,17 @@ export function App() {
           }
         }}
       >
-        Skip to the battlefield
+        {t("app.skipToBattlefield")}
       </a>
       <header className="topbar">
         <div className="brand">
-          <p className="kicker">A Napoleonic small-squad tactics RPG</p>
-          <h1>Lines of Glory</h1>
+          <p className="kicker">{t("app.kicker")}</p>
+          <h1>{t("app.title")}</h1>
         </div>
-        <span className="badge">Prototype · Phase 4</span>
+        <span className="badge">{t("app.badge")}</span>
       </header>
 
-      <nav className="viewnav" aria-label="Screens">
+      <nav className="viewnav" aria-label={t("nav.label")}>
         <button
           type="button"
           className={view === "battle" ? "viewnav__button is-active" : "viewnav__button"}
@@ -291,7 +295,7 @@ export function App() {
           aria-pressed={view === "battle"}
           onClick={() => setView("battle")}
         >
-          Field
+          {t("nav.battlefield")}
         </button>
         <button
           type="button"
@@ -300,7 +304,7 @@ export function App() {
           aria-pressed={view === "menus"}
           onClick={() => setView("menus")}
         >
-          Camp Orders
+          {t("nav.campOrders")}
         </button>
         <button
           type="button"
@@ -309,7 +313,7 @@ export function App() {
           aria-pressed={view === "posts"}
           onClick={() => setView("posts")}
         >
-          Barracks
+          {t("nav.barracks")}
         </button>
         <button
           type="button"
@@ -318,7 +322,7 @@ export function App() {
           aria-pressed={view === "mess"}
           onClick={() => setView("mess")}
         >
-          Officers' Mess
+          {t("nav.mess")}
         </button>
         <button
           type="button"
@@ -327,7 +331,7 @@ export function App() {
           aria-pressed={view === "map"}
           onClick={() => setView("map")}
         >
-          Campaign Map
+          {t("nav.campaignMap")}
         </button>
         <button
           type="button"
@@ -336,7 +340,7 @@ export function App() {
           aria-pressed={view === "depot"}
           onClick={() => setView("depot")}
         >
-          Quartermaster
+          {t("nav.quartermaster")}
         </button>
         <button
           type="button"
@@ -345,7 +349,7 @@ export function App() {
           aria-pressed={view === "saves"}
           onClick={() => setView("saves")}
         >
-          Saves
+          {t("nav.saves")}
         </button>
         <button
           type="button"
@@ -354,7 +358,7 @@ export function App() {
           aria-pressed={view === "settings"}
           onClick={() => setView("settings")}
         >
-          Settings
+          {t("nav.settings")}
         </button>
         <button
           type="button"
@@ -366,68 +370,77 @@ export function App() {
             setTutorialActive((current) => !current);
           }}
         >
-          Drill Square
+          {t("nav.drillSquare")}
         </button>
       </nav>
 
-      <main className="stage" id="main-content" tabIndex={-1} aria-label="Battlefield and camp">
+      <main className="stage" id="main-content" tabIndex={-1} aria-label={t("stage.label")}>
         <canvas
           ref={canvasRef}
           className="battlefield"
           data-testid="battle-canvas"
           data-input-ready={inputReady}
           role="img"
-          aria-label="Battlefield"
+          aria-label={t("canvas.label")}
         />
 
         <aside className="hud" hidden={view !== "battle"}>
-          <h2>Field Orders</h2>
+          <h2>{t("hud.orders")}</h2>
           <p className="muted" data-testid="hud-controls">
-            Arrows / WASD / D-pad move the cursor · Enter / A confirms · O opens Orders · Esc / B
-            backs out · M / Start opens the camp · drag to pan, wheel to zoom.
+            {t("hud.controls")}
           </p>
           <dl>
             <div>
-              <dt>Orders Tempo</dt>
-              <dd data-testid="hud-actor">{actor?.name ?? "—"}</dd>
+              <dt>{t("hud.tempo")}</dt>
+              <dd data-testid="hud-actor">{actor?.name ?? t("common.none")}</dd>
             </div>
             <div>
-              <dt>Phase</dt>
+              <dt>{t("hud.phase")}</dt>
               <dd data-testid="hud-phase">{controller.phase}</dd>
             </div>
             <div>
-              <dt>Cursor</dt>
+              <dt>{t("hud.cursor")}</dt>
               <dd data-testid="hud-cursor">{cursorLabel}</dd>
             </div>
             <div>
-              <dt>Selected</dt>
-              <dd data-testid="hud-selected">{selected?.name ?? "—"}</dd>
+              <dt>{t("hud.selected")}</dt>
+              <dd data-testid="hud-selected">{selected?.name ?? t("common.none")}</dd>
             </div>
             <div>
-              <dt>Move range</dt>
-              <dd data-testid="hud-move-range">{controller.moveRange.length} tiles</dd>
-            </div>
-            <div>
-              <dt>Planned march</dt>
-              <dd data-testid="hud-path">
-                {controller.pendingPath === null ? "—" : `${controller.pendingPath.length} tiles`}
+              <dt>{t("hud.moveRange")}</dt>
+              <dd data-testid="hud-move-range">
+                {t("common.tiles", { count: controller.moveRange.length })}
               </dd>
             </div>
             <div>
-              <dt>Target reach</dt>
-              <dd data-testid="hud-target-range">{controller.targetTiles.length} tiles</dd>
+              <dt>{t("hud.plannedMarch")}</dt>
+              <dd data-testid="hud-path">
+                {controller.pendingPath === null
+                  ? t("common.none")
+                  : t("common.tiles", { count: controller.pendingPath.length })}
+              </dd>
             </div>
             <div>
-              <dt>Area</dt>
-              <dd data-testid="hud-target-area">{targeting.areaTiles.length} tiles</dd>
+              <dt>{t("hud.targetReach")}</dt>
+              <dd data-testid="hud-target-range">
+                {t("common.tiles", { count: controller.targetTiles.length })}
+              </dd>
             </div>
             <div>
-              <dt>Danger zone</dt>
-              <dd data-testid="hud-danger-zone">{targeting.danger.length} tiles</dd>
+              <dt>{t("hud.area")}</dt>
+              <dd data-testid="hud-target-area">
+                {t("common.tiles", { count: targeting.areaTiles.length })}
+              </dd>
             </div>
             <div>
-              <dt>Elevation</dt>
-              <dd data-testid="hud-elevation">{formatElevation(targeting.elevation)}</dd>
+              <dt>{t("hud.dangerZone")}</dt>
+              <dd data-testid="hud-danger-zone">
+                {t("common.tiles", { count: targeting.danger.length })}
+              </dd>
+            </div>
+            <div>
+              <dt>{t("hud.elevation")}</dt>
+              <dd data-testid="hud-elevation">{formatElevation(targeting.elevation, t)}</dd>
             </div>
           </dl>
           {controller.lastRejection !== null && (
@@ -446,8 +459,12 @@ export function App() {
           {controller.canAct &&
             (controller.phase === "command" || controller.phase === "move") &&
             controller.actions.length > 0 && (
-              <section className="action-menu" data-testid="action-menu" aria-label="Orders">
-                <h3>Orders</h3>
+              <section
+                className="action-menu"
+                data-testid="action-menu"
+                aria-label={t("hud.ordersLabel")}
+              >
+                <h3>{t("hud.ordersHeading")}</h3>
                 <ul>
                   {controller.actions.map((option) => (
                     <li key={option.id}>
@@ -462,15 +479,17 @@ export function App() {
                         }
                       >
                         <span className="action-menu__name">{option.id}</span>
-                        <span className="action-menu__cost">Élan {option.spec.mpCost}</span>
+                        <span className="action-menu__cost">
+                          {t("hud.elanCost", { amount: option.spec.mpCost })}
+                        </span>
                       </button>
                     </li>
                   ))}
                 </ul>
               </section>
             )}
-          <section className="animation-log" aria-label="Battle animations">
-            <h3>Battle log</h3>
+          <section className="animation-log" aria-label={t("hud.battleLogLabel")}>
+            <h3>{t("hud.battleLog")}</h3>
             <ol data-testid="animation-log">
               {animations.map((animation, index) => (
                 <li

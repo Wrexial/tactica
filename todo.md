@@ -863,11 +863,24 @@ deterministic.
 - done: Teaches move/act/tempo/Articles/Drill.
 
 ### T111 — i18n scaffolding
-- status: todo
+- status: done
 - deps: [T010]
-- files: src/i18n/index.ts
+- files: src/i18n/index.ts, tests/unit/i18n.test.ts, src/ui/App.tsx
 - verify: npm run test -- --run tests/unit/i18n.test.ts
 - done: All UI strings via keys; no hard-coded copy.
+
+### T116 — Adopt i18n keys across the remaining screens
+- status: todo
+- deps: [T111]
+- files: src/ui/Menus.tsx, src/ui/Mess.tsx, src/ui/Depot.tsx, src/ui/CampaignMap.tsx, src/ui/PostScreen.tsx, src/ui/Saves.tsx, src/ui/Settings.tsx, src/ui/Forecast.tsx, src/ui/TempoTray.tsx, src/ui/Tutorial.tsx, src/ui/a11y.ts
+- verify: npm run test -- --run tests/unit/i18n.test.ts
+- done: Every camp screen and the screen-reader descriptions resolve copy through `t()`; no user-facing literal remains in `src/ui`.
+
+T111 built `src/i18n/index.ts` and moved the main shell (`src/ui/App.tsx`) onto
+keys. This follow-up walks the rest of the presentation layer onto the same
+catalog. Settings' option labels/notes currently live as data in
+`src/ui/settingsModel.ts`, so those need keys or key references before the
+screen can be fully keyed.
 
 ---
 
