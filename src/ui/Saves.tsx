@@ -1,0 +1,639 @@
+/**
+ * Saves (T102) — the **camp keep**, where a campaign is autosaved, filed into
+ * named slots and carried in or out as JSON (mapping §10, D15).
+ *
+ * The persistence contract was laid down by T100 (`SaveStore`) and T101
+ * (`CampaignSave`): a whole campaign is a validated, JSON-safe value that can
+ * be written to a named slot and read back through the engine's own factories.
+ * This screen is the player-facing surface over that contract and owns nothing
+ * but presentation and the tiny amount of UI state a screen needs:
+ *
+ * ```
+ *   SavedCampaign ─┐
+ *                  ├─► saveCampaign / loadCampaign ─► SaveStore slot
+ *   campaign state ┘
+ *                  ├─► serializeCampaign   ─► export JSON
+ *                  └─► deserializeCampaign ─► import JSON
+ * ```
+ *
+ * ## What this screen owns
+ *
+ * - An **autosave**: a rolling save, written automatically to
+ *   {@link AUTOSAVE_SLOT} whenever the working campaign changes (and on demand
+ *   with the *Autosave now* order), so there is always a restore point.
+ * - **Slots**: three named filing slots, each with its label and the time it was
+ *   written. A slot may be **saved**, **loaded** or **struck** (deleted).
+ * - **JSON export / import**: the canonical campaign text can be exported (and
+ *   downloaded as a `.json` file) and pasted back in to be validated and
+ *   restored. A rejected import leaves the working campaign untouched.
+ *
+ * ## Contract (`agents.md` §2, §3, §7, §9)
+ *
+ * - **Presentation only, at the edge.** Every rule — versioning, validation,
+ *   serialisation — lives in `src/persist/`; no campaign data is authored here
+ *   except the deterministic demo the screen opens with.
+ * - **Engine stays pure.** This module imports the persistence layer and the
+ *   immutable engine factories; it never reaches into the simulation to mutate
+ *   state. Loading/advancing builds a fresh {@link CampaignSave} value.
+ * - **Deterministic.** No `Math.random`; the demo campaign is authored with a
+ *   fixed seed and day so the screen renders and tests identically every time.
+ *
+ * This is original fiction inspired by the Napoleonic Wars, not a port of
+ * FFTA's save data (mapping §3, §14 D6).
+ */
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { createCalendar } from "../engine/calendar";
+import { createCampaignMap } from "../engine/campaignMap";
+import { advanceDay, createCompany } from "../engine/company";
+import { createDepotInventory } from "../engine/depot";
+import { coord } from "../engine/grid";
+import {
+  asCompanyId,
+  asContractId,
+  asMapTokenId,
+  asPostId,
+  asRegionId,
+  asUnitId,
+} from "../engine/ids";
+import { createPostAssignment, derivePostStats } from "../engine/progression/posts";
+import { createUnit } from "../engine/unit";
+import {
+  AUTOSAVE_SLOT,
+  createCampaignProgress,
+  createCampaignSave,
+  createIndexedDbSaveStore,
+  createMemorySaveStore,
+  deserializeCampaign,
+  isIndexedDbAvailable,
+  loadCampaign,
+  saveCampaign,
+  serializeCampaign,
+  type CampaignSave,
+  type SaveSlotInfo,
+  type SaveStore,
+} from "../persist";
+
+/* --------------------------------------------------------------------------
+ * Constants & helpers
+ * ------------------------------------------------------------------------ */
+
+/** The named filing slots the player may use, in display order. */
+const DEFAULT_SAVE_SLOTS = ["slot-1", "slot-2", "slot-3"] as const;
+
+/** The seed the deterministic demo campaign is authored under. */
+const DEMO_SEED = "campaign-1815";
+
+/** The campaign day the deterministic demo opens on. */
+const DEMO_DAY = 12;
+
+/** Tone of one ledger line, so the UI can style success against failure. */
+type StatusKind = "info" | "success" | "error";
+
+/** One line in the save ledger. */
+interface StatusEntry {
+  readonly kind: StatusKind;
+  readonly message: string;
+}
+
+/** Human-readable message for whatever a `catch` caught. */
+function messageOf(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+/** A compact label for a campaign (`The Greycoats · Day 12`). */
+function campaignLabel(save: CampaignSave): string {
+  return `${save.company.name} · Day ${save.company.theatre.day}`;
+}
+
+/** A locale timestamp for a slot's `savedAt`; presentation only. */
+function formatTime(milliseconds: number): string {
+  return new Date(milliseconds).toLocaleString();
+}
+
+/** A Crowns amount (`1400 Crowns`). */
+function crownsLabel(amount: number): string {
+  return `${amount} ${amount === 1 ? "Crown" : "Crowns"}`;
+}
+
+/* --------------------------------------------------------------------------
+ * The demo campaign (prototype scaffolding until a campaign controller lands)
+ * ------------------------------------------------------------------------ */
+
+/** Authoring input for one demo soldier. */
+interface DemoRecruit {
+  readonly id: string;
+  readonly name: string;
+  readonly postId: string;
+  readonly level: number;
+}
+
+/** Build one demo roster member through the authored engine factories. */
+function demoMember(spec: DemoRecruit) {
+  const assignment = createPostAssignment({
+    primaryPostId: asPostId(spec.postId),
+    power: "france",
+  });
+  const unit = createUnit({
+    id: asUnitId(spec.id),
+    name: spec.name,
+    power: "france",
+    postId: asPostId(spec.postId),
+    level: spec.level,
+    at: coord(0, 0),
+    stats: derivePostStats({ level: spec.level, assignment }),
+  });
+  return { unit, assignment, recruitedOnDay: 1 };
+}
+
+/**
+ * The deterministic campaign the screen opens with: The Greycoats on day 12 at
+ * Sainte-Colombe, their bridge contract behind them. It stands in for a real
+ * campaign controller while the sandbox is being wired together.
+ */
+function createDemoCampaign(): CampaignSave {
+  const company = createCompany({
+    id: asCompanyId("company-greycoats"),
+    name: "The Greycoats",
+    crowns: 1400,
+    honours: 3,
+    roster: [
+      demoMember({ id: "unit-aubry", name: "Sgt. Aubry", postId: "fusilier", level: 4 }),
+      demoMember({ id: "unit-bouvet", name: "Cpl. Bouvet", postId: "grenadier", level: 4 }),
+    ],
+    theatre: {
+      day: DEMO_DAY,
+      regionId: asRegionId("sainte-colombe"),
+      knownRegionIds: [asRegionId("sainte-colombe")],
+    },
+  });
+
+  const map = createCampaignMap({
+    width: 4,
+    height: 4,
+    placements: [
+      {
+        slot: coord(0, 0),
+        marker: {
+          id: asMapTokenId("start"),
+          name: "Sainte-Colombe",
+          terrain: "bridge",
+          regionId: asRegionId("sainte-colombe"),
+        },
+      },
+    ],
+  });
+
+  const calendar = createCalendar({
+    seed: DEMO_SEED,
+    day: DEMO_DAY,
+    regionId: asRegionId("sainte-colombe"),
+  });
+
+  return createCampaignSave({
+    seed: DEMO_SEED,
+    company,
+    map,
+    calendar,
+    inventory: createDepotInventory({ "water-canteen": 2, "powder-flask": 1 }),
+    progress: createCampaignProgress({ completedContractIds: ["break-the-bridge"] }),
+    history: [
+      { kind: "contract-completed", day: 10, contractId: asContractId("break-the-bridge") },
+    ],
+  });
+}
+
+/**
+ * Advance a campaign by `days`, keeping the company theatre clock and the
+ * calendar in step. Pure: the input save is never mutated.
+ */
+function advanceCampaignSave(save: CampaignSave, days: number): CampaignSave {
+  const company = advanceDay(save.company, days);
+  const calendar = createCalendar({
+    seed: save.calendar.seed,
+    day: company.theatre.day,
+    regionId: save.calendar.regionId,
+    dispatches: save.calendar.dispatches,
+  });
+  return createCampaignSave({ ...save, company, calendar });
+}
+
+/** Pick the browser backend when available, else the in-memory test double. */
+function createDefaultStore(): SaveStore {
+  if (isIndexedDbAvailable()) {
+    try {
+      return createIndexedDbSaveStore();
+    } catch {
+      // Fall through to the memory backend below.
+    }
+  }
+  return createMemorySaveStore();
+}
+
+/* --------------------------------------------------------------------------
+ * Props
+ * ------------------------------------------------------------------------ */
+
+/** Props for {@link Saves}. */
+export interface SavesProps {
+  /** The working campaign. Defaults to the deterministic demo campaign. */
+  readonly campaign?: CampaignSave;
+  /** The persistence backend. Defaults to IndexedDB with a memory fallback. */
+  readonly store?: SaveStore;
+  /** The named filing slots to show. Defaults to {@link DEFAULT_SAVE_SLOTS}. */
+  readonly slots?: readonly string[];
+  /** Called after a campaign is loaded or imported. */
+  readonly onChange?: (save: CampaignSave) => void;
+}
+
+/* --------------------------------------------------------------------------
+ * Component
+ * ------------------------------------------------------------------------ */
+
+/**
+ * The camp keep: autosave, named slots and JSON export/import over the
+ * versioned {@link SaveStore} and the validated {@link CampaignSave} format.
+ */
+export function Saves({
+  campaign: campaignProp,
+  store: storeProp,
+  slots = DEFAULT_SAVE_SLOTS,
+  onChange,
+}: SavesProps) {
+  const store = useMemo(() => storeProp ?? createDefaultStore(), [storeProp]);
+  const [campaign, setCampaign] = useState<CampaignSave>(
+    () => campaignProp ?? createDemoCampaign(),
+  );
+  const [slotInfos, setSlotInfos] = useState<readonly SaveSlotInfo[]>([]);
+  const [label, setLabel] = useState("");
+  const [exportText, setExportText] = useState("");
+  const [importText, setImportText] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [ledger, setLedger] = useState<readonly StatusEntry[]>([]);
+
+  const pushLedger = useCallback((kind: StatusKind, message: string): void => {
+    setLedger((current) => [{ kind, message }, ...current].slice(0, 12));
+  }, []);
+
+  const refreshSlots = useCallback(async (): Promise<void> => {
+    const infos = await store.list();
+    setSlotInfos(infos);
+  }, [store]);
+
+  // Read the slot metadata once on mount.
+  useEffect(() => {
+    void refreshSlots();
+  }, [refreshSlots]);
+
+  // Rolling autosave: every change to the working campaign is written straight
+  // to the dedicated autosave slot, so the company always has a restore point.
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      try {
+        await saveCampaign(store, AUTOSAVE_SLOT, campaign, { label: campaignLabel(campaign) });
+        if (!cancelled) await refreshSlots();
+      } catch (error) {
+        if (!cancelled) {
+          pushLedger("error", `Autosave failed: ${messageOf(error)}`);
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [campaign, store, refreshSlots, pushLedger]);
+
+  const infoBySlot = useMemo(
+    () => new Map(slotInfos.map((info) => [info.slot, info] as const)),
+    [slotInfos],
+  );
+  const autosaveInfo = infoBySlot.get(AUTOSAVE_SLOT);
+
+  const exportHref =
+    exportText.length > 0
+      ? `data:application/json;charset=utf-8,${encodeURIComponent(exportText)}`
+      : undefined;
+
+  /** Write the working campaign into a named slot. */
+  const handleSave = async (slot: string): Promise<void> => {
+    setBusy(true);
+    try {
+      const chosenLabel = label.trim().length > 0 ? label.trim() : campaignLabel(campaign);
+      await saveCampaign(store, slot, campaign, { label: chosenLabel });
+      await refreshSlots();
+      pushLedger("success", `Filed ${chosenLabel} in ${slot}.`);
+    } catch (error) {
+      pushLedger("error", `Could not save to ${slot}: ${messageOf(error)}`);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  /** Restore the working campaign from a named slot. */
+  const handleLoad = async (slot: string): Promise<void> => {
+    setBusy(true);
+    try {
+      const loaded = await loadCampaign(store, slot);
+      if (loaded === null) {
+        pushLedger("error", `${slot} is empty.`);
+        return;
+      }
+      setCampaign(loaded);
+      onChange?.(loaded);
+      pushLedger("success", `Restored ${slot} — ${campaignLabel(loaded)}.`);
+    } catch (error) {
+      pushLedger("error", `Could not load ${slot}: ${messageOf(error)}`);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  /** Strike a named slot. */
+  const handleDelete = async (slot: string): Promise<void> => {
+    setBusy(true);
+    try {
+      const removed = await store.remove(slot);
+      await refreshSlots();
+      pushLedger(
+        removed ? "success" : "info",
+        removed ? `Struck ${slot}.` : `${slot} was already empty.`,
+      );
+    } catch (error) {
+      pushLedger("error", `Could not strike ${slot}: ${messageOf(error)}`);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  /** Force an autosave without changing the campaign. */
+  const handleAutosaveNow = async (): Promise<void> => {
+    setBusy(true);
+    try {
+      await saveCampaign(store, AUTOSAVE_SLOT, campaign, { label: campaignLabel(campaign) });
+      await refreshSlots();
+      pushLedger("success", `Autosaved ${campaignLabel(campaign)}.`);
+    } catch (error) {
+      pushLedger("error", `Autosave failed: ${messageOf(error)}`);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  /** Advance the demo campaign a day to demonstrate capture/restore. */
+  const handleAdvance = (): void => {
+    const next = advanceCampaignSave(campaign, 1);
+    setCampaign(next);
+    onChange?.(next);
+  };
+
+  /** Render the working campaign as canonical JSON. */
+  const handleExport = (): void => {
+    setExportText(serializeCampaign(campaign));
+    pushLedger("info", `Exported ${campaignLabel(campaign)} as JSON.`);
+  };
+
+  /** Validate pasted JSON and adopt it as the working campaign. */
+  const handleImport = (): void => {
+    try {
+      const imported = deserializeCampaign(importText);
+      setCampaign(imported);
+      onChange?.(imported);
+      pushLedger("success", `Imported ${campaignLabel(imported)} from JSON.`);
+    } catch (error) {
+      pushLedger("error", `Import rejected: ${messageOf(error)}`);
+    }
+  };
+
+  return (
+    <section className="saves-screen" data-testid="saves-screen" aria-label="Saves">
+      <header className="saves-screen__header">
+        <div>
+          <p className="kicker">Camp Keep · Saves</p>
+          <h2>Autosave, Slots &amp; Records</h2>
+          <p className="muted">
+            The company is autosaved whenever it changes. File it into a slot, restore an earlier
+            posting, or carry the campaign in and out as JSON.
+          </p>
+        </div>
+        <dl className="saves-screen__company" data-testid="saves-current">
+          <div>
+            <dt>Company</dt>
+            <dd data-testid="saves-current-company">{campaign.company.name}</dd>
+          </div>
+          <div>
+            <dt>Day</dt>
+            <dd data-testid="saves-current-day">{campaign.company.theatre.day}</dd>
+          </div>
+          <div>
+            <dt>Crowns</dt>
+            <dd data-testid="saves-current-crowns">{crownsLabel(campaign.company.crowns)}</dd>
+          </div>
+          <div>
+            <dt>Roster</dt>
+            <dd data-testid="saves-current-roster">{campaign.company.roster.length} soldiers</dd>
+          </div>
+          <div>
+            <dt>Seed</dt>
+            <dd data-testid="saves-current-seed">{String(campaign.seed)}</dd>
+          </div>
+          <div>
+            <dt>Format</dt>
+            <dd data-testid="saves-current-version">v{campaign.version}</dd>
+          </div>
+        </dl>
+      </header>
+
+      <div className="saves-screen__body">
+        <section className="saves-panel" aria-label="Autosave">
+          <h3>Autosave</h3>
+          <div
+            className="saves-autosave"
+            data-testid="saves-autosave"
+            data-filled={autosaveInfo !== undefined}
+          >
+            <p className="saves-autosave__state" data-testid="saves-autosave-state">
+              {autosaveInfo === undefined ? "No autosave yet" : autosaveInfo.label}
+            </p>
+            <p className="muted" data-testid="saves-autosave-time">
+              {autosaveInfo === undefined ? "—" : formatTime(autosaveInfo.savedAt)}
+            </p>
+            <button
+              type="button"
+              className="button"
+              data-testid="saves-autosave-now"
+              disabled={busy}
+              onClick={() => void handleAutosaveNow()}
+            >
+              Autosave now
+            </button>
+          </div>
+        </section>
+
+        <section className="saves-panel" aria-label="Save slots">
+          <h3>Filing slots</h3>
+          <label className="saves-label" htmlFor="saves-label-input">
+            Slot label
+          </label>
+          <input
+            id="saves-label-input"
+            className="saves-label-input"
+            data-testid="saves-label"
+            type="text"
+            placeholder={campaignLabel(campaign)}
+            value={label}
+            maxLength={48}
+            onChange={(event) => setLabel(event.target.value)}
+          />
+          <table className="saves-table" data-testid="saves-slots">
+            <thead>
+              <tr>
+                <th scope="col">Slot</th>
+                <th scope="col">Record</th>
+                <th scope="col">Written</th>
+                <th scope="col" />
+              </tr>
+            </thead>
+            <tbody>
+              {slots.map((slot) => {
+                const info = infoBySlot.get(slot);
+                const filled = info !== undefined;
+                return (
+                  <tr key={slot} data-testid={`saves-slot-${slot}`} data-filled={filled}>
+                    <th scope="row">{slot}</th>
+                    <td data-testid={`saves-slot-${slot}-label`}>
+                      {info === undefined ? "Empty" : info.label}
+                    </td>
+                    <td data-testid={`saves-slot-${slot}-time`}>
+                      {info === undefined ? "—" : formatTime(info.savedAt)}
+                    </td>
+                    <td className="saves-table__actions">
+                      <button
+                        type="button"
+                        className="button"
+                        data-testid={`saves-save-${slot}`}
+                        disabled={busy}
+                        onClick={() => void handleSave(slot)}
+                      >
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        className="button button--ghost"
+                        data-testid={`saves-load-${slot}`}
+                        disabled={busy || !filled}
+                        onClick={() => void handleLoad(slot)}
+                      >
+                        Load
+                      </button>
+                      <button
+                        type="button"
+                        className="button button--ghost"
+                        data-testid={`saves-delete-${slot}`}
+                        disabled={busy || !filled}
+                        onClick={() => void handleDelete(slot)}
+                      >
+                        Strike
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          <button
+            type="button"
+            className="button button--ghost"
+            data-testid="saves-advance-day"
+            disabled={busy}
+            onClick={handleAdvance}
+          >
+            Advance a day
+          </button>
+        </section>
+
+        <section className="saves-panel" aria-label="Export">
+          <h3>Export JSON</h3>
+          <p className="muted">
+            A canonical record of the campaign — seed, company, map, clock and history.
+          </p>
+          <button
+            type="button"
+            className="button"
+            data-testid="saves-export"
+            onClick={handleExport}
+          >
+            Export
+          </button>
+          <textarea
+            className="saves-json"
+            data-testid="saves-export-json"
+            aria-label="Exported campaign JSON"
+            readOnly
+            rows={6}
+            value={exportText}
+          />
+          {exportHref !== undefined && (
+            <a
+              className="saves-download"
+              data-testid="saves-download"
+              href={exportHref}
+              download="lines-of-glory-campaign.json"
+            >
+              Download .json
+            </a>
+          )}
+        </section>
+
+        <section className="saves-panel" aria-label="Import">
+          <h3>Import JSON</h3>
+          <p className="muted">
+            Paste an exported record. It is validated against the engine before it replaces the
+            working campaign.
+          </p>
+          <textarea
+            className="saves-json"
+            data-testid="saves-import-json"
+            aria-label="Campaign JSON to import"
+            rows={6}
+            placeholder="Paste an exported campaign JSON here…"
+            value={importText}
+            onChange={(event) => setImportText(event.target.value)}
+          />
+          <button
+            type="button"
+            className="button"
+            data-testid="saves-import"
+            disabled={busy || importText.trim().length === 0}
+            onClick={handleImport}
+          >
+            Import
+          </button>
+        </section>
+
+        <section className="saves-panel" aria-label="Ledger">
+          <h3>Ledger</h3>
+          {ledger.length === 0 ? (
+            <p className="muted" data-testid="saves-ledger-empty">
+              No save orders yet.
+            </p>
+          ) : (
+            <ol className="saves-ledger" data-testid="saves-ledger">
+              {ledger.map((entry, index) => (
+                <li
+                  key={`${index}-${entry.message}`}
+                  data-kind={entry.kind}
+                  data-testid={`saves-ledger-${index}`}
+                >
+                  {entry.message}
+                </li>
+              ))}
+            </ol>
+          )}
+        </section>
+      </div>
+    </section>
+  );
+}
