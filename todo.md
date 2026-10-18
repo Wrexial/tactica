@@ -1005,12 +1005,260 @@ Mess → take a contract → Field battle visible → commit an order → result
 
 ---
 
+## Phase 14 — Battle-flow hardening (peer-engine review)
+
+Refinements found by comparing three peer tactics engines (TinyWarsClient, The
+Unseen Hand, fft-phaser); the full write-up and rationale live in
+`docs/PEER_COMBAT_LESSONS.md`. Each task names the lesson (L#) it implements.
+T122 and T123 are independent and should land first; T124 and T130 build on the
+driver split.
+
+### T122 — Deterministic, RNG-free Orders Tempo tie-break
+- status: todo
+- deps: [T019]
+- files: src/engine/turn.ts, tests/unit/turn.test.ts, tests/unit/determinism.test.ts
+- verify: npm run test -- --run
+- done: `chooseActor` breaks a same-charge tie by a stable total order (charge desc, then unit id ascending) and consumes no randomness; turn order no longer depends on how many combat rolls preceded the tie, and every affected fixture/expectation is updated so the whole suite is green.
+
+Peer lesson L1. Today `chooseActor` (`src/engine/turn.ts`) draws from the same
+`OrdersTempo.rng` stream that `src/engine/actions/resolve.ts` uses for combat, so
+the turn order changes if a combat roll is added or removed — a rules quantity
+coupled to effect randomness. Compare `tieBreak` in The Unseen Hand's
+`src/sim/scheduler.ts`, which is an explicit total order and consumes no RNG.
+Replace the draw with charge desc then unit-id ascending, keep `OrdersTempo.rng`
+for combat only, and add a crafted same-charge test asserting the id order.
+Update the seeded-tie assertions in `tests/unit/turn.test.ts` ("breaks
+same-charge ties with the seeded stream only") and `tests/unit/determinism.test.ts`
+("lets the seed decide same-charge tie-breaks"). This is a cross-cutting
+behaviour change, so run the full suite and fix every fixture it moves.
+
+### T123 — Split `advanceToDecision` from `applyCommand`
+- status: todo
+- deps: [T022]
+- files: src/engine/battle.ts, tests/unit/battle.test.ts
+- verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/determinism.test.ts tests/unit/battleRunner.test.ts
+- done: `advanceToDecision(state)` advances the clock, resolves matured charges and skips out-of-action actors to surface the next living actor (or a terminal state); `applyCommand(state, command)` validates and applies exactly one command; `step` is a thin wrapper over the two and every existing state hash and behaviour is unchanged.
+
+Peer lesson L2. `step` currently inlines three jobs (validate, apply, advance),
+so AI lookahead and balance harnesses cannot reuse the “who acts next” logic.
+Mirror The Unseen Hand's `advanceToDecision`/`applyCommand` split
+(`src/sim/driver.ts`): expose both as pure functions from `src/engine/battle.ts`,
+keep `step` as the ergonomic wrapper, and add tests that `advanceToDecision` is
+idempotent at a decision point and that `step` still produces byte-identical
+state for a fixed seed and command log.
+
+### T124 — Fold an optional move clause into `ActCommand`
+- status: todo
+- deps: [T115, T123]
+- files: src/engine/commands.ts, src/engine/battle.ts, tests/unit/battle.test.ts, tests/unit/move.test.ts
+- verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/move.test.ts tests/unit/determinism.test.ts
+- done: an `act` command may carry an optional `move { to, order: "before" | "after" }` clause and settles the turn exactly once at one threshold; a folded move+act produces the same resulting state as the equivalent two-command `move` then `act` sequence, and `order` is required (never defaulted).
+
+Peer lesson L3. Today a free move opens a turn via `hasMovedThisTurn` and a
+second command must close it, so a half-open turn is representable. The Unseen
+Hand folds both sub-phases into one `act` command with a required
+`order: "before" | "after"` (`src/sim/driver.ts`). Add the optional clause to
+`ActCommand` (`src/engine/commands.ts`), validate the move with the same
+`validateMove` gate a standalone `move` uses, execute `before` (act resolves
+from the destination) or `after` (act from the origin, then move), and settle
+the Orders Tempo turn exactly once. Keep the two-step UI in
+`src/app/battleController.ts`; this is an additive engine command shape.
+
+### T125 — Tile-anchored charged abilities
+- status: todo
+- deps: [T024]
+- files: src/engine/actions/resolve.ts, tests/unit/combat.test.ts, tests/unit/ability.test.ts
+- verify: npm run test -- --run tests/unit/combat.test.ts tests/unit/ability.test.ts tests/unit/determinism.test.ts
+- done: a charging action resolves against the tile/area recorded when it was declared, so a unit that leaves the tile dodges it; a charge whose caster is out of action or whose target tile holds no living unit whiffs without error; the behaviour is covered by tests.
+
+Peer lesson L4. `pendingTargetOf` (`src/engine/actions/resolve.ts`) reconstructs a
+unit-targeted charge as `{ kind: "unit", unitId }`, so a delayed single-target
+action homes onto the named soldier's current position instead of the declared
+grid. FFTA-family peers resolve delayed effects on the tile (The Unseen Hand:
+“the occupant may walk off”), which is what makes charge timing a real tactical
+risk. Make the labelled target tile authoritative for charged abilities, keep the
+out-of-action caster cancellation already present, and pin the whiff case.
+
+### T126 — Pin the RNG draw order per action
+- status: todo
+- deps: [T117]
+- files: src/engine/actions/resolve.ts, tests/unit/determinism.test.ts
+- verify: npm run test -- --run tests/unit/determinism.test.ts
+- done: the order in which hit, crit, condition and reaction rolls consume the battle's seeded stream is documented next to the resolution pipeline and asserted by tests that count draws, including that a unit without a reaction consumes exactly the draws it did before.
+
+Peer lesson L7. The shared stream is documented but the per-action draw order is
+implicit, so adding one optional roll silently shifts every later effect. The
+Unseen Hand writes the order down (hit → reaction trigger → reaction swing → crit
+→ status) and tests exact consumption. Document ours in
+`src/engine/actions/resolve.ts` and add draw-count assertions to
+`tests/unit/determinism.test.ts`.
+
+### T127 — Per-turn action budget (`hasActedThisTurn`)
+- status: todo
+- deps: [T115]
+- files: src/engine/battle.ts, src/app/battleController.ts, tests/unit/battle.test.ts
+- verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/battleController.test.ts
+- done: `BattleState` records both whether the current actor has moved and whether it has acted this turn; a second `move` is still rejected, a `face`/`hold`/`wait` does not consume the act slot, and both flags reset exactly once when the turn advances.
+
+Peer lesson L6. Only `hasMovedThisTurn` exists; “acted” is implicit in ending the
+turn, which makes free/extra actions (Volleys, reactions, future combo links)
+hard to express. fft-phaser's `Unit` carries `hasMoved`/`hasActed`; The Unseen
+Hand prices the turn from `didMove`/`didAct`. Add the second flag to
+`BattleState`, keep the controller's two-step flow, and test reset timing.
+
+### T128 — Resolution accounting helper + friendly-fire tripwire
+- status: todo
+- deps: [T117]
+- files: src/engine/accounting.ts, src/engine/index.ts, tests/unit/accounting.test.ts
+- verify: npm run test -- --run tests/unit/accounting.test.ts
+- done: a pure `accountResolution(before, after, sourceUnitId)` reports damage dealt, healing, KOs and newly applied conditions by diffing two battle states; a reaction is credited to its reactor, not the attacker; unexpected same-team HP loss throws; the helper is deterministic and documented.
+
+Peer lesson L9. The Unseen Hand's `hpDiffEvent` (`src/sim/driver.ts`) is the model:
+credit by HP diff, give reactions their own credited event, and make a future
+friendly-fire path fail loudly instead of silently mis-crediting. Add
+`src/engine/accounting.ts`, export it from `src/engine/index.ts`, and use it later
+from AI evaluation and battle reports. Nothing in `step` changes.
+
+### T129 — Ordered `beginTurn`/`endTurn` upkeep pipeline
+- status: todo
+- deps: [T024, T040]
+- files: src/engine/battle.ts, tests/unit/battle.test.ts, tests/unit/combat.test.ts
+- verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/combat.test.ts
+- done: the per-Orders-Tempo-turn upkeep (charge spend, per-turn flag reset, condition ticks, Élan regeneration and objective scoring) runs through one explicit, ordered function, and a test pins the order.
+
+Peer lesson L10/L14. Start-of-turn upkeep is scattered across `rules/`; order
+matters and is currently implicit. Make it one named pipeline (fft-phaser runs
+`ct -= 100` → `resetTurnFlags()` → `tickStatuses()` → `regenMp()`; TinyWars lists
+its whole phase list). Keep it pure and deterministic and pin the sequence with a
+test.
+
+### T130 — Headless AI-vs-AI gauntlet for balance
+- status: todo
+- deps: [T119, T123]
+- files: src/ai/gauntlet.ts, src/ai/index.ts, tests/unit/gauntlet.test.ts
+- verify: npm run test -- --run tests/unit/gauntlet.test.ts
+- done: `runGauntlet(setup, seed, policyA, policyB)` plays a full headless battle to a terminal state without touching render or UI, is deterministic and loop-guarded, and returns a summary (outcome, turns, units lost) that tests can assert.
+
+Peer lesson L11. TinyWars runs a headless `fast` path and The Unseen Hand drives
+AI-vs-AI battles as its balance harness. Build `src/ai/gauntlet.ts` on
+`advanceToDecision`/`applyCommand` (T123) and the existing `src/ai/utility.ts` and
+`src/app/autoBattle.ts`, wiring both sides to policies. No DOM, no `Math.random`;
+the seed is a parameter.
+
+### T131 — Charge bars in the Orders Tempo rail
+- status: todo
+- deps: [T083]
+- files: src/ui/TempoTray.tsx, src/ui/tempoOrder.ts, tests/unit/tempoTray.test.ts
+- verify: npm run test -- --run tests/unit/tempoTray.test.ts
+- done: each Orders Tempo tray entry shows that soldier's current charge as a bar and the tray re-sorts after every `step`, derived from `chargeOf`/`previewTurns` with no new range or tempo math in the UI.
+
+Peer lesson L13. The tray shows the projected order and Speed but not the charge
+clock; fft-phaser's `TurnOrderPanel` paints a CT bar per unit. Extend the pure
+projection in `src/ui/tempoOrder.ts` to carry charge and render it in
+`src/ui/TempoTray.tsx`. Presentation only; the engine stays the source of truth.
+
+### T132 — Deterministic `naiveAi` fallback
+- status: todo
+- deps: [T095]
+- files: src/ai/naive.ts, src/ai/index.ts, tests/unit/ai.test.ts
+- verify: npm run test -- --run tests/unit/ai.test.ts
+- done: a small deterministic policy (if provoked, target the provoker; else use the best affordable action in range; else strike the weakest reachable foe; else advance toward the nearest foe; else wait) is available for fixtures and ally auto-battle, consumes no randomness, and emits the same command shapes the utility AI does.
+
+Peer lesson L15. fft-phaser's ~40-line AI is inspectable and adequate for early
+encounters and is a good “is the plumbing working” oracle. Add `src/ai/naive.ts`
+and export it, keeping the utility AI (T095) as the default.
+
+---
+
+## Phase 15 — Battlefield HUD (per-character, FFT Blue style)
+
+Model the battle screen on **FFT Blue** (<https://fft-blue.vercel.app/>, the
+deployed `kuirsan26-lab/fft-phaser`): a hover/selection-anchored unit card
+(`BattleScene.showUnitInfo`), a compact bottom command menu (`ui/ActionMenu.ts`),
+a top turn-order rail (`ui/TurnOrderPanel.ts`) and a near-empty overlay
+(`UIScene.ts`) — instead of our persistent `aside.hud` column. The information is
+already in the HUD; the placement is the change. Preserve every existing
+`data-testid` (the e2e suite is the contract) and update only the specs that
+assert the old side-panel layout. Background and rationale:
+`docs/PEER_COMBAT_LESSONS.md` (L12, L13, L16).
+
+### T133 — Camera-aware projection + HUD anchor helper
+- status: todo
+- deps: []
+- files: src/render/scene.ts, src/render/iso.ts, src/ui/unitHud.ts, tests/unit/unitHud.test.ts
+- verify: npm run test -- --run tests/unit/unitHud.test.ts
+- done: `Scene.project(at)` returns the screen position of a soldier's tile top-face through the live camera, and a pure `anchorFor(screen, viewport, size)` (new `src/ui/unitHud.ts`) returns `{ left, top, side }` with edge-flip and clamp; both are deterministic and covered by `tests/unit/unitHud.test.ts`.
+
+The UI needs a soldier's screen position to place a card but must not reach into
+`scene.camera` itself. Add a `project` method to the `Scene` interface
+(`src/render/scene.ts`) built on `worldToScreen`/`toScreen` in
+`src/render/iso.ts`, and a pure anchoring module in `src/ui/unitHud.ts` that
+mirrors FFT Blue's `showUnitInfo` (`ix + w > width - 10 ? pos.x - w - 20 : pos.x + 20`,
+clamp `top`). Update the anchor as the camera pans/zooms and as units move —
+prefer a pixi-ticker/rAF subscription over a React render per frame.
+
+### T134 — Per-character unit card anchored to the soldier
+- status: todo
+- deps: [T133]
+- files: src/ui/App.tsx, src/ui/UnitCard.tsx, src/ui/StatChips.tsx, src/ui/styles.css
+- verify: npm run test:e2e -- tests/e2e/input.spec.ts
+- done: hovering or selecting a soldier — and the acting soldier — shows its `UnitCard` anchored beside it via `anchorFor`, edge-flipped and clamped, instead of in the fixed side-panel column; `hud-actor`, `unit-card`, `hud-selected` and `hud-chips` remain in the DOM and `input.spec.ts` passes.
+
+Build on the in-progress `UnitCard.tsx`/`StatChips.tsx`/`unitLabels.ts` (commit
+that WIP first). Reuse the existing hover/selection plumbing in `App.tsx`
+(`controller.cursor`, `controller.selectedUnitId`) and the T133 projector, so the
+same component serves the hovered, selected and acting soldier. Keep the
+screen-reader text (`hud-selected`, `visually-hidden`) and the tooltip that
+already carries the exact figures.
+
+### T135 — Bottom command band and target-anchored forecast
+- status: todo
+- deps: [T133]
+- files: src/ui/App.tsx, src/ui/Forecast.tsx, src/ui/styles.css
+- verify: npm run test:e2e -- tests/e2e/forecast.spec.ts
+- done: the action menu renders as a compact bottom command band during the command and move phases (FFT Blue's `ActionMenu`), and the forecast card appears near the target soldier instead of the side panel; `action-menu` and the forecast testids survive and `forecast.spec.ts` passes.
+
+The menu is already `controller.actions`; only its placement changes — a
+docked bottom band sized to its contents, with the same
+tooltips/`data-testid`s (`action-${id}`, `order-info-${id}`). Move `Forecast`
+next to the aimed-at soldier using T133's projector, keeping the existing
+forecast testids so `forecast.spec.ts` stays the contract.
+
+### T136 — World-space charge pip and status plate
+- status: todo
+- deps: []
+- files: src/render/units.ts, src/render/scene.ts, tests/unit/units.test.ts
+- verify: npm run test -- --run tests/unit/units.test.ts
+- done: `unitPresentation`/`unitDrawOps` draw the soldier's Orders Tempo charge as a meter (alongside HP, Élan, Honour pips and condition icons), sourced from the engine's charge rather than a duplicate, and the drawing stays pure and unit-tested.
+
+Only HP and Élan are on the world plate today (`HP_BAR`/`ELAN_BAR` in
+`src/render/units.ts`); FFT Blue's readout also carries a CT bar in the rail. Add
+an optional charge input (from `chargeOf`/`previewTurns`) so the world plate and
+the T131 rail agree, and keep the function pure (`Unit` + numbers in, draw ops
+out).
+
+### T137 — Retire the side panel
+- status: todo
+- deps: [T134, T135, T136]
+- files: src/ui/App.tsx, src/ui/styles.css
+- verify: npm run test:e2e -- tests/e2e/animations.spec.ts
+- done: the persistent `aside.hud` column is gone; the battle log sits behind a toggle and the remaining readouts are the anchored card, the bottom band, the world plate and the tempo rail; `animation-log` and `hud-phase` stay in the DOM and `animations.spec.ts` passes.
+
+Final cleanup once T134–T136 have moved the content: delete the `aside.hud`
+column, put the `animation-log` behind a details/toggle control (testid
+`animation-log` preserved), and make the stage full-bleed. Sweep the e2e specs
+(`skirmish`, `targeting`, `tutorial`, `tooltips`, `animations`) for layout
+assumptions and update them — the `data-testid`s are the stable contract, the
+pixel layout is not.
+
+---
+
 ## Research & open questions
 
 - [ ] Physical/magical damage formulas — documented (see `Attack_(command).md`, `Magic_(command).md`); only the ambiguous secondary line and the healing formula need decisions (T033/T036).
-- [ ] FFTA MP regeneration — `MP_(stat).md` FFTA section is a stub; T040 authored a default schedule (`ELAN_REGEN_AMOUNT` every `ELAN_REGEN_INTERVAL_TICKS`) and morale thresholds, still pending the Phase 14 balance pass.
+- [ ] FFTA MP regeneration — `MP_(stat).md` FFTA section is a stub; T040 authored a default schedule (`ELAN_REGEN_AMOUNT` every `ELAN_REGEN_INTERVAL_TICKS`) and morale thresholds, still pending a later balance pass.
 - [ ] Exact Orders Tempo charge values, per-action tempo and Speed scaling (T019).
-- [x] Drill-to-mastery thresholds per ability — authored as `EquipmentDef.teaches[].ap` and resolved by `src/engine/progression/drill.ts` (T048); a Phase 14 pass may retune the per-item costs.
+- [x] Drill-to-mastery thresholds per ability — authored as `EquipmentDef.teaches[].ap` and resolved by `src/engine/progression/drill.ts` (T048); a later balance pass may retune the per-item costs.
 - [ ] Post-unlock thresholds (T046).
 - [ ] Article generation frequency/pool and commended-action weighting (T055).
 - [ ] Volley damage scaling with Honour and number of linkers (T061).
