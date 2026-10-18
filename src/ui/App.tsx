@@ -26,6 +26,7 @@ import { PostScreen } from "./PostScreen";
 import { Saves } from "./Saves";
 import { Settings } from "./Settings";
 import { TempoTray } from "./TempoTray";
+import { Tutorial } from "./Tutorial";
 import { animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
 
@@ -76,6 +77,9 @@ export function App() {
   const [view, setView] = useState<
     "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves" | "settings"
   >("battle");
+  // T110 — the drill-square overlay runs on top of the battlefield; it does not
+  // change the view, so the field stays the source of truth while it is open.
+  const [tutorialActive, setTutorialActive] = useState(false);
   const controllerRef = useRef(controller);
   const viewRef = useRef(view);
   viewRef.current = view;
@@ -352,6 +356,18 @@ export function App() {
         >
           Settings
         </button>
+        <button
+          type="button"
+          className={tutorialActive ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-tutorial"
+          aria-pressed={tutorialActive}
+          onClick={() => {
+            setView("battle");
+            setTutorialActive((current) => !current);
+          }}
+        >
+          Drill Square
+        </button>
       </nav>
 
       <main className="stage" id="main-content" tabIndex={-1} aria-label="Battlefield and camp">
@@ -479,6 +495,10 @@ export function App() {
               }
             }}
           />
+        )}
+
+        {view === "battle" && tutorialActive && (
+          <Tutorial controller={controller} onClose={() => setTutorialActive(false)} />
         )}
 
         {view === "menus" && <Menus onClose={() => setView("battle")} />}

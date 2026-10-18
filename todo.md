@@ -856,9 +856,9 @@ deterministic.
 - done: Keyboard nav, screen-reader labels, reduced-motion, colour-blind-safe palette.
 
 ### T110 — Tutorial mission
-- status: todo
+- status: done
 - deps: [T071, T084]
-- files: src/data/tutorial.ts
+- files: src/data/tutorial.ts, src/app/tutorial.ts, src/ui/Tutorial.tsx, src/ui/App.tsx, src/ui/styles.css, tests/unit/tutorial.test.ts, tests/e2e/tutorial.spec.ts
 - verify: npm run test:e2e
 - done: Teaches move/act/tempo/Articles/Drill.
 

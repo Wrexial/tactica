@@ -2832,3 +2832,223 @@ body {
 .error-boundary__button--primary:hover {
   background: var(--navy);
 }
+
+/* ------------------------------------------------------------------------
+ * Tutorial coach — Drill Square (T110)
+ * ---------------------------------------------------------------------- */
+
+.tutorial {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 6;
+  width: min(380px, 46vw);
+  max-height: calc(100% - 168px);
+  overflow-y: auto;
+  padding: 14px 16px 16px;
+  color: var(--ink);
+  background: rgba(255, 250, 240, 0.97);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.tutorial__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.tutorial__identity h2 {
+  margin: 2px 0 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 4px;
+}
+
+.tutorial__identity .muted {
+  margin: 0;
+  font-size: 12px;
+}
+
+.tutorial-progress {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 0;
+}
+
+.tutorial-progress__item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+  background: #f1e8cf;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.tutorial-progress__item--active {
+  color: var(--parchment);
+  background: var(--navy-2);
+  border-color: var(--navy-2);
+}
+
+.tutorial-progress__item--done {
+  color: #1f4d2e;
+  background: rgba(63, 143, 90, 0.18);
+  border-color: rgba(63, 143, 90, 0.5);
+}
+
+.tutorial-progress__index {
+  font-weight: 700;
+}
+
+.tutorial__lesson h3,
+.tutorial__complete h3 {
+  margin: 0 0 6px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.tutorial__eyebrow {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.tutorial__coach {
+  margin: 8px 0;
+  padding: 8px 10px;
+  font-weight: 600;
+  background: #fbf4dd;
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+}
+
+.tutorial__lesson .muted {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+
+.tutorial__hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.tutorial__hint kbd {
+  padding: 2px 6px;
+  font-size: 11px;
+  background: #f1e8cf;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.tutorial__tempo h4,
+.tutorial__articles h4,
+.tutorial__drill h4 {
+  margin: 10px 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.tutorial__tempo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 12px;
+}
+
+.tutorial__tempo-list li {
+  display: flex;
+  gap: 8px;
+}
+
+.tutorial__tempo-list li span:first-child {
+  width: 16px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.tutorial__articles ul {
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.tutorial__articles li {
+  display: grid;
+  gap: 2px;
+  padding: 6px 8px;
+  font-size: 12px;
+  background: #fbf4dd;
+  border: 1px solid var(--line);
+  border-width: 1px 1px 1px 3px;
+  border-radius: 4px;
+}
+
+.tutorial__articles li[data-kind="forbid"] {
+  border-left-color: #b83c25;
+}
+
+.tutorial__articles li[data-kind="commend"] {
+  border-left-color: #3f8f5a;
+}
+
+.tutorial__article-kind {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.tutorial__article-kind[data-kind="forbid"] {
+  color: #b83c25;
+}
+
+.tutorial__article-kind[data-kind="commend"] {
+  color: #2f6b45;
+}
+
+.tutorial__drill-progress {
+  margin: 4px 0 8px;
+  font-weight: 700;
+}
+
+.tutorial__drill-result {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #2f6b45;
+}
+
+.tutorial__complete .button,
+.tutorial__lesson .button {
+  margin-top: 8px;
+}
+
+@media (max-width: 760px) {
+  .tutorial {
+    right: 18px;
+    width: auto;
+    max-height: 45%;
+  }
+}
