@@ -44,29 +44,17 @@ import { useMemo, useState } from "react";
 
 import { CONTRACT_LIST } from "../data/contracts";
 import { getEquipment, isEquipmentKey } from "../data/equipment";
-import { getPost, isPostKey, type PostKey } from "../data/posts";
+import { getPost, isPostKey } from "../data/posts";
 import {
   CONTRACT_KINDS,
   EQUIP_SLOTS,
   type ContractDef,
   type ContractKind,
   type ContractRequirement,
-  type EquipSlot,
-  type PowerKey,
 } from "../data/schema";
 
-import { createCompany, spendCrowns, type Company } from "../engine/company";
-import { coord } from "../engine/grid";
-import {
-  asCompanyId,
-  asEquipmentId,
-  asPostId,
-  asRegionId,
-  asUnitId,
-  type EquipmentId,
-} from "../engine/ids";
-import { createPostAssignment, derivePostStats } from "../engine/progression/posts";
-import { createUnit } from "../engine/unit";
+import { createDemoCompany } from "../app/campaignController";
+import { spendCrowns, type Company } from "../engine/company";
 import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
 /* --------------------------------------------------------------------------
@@ -167,7 +155,11 @@ function requirementStatuses(
 }
 
 /** `true` when every requirement of `contract` is satisfied by `company`. */
-function meetsContractRequirements(company: Company, contract: ContractDef, t: Translator): boolean {
+function meetsContractRequirements(
+  company: Company,
+  contract: ContractDef,
+  t: Translator,
+): boolean {
   return requirementStatuses(company, contract, t).every((status) => status.met);
 }
 
@@ -191,95 +183,9 @@ function crownsLabel(amount: number, t: Translator): string {
  * Demo company
  * ------------------------------------------------------------------------ */
 
-/** One authored soldier for the deterministic demo company. */
-interface DemoRecruit {
-  readonly id: string;
-  readonly name: string;
-  readonly power: PowerKey;
-  readonly postId: PostKey;
-  readonly level: number;
-  readonly equipment: Partial<Record<EquipSlot, string>>;
-}
-
-/** Build a roster member (unit + assignment) through the authored factories. */
-function makeDemoMember(spec: DemoRecruit) {
-  const assignment = createPostAssignment({
-    primaryPostId: asPostId(spec.postId),
-    power: spec.power,
-  });
-  const equipment = Object.fromEntries(
-    Object.entries(spec.equipment).map(([slot, id]) => [slot, asEquipmentId(id)]),
-  ) as Partial<Record<EquipSlot, EquipmentId>>;
-  const unit = createUnit({
-    id: asUnitId(spec.id),
-    name: spec.name,
-    power: spec.power,
-    postId: asPostId(spec.postId),
-    level: spec.level,
-    at: coord(0, 0),
-    stats: derivePostStats({ level: spec.level, assignment }),
-    equipment,
-  });
-  return { unit, assignment };
-}
-
-/**
- * The deterministic company the mess opens with, standing in for the campaign
- * roster until the save layer (T100/T101) supplies a real one. It is authored
- * so the board demonstrates every requirement kind in both states: five
- * soldiers (so unit gates pass), a Forager / Scout / Chasseur / Grenadier (so
- * some post gates pass), no Sapper's Tools or Artilleryman (so a `storm` /
- * `redoubt` gate fails) and one Powder Flask (so the Highland item gate fails).
- */
-const DEMO_COMPANY: Company = createCompany({
-  id: asCompanyId("company-greycoats"),
-  name: "The Greycoats",
-  crowns: 900,
-  honours: 3,
-  theatre: { day: 12, regionId: asRegionId("sainte-colombe") },
-  roster: [
-    makeDemoMember({
-      id: "unit-aubry",
-      name: "Sgt. Aubry",
-      power: "france",
-      postId: "fusilier",
-      level: 4,
-      equipment: { weapon: "baker-rifle", armour: "line-uniform" },
-    }),
-    makeDemoMember({
-      id: "unit-bouvet",
-      name: "Cpl. Bouvet",
-      power: "france",
-      postId: "grenadier",
-      level: 4,
-      equipment: { weapon: "grenadier-broadsword", head: "bearskin" },
-    }),
-    makeDemoMember({
-      id: "unit-okafor",
-      name: "Pte. Okafor",
-      power: "britain",
-      postId: "forager",
-      level: 3,
-      equipment: { weapon: "charleville-musket", accessory: "water-canteen" },
-    }),
-    makeDemoMember({
-      id: "unit-voss",
-      name: "Lt. Voss",
-      power: "austria",
-      postId: "scout",
-      level: 3,
-      equipment: { weapon: "light-carbine", accessory: "spyglass" },
-    }),
-    makeDemoMember({
-      id: "unit-duret",
-      name: "Cpl. Duret",
-      power: "france",
-      postId: "chasseur",
-      level: 3,
-      equipment: { weapon: "light-carbine", accessory: "powder-flask" },
-    }),
-  ],
-});
+// The deterministic demonstration company now lives with the campaign
+// controller (T121), which owns the working save the Mess presents. The Mess
+// falls back to the same authored roster when it is rendered standalone.
 
 /* --------------------------------------------------------------------------
  * Props
@@ -310,7 +216,10 @@ export interface MessProps {
  */
 export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps) {
   const { t } = useTranslation();
-  const [company, setCompany] = useState<Company>(companyProp ?? DEMO_COMPANY);
+  const [localCompany, setLocalCompany] = useState<Company>(
+    () => companyProp ?? createDemoCompany(),
+  );
+  const company = companyProp ?? localCompany;
   const [filter, setFilter] = useState<ContractKind | "all">("all");
   const [posted, setPosted] = useState<ReadonlySet<string>>(() => new Set<string>());
 
@@ -319,12 +228,16 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
     [filter],
   );
 
-  /** Accept a contract: pay its fee from the war chest and mark it posted. */
+  /** Accept a contract: delegate the fee to the campaign, or pay it locally. */
   const accept = (contract: ContractDef): void => {
     if (posted.has(contract.id)) return;
     if (!meetsContractRequirements(company, contract, t)) return;
     if (company.crowns < contract.fee) return;
-    setCompany((current) => spendCrowns(current, contract.fee));
+    // When a working campaign owns the company (T121), it alone pays the fee
+    // and opens the field; the Mess is then a rendering of that save.
+    if (companyProp === undefined) {
+      setLocalCompany((current) => spendCrowns(current, contract.fee));
+    }
     setPosted((current) => {
       const next = new Set(current);
       next.add(contract.id);

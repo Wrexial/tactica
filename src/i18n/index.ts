@@ -559,6 +559,26 @@ const en = {
   "mess.experienceAmount": "{count} Experience",
   "mess.kitReward": "{item} (kit)",
 
+  /* Campaign loop (T121) — active contract, field orders & after-action report */
+  "contract.battle.label": "Active contract",
+  "contract.battle.objectiveLabel": "Objective",
+  "contract.battle.objective.none": "No authored objective",
+  "contract.battle.objective.annihilation": "Defeat every hostile",
+  "contract.battle.objective.rout": "Break the enemy ({count} out of action)",
+  "contract.battle.objective.survive": "Hold out for {count} turns",
+  "contract.battle.objective.capture": "Seize the marked ground",
+  "contract.battle.objective.defend": "Hold the marked ground for {count} turns",
+  "contract.battle.hold": "Hold position",
+  "contract.battle.resolve": "Commit the company",
+  "contract.result.label": "After-action report",
+  "contract.result.victory": "The company holds the field",
+  "contract.result.defeat": "The company quits the field",
+  "contract.result.draw": "The action ends in a draw",
+  "contract.result.day": "Day {before} → {after}",
+  "contract.result.crowns": "{before} → {after} Crowns",
+  "contract.result.honours": "{before} → {after} Honours",
+  "contract.result.dismiss": "Return to the Mess",
+
   /* Depot */
   "depot.label": "Depot",
   "depot.storesLabel": "Quartermaster's Stores",
@@ -667,8 +687,7 @@ const en = {
   "settings.key.arrowLeft": "← Left",
   "settings.key.arrowRight": "→ Right",
   "settings.palette.off.name": "Issue palette",
-  "settings.palette.off.note":
-    "The full army colours — friend, foe and neutral read at a glance.",
+  "settings.palette.off.note": "The full army colours — friend, foe and neutral read at a glance.",
   "settings.palette.protanopia.name": "Martian (red-weak)",
   "settings.palette.protanopia.note": "Red and green kept apart by brightness and shape.",
   "settings.palette.deuteranopia.name": "Grass (green-weak)",

@@ -987,7 +987,7 @@ rewards and an item, a loss with casualties, an objective failure, and a day
 boundary that rotates the Articles.
 
 ### T121 — Wire the campaign loop into the app
-- status: todo
+- status: done
 - deps: [T119, T120, T071, T102]
 - files: src/app/campaignController.ts, src/ui/App.tsx, src/ui/Mess.tsx, tests/e2e/campaign.spec.ts
 - verify: npm run test:e2e -- tests/e2e/campaign.spec.ts

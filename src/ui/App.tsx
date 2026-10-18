@@ -3,9 +3,22 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   chooseAction,
   createBattleController,
+  holdOrder,
+  selectUnit,
   setCursor,
   type BattleController,
 } from "../app/battleController";
+import {
+  activeContractName,
+  advanceCampaignBattle,
+  campaignBattleController,
+  createCampaignState,
+  createDemoCampaign,
+  dismissCampaignResult,
+  resolveCampaignBattle,
+  startCampaignBattle,
+  type CampaignState,
+} from "../app/campaignController";
 import { createDemoBattle } from "../app/demoScenario";
 import { createInputController, type InputController } from "../app/input";
 import {
@@ -15,6 +28,18 @@ import {
   elevationDeltaFor,
 } from "../app/targetingPreview";
 import { actionSpecOf } from "../engine/actions/resolve";
+import { asContractId } from "../engine/ids";
+import type { Objective } from "../engine/objectives";
+import { isOutOfAction } from "../engine/unit";
+import type { ContractDef } from "../data/schema";
+import {
+  AUTOSAVE_SLOT,
+  createIndexedDbSaveStore,
+  createMemorySaveStore,
+  isIndexedDbAvailable,
+  saveCampaign,
+  type SaveStore,
+} from "../persist";
 import { announce, describeEvents, installAccessibility } from "./a11y";
 import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
@@ -61,6 +86,47 @@ function formatElevation(preview: { readonly delta: number } | null, t: Translat
   return preview.delta > 0 ? `+${preview.delta}` : `${preview.delta}`;
 }
 
+/** The browser save backend when available, else the in-memory test double (T102). */
+function createDefaultSaveStore(): SaveStore {
+  if (isIndexedDbAvailable()) {
+    try {
+      return createIndexedDbSaveStore();
+    } catch {
+      // Fall through to the memory backend below.
+    }
+  }
+  return createMemorySaveStore();
+}
+
+/** The active action's win condition, in the player's words (T031, mapping §10). */
+function objectiveLabel(objective: Objective | null | undefined, t: Translator): string {
+  if (objective === null || objective === undefined) return t("contract.battle.objective.none");
+  switch (objective.kind) {
+    case "annihilation":
+      return t("contract.battle.objective.annihilation");
+    case "rout":
+      return t("contract.battle.objective.rout", { count: objective.defeated });
+    case "survive":
+      return t("contract.battle.objective.survive", { count: objective.turns });
+    case "capture":
+      return t("contract.battle.objective.capture");
+    case "defend":
+      return t("contract.battle.objective.defend", { count: objective.turns });
+  }
+}
+
+/** The after-action headline for a finished battle's outcome. */
+function outcomeLabel(outcome: string, t: Translator): string {
+  switch (outcome) {
+    case "companyVictory":
+      return t("contract.result.victory");
+    case "companyDefeat":
+      return t("contract.result.defeat");
+    default:
+      return t("contract.result.draw");
+  }
+}
+
 /**
  * Application shell: a full-bleed battlefield canvas with a DOM HUD overlaid.
  *
@@ -88,12 +154,60 @@ export function App() {
   const viewRef = useRef(view);
   viewRef.current = view;
 
+  // T121 — the working campaign (save + live battle) and the versioned save
+  // backend it autosaves through (T102). The Field's `controller` is the UI
+  // view of `campaign.battle` while a contract is being fought.
+  const [campaign, setCampaign] = useState<CampaignState>(() =>
+    createCampaignState(createDemoCampaign()),
+  );
+  const [store] = useState<SaveStore>(() => createDefaultSaveStore());
+  // Bumped whenever a new campaign battle takes the Field, so React hands the
+  // renderer a fresh canvas instead of re-initialising WebGL on the old one
+  // (which Pixi cannot do synchronously). See the scene effect below.
+  const [fieldEpoch, setFieldEpoch] = useState(0);
+  const campaignRef = useRef(campaign);
+  campaignRef.current = campaign;
+
   const applyController = useCallback((next: BattleController) => {
     // Update the ref synchronously so fast key sequences never read a stale
     // controller before React has re-rendered.
     controllerRef.current = next;
     setController(next);
+    // Keep the campaign's copy of the active battle in step with the Field so
+    // the AI phase and the after-action reducer see the player's orders.
+    setCampaign((current) =>
+      current.contractId === null || current.battle === next.battle
+        ? current
+        : { ...current, battle: next.battle },
+    );
   }, []);
+
+  // T121 — the campaign field loop. While the enemy holds the turn, the AI
+  // runner (T119) takes every consecutive hostile turn and hands control back
+  // to the company; when the objective fires, the reducer settles the action
+  // and a result is shown.
+  useEffect(() => {
+    if (campaign.contractId === null || campaign.result !== null) return;
+    const update = advanceCampaignBattle(campaign);
+    if (update.state === campaign) return;
+    setCampaign(update.state);
+    const next = campaignBattleController(update.state);
+    if (next !== null) applyController({ ...next, lastEvents: update.events });
+  }, [campaign, applyController]);
+
+  // T102 — rolling autosave: every change to the working campaign is written to
+  // the dedicated autosave slot, so the company always has a restore point.
+  useEffect(() => {
+    void saveCampaign(store, AUTOSAVE_SLOT, campaign.save, {
+      label: t("saves.campaignLabel", {
+        company: campaign.save.company.name,
+        day: campaign.save.company.theatre.day,
+      }),
+    }).catch(() => {
+      // A failed autosave must never break the action; the manual Saves screen
+      // reports backend errors to the player.
+    });
+  }, [campaign.save, store, t]);
 
   // T109 — accessibility basics: mirror the OS motion preference and the saved
   // colour-blind palette onto the root, and create the shared live region.
@@ -118,6 +232,37 @@ export function App() {
 
   const toggleCamp = useCallback(() => {
     setView((current) => (current === "battle" ? "menus" : "battle"));
+  }, []);
+
+  // T121 — the Officers' Mess hands an accepted contract to the campaign: the
+  // fee is paid, the battle is deployed and the enemy's opening turns are taken
+  // before the player ever sees the Field.
+  const acceptContract = useCallback(
+    (contract: ContractDef) => {
+      const started = startCampaignBattle(campaignRef.current, asContractId(contract.id));
+      setCampaign(started);
+      const field = campaignBattleController(started);
+      if (field !== null) {
+        setFieldEpoch((current) => current + 1);
+        applyController(field);
+      }
+    },
+    [applyController],
+  );
+
+  // Commit the company to a decisive auto-battle: both sides are played by the
+  // deterministic AI until the objective resolves (T098/T119).
+  const resolveCampaign = useCallback(() => {
+    const update = resolveCampaignBattle(campaignRef.current);
+    setCampaign(update.state);
+    const next = campaignBattleController(update.state);
+    if (next !== null) applyController({ ...next, lastEvents: update.events });
+  }, [applyController]);
+
+  // Close the after-action report and return to the Mess to take the next post.
+  const dismissResult = useCallback(() => {
+    setCampaign((current) => dismissCampaignResult(current));
+    setView("mess");
   }, []);
 
   // Targeting preview (T085): reach, area footprint, danger zone and elevation.
@@ -168,6 +313,11 @@ export function App() {
     return { actorId, spec, target };
   }, [controller]);
 
+  // The active board's identity. `step` keeps the map reference stable across
+  // orders, so this changes only when the Field switches battles (T121); the
+  // scene then rebuilds around the new board.
+  const fieldMap = controller.battle.map;
+
   // Scene + input lifecycle. The input binding waits for Pixi to be ready so
   // the first click unprojects through a correctly framed camera.
   useEffect(() => {
@@ -176,7 +326,7 @@ export function App() {
 
     let disposed = false;
     let input: InputController | null = null;
-    const scene = createScene(canvas, controllerRef.current.battle.map);
+    const scene = createScene(canvas, fieldMap);
     sceneRef.current = scene;
 
     void scene.ready.then(() => {
@@ -202,7 +352,7 @@ export function App() {
       scene.dispose();
       sceneRef.current = null;
     };
-  }, [applyController, returnToField, toggleCamp]);
+  }, [fieldMap, fieldEpoch, applyController, returnToField, toggleCamp]);
 
   // Sync the scene (units), overlay and animations to the controller after
   // every transition. Animation cues are derived **only** from the engine
@@ -387,6 +537,7 @@ export function App() {
 
       <main className="stage" id="main-content" tabIndex={-1} aria-label={t("stage.label")}>
         <canvas
+          key={fieldEpoch}
           ref={canvasRef}
           className="battlefield"
           data-testid="battle-canvas"
@@ -531,9 +682,107 @@ export function App() {
           <Tutorial controller={controller} onClose={() => setTutorialActive(false)} />
         )}
 
+        {view === "battle" && campaign.contractId !== null && campaign.result === null && (
+          <section
+            className="campaign-action"
+            data-testid="campaign-battle"
+            aria-label={t("contract.battle.label")}
+          >
+            <p className="kicker">{t("contract.battle.label")}</p>
+            <h2 data-testid="campaign-contract">{activeContractName(campaign)}</h2>
+            <p className="muted" data-testid="campaign-objective">
+              {t("contract.battle.objectiveLabel")}:{" "}
+              {objectiveLabel(controller.battle.objective?.objective, t)}
+            </p>
+            <div className="campaign-action__buttons">
+              <button
+                type="button"
+                className="button"
+                data-testid="campaign-hold"
+                disabled={actor === null || actor.side !== "company" || isOutOfAction(actor)}
+                onClick={() => {
+                  const current = controllerRef.current;
+                  const actorId = current.battle.currentActorId;
+                  if (actorId === null) return;
+                  applyController(holdOrder(selectUnit(current, actorId)));
+                }}
+              >
+                {t("contract.battle.hold")}
+              </button>
+              <button
+                type="button"
+                className="button button--ghost"
+                data-testid="campaign-resolve"
+                onClick={resolveCampaign}
+              >
+                {t("contract.battle.resolve")}
+              </button>
+            </div>
+          </section>
+        )}
+
+        {campaign.result !== null && (
+          <section
+            className="campaign-result"
+            data-testid="campaign-result"
+            role="dialog"
+            aria-label={t("contract.result.label")}
+          >
+            <p className="kicker">{t("contract.result.label")}</p>
+            <h2 data-testid="campaign-result-contract">{campaign.result.contractName}</h2>
+            <p
+              className={
+                campaign.result.victory
+                  ? "campaign-result__outcome is-victory"
+                  : "campaign-result__outcome is-defeat"
+              }
+              data-testid="campaign-result-outcome"
+            >
+              {outcomeLabel(campaign.result.outcome, t)}
+            </p>
+            <dl className="campaign-result__stats">
+              <div>
+                <dt>{t("common.day")}</dt>
+                <dd data-testid="campaign-result-day">
+                  {t("contract.result.day", {
+                    before: campaign.result.dayBefore,
+                    after: campaign.result.dayAfter,
+                  })}
+                </dd>
+              </div>
+              <div>
+                <dt>{t("common.crowns")}</dt>
+                <dd data-testid="campaign-result-crowns">
+                  {t("contract.result.crowns", {
+                    before: campaign.result.crownsBefore,
+                    after: campaign.result.crownsAfter,
+                  })}
+                </dd>
+              </div>
+              <div>
+                <dt>{t("common.honours")}</dt>
+                <dd data-testid="campaign-result-honours">
+                  {t("contract.result.honours", {
+                    before: campaign.result.honoursBefore,
+                    after: campaign.result.honoursAfter,
+                  })}
+                </dd>
+              </div>
+            </dl>
+            <button
+              type="button"
+              className="button"
+              data-testid="campaign-result-dismiss"
+              onClick={dismissResult}
+            >
+              {t("contract.result.dismiss")}
+            </button>
+          </section>
+        )}
+
         {view === "menus" && <Menus onClose={() => setView("battle")} />}
         {view === "posts" && <PostScreen />}
-        {view === "mess" && <Mess />}
+        {view === "mess" && <Mess company={campaign.save.company} onAccept={acceptContract} />}
         {view === "map" && <CampaignMap />}
         {view === "depot" && <Depot />}
         {view === "saves" && <Saves />}
