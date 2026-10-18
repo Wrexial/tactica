@@ -487,6 +487,34 @@ export function battleMapsForContract(contractId: string): readonly BattleMapDef
   return BATTLE_MAP_LIST.filter((map) => map.contractId === contractId);
 }
 
+/** Thrown by {@link combatMapForContract} when a contract posts no board. */
+export class BattleMapLookupError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "BattleMapLookupError";
+  }
+}
+
+/** `true` when `contractId` posts at least one battle map. */
+export function hasCombatMap(contractId: string): boolean {
+  return BATTLE_MAP_LIST.some((map) => map.contractId === contractId);
+}
+
+/**
+ * The battle map a **combat** contract is fought on. A contract posts exactly
+ * one board today; the first is returned when several are authored. Throws a
+ * {@link BattleMapLookupError} when the contract names none, so the campaign
+ * loop (`src/app/battleSetup.ts`) fails loudly instead of launching a battle
+ * on an empty board.
+ */
+export function combatMapForContract(contractId: string): BattleMapDef {
+  const [map] = battleMapsForContract(contractId);
+  if (map === undefined) {
+    throw new BattleMapLookupError(`contract "${contractId}" posts no battle map`);
+  }
+  return map;
+}
+
 /** A map's win/lose objective (a convenience for the scenario/deployment code). */
 export function battleMapObjective(id: BattleMapKey): BattleMapObjective {
   return getBattleMap(id).objective;

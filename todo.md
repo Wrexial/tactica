@@ -940,7 +940,7 @@ replay/determinism suite must stay byte-identical while a live `act` now reduces
 HP and can KO.
 
 ### T118 — Deploy a battle from a contract
-- status: todo
+- status: done
 - deps: [T117, T068, T070, T091, T092]
 - files: src/app/battleSetup.ts, src/data/enemies/, src/data/maps/battleMaps.ts, tests/unit/battleSetup.test.ts
 - verify: npm run test -- --run tests/unit/battleSetup.test.ts

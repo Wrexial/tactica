@@ -52,6 +52,7 @@ import { SUPPORT } from "./support";
 import type { EnemyDef, EnemyDrop } from "../schema";
 
 export * from "./profiles";
+export * from "./ordersOfBattle";
 export { parseEnemies, type EnemyData } from "./shared";
 
 /* --------------------------------------------------------------------------
