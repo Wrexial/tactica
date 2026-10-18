@@ -1048,7 +1048,7 @@ idempotent at a decision point and that `step` still produces byte-identical
 state for a fixed seed and command log.
 
 ### T124 — Fold an optional move clause into `ActCommand`
-- status: todo
+- status: done
 - deps: [T115, T123]
 - files: src/engine/commands.ts, src/engine/battle.ts, tests/unit/battle.test.ts, tests/unit/move.test.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/move.test.ts tests/unit/determinism.test.ts

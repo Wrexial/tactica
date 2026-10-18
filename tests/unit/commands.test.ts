@@ -104,6 +104,47 @@ describe("Commands — serialisability", () => {
   });
 });
 
+describe("Commands — folded move clause (T124)", () => {
+  const FOLDED: Command = {
+    kind: "act",
+    unitId: HERO,
+    abilityId: RIFLE,
+    target: selfTarget(),
+    move: { to: coord(2, 1), order: "before" },
+  };
+
+  it("accepts and round-trips a folded act", () => {
+    expect(isCommand(FOLDED)).toBe(true);
+    expect(JSON.parse(JSON.stringify(FOLDED))).toEqual(FOLDED);
+    expect(deserializeCommand(serializeCommand(FOLDED))).toEqual(FOLDED);
+  });
+
+  it("requires an explicit order and copies the destination", () => {
+    expect(isCommand({ ...FOLDED, move: { to: coord(2, 1) } })).toBe(false);
+    expect(isCommand({ ...FOLDED, move: { to: coord(2, 1), order: "sideways" } })).toBe(false);
+
+    const to = { x: 2, y: 1 };
+    const source: Command = {
+      kind: "act",
+      unitId: HERO,
+      abilityId: RIFLE,
+      target: selfTarget(),
+      move: { to, order: "after" },
+    };
+    const parsed = parseCommand(source);
+    to.x = 99;
+    expect(parsed).toMatchObject({ move: { to: { x: 2, y: 1 }, order: "after" } });
+  });
+
+  it("strips foreign fields nested inside the clause", () => {
+    const parsed = parseCommand({
+      ...FOLDED,
+      move: { to: coord(2, 1), order: "before", smuggled: true },
+    });
+    expect(parsed).toEqual(FOLDED);
+  });
+});
+
 describe("Commands — validation", () => {
   it("accepts every example", () => {
     for (const command of EXAMPLES) {

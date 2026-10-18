@@ -678,6 +678,186 @@ describe("step — native move-and-act turn (T115)", () => {
   });
 });
 
+/* --------------------------------------------------------------------------
+ * T124 — folded move-and-act command
+ *
+ * Peer lesson L3: a full FFTA turn is **Move + Act**, each once. An `act` may
+ * carry an optional `move { to, order }` clause so the whole turn is one
+ * atomically validated, replayable command that settles Orders Tempo once.
+ * `order` is required (`"before"` = close and strike; `"after"` = hit and
+ * retreat) because it changes the tile the action resolves from.
+ * ------------------------------------------------------------------------ */
+
+describe("step — folded move-and-act turn (T124)", () => {
+  it("resolves a 'before' fold from the destination and settles the turn once", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+    const mpBefore = findUnit(state, actor)!.mp;
+
+    const result = step(state, {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(2, 1), order: "before" },
+    });
+
+    expect(result.rejection).toBeUndefined();
+    // The march happens first, then the action resolves from the destination.
+    expect(result.events.map((event) => event.kind)).toEqual([
+      "battleStarted",
+      "unitDeployed",
+      "unitDeployed",
+      "turnStarted",
+      "moved",
+      "abilityUsed",
+      "mpChanged",
+      "abilityResolved",
+      "turnEnded",
+      "turnStarted",
+    ]);
+    expect(findUnit(result.state, actor)?.at).toEqual(coord(2, 1));
+    expect(findUnit(result.state, actor)?.mp).toBe(mpBefore - INSTANT_ACTION.mpCost);
+    // Exactly one turn is settled and the free-move flag is cleared.
+    expect(result.events.filter((event) => event.kind === "turnEnded")).toHaveLength(1);
+    expect(result.state.hasMovedThisTurn).toBe(false);
+  });
+
+  it("a 'before' fold leaves the same state as a separate move then act", () => {
+    const start = createBattle("la-haye-sainte", makeActionSetup([INSTANT_ACTION]));
+    const actor = start.currentActorId as UnitId;
+
+    const moved = step(start, { kind: "move", unitId: actor, path: [coord(1, 1), coord(2, 1)] });
+    const thenActed = step(moved.state, actCommand(moved.state, INSTANT_ACTION.id));
+
+    const folded = step(start, {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(2, 1), order: "before" },
+    });
+
+    expect(folded.rejection).toBeUndefined();
+    expect(thenActed.rejection).toBeUndefined();
+    expect(JSON.stringify(folded.state)).toBe(JSON.stringify(thenActed.state));
+    // The folded event stream is exactly the two commands' streams concatenated.
+    expect(folded.events).toEqual([...moved.events, ...thenActed.events]);
+  });
+
+  it("resolves an 'after' fold from the origin, then retreats", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+
+    const result = step(state, {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(2, 1), order: "after" },
+    });
+
+    expect(result.rejection).toBeUndefined();
+    // Action first (from the origin), then the march.
+    expect(result.events.map((event) => event.kind)).toEqual([
+      "battleStarted",
+      "unitDeployed",
+      "unitDeployed",
+      "turnStarted",
+      "abilityUsed",
+      "mpChanged",
+      "abilityResolved",
+      "moved",
+      "turnEnded",
+      "turnStarted",
+    ]);
+    expect(findUnit(result.state, actor)?.at).toEqual(coord(2, 1));
+    expect(result.events.filter((event) => event.kind === "turnEnded")).toHaveLength(1);
+  });
+
+  it("refuses a folded march beyond Move without mutation", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+
+    const result = step(state, {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(5, 0), order: "before" },
+    });
+
+    expect(result.rejection?.reason).toBe("illegal-move");
+    expect(result.state).toBe(state);
+    expect(result.events).toEqual([]);
+  });
+
+  it("refuses a folded march when the soldier has already moved", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+    const moved = step(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    });
+
+    const again = step(moved.state, {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(3, 1), order: "before" },
+    });
+
+    expect(again.rejection?.reason).toBe("already-moved");
+    expect(again.state).toBe(moved.state);
+    expect(again.events).toEqual([]);
+  });
+
+  it("requires an explicit order on the folded move clause", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+
+    // Omitting `order` (or using an unknown one) is a malformed command: the
+    // engine must never default it, because it decides where the act resolves.
+    const missingOrder = {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(2, 1) },
+    } as unknown as Command;
+    expect(validateCommand(state, missingOrder)?.reason).toBe("malformed");
+
+    const badOrder = {
+      ...missingOrder,
+      move: { to: coord(2, 1), order: "during" },
+    } as unknown as Command;
+    expect(validateCommand(state, badOrder)?.reason).toBe("malformed");
+
+    const result = step(state, missingOrder);
+    expect(result.rejection?.reason).toBe("malformed");
+    expect(result.state).toBe(state);
+  });
+
+  it("replays a folded command deterministically", () => {
+    const play = (): string => {
+      const state = createBattle("borodino", makeActionSetup([INSTANT_ACTION]));
+      const actor = state.currentActorId as UnitId;
+      return JSON.stringify(
+        step(state, {
+          kind: "act",
+          unitId: actor,
+          abilityId: INSTANT_ACTION.id,
+          target: { kind: "self" },
+          move: { to: coord(2, 1), order: "before" },
+        }).state,
+      );
+    };
+    expect(play()).toBe(play());
+  });
+});
+
 describe("buildActionCatalogue", () => {
   it("indexes specs by id and copies them", () => {
     const catalogue = buildActionCatalogue([INSTANT_ACTION]);

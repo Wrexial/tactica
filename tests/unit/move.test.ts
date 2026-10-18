@@ -16,8 +16,9 @@ import {
   type MoveValidation,
 } from "../../src/engine/actions/move";
 import { createBattle, findUnit, step, type BattleState } from "../../src/engine/battle";
+import type { ActionSpec } from "../../src/engine/actions/resolve";
 import type { Command } from "../../src/engine/commands";
-import { asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
+import { asAbilityId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
 import { createTerrainMap, withTile, type TerrainMap } from "../../src/engine/terrain";
 import { createUnit, getCondition, hasCondition, type Unit, type UnitInit } from "../../src/engine/unit";
 import type { StatBlock } from "../../src/data/schema";
@@ -433,6 +434,83 @@ describe("step — move command", () => {
     };
     const first = run();
     expect(run()).toEqual(first);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T124 — folded move clause
+ *
+ * An `act` may fold its free Move into the command (T124). The clause carries
+ * only a destination; the battle layer derives the path and re-checks it with
+ * the **same** {@link validateMove} gate a standalone `move` uses, so folded and
+ * two-command turns cannot diverge on the rules.
+ * ------------------------------------------------------------------------ */
+
+const FOLDED_ACTION: ActionSpec = {
+  id: asAbilityId("folded-volley"),
+  mpCost: 0,
+  chargeTime: 0,
+  range: 3,
+  power: 100,
+};
+
+/** The default skirmish plus a resolvable action catalogue for the fold tests. */
+function foldedState(units: readonly Unit[] = defaultUnits(), map: TerrainMap = MAP): BattleState {
+  return createBattle(1815, { map, units, abilities: [FOLDED_ACTION] });
+}
+
+/** A folded `act` for the marcher with the given destination/order. */
+function foldedCommand(to: Coord, order: "before" | "after" = "before"): Command {
+  return {
+    kind: "act",
+    unitId: MARCHER,
+    abilityId: FOLDED_ACTION.id,
+    target: { kind: "self" },
+    move: { to, order },
+  };
+}
+
+describe("step — folded move clause (T124)", () => {
+  it("moves to the clause destination and emits a standalone-equivalent moved event", () => {
+    const state = foldedState();
+    const result = step(state, foldedCommand(coord(2, 0)));
+
+    expect(result.rejection).toBeUndefined();
+    const moved = result.events.find(
+      (event): event is Extract<BattleEvent, { kind: "moved" }> => event.kind === "moved",
+    );
+    expect(moved).toMatchObject({
+      unitId: MARCHER,
+      from: coord(0, 0),
+      to: coord(2, 0),
+      path: [coord(0, 0), coord(1, 0), coord(2, 0)],
+      facing: "east",
+    });
+    expect(findUnit(result.state, MARCHER)?.at).toEqual(coord(2, 0));
+    expect(result.state.hasMovedThisTurn).toBe(false);
+  });
+
+  it("refuses a folded march the standalone move gate would refuse", () => {
+    // A three-level step exceeds the marcher's Climb of 2.
+    let map = createTerrainMap(3, 1, "field");
+    map = withTile(map, coord(1, 0), { terrain: "field", height: 3 });
+    const state = foldedState([makeUnit(MARCHER, coord(0, 0))], map);
+
+    const result = step(state, foldedCommand(coord(1, 0)));
+    expect(result.rejection?.reason).toBe("illegal-move");
+    expect(result.state).toBe(state);
+    expect(result.events).toEqual([]);
+  });
+
+  it("accepts a no-op fold to the soldier's own tile", () => {
+    const state = foldedState();
+    const result = step(state, foldedCommand(coord(0, 0)));
+
+    expect(result.rejection).toBeUndefined();
+    // No march means no `moved` event, but the action still resolves and the
+    // turn still settles exactly once.
+    expect(result.events.some((event) => event.kind === "moved")).toBe(false);
+    expect(result.events.filter((event) => event.kind === "turnEnded")).toHaveLength(1);
   });
 });
 

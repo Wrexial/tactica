@@ -29,7 +29,9 @@
  * {@link MoveCommand} (Move), {@link ActCommand} (A-Ability), {@link WaitCommand}
  * (Wait), {@link FaceCommand} (change facing), {@link HoldCommand} (brace),
  * {@link VolleyCommand} (Combo → Volley, T061) and {@link GuardSortieCommand}
- * (Totema → Guard Sortie, T062).
+ * (Totema → Guard Sortie, T062). An {@link ActCommand} may fold the turn's free
+ * Move into itself via an optional {@link ActMoveClause} (T124), so one command
+ * can carry a complete move-and-act turn.
  */
 
 import { isFacing, type Coord, type Facing } from "./grid";
@@ -74,6 +76,44 @@ export function tileTarget(at: Coord): Target {
 /** A named soldier (single-target aid or attack). */
 export function unitTarget(unitId: UnitId): Target {
   return { kind: "unit", unitId };
+}
+
+/* --------------------------------------------------------------------------
+ * Folded move clause (T124)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * When a folded `act`'s march happens relative to the action it carries.
+ *
+ * - `"before"` — the soldier marches to {@link ActMoveClause.to} first, then the
+ *   action resolves **from the destination** (close and strike).
+ * - `"after"` — the action resolves from the soldier's **origin** tile first,
+ *   then the soldier marches (hit and retreat).
+ *
+ * There is deliberately no default: the two orders resolve the action from
+ * different tiles, so a missing value is a malformed command rather than a
+ * silently chosen one (peer lesson L3).
+ */
+export const ACT_MOVE_ORDERS = ["before", "after"] as const;
+export type ActMoveOrder = (typeof ACT_MOVE_ORDERS)[number];
+
+/** Runtime guard for the folded move order (trust boundaries). */
+export function isActMoveOrder(value: unknown): value is ActMoveOrder {
+  return typeof value === "string" && (ACT_MOVE_ORDERS as readonly string[]).includes(value);
+}
+
+/**
+ * An optional march folded into an {@link ActCommand}, so a full FFTA
+ * move-and-act turn is one atomically validated, replayable command instead of
+ * a half-open `move` plus a second command (peer lesson L3, T124). The move is
+ * priced and validated by the same rules gate a standalone `move` uses; the
+ * clause only names the destination tile and the phase order.
+ */
+export interface ActMoveClause {
+  /** Destination tile the soldier marches to (the path is derived by the battle layer). */
+  readonly to: Coord;
+  /** Whether the march runs **before** or **after** the action. Required. */
+  readonly order: ActMoveOrder;
 }
 
 /* --------------------------------------------------------------------------
@@ -122,6 +162,11 @@ export interface MoveCommand extends CommandBase {
 /**
  * Use an active ability (FFTA A-Ability → Action, mapping §6). The battle
  * layer checks Élan cost, charge time, range/LoS and Article legality (T024+).
+ *
+ * A turn may fold its free **Move** into the action via {@link move} (T124): the
+ * battle layer derives and validates the path with the same gate a standalone
+ * `move` command uses, then settles Orders Tempo exactly once. Omitting the
+ * clause keeps the original action-only command (and the two-step UI).
  */
 export interface ActCommand extends CommandBase {
   readonly kind: "act";
@@ -129,6 +174,8 @@ export interface ActCommand extends CommandBase {
   readonly abilityId: AbilityId;
   /** Who or what the ability is aimed at. */
   readonly target: Target;
+  /** Optional free march folded into this turn (T124). */
+  readonly move?: ActMoveClause;
 }
 
 /**
@@ -246,6 +293,14 @@ export function isTarget(value: unknown): value is Target {
 }
 
 /**
+ * Whether `value` is a well-formed folded move clause (shape only). `order` is
+ * required, so a clause that omits it is rejected rather than defaulted.
+ */
+export function isActMoveClause(value: unknown): value is ActMoveClause {
+  return isRecord(value) && isCoord(value.to) && isActMoveOrder(value.order);
+}
+
+/**
  * Whether `value` is a structurally valid {@link Command}.
  *
  * This checks **shape only** — kinds, id types, coordinate integrality. It
@@ -262,7 +317,11 @@ export function isCommand(value: unknown): value is Command {
     case "move":
       return Array.isArray(value.path) && value.path.every(isCoord);
     case "act":
-      return isValidId(value.abilityId) && isTarget(value.target);
+      return (
+        isValidId(value.abilityId) &&
+        isTarget(value.target) &&
+        (value.move === undefined || isActMoveClause(value.move))
+      );
     case "wait":
     case "hold":
       return true;
@@ -310,6 +369,14 @@ function copyCommand(command: Command): Command {
         unitId: command.unitId,
         abilityId: command.abilityId,
         target: copyTarget(command.target),
+        ...(command.move === undefined
+          ? {}
+          : {
+              move: {
+                to: { x: command.move.to.x, y: command.move.to.y },
+                order: command.move.order,
+              },
+            }),
       };
     case "wait":
       return { kind: "wait", unitId: command.unitId };

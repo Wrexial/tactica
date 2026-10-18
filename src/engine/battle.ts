@@ -33,7 +33,11 @@
  * **Wait / Face / Hold** commands via `./actions/basic.ts`. T115 makes the
  * turn **native move-and-act**: a `move` leaves the actor's Orders Tempo turn
  * open (recording {@link BattleState.hasMovedThisTurn}), so an `act`, `wait`
- * or `hold` closes it without the caller composing the free move by hand. The
+ * or `hold` closes it without the caller composing the free move by hand. T124
+ * (peer lesson L3) additionally lets an `act` fold that free move into itself
+ * via an optional `move { to, order }` clause, so a full move-and-act turn can
+ * be one atomically validated command that settles Orders Tempo exactly once;
+ * the two-step UI composes the same turn from a separate `move` + `act`. The
  * remaining commands (`volley`, `guardSortie`) are still refused with a
  * {@link BattleRejection} until their tasks land (T061–T062), so a caller can
  * never mistake "not implemented" for a silent success.
@@ -66,7 +70,7 @@ import {
 } from "./actions/resolve";
 import { isCommand, type Command } from "./commands";
 import type { BattleEvent, BattleOutcome } from "./events";
-import { coordKey, inBounds } from "./grid";
+import { coordKey, inBounds, type Coord } from "./grid";
 import { isValidId, type UnitId } from "./ids";
 import {
   assertObjective,
@@ -75,6 +79,7 @@ import {
   type Objective,
   type ObjectiveTracker,
 } from "./objectives";
+import { findPath } from "./pathfinding";
 import type { Seed } from "./rng";
 import type { TerrainMap } from "./terrain";
 import {
@@ -398,6 +403,26 @@ function isSupportedCommandKind(kind: Command["kind"]): boolean {
 }
 
 /**
+ * Derive the least-cost path for a folded `act` move clause, using the same
+ * A* rules the standalone Move range uses (`src/engine/pathfinding.ts`). Returns
+ * `null` when the destination is off the map or unreachable within the
+ * soldier's Move budget, so the caller can refuse the whole command with
+ * `illegal-move`.
+ */
+function foldedMovePath(state: BattleState, unit: Unit, to: Coord): Coord[] | null {
+  if (!inBounds(state.map.grid, to)) return null;
+  const occupied = state.units
+    .filter((candidate) => candidate.id !== unit.id)
+    .map((candidate) => ({ x: candidate.at.x, y: candidate.at.y }));
+  const result = findPath(state.map, unit.at, to, {
+    climb: unit.stats.jump,
+    occupied,
+    maxCost: unit.stats.move,
+  });
+  return result.found ? result.path.map((at) => ({ x: at.x, y: at.y })) : null;
+}
+
+/**
  * Check a command against `state` **without changing anything**. Returns
  * `null` when the command may be applied, otherwise a {@link BattleRejection}
  * carrying the reason.
@@ -474,6 +499,27 @@ export function validateCommand(state: BattleState, command: unknown): BattleRej
         reason: "invalid-target",
         message: `the target tile is outside the battlefield`,
       };
+    }
+    if (command.move !== undefined) {
+      if (state.hasMovedThisTurn) {
+        return {
+          reason: "already-moved",
+          message: `${unit.name} has already marched this turn`,
+        };
+      }
+      const path = foldedMovePath(state, unit, command.move.to);
+      if (path === null) {
+        return {
+          reason: "illegal-move",
+          message: `${unit.name} cannot reach { x: ${command.move.to.x}, y: ${command.move.to.y} } with Move ${unit.stats.move}`,
+        };
+      }
+      // Re-check with the same gate a standalone `move` uses, so a folded
+      // march can never slip past the movement rules (T124).
+      const validation = validateMove(state, unit, path);
+      if (!validation.valid) {
+        return { reason: "illegal-move", message: validation.rejection.message };
+      }
     }
   }
   return null;
@@ -649,7 +695,24 @@ function resolveCommand(
       // `validateCommand` guarantees the spec exists for this phase.
       const spec = actionSpecOf(state, command.abilityId);
       if (spec === undefined) return state;
-      return declareOrResolveAction(state, actor, spec, command.target, events);
+      const clause = command.move;
+      if (clause === undefined) {
+        return declareOrResolveAction(state, actor, spec, command.target, events);
+      }
+      // `validateCommand` proved the path legal; derive it again here so the
+      // command carries only a destination (T124).
+      const path = foldedMovePath(state, actor, clause.to);
+      if (path === null) return state;
+      if (clause.order === "before") {
+        // Close and strike: march first, then resolve the action from there.
+        const moved = applyMove(state, actor, path, events);
+        const movedActor = moved.units.find((unit) => unit.id === actor.id) ?? actor;
+        return declareOrResolveAction(moved, movedActor, spec, command.target, events);
+      }
+      // Hit and retreat: resolve from the origin, then march.
+      const resolved = declareOrResolveAction(state, actor, spec, command.target, events);
+      const afterActor = resolved.units.find((unit) => unit.id === actor.id) ?? actor;
+      return applyMove(resolved, afterActor, path, events);
     }
     case "move":
       // `validateCommand` re-validates; `applyMove` repeats the check as an
