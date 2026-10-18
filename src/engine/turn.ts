@@ -22,7 +22,9 @@
  * - **Seeded tie-breaks.** When two ready soldiers hold the *same* charge the
  *   winner is drawn from the seeded PRNG in {@link OrdersTempo.rng}. The RNG
  *   state travels inside the scheduler state, so a battle replays exactly from
- *   a seed plus the ordered command log.
+ *   a seed plus the ordered command log. Combat resolution shares this stream
+ *   (see `./actions/resolve.ts`, T117), so turn-order tie-breaks and effect
+ *   rolls advance one deterministic sequence rather than two.
  * - **Pure & JSON-serialisable.** No mutation of inputs, no DOM, no
  *   `Math.random`; every update returns a new {@link OrdersTempo} value.
  *
@@ -100,7 +102,7 @@ export interface OrdersTempo {
   readonly tick: number;
   /** Per-soldier charge, in stable insertion order. */
   readonly entries: readonly TempoEntry[];
-  /** Seeded PRNG state used only for same-charge tie-breaks. */
+  /** Seeded PRNG state used for same-charge tie-breaks and effect rolls. */
   readonly rng: RngState;
 }
 
@@ -299,8 +301,10 @@ interface ActorChoice {
 
 /**
  * Pick the ready soldier with the highest charge. Ties are broken by the
- * seeded PRNG (and only ties advance the stream, so non-tied battles stay
- * independent of the seed's draw order). Returns `null` when nobody is ready.
+ * seeded PRNG; within this scheduler only a tie advances the stream, so a
+ * non-tied turn order is independent of the draw order (combat resolution may
+ * have advanced the same shared stream between turns). Returns `null` when
+ * nobody is ready.
  */
 function chooseActor(state: OrdersTempo): ActorChoice | null {
   const ready = state.entries.filter((entry) => entry.charge >= state.threshold);

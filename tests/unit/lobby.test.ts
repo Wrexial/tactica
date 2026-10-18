@@ -297,12 +297,12 @@ describe("LobbyMatch", () => {
     const match = startMatch();
     const result = runSkirmish(match, { policy: aiSkirmishPolicy, maxFrames: 48 });
     expect(result.agreed).toBe(true);
-    expect(result.frames).toBe(48);
+    // Actions now resolve their effects through `step` (T117), so the skirmish
+    // reaches a decision before the frame cap instead of a ceasefire.
+    expect(result.frames).toBeGreaterThan(0);
+    expect(result.frames).toBeLessThan(48);
     expect(result.commands).toBe(result.frames);
-    // The engine's `step` still only declares/resolves actions (the effect
-    // executor, T041, is wired by later work), so a volley exchange may reach
-    // the frame cap as a ceasefire. Either way every peer must agree.
     expect(result.reports[0]?.hash).toBe(result.reports[1]?.hash);
-    expect(result.state.phase).toBe("active");
+    expect(result.state.phase).toBe("finished");
   });
 });

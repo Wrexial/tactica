@@ -18,11 +18,14 @@
  * The battle layer owns the rest of the turn: it ends the soldier's turn
  * (`turnEnded`), advances Orders Tempo, drains any charges whose timer elapsed
  * while waiting ({@link resolveCompletedCharges}) and starts the next turn
- * (`turnStarted`). This module deliberately stays out of targeting rules (T028)
- * and damage formulas (T033/T034/T041): it is the **orchestration seam** those
- * tasks plug into. Today it applies only the pipeline's own bookkeeping (Élan,
- * charge timing, events); the effect dispatcher that deals damage, heals,
- * inflicts conditions and so on arrives with the action executor (T041).
+ * (`turnStarted`). This module is the **orchestration seam** between the battle
+ * state machine and the combat rules: it owns the pipeline bookkeeping (Élan,
+ * charge timing, events) and now composes the action executor (T041) and the
+ * reaction hooks (T042) into it, applying the acting soldier's support traits
+ * (T043) first. Targeting is resolved by the executor through the authored
+ * {@link ActionSpec} fields, and every random draw comes from the battle's
+ * seeded PRNG stream ({@link import("../turn").OrdersTempo.rng}) so a replay
+ * stays byte-identical.
  *
  * Contract (`agents.md` §2, §7, §9):
  * - **Pure & deterministic** — no DOM, no I/O, no `Math.random`, no `Date`.
@@ -40,15 +43,25 @@
  * scheduler (mapping §12).
  */
 
-import { AOE_SHAPES, type AoeShape } from "../../data/schema";
+import {
+  ABILITY_TARGETS,
+  AOE_SHAPES,
+  type AbilityTarget,
+  type AoeShape,
+} from "../../data/schema";
 import type { BattleState } from "../battle";
 import type { Target } from "../commands";
 import type { BattleEvent } from "../events";
 import { inBounds, type Coord } from "../grid";
 import { isValidId, type AbilityId, type UnitId } from "../ids";
+import { Rng } from "../rng";
+import { reactionKindOf, resolveReactionResponses, type ReactionOptions } from "../reactions";
 import { spendElan } from "../rules/elan";
+import type { RangeMetric } from "../targeting";
+import { traitKindOf, withTraits, type TraitOptions } from "../traits";
 import { scheduleCharge, type ResolvedCharge } from "../turn";
-import type { Unit } from "../unit";
+import { isOutOfAction, type Unit } from "../unit";
+import { executeAbility, type AbilityEffect, type AbilitySpec } from "./ability";
 
 /* --------------------------------------------------------------------------
  * Errors
@@ -97,6 +110,30 @@ export interface ActionSpec {
   readonly aoeShape?: AoeShape;
   /** Area-of-effect radius in tiles. Defaults to `0` (the centre tile only). */
   readonly aoeSize?: number;
+  /**
+   * Who the action may legally include (self / ally / enemy / any / tile),
+   * resolved by the executor's targeting pass (T028). Defaults to `"enemy"`,
+   * so a legacy minimal spec still resolves as a simple hostile Steel blow.
+   */
+  readonly target?: AbilityTarget;
+  /** Minimum reach in tiles; defaults to `1` (or `0` for a self-target action). */
+  readonly minRange?: number;
+  /** Base accuracy percentage fed to the T037 hit roll; defaults to `100`. */
+  readonly hitRate?: number;
+  /** Critical-hit chance percentage; defaults to `0`. */
+  readonly critRate?: number;
+  /** Distance metric for range; defaults to `"manhattan"` (T028). */
+  readonly rangeMetric?: RangeMetric;
+  /** Whether high ground extends range downhill; defaults to `false`. */
+  readonly elevationBonus?: boolean;
+  /** Whether line of sight is required; defaults to `true`. */
+  readonly requiresLineOfSight?: boolean;
+  /**
+   * The effects the executor applies, in order (T041). Omitted or empty means
+   * the action falls back to a single **Steel** blow at `power`, so a legacy
+   * catalogue entry still lands a hit rather than resolving into a no-op.
+   */
+  readonly effects?: readonly AbilityEffect[];
 }
 
 /** An id-keyed catalogue of the actions a battle can resolve. */
@@ -124,8 +161,34 @@ export function buildActionCatalogue(specs: readonly ActionSpec[] = []): ActionC
     if (spec.aoeSize !== undefined) {
       assertNonNegativeInteger(spec.aoeSize, `action ${spec.id} aoeSize`);
     }
-    // Copy so callers cannot alias a spec back into battle state. Optional AoE
-    // fields are copied only when authored, keeping old specs byte-identical.
+    if (spec.target !== undefined && !(ABILITY_TARGETS as readonly string[]).includes(spec.target)) {
+      throw new RangeError(`action ${spec.id} target is invalid: ${String(spec.target)}`);
+    }
+    for (const [label, value] of [
+      ["minRange", spec.minRange],
+      ["hitRate", spec.hitRate],
+      ["critRate", spec.critRate],
+    ] as const) {
+      if (value !== undefined) assertNonNegativeInteger(value, `action ${spec.id} ${label}`);
+    }
+    if (
+      spec.rangeMetric !== undefined &&
+      spec.rangeMetric !== "manhattan" &&
+      spec.rangeMetric !== "chebyshev"
+    ) {
+      throw new RangeError(`action ${spec.id} rangeMetric is invalid: ${String(spec.rangeMetric)}`);
+    }
+    if (spec.elevationBonus !== undefined && typeof spec.elevationBonus !== "boolean") {
+      throw new RangeError(`action ${spec.id} elevationBonus must be a boolean`);
+    }
+    if (spec.requiresLineOfSight !== undefined && typeof spec.requiresLineOfSight !== "boolean") {
+      throw new RangeError(`action ${spec.id} requiresLineOfSight must be a boolean`);
+    }
+    if (spec.effects !== undefined && !Array.isArray(spec.effects)) {
+      throw new RangeError(`action ${spec.id} effects must be an array`);
+    }
+    // Copy so callers cannot alias a spec back into battle state. Optional
+    // fields are copied only when authored, keeping legacy specs byte-identical.
     catalogue[spec.id] = {
       id: spec.id,
       mpCost: spec.mpCost,
@@ -134,6 +197,16 @@ export function buildActionCatalogue(specs: readonly ActionSpec[] = []): ActionC
       power: spec.power,
       ...(spec.aoeShape === undefined ? {} : { aoeShape: spec.aoeShape }),
       ...(spec.aoeSize === undefined ? {} : { aoeSize: spec.aoeSize }),
+      ...(spec.target === undefined ? {} : { target: spec.target }),
+      ...(spec.minRange === undefined ? {} : { minRange: spec.minRange }),
+      ...(spec.hitRate === undefined ? {} : { hitRate: spec.hitRate }),
+      ...(spec.critRate === undefined ? {} : { critRate: spec.critRate }),
+      ...(spec.rangeMetric === undefined ? {} : { rangeMetric: spec.rangeMetric }),
+      ...(spec.elevationBonus === undefined ? {} : { elevationBonus: spec.elevationBonus }),
+      ...(spec.requiresLineOfSight === undefined
+        ? {}
+        : { requiresLineOfSight: spec.requiresLineOfSight }),
+      ...(spec.effects === undefined ? {} : { effects: [...spec.effects] }),
     };
   }
   return catalogue;
@@ -239,6 +312,115 @@ function targetFields(target: ResolvedTarget): { targetId?: UnitId } {
 }
 
 /* --------------------------------------------------------------------------
+ * Effect execution (T041), reactions (T042) and traits (T043)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * The executable shape a minimal {@link ActionSpec} describes. A spec that
+ * authors no `effects` falls back to a single **Steel** blow at its `power`, so
+ * a legacy catalogue entry still deals damage through `executeAbility` (T041)
+ * rather than resolving into nothing.
+ */
+function executableSpec(spec: ActionSpec): AbilitySpec {
+  const effects: readonly AbilityEffect[] =
+    spec.effects !== undefined && spec.effects.length > 0
+      ? spec.effects
+      : [{ kind: "steel", power: spec.power }];
+  return {
+    id: spec.id,
+    mpCost: spec.mpCost,
+    chargeTime: spec.chargeTime,
+    range: spec.range,
+    power: spec.power,
+    target: spec.target ?? "enemy",
+    effects,
+    ...(spec.minRange === undefined ? {} : { minRange: spec.minRange }),
+    ...(spec.aoeShape === undefined ? {} : { aoeShape: spec.aoeShape }),
+    ...(spec.aoeSize === undefined ? {} : { aoeSize: spec.aoeSize }),
+    ...(spec.hitRate === undefined ? {} : { hitRate: spec.hitRate }),
+    ...(spec.critRate === undefined ? {} : { critRate: spec.critRate }),
+    ...(spec.rangeMetric === undefined ? {} : { rangeMetric: spec.rangeMetric }),
+    ...(spec.elevationBonus === undefined ? {} : { elevationBonus: spec.elevationBonus }),
+    ...(spec.requiresLineOfSight === undefined
+      ? {}
+      : { requiresLineOfSight: spec.requiresLineOfSight }),
+  };
+}
+
+/**
+ * The single reaction each deployed soldier has mastered, keyed by unit id.
+ * FFTA grants one R-Ability slot; the engine reads it from the soldier's
+ * mastered Drill (`Unit.abilities`, T048/T051), so a battle state carries
+ * everything `step` needs without a separate loadout table.
+ */
+function reactionOptionsOf(state: BattleState): ReactionOptions {
+  const loadout: Record<string, AbilityId> = {};
+  for (const unit of state.units) {
+    const learned = unit.abilities.find(
+      (ability) => ability.mastered && reactionKindOf(ability.abilityId) !== undefined,
+    );
+    if (learned !== undefined) loadout[unit.id] = learned.abilityId;
+  }
+  return { loadout };
+}
+
+/** The single support trait each deployed soldier has mastered, keyed by unit id. */
+function traitOptionsOf(state: BattleState): TraitOptions {
+  const loadout: Record<string, AbilityId> = {};
+  for (const unit of state.units) {
+    const learned = unit.abilities.find(
+      (ability) => ability.mastered && traitKindOf(ability.abilityId) !== undefined,
+    );
+    if (learned !== undefined) loadout[unit.id] = learned.abilityId;
+  }
+  return { loadout };
+}
+
+/** An action spec with the acting soldier's support traits already applied. */
+function effectiveSpecOf(state: BattleState, actor: Unit, spec: ActionSpec): AbilitySpec {
+  return withTraits(executableSpec(spec), actor, traitOptionsOf(state));
+}
+
+/**
+ * Reconstruct the {@link Target} a pending charge was declared with. A named
+ * soldier becomes a unit target; a self-targeted ability becomes `"self"`;
+ * every other ground aim becomes a tile target.
+ */
+function pendingTargetOf(pending: PendingAction, spec: ActionSpec): Target {
+  if (pending.targetId !== undefined) return { kind: "unit", unitId: pending.targetId };
+  if ((spec.target ?? "enemy") === "self") return { kind: "self" };
+  return { kind: "tile", at: { x: pending.at.x, y: pending.at.y } };
+}
+
+/**
+ * Run the action executor (T041) and then the reaction hooks (T042), appending
+ * every effect event to `events` in order. Reactions fire off the events the
+ * executor produced, so a Riposte or Return Fire answers exactly the blows that
+ * landed. The same seeded {@link Rng} drives both phases, keeping the whole
+ * resolution byte-identical for a fixed seed.
+ */
+function applyAbilityEffects(
+  state: BattleState,
+  actor: Unit,
+  spec: AbilitySpec,
+  target: Target,
+  rng: Rng,
+  events: BattleEvent[],
+): BattleState {
+  const execution = executeAbility(state, actor, spec, target, rng);
+  events.push(...execution.events);
+
+  const reaction = resolveReactionResponses(
+    execution.state,
+    execution.events,
+    rng,
+    reactionOptionsOf(execution.state),
+  );
+  events.push(...reaction.events);
+  return reaction.state;
+}
+
+/* --------------------------------------------------------------------------
  * Pipeline
  * ------------------------------------------------------------------------ */
 
@@ -268,6 +450,7 @@ export function declareOrResolveAction(
 ): BattleState {
   const tick = state.tempo.tick;
   const resolvedTarget = resolveTarget(state, actor, target);
+  const effective = effectiveSpecOf(state, actor, spec);
 
   events.push({
     kind: "abilityUsed",
@@ -280,8 +463,8 @@ export function declareOrResolveAction(
   });
 
   let units = state.units;
-  if (spec.mpCost > 0) {
-    const spent = spendElan(actor, spec.mpCost, tick);
+  if (effective.mpCost > 0) {
+    const spent = spendElan(actor, effective.mpCost, tick);
     units = replaceUnit(units, spent.unit);
     events.push(...spent.events);
   }
@@ -325,7 +508,13 @@ export function declareOrResolveAction(
     at: resolvedTarget.at,
     ...targetFields(resolvedTarget),
   });
-  return { ...state, units };
+
+  // The effect lands immediately: run the executor (T041), then any reactions
+  // (T042), consuming the battle's seeded PRNG stream so the whole resolution
+  // is deterministic from the seed.
+  const rng = Rng.fromState(state.tempo.rng);
+  const resolved = applyAbilityEffects({ ...state, units }, actor, effective, target, rng, events);
+  return { ...resolved, tempo: { ...resolved.tempo, rng: rng.getState() } };
 }
 
 /**
@@ -339,9 +528,8 @@ export function declareOrResolveAction(
  * resolution order. A charge with no pending action is an engine fault and
  * throws {@link ActionResolutionError}.
  *
- * The actual effect dispatch (damage, healing, conditions) is the action
- * executor's job (T041); for now resolution records the outcome via events and
- * clears the pending entry.
+ * Each elapsed charge runs the action executor (T041) and its reactions
+ * (T042) in resolution order, then drops the matching pending entry.
  */
 export function resolveCompletedCharges(
   state: BattleState,
@@ -353,6 +541,8 @@ export function resolveCompletedCharges(
   const byChargeId = new Map(state.pendingActions.map((pending) => [pending.chargeId, pending]));
   const consumed = new Set<string>();
   const tick = state.tempo.tick;
+  const rng = Rng.fromState(state.tempo.rng);
+  let working = state;
 
   for (const charge of resolved) {
     const pending = byChargeId.get(charge.chargeId);
@@ -378,11 +568,30 @@ export function resolveCompletedCharges(
       at: pending.at,
       ...(pending.targetId === undefined ? {} : { targetId: pending.targetId }),
     });
+
+    // The wind-up is done: land the effect and any reactions. The caster must
+    // still be standing for the effect to fire.
+    const spec = working.abilities[pending.abilityId];
+    const actor = working.units.find((unit) => unit.id === pending.unitId);
+    if (spec !== undefined && actor !== undefined && !isOutOfAction(actor)) {
+      const effective = effectiveSpecOf(working, actor, spec);
+      working = applyAbilityEffects(
+        working,
+        actor,
+        effective,
+        pendingTargetOf(pending, spec),
+        rng,
+        events,
+      );
+    }
   }
 
   return {
-    ...state,
-    pendingActions: state.pendingActions.filter((pending) => !consumed.has(pending.chargeId)),
+    ...working,
+    tempo: { ...working.tempo, rng: rng.getState() },
+    pendingActions: working.pendingActions.filter(
+      (pending) => !consumed.has(pending.chargeId),
+    ),
   };
 }
 

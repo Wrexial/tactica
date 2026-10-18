@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { createBattle, step, type BattleSetup, type BattleState } from "../../src/engine/battle";
 import type { Command } from "../../src/engine/commands";
 import { coord } from "../../src/engine/grid";
-import { asPostId, asUnitId } from "../../src/engine/ids";
+import { asAbilityId, asPostId, asUnitId } from "../../src/engine/ids";
 import {
   BattleReplayError,
   BattleSerializationError,
@@ -115,6 +115,76 @@ function recordScript(seed: string, setup: BattleSetup, turns: number): BattleSc
   }
   return { seed, setup, commands };
 }
+
+/* --------------------------------------------------------------------------
+ * Live action resolution (T117)
+ *
+ * An `act` now lands its effect through `step` (T041/T042/T043), so a replay of
+ * a damaging command reduces HP identically every time.
+ * ------------------------------------------------------------------------ */
+
+describe("determinism — effects resolved through step", () => {
+  const ACTOR = asUnitId("unit-a");
+  const FOE = asUnitId("enemy-d");
+  const BLADE = asAbilityId("scripted-blade");
+
+  /** A scripted duel: a Speed-1 actor and a Speed-0 target with a Steel action. */
+  function combatSetup(): BattleSetup {
+    return {
+      map: createTerrainMap(8, 6, "field"),
+      units: [
+        soldier("unit-a", coord(1, 1), { spd: 1 }),
+        soldier("enemy-d", coord(3, 1), { spd: 0 }),
+      ],
+      abilities: [
+        {
+          id: BLADE,
+          mpCost: 0,
+          chargeTime: 0,
+          range: 5,
+          power: 100,
+          target: "enemy",
+          effects: [{ kind: "steel", power: 100 }],
+        },
+      ],
+    };
+  }
+
+  const actCommand: Command = {
+    kind: "act",
+    unitId: ACTOR,
+    abilityId: BLADE,
+    target: { kind: "unit", unitId: FOE },
+  };
+
+  it("deals damage and replays byte-identically from the seed + log", () => {
+    const script: BattleScript = {
+      seed: "t117-combat",
+      setup: combatSetup(),
+      commands: [actCommand],
+    };
+
+    const first = step(createBattle(script.seed, script.setup), actCommand);
+    expect(first.rejection).toBeUndefined();
+    expect(first.events.some((event) => event.kind === "damaged")).toBe(true);
+    // atk 12, foe def 8 → base 8, ×100/100.
+    expect(first.state.units.find((unit) => unit.id === FOE)?.hp).toBe(52);
+
+    const replayed = replayBattle(script);
+    expect(hashBattleState(replayed)).toBe(hashBattleState(first.state));
+    expect(hashBattleState(replayBattle(script))).toBe(hashBattleState(replayed));
+    expect(hashBattleState(replayed)).toMatch(/^[0-9a-f]{16}$/);
+  });
+
+  it("keeps a full effect exchange pure", () => {
+    const state = createBattle("t117-purity", combatSetup());
+    const before = JSON.stringify(state);
+
+    step(state, actCommand);
+
+    expect(JSON.stringify(state)).toBe(before);
+  });
+});
 
 /* --------------------------------------------------------------------------
  * The headline guarantee

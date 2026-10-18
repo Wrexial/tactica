@@ -922,7 +922,7 @@ peer, empty, missing kit/prisoner, id-collision and overfull-pen reasons.
 ## Phase 13 — The campaign loop (playable game)
 
 ### T117 — Resolve ability effects through `step`
-- status: todo
+- status: done
 - deps: [T041, T042, T043]
 - files: src/engine/actions/resolve.ts, src/engine/battle.ts, tests/unit/combat.test.ts, tests/unit/determinism.test.ts
 - verify: npm run test -- --run tests/unit/combat.test.ts tests/unit/determinism.test.ts
@@ -1015,4 +1015,4 @@ Mess → take a contract → Field battle visible → commit an order → result
 - [ ] Article generation frequency/pool and commended-action weighting (T055).
 - [ ] Volley damage scaling with Honour and number of linkers (T061).
 - [ ] FFTA-specific stat-growth formula (job tables give values + ranks) (T018/T049).
-- [ ] **Ability effects are not wired into `step`.** `declareOrResolveAction` (`src/engine/actions/resolve.ts`) emits `abilityUsed`/`abilityResolved` but never calls `executeAbility` (T041), so an `act` through the live `step` path deals no damage. T113's headless skirmish therefore ends in a ceasefire; a follow-up should compose the executor into `src/engine/battle.ts` while keeping the replay byte-identical.
+- [x] **Ability effects are wired into `step` (T117).** `declareOrResolveAction` (`src/engine/actions/resolve.ts`) now composes `executeAbility` (T041), reactions (T042) and support traits (T043) into both instant and charged resolution, drawing all randomness from the battle's seeded PRNG stream (`tempo.rng`). A live `act` reduces HP and can KO, so T113's headless skirmish reaches a decision instead of a ceasefire; replays stay byte-identical.

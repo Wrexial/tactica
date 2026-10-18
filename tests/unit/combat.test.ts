@@ -9,7 +9,7 @@ import {
   type ConditionEffect,
   type SteelEffect,
 } from "../../src/engine/actions/ability";
-import { createBattle, findUnit, type BattleState } from "../../src/engine/battle";
+import { createBattle, findUnit, step, type BattleState } from "../../src/engine/battle";
 import { isBattleEvent } from "../../src/engine/events";
 import { coord, type Coord } from "../../src/engine/grid";
 import { asAbilityId, asConditionId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
@@ -862,6 +862,124 @@ describe("combat — battlefield displacement (Shove)", () => {
       result.events.some((event) => event.kind === "damaged" && event.damageType === "none"),
     ).toBe(true);
     expect(result.events.every(isBattleEvent)).toBe(true);
+  });
+});
+
+/* ==========================================================================
+ * Ability effects through `step` (T117)
+ *
+ * The live pipeline wires the executor (T041), reactions (T042) and support
+ * traits (T043) into `step`, so a committed `act` now reduces HP and can KO.
+ * Roster speeds are set low (actor 1, target 0) so evasion is zero and every
+ * roll lands without hunting for a seed.
+ * ======================================================================== */
+
+describe("combat — ability effects through step", () => {
+  const STEP_ABILITY = asAbilityId("test-step-action");
+
+  /** A hostile Steel action the executor can resolve through `step`. */
+  function stepAbility(overrides: Partial<AbilitySpec> = {}): AbilitySpec {
+    return ability({
+      id: STEP_ABILITY,
+      power: 100,
+      target: "enemy",
+      effects: [steel(100)],
+      ...overrides,
+    });
+  }
+
+  /**
+   * A two-soldier clash with the actor at Speed 1 (evasion 0) and the target at
+   * Speed 0, plus the action catalogue under test.
+   */
+  function pipelineBattle(
+    actorOverrides: Partial<UnitInit> = {},
+    foeOverrides: Partial<UnitInit> = {},
+    abilitySpec: AbilitySpec = stepAbility(),
+    foeAt: Coord = coord(3, 1),
+  ): BattleState {
+    const actor = makeUnit(
+      ACTOR_ID,
+      coord(1, 1),
+      "company",
+      { ...ACTOR_STATS, spd: 1 },
+      actorOverrides,
+    );
+    const foe = makeUnit(FOE_ID, foeAt, "enemy", { ...FOE_STATS, spd: 0 }, foeOverrides);
+    return createBattle("t117", { map: MAP, units: [actor, foe], abilities: [abilitySpec] });
+  }
+
+  function actAt(state: BattleState, targetId: UnitId = FOE_ID): ReturnType<typeof step> {
+    return step(state, {
+      kind: "act",
+      unitId: state.currentActorId as UnitId,
+      abilityId: STEP_ABILITY,
+      target: { kind: "unit", unitId: targetId },
+    });
+  }
+
+  it("lands an instant action's damage through the live `act`", () => {
+    const result = actAt(pipelineBattle());
+
+    expect(result.rejection).toBeUndefined();
+    // atk 20, foe def 10 → base 15, ×100/100.
+    expect(result.events.find((event) => event.kind === "damaged")).toMatchObject({
+      unitId: FOE_ID,
+      amount: 15,
+      damageType: "steel",
+    });
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(45);
+  });
+
+  it("knocks a soldier out of action when the blow is fatal", () => {
+    const result = actAt(pipelineBattle({}, { hp: 10 }));
+
+    expect(result.events.map((event) => event.kind)).toContain("outOfAction");
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(0);
+  });
+
+  it("applies the actor's support traits before the formula", () => {
+    const battle = pipelineBattle({
+      abilities: [{ abilityId: asAbilityId("cold-steel"), drill: 0, mastered: true }],
+    });
+    const result = actAt(battle);
+
+    // Cold Steel: Power 100 → 125, base 15 × 125/100 = 18.
+    expect(result.events.find((event) => event.kind === "damaged")).toMatchObject({ amount: 18 });
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(42);
+  });
+
+  it("fires a mastered reaction off the damage it takes", () => {
+    const battle = pipelineBattle(
+      {},
+      { abilities: [{ abilityId: asAbilityId("riposte"), drill: 0, mastered: true }] },
+      stepAbility(),
+      coord(2, 1),
+    );
+    const result = actAt(battle);
+
+    expect(result.events.map((event) => event.kind)).toContain("reactionTriggered");
+    // Foe Riposte answers the actor; both have evasion 0, so the counter lands.
+    expect(findUnit(result.state, ACTOR_ID)?.hp).toBeLessThan(ACTOR_STATS.hp);
+  });
+
+  it("lands a charged action's effect when its timer elapses", () => {
+    const result = actAt(pipelineBattle({}, {}, stepAbility({ chargeTime: 1 })));
+    const kinds = result.events.map((event) => event.kind);
+
+    expect(kinds).toContain("chargeResolved");
+    expect(kinds).toContain("abilityResolved");
+    expect(kinds).toContain("damaged");
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(45);
+  });
+
+  it("does not mutate the state it is stepped from", () => {
+    const state = pipelineBattle();
+    const before = JSON.stringify(state);
+
+    actAt(state);
+
+    expect(JSON.stringify(state)).toBe(before);
   });
 });
 
