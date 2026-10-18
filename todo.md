@@ -901,11 +901,21 @@ screen can be fully keyed.
 - done: 1v1 skirmish between two free companies.
 
 ### T114 — Replays, trading & spectator
-- status: todo
+- status: done
 - deps: [T112]
 - files: src/net/replay.ts
 - verify: npm run test -- --run tests/unit/replay.test.ts
 - done: Replay a battle from seed + command log; trade kit and prisoners.
+
+`src/net/replay.ts` builds on T112/T113: a `ReplayRecorder` captures lockstep
+frames into a versioned `BattleReplay` (seed + setup + participants + frames),
+`replayFinalState` re-runs the log through the pure `step` loop, and
+`serializeReplay`/`parseReplay` round-trip it as validated text. A read-only
+`BattleSpectator` walks or scrubs the log one command/frame at a time and
+exposes state, events and hash. `resolveTrade` swaps **kit** (the
+`DepotInventory` reserve) and **prisoners** (Auxiliary Barracks captives)
+between two companies as pure values, with `tradeBlockers` reporting self/wrong
+peer, empty, missing kit/prisoner, id-collision and overfull-pen reasons.
 
 ---
 
