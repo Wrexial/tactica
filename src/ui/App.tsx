@@ -25,6 +25,7 @@ import { Mess } from "./Mess";
 import { PostScreen } from "./PostScreen";
 import { Saves } from "./Saves";
 import { Settings } from "./Settings";
+import { LobbyScreen } from "./Lobby";
 import { TempoTray } from "./TempoTray";
 import { Tutorial } from "./Tutorial";
 import { animationsForEvents, type BattleAnimation } from "../render/animations";
@@ -41,6 +42,7 @@ const SCREEN_KEYS: Readonly<Record<string, MessageKey>> = {
   depot: "screen.quartermaster",
   saves: "screen.saves",
   settings: "screen.settings",
+  lobby: "screen.lobby",
 };
 
 /** A controller for the demo action, with the cursor on the acting soldier. */
@@ -77,7 +79,7 @@ export function App() {
   const [animations, setAnimations] = useState<readonly BattleAnimation[]>([]);
   const [inputReady, setInputReady] = useState(false);
   const [view, setView] = useState<
-    "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves" | "settings"
+    "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves" | "settings" | "lobby"
   >("battle");
   // T110 — the drill-square overlay runs on top of the battlefield; it does not
   // change the view, so the field stays the source of truth while it is open.
@@ -362,6 +364,15 @@ export function App() {
         </button>
         <button
           type="button"
+          className={view === "lobby" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-lobby"
+          aria-pressed={view === "lobby"}
+          onClick={() => setView("lobby")}
+        >
+          {t("nav.lobby")}
+        </button>
+        <button
+          type="button"
           className={tutorialActive ? "viewnav__button is-active" : "viewnav__button"}
           data-testid="nav-tutorial"
           aria-pressed={tutorialActive}
@@ -527,6 +538,7 @@ export function App() {
         {view === "depot" && <Depot />}
         {view === "saves" && <Saves />}
         {view === "settings" && <Settings />}
+        {view === "lobby" && <LobbyScreen />}
       </main>
     </div>
   );

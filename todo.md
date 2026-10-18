@@ -894,7 +894,7 @@ screen can be fully keyed.
 - done: Deterministic command-log lockstep with state-hash desync detection.
 
 ### T113 — Lobby & matchmaking
-- status: todo
+- status: done
 - deps: [T112]
 - files: src/net/lobby.ts
 - verify: npm run test:e2e
@@ -919,3 +919,4 @@ screen can be fully keyed.
 - [ ] Article generation frequency/pool and commended-action weighting (T055).
 - [ ] Volley damage scaling with Honour and number of linkers (T061).
 - [ ] FFTA-specific stat-growth formula (job tables give values + ranks) (T018/T049).
+- [ ] **Ability effects are not wired into `step`.** `declareOrResolveAction` (`src/engine/actions/resolve.ts`) emits `abilityUsed`/`abilityResolved` but never calls `executeAbility` (T041), so an `act` through the live `step` path deals no damage. T113's headless skirmish therefore ends in a ceasefire; a follow-up should compose the executor into `src/engine/battle.ts` while keeping the replay byte-identical.

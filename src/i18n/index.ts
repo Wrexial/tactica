@@ -140,6 +140,7 @@ const en = {
   "nav.quartermaster": "Quartermaster",
   "nav.saves": "Saves",
   "nav.settings": "Settings",
+  "nav.lobby": "Skirmish",
   "nav.drillSquare": "Drill Square",
   "screen.battlefield": "Battlefield",
   "screen.campOrders": "Camp orders",
@@ -149,6 +150,7 @@ const en = {
   "screen.quartermaster": "Quartermaster",
   "screen.saves": "Saves",
   "screen.settings": "Settings",
+  "screen.lobby": "Lobby",
   "screen.fallback": "Screen",
 
   /* ---------------------------------------------------------------------- */
@@ -368,6 +370,47 @@ const en = {
   "tempo.noneReady": "No soldier is ready to act.",
   "tempo.onTurn": "On turn",
   "tempo.speed": "· Speed",
+
+  /* ---------------------------------------------------------------------- */
+  /* Lobby / online skirmish                                                */
+  /* ---------------------------------------------------------------------- */
+  "lobby.kicker": "The Theatre · Officers' Lobby",
+  "lobby.title": "Free Company Skirmish",
+  "lobby.blurb":
+    "Match your free company against a rival's and fight a deterministic 1v1 action over the command log.",
+  "lobby.yourCompany": "Your company",
+  "lobby.opponent": "Opponent",
+  "lobby.rating": "Rating",
+  "lobby.roster": "Roster",
+  "lobby.soldiers": {
+    one: "{count} soldier",
+    other: "{count} soldiers",
+  },
+  "lobby.find": "Find opponent",
+  "lobby.searching": "Looking for a rival…",
+  "lobby.pool": "Companies in the lobby",
+  "lobby.noOpponent": "No rival company is waiting in the lobby.",
+  "lobby.ready": "Ready",
+  "lobby.readyToggle": "Mark company ready",
+  "lobby.waiting": "Waiting for the rival to confirm…",
+  "lobby.start": "Start skirmish",
+  "lobby.vs": "vs",
+  "lobby.result": "After-action report",
+  "lobby.ceasefire": "Ceasefire — no decision",
+  "lobby.victory": "Company victory",
+  "lobby.defeat": "Company defeat",
+  "lobby.draw": "Draw",
+  "lobby.frames": "Frames",
+  "lobby.commands": "Orders",
+  "lobby.agreed": "Hashes agree",
+  "lobby.desync": "Desync detected",
+  "lobby.hashHome": "Home hash",
+  "lobby.hashAway": "Away hash",
+  "lobby.rematch": "New opponent",
+  "lobby.readyYes": "Ready",
+  "lobby.readyNo": "Not ready",
+  "lobby.sideCompany": "Company",
+  "lobby.sideEnemy": "Enemy",
 
   /* ---------------------------------------------------------------------- */
   /* Tutorial                                                               */
