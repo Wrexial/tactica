@@ -20,6 +20,12 @@ import {
   type CampaignState,
 } from "../app/campaignController";
 import { createDemoBattle } from "../app/demoScenario";
+import {
+  advanceSkirmishBattle,
+  createSkirmishBattle,
+  resolveSkirmishBattle,
+  SKIRMISH_NAME,
+} from "../app/skirmishScenario";
 import { createInputController, type InputController } from "../app/input";
 import {
   aoePreviewFor,
@@ -167,6 +173,9 @@ export function App() {
   // renderer a fresh canvas instead of re-initialising WebGL on the old one
   // (which Pixi cannot do synchronously). See the scene effect below.
   const [fieldEpoch, setFieldEpoch] = useState(0);
+  // Which battle owns the Field: the sandbox demo (initial), a preset Quick
+  // Battle, or the campaign contract currently being fought (T121).
+  const [fieldMode, setFieldMode] = useState<"demo" | "skirmish" | "campaign">("demo");
   const campaignRef = useRef(campaign);
   campaignRef.current = campaign;
 
@@ -203,6 +212,15 @@ export function App() {
     const next = campaignBattleController(update.state);
     if (next !== null) applyController({ ...next, lastEvents: update.events });
   }, [campaign, applyController]);
+
+  // Quick Battle: while the enemy holds the turn, the Field AI takes every
+  // consecutive hostile turn and hands control back to the company.
+  useEffect(() => {
+    if (fieldMode !== "skirmish") return;
+    const update = advanceSkirmishBattle(controllerRef.current.battle);
+    if (update === null) return;
+    applyController({ ...createBattleController(update.battle), lastEvents: update.events });
+  }, [controller, fieldMode, applyController]);
 
   // T102 — rolling autosave: every change to the working campaign is written to
   // the dedicated autosave slot, so the company always has a restore point.
@@ -250,6 +268,7 @@ export function App() {
     (contract: ContractDef) => {
       const started = startCampaignBattle(campaignRef.current, asContractId(contract.id));
       setCampaign(started);
+      setFieldMode("campaign");
       const field = campaignBattleController(started);
       if (field !== null) {
         setFieldEpoch((current) => current + 1);
@@ -258,6 +277,25 @@ export function App() {
     },
     [applyController],
   );
+
+  // Quick Battle: start (or restart) the preset two-team scene on the Field.
+  const startSkirmish = useCallback(() => {
+    setFieldMode("skirmish");
+    setFieldEpoch((current) => current + 1);
+    setView("battle");
+    // Hand the grid control back from the nav button that started the scene.
+    if (typeof document !== "undefined") {
+      (document.activeElement as HTMLElement | null)?.blur?.();
+    }
+    applyController(createBattleController(createSkirmishBattle()));
+  }, [applyController]);
+
+  // Quick Battle: hand the rest of the action to the deterministic AI and show
+  // the result.
+  const resolveSkirmish = useCallback(() => {
+    const update = resolveSkirmishBattle(controllerRef.current.battle);
+    applyController({ ...createBattleController(update.battle), lastEvents: update.events });
+  }, [applyController]);
 
   // Commit the company to a decisive auto-battle: both sides are played by the
   // deterministic AI until the objective resolves (T098/T119).
@@ -271,8 +309,13 @@ export function App() {
   // Close the after-action report and return to the Mess to take the next post.
   const dismissResult = useCallback(() => {
     setCampaign((current) => dismissCampaignResult(current));
+    // Reset the Field to a fresh Quick Battle behind the Mess, so the finished
+    // contract is not left on the board when the player returns.
+    setFieldMode("skirmish");
+    setFieldEpoch((current) => current + 1);
+    applyController(createBattleController(createSkirmishBattle()));
     setView("mess");
-  }, []);
+  }, [applyController]);
 
   // Targeting preview (T085): reach, area footprint, danger zone and elevation.
   // Derived purely from the controller so the overlay and the HUD read the same
@@ -464,6 +507,15 @@ export function App() {
           onClick={() => setView("battle")}
         >
           {t("nav.battlefield")}
+        </button>
+        <button
+          type="button"
+          className={fieldMode === "skirmish" && view === "battle" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-quick-battle"
+          aria-pressed={fieldMode === "skirmish" && view === "battle"}
+          onClick={startSkirmish}
+        >
+          {t("nav.quickBattle")}
         </button>
         <button
           type="button"
@@ -794,6 +846,61 @@ export function App() {
               onClick={dismissResult}
             >
               {t("contract.result.dismiss")}
+            </button>
+          </section>
+        )}
+
+        {view === "battle" && fieldMode === "skirmish" && controller.battle.phase !== "finished" && (
+          <section
+            className="campaign-action"
+            data-testid="skirmish-battle"
+            aria-label={t("skirmish.label")}
+          >
+            <p className="kicker">{t("skirmish.label")}</p>
+            <h2 data-testid="skirmish-name">{SKIRMISH_NAME}</h2>
+            <p className="muted" data-testid="skirmish-objective">
+              {t("contract.battle.objectiveLabel")}:{" "}
+              {objectiveLabel(controller.battle.objective?.objective, t)}
+            </p>
+            <div className="campaign-action__buttons">
+              <button
+                type="button"
+                className="button button--ghost"
+                data-testid="skirmish-resolve"
+                onClick={resolveSkirmish}
+              >
+                {t("contract.battle.resolve")}
+              </button>
+            </div>
+          </section>
+        )}
+
+        {fieldMode === "skirmish" && controller.battle.phase === "finished" && (
+          <section
+            className="campaign-result"
+            data-testid="skirmish-result"
+            role="dialog"
+            aria-label={t("skirmish.resultLabel")}
+          >
+            <p className="kicker">{t("skirmish.resultLabel")}</p>
+            <h2 data-testid="skirmish-result-name">{SKIRMISH_NAME}</h2>
+            <p
+              className={
+                controller.battle.outcome === "companyVictory"
+                  ? "campaign-result__outcome is-victory"
+                  : "campaign-result__outcome is-defeat"
+              }
+              data-testid="skirmish-result-outcome"
+            >
+              {outcomeLabel(controller.battle.outcome ?? "draw", t)}
+            </p>
+            <button
+              type="button"
+              className="button"
+              data-testid="skirmish-result-restart"
+              onClick={startSkirmish}
+            >
+              {t("skirmish.restart")}
             </button>
           </section>
         )}

@@ -133,6 +133,7 @@ const en = {
   /* ---------------------------------------------------------------------- */
   "nav.label": "Screens",
   "nav.battlefield": "Field",
+  "nav.quickBattle": "Quick Battle",
   "nav.campOrders": "Camp Orders",
   "nav.barracks": "Barracks",
   "nav.mess": "Officers' Mess",
@@ -578,6 +579,9 @@ const en = {
   "contract.result.crowns": "{before} → {after} Crowns",
   "contract.result.honours": "{before} → {after} Honours",
   "contract.result.dismiss": "Return to the Mess",
+  "skirmish.label": "Quick Battle",
+  "skirmish.resultLabel": "Quick Battle result",
+  "skirmish.restart": "Fight again",
 
   /* Depot */
   "depot.label": "Depot",

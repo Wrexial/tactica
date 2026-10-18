@@ -55,10 +55,30 @@ import {
   type AutoBattleStop,
   type AutoTurnResult,
 } from "./autoBattle";
+import { DEFAULT_UTILITY_WEIGHTS, type UtilityOptions } from "../ai/utility";
 import { beginBattle, findUnit, type BattleState } from "../engine/battle";
 import type { BattleEvent } from "../engine/events";
 import type { UnitId } from "../engine/ids";
 import { isOutOfAction } from "../engine/unit";
+
+/**
+ * The Field's AI temperament: **press the attack**. The neutral utility
+ * defaults are happy to brace or trade position forever, which reads as a
+ * passive enemy at detachment scale; these weights make the Field AI close to
+ * contact and strike while still driving the ordinary scorer (no new rule,
+ * `agents.md` §2). Pass as `options.ai` to {@link runAiTurn} /
+ * {@link runAiUntilPlayer} for a live action.
+ */
+export const AGGRESSIVE_FIELD_AI: UtilityOptions = {
+  weights: {
+    ...DEFAULT_UTILITY_WEIGHTS,
+    buff: 0,
+    brace: -5,
+    advance: 8,
+    damage: 10,
+    cover: 0,
+  },
+};
 
 /* --------------------------------------------------------------------------
  * Errors and options
