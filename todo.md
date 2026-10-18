@@ -887,7 +887,7 @@ screen can be fully keyed.
 ## Phase 12 — Multiplayer (stretch)
 
 ### T112 — Lockstep netcode
-- status: todo
+- status: done
 - deps: [T023]
 - files: src/net/lockstep.ts
 - verify: npm run test -- --run tests/unit/lockstep.test.ts
