@@ -798,7 +798,7 @@ deterministic.
 ### T102 — Autosave, slots & export/import
 - status: done
 - deps: [T101]
-- files: src/ui/Saves.tsx
+- files: src/ui/Saves.tsx, src/ui/styles.css, tests/e2e/saves.spec.ts
 - verify: npm run test:e2e
 - done: Autosave, multiple slots, JSON export/import.
 
