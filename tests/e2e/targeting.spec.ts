@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { openBattlefield } from "./helpers";
+
 /**
  * T085 — targeting UX.
  *
@@ -10,8 +12,7 @@ import { expect, test } from "@playwright/test";
  */
 
 test("shows an action's reach, area footprint and the hostile danger zone", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByTestId("battle-canvas")).toBeVisible();
+  await openBattlefield(page);
 
   // Select the acting soldier: the danger zone and orders menu appear.
   await page.keyboard.press("Enter");
@@ -32,7 +33,7 @@ test("shows an action's reach, area footprint and the hostile danger zone", asyn
 });
 
 test("previews the elevation of the tile under the cursor", async ({ page }) => {
-  await page.goto("/");
+  await openBattlefield(page);
 
   // The cursor starts on Sgt. Aubry's flat tile.
   await expect(page.getByTestId("hud-cursor")).toHaveText("3, 4");

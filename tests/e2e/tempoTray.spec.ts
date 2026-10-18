@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { openBattlefield } from "./helpers";
+
 /**
  * T083 — Orders Tempo tray.
  *
@@ -10,7 +12,7 @@ import { expect, test } from "@playwright/test";
  */
 
 test("visualises the upcoming turn order", async ({ page }) => {
-  await page.goto("/");
+  await openBattlefield(page);
 
   await expect(page.getByTestId("tempo-tray")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Orders Tempo" })).toBeVisible();
@@ -30,7 +32,7 @@ test("visualises the upcoming turn order", async ({ page }) => {
 });
 
 test("advances the tray after a turn is committed", async ({ page }) => {
-  await page.goto("/");
+  await openBattlefield(page);
   await expect(page.getByTestId("tempo-entry-0")).toContainText("Sgt. Aubry");
 
   // Select the acting soldier, plan a one-tile march and confirm it (the

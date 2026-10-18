@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { openBattlefield } from "./helpers";
+
 /**
  * T086 — battle forecast.
  *
@@ -11,8 +13,7 @@ import { expect, test } from "@playwright/test";
  */
 
 test("shows hit chance, expected damage and reaction risk before confirming", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByTestId("battle-canvas")).toBeVisible();
+  await openBattlefield(page);
 
   // Select the acting soldier, then aim the musket.
   await page.keyboard.press("Enter");

@@ -1,5 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import { openBattlefield } from "./helpers";
+
 /**
  * T030 / T087 — input controller, path preview, keyboard & gamepad navigation.
  *
@@ -64,9 +66,8 @@ async function tapGamepad(page: Page, index: number): Promise<void> {
 test("keyboard selects a soldier, reveals the move range and previews the march", async ({
   page,
 }) => {
-  await page.goto("/");
+  await openBattlefield(page);
 
-  await expect(page.getByTestId("battle-canvas")).toBeVisible();
   await expect(page.getByTestId("hud-actor")).toHaveText("Sgt. Aubry");
   await expect(page.getByTestId("hud-cursor")).toHaveText("3, 4");
   await expect(page.getByTestId("hud-phase")).toHaveText("select");
@@ -86,7 +87,7 @@ test("keyboard selects a soldier, reveals the move range and previews the march"
 });
 
 test("pointer selects the tile under the cursor", async ({ page }) => {
-  await page.goto("/");
+  await openBattlefield(page);
 
   const canvas = page.getByTestId("battle-canvas");
   await expect(canvas).toBeVisible();
@@ -102,8 +103,7 @@ test("pointer selects the tile under the cursor", async ({ page }) => {
 });
 
 test("keyboard opens the Orders menu and fires an action without a mouse", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByTestId("battle-canvas")).toBeVisible();
+  await openBattlefield(page);
 
   // Select the acting soldier, then confirm its own tile again to open Orders.
   await page.keyboard.press("Enter");
@@ -129,7 +129,7 @@ async function cursorX(page: Page): Promise<number> {
 
 test("gamepad confirms a soldier and opens Orders", async ({ page }) => {
   await page.addInitScript(GAMEPAD_INIT);
-  await page.goto("/");
+  await openBattlefield(page);
   await expect(page.getByTestId("hud-cursor")).toHaveText("3, 4");
 
   // A confirms the actor under the initial cursor; a second A focuses Orders.
@@ -148,7 +148,7 @@ test("gamepad confirms a soldier and opens Orders", async ({ page }) => {
 
 test("gamepad D-pad walks the battlefield cursor", async ({ page }) => {
   await page.addInitScript(GAMEPAD_INIT);
-  await page.goto("/");
+  await openBattlefield(page);
   await expect(page.getByTestId("hud-cursor")).toHaveText("3, 4");
 
   // Holding a direction may auto-repeat, so assert the axis of travel rather
@@ -168,7 +168,7 @@ test("gamepad D-pad walks the battlefield cursor", async ({ page }) => {
  * ------------------------------------------------------------------------ */
 
 test("keyboard navigates the camp menus and returns to the field", async ({ page }) => {
-  await page.goto("/");
+  await openBattlefield(page);
   await page.getByTestId("nav-menu").click();
   await expect(page.getByTestId("menus")).toBeVisible();
 
@@ -192,8 +192,7 @@ test("keyboard navigates the camp menus and returns to the field", async ({ page
 });
 
 test("M toggles the camp menu without a mouse", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByTestId("battle-canvas")).toBeVisible();
+  await openBattlefield(page);
   await page.keyboard.press("m");
   await expect(page.getByTestId("menus")).toBeVisible();
   await page.keyboard.press("m");
@@ -202,8 +201,7 @@ test("M toggles the camp menu without a mouse", async ({ page }) => {
 
 test("gamepad Start opens the camp and B returns to the field", async ({ page }) => {
   await page.addInitScript(GAMEPAD_INIT);
-  await page.goto("/");
-  await expect(page.getByTestId("battle-canvas")).toBeVisible();
+  await openBattlefield(page);
 
   await tapGamepad(page, 9); // Start
   await expect(page.getByTestId("menus")).toBeVisible();

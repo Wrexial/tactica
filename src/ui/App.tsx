@@ -58,6 +58,7 @@ export function App() {
   const sceneRef = useRef<Scene | null>(null);
   const [controller, setController] = useState<BattleController>(initialController);
   const [animations, setAnimations] = useState<readonly BattleAnimation[]>([]);
+  const [inputReady, setInputReady] = useState(false);
   const [view, setView] = useState<
     "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves"
   >("battle");
@@ -157,10 +158,14 @@ export function App() {
         onBack: returnToField,
         onOpenMenu: toggleCamp,
       });
+      // Flag input as bound so tests (and anything else that must not race the
+      // async Pixi init) can wait for it before dispatching key/pointer events.
+      setInputReady(true);
     });
 
     return () => {
       disposed = true;
+      setInputReady(false);
       input?.dispose();
       scene.dispose();
       sceneRef.current = null;
@@ -289,7 +294,12 @@ export function App() {
       </nav>
 
       <main className="stage">
-        <canvas ref={canvasRef} className="battlefield" data-testid="battle-canvas" />
+        <canvas
+          ref={canvasRef}
+          className="battlefield"
+          data-testid="battle-canvas"
+          data-input-ready={inputReady}
+        />
 
         <aside className="hud" hidden={view !== "battle"}>
           <h2>Field Orders</h2>

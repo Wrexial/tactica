@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { openBattlefield } from "./helpers";
+
 /**
  * T082 — event-driven animations.
  *
@@ -12,13 +14,13 @@ import { expect, test } from "@playwright/test";
  */
 
 test("opening events produce no battle animations", async ({ page }) => {
-  await page.goto("/");
+  await openBattlefield(page);
   await expect(page.getByRole("heading", { name: "Battle log" })).toBeVisible();
   await expect(page.getByTestId("animation-log").locator("li")).toHaveCount(0);
 });
 
 test("a committed march animates from the engine's moved event", async ({ page }) => {
-  await page.goto("/");
+  await openBattlefield(page);
 
   // Select the acting soldier, then plan and confirm a one-tile march.
   await expect(page.getByTestId("hud-actor")).toHaveText("Sgt. Aubry");
