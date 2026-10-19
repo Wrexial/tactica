@@ -1107,7 +1107,7 @@ Hand prices the turn from `didMove`/`didAct`. Add the second flag to
 `BattleState`, keep the controller's two-step flow, and test reset timing.
 
 ### T128 — Resolution accounting helper + friendly-fire tripwire
-- status: todo
+- status: done
 - deps: [T117]
 - files: src/engine/accounting.ts, src/engine/index.ts, tests/unit/accounting.test.ts
 - verify: npm run test -- --run tests/unit/accounting.test.ts
