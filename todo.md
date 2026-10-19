@@ -1212,7 +1212,7 @@ screen-reader text (`hud-selected`, `visually-hidden`) and the tooltip that
 already carries the exact figures.
 
 ### T135 — Bottom command band and target-anchored forecast
-- status: todo
+- status: done
 - deps: [T133]
 - files: src/ui/App.tsx, src/ui/Forecast.tsx, src/ui/styles.css
 - verify: npm run test:e2e -- tests/e2e/forecast.spec.ts

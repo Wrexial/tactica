@@ -363,28 +363,84 @@ body {
 }
 
 /* ------------------------------------------------------------------------
- * Battle action menu (T085)
+ * Bottom command band (T135)
+ *
+ * FFT Blue's `ActionMenu` (peer lesson L16) docked at the foot of the field
+ * instead of a column in the side panel. The band sits directly above the
+ * Orders Tempo tray inside `.field-dock`, so the two bottom surfaces stack
+ * rather than overlap. The dock is click-through: only its children take
+ * pointer events, so a band over the field never swallows a map click.
  * --------------------------------------------------------------------- */
 
-.hud .action-menu {
-  margin: 12px 0 0;
+.field-dock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
 }
 
-.hud .action-menu h3 {
-  margin: 0 0 8px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+.field-dock > * {
+  pointer-events: auto;
 }
 
-.hud .action-menu ul {
-  display: grid;
+/* The tray keeps its look but is laid out by the dock rather than pinned. */
+.field-dock .tempo-tray {
+  position: static;
+  width: calc(100% - 36px);
+  margin: 0 18px 18px;
+}
+
+.command-band {
+  display: inline-flex;
+  flex-direction: column;
   gap: 6px;
+  max-width: min(760px, calc(100vw - 36px));
+  padding: 8px 12px 10px;
+  color: var(--parchment);
+  background: rgba(20, 27, 40, 0.92);
+  border: 1px solid rgba(217, 185, 92, 0.45);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.command-band__title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--gold-soft);
+}
+
+.command-band__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.command-band__list li {
+  display: flex;
+}
+
+.command-band .action-menu__button {
+  width: auto;
+  min-width: 96px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
 }
 
 .action-menu__button {
@@ -424,14 +480,27 @@ body {
 
 /* ------------------------------------------------------------------------
  * Battle forecast (T086)
+ *
+ * Anchored beside the aimed-at soldier via T133's projector (T135), so it
+ * floats over the dark field with its own light card rather than sitting in
+ * the side panel. `pointer-events: none` keeps the field receiving the aim.
  * --------------------------------------------------------------------- */
 
-.hud .forecast {
-  margin: 12px 0 0;
+.forecast {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  left: 0;
+  width: 258px;
+  max-width: calc(100vw - 24px);
   padding: 10px 12px;
-  background: rgba(34, 48, 74, 0.08);
-  border: 1px solid rgba(140, 108, 40, 0.35);
-  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(255, 250, 240, 0.97);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
 }
 
 .forecast__header {

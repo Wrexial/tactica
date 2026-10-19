@@ -37,6 +37,7 @@ import {
 } from "../app/targetingPreview";
 import { actionSpecOf } from "../engine/actions/resolve";
 import { findAbility } from "../data/abilities";
+import type { Coord } from "../engine/grid";
 import { asContractId, type AbilityId } from "../engine/ids";
 import { tilesInRange } from "../engine/targeting";
 import type { BattleEvent } from "../engine/events";
@@ -422,6 +423,24 @@ export function App() {
     if (target === null) return null;
     return { actorId, spec, target };
   }, [controller]);
+
+  // T135 — the tile the forecast card anchors beside: the aimed-at soldier's
+  // tile, or the aimed tile for ground-target orders (self-target aims at the
+  // actor). Kept separate from the projection so the card can be placed through
+  // the live camera without `Forecast` itself knowing the rules of targeting.
+  const forecastAnchor = useMemo((): Coord | null => {
+    if (forecast === null) return null;
+    const target = forecast.target;
+    if (target.kind === "self") {
+      const actorUnit = controller.battle.units.find((unit) => unit.id === forecast.actorId);
+      return actorUnit?.at ?? null;
+    }
+    if (target.kind === "unit") {
+      const unit = controller.battle.units.find((candidate) => candidate.id === target.unitId);
+      return unit?.at ?? null;
+    }
+    return target.at;
+  }, [forecast, controller.battle.units]);
 
   // The active board's identity. `step` keeps the map reference stable across
   // orders, so this changes only when the Field switches battles (T121); the
@@ -841,66 +860,6 @@ export function App() {
               {controller.lastRejection.message}
             </p>
           )}
-          {forecast !== null && (
-            <Forecast
-              battle={controller.battle}
-              actorId={forecast.actorId}
-              spec={forecast.spec}
-              target={forecast.target}
-            />
-          )}
-          {controller.canAct &&
-            (controller.phase === "command" || controller.phase === "move") &&
-            controller.actions.length > 0 && (
-              <section
-                className="action-menu"
-                data-testid="action-menu"
-                aria-label={t("hud.ordersLabel")}
-              >
-                <h3>{t("hud.ordersHeading")}</h3>
-                <ul>
-                  {controller.actions.map((option) => (
-                    <li key={option.id}>
-                      <Tooltip
-                        side="left"
-                        bubbleTestId={`order-info-${option.id}`}
-                        label={<AbilityInfo abilityId={option.id} spec={option.spec} />}
-                      >
-                        <button
-                          type="button"
-                          className="action-menu__button"
-                          data-testid={`action-${option.id}`}
-                          data-affordable={option.affordable}
-                          disabled={!option.affordable}
-                          onMouseEnter={() => setPreviewActionId(option.id)}
-                          onMouseLeave={() =>
-                            setPreviewActionId((current) =>
-                              current === option.id ? null : current,
-                            )
-                          }
-                          onFocus={() => setPreviewActionId(option.id)}
-                          onBlur={() =>
-                            setPreviewActionId((current) =>
-                              current === option.id ? null : current,
-                            )
-                          }
-                          onClick={() =>
-                            applyController(chooseAction(controllerRef.current, option.id))
-                          }
-                        >
-                          <span className="action-menu__name">
-                            {findAbility(option.id)?.name ?? option.id}
-                          </span>
-                          <span className="action-menu__cost">
-                            {t("hud.elanCost", { amount: option.spec.mpCost })}
-                          </span>
-                        </button>
-                      </Tooltip>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
           <section className="animation-log" aria-label={t("hud.battleLogLabel")}>
             <h3>{t("hud.battleLog")}</h3>
             <ol data-testid="animation-log">
@@ -929,16 +888,90 @@ export function App() {
           />
         )}
 
-        {view === "battle" && (
-          <TempoTray
+        {/* T135 — the forecast card, anchored beside the aimed-at soldier
+            through the live camera projection (T133) rather than the side
+            panel. The engine projection still supplies every number. */}
+        {view === "battle" && forecast !== null && (
+          <Forecast
             battle={controller.battle}
-            onSelect={(unitId) => {
-              const unit = controllerRef.current.battle.units.find((u) => u.id === unitId);
-              if (unit !== undefined) {
-                applyController(setCursor(controllerRef.current, unit.at));
-              }
-            }}
+            actorId={forecast.actorId}
+            spec={forecast.spec}
+            target={forecast.target}
+            anchorAt={forecastAnchor}
+            sceneRef={sceneRef}
+            canvasRef={canvasRef}
+            ready={inputReady}
           />
+        )}
+
+        {/* T135 — the field's bottom dock: the compact command band (FFT Blue's
+            `ActionMenu`) stacks directly above the Orders Tempo tray so the two
+            bottom surfaces never overlap. Pointer events pass through the dock
+            so it never steals a click from the field. */}
+        {view === "battle" && (
+          <div className="field-dock">
+            {controller.canAct &&
+              (controller.phase === "command" || controller.phase === "move") &&
+              controller.actions.length > 0 && (
+                <section
+                  className="command-band"
+                  data-testid="action-menu"
+                  aria-label={t("hud.ordersLabel")}
+                >
+                  <h3 className="command-band__title">{t("hud.ordersHeading")}</h3>
+                  <ul className="command-band__list">
+                    {controller.actions.map((option) => (
+                      <li key={option.id}>
+                        <Tooltip
+                          side="top"
+                          bubbleTestId={`order-info-${option.id}`}
+                          label={<AbilityInfo abilityId={option.id} spec={option.spec} />}
+                        >
+                          <button
+                            type="button"
+                            className="action-menu__button"
+                            data-testid={`action-${option.id}`}
+                            data-affordable={option.affordable}
+                            disabled={!option.affordable}
+                            onMouseEnter={() => setPreviewActionId(option.id)}
+                            onMouseLeave={() =>
+                              setPreviewActionId((current) =>
+                                current === option.id ? null : current,
+                              )
+                            }
+                            onFocus={() => setPreviewActionId(option.id)}
+                            onBlur={() =>
+                              setPreviewActionId((current) =>
+                                current === option.id ? null : current,
+                              )
+                            }
+                            onClick={() =>
+                              applyController(chooseAction(controllerRef.current, option.id))
+                            }
+                          >
+                            <span className="action-menu__name">
+                              {findAbility(option.id)?.name ?? option.id}
+                            </span>
+                            <span className="action-menu__cost">
+                              {t("hud.elanCost", { amount: option.spec.mpCost })}
+                            </span>
+                          </button>
+                        </Tooltip>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+            <TempoTray
+              battle={controller.battle}
+              onSelect={(unitId) => {
+                const unit = controllerRef.current.battle.units.find((u) => u.id === unitId);
+                if (unit !== undefined) {
+                  applyController(setCursor(controllerRef.current, unit.at));
+                }
+              }}
+            />
+          </div>
         )}
 
         {view === "battle" && tutorialActive && (

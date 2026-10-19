@@ -2,31 +2,43 @@
  * Battle forecast (T086) — the confirm-prompt readout.
  *
  * The engine can already tell a player everything about an order before it
- * lands: the pure projection in `./forecast.ts` mirrors targeting, the hit roll,
- * the Steel/Powder/Medicine formulas and the reaction triggers. This component
- * is the thin DOM face of that projection — a small panel above the Orders menu
- * that shows **expected damage, hit chance and reaction risk** so the player can
- * weigh a gamble before confirming (mapping §12, the FFTA "move + act" turn).
+ * lands: the pure projection in `./battleForecast.ts` mirrors targeting, the hit
+ * roll, the Steel/Powder/Medicine formulas and the reaction triggers. This
+ * component is the thin DOM face of that projection — a small card anchored
+ * beside the aimed-at soldier (T135, via T133's camera projector) that shows
+ * **expected damage, hit chance and reaction risk** so the player can weigh a
+ * gamble before confirming (mapping §12, the FFTA "move + act" turn).
+ *
+ * ## Placement
+ *
+ * The card does not know where the battlefield is. When given an `anchorAt` tile
+ * it asks the live {@link Scene} to project it (`Scene.project`, T133) and the
+ * pure {@link anchorFor} helper to turn that screen point into a clamped,
+ * edge-flipped `{ left, top, side }`, refreshed on `requestAnimationFrame` so a
+ * pan/zoom does not cost a React render per frame. Without `anchorAt` it simply
+ * renders in flow.
  *
  * ## Contract (`agents.md` §2, §7, §9)
  *
  * - **Presentation only.** Reads an immutable {@link BattleState}; never mutates
- *   it and never rolls dice. The projection lives in `./forecast.ts`, so this
- *   file only maps plain values to DOM.
+ *   it and never rolls dice. The projection lives in `./battleForecast.ts`, so
+ *   this file only maps plain values to DOM.
  * - **Deterministic.** The same battle, ability and target always paint the
- *   same panel; the component consumes no randomness and no clock.
+ *   same card; the component consumes no randomness and no clock.
  * - **Thin.** No rules live here; a change to how a blow resolves belongs in
  *   the engine, not in this component.
  */
 
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useRef, type RefObject } from "react";
 
 import { findAbility } from "../data/abilities";
 
 import type { BattleState } from "../engine/battle";
 import type { Target } from "../engine/commands";
+import type { Coord } from "../engine/grid";
 import type { UnitId } from "../engine/ids";
 import type { RelativeFacing } from "../engine/rules/hit";
+import type { Scene } from "../render/scene";
 import { useTranslation, type MessageKey, type Translator } from "../i18n";
 import {
   forecastAbility,
@@ -35,6 +47,7 @@ import {
   type ForecastOptions,
   type ForecastTarget,
 } from "./battleForecast";
+import { anchorFor } from "./unitHud";
 
 /** Catalog keys for the front/side/rear classification (mapping §12). */
 const FACING_LABEL_KEYS: Readonly<Record<RelativeFacing, MessageKey>> = {
@@ -55,6 +68,63 @@ export interface ForecastProps {
   readonly target: Target;
   /** Optional affinity/evasion/reaction-loadout hooks. */
   readonly options?: ForecastOptions;
+  /**
+   * The tile to anchor the card beside — normally the aimed-at soldier's tile,
+   * or the aimed ground tile (T135). `null`/omitted keeps the card unanchored.
+   */
+  readonly anchorAt?: Coord | null;
+  /** The live scene, for `project`; reading `.current` keeps the anchor fresh. */
+  readonly sceneRef?: RefObject<Scene | null>;
+  /** The battlefield canvas, for its viewport size. */
+  readonly canvasRef?: RefObject<HTMLCanvasElement | null>;
+  /** Re-runs the anchor effect once Pixi has finished initialising. */
+  readonly ready?: boolean;
+}
+
+/**
+ * Keep the forecast card glued beside the aimed-at soldier as the camera moves.
+ * Mirrors `UnitCard`'s anchor loop (T134) — a frame loop, never a React render,
+ * writing `left`/`top`/`data-side` from the pure `anchorFor` (T133).
+ */
+function useAnchoredForecast(
+  cardRef: RefObject<HTMLElement | null>,
+  sceneRef: RefObject<Scene | null> | undefined,
+  canvasRef: RefObject<HTMLCanvasElement | null> | undefined,
+  anchorAt: Coord | null | undefined,
+  ready: boolean,
+): void {
+  useLayoutEffect(() => {
+    if (!ready || anchorAt === null || anchorAt === undefined) return undefined;
+    const canvas = canvasRef?.current;
+    const card = cardRef.current;
+    if (sceneRef === undefined || canvas === null || canvas === undefined || card === null) {
+      return undefined;
+    }
+
+    let frame = 0;
+    let last = "";
+    const place = (): void => {
+      frame = requestAnimationFrame(place);
+      const scene = sceneRef.current;
+      if (scene === null) return;
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      const anchor = anchorFor(
+        scene.project(anchorAt),
+        { width: rect.width, height: rect.height },
+        { width: card.offsetWidth, height: card.offsetHeight },
+      );
+      const key = `${anchor.left}|${anchor.top}|${anchor.side}`;
+      if (key === last) return;
+      last = key;
+      card.style.left = `${anchor.left}px`;
+      card.style.top = `${anchor.top}px`;
+      card.dataset.side = anchor.side;
+    };
+
+    place();
+    return () => cancelAnimationFrame(frame);
+  }, [cardRef, sceneRef, canvasRef, anchorAt, ready]);
 }
 
 /** Format a target's HP band as `before → after`. */
@@ -155,10 +225,23 @@ function ReactionRisk({ forecast }: { readonly forecast: BattleForecast }) {
 /**
  * The confirm-prompt forecast panel: one line per caught soldier, plus the
  * aggregated reaction risk. Renders a quiet state when nobody is in the
- * footprint so the panel never claims a hit that cannot happen.
+ * footprint so the panel never claims a hit that cannot happen. When given an
+ * `anchorAt` (and the live scene), the card sits beside the aimed-at soldier.
  */
-export function Forecast({ battle, actorId, spec, target, options }: ForecastProps) {
+export function Forecast({
+  battle,
+  actorId,
+  spec,
+  target,
+  options,
+  anchorAt,
+  sceneRef,
+  canvasRef,
+  ready = false,
+}: ForecastProps) {
   const { t } = useTranslation();
+  const cardRef = useRef<HTMLElement>(null);
+  useAnchoredForecast(cardRef, sceneRef, canvasRef, anchorAt, ready);
   const forecast = useMemo(() => {
     const attacker = battle.units.find((unit) => unit.id === actorId);
     if (attacker === undefined) return null;
@@ -167,7 +250,12 @@ export function Forecast({ battle, actorId, spec, target, options }: ForecastPro
 
   if (forecast === null) {
     return (
-      <section className="forecast" data-testid="battle-forecast" aria-label={t("forecast.label")}>
+      <section
+        ref={cardRef}
+        className="forecast"
+        data-testid="battle-forecast"
+        aria-label={t("forecast.label")}
+      >
         <p className="forecast__quiet">{t("forecast.noSoldier")}</p>
       </section>
     );
@@ -175,6 +263,7 @@ export function Forecast({ battle, actorId, spec, target, options }: ForecastPro
 
   return (
     <section
+      ref={cardRef}
       className="forecast"
       data-testid="battle-forecast"
       data-ok={forecast.ok}
