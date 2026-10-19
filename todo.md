@@ -1330,7 +1330,7 @@ replay use, and add a test that a full human turn yields `["move"]` followed by
 `["act"]`, never one bundled dispatch.
 
 ### T140 — Add the explicit End Turn control
-- status: todo
+- status: done
 - deps: [T138]
 - files: src/ui/App.tsx, src/ui/styles.css, tests/e2e/endTurn.spec.ts, tests/unit/battleController.test.ts
 - verify: npm run test:e2e -- tests/e2e/endTurn.spec.ts

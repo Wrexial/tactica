@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import {
+  canEndTurn,
   chooseAction,
   createBattleController,
   holdOrder,
   selectUnit,
   setCursor,
+  waitOrder,
   type BattleController,
 } from "../app/battleController";
 import {
@@ -943,58 +945,74 @@ export function App() {
                 </p>
               )}
             </section>
-            {controller.canAct &&
-              (controller.phase === "command" || controller.phase === "move") &&
-              controller.actions.length > 0 && (
-                <section
-                  className="command-band"
-                  data-testid="action-menu"
-                  aria-label={t("hud.ordersLabel")}
-                >
-                  <h3 className="command-band__title">{t("hud.ordersHeading")}</h3>
-                  <ul className="command-band__list">
-                    {controller.actions.map((option) => (
-                      <li key={option.id}>
-                        <Tooltip
-                          side="top"
-                          bubbleTestId={`order-info-${option.id}`}
-                          label={<AbilityInfo abilityId={option.id} spec={option.spec} />}
+            {canEndTurn(controller) && (
+              <section
+                className="command-band"
+                data-testid="action-menu"
+                aria-label={t("hud.ordersLabel")}
+              >
+                <h3 className="command-band__title">{t("hud.ordersHeading")}</h3>
+                <ul className="command-band__list">
+                  {controller.actions.map((option) => (
+                    <li key={option.id}>
+                      <Tooltip
+                        side="top"
+                        bubbleTestId={`order-info-${option.id}`}
+                        label={<AbilityInfo abilityId={option.id} spec={option.spec} />}
+                      >
+                        <button
+                          type="button"
+                          className="action-menu__button"
+                          data-testid={`action-${option.id}`}
+                          data-affordable={option.affordable}
+                          disabled={!option.affordable}
+                          onMouseEnter={() => setPreviewActionId(option.id)}
+                          onMouseLeave={() =>
+                            setPreviewActionId((current) =>
+                              current === option.id ? null : current,
+                            )
+                          }
+                          onFocus={() => setPreviewActionId(option.id)}
+                          onBlur={() =>
+                            setPreviewActionId((current) =>
+                              current === option.id ? null : current,
+                            )
+                          }
+                          onClick={() =>
+                            applyController(chooseAction(controllerRef.current, option.id))
+                          }
                         >
-                          <button
-                            type="button"
-                            className="action-menu__button"
-                            data-testid={`action-${option.id}`}
-                            data-affordable={option.affordable}
-                            disabled={!option.affordable}
-                            onMouseEnter={() => setPreviewActionId(option.id)}
-                            onMouseLeave={() =>
-                              setPreviewActionId((current) =>
-                                current === option.id ? null : current,
-                              )
-                            }
-                            onFocus={() => setPreviewActionId(option.id)}
-                            onBlur={() =>
-                              setPreviewActionId((current) =>
-                                current === option.id ? null : current,
-                              )
-                            }
-                            onClick={() =>
-                              applyController(chooseAction(controllerRef.current, option.id))
-                            }
-                          >
-                            <span className="action-menu__name">
-                              {findAbility(option.id)?.name ?? option.id}
-                            </span>
-                            <span className="action-menu__cost">
-                              {t("hud.elanCost", { amount: option.spec.mpCost })}
-                            </span>
-                          </button>
-                        </Tooltip>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
+                          <span className="action-menu__name">
+                            {findAbility(option.id)?.name ?? option.id}
+                          </span>
+                          <span className="action-menu__cost">
+                            {t("hud.elanCost", { amount: option.spec.mpCost })}
+                          </span>
+                        </button>
+                      </Tooltip>
+                    </li>
+                  ))}
+                </ul>
+                {/* T140 — End Turn is an explicit `wait`, distinct from the
+                    campaign Hold/Braced order. It stays available after a
+                    march and when no action is affordable, so a soldier can
+                    always pass without a synthetic move or a bundled order. */}
+                <div className="command-band__footer">
+                  <Tooltip side="top" bubbleTestId="end-turn-help" label={t("hud.help.endTurn")}>
+                    <button
+                      type="button"
+                      className="action-menu__button command-band__end-turn"
+                      data-testid="end-turn"
+                      aria-keyshortcuts="T"
+                      onClick={() => applyController(waitOrder(controllerRef.current))}
+                    >
+                      <span className="action-menu__name">{t("hud.endTurn")}</span>
+                      <span className="action-menu__cost">{t("hud.endTurnHint")}</span>
+                    </button>
+                  </Tooltip>
+                </div>
+              </section>
+            )}
             <TempoTray
               battle={controller.battle}
               onSelect={(unitId) => {

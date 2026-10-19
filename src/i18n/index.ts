@@ -159,7 +159,7 @@ const en = {
   /* ---------------------------------------------------------------------- */
   "hud.orders": "Field Orders",
   "hud.controls":
-    "Arrows / WASD / D-pad move the cursor · Enter / A confirms · O opens Orders · Esc / B backs out · M / Start opens the camp · drag to pan, wheel to zoom.",
+    "Arrows / WASD / D-pad move the cursor · Enter / A confirms · O opens Orders · T / Y ends the turn · Esc / B backs out · M / Start opens the camp · drag to pan, wheel to zoom.",
   "hud.tempo": "Orders Tempo",
   "hud.phase": "Phase",
   "hud.cursor": "Cursor",
@@ -172,6 +172,8 @@ const en = {
   "hud.elevation": "Elevation",
   "hud.elevationLevel": "level",
   "hud.ordersHeading": "Orders",
+  "hud.endTurn": "End Turn",
+  "hud.endTurnHint": "Pass",
   "hud.elanCost": "Élan {amount}",
   "hud.battleLog": "Battle log",
   "hud.battleLogLabel": "Battle animations",
@@ -185,7 +187,9 @@ const en = {
   "hud.help.moveRange":
     "Tiles the selected soldier can reach this turn, given their Move rate, terrain and Climb.",
   "hud.help.plannedMarch":
-    "The march you have queued. Moving does not end the turn — resolve an order (or Wait) to close it.",
+    "The march you have queued. Moving does not end the turn — commit it, then act or choose End Turn to close it.",
+  "hud.help.endTurn":
+    "Pass this soldier's turn. The Orders Tempo advances with a single wait — no march and no order.",
   "hud.help.targetReach": "Tiles the chosen order can reach from the soldier's position.",
   "hud.help.area": "The tiles the order's effect covers — friends and foes alike.",
   "hud.help.dangerZone":

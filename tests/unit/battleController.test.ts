@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   act,
   cancel,
+  canEndTurn,
   chooseAction,
   chooseTarget,
   commitMarch,
@@ -441,9 +442,7 @@ describe("the full turn flow", () => {
     record(confirmOrder(controller));
 
     expect(dispatches).toEqual([["move"], ["act"]]);
-    expect(dispatches.some((kinds) => kinds.includes("move") && kinds.includes("act"))).toBe(
-      false,
-    );
+    expect(dispatches.some((kinds) => kinds.includes("move") && kinds.includes("act"))).toBe(false);
   });
 });
 
@@ -511,6 +510,50 @@ describe("orders without a target", () => {
   it("refuses orders from a soldier whose turn it is not", () => {
     const readOnly = selectUnit(createBattleController(makeBattle()), FOE);
     expect(waitOrder(readOnly).lastRejection?.reason).toBe("not-your-turn");
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * End Turn (T140)
+ * ------------------------------------------------------------------------ */
+
+describe("End Turn", () => {
+  it("is offered only while the selected soldier owns an open turn", () => {
+    expect(canEndTurn(selected())).toBe(true);
+    expect(canEndTurn(planMove(selected(), coord(1, 0)))).toBe(true);
+
+    const aimed = chooseAction(selected(), RIFLE.id);
+    expect(canEndTurn(aimed)).toBe(false);
+    expect(canEndTurn(chooseTarget(aimed, { kind: "self" }))).toBe(false);
+
+    const finished: BattleState = { ...makeBattle(), phase: "finished" };
+    expect(canEndTurn(createBattleController(finished))).toBe(false);
+    expect(canEndTurn(selectUnit(createBattleController(makeBattle()), FOE))).toBe(false);
+  });
+
+  it("passes after a march with exactly one wait and no further move or act", () => {
+    const marched = commitMarch(planMove(selected(), coord(1, 0)));
+    expect(marched.phase).toBe("command");
+    expect(marched.lastCommands.map((command) => command.kind)).toEqual(["move"]);
+
+    const ended = waitOrder(marched);
+    expect(ended.lastCommands.map((command) => command.kind)).toEqual(["wait"]);
+    const kinds = ended.lastEvents.map((event) => event.kind);
+    expect(kinds).toContain("turnEnded");
+    expect(kinds).not.toContain("moved");
+    expect(kinds).not.toContain("abilityResolved");
+    // The tempo clock moved on even when the only other soldier never charges.
+    expect(ended.battle.tempo.tick).toBeGreaterThan(marched.battle.tempo.tick);
+    expect(ended.phase).toBe("select");
+  });
+
+  it("passes a previewed march without committing it", () => {
+    const previewed = planMove(selected(), coord(2, 0));
+    expect(previewed.phase).toBe("move");
+
+    const ended = waitOrder(previewed);
+    expect(ended.lastCommands.map((command) => command.kind)).toEqual(["wait"]);
+    expect(ended.lastEvents.map((event) => event.kind)).not.toContain("moved");
   });
 });
 

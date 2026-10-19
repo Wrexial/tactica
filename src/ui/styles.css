@@ -511,6 +511,21 @@ body {
   text-align: center;
 }
 
+/* T140 — End Turn sits apart from the Orders list: it is the explicit `wait`,
+   not an ability and not the campaign's Hold/Braced order. */
+.command-band__footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+  border-top: 1px solid rgba(217, 185, 92, 0.25);
+}
+
+.command-band .command-band__end-turn {
+  min-width: 128px;
+  background: rgba(217, 185, 92, 0.22);
+  border-color: rgba(217, 185, 92, 0.6);
+}
+
 .action-menu__button {
   display: flex;
   align-items: baseline;

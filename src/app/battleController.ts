@@ -356,7 +356,11 @@ export function planMove(controller: BattleController, at: Coord): BattleControl
     return withRejection(controller, "already-moved", `${unit.name} has already marched this turn`);
   }
   if (controller.phase !== "command" && controller.phase !== "move") {
-    return withRejection(controller, "unsupported", "finish the current order before planning a move");
+    return withRejection(
+      controller,
+      "unsupported",
+      "finish the current order before planning a move",
+    );
   }
   if (!inBounds(controller.battle.map.grid, at)) {
     return withRejection(
@@ -414,16 +418,16 @@ export function chooseAction(controller: BattleController, abilityId: AbilityId)
     );
   }
   if (controller.phase !== "command") {
-    return withRejection(controller, "unsupported", "finish the current order before choosing an action");
+    return withRejection(
+      controller,
+      "unsupported",
+      "finish the current order before choosing an action",
+    );
   }
 
   const spec = actionSpecOf(controller.battle, abilityId);
   if (spec === undefined) {
-    return withRejection(
-      controller,
-      "unknown-ability",
-      `this battle has no action "${abilityId}"`,
-    );
+    return withRejection(controller, "unknown-ability", `this battle has no action "${abilityId}"`);
   }
   if (unit.mp < spec.mpCost) {
     return withRejection(
@@ -619,7 +623,18 @@ function dispatchPlan(controller: BattleController): BattleController {
  * Orders that need no target
  * ------------------------------------------------------------------------ */
 
-/** Pass the selected soldier's turn (FFTA `Wait`). */
+/**
+ * Whether the selected soldier owns an open Orders Tempo turn that can be
+ * passed right now. This is the End Turn control's visibility gate (T140): a
+ * march is optional, so the button stays available while a march is only
+ * previewed (`move`) or has already been spent (`command`). Aiming (`target`),
+ * confirming, a finished battle, or a read-only selection all refuse it.
+ */
+export function canEndTurn(controller: BattleController): boolean {
+  return controller.canAct && (controller.phase === "command" || controller.phase === "move");
+}
+
+/** Pass the selected soldier's turn (FFTA `Wait`) — the End Turn control. */
 export function waitOrder(controller: BattleController): BattleController {
   return dispatchSingle(controller, (unitId) => ({ kind: "wait", unitId }));
 }

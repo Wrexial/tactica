@@ -15,6 +15,7 @@ import {
   directionForKey,
   EMPTY_GAMEPAD_FRAME,
   firstConnectedGamepad,
+  isEndTurnKey,
   isNavigationKey,
   moveCursor,
   nextFocusIndex,
@@ -108,6 +109,12 @@ describe("key mapping", () => {
     expect(directionForKey("D")).toBe("right");
     expect(directionForKey("Enter")).toBeNull();
   });
+
+  it("recognises the End Turn key", () => {
+    expect(isEndTurnKey("t")).toBe(true);
+    expect(isEndTurnKey("T")).toBe(true);
+    expect(isEndTurnKey("Enter")).toBe(false);
+  });
 });
 
 describe("defaultCursor", () => {
@@ -184,6 +191,17 @@ describe("the confirm ladder", () => {
     expect(controller.lastEvents.map((event) => event.kind)).not.toContain("turnEnded");
     expect(findUnit(controller.battle, ACTOR)?.at).toEqual(coord(2, 1));
     expect(planned).toBeGreaterThan(1);
+  });
+
+  it("ends the turn with T and refuses the key while aiming", () => {
+    const selected = activateCursor(focused());
+    const ended = pressKey(selected, "t");
+    expect(ended.lastCommands.map((command) => command.kind)).toEqual(["wait"]);
+    expect(ended.phase).toBe("select");
+
+    const aimed = chooseAction(selected, MUSKET.id);
+    expect(aimed.phase).toBe("target");
+    expect(pressKey(aimed, "T")).toBe(aimed);
   });
 
   it("resolves a full human turn as one move dispatch then one act dispatch", () => {
@@ -322,9 +340,10 @@ describe("readGamepad", () => {
   });
 
   it("reads the action and menu buttons", () => {
-    const frame = readGamepad({ buttons: buttons([0, 2, 9]) });
+    const frame = readGamepad({ buttons: buttons([0, 2, 3, 9]) });
     expect(frame.confirm).toBe(true);
     expect(frame.orders).toBe(true);
+    expect(frame.endTurn).toBe(true);
     expect(frame.menu).toBe(true);
     expect(frame.cancel).toBe(false);
   });
@@ -343,6 +362,13 @@ describe("createGamepadEdge", () => {
     expect(edge.update(frame({ confirm: true }), 32).confirm).toBe(false);
     expect(edge.update(EMPTY_GAMEPAD_FRAME, 48).confirm).toBe(false);
     expect(edge.update(frame({ confirm: true }), 64).confirm).toBe(true);
+  });
+
+  it("fires End Turn once on the rising edge", () => {
+    const edge = createGamepadEdge();
+    edge.update(EMPTY_GAMEPAD_FRAME, 0);
+    expect(edge.update(frame({ endTurn: true }), 16).endTurn).toBe(true);
+    expect(edge.update(frame({ endTurn: true }), 32).endTurn).toBe(false);
   });
 
   it("fires a direction once, then repeats while held", () => {

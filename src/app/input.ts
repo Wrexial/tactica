@@ -36,6 +36,7 @@
  * | Enter / Space / gamepad A     | Confirm the focused tile        | Activate the focused control   |
  * | Escape / gamepad B            | Back out one step               | Leave the camp for the field   |
  * | `O` / gamepad X               | Focus the Orders menu           | —                              |
+ * | `T` / gamepad Y               | End Turn (pass, one `wait`)     | —                              |
  * | `M` / gamepad Start/Back      | Open the camp menu              | Return to the field            |
  * | Click / tap                   | Focus that tile, then confirm   | Click the control              |
  * | Drag / wheel                  | Handled by `render/scene.ts` (pan / zoom), not here |
@@ -73,12 +74,14 @@ import { isOutOfAction, type Unit } from "../engine/unit";
 import { pickTile, worldFromScreen, type Camera } from "../render/tiles";
 import {
   cancel,
+  canEndTurn,
   chooseTarget,
   commitMarch,
   confirmOrder,
   planMove,
   selectUnit,
   setCursor,
+  waitOrder,
   type BattleController,
 } from "./battleController";
 
@@ -132,6 +135,7 @@ const DIRECTION_KEYS: Readonly<Record<string, Direction>> = {
 const CONFIRM_KEYS = new Set(["Enter", " ", "Spacebar"]);
 const CANCEL_KEYS = new Set(["Escape", "Esc"]);
 const ORDERS_KEYS = new Set(["o", "O"]);
+const END_TURN_KEYS = new Set(["t", "T"]);
 const MENU_KEYS = new Set(["m", "M"]);
 
 /** The direction a key requests, case-insensitively, or `null`. */
@@ -152,6 +156,11 @@ export function isConfirmKey(key: string): boolean {
 /** Whether a cancel key is handled. */
 export function isCancelKey(key: string): boolean {
   return CANCEL_KEYS.has(key);
+}
+
+/** Whether an End Turn key is handled (T140). */
+export function isEndTurnKey(key: string): boolean {
+  return END_TURN_KEYS.has(key);
 }
 
 /* --------------------------------------------------------------------------
@@ -265,14 +274,17 @@ export function ordersAwait(controller: BattleController, at: Coord | null): boo
 
 /**
  * Apply a keyboard intent. Navigation keys move the cursor, confirm keys act on
- * it and cancel keys back out; anything else is ignored (so typing in a future
- * input field is unaffected).
+ * it, cancel keys back out and `T` ends the selected soldier's turn; anything
+ * else is ignored (so typing in a future input field is unaffected). End Turn
+ * is gated by {@link canEndTurn}, so the key can never pass a turn while an
+ * order is being aimed or confirmed (T140).
  */
 export function pressKey(controller: BattleController, key: string): BattleController {
   const direction = directionForKey(key);
   if (direction !== null) return moveCursor(controller, DIRECTION_DELTAS[direction]);
   if (CONFIRM_KEYS.has(key)) return activateCursor(controller);
   if (CANCEL_KEYS.has(key)) return cancel(controller);
+  if (END_TURN_KEYS.has(key)) return canEndTurn(controller) ? waitOrder(controller) : controller;
   return controller;
 }
 
@@ -456,6 +468,7 @@ export const GAMEPAD_BUTTONS = {
   confirm: 0,
   cancel: 1,
   orders: 2,
+  endTurn: 3,
   view: 8,
   menu: 9,
   dpadUp: 12,
@@ -482,6 +495,7 @@ export interface GamepadFrame {
   readonly confirm: boolean;
   readonly cancel: boolean;
   readonly orders: boolean;
+  readonly endTurn: boolean;
   readonly menu: boolean;
 }
 
@@ -491,6 +505,7 @@ export const EMPTY_GAMEPAD_FRAME: GamepadFrame = {
   confirm: false,
   cancel: false,
   orders: false,
+  endTurn: false,
   menu: false,
 };
 
@@ -529,6 +544,7 @@ export function readGamepad(snapshot: GamepadSnapshot): GamepadFrame {
     confirm: buttonPressed(buttons, GAMEPAD_BUTTONS.confirm),
     cancel: buttonPressed(buttons, GAMEPAD_BUTTONS.cancel),
     orders: buttonPressed(buttons, GAMEPAD_BUTTONS.orders),
+    endTurn: buttonPressed(buttons, GAMEPAD_BUTTONS.endTurn),
     menu:
       buttonPressed(buttons, GAMEPAD_BUTTONS.menu) || buttonPressed(buttons, GAMEPAD_BUTTONS.view),
   };
@@ -548,6 +564,7 @@ export interface GamepadIntents {
   readonly confirm: boolean;
   readonly cancel: boolean;
   readonly orders: boolean;
+  readonly endTurn: boolean;
   readonly menu: boolean;
 }
 
@@ -578,12 +595,21 @@ export function createGamepadEdge(options: GamepadEdgeOptions = {}): GamepadEdge
         confirm: boolean;
         cancel: boolean;
         orders: boolean;
+        endTurn: boolean;
         menu: boolean;
-      } = { direction: null, confirm: false, cancel: false, orders: false, menu: false };
+      } = {
+        direction: null,
+        confirm: false,
+        cancel: false,
+        orders: false,
+        endTurn: false,
+        menu: false,
+      };
 
       if (frame.confirm && !previous.confirm) intents.confirm = true;
       if (frame.cancel && !previous.cancel) intents.cancel = true;
       if (frame.orders && !previous.orders) intents.orders = true;
+      if (frame.endTurn && !previous.endTurn) intents.endTurn = true;
       if (frame.menu && !previous.menu) intents.menu = true;
 
       if (frame.direction !== null) {
@@ -761,6 +787,15 @@ export function createInputController(options: InputControllerOptions): InputCon
     focusOrdersMenu();
   };
 
+  /** Pass the acting soldier's turn through the same `wait` as the button (T140). */
+  const handleEndTurn = (): void => {
+    if (getView() !== "battle") return;
+    if (locked()) return;
+    const controller = getController();
+    if (!canEndTurn(controller)) return;
+    onControllerChange(waitOrder(controller));
+  };
+
   const handleMenu = (): void => {
     onOpenMenu?.();
   };
@@ -809,6 +844,12 @@ export function createInputController(options: InputControllerOptions): InputCon
       return;
     }
 
+    if (END_TURN_KEYS.has(key)) {
+      event.preventDefault();
+      handleEndTurn();
+      return;
+    }
+
     if (MENU_KEYS.has(key)) {
       event.preventDefault();
       handleMenu();
@@ -830,6 +871,7 @@ export function createInputController(options: InputControllerOptions): InputCon
     const intents = edge.update(frame, now);
     if (intents.direction !== null) handleDirection(intents.direction);
     if (intents.orders) handleOrders();
+    if (intents.endTurn) handleEndTurn();
     if (intents.menu) handleMenu();
     if (intents.cancel) handleCancel();
     if (intents.confirm) handleConfirm();
