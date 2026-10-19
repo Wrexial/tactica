@@ -537,8 +537,8 @@ export function App() {
     [controller.battle, controller.selectedUnitId],
   );
 
-  // T134 — the soldier whose anchored card is shown. The cursor tile wins (a
-  // pointer hover or keyboard move), then the selected soldier, then whoever
+  // T134 — the soldier whose anchored card is shown. A cursor over a *different*
+  // soldier previews that soldier; otherwise the selection wins, then whoever
   // holds the Orders Tempo turn. One component serves all three cases.
   const focus = useMemo((): { readonly unit: Unit; readonly role: UnitCardRole } | null => {
     const cursor = controller.cursor;
@@ -548,8 +548,9 @@ export function App() {
         : (controller.battle.units.find(
             (unit) => unit.at.x === cursor.x && unit.at.y === cursor.y,
           ) ?? null);
-    if (hovered !== null) return { unit: hovered, role: "hovered" };
+    if (hovered !== null && hovered.id !== selected?.id) return { unit: hovered, role: "hovered" };
     if (selected !== null) return { unit: selected, role: "selected" };
+    if (hovered !== null) return { unit: hovered, role: "hovered" };
     if (actor !== null) return { unit: actor, role: "actor" };
     return null;
   }, [controller.battle.units, controller.cursor, selected, actor]);

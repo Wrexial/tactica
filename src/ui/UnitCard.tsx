@@ -118,7 +118,7 @@ export function UnitCard({ unit, role, sceneRef, canvasRef, ready }: UnitCardPro
       className="unit-card"
       data-testid="unit-card"
       data-role={role}
-      data-side={unit.side}
+      data-unit-side={unit.side}
       aria-label={t("unit.cardLabel", { name: unit.name })}
     >
       <header className="unit-card__head">

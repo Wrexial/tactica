@@ -271,11 +271,11 @@ body {
   pointer-events: none;
 }
 
-.unit-card[data-side="enemy"] {
+.unit-card[data-unit-side="enemy"] {
   border-left-color: #a83a24;
 }
 
-.unit-card[data-side="neutral"] {
+.unit-card[data-unit-side="neutral"] {
   border-left-color: #8a8175;
 }
 

@@ -86,6 +86,29 @@ test("keyboard selects a soldier, reveals the move range and previews the march"
   await expect(page.getByTestId("hud-path")).toHaveText("2 tiles");
 });
 
+test("anchors the focused soldier's card beside it with its vitals", async ({ page }) => {
+  await openBattlefield(page);
+
+  // At rest the acting soldier is in focus: the card carries the name and the
+  // vitals strip, and `anchorFor` has picked a side and kept it on screen.
+  const card = page.getByTestId("unit-card");
+  await expect(card).toBeVisible();
+  await expect(card).toContainText("Sgt. Aubry");
+  await expect(card.getByTestId("hud-chips")).toBeVisible();
+  await expect(card).toHaveAttribute("data-side", /left|right/);
+
+  const box = await card.boundingBox();
+  expect(box).not.toBeNull();
+  if (box === null) return;
+  expect(box.x).toBeGreaterThanOrEqual(0);
+  expect(box.y).toBeGreaterThanOrEqual(0);
+
+  // Selecting the acting soldier keeps it in focus and flips the card's role.
+  await page.keyboard.press("Enter");
+  await expect(card).toHaveAttribute("data-role", "selected");
+  await expect(card).toContainText("Sgt. Aubry");
+});
+
 test("pointer selects the tile under the cursor", async ({ page }) => {
   await openBattlefield(page);
 
