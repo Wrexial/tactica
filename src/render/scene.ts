@@ -35,7 +35,7 @@ import {
   type BattleAnimation,
   type MoveAnimation,
 } from "./animations";
-import { worldToScreen } from "./iso";
+import { projectPoint, worldToScreen } from "./iso";
 import { createOverlay, type BattleOverlay } from "./overlay";
 import { unitDrawOps, type UnitDrawOp } from "./units";
 import {
@@ -66,6 +66,14 @@ export interface Scene {
   readonly overlay: BattleOverlay;
   /** The current camera transform, for unprojecting pointer input to tiles. */
   readonly camera: Camera;
+  /**
+   * Screen-space position of a tile's top-face centre through the **live**
+   * camera. The battlefield HUD uses this to anchor a per-character card
+   * (`src/ui/unitHud.ts`) without reaching into the camera itself, and because
+   * it reads the current pan/zoom it tracks drags and wheel zooms between
+   * calls (T133).
+   */
+  project(at: Coord): ScreenPoint;
   /**
    * Replace the soldiers drawn on the field. The scene reads the units only;
    * it never mutates engine state (`agents.md` §7). Passing an empty list
@@ -545,6 +553,9 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
     overlay,
     get camera(): Camera {
       return camera;
+    },
+    project(at: Coord): ScreenPoint {
+      return projectPoint(at.x, at.y, heightAt(map, at), camera);
     },
     setUnits(next: readonly Unit[]): void {
       units = next;

@@ -1183,7 +1183,7 @@ assert the old side-panel layout. Background and rationale:
 `docs/PEER_COMBAT_LESSONS.md` (L12, L13, L16).
 
 ### T133 — Camera-aware projection + HUD anchor helper
-- status: todo
+- status: done
 - deps: []
 - files: src/render/scene.ts, src/render/iso.ts, src/ui/unitHud.ts, tests/unit/unitHud.test.ts
 - verify: npm run test -- --run tests/unit/unitHud.test.ts

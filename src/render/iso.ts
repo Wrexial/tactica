@@ -44,3 +44,37 @@ export function screenToWorld(
     gy: (sy / halfH - sx / halfW) / 2,
   };
 }
+
+/**
+ * A camera/viewport transform: uniform `scale` plus translation, applied to
+ * **unzoomed world pixels** to produce canvas pixels.
+ *
+ * Structurally identical to `tiles.ts`'s `Camera`, but declared here so this
+ * leaf module never has to import the camera module back (`tiles.ts` imports
+ * {@link worldToScreen} from here, so the reverse edge would be a cycle).
+ */
+export interface ViewTransform {
+  readonly x: number;
+  readonly y: number;
+  readonly scale: number;
+}
+
+/**
+ * Apply a camera's pan and zoom to an **unzoomed world-space** point, giving
+ * canvas pixels. The inverse of `tiles.ts`'s `worldFromScreen`; kept beside
+ * {@link worldToScreen} so the whole `grid -> world -> screen` chain stays
+ * Pixi-free and unit-testable in Node.
+ */
+export function toScreen(world: Point, camera: ViewTransform): Point {
+  return { x: world.x * camera.scale + camera.x, y: world.y * camera.scale + camera.y };
+}
+
+/**
+ * Full `grid -> screen` projection for a grid cell raised by `gz` elevation
+ * levels, viewed through `camera`. This is exactly the chain `Scene.project`
+ * runs, exposed as a pure function so the HUD anchor maths can be tested
+ * without a canvas (`tests/unit/unitHud.test.ts`).
+ */
+export function projectPoint(gx: number, gy: number, gz: number, camera: ViewTransform): Point {
+  return toScreen(worldToScreen(gx, gy, gz), camera);
+}
