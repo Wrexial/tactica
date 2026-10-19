@@ -6,15 +6,9 @@
  * player can read a soldier before committing to a plan. Presentation only.
  */
 
-import { CONDITIONS, type ConditionKey } from "../data/conditions";
 import type { Unit } from "../engine/unit";
 import { useTranslation } from "../i18n";
-
-/** The human name of a condition id, or the raw id when unauthored. */
-function conditionName(conditionId: string): string {
-  const def = CONDITIONS[conditionId as ConditionKey];
-  return def === undefined ? conditionId : def.name;
-}
+import { unitConditionNames } from "./unitLabels";
 
 /** Props for {@link UnitInfo}. */
 export interface UnitInfoProps {
@@ -55,7 +49,7 @@ export function UnitInfo({ unit }: UnitInfoProps) {
       </dl>
       {unit.conditions.length > 0 && (
         <span className="tip__text">
-          {t("unit.conditions")}: {unit.conditions.map((c) => conditionName(c.conditionId)).join(", ")}
+          {t("unit.conditions")}: {unitConditionNames(unit).join(", ")}
         </span>
       )}
     </span>

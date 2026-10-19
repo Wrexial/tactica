@@ -194,6 +194,8 @@ const en = {
     "Height difference between the soldier and the cursor. High ground helps the blow and can block line of sight.",
   "tip.moreInfo": "More information",
   "unit.conditions": "Conditions",
+  "unit.vitals": "Vitals",
+  "unit.cardLabel": "Soldier detail: {name}",
   "ability.class": "Type",
   "ability.class.action": "Action",
   "ability.class.reaction": "Reaction",

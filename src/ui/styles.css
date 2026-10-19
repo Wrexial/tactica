@@ -231,6 +231,138 @@ body {
 }
 
 /* ------------------------------------------------------------------------
+ * Screen-reader-only text
+ * --------------------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------------------
+ * Per-character unit card (T134)
+ *
+ * Anchored beside the focused soldier by `anchorFor` (src/ui/unitHud.ts).
+ * `pointer-events: none` keeps the battlefield receiving pointer moves while
+ * the card is on screen, so the hovered soldier can always change.
+ * --------------------------------------------------------------------- */
+
+.unit-card {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  left: 0;
+  width: 230px;
+  padding: 10px 12px 12px;
+  color: var(--ink);
+  background: rgba(255, 250, 240, 0.97);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.unit-card[data-side="enemy"] {
+  border-left-color: #a83a24;
+}
+
+.unit-card[data-side="neutral"] {
+  border-left-color: #8a8175;
+}
+
+.unit-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.unit-card__name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.unit-card__side {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--parchment);
+  background: var(--navy-2);
+  border-radius: 999px;
+}
+
+.unit-card__side--enemy {
+  background: #a83a24;
+}
+
+.unit-card__side--neutral {
+  background: #6b7280;
+}
+
+.unit-card__meta {
+  margin: 3px 0 8px;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.unit-chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(58px, 1fr));
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.unit-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 2px;
+  background: rgba(34, 48, 74, 0.08);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.unit-chip__label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+
+.unit-chip__value {
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.unit-card__conditions {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: #7a5a18;
+}
+
+.unit-card__conditions-label {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------------
  * Battle action menu (T085)
  * --------------------------------------------------------------------- */
 

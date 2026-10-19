@@ -44,47 +44,14 @@
 
 import { useMemo } from "react";
 
-import type { PowerKey } from "../data/schema";
 import type { BattleState } from "../engine/battle";
 import type { UnitId } from "../engine/ids";
-import type { UnitSide } from "../engine/unit";
-import { powerUniform, roleCategory, type RoleCategory } from "../render/units";
-import { useTranslation, type MessageKey } from "../i18n";
+import { powerUniform, roleCategory } from "../render/units";
+import { useTranslation } from "../i18n";
 import { Tooltip } from "./Tooltip";
 import { UnitInfo } from "./UnitInfo";
+import { POWER_LABEL_KEYS, ROLE_LABEL_KEYS, SIDE_LABEL_KEYS } from "./unitLabels";
 import { DEFAULT_TEMPO_PREVIEW, upcomingTurnOrder } from "./tempoOrder";
-
-/* --------------------------------------------------------------------------
- * Display keys (presentation only; no balance values)
- * ------------------------------------------------------------------------ */
-
-/** Catalog keys for the five great-power military schools (mapping §2). */
-const POWER_LABEL_KEYS: Readonly<Record<PowerKey, MessageKey>> = {
-  france: "power.france",
-  britain: "power.britain",
-  prussia: "power.prussia",
-  russia: "power.russia",
-  austria: "power.austria",
-};
-
-/** Catalog keys for the coarse role families (mapping §3). */
-const ROLE_LABEL_KEYS: Readonly<Record<RoleCategory, MessageKey>> = {
-  line: "role.line",
-  skirmisher: "role.skirmisher",
-  cavalry: "role.cavalry",
-  artillery: "role.artillery",
-  medical: "role.medical",
-  command: "role.command",
-  engineer: "role.engineer",
-  irregular: "role.irregular",
-};
-
-/** Catalog keys for the three field sides (mapping §1, §9). */
-const SIDE_LABEL_KEYS: Readonly<Record<UnitSide, MessageKey>> = {
-  company: "side.company",
-  enemy: "side.enemy",
-  neutral: "side.neutral",
-};
 
 /** A numeric Pixi colour (`0x2f5fa8`) as a CSS hex string (`#2f5fa8`). */
 function cssColor(color: number): string {
