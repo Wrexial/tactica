@@ -55,6 +55,13 @@
  * - `target`  → the tile (or its soldier) becomes the aimed target;
  * - `confirm` → the staged order is dispatched through the engine.
  *
+ * The action half of a turn is **state-only** (T139): while a march is merely
+ * previewed (`move`) the Orders menu cannot stage an action — the march must be
+ * committed (confirm) or cancelled (Escape) first — and once committed, the
+ * action's reach is computed from the tile the soldier now stands on. A turn
+ * therefore commits `["move"]` and later `["act"]`, never one bundled
+ * `[move, act]`.
+ *
  * Screens and orders the retheme names: a **soldier** takes an Orders Tempo
  * turn and marches across the field; the fiction never leaks the FFTA terms.
  */

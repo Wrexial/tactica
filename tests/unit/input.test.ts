@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  chooseAction,
+  chooseTarget,
   createBattleController,
   setCursor,
   type BattleController,
@@ -23,8 +25,9 @@ import {
   type GamepadFrame,
 } from "../../src/app/input";
 import { createBattle, findUnit } from "../../src/engine/battle";
+import type { ActionSpec } from "../../src/engine/actions/resolve";
 import { coord, type Coord } from "../../src/engine/grid";
-import { asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
+import { asAbilityId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
 import { createTerrainMap } from "../../src/engine/terrain";
 import { createUnit, type Unit, type UnitSide } from "../../src/engine/unit";
 import type { StatBlock } from "../../src/data/schema";
@@ -41,6 +44,14 @@ import type { StatBlock } from "../../src/data/schema";
 
 const ACTOR = asUnitId("unit-actor");
 const FOE = asUnitId("unit-foe");
+
+const MUSKET: ActionSpec = {
+  id: asAbilityId("musket-fire"),
+  mpCost: 0,
+  chargeTime: 0,
+  range: 5,
+  power: 100,
+};
 
 const STATS: StatBlock = {
   hp: 40,
@@ -71,6 +82,7 @@ function makeController(): BattleController {
   const battle = createBattle(7, {
     map: createTerrainMap(6, 5, "field"),
     units: [makeUnit(ACTOR, coord(1, 1), "company", 40), makeUnit(FOE, coord(4, 4), "enemy", 0)],
+    abilities: [MUSKET],
   });
   return createBattleController(battle);
 }
@@ -172,6 +184,40 @@ describe("the confirm ladder", () => {
     expect(controller.lastEvents.map((event) => event.kind)).not.toContain("turnEnded");
     expect(findUnit(controller.battle, ACTOR)?.at).toEqual(coord(2, 1));
     expect(planned).toBeGreaterThan(1);
+  });
+
+  it("resolves a full human turn as one move dispatch then one act dispatch", () => {
+    // Select the soldier, preview a march, then commit it with Enter (T138).
+    let controller = clickTile(makeController(), coord(1, 1));
+    expect(controller.phase).toBe("command");
+    controller = clickTile(controller, coord(2, 1));
+    expect(controller.phase).toBe("move");
+    controller = pressKey(controller, "Enter");
+
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move"]);
+    expect(findUnit(controller.battle, ACTOR)?.at).toEqual(coord(2, 1));
+    expect(controller.pendingPath).toBeNull();
+
+    // While the march is only previewed, no action can be staged from it.
+    const previewed = clickTile(clickTile(makeController(), coord(1, 1)), coord(2, 1));
+    expect(previewed.phase).toBe("move");
+    const attempt = chooseAction(previewed, MUSKET.id);
+    expect(attempt.lastRejection?.reason).toBe("unsupported");
+    expect(attempt.phase).toBe("move");
+    expect(attempt.lastCommands).toEqual([]);
+
+    // Aim from the committed tile, then confirm the act with Enter.
+    controller = chooseAction(controller, MUSKET.id);
+    expect(controller.phase).toBe("target");
+    expect(controller.targetTiles).toContainEqual(coord(4, 4));
+    controller = chooseTarget(controller, { kind: "unit", unitId: FOE });
+    expect(controller.phase).toBe("confirm");
+    controller = pressKey(controller, "Enter");
+
+    expect(controller.lastRejection).toBeNull();
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["act"]);
+    expect(controller.lastEvents.map((event) => event.kind)).toContain("turnEnded");
+    expect(controller.phase).toBe("select");
   });
 });
 

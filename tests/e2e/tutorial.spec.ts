@@ -13,6 +13,9 @@ import { openBattlefield } from "./helpers";
  */
 
 test("teaches move, act, tempo, Articles and Drill in one exercise", async ({ page }) => {
+  // No animation lock under reduced motion: the march and the act are separate
+  // dispatches (T138/T139), so the act must not race the march's animation.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await openBattlefield(page);
 
   // Open the drill square from the nav; it overlays the field as an active
@@ -38,11 +41,14 @@ test("teaches move, act, tempo, Articles and Drill in one exercise", async ({ pa
 
   await page.keyboard.press("ArrowRight");
   await expect(page.getByTestId("hud-cursor")).toHaveText("4, 4");
+  // Commit the march on its own (T138), then fire from the new tile (T139).
   await page.keyboard.press("Enter");
   await expect(page.getByTestId("hud-phase")).toHaveText("move");
+  await page.keyboard.press("Enter");
+  await expect(page.getByTestId("hud-phase")).toHaveText("command");
 
-  // Choose the musket while the march is still open, aim it at the picket and
-  // confirm the whole turn. This commits `[move, act]` in one order.
+  // Choose the musket from the committed tile, aim it at the picket and
+  // confirm the act. The turn is two dispatches: `["move"]`, then `["act"]`.
   await page.getByTestId("action-musket-fire").click();
   await expect(page.getByTestId("hud-phase")).toHaveText("target");
   for (let i = 0; i < 4; i++) await page.keyboard.press("ArrowRight");

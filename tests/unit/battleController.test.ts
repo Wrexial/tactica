@@ -312,6 +312,37 @@ describe("action targeting", () => {
     expect(controller.pendingActionId).toBeNull();
   });
 
+  it("refuses to stage an action while a march is only previewed", () => {
+    const previewed = planMove(selected(), coord(2, 0));
+    expect(previewed.phase).toBe("move");
+
+    const refused = chooseAction(previewed, RIFLE.id);
+    expect(refused.lastRejection?.reason).toBe("unsupported");
+    expect(refused.lastRejection?.message).toContain("march");
+    // The preview is not silently folded into the plan.
+    expect(refused.phase).toBe("move");
+    expect(refused.pendingActionId).toBeNull();
+    expect(refused.pendingPath).toEqual(previewed.pendingPath);
+    expect(refused.lastCommands).toEqual([]);
+  });
+
+  it("derives target tiles from the committed tile, not the preview", () => {
+    // From the starting tile (0, 0) this far tile is out of the rifle's reach.
+    const before = chooseAction(selected(), RIFLE.id);
+    expect(before.targetTiles).not.toContainEqual(coord(4, 3));
+
+    // Preview only: no targeting tiles are derived from the previewed path.
+    const previewed = planMove(selected(), coord(2, 0));
+    expect(chooseAction(previewed, RIFLE.id).phase).toBe("move");
+
+    // Commit the march, then aim: reach comes from the soldier's new tile.
+    const committed = commitMarch(previewed);
+    expect(findUnit(committed.battle, ACTOR)?.at).toEqual(coord(2, 0));
+    const aimed = chooseAction(committed, RIFLE.id);
+    expect(aimed.phase).toBe("target");
+    expect(aimed.targetTiles).toContainEqual(coord(4, 3));
+  });
+
   it("refuses an action this battle does not know", () => {
     const controller = chooseAction(selected(), asAbilityId("unknown-action"));
     expect(controller.lastRejection?.reason).toBe("unknown-ability");
@@ -331,7 +362,7 @@ describe("action targeting", () => {
  * ------------------------------------------------------------------------ */
 
 describe("the full turn flow", () => {
-  it("selects, shows the range, moves, acts, targets and confirms in one turn", () => {
+  it("marches, then acts from the committed tile as two separate dispatches", () => {
     let controller = createBattleController(makeBattle());
     expect(controller.phase).toBe("select");
 
@@ -339,10 +370,19 @@ describe("the full turn flow", () => {
     expect(controller.phase).toBe("command");
     expect(controller.moveRange.length).toBeGreaterThan(1);
 
+    // Move: preview, then commit the march on its own (T138).
     controller = planMove(controller, coord(1, 0));
     expect(controller.phase).toBe("move");
     expect(controller.pendingPath?.at(-1)).toEqual(coord(1, 0));
 
+    controller = confirmOrder(controller);
+    expect(controller.lastRejection).toBeNull();
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move"]);
+    expect(controller.phase).toBe("command");
+    expect(controller.selectedUnitId).toBe(ACTOR);
+    expect(findUnit(controller.battle, ACTOR)?.at).toEqual(coord(1, 0));
+
+    // Act: aimed and confirmed from the tile the soldier now occupies.
     controller = chooseAction(controller, RIFLE.id);
     expect(controller.phase).toBe("target");
     expect(controller.targetTiles).toContainEqual(FOE_AT);
@@ -357,16 +397,53 @@ describe("the full turn flow", () => {
     expect(actor?.at).toEqual(coord(1, 0));
     expect(actor?.mp).toBe(20 - RIFLE.mpCost);
 
+    // The action is one `act` command; the march was a separate dispatch, so
+    // the human path never emits `[move, act]` in one batch (T139).
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["act"]);
     const kinds = controller.lastEvents.map((event) => event.kind);
-    expect(kinds).toContain("moved");
+    expect(kinds).not.toContain("moved");
     expect(kinds).toContain("abilityUsed");
     expect(kinds).toContain("abilityResolved");
     expect(kinds).toContain("turnEnded");
-    // The march animates before the action lands.
-    expect(kinds.indexOf("moved")).toBeLessThan(kinds.indexOf("abilityUsed"));
-    // Both halves are real engine commands, and the act closes the turn.
-    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move", "act"]);
     expect(controller.battle.hasMovedThisTurn).toBe(false);
+  });
+
+  it("never bundles a march and an action into one dispatch", () => {
+    const dispatches: string[][] = [];
+    const record = (controller: BattleController): BattleController => {
+      dispatches.push(controller.lastCommands.map((command) => command.kind));
+      return controller;
+    };
+
+    let controller = selectUnit(createBattleController(makeBattle()), ACTOR);
+    controller = planMove(controller, coord(2, 0));
+
+    // Every action intent while the march is previewed is refused without a
+    // dispatch and without staging anything.
+    const refused = [
+      chooseAction(controller, RIFLE.id),
+      chooseAction(controller, ADVANCE.id),
+      act(controller, RIFLE.id, { kind: "unit", unitId: FOE }),
+      chooseTarget(controller, { kind: "self" }),
+    ];
+    for (const intent of refused) {
+      expect(intent.lastRejection).not.toBeNull();
+      expect(intent.lastCommands).toEqual([]);
+      expect(intent.pendingActionId).toBeNull();
+      expect(intent.phase).toBe("move");
+    }
+
+    controller = record(confirmOrder(controller));
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move"]);
+
+    controller = chooseAction(controller, RIFLE.id);
+    controller = chooseTarget(controller, { kind: "unit", unitId: FOE });
+    record(confirmOrder(controller));
+
+    expect(dispatches).toEqual([["move"], ["act"]]);
+    expect(dispatches.some((kinds) => kinds.includes("move") && kinds.includes("act"))).toBe(
+      false,
+    );
   });
 });
 
@@ -379,12 +456,14 @@ describe("per-turn action budget (T127)", () => {
     let controller = createBattleController(makeBattle());
     controller = selectUnit(controller, ACTOR);
     controller = planMove(controller, coord(1, 0));
+    controller = confirmOrder(controller);
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move"]);
     controller = chooseAction(controller, RIFLE.id);
     controller = chooseTarget(controller, { kind: "unit", unitId: FOE });
     controller = confirmOrder(controller);
 
     expect(controller.lastRejection).toBeNull();
-    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move", "act"]);
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["act"]);
     expect(controller.battle.hasMovedThisTurn).toBe(false);
     expect(controller.battle.hasActedThisTurn).toBe(false);
   });
@@ -442,7 +521,6 @@ describe("orders without a target", () => {
 describe("cancel", () => {
   it("steps back through the phases and clears the plan", () => {
     let controller = selected();
-    controller = planMove(controller, coord(2, 0));
     controller = chooseAction(controller, RIFLE.id);
     controller = chooseTarget(controller, { kind: "self" });
     expect(controller.phase).toBe("confirm");
@@ -451,16 +529,24 @@ describe("cancel", () => {
     expect(controller.phase).toBe("target");
 
     controller = cancel(controller);
-    expect(controller.phase).toBe("move");
-    expect(controller.pendingActionId).toBeNull();
-
-    controller = cancel(controller);
     expect(controller.phase).toBe("command");
-    expect(controller.pendingPath).toBeNull();
+    expect(controller.pendingActionId).toBeNull();
 
     controller = cancel(controller);
     expect(controller.phase).toBe("select");
     expect(controller.selectedUnitId).toBeNull();
+  });
+
+  it("backs out of a previewed march without staging its action", () => {
+    let controller = planMove(selected(), coord(2, 0));
+    expect(controller.phase).toBe("move");
+
+    controller = cancel(controller);
+    expect(controller.phase).toBe("command");
+    expect(controller.pendingPath).toBeNull();
+    expect(controller.pendingActionId).toBeNull();
+    expect(controller.lastCommands).toEqual([]);
+    expect(findUnit(controller.battle, ACTOR)?.at).toEqual(coord(0, 0));
   });
 });
 
@@ -491,6 +577,7 @@ describe("cursor, purity and determinism", () => {
     const run = (): string => {
       let controller = selected();
       controller = planMove(controller, coord(1, 0));
+      controller = confirmOrder(controller);
       controller = chooseAction(controller, RIFLE.id);
       controller = chooseTarget(controller, { kind: "unit", unitId: FOE });
       controller = confirmOrder(controller);

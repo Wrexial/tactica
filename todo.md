@@ -1311,7 +1311,7 @@ assertions that currently expect `["move", "wait"]` in
 `tests/unit/battleController.test.ts` and the input ladder tests.
 
 ### T139 — Resolve actions from the committed tile; never bundle move+act
-- status: todo
+- status: done
 - deps: [T138]
 - files: src/app/battleController.ts, src/app/input.ts, tests/unit/battleController.test.ts, tests/unit/input.test.ts
 - verify: npm run test -- --run tests/unit/battleController.test.ts tests/unit/input.test.ts

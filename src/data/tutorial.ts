@@ -93,10 +93,10 @@ export const TUTORIAL_LESSONS: readonly TutorialLesson[] = [
     id: "lesson-fire",
     name: "The Fire",
     description:
-      "An Order resolves after the march and ends the turn. Choose it and aim it before you confirm the whole turn.",
+      "An Order resolves from the tile your soldier has marched to, then ends the turn. Commit the march first, then choose and aim the order.",
     flavour: "The line does not fire by inspiration; it fires by order.",
     objective: "act",
-    coach: "With the march still open, choose an Order and aim it at a hostile picket.",
+    coach: "Commit the march, then choose an Order and aim it at a hostile picket.",
     hint: "Open Orders with O, or click an order in the HUD.",
   },
   {

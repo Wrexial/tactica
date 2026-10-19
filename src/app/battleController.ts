@@ -19,19 +19,27 @@
  *
  * ```
  *   select ──selectUnit──▶ command ──planMove──▶ move
- *                                     │            │
- *                                     └── chooseAction ──▶ target ──chooseTarget──▶ confirm
- *                                                                                       │
- *                                                                                   confirmOrder
- *                                                                                       ▼
- *                                                                                     select
+ *                            │                     │
+ *                            │                     └── confirmOrder ──▶ command (march committed)
+ *                            │
+ *                            └── chooseAction ──▶ target ──chooseTarget──▶ confirm
+ *                                                                             │
+ *                                                                         confirmOrder
+ *                                                                             ▼
+ *                                                                           select
  * ```
  *
  * A unit's Orders Tempo turn is the FFTA **move + act** pair, and the engine
  * now models it natively (T115): a `move` command leaves the actor's turn open,
  * so the player commits the march on its own (T138), stays in `command` for the
- * same soldier, then chooses an action from the committed tile. A passing turn
- * is an explicit `wait` (the End Turn control), never a synthetic move closer.
+ * same soldier, then chooses an action from the committed tile (T139). The
+ * action path is **state-only**: targeting always derives its reach from the
+ * soldier's committed `unit.at`, never from a retained preview path, so a turn
+ * dispatches `["move"]` and then `["act"]`, never `[move, act]` in one batch.
+ * (The engine still understands a folded `ActCommand.move` for AI/replays —
+ * `src/engine/commands.ts`, T124 — the human controller just never builds one.)
+ * A passing turn is an explicit `wait` (the End Turn control), never a
+ * synthetic move closer.
  * The engine owns the turn bookkeeping (declare → charge → resolve → end-turn →
  * advance tempo) and every intent is a replayable command in the log. The
  * engine's per-turn budget (`hasMovedThisTurn` / `hasActedThisTurn`, T127) is
@@ -333,8 +341,9 @@ export function setCursor(controller: BattleController, at: Coord | null): Battl
  * occupied tiles all considered); otherwise the intent is refused with
  * `illegal-move` and the controller is unchanged.
  *
- * When an action is already aimed, planning a move completes the turn plan and
- * moves straight to `confirm`; otherwise the machine sits in `move`.
+ * The machine always sits in `move` until the march is committed or cancelled:
+ * an action can never be staged against a preview, because it must resolve from
+ * the soldier's committed tile (T139).
  */
 export function planMove(controller: BattleController, at: Coord): BattleController {
   if (controller.phase === "finished") return controller;
@@ -369,8 +378,11 @@ export function planMove(controller: BattleController, at: Coord): BattleControl
   const next = clearVerdict(controller);
   return {
     ...next,
-    phase: next.pendingActionId !== null ? "confirm" : "move",
+    phase: "move",
     pendingPath: path,
+    pendingActionId: null,
+    pendingTarget: null,
+    targetTiles: [],
     cursor: { x: at.x, y: at.y },
   };
 }
@@ -379,8 +391,13 @@ export function planMove(controller: BattleController, at: Coord): BattleControl
  * Aim an action from the selected soldier's menu. Its Élan cost is checked
  * immediately (refused with `insufficient-elan`), then the machine enters
  * `target` and exposes {@link BattleController.targetTiles} for the overlay to
- * highlight. Any already-planned march is kept, so move-then-act stays a single
- * turn plan.
+ * highlight.
+ *
+ * Targeting is **state-only** (T139): the reach is computed from the soldier's
+ * current `unit.at`, i.e. the tile it actually stands on. A march that is only
+ * previewed cannot be folded into the action — the player must commit
+ * ({@link commitMarch}) or cancel it first, and the intent is refused with
+ * `unsupported` while the machine is in `move`.
  */
 export function chooseAction(controller: BattleController, abilityId: AbilityId): BattleController {
   if (controller.phase === "finished") return controller;
@@ -389,7 +406,14 @@ export function chooseAction(controller: BattleController, abilityId: AbilityId)
   if (unit === null || !controller.canAct) {
     return withRejection(controller, "not-your-turn", "select the soldier whose turn it is first");
   }
-  if (controller.phase !== "command" && controller.phase !== "move") {
+  if (controller.phase === "move") {
+    return withRejection(
+      controller,
+      "unsupported",
+      "commit or cancel the previewed march before choosing an action",
+    );
+  }
+  if (controller.phase !== "command") {
     return withRejection(controller, "unsupported", "finish the current order before choosing an action");
   }
 
@@ -437,7 +461,9 @@ export function chooseTarget(controller: BattleController, target: Target): Batt
 /**
  * Aim and fire an action in one call: `chooseAction` → `chooseTarget` →
  * `confirmOrder`. A convenience for scripted/test play and the AI; the UI uses
- * the three steps so it can show the targeting overlay.
+ * the three steps so it can show the targeting overlay. Dispatches a single
+ * `act` (T139): any march must already be committed, because the action
+ * resolves from the soldier's current tile.
  */
 export function act(
   controller: BattleController,
@@ -458,8 +484,10 @@ export function act(
 /**
  * Commit the planned order as real engine commands. A previewed march is
  * committed immediately as a single `move` (T138), leaving the same soldier in
- * `command` with its action menu; an action plan is dispatched as a single
- * `act`.
+ * `command` with its action menu; a confirmed action is dispatched as a single
+ * `act` from the tile the soldier currently occupies (T139). The two halves of
+ * a turn are therefore always two separate dispatches — never one bundled
+ * `[move, act]`.
  *
  * On success the machine either keeps the soldier selected after a march or
  * returns to `select` after an action, recording the commands and events for
@@ -549,10 +577,12 @@ function dispatchCommands(
 }
 
 /**
- * Resolve a staged action plan into a replayable command log and dispatch it
- * through `step`. An action-only plan is a single `act`; a plan with a previewed
- * march still folds it into `[move, act]` for scripted/AI play until T139 makes
- * the action path state-only.
+ * Confirm the staged action and dispatch exactly one `act` command through
+ * `step`. The action path is state-only (T139): a previewed march is never
+ * folded in here — {@link commitMarch} is the only way to move on the player
+ * path, and the action resolves from the tile the soldier already occupies.
+ * (The engine still accepts a folded `ActCommand.move` for AI/replay use; the
+ * controller simply never builds one.)
  */
 function dispatchPlan(controller: BattleController): BattleController {
   const actorId = controller.selectedUnitId;
@@ -563,29 +593,26 @@ function dispatchPlan(controller: BattleController): BattleController {
   if (actor === undefined) {
     return withRejection(controller, "unknown-unit", `no soldier "${actorId}" is deployed`);
   }
-
-  const commands: Command[] = [];
   if (controller.pendingPath !== null) {
-    commands.push({
-      kind: "move",
-      unitId: actorId,
-      path: controller.pendingPath.map((at) => ({ x: at.x, y: at.y })),
-    });
+    return withRejection(
+      controller,
+      "unsupported",
+      "commit or cancel the previewed march before confirming an action",
+    );
   }
-  if (controller.pendingActionId !== null) {
-    commands.push({
-      kind: "act",
-      unitId: actorId,
-      abilityId: controller.pendingActionId,
-      target: controller.pendingTarget ?? { kind: "self" },
-    });
-  } else {
+  if (controller.pendingActionId === null) {
     // A march is committed on its own by `commitMarch`; never close it with a
     // synthetic `wait` on the player path (T138).
     return withRejection(controller, "unsupported", "no order is ready to confirm");
   }
 
-  return dispatchCommands(controller, commands);
+  const command: Command = {
+    kind: "act",
+    unitId: actorId,
+    abilityId: controller.pendingActionId,
+    target: controller.pendingTarget ?? { kind: "self" },
+  };
+  return dispatchCommands(controller, [command]);
 }
 
 /* --------------------------------------------------------------------------
@@ -612,25 +639,24 @@ export function faceOrder(controller: BattleController, facing: Facing): BattleC
  * ------------------------------------------------------------------------ */
 
 /**
- * Back out of the current step, one phase at a time: `target` → `move` (or
- * `command`), `move` → `command`, `command` → `select`, `confirm` → `target`
- * (or `move`). A completed order is not undone — use it before confirming.
+ * Back out of the current step, one phase at a time: `target` → `command`,
+ * `move` → `command`, `command` → `select`, `confirm` → `target`. A completed
+ * order is not undone — use it before confirming. A previewed march is never
+ * folded into an action, so backing out of `target` always returns to
+ * `command` (T139).
  */
 export function cancel(controller: BattleController): BattleController {
   switch (controller.phase) {
     case "target":
       return {
         ...clearVerdict(controller),
-        phase: controller.pendingPath !== null ? "move" : "command",
+        phase: "command",
         pendingActionId: null,
         pendingTarget: null,
         targetTiles: [],
       };
     case "confirm":
-      if (controller.pendingActionId !== null) {
-        return { ...clearVerdict(controller), phase: "target", pendingTarget: null };
-      }
-      return { ...clearVerdict(controller), phase: "move" };
+      return { ...clearVerdict(controller), phase: "target", pendingTarget: null };
     case "move":
       return { ...clearVerdict(controller), phase: "command", pendingPath: null };
     case "command":

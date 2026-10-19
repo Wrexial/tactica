@@ -20,7 +20,7 @@ import {
   createTutorialRecruit,
   observeTutorialFacts,
 } from "../../src/app/tutorial";
-import { act, createBattleController, planMove, selectUnit } from "../../src/app/battleController";
+import { act, confirmOrder, createBattleController, planMove, selectUnit } from "../../src/app/battleController";
 import { createDemoBattle } from "../../src/app/demoScenario";
 import { unitTarget } from "../../src/engine/commands";
 import { coord } from "../../src/engine/grid";
@@ -99,10 +99,16 @@ describe("tutorial observation (T110)", () => {
     let controller = createBattleController(createDemoBattle());
     controller = selectUnit(controller, asUnitId("unit-aubry"));
     controller = planMove(controller, coord(4, 4));
-    controller = act(controller, asAbilityId("musket-fire"), unitTarget(asUnitId("unit-hedge")));
 
-    const facts = observeTutorialFacts(EMPTY_TUTORIAL_FACTS, controller);
+    // The march commits on its own (T138), so the observation sees `["move"]`
+    // before the action is aimed from the committed tile (T139).
+    controller = confirmOrder(controller);
+    let facts = observeTutorialFacts(EMPTY_TUTORIAL_FACTS, controller);
     expect(facts.moved).toBe(true);
+    expect(facts.acted).toBe(false);
+
+    controller = act(controller, asAbilityId("musket-fire"), unitTarget(asUnitId("unit-hedge")));
+    facts = observeTutorialFacts(facts, controller);
     expect(facts.acted).toBe(true);
     // The act closed the Orders Tempo turn, so the order advanced.
     expect(facts.tempoAdvanced).toBe(true);
