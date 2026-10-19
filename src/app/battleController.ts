@@ -34,7 +34,9 @@
  * `wait` (FFTA "end turn"), while a plan with only an action is a single `act`.
  * Either way the engine owns the turn bookkeeping (declare → charge → resolve →
  * end-turn → advance tempo) and every intent is a replayable command in the
- * log.
+ * log. The engine's per-turn budget (`hasMovedThisTurn` / `hasActedThisTurn`,
+ * T127) is read here so the overlay never offers a march the engine would
+ * refuse when a partially-spent turn is handed in (e.g. a mid-turn save).
  *
  * ## What the UI gets
  *
@@ -302,7 +304,10 @@ export function selectUnit(controller: BattleController, unitId: UnitId): Battle
     phase: "command",
     selectedUnitId: unitId,
     canAct,
-    moveRange: canAct ? moveRangeFor(controller.battle, unit) : [],
+    // A turn whose march is already spent can still act, but must not be
+    // offered a second move (engine budget, T127).
+    moveRange:
+      canAct && !controller.battle.hasMovedThisTurn ? moveRangeFor(controller.battle, unit) : [],
     actions: canAct ? actionOptionsFor(controller.battle, unit) : [],
     pendingPath: null,
     pendingActionId: null,
@@ -337,6 +342,9 @@ export function planMove(controller: BattleController, at: Coord): BattleControl
   const unit = selectedActor(controller);
   if (unit === null || !controller.canAct) {
     return withRejection(controller, "not-your-turn", "select the soldier whose turn it is first");
+  }
+  if (controller.battle.hasMovedThisTurn) {
+    return withRejection(controller, "already-moved", `${unit.name} has already marched this turn`);
   }
   if (controller.phase !== "command" && controller.phase !== "move") {
     return withRejection(controller, "unsupported", "finish the current order before planning a move");

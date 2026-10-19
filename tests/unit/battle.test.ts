@@ -16,6 +16,7 @@ import {
 import { buildActionCatalogue, type ActionSpec } from "../../src/engine/actions/resolve";
 import type { Command } from "../../src/engine/commands";
 import { asAbilityId, asGuardSortieId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
+import { deserializeBattleState, serializeBattleState } from "../../src/engine/serialize";
 import { createTerrainMap } from "../../src/engine/terrain";
 import {
   TEMPO_THRESHOLD,
@@ -855,6 +856,131 @@ describe("step — folded move-and-act turn (T124)", () => {
       );
     };
     expect(play()).toBe(play());
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T127 — per-turn action budget (`hasActedThisTurn`)
+ *
+ * Peer lesson L6: the FFTA turn is Move + Act, each once. `hasMovedThisTurn`
+ * already tracked the march; these tests pin the second half of the budget so
+ * free/extra actions have somewhere to hook in later.
+ * ------------------------------------------------------------------------ */
+
+describe("step — per-turn action budget (T127)", () => {
+  it("starts a turn with both slots unspent", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    expect(state.hasMovedThisTurn).toBe(false);
+    expect(state.hasActedThisTurn).toBe(false);
+  });
+
+  it("records the move slot on a march and the act slot on an act", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+
+    // A march spends the move slot only and leaves the turn open (T115).
+    const moved = applyCommand(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    });
+    expect(moved.rejection).toBeUndefined();
+    expect(moved.state.hasMovedThisTurn).toBe(true);
+    expect(moved.state.hasActedThisTurn).toBe(false);
+    expect(moved.state.currentActorId).toBe(actor);
+
+    // The act spends the act slot. `applyCommand` has not advanced the clock
+    // yet, so both slots are visible on the completed turn.
+    const acted = applyCommand(moved.state, actCommand(moved.state));
+    expect(acted.rejection).toBeUndefined();
+    expect(acted.state.hasMovedThisTurn).toBe(true);
+    expect(acted.state.hasActedThisTurn).toBe(true);
+    expect(acted.state.currentActorId).toBeNull();
+
+    // Advancing opens the next soldier's turn with a fresh budget.
+    const advanced = advanceToDecision(acted.state);
+    expect(advanced.state.hasMovedThisTurn).toBe(false);
+    expect(advanced.state.hasActedThisTurn).toBe(false);
+  });
+
+  it("does not consume the act slot for wait, face or hold", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+    const moved = applyCommand(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    }).state;
+
+    const closingOrders: Command[] = [
+      { kind: "wait", unitId: actor },
+      { kind: "face", unitId: actor, facing: "east" },
+      { kind: "hold", unitId: actor },
+    ];
+    for (const command of closingOrders) {
+      const applied = applyCommand(moved, command);
+      expect(applied.rejection).toBeUndefined();
+      // The move stays recorded, but the free order never takes the act slot.
+      expect(applied.state.hasMovedThisTurn).toBe(true);
+      expect(applied.state.hasActedThisTurn).toBe(false);
+    }
+  });
+
+  it("resets both flags exactly once, when the turn advances", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+    const moved = applyCommand(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    }).state;
+
+    // A free move leaves the turn open: advancing is idempotent and must keep
+    // the in-progress budget intact (the same object is returned).
+    const stillOpen = advanceToDecision(moved);
+    expect(stillOpen.state).toBe(moved);
+    expect(stillOpen.state.hasMovedThisTurn).toBe(true);
+    expect(stillOpen.state.hasActedThisTurn).toBe(false);
+
+    // Closing the turn does not reset them either; only the advance does.
+    const closed = applyCommand(moved, wait(moved));
+    expect(closed.state.hasMovedThisTurn).toBe(true);
+    expect(closed.state.hasActedThisTurn).toBe(false);
+
+    const advanced = advanceToDecision(closed.state);
+    expect(advanced.state.hasMovedThisTurn).toBe(false);
+    expect(advanced.state.hasActedThisTurn).toBe(false);
+    expect(advanced.state.currentActorId).not.toBeNull();
+  });
+
+  it("marks a folded act as spending both slots", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+
+    const applied = applyCommand(state, {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(2, 1), order: "before" },
+    });
+    expect(applied.rejection).toBeUndefined();
+    expect(applied.state.hasMovedThisTurn).toBe(true);
+    expect(applied.state.hasActedThisTurn).toBe(true);
+    expect(findUnit(applied.state, actor)?.at).toEqual(coord(2, 1));
+  });
+
+  it("survives a save/load round-trip", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+    const moved = applyCommand(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    }).state;
+    expect(moved.hasActedThisTurn).toBe(false);
+    const json = serializeBattleState(moved);
+    expect(deserializeBattleState(json)).toEqual(moved);
   });
 });
 

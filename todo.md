@@ -1094,7 +1094,7 @@ Unseen Hand writes the order down (hit → reaction trigger → reaction swing �
 `tests/unit/determinism.test.ts`.
 
 ### T127 — Per-turn action budget (`hasActedThisTurn`)
-- status: todo
+- status: done
 - deps: [T115]
 - files: src/engine/battle.ts, src/app/battleController.ts, tests/unit/battle.test.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/battleController.test.ts

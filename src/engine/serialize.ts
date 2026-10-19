@@ -458,6 +458,7 @@ export function isBattleState(value: unknown): value is BattleState {
   if (value.outcome !== null && !isOneOf(BATTLE_OUTCOMES, value.outcome)) return false;
   if (value.objective !== null && !isObjectiveTracker(value.objective)) return false;
   if (typeof value.hasMovedThisTurn !== "boolean") return false;
+  if (typeof value.hasActedThisTurn !== "boolean") return false;
   if (typeof value.started !== "boolean") return false;
 
   const grid = value.map.grid;
@@ -584,6 +585,7 @@ export function parseBattleState(value: unknown, label = "battle state"): Battle
     pendingActions: value.pendingActions.map(toPendingAction),
     currentActorId: value.currentActorId,
     hasMovedThisTurn: value.hasMovedThisTurn,
+    hasActedThisTurn: value.hasActedThisTurn,
     phase: value.phase,
     outcome: value.outcome,
     objective:

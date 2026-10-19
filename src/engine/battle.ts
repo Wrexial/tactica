@@ -33,7 +33,11 @@
  * **Wait / Face / Hold** commands via `./actions/basic.ts`. T115 makes the
  * turn **native move-and-act**: a `move` leaves the actor's Orders Tempo turn
  * open (recording {@link BattleState.hasMovedThisTurn}), so an `act`, `wait`
- * or `hold` closes it without the caller composing the free move by hand. T124
+ * or `hold` closes it without the caller composing the free move by hand. T127
+ * tracks the second half of that budget too
+ * ({@link BattleState.hasActedThisTurn}), so the engine knows which slot a
+ * closing order spent: an `act` uses the act slot, while `wait` / `face` /
+ * `hold` are free and leave it untouched. T124
  * (peer lesson L3) additionally lets an `act` fold that free move into itself
  * via an optional `move { to, order }` clause, so a full move-and-act turn can
  * be one atomically validated command that settles Orders Tempo exactly once;
@@ -210,6 +214,16 @@ export interface BattleState {
    * and is cleared when the turn ends.
    */
   readonly hasMovedThisTurn: boolean;
+  /**
+   * Whether the current actor has already spent this turn's **Act**. An `act`
+   * command — standalone or folded (T124) — sets it; the free orders `wait`,
+   * `face` and `hold` do **not**, so they never consume the act slot (T127,
+   * peer lesson L6). This makes the per-turn move/act budget explicit instead
+   * of implied by "the turn ended", which is what free actions, Volleys and
+   * reaction-driven extra actions will read. Cleared with
+   * {@link hasMovedThisTurn} when the turn advances.
+   */
+  readonly hasActedThisTurn: boolean;
   /** `active` while fighting; `finished` once a win/lose rule fires (T031). */
   readonly phase: BattlePhase;
   /** Set when {@link phase} is `finished`; otherwise `null`. */
@@ -366,6 +380,7 @@ export function createBattle(seed: Seed, setup: BattleSetup): BattleState {
     pendingActions: [],
     currentActorId: null,
     hasMovedThisTurn: false,
+    hasActedThisTurn: false,
     phase: "active",
     outcome: null,
     objective:
@@ -624,8 +639,8 @@ function advancePastCasualties(state: BattleState, tempo: OrdersTempo): AdvanceF
  * turn (`docs/wiki/pages/Charge_time.md`). Any charges that elapse while the
  * clock runs are returned so the caller can resolve them (`next.resolved`).
  *
- * The next actor starts a fresh turn, so `hasMovedThisTurn` is cleared here —
- * the only place the flag is reset.
+ * The next actor starts a fresh turn, so both per-turn flags are cleared here —
+ * advancing the turn is the only thing that resets them.
  */
 function endTurn(state: BattleState, actorId: UnitId): EndTurnResult {
   const advanced = advancePastCasualties(state, spendTurn(state.tempo, actorId));
@@ -635,6 +650,7 @@ function endTurn(state: BattleState, actorId: UnitId): EndTurnResult {
       tempo: advanced.tempo,
       currentActorId: advanced.actorId,
       hasMovedThisTurn: false,
+      hasActedThisTurn: false,
     },
     actorId: advanced.actorId,
     resolved: advanced.resolved,
@@ -805,19 +821,27 @@ export function applyCommand(state: BattleState, command: Command): BattleStepRe
   if (!commandEndsTurn(command.kind)) {
     // A native free move leaves the actor's Orders Tempo turn open: record the
     // spent march and return, so an `act` / `wait` / `hold` closes the turn and
-    // the move stays a real command in the replay log (T115).
+    // the move stays a real command in the replay log (T115). The act slot is
+    // untouched by a march.
     return { state: { ...applied, hasMovedThisTurn: true }, events };
   }
 
   events.push({ kind: "turnEnded", tick, unitId: actor.id });
-  // Spend the acting soldier's charge here; clearing `currentActorId` marks the
-  // state as mid-advance so `advanceToDecision` knows to surface the next actor.
+  // Record which slot the closing order spent: an `act` uses the act slot,
+  // while `wait` / `face` / `hold` are free and leave it alone (T127). The
+  // flags are not reset here — `advanceToDecision` clears both exactly once
+  // when it opens the next soldier's turn, so a caller can still inspect the
+  // completed turn's budget in the applied state.
   return {
     state: {
       ...applied,
+      hasMovedThisTurn:
+        applied.hasMovedThisTurn || (command.kind === "act" && command.move !== undefined),
+      hasActedThisTurn: command.kind === "act",
+      // Spend the acting soldier's charge; clearing `currentActorId` marks the
+      // state as mid-advance so `advanceToDecision` surfaces the next actor.
       tempo: spendTurn(applied.tempo, actor.id),
       currentActorId: null,
-      hasMovedThisTurn: false,
     },
     events,
   };
@@ -877,6 +901,7 @@ export function advanceToDecision(state: BattleState): BattleAdvanceResult {
     tempo: advanced.tempo,
     currentActorId: advanced.actorId,
     hasMovedThisTurn: false,
+    hasActedThisTurn: false,
   };
 
   working = resolveCompletedCharges(working, resolved, events);

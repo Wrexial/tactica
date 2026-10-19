@@ -17,7 +17,7 @@ import {
   waitOrder,
   type BattleController,
 } from "../../src/app/battleController";
-import { createBattle, findUnit, type BattleState } from "../../src/engine/battle";
+import { createBattle, findUnit, step, type BattleState } from "../../src/engine/battle";
 import type { ActionSpec } from "../../src/engine/actions/resolve";
 import { coord, type Coord } from "../../src/engine/grid";
 import { asAbilityId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
@@ -349,6 +349,44 @@ describe("the full turn flow", () => {
     // Both halves are real engine commands, and the act closes the turn.
     expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move", "act"]);
     expect(controller.battle.hasMovedThisTurn).toBe(false);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T127 — per-turn action budget
+ * ------------------------------------------------------------------------ */
+
+describe("per-turn action budget (T127)", () => {
+  it("commits the two-step move-and-act flow and clears the budget", () => {
+    let controller = createBattleController(makeBattle());
+    controller = selectUnit(controller, ACTOR);
+    controller = planMove(controller, coord(1, 0));
+    controller = chooseAction(controller, RIFLE.id);
+    controller = chooseTarget(controller, { kind: "unit", unitId: FOE });
+    controller = confirmOrder(controller);
+
+    expect(controller.lastRejection).toBeNull();
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move", "act"]);
+    expect(controller.battle.hasMovedThisTurn).toBe(false);
+    expect(controller.battle.hasActedThisTurn).toBe(false);
+  });
+
+  it("hides the move range and refuses a second march once the move is spent", () => {
+    const battle = makeBattle();
+    const actor = battle.currentActorId as UnitId;
+    // A native move leaves the turn open (T115); hand that mid-turn state to a
+    // fresh controller, as a save/load would.
+    const moved = step(battle, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(0, 0), coord(1, 0)],
+    }).state;
+    expect(moved.hasMovedThisTurn).toBe(true);
+
+    const controller = selectUnit(createBattleController(moved), actor);
+    expect(controller.canAct).toBe(true);
+    expect(controller.moveRange).toEqual([]);
+    expect(planMove(controller, coord(2, 0)).lastRejection?.reason).toBe("already-moved");
   });
 });
 
