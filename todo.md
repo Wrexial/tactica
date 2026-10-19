@@ -1225,7 +1225,7 @@ next to the aimed-at soldier using T133's projector, keeping the existing
 forecast testids so `forecast.spec.ts` stays the contract.
 
 ### T136 — World-space charge pip and status plate
-- status: todo
+- status: done
 - deps: []
 - files: src/render/units.ts, src/render/scene.ts, tests/unit/units.test.ts
 - verify: npm run test -- --run tests/unit/units.test.ts

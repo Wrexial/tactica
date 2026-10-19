@@ -345,8 +345,9 @@ export const TERRAIN_FRAME_ORIGIN_X = TERRAIN_FRAME_WIDTH / 2; // 64
 export const TERRAIN_FRAME_ORIGIN_Y = 40;
 
 /**
- * Unit frames hold the figure, its ground glow, the HP / Élan bars, the Honour
- * pips and the condition icons (see `unitDrawOps`). The soldier's feet sit at
+ * Unit frames hold the figure, its ground glow, the HP / Élan bars, the Orders
+ * Tempo charge meter, the Honour pips and the condition icons (see
+ * `unitDrawOps`). The soldier's feet sit at
  * `(originX, originY)`; bars and icons extend upward into the top margin.
  * Status values are **not** part of the baked frame — a soldier changes HP
  * every exchange — so callers bake the figure and overdraw the status readout,

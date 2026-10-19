@@ -23,11 +23,17 @@
  *   cavalry a raised sabre, artillery a linstock, medics a red cross, command a
  *   sash, engineers tools (mapping §3).
  *
- * Status is drawn above the figure: an **Élan** bar (morale, decision D4), an
- * **HP** bar, an **Honour** pip row (10 pips, mapping §5) and a row of
- * **condition** icons coloured by condition kind (mapping §8). Facing is shown
- * by a ground chevron pointing toward the unit's front — very Napoleonic
- * flank/rear play (mapping §12).
+ * Status is drawn above the figure: an **HP** bar, an **Élan** bar (morale,
+ * decision D4), an **Orders Tempo** charge meter (mapping §12, T136), an
+ * **Honour** pip row (10 pips, mapping §5) and a row of **condition** icons
+ * coloured by condition kind (mapping §8). Facing is shown by a ground chevron
+ * pointing toward the unit's front — very Napoleonic flank/rear play
+ * (mapping §12).
+ *
+ * The Orders Tempo meter is **optional**: the caller supplies the soldier's
+ * current charge and the acting threshold (read from the engine's scheduler via
+ * `chargeOf`, T019) so the world plate and the Orders Tempo rail (T131) agree on
+ * one source of truth. Absent a reading, no meter is drawn.
  *
  * Contracts (`agents.md` §2, §7, §9; `src/render`):
  * - **Pure and deterministic.** No `Math.random`, no clock, no DOM. The same
@@ -476,6 +482,15 @@ export const HP_COLOR_LOW = 0xc4432f;
 /** Élan colours: steady blue when fed, alarming red when close to breaking. */
 export const ELAN_COLOR_HIGH = 0x4f9ad4;
 export const ELAN_COLOR_LOW = 0xc4432f;
+/**
+ * Geometry for the Orders Tempo charge meter, relative to the figure's feet.
+ * Sits just below the Élan bar so a soldier's pools read together (T136).
+ */
+export const CHARGE_BAR = { x: -18, y: -53, width: 36, height: 3 } as const;
+/** Charge meter fill while the soldier is still accumulating tempo. */
+export const CHARGE_COLOR_CHARGING = 0xd4b34a;
+/** Charge meter fill once the soldier is ready to act (`charge >= threshold`). */
+export const CHARGE_COLOR_READY = 0xf0c74a;
 
 /** A status bar value with its geometry and resolved fill colour. */
 export interface StatusBar {
@@ -518,6 +533,40 @@ export function hpBar(unit: Unit): StatusBar {
 export function elanBar(unit: Unit): StatusBar {
   const ratio = clamp01(unit.mp / unit.stats.mp);
   return { value: unit.mp, max: unit.stats.mp, ratio, color: elanColor(ratio), ...ELAN_BAR };
+}
+
+/**
+ * A reading of one soldier's accumulated Orders Tempo charge and the threshold
+ * that makes them ready to act. Both numbers come straight from the engine's
+ * scheduler (`chargeOf` + `OrdersTempo.threshold`, T019); the renderer only
+ * paints them, so the world plate and the T131 rail never disagree.
+ */
+export interface TempoReading {
+  readonly charge: number;
+  readonly threshold: number;
+}
+
+/** `charge / threshold` clamped to `[0, 1]`; a non-positive threshold reads `0`. */
+export function chargeRatio(charge: number, threshold: number): number {
+  if (!Number.isFinite(threshold) || threshold <= 0) return 0;
+  return clamp01(charge / threshold);
+}
+
+/** Resolve the charge meter's colour from its ratio: bright gold when ready. */
+export function chargeColor(ratio: number): number {
+  return ratio >= 1 ? CHARGE_COLOR_READY : CHARGE_COLOR_CHARGING;
+}
+
+/** The soldier's Orders Tempo charge meter. */
+export function chargeBar(tempo: TempoReading): StatusBar {
+  const ratio = chargeRatio(tempo.charge, tempo.threshold);
+  return {
+    value: tempo.charge,
+    max: tempo.threshold,
+    ratio,
+    color: chargeColor(ratio),
+    ...CHARGE_BAR,
+  };
 }
 
 /* --------------------------------------------------------------------------
@@ -623,17 +672,28 @@ export interface UnitPresentation {
   readonly figure: SoldierFigure;
   readonly hp: StatusBar;
   readonly elan: StatusBar;
+  /**
+   * Orders Tempo charge meter, or `null` when the caller supplied no tempo
+   * reading. Sourced from the engine's scheduler, never recomputed here (T136).
+   */
+  readonly charge: StatusBar | null;
   /** Clamped Honour pip count (`0..HONOUR_MAX`). */
   readonly honour: number;
   readonly conditions: readonly ConditionIcon[];
 }
 
-/** Build the full presentation model for a unit. */
-export function unitPresentation(unit: Unit): UnitPresentation {
+/**
+ * Build the full presentation model for a unit. `tempo` is the optional
+ * Orders Tempo reading (current charge + threshold) the caller obtains from the
+ * engine; when omitted, {@link UnitPresentation.charge} is `null` and the meter
+ * is not drawn.
+ */
+export function unitPresentation(unit: Unit, tempo?: TempoReading): UnitPresentation {
   return {
     figure: soldierFigure({ power: unit.power, postId: unit.postId, facing: unit.facing }),
     hp: hpBar(unit),
     elan: elanBar(unit),
+    charge: tempo === undefined ? null : chargeBar(tempo),
     honour: honourPips(unit.judgePoints),
     conditions: conditionIcons(unit.conditions),
   };
@@ -748,17 +808,21 @@ function conditionOps(icons: readonly ConditionIcon[]): UnitDrawOp[] {
 
 /**
  * Every draw op for one unit, relative to its tile's top-face centre:
- * the side ground-glow, the soldier, then the HP / Élan bars, Honour pips and
- * condition icons stacked above the head. This is the single entry point
- * `scene.ts` uses to paint a unit.
+ * the side ground-glow, the soldier, then the HP / Élan bars, the optional
+ * Orders Tempo charge meter, Honour pips and condition icons stacked above the
+ * head. This is the single entry point `scene.ts` uses to paint a unit.
+ *
+ * `tempo` is the optional engine reading for the charge meter (T136); pass it
+ * to paint the same clock the Orders Tempo rail shows.
  */
-export function unitDrawOps(unit: Unit): readonly UnitDrawOp[] {
-  const presentation = unitPresentation(unit);
+export function unitDrawOps(unit: Unit, tempo?: TempoReading): readonly UnitDrawOp[] {
+  const presentation = unitPresentation(unit, tempo);
   return [
     ...groundOps(unit.side),
     ...presentation.figure.ops,
     ...barOps(presentation.hp),
     ...barOps(presentation.elan),
+    ...(presentation.charge === null ? [] : barOps(presentation.charge)),
     ...honourOps(presentation.honour),
     ...conditionOps(presentation.conditions),
   ];

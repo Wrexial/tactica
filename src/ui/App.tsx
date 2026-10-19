@@ -494,7 +494,7 @@ export function App() {
     const map = controller.battle.map;
     const units = controller.battle.units;
     const unitById = new Map(units.map((unit) => [unit.id, unit] as const));
-    scene.setUnits(units);
+    scene.setUnits(units, controller.battle.tempo);
     scene.overlay.setDangerZone(targeting.danger, map);
     scene.overlay.setMoveRange(
       controller.moveRange.map((tile) => tile.at),

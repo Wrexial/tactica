@@ -28,6 +28,7 @@ import {
   type TerrainMap,
   type TerrainType,
 } from "../engine/terrain";
+import { chargeOf, type OrdersTempo } from "../engine/turn";
 import type { Unit } from "../engine/unit";
 import {
   ANIMATION_TICK_MS,
@@ -37,7 +38,7 @@ import {
 } from "./animations";
 import { projectPoint, worldToScreen } from "./iso";
 import { createOverlay, type BattleOverlay } from "./overlay";
-import { unitDrawOps, type UnitDrawOp } from "./units";
+import { unitDrawOps, type TempoReading, type UnitDrawOp } from "./units";
 import {
   ELEVATION_STEP,
   TILE_HEIGHT,
@@ -78,8 +79,12 @@ export interface Scene {
    * Replace the soldiers drawn on the field. The scene reads the units only;
    * it never mutates engine state (`agents.md` §7). Passing an empty list
    * clears the field.
+   *
+   * `tempo` is the battle's Orders Tempo scheduler (T136). When supplied, each
+   * soldier's world plate also paints their current charge read straight from
+   * `chargeOf` — the same clock the T131 rail shows. Omit it to draw no meter.
    */
-  setUnits(units: readonly Unit[]): void;
+  setUnits(units: readonly Unit[], tempo?: OrdersTempo): void;
   /**
    * Queue animation cues built from an engine event stream (T082). The cues come
    * only from `render/animations.ts`, i.e. from engine events, never from a
@@ -214,6 +219,8 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
   const unitCenters = new Map<UnitId, ScreenPoint>();
   let activeCues: ActiveCue[] = [];
   let units: readonly Unit[] = [];
+  /** Orders Tempo scheduler backing the world-space charge meter (T136). */
+  let orderTempo: OrdersTempo | undefined;
   let camera: Camera = createCamera();
   let destroyed = false;
   let appReady = false;
@@ -296,6 +303,16 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
     applyCamera();
   };
 
+  /**
+   * The charge meter reading for `unitId`, or `undefined` when no scheduler was
+   * supplied. The numbers come straight from the engine (`chargeOf`), so the
+   * world plate and the Orders Tempo rail share one source of truth (T136).
+   */
+  const tempoFor = (unitId: UnitId): TempoReading | undefined =>
+    orderTempo === undefined
+      ? undefined
+      : { charge: chargeOf(orderTempo, unitId) ?? 0, threshold: orderTempo.threshold };
+
   /** Repaint every soldier, back-to-front so nearer units overlap farther ones. */
   const drawUnits = (): void => {
     for (const child of unitLayer.removeChildren()) child.destroy();
@@ -309,7 +326,7 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
     for (const unit of ordered) {
       const center = worldToScreen(unit.at.x, unit.at.y, heightAt(map, unit.at));
       const graphics = new Graphics();
-      drawUnitOps(graphics, unitDrawOps(unit), center);
+      drawUnitOps(graphics, unitDrawOps(unit, tempoFor(unit.id)), center);
       unitGraphics.set(unit.id, graphics);
       unitCenters.set(unit.id, center);
       unitLayer.addChild(graphics);
@@ -557,8 +574,9 @@ export function createScene(canvas: HTMLCanvasElement, map: TerrainMap = createD
     project(at: Coord): ScreenPoint {
       return projectPoint(at.x, at.y, heightAt(map, at), camera);
     },
-    setUnits(next: readonly Unit[]): void {
+    setUnits(next: readonly Unit[], tempo?: OrdersTempo): void {
       units = next;
+      orderTempo = tempo;
       drawUnits();
     },
     playAnimations(animations: readonly BattleAnimation[]): void {

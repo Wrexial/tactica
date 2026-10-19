@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { coord, FACINGS, type Facing } from "../../src/engine/grid";
 import { asConditionId, asPostId, asUnitId } from "../../src/engine/ids";
+import { chargeOf, createOrdersTempo } from "../../src/engine/turn";
 import {
   createUnit,
   HONOUR_MAX,
@@ -11,6 +12,9 @@ import {
 } from "../../src/engine/unit";
 import type { PowerKey, StatBlock } from "../../src/data/schema";
 import {
+  CHARGE_BAR,
+  CHARGE_COLOR_CHARGING,
+  CHARGE_COLOR_READY,
   CONDITION_ICON_FALLBACK,
   CONDITION_KIND_COLORS,
   ELAN_COLOR_HIGH,
@@ -21,6 +25,9 @@ import {
   POWER_UNIFORMS,
   SIDE_COLORS,
   abbreviate,
+  chargeBar,
+  chargeColor,
+  chargeRatio,
   conditionIcon,
   conditionIcons,
   elanBar,
@@ -204,6 +211,44 @@ describe("HP and Élan bars", () => {
   });
 });
 
+describe("Orders Tempo charge meter (T136)", () => {
+  it("measures charge against the threshold and clamps once ready", () => {
+    const charging = chargeBar({ charge: 25, threshold: 100 });
+    expect(charging.value).toBe(25);
+    expect(charging.max).toBe(100);
+    expect(charging.ratio).toBeCloseTo(0.25, 6);
+    expect(charging.color).toBe(CHARGE_COLOR_CHARGING);
+    expect(charging.x).toBe(CHARGE_BAR.x);
+    expect(charging.y).toBe(CHARGE_BAR.y);
+
+    // A ready soldier may carry overshoot; the bar fills and brightens.
+    const ready = chargeBar({ charge: 140, threshold: 100 });
+    expect(ready.ratio).toBe(1);
+    expect(ready.color).toBe(CHARGE_COLOR_READY);
+    expect(chargeColor(1)).toBe(CHARGE_COLOR_READY);
+  });
+
+  it("never divides by a non-positive threshold", () => {
+    expect(chargeRatio(5, 0)).toBe(0);
+    expect(chargeRatio(Number.NaN, 100)).toBe(0);
+    expect(chargeRatio(50, -10)).toBe(0);
+  });
+
+  it("reads the same charge the engine scheduler holds", () => {
+    const unitId = asUnitId("unit-test");
+    const tempo = createOrdersTempo([unitId], {
+      threshold: 100,
+      initialCharge: { [unitId]: 40 },
+    });
+    const charge = chargeOf(tempo, unitId) ?? 0;
+    const bar = chargeBar({ charge, threshold: tempo.threshold });
+
+    expect(charge).toBe(40);
+    expect(bar.value).toBe(chargeOf(tempo, unitId));
+    expect(bar.ratio).toBeCloseTo(0.4, 6);
+  });
+});
+
 describe("Honour pips", () => {
   it("clamps into the pip range", () => {
     expect(honourPips(-5)).toBe(0);
@@ -261,6 +306,17 @@ describe("unitPresentation", () => {
     expect(presentation.honour).toBe(6);
     expect(presentation.conditions).toHaveLength(1);
     expect(presentation.conditions[0].id).toBe("poison");
+    // No tempo reading supplied, so no charge meter is drawn.
+    expect(presentation.charge).toBeNull();
+  });
+
+  it("carries the optional charge meter only when tempo is supplied", () => {
+    const unit = makeUnit();
+    expect(unitPresentation(unit).charge).toBeNull();
+
+    const withTempo = unitPresentation(unit, { charge: 60, threshold: 100 });
+    expect(withTempo.charge?.ratio).toBeCloseTo(0.6, 6);
+    expect(withTempo.charge?.color).toBe(CHARGE_COLOR_CHARGING);
   });
 });
 
@@ -272,6 +328,19 @@ describe("unitDrawOps", () => {
     expect(ops.some((op) => op.kind === "poly")).toBe(true);
     // One backdrop + fill per bar (4) plus one rect per Honour pip (10).
     expect(ops.filter((op) => op.kind === "rect")).toHaveLength(14);
+  });
+
+  it("adds the Orders Tempo charge meter when a tempo reading is supplied", () => {
+    const withoutTempo = unitDrawOps(makeUnit({ judgePoints: 3 }));
+    const withTempo = unitDrawOps(makeUnit({ judgePoints: 3 }), { charge: 50, threshold: 100 });
+    const rects = (ops: ReturnType<typeof unitDrawOps>): number =>
+      ops.filter((op) => op.kind === "rect").length;
+
+    // The meter contributes one backdrop and one proportional fill rect.
+    expect(rects(withTempo)).toBe(rects(withoutTempo) + 2);
+    expect(withTempo.some((op) => op.kind === "rect" && op.color === CHARGE_COLOR_CHARGING)).toBe(
+      true,
+    );
   });
 
   it("is deterministic for the same unit", () => {
