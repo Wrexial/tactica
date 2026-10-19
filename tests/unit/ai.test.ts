@@ -13,6 +13,12 @@ import {
   type UtilityAbilitySpec,
 } from "../../src/ai/utility";
 import {
+  NAIVE_INTENTS,
+  NaiveAiError,
+  chooseNaiveCommand,
+  chooseNaiveTurn,
+} from "../../src/ai/naive";
+import {
   ELAN_ROUTED_PENALTY,
   ELAN_SHAKEN_PENALTY,
   classifyAbility,
@@ -1334,5 +1340,178 @@ describe("difficulty tiers (T099)", () => {
     const perDecision = (performance.now() - start) / runs;
 
     expect(perDecision).toBeLessThan(DECISION_BUDGET_MS);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T132 — Naive deterministic AI fallback
+ *
+ * Pins the small, inspectable policy the peer review asked for (L15): provoke,
+ * best strike in range, weakest reachable foe, advance, wait. It consumes no
+ * randomness, never mutates the battle, and emits the same `[move?] + act|wait`
+ * command shapes the utility AI does.
+ * ------------------------------------------------------------------------ */
+
+const PROVOKER_ID = asUnitId("unit-provoker");
+
+describe("naive Ai", () => {
+  it("returns a fully deterministic plan and never mutates the battle", () => {
+    const battle = makeBattle([
+      makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+      makeUnit(WEAK_ID, coord(2, 0), "enemy", ENEMY_STATS, { hp: 10 }),
+    ]);
+    const before = JSON.stringify(battle);
+
+    const first = chooseNaiveTurn(battle, ACTOR_ID);
+    const second = chooseNaiveTurn(battle, ACTOR_ID);
+    expect(second).toEqual(first);
+    expect(JSON.stringify(battle)).toBe(before);
+  });
+
+  it("offers only the documented intents", () => {
+    expect(NAIVE_INTENTS).toEqual(["attack", "advance", "wait"]);
+  });
+
+  it("strikes the provoker when one is given", () => {
+    const battle = makeBattle([
+      makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+      makeUnit(WEAK_ID, coord(2, 0), "enemy", ENEMY_STATS, { hp: 10 }),
+      makeUnit(PROVOKER_ID, coord(2, 2), "enemy", ENEMY_STATS),
+    ]);
+
+    const plan = chooseNaiveTurn(battle, ACTOR_ID, { provokedBy: PROVOKER_ID });
+    expect(plan.intent).toBe("attack");
+    expect(plan.target).toMatchObject({ kind: "unit", unitId: PROVOKER_ID });
+  });
+
+  it("infers the provoker from a condition's source", () => {
+    const battle = makeBattle([
+      makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS, {
+        conditions: [{ conditionId: asConditionId("pinned"), duration: 2, sourceId: WEAK_ID }],
+      }),
+      makeUnit(WEAK_ID, coord(2, 0), "enemy", ENEMY_STATS),
+      makeUnit(TOUGH_ID, coord(2, 2), "enemy", ENEMY_STATS),
+    ]);
+
+    const plan = chooseNaiveTurn(battle, ACTOR_ID);
+    expect(plan.target).toMatchObject({ kind: "unit", unitId: WEAK_ID });
+  });
+
+  it("uses the best affordable action already in range before moving", () => {
+    const battle = makeBattle([
+      makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+      makeUnit(WEAK_ID, coord(2, 0), "enemy", ENEMY_STATS, { hp: 10 }),
+      makeUnit(TOUGH_ID, coord(2, 2), "enemy", ENEMY_STATS, { hp: 50 }),
+    ]);
+
+    const plan = chooseNaiveTurn(battle, ACTOR_ID);
+    expect(plan.intent).toBe("attack");
+    expect(plan.moveCost).toBe(0);
+    expect(plan.commands.map((command) => command.kind)).toEqual(["act"]);
+    // Lethal first, then the weakest of the two.
+    expect(plan.target).toMatchObject({ kind: "unit", unitId: WEAK_ID });
+  });
+
+  it("marches to the weakest reachable foe when nobody is in reach", () => {
+    const battle = makeBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(TOUGH_ID, coord(2, 0), "enemy", ENEMY_STATS, { hp: 50 }),
+        makeUnit(WEAK_ID, coord(2, 2), "enemy", ENEMY_STATS, { hp: 10 }),
+      ],
+      [BAYONET],
+    );
+
+    const plan = chooseNaiveTurn(battle, ACTOR_ID);
+    expect(plan.intent).toBe("attack");
+    expect(plan.moveCost).toBeGreaterThan(0);
+    expect(plan.commands.map((command) => command.kind)).toEqual(["move", "act"]);
+    expect(plan.target).toMatchObject({ kind: "unit", unitId: WEAK_ID });
+  });
+
+  it("advances toward the nearest foe when no order can reach", () => {
+    const battle = makeBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(FAR_ID, coord(7, 7), "enemy", ENEMY_STATS),
+      ],
+      [BAYONET],
+    );
+
+    const plan = chooseNaiveTurn(battle, ACTOR_ID);
+    expect(plan.intent).toBe("advance");
+    expect(plan.abilityId).toBeNull();
+    expect(plan.commands.map((command) => command.kind)).toEqual(["move", "wait"]);
+    expect(plan.destination).not.toEqual(coord(0, 0));
+  });
+
+  it("waits when there is no foe to fight", () => {
+    const battle = makeBattle([makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS)]);
+    const plan = chooseNaiveTurn(battle, ACTOR_ID);
+    expect(plan.intent).toBe("wait");
+    expect(plan.commands).toEqual([{ kind: "wait", unitId: ACTOR_ID }]);
+  });
+
+  it("never spends Élan it does not have", () => {
+    const expensive: ActionSpec = { ...MUSKET, mpCost: 10 };
+    const battle = makeBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS, { mp: 0 }),
+        makeUnit(WEAK_ID, coord(2, 0), "enemy", ENEMY_STATS),
+      ],
+      [expensive],
+    );
+
+    const plan = chooseNaiveTurn(battle, ACTOR_ID);
+    expect(plan.commands.some((command) => command.kind === "act")).toBe(false);
+  });
+
+  it("emits the same command shapes as the utility AI and the engine accepts them", () => {
+    const battle = makeBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(WEAK_ID, coord(4, 4), "enemy", ENEMY_STATS),
+      ],
+      [MUSKET],
+    );
+
+    const plan = chooseNaiveTurn(battle, ACTOR_ID);
+    const utility = chooseTurn(battle, ACTOR_ID);
+    const allowed = new Set(["move", "act", "wait", "hold"]);
+    expect(plan.commands.every((command) => allowed.has(command.kind))).toBe(true);
+    expect(utility.commands.every((command) => allowed.has(command.kind))).toBe(true);
+    expect(plan.commands.map((command) => command.kind)).toEqual(["move", "act"]);
+
+    // The utility AI emits a standalone `move` plus a plain `act` (no folded
+    // T124 `move` clause); the naive fallback must match that shape.
+    const act = plan.commands.find((command) => command.kind === "act");
+    expect(act?.kind).toBe("act");
+    if (act?.kind === "act") expect(act.move).toBeUndefined();
+
+    let working = battle;
+    for (const command of plan.commands) {
+      const result = step(working, command);
+      expect(result.rejection).toBeUndefined();
+      working = result.state;
+    }
+  });
+
+  it("exposes the first order of the plan for one-step loops", () => {
+    const battle = makeBattle([
+      makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+      makeUnit(WEAK_ID, coord(2, 0), "enemy", ENEMY_STATS, { hp: 10 }),
+    ]);
+
+    expect(chooseNaiveCommand(battle, ACTOR_ID)).toEqual(
+      chooseNaiveTurn(battle, ACTOR_ID).commands[0],
+    );
+  });
+
+  it("throws when the soldier is not deployed or is out of action", () => {
+    const battle = makeBattle([makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS)]);
+    expect(() => chooseNaiveTurn(battle, asUnitId("ghost"))).toThrow(NaiveAiError);
+
+    const down = makeBattle([makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS, { hp: 0 })]);
+    expect(() => chooseNaiveTurn(down, ACTOR_ID)).toThrow(NaiveAiError);
   });
 });

@@ -1158,7 +1158,7 @@ projection in `src/ui/tempoOrder.ts` to carry charge and render it in
 `src/ui/TempoTray.tsx`. Presentation only; the engine stays the source of truth.
 
 ### T132 — Deterministic `naiveAi` fallback
-- status: todo
+- status: done
 - deps: [T095]
 - files: src/ai/naive.ts, src/ai/index.ts, tests/unit/ai.test.ts
 - verify: npm run test -- --run tests/unit/ai.test.ts
