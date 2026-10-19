@@ -1399,7 +1399,7 @@ Three gaps surfaced in playtesting:
    it from the art.
 
 ### T143 — Run the enemy AI on the initial sandbox Field
-- status: todo
+- status: done
 - deps: []
 - files: src/ui/App.tsx, src/app/demoScenario.ts, src/app/skirmishScenario.ts, tests/unit/demoScenario.test.ts, tests/e2e/input.spec.ts
 - verify: npm run test -- --run tests/unit/demoScenario.test.ts tests/unit/skirmishScenario.test.ts

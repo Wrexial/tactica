@@ -25,9 +25,9 @@ import {
 import { createDemoBattle } from "../app/demoScenario";
 import {
   createSkirmishBattle,
+  fieldAiHoldsTurn,
   resolveSkirmishBattle,
-  runSkirmishTurn,
-  skirmishAiHoldsTurn,
+  runFieldAiTurn,
   SKIRMISH_NAME,
 } from "../app/skirmishScenario";
 import { createInputController, type InputController } from "../app/input";
@@ -214,6 +214,10 @@ export function App() {
   const [fieldMode, setFieldMode] = useState<"demo" | "skirmish" | "campaign">("demo");
   const campaignRef = useRef(campaign);
   campaignRef.current = campaign;
+  // The shared Field-AI timer reads the live mode so a pending enemy turn is
+  // discarded rather than applied to whichever battle took the Field next.
+  const fieldModeRef = useRef(fieldMode);
+  fieldModeRef.current = fieldMode;
 
   // The last order's events, tracked by identity so its animation cues and
   // screen-reader announcement play exactly **once**. The controller object is
@@ -236,31 +240,43 @@ export function App() {
     );
   }, []);
 
-  // T121 — the campaign field loop, paced one hostile turn at a time. Each
-  // burst of AI events plays out (and holds `busy`) before the next enemy acts,
-  // so the action reads like a sequence of turns rather than one jump.
-  useEffect(() => {
-    if (busy || !campaignAiHoldsTurn(campaign)) return;
-    const timer = setTimeout(() => {
+  // T143 — one shared Field-AI step for the sandbox demo, Quick Battle and the
+  // campaign. A campaign action settles through its controller when the battle
+  // ends; every other mode is a plain `BattleState` driven by the same runner.
+  const runFieldAiStep = useCallback(() => {
+    if (fieldModeRef.current === "campaign") {
       const update = runCampaignTurn(campaignRef.current);
       setCampaign(update.state);
       const next = campaignBattleController(update.state);
       if (next !== null) applyController({ ...next, lastEvents: update.events });
-    }, AI_THINK_MS);
-    return () => clearTimeout(timer);
-  }, [campaign, busy, applyController]);
+      return;
+    }
 
-  // Quick Battle: pace the hostile phase one turn at a time, between animations.
+    const update = runFieldAiTurn(controllerRef.current.battle);
+    if (update === null) return;
+    applyController({ ...createBattleController(update.battle), lastEvents: update.events });
+  }, [applyController]);
+
+  // T143 — pace every hostile turn through the same gate: wait out the current
+  // animation (`busy`) and the `AI_THINK_MS` beat, then take one AI turn. The
+  // mode only chooses which battle state the shared driver reads, so the
+  // opening demo Field can never silently skip its enemy phase.
   useEffect(() => {
-    if (busy || fieldMode !== "skirmish") return;
-    if (!skirmishAiHoldsTurn(controllerRef.current.battle)) return;
+    if (busy) return;
+    const holds =
+      fieldMode === "campaign"
+        ? campaignAiHoldsTurn(campaign)
+        : fieldAiHoldsTurn(controller.battle);
+    if (!holds) return;
+    const mode = fieldMode;
     const timer = setTimeout(() => {
-      const update = runSkirmishTurn(controllerRef.current.battle);
-      if (update === null) return;
-      applyController({ ...createBattleController(update.battle), lastEvents: update.events });
+      // A mode switch, or an animation that started while we waited, owns the
+      // Field now; drop this turn instead of acting on the wrong board.
+      if (busyRef.current || fieldModeRef.current !== mode) return;
+      runFieldAiStep();
     }, AI_THINK_MS);
     return () => clearTimeout(timer);
-  }, [controller, busy, fieldMode, applyController]);
+  }, [campaign, controller, busy, fieldMode, runFieldAiStep]);
 
   // T102 — rolling autosave: every change to the working campaign is written to
   // the dedicated autosave slot, so the company always has a restore point.
@@ -304,11 +320,25 @@ export function App() {
     setView((current) => (current === "battle" ? "menus" : "battle"));
   }, []);
 
+  // T143 — changing which battle owns the Field clears any pending animation
+  // gate and the previous action's log, so the incoming mode starts from a
+  // clean turn instead of inheriting the outgoing board's `busy` lock.
+  const resetFieldActivity = useCallback(() => {
+    clearTimeout(busyTimerRef.current);
+    busyTimerRef.current = undefined;
+    busyRef.current = false;
+    setBusy(false);
+    setAnimations([]);
+    playedEventsRef.current = null;
+    announcedEventsRef.current = null;
+  }, []);
+
   // T121 — the Officers' Mess hands an accepted contract to the campaign: the
   // fee is paid, the battle is deployed and the enemy's opening turns are taken
   // before the player ever sees the Field.
   const acceptContract = useCallback(
     (contract: ContractDef) => {
+      resetFieldActivity();
       const started = startCampaignBattle(campaignRef.current, asContractId(contract.id));
       setCampaign(started);
       setFieldMode("campaign");
@@ -318,11 +348,12 @@ export function App() {
         applyController(field);
       }
     },
-    [applyController],
+    [applyController, resetFieldActivity],
   );
 
   // Quick Battle: start (or restart) the preset two-team scene on the Field.
   const startSkirmish = useCallback(() => {
+    resetFieldActivity();
     setFieldMode("skirmish");
     setFieldEpoch((current) => current + 1);
     setView("battle");
@@ -331,7 +362,7 @@ export function App() {
       (document.activeElement as HTMLElement | null)?.blur?.();
     }
     applyController(createBattleController(createSkirmishBattle()));
-  }, [applyController]);
+  }, [applyController, resetFieldActivity]);
 
   // Quick Battle: hand the rest of the action to the deterministic AI and show
   // the result.
@@ -351,6 +382,7 @@ export function App() {
 
   // Close the after-action report and return to the Mess to take the next post.
   const dismissResult = useCallback(() => {
+    resetFieldActivity();
     setCampaign((current) => dismissCampaignResult(current));
     // Reset the Field to a fresh Quick Battle behind the Mess, so the finished
     // contract is not left on the board when the player returns.
@@ -358,7 +390,7 @@ export function App() {
     setFieldEpoch((current) => current + 1);
     applyController(createBattleController(createSkirmishBattle()));
     setView("mess");
-  }, [applyController]);
+  }, [applyController, resetFieldActivity]);
 
   // Targeting preview (T085): reach, area footprint, danger zone and elevation.
   // Derived purely from the controller so the overlay and the HUD read the same

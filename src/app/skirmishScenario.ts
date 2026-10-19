@@ -233,36 +233,25 @@ export function createSkirmishBattle(): BattleState {
 }
 
 /* --------------------------------------------------------------------------
- * Driving the enemy
+ * Driving the enemy (the shared Field-AI path — T143)
  * ------------------------------------------------------------------------ */
 
-/** The result of one quick-battle AI phase. */
-export interface SkirmishUpdate {
+/** The result of one Field-AI phase, for any battle scenario. */
+export interface FieldAiUpdate {
   readonly battle: BattleState;
   /** Events emitted by the AI turns, in resolution order (for the renderer). */
   readonly events: readonly BattleEvent[];
 }
 
+/** Backwards-compatible alias for the quick battle's own update shape. */
+export type SkirmishUpdate = FieldAiUpdate;
+
 /**
- * If the enemy holds the turn, take every consecutive hostile turn and hand the
- * control back to the company. Returns `null` when nothing happened: the battle
- * is over, no one holds the turn, or a company soldier is waiting to act. Pure
- * and deterministic — the enemy plans through the seeded utility AI (T095) and
- * every command goes through `step`.
+ * Whether any AI-controlled soldier holds the turn. This is the shared gate
+ * for the sandbox demo, Quick Battle and campaign Field modes (T143), so no
+ * mode can silently skip its hostile phase.
  */
-export function advanceSkirmishBattle(battle: BattleState): SkirmishUpdate | null {
-  if (!skirmishAiHoldsTurn(battle)) return null;
-
-  const run = runAiUntilPlayer(battle, {
-    policy: DEFAULT_CONTROL_POLICY,
-    ai: AGGRESSIVE_FIELD_AI,
-  });
-  if (run.state === battle) return null;
-  return { battle: run.state, events: run.events };
-}
-
-/** Whether the quick battle is waiting on an AI-controlled soldier. */
-export function skirmishAiHoldsTurn(battle: BattleState): boolean {
+export function fieldAiHoldsTurn(battle: BattleState): boolean {
   if (battle.phase === "finished") return false;
   const actorId = battle.currentActorId;
   if (actorId === null) return false;
@@ -271,12 +260,30 @@ export function skirmishAiHoldsTurn(battle: BattleState): boolean {
 }
 
 /**
- * Take exactly **one** AI soldier's turn in the quick battle, so the caller can
- * pace a whole enemy phase one action at a time (animation, pause, next).
- * Returns `null` when no AI soldier holds the turn or nothing changed.
+ * If an AI soldier holds the turn, take **every** consecutive hostile turn and
+ * hand control back to the player. Returns `null` when nothing happened: the
+ * battle is over, no AI soldier holds the turn, or a company soldier is waiting
+ * to act. Pure and deterministic — the AI plans through the seeded utility AI
+ * (T095) and every command goes through `step`.
  */
-export function runSkirmishTurn(battle: BattleState): SkirmishUpdate | null {
-  if (!skirmishAiHoldsTurn(battle)) return null;
+export function advanceFieldBattle(battle: BattleState): FieldAiUpdate | null {
+  if (!fieldAiHoldsTurn(battle)) return null;
+
+  const run = runAiUntilPlayer(battle, {
+    policy: DEFAULT_CONTROL_POLICY,
+    ai: AGGRESSIVE_FIELD_AI,
+  });
+  if (run.state === battle) return null;
+  return { battle: run.state, events: run.events };
+}
+
+/**
+ * Take exactly **one** AI soldier's turn, so the caller can pace a whole enemy
+ * phase one action at a time (animation, pause, next). Returns `null` when no AI
+ * soldier holds the turn or nothing changed.
+ */
+export function runFieldAiTurn(battle: BattleState): FieldAiUpdate | null {
+  if (!fieldAiHoldsTurn(battle)) return null;
   const run = runAiUntilPlayer(battle, {
     policy: DEFAULT_CONTROL_POLICY,
     ai: AGGRESSIVE_FIELD_AI,
@@ -284,6 +291,21 @@ export function runSkirmishTurn(battle: BattleState): SkirmishUpdate | null {
   });
   if (run.state === battle) return null;
   return { battle: run.state, events: run.events };
+}
+
+/** Whether the quick battle is waiting on an AI-controlled soldier. */
+export function skirmishAiHoldsTurn(battle: BattleState): boolean {
+  return fieldAiHoldsTurn(battle);
+}
+
+/** Take every consecutive hostile quick-battle turn (the shared Field phase). */
+export function advanceSkirmishBattle(battle: BattleState): SkirmishUpdate | null {
+  return advanceFieldBattle(battle);
+}
+
+/** Take exactly one hostile quick-battle turn (the shared Field step). */
+export function runSkirmishTurn(battle: BattleState): SkirmishUpdate | null {
+  return runFieldAiTurn(battle);
 }
 
 /**

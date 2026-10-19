@@ -110,6 +110,38 @@ test("anchors the focused soldier's card beside it with its vitals", async ({ pa
   expect(box.y).toBeGreaterThanOrEqual(0);
 });
 
+test("the opening Field runs its hostile phase after the player passes", async ({ page }) => {
+  // Reduced motion only shortens the animation gate; the AI's own think beat is
+  // still observed below, so this remains a real Field turn rather than a jump.
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await openBattlefield(page);
+
+  await expect(page.getByTestId("hud-actor")).toHaveText("Sgt. Aubry");
+  await expect(page.getByTestId("hud-phase")).toHaveText("select");
+
+  // Pass the company's opening turns (Aubry, Lefèvre, Marchand, Aubry); the
+  // hostile pickets then hold the Orders Tempo. Every pass is the ordinary
+  // select → End Turn loop, not a test-only path into the engine.
+  for (let i = 0; i < 4; i++) {
+    await page.keyboard.press("Enter");
+    await expect(page.getByTestId("end-turn")).toBeVisible();
+    await page.getByTestId("end-turn").click();
+  }
+
+  // T143 — the initial sandbox Field uses the same shared AI driver as Quick
+  // Battle and the campaign: with no further input the pickets act, emitting
+  // their events into the battle log...
+  const log = page.getByTestId("animation-log");
+  await expect(log).toContainText(/Picket|Watch/, { timeout: 10_000 });
+
+  // ...and the whole hostile phase hands control back to a company soldier.
+  await expect(page.getByTestId("hud-actor")).toHaveText(
+    /Sgt\. Aubry|Cpl\. Lefèvre|Pvt\. Marchand/,
+    { timeout: 10_000 },
+  );
+  await expect(page.getByTestId("hud-phase")).toHaveText("select");
+});
+
 test("pointer selects the tile under the cursor", async ({ page }) => {
   await openBattlefield(page);
 

@@ -24,6 +24,12 @@ import { coord, type Coord } from "../engine/grid";
 import { asAbilityId, asPostId, asUnitId } from "../engine/ids";
 import { createTerrainMap, withTile, type TerrainMap, type TerrainType } from "../engine/terrain";
 import { createUnit, type Unit, type UnitSide } from "../engine/unit";
+import {
+  advanceFieldBattle,
+  fieldAiHoldsTurn,
+  runFieldAiTurn,
+  type FieldAiUpdate,
+} from "./skirmishScenario";
 
 /** Fixed seed for the demo action, so replays and screenshots are stable. */
 export const DEMO_SEED = 1809;
@@ -145,4 +151,30 @@ export function createDemoBattle(): BattleState {
     ],
     abilities: DEMO_ACTIONS,
   });
+}
+
+/* --------------------------------------------------------------------------
+ * Driving the hostile pickets (T143)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * The shared Field-AI update shape. The sandbox demo deliberately uses the same
+ * driver as Quick Battle and the campaign, so the opening Field cannot silently
+ * skip the hostile phase.
+ */
+export type DemoUpdate = FieldAiUpdate;
+
+/** Whether the demo action is waiting on an AI-controlled picket. */
+export function demoAiHoldsTurn(battle: BattleState): boolean {
+  return fieldAiHoldsTurn(battle);
+}
+
+/** Take every consecutive hostile picket's turn, then hand back to the company. */
+export function advanceDemoBattle(battle: BattleState): DemoUpdate | null {
+  return advanceFieldBattle(battle);
+}
+
+/** Take exactly one hostile picket's turn, for paced Field playback. */
+export function runDemoTurn(battle: BattleState): DemoUpdate | null {
+  return runFieldAiTurn(battle);
 }
