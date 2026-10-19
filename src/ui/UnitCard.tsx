@@ -1,11 +1,13 @@
 /**
  * Unit card (T134) — the per-character battlefield HUD, anchored to its soldier.
  *
- * Modelled on FFT Blue's `BattleScene.showUnitInfo` (peer lesson L16): hovering
- * a soldier, selecting one, or watching the acting soldier paints a small card
- * *beside that soldier* on the field, edge-flipped and clamped, rather than
- * parking the readout in a fixed side column. The same component serves all
- * three cases — the caller decides which soldier is in focus.
+ * Modelled on FFT Blue's `BattleScene.showUnitInfo` (peer lesson L16): a card
+ * is drawn *beside* the soldier the player is inspecting — the selected soldier,
+ * or one the cursor is hovering — edge-flipped and clamped, rather than parked
+ * in a fixed side column. The card is **on demand**: it is not drawn for the
+ * acting soldier merely because the Orders Tempo turn is theirs, and it is
+ * dismissed while an order is being aimed, so it never covers the field at rest
+ * or hides the tiles a player is trying to target.
  *
  * ## Placement
  *
@@ -39,7 +41,7 @@ import {
   unitRoleLabelKey,
 } from "./unitLabels";
 
-/** Which of the three focus cases a card is showing (for styling/tests). */
+/** Which of the focus cases a card is showing (for styling/tests). */
 export type UnitCardRole = "hovered" | "selected" | "actor";
 
 /** Props for {@link UnitCard}. */
