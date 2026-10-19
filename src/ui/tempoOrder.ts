@@ -6,13 +6,14 @@
  * Node without importing React at all.
  *
  * The work is a thin read of the engine's deterministic `previewTurns`
- * (T019, `engine/turn.ts`): take a battle, project the next N actors and
- * resolve each scheduled `UnitId` to its deployed `Unit`.
+ * (T019, `engine/turn.ts`): take a battle, project the next N actors, resolve
+ * each scheduled `UnitId` to its deployed `Unit`, and attach that soldier's
+ * current Orders Tempo charge via `chargeOf` (T131).
  */
 
 import { battleSpeedOf, findUnit, type BattleState } from "../engine/battle";
 import type { UnitId } from "../engine/ids";
-import { previewTurns } from "../engine/turn";
+import { chargeOf, previewTurns } from "../engine/turn";
 import type { Unit } from "../engine/unit";
 
 /** How many upcoming turns the tray shows by default. */
@@ -33,6 +34,21 @@ export interface TempoEntry {
   readonly rank: number;
   /** Whether this is the turn currently in progress (the first entry). */
   readonly isCurrent: boolean;
+  /**
+   * The soldier's **current** Orders Tempo charge (`>= 0`), read straight from
+   * the scheduler via `chargeOf`.
+   *
+   * This is the charge held *right now*, not the charge the soldier will hold
+   * when this projected turn arrives — the projection is a thin read of
+   * `previewTurns` + `chargeOf` and deliberately runs no extra tempo maths
+   * (peer lesson L13). A fast soldier appearing twice in the window therefore
+   * reports the same current charge on both rows.
+   */
+  readonly charge: number;
+  /** Charge required to act; the value a full bar represents. */
+  readonly threshold: number;
+  /** `charge / threshold`, clamped to `[0, 1]`: the bar's fill fraction. */
+  readonly chargeRatio: number;
 }
 
 /**
@@ -46,17 +62,24 @@ export interface TempoEntry {
 export function upcomingTurnOrder(battle: BattleState, count: number): TempoEntry[] {
   const wanted = Math.max(0, Math.trunc(count));
   const ids = previewTurns(battle.tempo, battleSpeedOf(battle), wanted);
+  const threshold = battle.tempo.threshold;
 
   return ids.flatMap((unitId, index) => {
     const unit = findUnit(battle, unitId);
     // The scheduler only tracks deployed soldiers, so a miss is defensive.
     if (unit === undefined) return [];
+    const charge = chargeOf(battle.tempo, unitId) ?? 0;
     return [
       {
         unitId,
         unit,
         rank: index + 1,
         isCurrent: index === 0 && unitId === battle.currentActorId,
+        charge,
+        threshold,
+        // Clamp here so the view never has to reason about overshoot
+        // (`charge >= threshold` is a ready soldier; the bar is full).
+        chargeRatio: Math.min(1, Math.max(0, charge / threshold)),
       },
     ];
   });

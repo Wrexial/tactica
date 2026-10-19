@@ -20,7 +20,10 @@
  *   §2);
  * - the **role family** from the post id — `roleCategory`, the same coarse
  *   silhouette class the placeholder figures use (mapping §3);
- * - the effective **Speed** that produced the order, plus the **side**.
+ * - the effective **Speed** that produced the order, plus the **side**;
+ * - the soldier's **current Orders Tempo charge** as a bar (T131, peer lesson
+ *   L13), read straight from the scheduler so the "charge clock" is visible
+ *   without the tray recomputing any tempo maths.
  *
  * The first chip is the soldier taking the current turn (`data-current`), so a
  * glance tells you who is acting and who follows.
@@ -163,6 +166,9 @@ export function TempoTray({ battle, count = DEFAULT_TEMPO_PREVIEW, onSelect }: T
                       name: entry.unit.name,
                       role: t(ROLE_LABEL_KEYS[role]),
                       power: t(POWER_LABEL_KEYS[entry.unit.power]),
+                    })}, ${t("tempo.entryCharge", {
+                      charge: entry.charge,
+                      threshold: entry.threshold,
                     })}${entry.isCurrent ? `, ${t("tempo.onTurn")}` : ""}`}
                   >
                     <span className="tempo-entry__rank" aria-hidden="true">
@@ -183,6 +189,18 @@ export function TempoTray({ battle, count = DEFAULT_TEMPO_PREVIEW, onSelect }: T
                           side: t(SIDE_LABEL_KEYS[entry.unit.side]),
                         })}
                       </span>
+                      {/* The charge clock (T131, L13): a thin bar toward the
+                          next Orders Tempo turn. The fraction is computed in
+                          the pure projection; the view only paints it. */}
+                      <progress
+                        className="tempo-entry__charge"
+                        data-testid={`tempo-entry-${index}-charge`}
+                        data-charge={entry.charge}
+                        data-threshold={entry.threshold}
+                        max={1}
+                        value={entry.chargeRatio}
+                        aria-hidden="true"
+                      />
                     </span>
                     {entry.isCurrent && (
                       <span className="tempo-entry__now" data-testid={`tempo-entry-${index}-now`}>

@@ -746,6 +746,7 @@ const en = {
   /* Orders Tempo */
   "tempo.entryMeta": "{role} · {power} · Speed {speed} · {side}",
   "tempo.entryAria": "{rank}. {name}, {role}, {power}",
+  "tempo.entryCharge": "charge {charge} of {threshold}",
 
   /* Tutorial */
   "tutorial.label": "Tutorial exercise",

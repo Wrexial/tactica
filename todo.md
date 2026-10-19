@@ -1146,7 +1146,7 @@ AI-vs-AI battles as its balance harness. Build `src/ai/gauntlet.ts` on
 the seed is a parameter.
 
 ### T131 — Charge bars in the Orders Tempo rail
-- status: todo
+- status: done
 - deps: [T083]
 - files: src/ui/TempoTray.tsx, src/ui/tempoOrder.ts, tests/unit/tempoTray.test.ts
 - verify: npm run test -- --run tests/unit/tempoTray.test.ts

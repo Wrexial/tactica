@@ -576,6 +576,14 @@ body {
   text-overflow: ellipsis;
 }
 
+.tempo-entry__charge {
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: 3px;
+  accent-color: var(--gold-soft);
+}
+
 .tempo-entry--enemy .tempo-entry__name {
   color: #ffb4a8;
 }
