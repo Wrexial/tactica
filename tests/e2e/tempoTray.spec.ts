@@ -31,17 +31,22 @@ test("visualises the upcoming turn order", async ({ page }) => {
   await expect(page.getByTestId("tempo-entry-1")).toHaveAttribute("data-current", "false");
 });
 
-test("advances the tray after a turn is committed", async ({ page }) => {
+test("advances the tray after a turn is closed", async ({ page }) => {
   await openBattlefield(page);
   await expect(page.getByTestId("tempo-entry-0")).toContainText("Sgt. Aubry");
 
-  // Select the acting soldier, plan a one-tile march and confirm it (the
-  // engine resolves the free move plus an explicit wait).
+  // Select the acting soldier, plan a one-tile march and commit it (T142: the
+  // march stays its own command and leaves the same soldier in turn).
   await page.keyboard.press("Enter");
   await expect(page.getByTestId("hud-phase")).toHaveText("command");
   await page.keyboard.press("ArrowRight");
   await page.keyboard.press("Enter");
   await page.keyboard.press("Enter");
+  await expect(page.getByTestId("hud-phase")).toHaveText("command");
+  await expect(page.getByTestId("tempo-entry-0")).toContainText("Sgt. Aubry");
+
+  // End Turn is the explicit `wait`; only then does the tray advance.
+  await page.getByTestId("end-turn").click();
   await expect(page.getByTestId("hud-phase")).toHaveText("select");
 
   // The next soldier now heads the tray.

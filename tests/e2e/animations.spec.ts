@@ -43,7 +43,10 @@ test("a committed march animates from the engine's moved event", async ({ page }
   await page.keyboard.press("Enter");
   await expect(page.getByTestId("hud-phase")).toHaveText("move");
   await page.keyboard.press("Enter");
-  await expect(page.getByTestId("hud-phase")).toHaveText("select");
+  // T142 — a march commits on its own and leaves the actor in command, ready
+  // to give an order or choose End Turn.
+  await expect(page.getByTestId("hud-phase")).toHaveText("command");
+  await expect(page.getByTestId("hud-actor")).toHaveText("Sgt. Aubry");
 
   // The engine emitted `moved`; the log must show exactly one movement cue with
   // a label that could only come from that event.

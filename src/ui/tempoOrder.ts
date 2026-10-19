@@ -61,7 +61,20 @@ export interface TempoEntry {
  */
 export function upcomingTurnOrder(battle: BattleState, count: number): TempoEntry[] {
   const wanted = Math.max(0, Math.trunc(count));
-  const ids = previewTurns(battle.tempo, battleSpeedOf(battle), wanted);
+  const projected = previewTurns(battle.tempo, battleSpeedOf(battle), wanted);
+  // The opening upkeep (T129) spends the first actor's charge before the tray
+  // renders, so `previewTurns` alone starts with the *next* soldier. Keep the
+  // soldier whose turn is actually open at the head of the tray, dropping only
+  // the leading duplicate when the scheduler still has them ready; later
+  // appearances are their genuine future turns.
+  const currentId = battle.currentActorId;
+  const ids =
+    currentId === null
+      ? projected
+      : [currentId, ...(projected[0] === currentId ? projected.slice(1) : projected)].slice(
+          0,
+          wanted,
+        );
   const threshold = battle.tempo.threshold;
 
   return ids.flatMap((unitId, index) => {

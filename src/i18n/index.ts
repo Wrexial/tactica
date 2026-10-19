@@ -172,6 +172,7 @@ const en = {
   "hud.elevation": "Elevation",
   "hud.elevationLevel": "level",
   "hud.ordersHeading": "Orders",
+  "hud.loopHint": "March, then give an order — or choose End Turn. A march never ends the turn.",
   "hud.endTurn": "End Turn",
   "hud.endTurnHint": "Pass",
   "hud.elanCost": "Élan {amount}",
@@ -181,7 +182,7 @@ const en = {
   "hud.help.tempo":
     "The soldier taking the current Orders Tempo turn. Turns are not round-robin — higher Speed acts more often.",
   "hud.help.phase":
-    "What the field is asking of you: select a soldier, plan a march, aim an order, then confirm it.",
+    "What the field is asking of you: select a soldier, preview and commit a march, then aim an order and confirm it — or choose End Turn. A march never ends the turn.",
   "hud.help.cursor": "The tile your movement or aim is pointed at.",
   "hud.help.selected": "The soldier you have picked. Only the acting soldier may be given orders.",
   "hud.help.moveRange":
@@ -467,6 +468,8 @@ const en = {
     "You have marched, fired, read the tempo, kept the Articles and earned your first Drill.",
   "tutorial.returnToField": "Return to the field",
   "tutorial.lessonOf": "Lesson {index} of {total}",
+  "tutorial.loop":
+    "Select a soldier → march (optional) → give an order from the new tile (optional) → or choose End Turn. A march never ends the turn.",
   "tutorial.orderOfBattle": "Order of battle",
   "tutorial.confirmTempo": "Confirm the order of battle",
   "tutorial.standingOrders": "Today's standing orders",

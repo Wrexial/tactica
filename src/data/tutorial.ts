@@ -83,7 +83,7 @@ export const TUTORIAL_LESSONS: readonly TutorialLesson[] = [
     id: "lesson-march",
     name: "The March",
     description:
-      "Select a soldier and march along a legal path. A march never spends the turn — the order that follows it does.",
+      "Select a soldier and march along a legal path. A march never ends the turn — commit it, then give an order or choose End Turn.",
     flavour: "Ground is taken one measured pace at a time, and the drill makes it steady.",
     objective: "move",
     coach: "Select Sgt. Aubry, trace a line to a blue tile, and confirm the march.",
@@ -93,7 +93,7 @@ export const TUTORIAL_LESSONS: readonly TutorialLesson[] = [
     id: "lesson-fire",
     name: "The Fire",
     description:
-      "An Order resolves from the tile your soldier has marched to, then ends the turn. Commit the march first, then choose and aim the order.",
+      "An Order resolves from the tile your soldier has marched to, then closes the turn. Commit the march first, then choose and aim the order; if no order is needed, choose End Turn.",
     flavour: "The line does not fire by inspiration; it fires by order.",
     objective: "act",
     coach: "Commit the march, then choose an Order and aim it at a hostile picket.",
@@ -103,7 +103,7 @@ export const TUTORIAL_LESSONS: readonly TutorialLesson[] = [
     id: "lesson-tempo",
     name: "Orders Tempo",
     description:
-      "Every soldier charges tempo in proportion to Speed. Resolving an order spends the turn, and the next soldier rises to the head of the tray.",
+      "Every soldier charges tempo in proportion to Speed. Resolving an order or choosing End Turn closes the turn, and the next soldier rises to the head of the tray.",
     flavour: "The fastest do not wait their turn; they make it.",
     objective: "tempo",
     coach: "Study the Orders Tempo tray, then confirm the order of battle.",

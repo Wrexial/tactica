@@ -487,6 +487,15 @@ body {
   color: var(--gold-soft);
 }
 
+/* T142 — one-line reminder of the canonical loop (march → order or End Turn). */
+.command-band__hint {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.3;
+  text-align: center;
+  color: rgba(245, 236, 210, 0.78);
+}
+
 .command-band__list {
   display: flex;
   flex-wrap: wrap;

@@ -952,6 +952,9 @@ export function App() {
                 aria-label={t("hud.ordersLabel")}
               >
                 <h3 className="command-band__title">{t("hud.ordersHeading")}</h3>
+                <p className="command-band__hint" data-testid="command-band-loop">
+                  {t("hud.loopHint")}
+                </p>
                 <ul className="command-band__list">
                   {controller.actions.map((option) => (
                     <li key={option.id}>

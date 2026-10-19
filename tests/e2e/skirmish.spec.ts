@@ -41,14 +41,16 @@ test("lets the player move and strike an enemy", async ({ page }) => {
   await page.getByTestId("nav-quick-battle").click();
   await expect(page.getByTestId("skirmish-battle")).toBeVisible();
 
-  // Select and confirm a march, then confirm it to close the turn; the enemy
-  // then takes its turns through the Field AI and control returns.
+  // Select, plan and commit a march. T142 — the march commits on its own and
+  // leaves the same soldier in command to act or choose End Turn.
   await page.keyboard.press("Enter"); // select
   await expect(page.getByTestId("hud-phase")).toHaveText("command");
   await page.keyboard.press("ArrowDown"); // cursor to a free tile south
   await page.keyboard.press("Enter"); // plan the march
   await expect(page.getByTestId("hud-phase")).toHaveText("move");
   await page.keyboard.press("Enter"); // commit the march
-  await expect(page.getByTestId("hud-phase")).toHaveText("select");
+  await expect(page.getByTestId("hud-phase")).toHaveText("command");
+  await expect(page.getByTestId("hud-actor")).toHaveText("Pte. Okafor");
+  await expect(page.getByTestId("end-turn")).toBeVisible();
   await expect(page.getByTestId("animation-log")).toContainText("marches");
 });

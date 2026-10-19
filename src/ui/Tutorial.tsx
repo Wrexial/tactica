@@ -156,6 +156,12 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
         })}
       </ol>
 
+      {/* T142 — the canonical loop in one line, so the drill square cannot
+          drift back to the old march-closes-the-turn instruction. */}
+      <p className="tutorial__hint tutorial__loop" data-testid="tutorial-loop">
+        {t("tutorial.loop")}
+      </p>
+
       {complete ? (
         <article className="tutorial__complete" data-testid="tutorial-complete">
           <h3>{t("tutorial.complete")}</h3>
@@ -230,7 +236,9 @@ export function Tutorial({ controller, onClose }: TutorialProps) {
                     data-kind={article.kind}
                   >
                     <span className="tutorial__article-kind" data-kind={article.kind}>
-                      {article.kind === "forbid" ? t("tutorial.forbidden") : t("tutorial.commended")}
+                      {article.kind === "forbid"
+                        ? t("tutorial.forbidden")
+                        : t("tutorial.commended")}
                     </span>
                     <strong>{article.name}</strong>
                     <span>{article.description}</span>

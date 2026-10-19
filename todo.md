@@ -1363,7 +1363,7 @@ Volleys without reopening the bundled-order bug, and keeps a mid-turn save
 honest when it is loaded back into the UI.
 
 ### T142 — Lock the loop with an e2e spec and a written contract
-- status: todo
+- status: done
 - deps: [T138, T139, T140, T141]
 - files: docs/COMBAT_LOOP.md, docs/PEER_COMBAT_LESSONS.md, tests/e2e/turnLoop.spec.ts, src/ui/Tutorial.tsx, src/ui/App.tsx
 - verify: npm run test:e2e -- tests/e2e/turnLoop.spec.ts

@@ -187,6 +187,16 @@ order explicit — never defaulted, because it changes the tile the act resolves
 from. Add a test that a folded turn costs exactly one turn and the same charge
 as its two-command equivalent.
 
+**Adopted contract (T142):** the engine keeps `ActCommand.move` for **AI,
+replays and atomic scripts only**. The player-facing loop is deliberately
+two confirms: a march commits as its own `move`, the soldier stays in command,
+and the later order resolves from the committed tile as its own `act` (or End
+Turn sends one `wait`). The canonical select → preview/commit move → action
+menu → target/confirm act → or End Turn contract, including the one-command-per-
+confirm invariant, is written down in
+[`COMBAT_LOOP.md`](./COMBAT_LOOP.md). Do not reintroduce staged `[move, act]`
+on the player path.
+
 ### L4 — Decide tile- vs unit-anchored charged abilities (and test it)
 
 **Peer:** Unseen Hand resolves a matured charge against the **target tile**, so
@@ -389,7 +399,7 @@ These are proposals; add them to `todo.md` (with ids) before implementing.
 | --- | --------------------------------------------------- | ---------------------------------------- | ------ |
 | A   | Deterministic, RNG-free turn-order tie-break        | `src/engine/turn.ts`, `tests/unit/turn.test.ts` | T019 |
 | B   | `advanceToDecision` + `applyCommand` split          | `src/engine/battle.ts`                   | T022   |
-| C   | Optional `move` clause on `ActCommand`, one settle  | `src/engine/commands.ts`, `battle.ts`    | T115   |
+| C   | Optional `move` clause on `ActCommand`, one settle (engine/AI/replay only; see [`COMBAT_LOOP.md`](./COMBAT_LOOP.md)) | `src/engine/commands.ts`, `battle.ts` | T115 |
 | D   | Tile-anchored charged abilities + whiff test        | `src/engine/actions/resolve.ts`          | T024   |
 | E   | Document + test exact RNG draw order per action     | `resolve.ts`, `tests/unit/determinism.test.ts` | T023 |
 | F   | `hasActedThisTurn` / turn-budget record             | `src/engine/battle.ts`                   | T115   |
