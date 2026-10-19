@@ -79,7 +79,7 @@ import { createCampaignProgress, createCampaignSave, type CampaignSave } from ".
 
 import { DEFAULT_CONTROL_POLICY, autoBattleAllies, isAiControlled } from "./autoBattle";
 import { createBattleController, type BattleController } from "./battleController";
-import { runAiUntilPlayer } from "./battleRunner";
+import { AGGRESSIVE_FIELD_AI, runAiUntilPlayer } from "./battleRunner";
 import { buildBattleFromContract, isCombatContract } from "./battleSetup";
 import {
   acceptContract,
@@ -384,7 +384,7 @@ export function advanceCampaignBattle(state: CampaignState): CampaignUpdate {
     return { state, battle, events: [] };
   }
 
-  const run = runAiUntilPlayer(battle, { policy: DEFAULT_CONTROL_POLICY });
+  const run = runAiUntilPlayer(battle, { policy: DEFAULT_CONTROL_POLICY, ai: AGGRESSIVE_FIELD_AI });
   if (run.state.phase === "finished") {
     const settled = settleCampaignBattle(state, run.state);
     return { state: settled.state, battle: null, events: run.events };
@@ -416,7 +416,11 @@ export function runCampaignTurn(state: CampaignState): CampaignUpdate {
   if (battle.phase === "finished") return settleCampaignBattle(state, battle);
   if (!aiHoldsTurn(battle)) return { state, battle, events: [] };
 
-  const run = runAiUntilPlayer(battle, { policy: DEFAULT_CONTROL_POLICY, maxTurns: 1 });
+  const run = runAiUntilPlayer(battle, {
+    policy: DEFAULT_CONTROL_POLICY,
+    ai: AGGRESSIVE_FIELD_AI,
+    maxTurns: 1,
+  });
   if (run.state.phase === "finished") {
     const settled = settleCampaignBattle(state, run.state);
     return { state: settled.state, battle: null, events: run.events };
@@ -442,7 +446,7 @@ export function resolveCampaignBattle(state: CampaignState): CampaignUpdate {
   }
 
   const policy = autoBattleAllies(DEFAULT_CONTROL_POLICY, "all");
-  const run = runAiUntilPlayer(battle, { policy });
+  const run = runAiUntilPlayer(battle, { policy, ai: AGGRESSIVE_FIELD_AI });
   if (run.state.phase === "finished") {
     const settled = settleCampaignBattle(state, run.state);
     return { state: settled.state, battle: null, events: run.events };
