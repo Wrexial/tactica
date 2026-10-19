@@ -135,6 +135,15 @@ const CANISTER: ActionSpec = {
   power: 200,
 };
 
+/** Identical to {@link MUSKET} except for a long wind-up (mapping §12). */
+const SLOW_MUSKET: ActionSpec = {
+  id: asAbilityId("slow-musket"),
+  mpCost: 0,
+  chargeTime: 20,
+  range: 5,
+  power: 100,
+};
+
 function makeUnit(
   id: UnitId,
   at: Coord,
@@ -221,6 +230,53 @@ describe("chooseTurn — target selection", () => {
       expect(plan.target.unitId).toBe(WEAK_ID);
     }
     expect(plan.score.killThreat).toBeGreaterThan(0);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * Charge time
+ * ------------------------------------------------------------------------ */
+
+describe("chooseTurn — charge time", () => {
+  it("prefers an immediate order over an identical charged one", () => {
+    const battle = makeBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(WEAK_ID, coord(3, 0), "enemy", ENEMY_STATS),
+      ],
+      [SLOW_MUSKET, MUSKET],
+    );
+
+    const plan = chooseTurn(battle, ACTOR_ID);
+
+    // Same power, range and cost — only the wind-up differs, so the instant
+    // shot must win and carry no charge penalty.
+    expect(plan.abilityId).toBe(MUSKET.id);
+    expect(plan.score.chargePenalty).toBe(0);
+  });
+
+  it("prices a slow order's wind-up into its score", () => {
+    const slowBreacher: ActionSpec = {
+      id: asAbilityId("slow-breacher"),
+      mpCost: 0,
+      chargeTime: 20,
+      range: 5,
+      power: 400,
+    };
+    const battle = makeBattle(
+      [
+        makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS),
+        makeUnit(WEAK_ID, coord(3, 0), "enemy", ENEMY_STATS),
+      ],
+      [slowBreacher],
+    );
+
+    const plan = chooseTurn(battle, ACTOR_ID);
+
+    // The blow is heavy enough that the AI still takes it, and the breakdown
+    // must charge the full wind-up against the score.
+    expect(plan.abilityId).toBe(slowBreacher.id);
+    expect(plan.score.chargePenalty).toBe(20 * DEFAULT_UTILITY_WEIGHTS.charge);
   });
 });
 
