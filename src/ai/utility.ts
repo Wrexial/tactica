@@ -174,6 +174,14 @@ export interface UtilityWeights {
   readonly elan: number;
   /** Penalty per point of hit-weighted damage the order would deal an ally. */
   readonly friendlyFire: number;
+  /**
+   * Penalty per tick of the order's **charge time** (mapping §12). A delayed
+   * action can be dodged by a target that marches off the recorded tile (peer
+   * lesson L4, T125), so a slow charge is worth less than an immediate one;
+   * without this term the AI over-values heavy charged ordnance and spends a
+   * battle winding up strikes that whiff.
+   */
+  readonly charge: number;
   /** Value per elevation layer held over an engaged target. */
   readonly elevation: number;
   /** Value per flanking point (side = 1, rear = 2) against an engaged target. */
@@ -214,6 +222,7 @@ export const DEFAULT_UTILITY_WEIGHTS: UtilityWeights = {
   moveCost: 1,
   advance: 3,
   brace: 2,
+  charge: 12,
 };
 
 /** Clamp a value into the inclusive `[low, high]` integer band. */
@@ -570,6 +579,8 @@ export interface CandidateScore {
   readonly consumablePenalty: number;
   /** Élan/morale penalty for the order's cost (T097). */
   readonly elanPenalty: number;
+  /** Charge-time penalty charged once per order (mapping §12). */
+  readonly chargePenalty: number;
   /** Hit-weighted damage the order would deal to allies (area fire). */
   readonly friendlyFire: number;
   /** Summed elevation advantage (layers) over engaged targets. */
@@ -628,6 +639,8 @@ interface ScoreInputs {
   readonly evaluation: HeuristicEvaluation | null;
   /** T097 Élan/morale penalty for the order's cost (`0` for a march). */
   readonly elanPenalty: number;
+  /** Ticks the order spends charging before it lands (`0` for a march/hold). */
+  readonly chargeTime: number;
 }
 
 /**
@@ -649,6 +662,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     weights,
     evaluation,
     elanPenalty,
+    chargeTime,
   } = inputs;
 
   let expectedDamage = 0;
@@ -686,6 +700,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
   const reviveValue = evaluation?.reviveValue ?? 0;
   const redundantBuffs = evaluation?.redundantBuffs ?? 0;
   const consumablePenalty = evaluation?.consumablePenalty ?? 0;
+  const chargePenalty = weights.charge * chargeTime;
 
   const cover = blocksSightAt(state.map, destination) ? 1 : 0;
   const engaged =
@@ -703,6 +718,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     weights.revive * reviveValue -
     weights.consumable * consumablePenalty -
     weights.elan * elanPenalty -
+    chargePenalty -
     weights.friendlyFire * friendlyFire +
     weights.elevation * elevation +
     weights.flank * flank +
@@ -724,6 +740,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     redundantBuffs,
     consumablePenalty,
     elanPenalty,
+    chargePenalty,
     friendlyFire,
     elevation,
     flank,
@@ -1055,6 +1072,7 @@ export function chooseTurn(
             weights,
             evaluation,
             elanPenalty,
+            chargeTime: spec.chargeTime,
           }),
         });
       }
@@ -1088,6 +1106,7 @@ export function chooseTurn(
             weights,
             evaluation: null,
             elanPenalty: 0,
+            chargeTime: 0,
           }),
         });
       }
@@ -1116,6 +1135,7 @@ export function chooseTurn(
       weights,
       evaluation: null,
       elanPenalty: 0,
+      chargeTime: 0,
     }),
   });
 
@@ -1143,6 +1163,7 @@ export function chooseTurn(
         weights,
         evaluation: null,
         elanPenalty: 0,
+        chargeTime: 0,
       }),
     };
   }

@@ -562,10 +562,16 @@ export function App() {
     [controller.battle, controller.selectedUnitId],
   );
 
-  // T134 — the soldier whose anchored card is shown. A cursor over a *different*
-  // soldier previews that soldier; otherwise the selection wins, then whoever
-  // holds the Orders Tempo turn. One component serves all three cases.
+  // T134 — the soldier whose anchored card is shown. The card is an on-demand
+  // readout: it appears for a **selected** soldier, or for whichever soldier
+  // the cursor is deliberately inspecting (a hovered soldier that is not the
+  // current actor). It is intentionally **not** painted for the acting soldier
+  // merely because the cursor happens to rest on its tile, and it is dismissed
+  // while aiming — otherwise a wide card parks itself over the middle of the
+  // field and hides the very tiles the player is trying to inspect or aim at.
   const focus = useMemo((): { readonly unit: Unit; readonly role: UnitCardRole } | null => {
+    if (controller.phase === "target" || controller.phase === "confirm") return null;
+    if (selected !== null) return { unit: selected, role: "selected" };
     const cursor = controller.cursor;
     const hovered =
       cursor === null
@@ -573,12 +579,9 @@ export function App() {
         : (controller.battle.units.find(
             (unit) => unit.at.x === cursor.x && unit.at.y === cursor.y,
           ) ?? null);
-    if (hovered !== null && hovered.id !== selected?.id) return { unit: hovered, role: "hovered" };
-    if (selected !== null) return { unit: selected, role: "selected" };
-    if (hovered !== null) return { unit: hovered, role: "hovered" };
-    if (actor !== null) return { unit: actor, role: "actor" };
+    if (hovered !== null && hovered.id !== actor?.id) return { unit: hovered, role: "hovered" };
     return null;
-  }, [controller.battle.units, controller.cursor, selected, actor]);
+  }, [controller.battle.units, controller.cursor, controller.phase, selected, actor]);
 
   const cursorLabel =
     controller.cursor === null
@@ -764,8 +767,9 @@ export function App() {
           </details>
         )}
 
-        {/* T134 — the per-character card, anchored beside the focused soldier
-            (hovered > selected > acting) through the live camera projection. */}
+        {/* T134 — the per-character card, anchored beside the inspected soldier
+            (selected, or a hovered soldier the player is looking over) through
+            the live camera projection. On demand only, so it stays off the field. */}
         {view === "battle" && focus !== null && (
           <UnitCard
             unit={focus.unit}
