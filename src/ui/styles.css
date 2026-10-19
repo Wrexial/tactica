@@ -157,6 +157,7 @@ body {
   position: relative;
   flex: 1;
   min-height: 0;
+  overflow: hidden;
   background:
     radial-gradient(1200px 600px at 50% -10%, rgba(255, 247, 226, 0.08), transparent 60%),
     var(--navy);
@@ -168,66 +169,133 @@ body {
   height: 100%;
 }
 
-.hud {
+/* ------------------------------------------------------------------------
+ * Field readout (T137)
+ *
+ * The compact strip that survives the retired side panel: phase, cursor,
+ * reach, area, danger and elevation. It lives in the bottom band
+ * (`.field-dock`) so the battlefield keeps its full width, and every `hud-*`
+ * test id from the old column is preserved here.
+ * --------------------------------------------------------------------- */
+
+.field-readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 14px;
+  max-width: min(1100px, calc(100vw - 36px));
+  padding: 5px 16px;
+  color: var(--parchment);
+  background: rgba(20, 27, 40, 0.84);
+  border: 1px solid rgba(217, 185, 92, 0.32);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.field-readout__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3px 14px;
+  margin: 0;
+}
+
+.field-readout__list div {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.field-readout dt {
+  color: var(--gold-soft);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.field-readout dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.field-readout .rejection {
+  margin: 0;
+  padding: 3px 9px;
+  font-size: 11px;
+  color: #ffc9bd;
+  background: rgba(184, 60, 37, 0.28);
+  border: 1px solid rgba(184, 60, 37, 0.5);
+  border-radius: 999px;
+}
+
+/* ------------------------------------------------------------------------
+ * Battle log (T137)
+ *
+ * The animation-log cues are useful but not always wanted, so they collapse
+ * behind a toggle in the top-right corner. The summary stays visible; the
+ * list scrolls when open. `animation-log` and its `animation-N` entries are
+ * unchanged so the e2e contract holds.
+ * --------------------------------------------------------------------- */
+
+.battle-log {
   position: absolute;
   top: 18px;
   right: 18px;
-  width: min(300px, 40vw);
-  max-height: calc(100% - 150px);
-  overflow-y: auto;
-  padding: 16px 18px;
-  background: rgba(255, 250, 240, 0.95);
-  border: 1px solid var(--line);
+  z-index: 6;
+  width: min(300px, 46vw);
+  color: var(--parchment);
+  background: rgba(20, 27, 40, 0.92);
+  border: 1px solid rgba(217, 185, 92, 0.4);
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-.hud h2 {
-  margin: 0 0 8px;
-  font-family: Georgia, serif;
-  font-size: 18px;
-  border-bottom: 2px solid var(--gold);
-  padding-bottom: 6px;
-}
-
-.hud .muted {
-  color: var(--ink-soft);
-  font-size: 13px;
-  margin: 0 0 12px;
-}
-
-.hud dl {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-}
-
-.hud dl div {
+.battle-log__toggle {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
+  padding: 8px 12px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.battle-log__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.battle-log__title {
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 13px;
-  border-bottom: 1px dashed var(--line);
-  padding-bottom: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
 }
 
-.hud dt {
-  color: var(--ink-soft);
+.battle-log__count {
+  min-width: 20px;
+  padding: 1px 7px;
+  font-size: 10px;
+  text-align: center;
+  color: var(--navy);
+  background: var(--gold-soft);
+  border-radius: 999px;
 }
 
-.hud dd {
+.battle-log__list {
   margin: 0;
-  font-weight: 600;
+  padding: 0 12px 10px 28px;
+  max-height: 40vh;
+  overflow-y: auto;
+  font-size: 12px;
 }
 
-.hud .rejection {
-  margin: 12px 0 0;
-  padding: 8px 10px;
-  font-size: 12px;
-  color: #7a2418;
-  background: rgba(184, 60, 37, 0.12);
-  border: 1px solid rgba(184, 60, 37, 0.35);
-  border-radius: 6px;
+.battle-log__list li {
+  margin-bottom: 4px;
 }
 
 /* ------------------------------------------------------------------------
@@ -1128,7 +1196,7 @@ body {
 }
 
 @media (max-width: 640px) {
-  .hud {
+  .battle-log {
     left: 12px;
     right: 12px;
     width: auto;
@@ -2512,9 +2580,8 @@ body {
     white-space: nowrap;
   }
 
-  .hud {
+  .battle-log {
     width: min(260px, 46vw);
-    max-height: calc(100% - 150px);
   }
 }
 
@@ -2523,11 +2590,11 @@ body {
     display: none;
   }
 
-  .hud {
+  .battle-log {
     top: 8px;
     right: 8px;
-    width: calc(100% - 16px);
-    max-height: 42%;
+    left: 8px;
+    width: auto;
   }
 }
 
@@ -3604,8 +3671,9 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* The HUD opens its bubbles to the left so they never run off the field. */
-.hud .tip__bubble {
+/* The field readout opens its bubbles to the left so they never run off the
+   field. */
+.field-readout .tip__bubble {
   text-align: left;
 }
 

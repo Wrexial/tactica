@@ -19,6 +19,19 @@ test("opening events produce no battle animations", async ({ page }) => {
   await expect(page.getByTestId("animation-log").locator("li")).toHaveCount(0);
 });
 
+test("keeps the battle log behind a toggle", async ({ page }) => {
+  await openBattlefield(page);
+
+  // T137 — the log is collapsed by default; its heading is the toggle.
+  const log = page.getByTestId("battle-log");
+  await expect(log).toBeVisible();
+  await expect(log).not.toHaveAttribute("open", /.*/);
+
+  await page.getByRole("heading", { name: "Battle log" }).click();
+  await expect(log).toHaveAttribute("open", /.*/);
+  await expect(page.getByTestId("animation-log")).toBeVisible();
+});
+
 test("a committed march animates from the engine's moved event", async ({ page }) => {
   await openBattlefield(page);
 

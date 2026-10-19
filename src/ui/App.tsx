@@ -68,7 +68,12 @@ import { LobbyScreen } from "./Lobby";
 import { TempoTray } from "./TempoTray";
 import { Tutorial } from "./Tutorial";
 import { UnitCard, type UnitCardRole } from "./UnitCard";
-import { ANIMATION_TICK_MS, animationDurationMs, animationsForEvents, type BattleAnimation } from "../render/animations";
+import {
+  ANIMATION_TICK_MS,
+  animationDurationMs,
+  animationsForEvents,
+  type BattleAnimation,
+} from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
 import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
@@ -395,8 +400,9 @@ export function App() {
     const unit =
       controller.selectedUnitId === null
         ? null
-        : (controller.battle.units.find((candidate) => candidate.id === controller.selectedUnitId) ??
-          null);
+        : (controller.battle.units.find(
+            (candidate) => candidate.id === controller.selectedUnitId,
+          ) ?? null);
     const spec = actionSpecOf(controller.battle, previewActionId);
     if (unit === null || spec === undefined) return [];
     return tilesInRange(controller.battle.map, unit.at, { min: 0, max: spec.range });
@@ -619,7 +625,11 @@ export function App() {
         </button>
         <button
           type="button"
-          className={fieldMode === "skirmish" && view === "battle" ? "viewnav__button is-active" : "viewnav__button"}
+          className={
+            fieldMode === "skirmish" && view === "battle"
+              ? "viewnav__button is-active"
+              : "viewnav__button"
+          }
           data-testid="nav-quick-battle"
           aria-pressed={fieldMode === "skirmish" && view === "battle"}
           onClick={startSkirmish}
@@ -723,146 +733,24 @@ export function App() {
           aria-label={t("canvas.label")}
         />
 
-        <aside className="hud" hidden={view !== "battle"}>
-          <h2>{t("hud.orders")}</h2>
-          {/* T134 — the selected soldier is announced to assistive tech; the
-              visible per-character readout now lives on the anchored card. */}
-          <p className="visually-hidden" data-testid="hud-selected">
-            {selected?.name ?? t("common.none")}
-          </p>
-          <p className="muted" data-testid="hud-controls">
-            {t("hud.controls")}
-          </p>
-          <dl>
-            <div>
-              <dt>
-                {t("hud.tempo")}{" "}
-                <InfoTip
-                  testId="hud-help-tempo"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.tempo")}
-                />
-              </dt>
-              <dd data-testid="hud-actor">{actor?.name ?? t("common.none")}</dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.phase")}{" "}
-                <InfoTip
-                  testId="hud-help-phase"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.phase")}
-                />
-              </dt>
-              <dd data-testid="hud-phase">{controller.phase}</dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.cursor")}{" "}
-                <InfoTip
-                  testId="hud-help-cursor"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.cursor")}
-                />
-              </dt>
-              <dd data-testid="hud-cursor">{cursorLabel}</dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.moveRange")}{" "}
-                <InfoTip
-                  testId="hud-help-move-range"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.moveRange")}
-                />
-              </dt>
-              <dd data-testid="hud-move-range">
-                {t("common.tiles", { count: controller.moveRange.length })}
-              </dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.plannedMarch")}{" "}
-                <InfoTip
-                  testId="hud-help-planned-march"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.plannedMarch")}
-                />
-              </dt>
-              <dd data-testid="hud-path">
-                {controller.pendingPath === null
-                  ? t("common.none")
-                  : t("common.tiles", { count: controller.pendingPath.length })}
-              </dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.targetReach")}{" "}
-                <InfoTip
-                  testId="hud-help-target-reach"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.targetReach")}
-                />
-              </dt>
-              <dd data-testid="hud-target-range">
-                {t("common.tiles", { count: targetRangeTiles.length })}
-              </dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.area")}{" "}
-                <InfoTip
-                  testId="hud-help-area"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.area")}
-                />
-              </dt>
-              <dd data-testid="hud-target-area">
-                {t("common.tiles", { count: targeting.areaTiles.length })}
-              </dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.dangerZone")}{" "}
-                <InfoTip
-                  testId="hud-help-danger-zone"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.dangerZone")}
-                />
-              </dt>
-              <dd data-testid="hud-danger-zone">
-                {t("common.tiles", { count: targeting.danger.length })}
-              </dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.elevation")}{" "}
-                <InfoTip
-                  testId="hud-help-elevation"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.elevation")}
-                />
-              </dt>
-              <dd data-testid="hud-elevation">{formatElevation(targeting.elevation, t)}</dd>
-            </div>
-          </dl>
-          {controller.lastRejection !== null && (
-            <p className="rejection" data-testid="hud-rejection">
-              {controller.lastRejection.message}
-            </p>
-          )}
-          <section className="animation-log" aria-label={t("hud.battleLogLabel")}>
-            <h3>{t("hud.battleLog")}</h3>
-            <ol data-testid="animation-log">
+        {/* T137 — the battle log is the last survivor of the old side column:
+            it collapses behind a toggle so the field keeps its room. The log
+            list (`animation-log`) and its cue entries are unchanged. */}
+        {view === "battle" && (
+          <details className="battle-log" data-testid="battle-log">
+            <summary className="battle-log__toggle">
+              <span className="battle-log__title" role="heading" aria-level={3}>
+                {t("hud.battleLog")}
+              </span>
+              <span className="battle-log__count" aria-hidden="true">
+                {animations.length}
+              </span>
+            </summary>
+            <ol
+              className="battle-log__list"
+              data-testid="animation-log"
+              aria-label={t("hud.battleLogLabel")}
+            >
               {animations.map((animation, index) => (
                 <li
                   key={`${animation.kind}-${index}`}
@@ -873,8 +761,8 @@ export function App() {
                 </li>
               ))}
             </ol>
-          </section>
-        </aside>
+          </details>
+        )}
 
         {/* T134 — the per-character card, anchored beside the focused soldier
             (hovered > selected > acting) through the live camera projection. */}
@@ -910,6 +798,147 @@ export function App() {
             so it never steals a click from the field. */}
         {view === "battle" && (
           <div className="field-dock">
+            {/* T137 — the compact field readout: phase, cursor, reach, area,
+                danger and elevation. The surviving strip of the old side
+                panel is folded into the bottom band so the field keeps its
+                width; the `hud-*` test ids are unchanged. */}
+            <section className="field-readout" aria-label={t("hud.orders")}>
+              {/* T134 — the selected soldier is announced to assistive tech;
+                  the visible readout lives on the anchored card. */}
+              <p className="visually-hidden" data-testid="hud-selected">
+                {selected?.name ?? t("common.none")}
+              </p>
+              <p className="visually-hidden" data-testid="hud-controls">
+                {t("hud.controls")}
+              </p>
+              <dl className="field-readout__list">
+                <div>
+                  <dt>
+                    {t("hud.tempo")}{" "}
+                    <InfoTip
+                      testId="hud-help-tempo"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.tempo")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-actor">{actor?.name ?? t("common.none")}</dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.phase")}{" "}
+                    <InfoTip
+                      testId="hud-help-phase"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.phase")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-phase">{controller.phase}</dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.cursor")}{" "}
+                    <InfoTip
+                      testId="hud-help-cursor"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.cursor")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-cursor">{cursorLabel}</dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.moveRange")}{" "}
+                    <InfoTip
+                      testId="hud-help-move-range"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.moveRange")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-move-range">
+                    {t("common.tiles", { count: controller.moveRange.length })}
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.plannedMarch")}{" "}
+                    <InfoTip
+                      testId="hud-help-planned-march"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.plannedMarch")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-path">
+                    {controller.pendingPath === null
+                      ? t("common.none")
+                      : t("common.tiles", { count: controller.pendingPath.length })}
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.targetReach")}{" "}
+                    <InfoTip
+                      testId="hud-help-target-reach"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.targetReach")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-target-range">
+                    {t("common.tiles", { count: targetRangeTiles.length })}
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.area")}{" "}
+                    <InfoTip
+                      testId="hud-help-area"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.area")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-target-area">
+                    {t("common.tiles", { count: targeting.areaTiles.length })}
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.dangerZone")}{" "}
+                    <InfoTip
+                      testId="hud-help-danger-zone"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.dangerZone")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-danger-zone">
+                    {t("common.tiles", { count: targeting.danger.length })}
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.elevation")}{" "}
+                    <InfoTip
+                      testId="hud-help-elevation"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.elevation")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-elevation">{formatElevation(targeting.elevation, t)}</dd>
+                </div>
+              </dl>
+              {controller.lastRejection !== null && (
+                <p className="rejection" data-testid="hud-rejection">
+                  {controller.lastRejection.message}
+                </p>
+              )}
+            </section>
             {controller.canAct &&
               (controller.phase === "command" || controller.phase === "move") &&
               controller.actions.length > 0 && (
@@ -1076,30 +1105,32 @@ export function App() {
           </section>
         )}
 
-        {view === "battle" && fieldMode === "skirmish" && controller.battle.phase !== "finished" && (
-          <section
-            className="campaign-action"
-            data-testid="skirmish-battle"
-            aria-label={t("skirmish.label")}
-          >
-            <p className="kicker">{t("skirmish.label")}</p>
-            <h2 data-testid="skirmish-name">{SKIRMISH_NAME}</h2>
-            <p className="muted" data-testid="skirmish-objective">
-              {t("contract.battle.objectiveLabel")}:{" "}
-              {objectiveLabel(controller.battle.objective?.objective, t)}
-            </p>
-            <div className="campaign-action__buttons">
-              <button
-                type="button"
-                className="button button--ghost"
-                data-testid="skirmish-resolve"
-                onClick={resolveSkirmish}
-              >
-                {t("contract.battle.resolve")}
-              </button>
-            </div>
-          </section>
-        )}
+        {view === "battle" &&
+          fieldMode === "skirmish" &&
+          controller.battle.phase !== "finished" && (
+            <section
+              className="campaign-action"
+              data-testid="skirmish-battle"
+              aria-label={t("skirmish.label")}
+            >
+              <p className="kicker">{t("skirmish.label")}</p>
+              <h2 data-testid="skirmish-name">{SKIRMISH_NAME}</h2>
+              <p className="muted" data-testid="skirmish-objective">
+                {t("contract.battle.objectiveLabel")}:{" "}
+                {objectiveLabel(controller.battle.objective?.objective, t)}
+              </p>
+              <div className="campaign-action__buttons">
+                <button
+                  type="button"
+                  className="button button--ghost"
+                  data-testid="skirmish-resolve"
+                  onClick={resolveSkirmish}
+                >
+                  {t("contract.battle.resolve")}
+                </button>
+              </div>
+            </section>
+          )}
 
         {fieldMode === "skirmish" && controller.battle.phase === "finished" && (
           <section

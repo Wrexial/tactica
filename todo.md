@@ -1238,7 +1238,7 @@ the T131 rail agree, and keep the function pure (`Unit` + numbers in, draw ops
 out).
 
 ### T137 — Retire the side panel
-- status: todo
+- status: done
 - deps: [T134, T135, T136]
 - files: src/ui/App.tsx, src/ui/styles.css
 - verify: npm run test:e2e -- tests/e2e/animations.spec.ts
