@@ -52,7 +52,7 @@ import {
 import type { BattleState } from "../battle";
 import type { Target } from "../commands";
 import type { BattleEvent } from "../events";
-import { inBounds, type Coord } from "../grid";
+import { coordEquals, inBounds, type Coord } from "../grid";
 import { isValidId, type AbilityId, type UnitId } from "../ids";
 import { Rng } from "../rng";
 import { reactionKindOf, resolveReactionResponses, type ReactionOptions } from "../reactions";
@@ -381,15 +381,42 @@ function effectiveSpecOf(state: BattleState, actor: Unit, spec: ActionSpec): Abi
   return withTraits(executableSpec(spec), actor, traitOptionsOf(state));
 }
 
+/** Whether an action carries a revival effect (a downed target is then legal). */
+function hasReviveEffect(spec: ActionSpec): boolean {
+  return (spec.effects ?? []).some((effect) => effect.kind === "revive");
+}
+
 /**
- * Reconstruct the {@link Target} a pending charge was declared with. A named
- * soldier becomes a unit target; a self-targeted ability becomes `"self"`;
- * every other ground aim becomes a tile target.
+ * Reconstruct the {@link Target} a pending charge should resolve against.
+ *
+ * Charged abilities are **tile-anchored** (peer lesson L4, `docs/PEER_COMBAT_
+ * LESSONS.md`): the effect lands on the tile recorded when the action was
+ * declared, not on wherever the named soldier has since marched. A unit target
+ * therefore resolves against the **living occupant of that tile** at maturity —
+ * if the soldier walked off, the charge whiffs (or catches whoever now stands
+ * there), which is what makes charge timing a real tactical risk.
+ *
+ * A ground (`"tile"`) action stays aimed at the recorded ground, and a
+ * self-target action stays anchored to the caster. Returns `undefined` when the
+ * recorded tile holds nobody the action can land on, so the caller records the
+ * whiff without running the executor.
  */
-function pendingTargetOf(pending: PendingAction, spec: ActionSpec): Target {
-  if (pending.targetId !== undefined) return { kind: "unit", unitId: pending.targetId };
-  if ((spec.target ?? "enemy") === "self") return { kind: "self" };
-  return { kind: "tile", at: { x: pending.at.x, y: pending.at.y } };
+function pendingTargetOf(
+  pending: PendingAction,
+  spec: ActionSpec,
+  state: BattleState,
+): Target | undefined {
+  const declared = spec.target ?? "enemy";
+  if (declared === "self") return { kind: "self" };
+  const at = { x: pending.at.x, y: pending.at.y };
+  if (declared === "tile") return { kind: "tile", at };
+
+  const occupant = state.units.find((unit) => coordEquals(unit.at, at));
+  if (occupant === undefined) return undefined;
+  // A downed soldier can still be the target of a charge meant to save them
+  // (a revival); every other effect needs a living body on the tile.
+  if (isOutOfAction(occupant) && !hasReviveEffect(spec)) return undefined;
+  return { kind: "unit", unitId: occupant.id };
 }
 
 /**
@@ -570,19 +597,16 @@ export function resolveCompletedCharges(
     });
 
     // The wind-up is done: land the effect and any reactions. The caster must
-    // still be standing for the effect to fire.
+    // still be standing, and the recorded tile must still hold a soldier the
+    // action can land on — otherwise the charge whiffs (peer lesson L4).
     const spec = working.abilities[pending.abilityId];
     const actor = working.units.find((unit) => unit.id === pending.unitId);
     if (spec !== undefined && actor !== undefined && !isOutOfAction(actor)) {
-      const effective = effectiveSpecOf(working, actor, spec);
-      working = applyAbilityEffects(
-        working,
-        actor,
-        effective,
-        pendingTargetOf(pending, spec),
-        rng,
-        events,
-      );
+      const target = pendingTargetOf(pending, spec, working);
+      if (target !== undefined) {
+        const effective = effectiveSpecOf(working, actor, spec);
+        working = applyAbilityEffects(working, actor, effective, target, rng, events);
+      }
     }
   }
 

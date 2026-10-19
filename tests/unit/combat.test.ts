@@ -9,8 +9,12 @@ import {
   type ConditionEffect,
   type SteelEffect,
 } from "../../src/engine/actions/ability";
+import {
+  declareOrResolveAction,
+  resolveCompletedCharges,
+} from "../../src/engine/actions/resolve";
 import { createBattle, findUnit, step, type BattleState } from "../../src/engine/battle";
-import { isBattleEvent } from "../../src/engine/events";
+import { isBattleEvent, type BattleEvent } from "../../src/engine/events";
 import { coord, type Coord } from "../../src/engine/grid";
 import { asAbilityId, asConditionId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
 import {
@@ -980,6 +984,146 @@ describe("combat — ability effects through step", () => {
     actAt(state);
 
     expect(JSON.stringify(state)).toBe(before);
+  });
+});
+
+/* ==========================================================================
+ * Tile-anchored charges (T125)
+ *
+ * Peer lesson L4: a charged action resolves against the **tile recorded when it
+ * was declared**, not the named soldier's current position. A target that
+ * marches off the tile therefore dodges the effect; an empty tile whiffs without
+ * error. The out-of-action caster cancellation already present is kept and
+ * pinned here too.
+ * ======================================================================== */
+
+describe("combat — tile-anchored charges (T125)", () => {
+  const CHARGE_ABILITY = asAbilityId("test-tile-charge");
+
+  /** A hostile Steel action with a real wind-up. */
+  function chargeAbility(overrides: Partial<AbilitySpec> = {}): AbilitySpec {
+    return ability({
+      id: CHARGE_ABILITY,
+      chargeTime: 3,
+      effects: [steel(100)],
+      ...overrides,
+    });
+  }
+
+  /** The actor plus two hostiles, so a tile can change hands mid-charge. */
+  function chargeBattle(spec: AbilitySpec = chargeAbility()): BattleState {
+    return createBattle("t125", {
+      map: MAP,
+      units: [
+        makeUnit(ACTOR_ID, coord(1, 1), "company", ACTOR_STATS),
+        makeUnit(FOE_ID, coord(3, 1), "enemy", FOE_STATS),
+        makeUnit(FOE2_ID, coord(3, 2), "enemy", FOE_STATS),
+      ],
+      abilities: [spec],
+    });
+  }
+
+  /** Declare a charged unit action and return the state plus its charge id. */
+  function declareAt(
+    state: BattleState,
+    spec: AbilitySpec,
+    target: UnitId,
+  ): { state: BattleState; chargeId: string } {
+    const actor = findUnit(state, ACTOR_ID);
+    if (actor === undefined) throw new Error("actor missing");
+    const declared = declareOrResolveAction(state, actor, spec, unitTarget(target), []);
+    const pending = declared.pendingActions[0];
+    if (pending === undefined) throw new Error("expected a charging action");
+    return { state: declared, chargeId: pending.chargeId };
+  }
+
+  /** Move a soldier without touching the Orders Tempo clock (test scaffold). */
+  function placeUnit(state: BattleState, unitId: UnitId, at: Coord): BattleState {
+    return {
+      ...state,
+      units: state.units.map((unit) => (unit.id === unitId ? { ...unit, at } : unit)),
+    };
+  }
+
+  /** Mature the charge directly, returning the state and resolution events. */
+  function resolveCharge(
+    state: BattleState,
+    chargeId: string,
+  ): { state: BattleState; events: BattleEvent[] } {
+    const events: BattleEvent[] = [];
+    const after = resolveCompletedCharges(state, [{ chargeId, unitId: ACTOR_ID }], events);
+    return { state: after, events };
+  }
+
+  it("lands on a target that holds its tile until the charge matures", () => {
+    const spec = chargeAbility();
+    const { state, chargeId } = declareAt(chargeBattle(spec), spec, FOE_ID);
+
+    const result = resolveCharge(state, chargeId);
+
+    expect(result.events.map((event) => event.kind)).toEqual([
+      "chargeResolved",
+      "abilityResolved",
+      "damaged",
+    ]);
+    // atk 20, foe def 10 → 15.
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp - 15);
+  });
+
+  it("whiffs when the named soldier marches off the recorded tile", () => {
+    const spec = chargeAbility();
+    const { state, chargeId } = declareAt(chargeBattle(spec), spec, FOE_ID);
+    const moved = placeUnit(state, FOE_ID, coord(6, 4));
+
+    const result = resolveCharge(moved, chargeId);
+
+    // The declaration still matures; only its effect is lost.
+    expect(result.events.map((event) => event.kind)).toEqual([
+      "chargeResolved",
+      "abilityResolved",
+    ]);
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp);
+  });
+
+  it("catches whoever stands on the recorded tile instead of homing", () => {
+    const spec = chargeAbility();
+    const { state, chargeId } = declareAt(chargeBattle(spec), spec, FOE_ID);
+    // The named target leaves; a second hostile steps onto the recorded tile.
+    const swapped = placeUnit(placeUnit(state, FOE_ID, coord(6, 4)), FOE2_ID, coord(3, 1));
+
+    const result = resolveCharge(swapped, chargeId);
+
+    expect(findUnit(result.state, FOE2_ID)?.hp).toBe(FOE_STATS.hp - 15);
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp);
+  });
+
+  it("whiffs without error when the recorded tile holds no living unit", () => {
+    const spec = chargeAbility();
+    const { state, chargeId } = declareAt(chargeBattle(spec), spec, FOE_ID);
+    const cleared = placeUnit(state, FOE_ID, coord(6, 4));
+
+    expect(() => resolveCharge(cleared, chargeId)).not.toThrow();
+
+    const result = resolveCharge(cleared, chargeId);
+    expect(result.events.some((event) => event.kind === "damaged")).toBe(false);
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp);
+  });
+
+  it("cancels the effect when the caster is out of action at maturity", () => {
+    const spec = chargeAbility();
+    const { state, chargeId } = declareAt(chargeBattle(spec), spec, FOE_ID);
+    const wounded: BattleState = {
+      ...state,
+      units: state.units.map((unit) => (unit.id === ACTOR_ID ? { ...unit, hp: 0 } : unit)),
+    };
+
+    const result = resolveCharge(wounded, chargeId);
+
+    expect(result.events.map((event) => event.kind)).toEqual([
+      "chargeResolved",
+      "abilityResolved",
+    ]);
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp);
   });
 });
 

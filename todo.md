@@ -1065,7 +1065,7 @@ the Orders Tempo turn exactly once. Keep the two-step UI in
 `src/app/battleController.ts`; this is an additive engine command shape.
 
 ### T125 — Tile-anchored charged abilities
-- status: doing
+- status: done
 - deps: [T024]
 - files: src/engine/actions/resolve.ts, tests/unit/combat.test.ts, tests/unit/ability.test.ts
 - verify: npm run test -- --run tests/unit/combat.test.ts tests/unit/ability.test.ts tests/unit/determinism.test.ts

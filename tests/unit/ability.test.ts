@@ -677,6 +677,53 @@ describe("executeAbility — ground areas", () => {
   });
 });
 
+/* --------------------------------------------------------------------------
+ * Tile vs unit anchoring (T125)
+ * ------------------------------------------------------------------------ */
+
+describe("executeAbility — tile vs unit anchoring (T125)", () => {
+  it("cannot land an enemy-filtered action on bare ground", () => {
+    // A single-target action is aimed at a *soldier*; aimed at an empty tile it
+    // has no affiliated occupant, so the executor rejects the aim and applies
+    // nothing. The charge pipeline (T125) relies on this by resolving a matured
+    // charge against the recorded tile's occupant — a tile that empties out
+    // whiffs rather than homing onto the fleeing soldier.
+    const state = makeBattle();
+    const result = run(
+      state,
+      ability({ target: "enemy", effects: [steel(100)] }),
+      { kind: "tile", at: coord(5, 1) },
+      SURE_HIT,
+      "bare-ground",
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.targeting.reason).toBe("wrong-affiliation");
+    expect(result.events).toEqual([]);
+  });
+
+  it("still resolves a genuine ground action when its chosen tile empties", () => {
+    // A `tile` action has no named occupant, so it sweeps its recorded footprint
+    // regardless of who happens to be standing there — here, nobody.
+    const state = makeBattle();
+    const result = run(
+      state,
+      ability({
+        target: "tile",
+        aoeShape: "square",
+        aoeSize: 1,
+        effects: [{ kind: "powder", power: 100 }],
+      }),
+      { kind: "tile", at: coord(5, 1) },
+      SURE_HIT,
+      "empty-ground",
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.events).toEqual([]);
+  });
+});
+
 describe("executeAbility — purity & determinism", () => {
   it("does not mutate the input state", () => {
     const state = makeBattle();
