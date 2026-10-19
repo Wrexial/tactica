@@ -20,11 +20,12 @@
  *   node tools/todo.mjs verify T001
  *   node tools/todo.mjs run [--agent "<cmd>"] [--from T001] [--until T010]
  *                           [--phase 0] [--limit N] [--dry-run]
- *                           [--no-commit] [--no-split]
+ *                           [--no-commit] [--no-push] [--no-split]
  *
- * `run` commits after each task by default (one commit per task); `--no-commit`
- * opts out. Before a run, any `done` tasks left uncommitted by a previous run
- * are split into one commit each (`--no-split` opts out).
+ * `run` commits **and pushes** after each task by default (one commit per task);
+ * `--no-commit` / `--no-push` opt out independently. Before a run, any `done`
+ * tasks left uncommitted by a previous run are split into one commit each and
+ * pushed (`--no-split` opts out).
  *
  * Agent command template placeholders: {promptFile} {id} {title} {file}
  * Recommended (cross-platform) agent command:
@@ -350,6 +351,36 @@ function commitAll(task) {
 }
 
 /**
+ * Push the current branch after one or more commits. Defaults to the configured
+ * upstream; if the branch has none, sets `origin` (or the first remote) as the
+ * upstream so a fresh clone can use the runner without a manual `-u`.
+ *
+ * A failed push is reported but never undoes the local commits, so a network
+ * problem cannot lose a verified task. `--no-push` disables pushing entirely.
+ */
+function pushCommits({ force = false } = {}) {
+  if (has("no-push")) return true;
+  const remotes = git(["remote"]).out.split("\n").filter(Boolean);
+  if (remotes.length === 0) {
+    console.error("  ! git push skipped: no remote configured");
+    return false;
+  }
+  const branch = git(["rev-parse", "--abbrev-ref", "HEAD"]).out;
+  const remote = remotes.includes("origin") ? "origin" : remotes[0];
+  const upstream = git(["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}"]);
+  const args = ["push"];
+  if (force) args.push("--force-with-lease");
+  if (!upstream.ok && branch && branch !== "HEAD") args.push("-u", remote, branch);
+  const res = git(args);
+  if (!res.ok) {
+    console.error(`  ! git push failed: ${res.err || res.out}`);
+    return false;
+  }
+  console.log(`  pushed ${branch || "HEAD"}`);
+  return true;
+}
+
+/**
  * Attribute changed files to done tasks via their `files:` lists. A file owned
  * by exactly one task goes to that task; ambiguous (shared) or unreferenced
  * files go to a trailing "chore" commit.
@@ -415,6 +446,7 @@ function splitPending(tasks, { dryRun = false } = {}) {
       made++;
     }
   }
+  if (made > 0) pushCommits();
   return made;
 }
 
@@ -549,9 +581,14 @@ function main() {
         console.log(`  ${p.label.padEnd(6)} ${String(p.files.length).padStart(3)} file(s)  ${p.message}`);
       }
       if (dryRun) return console.log("\nDry run — re-run with --yes to commit.");
+      let made = 0;
       for (const p of plan) {
-        if (commitPaths(p.files, p.message)) console.log(`  committed ${p.label}`);
+        if (commitPaths(p.files, p.message)) {
+          console.log(`  committed ${p.label}`);
+          made++;
+        }
       }
+      if (made > 0) pushCommits();
       return;
     }
 
@@ -570,14 +607,17 @@ function main() {
     for (const p of plan) {
       console.log(`  ${p.label.padEnd(6)} ${String(p.files.length).padStart(3)} file(s)  ${p.message}`);
     }
-    console.log("\nAfter rewriting, publish with: git push --force-with-lease");
+    console.log("\nAfter rewriting, the runner force-pushes with --force-with-lease (disable with --no-push).");
     if (dryRun) return console.log("Dry run — re-run with --yes to rewrite history.");
 
     if (!git(["reset", "--soft", base]).ok) return fail("git reset failed.");
     git(["restore", "--staged", "."]);
+    let made = 0;
     for (const p of plan) {
-      if (!commitPaths(p.files, p.message)) console.error(`  ! failed to commit ${p.label}`);
+      if (commitPaths(p.files, p.message)) made++;
+      else console.error(`  ! failed to commit ${p.label}`);
     }
+    if (made > 0) pushCommits({ force: true });
     console.log(`\n✓ Rewrote ${base}..HEAD into ${plan.length} commit(s).`);
     return;
   }
@@ -640,8 +680,12 @@ function main() {
       }
       setStatus(file, t, "done");
       if (!has("no-commit") && isGitRepo()) {
-        if (commitAll(t)) console.log(`  committed ${t.id}`);
-        else console.log(`  (no changes to commit for ${t.id})`);
+        if (commitAll(t)) {
+          console.log(`  committed ${t.id}`);
+          pushCommits();
+        } else {
+          console.log(`  (no changes to commit for ${t.id})`);
+        }
       }
       console.log(`✓ ${t.id} done`);
       ran++;

@@ -1253,6 +1253,209 @@ pixel layout is not.
 
 ---
 
+## Phase 16 — Core combat loop (move → act → end turn)
+
+The player-facing battle loop is currently wrong: confirming a march dispatches
+`[move, wait]`, so the turn ends before the soldier can act, and selecting an
+action while a march is only *previewed* stages `[move, act]`, so both resolve as
+one bundled order. The peer tactics loop is a **two-step, immediate** turn —
+compare The Unseen Hand's two-step UX around its folded command
+(`docs/PEER_COMBAT_LESSONS.md` L3) and fft-phaser's per-turn budget (L6).
+
+These rules are the contract for this phase. A task is not done until they all
+hold:
+
+1. **Move is optional and commits on its own.** A reachable tile is previewed
+   first; confirming the destination dispatches exactly one `move` command and
+   resolves it immediately. The march never ends the turn and never carries an
+   action (or a `wait`) with it.
+2. **Act is optional and resolves from the committed tile.** After the march the
+   same soldier still owns the turn. Choosing a legal, affordable ability and
+   target dispatches exactly one `act` command from the soldier's *current*
+   position. Acting closes the turn (FFTA-style), unless a future data flag
+   marks the ability as a free/extra action.
+3. **End Turn is explicit.** The acting soldier always has an **End Turn**
+   control while it owns the turn; it dispatches exactly one `wait` command and
+   nothing else. This is how a player passes after moving without acting, or
+   passes before doing anything.
+4. **No bundled player orders.** A single UI confirm produces exactly one command
+   in `lastCommands`. `[move, act]` and `[move, wait]` are forbidden on the
+   player path. The engine's optional `ActCommand.move` fold (T124) stays for
+   AI, replays and atomic scripts; the human UI must not use it.
+5. **The engine stays authoritative.** Target tiles, forecasts and legal actions
+   are derived from committed state, never from a previewed destination.
+   `hasMovedThisTurn` / `hasActedThisTurn` gate the two slots, and cancel/back-out
+   never consumes a slot.
+6. **“If the ability allows it” is data-driven.** Post-move action availability
+   uses the same affordability/legality gate as any action; any future
+   `requiresStationary` / `cannotAfterMove` ability flag must be enforced in the
+   engine, not by hiding a UI button.
+
+### T138 — Commit a march immediately (moving no longer ends the turn)
+- status: todo
+- deps: []
+- files: src/app/battleController.ts, src/app/input.ts, tests/unit/battleController.test.ts, tests/unit/input.test.ts
+- verify: npm run test -- --run tests/unit/battleController.test.ts tests/unit/input.test.ts
+- done: Confirming a previewed march dispatches exactly one `move` command; `lastCommands` is `["move"]`, `lastEvents` contains `moved` but no `turnEnded`, the same soldier stays selected in `command` with `pendingPath` cleared, `moveRange` empty and the action menu still available; the `move` input phase calls the dedicated march-commit intent, and cancel back to `command` never moves.
+
+Today `confirmOrder` for a `move` phase goes through `dispatchPlan`, which
+appends `{ kind: "wait" }` when no action is staged (`src/app/battleController.ts`).
+That is why a march ends the turn. Introduce a dedicated **commit march** intent
+(or narrow `confirmOrder` to actions) used by the `move` case in
+`src/app/input.ts`, and dispatch the `move` through `step` immediately. The
+controller must return to the same soldier's `command` phase, clear
+`pendingPath`, keep the actor selected, hide the now-empty `moveRange`
+(`hasMovedThisTurn`) and leave `actions` populated. Remove `[move, wait]` from
+the player path; `waitOrder` remains the End Turn control (T140). Update the
+assertions that currently expect `["move", "wait"]` in
+`tests/unit/battleController.test.ts` and the input ladder tests.
+
+### T139 — Resolve actions from the committed tile; never bundle move+act
+- status: todo
+- deps: [T138]
+- files: src/app/battleController.ts, src/app/input.ts, tests/unit/battleController.test.ts, tests/unit/input.test.ts
+- verify: npm run test -- --run tests/unit/battleController.test.ts tests/unit/input.test.ts
+- done: After T138's march has committed, `chooseAction` computes target tiles from the soldier's new tile and the final confirm dispatches exactly one `act` command (`lastCommands === ["act"]`), which ends the turn; while a march is only previewed the action menu cannot stage an action (cancel or commit the march first), and a regression test proves no controller intent can emit `[move, act]` in one dispatch.
+
+`dispatchPlan` currently builds `[move, act]` when a path and an action are both
+staged, so a previewed march and its action resolve as one batch. With T138 the
+march is already committed before the action is chosen. Make the action path
+state-only: `chooseAction` / `chooseTarget` / the action confirm must derive
+targets from the current committed `unit.at`, never from a retained path. If the
+controller is in phase `move`, reject `chooseAction` with a clear message (or
+require the player to cancel the preview); do not silently fold the preview into
+the action. `act()` updates to the action-only confirm. Keep the engine's folded
+`ActCommand.move` behaviour covered by `tests/unit/battle.test.ts` for AI and
+replay use, and add a test that a full human turn yields `["move"]` followed by
+`["act"]`, never one bundled dispatch.
+
+### T140 — Add the explicit End Turn control
+- status: todo
+- deps: [T138]
+- files: src/ui/App.tsx, src/ui/styles.css, tests/e2e/endTurn.spec.ts, tests/unit/battleController.test.ts
+- verify: npm run test:e2e -- tests/e2e/endTurn.spec.ts
+- done: While the selected soldier owns the turn in `command` or `move`, the command band shows an `End Turn` button (`data-testid="end-turn"`) that dispatches exactly one `wait` command and advances the tempo; it is hidden or disabled in `target` / `confirm` / `finished` and for read-only selections, and ending after a march emits neither a second `move` nor an `act`.
+
+`waitOrder` exists but there is no player-facing control. Add an **End Turn**
+button to the command band, visible whenever the selected soldier owns the turn
+in `command` or `move` (including after a march and when no action is
+affordable). Activating it dispatches exactly one `wait` and lets
+`advanceToDecision` pick the next actor. Keep the campaign `hold` (Braced)
+button distinct: End Turn is `wait`, not `hold`/`face`. Wire an accessible
+keyboard/gamepad path and update the HUD help copy so the loop is discoverable.
+New spec `tests/e2e/endTurn.spec.ts` should select the actor, press End Turn, and
+assert the tempo advances without a move or action event.
+
+### T141 — Make the turn budget authoritative (move-once, act-once)
+- status: todo
+- deps: [T138, T139]
+- files: src/engine/battle.ts, src/app/battleController.ts, tests/unit/battle.test.ts, tests/unit/battleController.test.ts
+- verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/battleController.test.ts
+- done: `validateCommand` refuses `act` when `hasActedThisTurn` is true (and a folded `act.move` still respects move-once), the controller exposes the same budget (`canMove` / `canAct`, or a small `turnBudget`) and uses it to build `moveRange` and `actions`, and tests cover move-after-move, act-after-act, wait after either slot, and a mid-turn save/restore.
+
+`BattleState` already records `hasMovedThisTurn` and `hasActedThisTurn` (T127),
+but `validateCommand` only checks the move slot and the controller's `canAct` is
+derived only from temporal ownership. Make the budget the single source of
+truth for both the engine and the overlay: reject an `act` after an action has
+been spent, keep the move-once check on `ActCommand.move`, and expose the same
+predicates to the controller. This future-proofs free/extra actions and
+Volleys without reopening the bundled-order bug, and keeps a mid-turn save
+honest when it is loaded back into the UI.
+
+### T142 — Lock the loop with an e2e spec and a written contract
+- status: todo
+- deps: [T138, T139, T140, T141]
+- files: docs/COMBAT_LOOP.md, docs/PEER_COMBAT_LESSONS.md, tests/e2e/turnLoop.spec.ts, src/ui/Tutorial.tsx, src/ui/App.tsx
+- verify: npm run test:e2e -- tests/e2e/turnLoop.spec.ts
+- done: `docs/COMBAT_LOOP.md` states the canonical select → preview/commit move → action menu → target/confirm act → or End Turn loop and is linked from the peer lessons; `tests/e2e/turnLoop.spec.ts` drives the loop end-to-end and asserts that committing a march leaves the actor in command with the action menu visible, that the action resolves from the moved tile, that End Turn advances the tempo, and that no single confirm dispatches more than one command; tutorial/HUD copy no longer says a move ends the turn.
+
+Final guardrail for the phase. Write `docs/COMBAT_LOOP.md` as the canonical
+loop contract (including the rule that the engine's folded `move` clause is
+AI/replay-only), link it from `docs/PEER_COMBAT_LESSONS.md` §2/L3 so future
+agents cannot reintroduce staged `[move, act]`, and add
+tests/e2e/turnLoop.spec.ts (or extend `input.spec.ts`) to drive the loop through
+the real canvas. The spec must observe the command band after the march, the
+action forecast/target from the new tile, the explicit End Turn control, and the
+single-command-per-confirm rule. Sweep the tutorial and HUD help copy for stale
+"move ends the turn" wording.
+
+---
+
+## Phase 17 — Field AI, elevation & tile inspection
+
+Three gaps surfaced in playtesting:
+
+1. **The initial sandbox Field has no AI driver.** `src/ui/App.tsx` starts in
+   `fieldMode === "demo"` with `createDemoBattle()`, but the AI effects only
+   run for `"campaign"` and `"skirmish"`, so the demo hostiles hold their turns
+   forever. The battle modes should share one enemy-phase driver.
+2. **The Quick Battle board is flat.** `farmhouse-assault.json` (and every other
+   authored map) omits the optional `elevation` layer, so `expandBattleMap`
+   returns height 0 for every tile. The isometric renderer and the elevation
+   rules have nothing to show or use in Quick Battle.
+3. **Tiles cannot be inspected.** Moving the cursor only updates `hud-cursor`
+   and a relative elevation delta. The player cannot see the terrain name, its
+   movement/cover/sight rules, or the tile's absolute height unless they infer
+   it from the art.
+
+### T143 — Run the enemy AI on the initial sandbox Field
+- status: todo
+- deps: []
+- files: src/ui/App.tsx, src/app/demoScenario.ts, src/app/skirmishScenario.ts, tests/unit/demoScenario.test.ts, tests/e2e/input.spec.ts
+- verify: npm run test -- --run tests/unit/demoScenario.test.ts tests/unit/skirmishScenario.test.ts
+- done: One shared Field-AI path drives `demo`, `skirmish` and `campaign` battles; after the player passes the opening turn the demo enemy takes its turn without player input, emits its AI events, and control returns to a company soldier; a new `tests/unit/demoScenario.test.ts` proves the hostile acts and no battle mode silently skips the AI phase.
+
+The app opens on `createDemoBattle()` in `fieldMode === "demo"`, but the two AI
+effects in `src/ui/App.tsx` are gated on `campaignAiHoldsTurn(campaign)` and
+`fieldMode !== "skirmish"`. Nothing advances a hostile turn on the initial
+Field. Extract the existing enemy-phase pacing into one driver that accepts a
+`BattleState` (or fold the demo into the same `runAiUntilPlayer` path the other
+modes use), keep the `AI_THINK_MS` pacing and `busy` gate, and make the mode
+switch (`startSkirmish`, `acceptContract`, `dismissResult`) reset cleanly. Add a
+demo-scenario test that gives the turn to an enemy and asserts the AI advances
+it; add an e2e assertion (or extend `input.spec.ts`) that the initial Field's
+hostile phase resolves after the player passes.
+
+### T144 — Author elevation for Quick Battle (and audit the map set)
+- status: todo
+- deps: []
+- files: src/data/maps/farmhouse-assault.json, tests/unit/maps.test.ts, tests/unit/skirmishScenario.test.ts, tests/e2e/skirmish.spec.ts
+- verify: npm run test -- --run tests/unit/maps.test.ts tests/unit/skirmishScenario.test.ts
+- done: `farmhouse-assault.json` carries a valid `elevation` layer with at least two distinct height bands (a low approach and a raised farmhouse/orchard terrace); the quick-battle board's deployment tiles and capture objective remain passable and reachable, and `tests/unit/maps.test.ts` asserts the expanded board has more than one distinct height and that its objective/deployment tiles are valid.
+
+`expandBattleMap` defaults a missing elevation row to height 0
+(`src/data/maps/layout.ts`), and no map JSON currently authors an `elevation`
+layer. That makes Quick Battle visually and mechanically flat even though the
+isometric renderer, pathfinding climb costs and elevation combat rules all
+expect height. Author an `elevation` block for `farmhouse-assault.json` (same
+width/height as `layout`, using `0`–`9`/`a`–`f` codes), keeping the approach
+low, the farmhouse core raised and the orchard banks readable. Re-check the
+enemy/company deployment zones and the `(6, 4)` capture objective against the
+raised tiles. Audit the other authored maps in the same pass and add elevation
+where their terrain description implies relief; if a board is deliberately
+flat, say so in its description or a focused test.
+
+### T145 — Tile inspection: terrain, elevation and effects
+- status: todo
+- deps: []
+- files: src/ui/tileInfo.ts, src/ui/TileCard.tsx, src/ui/App.tsx, src/ui/styles.css, tests/unit/tileInfo.test.ts, tests/e2e/tileInfo.spec.ts
+- verify: npm run test -- --run tests/unit/tileInfo.test.ts && npm run test:e2e -- tests/e2e/tileInfo.spec.ts
+- done: Hovering or selecting any in-bounds tile, empty or occupied, shows an anchored `tile-card` with the terrain name, description/category, absolute elevation, elevation delta relative to the selected/acting soldier, move cost, passable/blocked and sight/water flags; the data comes from a pure `tileInfoFor(map, at, reference)` helper covered by `tests/unit/tileInfo.test.ts`, and the card reuses `scene.project` + `anchorFor` without mutating engine state.
+
+The cursor already tracks hover and click (`controller.cursor`), and the HUD
+shows only its coordinate plus a relative elevation chevron. Add a pure tile
+inspector that reads `terrainTileAt`, `getTerrainDef`, `heightAt`,
+`isPassableAt`, `moveCostAt` and `blocksSightAt` from `src/engine/terrain.ts`,
+returning a small display value (terrain name/description/category, height,
+delta, cost, flags, and whether the tile is occupied). Render it as an anchored
+card beside the cursor using T133's projector and `anchorFor`, following the
+`UnitCard` pattern so the anchor follows pan/zoom. If a unit card is also up,
+offset or merge the terrain line rather than covering it. Keep the card visible
+on empty tiles and while browsing orders; expose a stable
+`data-testid="tile-card"` and `hud-tile` text for the e2e contract.
+
+---
+
 ## Research & open questions
 
 - [ ] Physical/magical damage formulas — documented (see `Attack_(command).md`, `Magic_(command).md`); only the ambiguous secondary line and the healing formula need decisions (T033/T036).
