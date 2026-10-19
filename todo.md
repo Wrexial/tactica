@@ -1198,7 +1198,7 @@ clamp `top`). Update the anchor as the camera pans/zooms and as units move —
 prefer a pixi-ticker/rAF subscription over a React render per frame.
 
 ### T134 — Per-character unit card anchored to the soldier
-- status: todo
+- status: done
 - deps: [T133]
 - files: src/ui/App.tsx, src/ui/UnitCard.tsx, src/ui/StatChips.tsx, src/ui/styles.css
 - verify: npm run test:e2e -- tests/e2e/input.spec.ts

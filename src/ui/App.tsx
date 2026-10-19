@@ -41,7 +41,7 @@ import { asContractId, type AbilityId } from "../engine/ids";
 import { tilesInRange } from "../engine/targeting";
 import type { BattleEvent } from "../engine/events";
 import type { Objective } from "../engine/objectives";
-import { isOutOfAction } from "../engine/unit";
+import { isOutOfAction, type Unit } from "../engine/unit";
 import type { ContractDef } from "../data/schema";
 import {
   AUTOSAVE_SLOT,
@@ -66,6 +66,7 @@ import { Settings } from "./Settings";
 import { LobbyScreen } from "./Lobby";
 import { TempoTray } from "./TempoTray";
 import { Tutorial } from "./Tutorial";
+import { UnitCard, type UnitCardRole } from "./UnitCard";
 import { ANIMATION_TICK_MS, animationDurationMs, animationsForEvents, type BattleAnimation } from "../render/animations";
 import { createScene, type Scene } from "../render/scene";
 import { useTranslation, type MessageKey, type Translator } from "../i18n";
@@ -536,6 +537,23 @@ export function App() {
     [controller.battle, controller.selectedUnitId],
   );
 
+  // T134 — the soldier whose anchored card is shown. The cursor tile wins (a
+  // pointer hover or keyboard move), then the selected soldier, then whoever
+  // holds the Orders Tempo turn. One component serves all three cases.
+  const focus = useMemo((): { readonly unit: Unit; readonly role: UnitCardRole } | null => {
+    const cursor = controller.cursor;
+    const hovered =
+      cursor === null
+        ? null
+        : (controller.battle.units.find(
+            (unit) => unit.at.x === cursor.x && unit.at.y === cursor.y,
+          ) ?? null);
+    if (hovered !== null) return { unit: hovered, role: "hovered" };
+    if (selected !== null) return { unit: selected, role: "selected" };
+    if (actor !== null) return { unit: actor, role: "actor" };
+    return null;
+  }, [controller.battle.units, controller.cursor, selected, actor]);
+
   const cursorLabel =
     controller.cursor === null
       ? t("common.none")
@@ -687,6 +705,11 @@ export function App() {
 
         <aside className="hud" hidden={view !== "battle"}>
           <h2>{t("hud.orders")}</h2>
+          {/* T134 — the selected soldier is announced to assistive tech; the
+              visible per-character readout now lives on the anchored card. */}
+          <p className="visually-hidden" data-testid="hud-selected">
+            {selected?.name ?? t("common.none")}
+          </p>
           <p className="muted" data-testid="hud-controls">
             {t("hud.controls")}
           </p>
@@ -726,18 +749,6 @@ export function App() {
                 />
               </dt>
               <dd data-testid="hud-cursor">{cursorLabel}</dd>
-            </div>
-            <div>
-              <dt>
-                {t("hud.selected")}{" "}
-                <InfoTip
-                  testId="hud-help-selected"
-                  side="left"
-                  title={t("tip.moreInfo")}
-                  label={t("hud.help.selected")}
-                />
-              </dt>
-              <dd data-testid="hud-selected">{selected?.name ?? t("common.none")}</dd>
             </div>
             <div>
               <dt>
@@ -904,6 +915,18 @@ export function App() {
             </ol>
           </section>
         </aside>
+
+        {/* T134 — the per-character card, anchored beside the focused soldier
+            (hovered > selected > acting) through the live camera projection. */}
+        {view === "battle" && focus !== null && (
+          <UnitCard
+            unit={focus.unit}
+            role={focus.role}
+            sceneRef={sceneRef}
+            canvasRef={canvasRef}
+            ready={inputReady}
+          />
+        )}
 
         {view === "battle" && (
           <TempoTray
