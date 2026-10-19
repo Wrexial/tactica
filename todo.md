@@ -1133,7 +1133,7 @@ its whole phase list). Keep it pure and deterministic and pin the sequence with 
 test.
 
 ### T130 — Headless AI-vs-AI gauntlet for balance
-- status: todo
+- status: done
 - deps: [T119, T123]
 - files: src/ai/gauntlet.ts, src/ai/index.ts, tests/unit/gauntlet.test.ts
 - verify: npm run test -- --run tests/unit/gauntlet.test.ts
