@@ -4,10 +4,12 @@ import { coord, type Coord } from "../../src/engine/grid";
 import { isBattleEvent, type BattleEvent } from "../../src/engine/events";
 import {
   BattleSetupError,
+  TURN_UPKEEP_PHASES,
   advanceToDecision,
   applyCommand,
   createBattle,
   findUnit,
+  runTurnUpkeep,
   step,
   validateCommand,
   type BattleSetup,
@@ -20,12 +22,14 @@ import { deserializeBattleState, serializeBattleState } from "../../src/engine/s
 import { createTerrainMap } from "../../src/engine/terrain";
 import {
   TEMPO_THRESHOLD,
+  chargeOf,
   createOrdersTempo,
   previewTurns,
   speedLookup,
 } from "../../src/engine/turn";
-import { createUnit, withHp, withPosition, type Unit, type UnitInit } from "../../src/engine/unit";
+import { createUnit, withHp, withMp, withPosition, type Unit, type UnitInit } from "../../src/engine/unit";
 import type { Objective } from "../../src/engine/objectives";
+import { applyCondition, hasActiveCondition } from "../../src/engine/rules/conditions";
 import type { StatBlock } from "../../src/data/schema";
 
 /* --------------------------------------------------------------------------
@@ -1306,5 +1310,124 @@ describe("advanceToDecision + applyCommand (T123)", () => {
     expect(advanced.actorId).toBeNull();
     expect(advanced.state).toBe(finished);
     expect(advanced.events).toEqual([]);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T129 — ordered beginTurn/endTurn upkeep pipeline
+ *
+ * Peer lessons L10/L14: the start-of-turn sequence must be one explicit,
+ * ordered function — charge spend, per-turn flags, condition ticks, Élan
+ * regeneration, objective scoring. These tests pin both the declared order and
+ * the order the effects actually fire in, and prove the pipeline is wired into
+ * a live `step`.
+ * ------------------------------------------------------------------------ */
+
+describe("runTurnUpkeep — ordered per-turn upkeep (T129)", () => {
+  it("names the upkeep order explicitly", () => {
+    expect(TURN_UPKEEP_PHASES).toEqual([
+      "spendCharge",
+      "resetTurnFlags",
+      "tickConditions",
+      "regenerateElan",
+      "scoreObjective",
+    ]);
+  });
+
+  it("runs charge spend, flags, conditions, Élan and objective in that order", () => {
+    const start = createBattle(1815, {
+      ...makeActionSetup([INSTANT_ACTION]),
+      objective: { kind: "survive", turns: 1 } as Objective,
+    });
+    const actorId = start.currentActorId as UnitId;
+
+    // Set up every phase so none is a silent no-op: Bleeding deals tick damage,
+    // half Élan on a regen tick restores points, and `survive: 1` scores a turn.
+    const prepared: BattleState = {
+      ...start,
+      units: start.units.map((unit) =>
+        unit.id === actorId ? withMp(applyCondition(unit, "poison", { tick: 0 }).unit, 10) : unit,
+      ),
+      tempo: { ...start.tempo, tick: 10 },
+      hasMovedThisTurn: true,
+      hasActedThisTurn: true,
+    };
+    const chargeBefore = chargeOf(prepared.tempo, actorId) as number;
+
+    const result = runTurnUpkeep(prepared);
+
+    // The declared order is the executed order.
+    expect(result.phases).toEqual([...TURN_UPKEEP_PHASES]);
+    // Effects fire in the same order: condition tick → Élan regen → objective.
+    expect(result.events.map((event) => event.kind)).toEqual([
+      "damaged",
+      "mpChanged",
+      "battleEnded",
+    ]);
+
+    const actor = findUnit(result.state, actorId)!;
+    expect(actor.hp).toBe(BASE_STATS.hp - 12); // Bleeding ticked.
+    expect(actor.mp).toBe(15); // 10 + the 5-point regen step.
+    expect(hasActiveCondition(actor, "poison")).toBe(true);
+    // Charge spent (threshold deducted) and the per-turn budget cleared.
+    expect(chargeOf(result.state.tempo, actorId)).toBe(
+      Math.max(0, chargeBefore - prepared.tempo.threshold),
+    );
+    expect(result.state.hasMovedThisTurn).toBe(false);
+    expect(result.state.hasActedThisTurn).toBe(false);
+    // The objective scored exactly one completed turn.
+    expect(result.state.phase).toBe("finished");
+    expect(result.state.outcome).toBe("companyVictory");
+    expect(result.state.objective?.turnsElapsed).toBe(1);
+  });
+
+  it("is wired into a live step: the incoming soldier ticks and regenerates", () => {
+    // Both soldiers at Speed 10, so the first turn opens on tick 10 — a
+    // regeneration tick — and the tie-break hands it to `unit-fast`.
+    const roster = [
+      makeUnit(FAST, coord(1, 1), { stats: { ...BASE_STATS, spd: 10 } }),
+      makeUnit(SLOW, coord(3, 2), { stats: { ...BASE_STATS, spd: 10 } }),
+    ];
+    const start = createBattle(1815, makeSetup(roster));
+    const actorId = start.currentActorId as UnitId;
+    expect(start.tempo.tick).toBe(10);
+
+    const prepared: BattleState = {
+      ...start,
+      units: start.units.map((unit) =>
+        unit.id === actorId ? withMp(applyCondition(unit, "poison", { tick: 0 }).unit, 10) : unit,
+      ),
+    };
+
+    const result = step(prepared, wait(prepared));
+    const actor = findUnit(result.state, actorId)!;
+
+    expect(actor.hp).toBe(BASE_STATS.hp - 12);
+    expect(actor.mp).toBe(15);
+    expect(
+      result.events.some((event) => event.kind === "damaged" && event.unitId === actorId),
+    ).toBe(true);
+    expect(
+      result.events.some(
+        (event) => event.kind === "mpChanged" && event.reason === "regenerated",
+      ),
+    ).toBe(true);
+  });
+
+  it("keeps the input state byte-identical", () => {
+    const start = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actorId = start.currentActorId as UnitId;
+    const prepared: BattleState = {
+      ...start,
+      units: start.units.map((unit) =>
+        unit.id === actorId ? withMp(applyCondition(unit, "poison", { tick: 0 }).unit, 10) : unit,
+      ),
+      tempo: { ...start.tempo, tick: 10 },
+    };
+    const before = JSON.stringify(prepared);
+
+    runTurnUpkeep(prepared);
+
+    expect(JSON.stringify(prepared)).toBe(before);
   });
 });

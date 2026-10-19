@@ -1120,7 +1120,7 @@ friendly-fire path fail loudly instead of silently mis-crediting. Add
 from AI evaluation and battle reports. Nothing in `step` changes.
 
 ### T129 — Ordered `beginTurn`/`endTurn` upkeep pipeline
-- status: todo
+- status: done
 - deps: [T024, T040]
 - files: src/engine/battle.ts, tests/unit/battle.test.ts, tests/unit/combat.test.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/combat.test.ts

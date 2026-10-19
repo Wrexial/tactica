@@ -85,6 +85,8 @@ import {
 } from "./objectives";
 import { findPath } from "./pathfinding";
 import type { Seed } from "./rng";
+import { tickConditions } from "./rules/conditions";
+import { settleElan } from "./rules/elan";
 import type { TerrainMap } from "./terrain";
 import {
   TEMPO_THRESHOLD,
@@ -211,7 +213,7 @@ export interface BattleState {
    * Whether the current actor has already spent this turn's **Move**. A `move`
    * command leaves the actor's Orders Tempo turn open so it can be followed by
    * an `act` (the FFTA free-move turn, T115); this flag blocks a second march
-   * and is cleared when the turn ends.
+   * and is cleared by the ordered upkeep pipeline when the next turn opens.
    */
   readonly hasMovedThisTurn: boolean;
   /**
@@ -544,6 +546,140 @@ export function validateCommand(state: BattleState, command: unknown): BattleRej
  * Turn lifecycle
  * ------------------------------------------------------------------------ */
 
+/**
+ * The ordered per-turn upkeep phases (T129, peer lessons L10/L14).
+ *
+ * Peer engines make the start-of-turn sequence explicit because *order
+ * matters*: fft-phaser runs `ct -= 100` → `resetTurnFlags()` → `tickStatuses()`
+ * → `regenMp()` the moment a soldier is granted a turn, and TinyWars lists its
+ * whole phase table. Before T129 our equivalent work was scattered — the charge
+ * was spent in `applyCommand`, the flags were cleared in `advanceToDecision`,
+ * conditions and Élan were never ticked at all, and the objective was scored
+ * somewhere else again. This tuple names the one order the engine promises.
+ */
+export const TURN_UPKEEP_PHASES = [
+  "spendCharge",
+  "resetTurnFlags",
+  "tickConditions",
+  "regenerateElan",
+  "scoreObjective",
+] as const;
+export type TurnUpkeepPhase = (typeof TURN_UPKEEP_PHASES)[number];
+
+/** Options for {@link runTurnUpkeep}. */
+export interface TurnUpkeepOptions {
+  /**
+   * Whether to score the win/lose objective as the final phase. Defaults to
+   * `true`; the opening turn passes `false` because no turn has completed yet.
+   */
+  readonly scoreObjective?: boolean;
+}
+
+/** The state, events and executed phases of one {@link runTurnUpkeep} pass. */
+export interface TurnUpkeepResult {
+  readonly state: BattleState;
+  readonly events: readonly BattleEvent[];
+  /**
+   * The phases that ran, in order. A soldier whose condition ticks knock them
+   * out mid-upkeep makes the loop repeat the leading phases, so this is a
+   * faithful trace rather than a copy of {@link TURN_UPKEEP_PHASES}.
+   */
+  readonly phases: readonly TurnUpkeepPhase[];
+}
+
+/** Replace one soldier in a battle state, leaving every other entry shared. */
+function withUnit(state: BattleState, unit: Unit): BattleState {
+  return {
+    ...state,
+    units: state.units.map((candidate) => (candidate.id === unit.id ? unit : candidate)),
+  };
+}
+
+/**
+ * Run the complete, ordered upkeep for the soldier whose Orders Tempo turn is
+ * beginning (T129, peer lesson L14):
+ *
+ * 1. **spendCharge** — deduct the incoming soldier's charge, keeping any
+ *    overshoot as progress toward their next turn (`./turn.ts`).
+ * 2. **resetTurnFlags** — clear {@link BattleState.hasMovedThisTurn} and
+ *    {@link BattleState.hasActedThisTurn} for the fresh turn.
+ * 3. **tickConditions** — advance every status on the soldier (Bleeding,
+ *    Steadied, Mortally Wounded), which can knock them out.
+ * 4. **regenerateElan** — restore Élan on the authored schedule and reconcile
+ *    the Shaken/Routed morale conditions with the new pool (`./rules/elan.ts`).
+ * 5. **scoreObjective** — advance the mission clock by one completed turn and
+ *    check the win/lose condition. Skipped for the opening turn via
+ *    {@link TurnUpkeepOptions.scoreObjective}.
+ *
+ * If a condition tick downs the incoming soldier, the leading phases repeat
+ * for the next living actor (a dead soldier loses their turn), so the pipeline
+ * always finishes on a living actor or a stalled/ finished battle. Pure and
+ * deterministic: no DOM, no `Math.random`, no clock — time is the integer
+ * Orders Tempo tick.
+ */
+export function runTurnUpkeep(
+  state: BattleState,
+  options: TurnUpkeepOptions = {},
+): TurnUpkeepResult {
+  const events: BattleEvent[] = [];
+  const phases: TurnUpkeepPhase[] = [];
+  let working = state;
+
+  // Phases 1-4 repeat only if a condition tick downs the incoming soldier.
+  for (let guard = 0; guard < 64; guard++) {
+    const actorId = working.currentActorId;
+
+    // 1. Charge spend.
+    if (actorId !== null) {
+      working = { ...working, tempo: spendTurn(working.tempo, actorId) };
+    }
+    phases.push("spendCharge");
+
+    // 2. Per-turn flag reset.
+    working = { ...working, hasMovedThisTurn: false, hasActedThisTurn: false };
+    phases.push("resetTurnFlags");
+
+    // 3 & 4. Condition ticks, then Élan regeneration, for the incoming actor.
+    if (actorId !== null) {
+      const actor = findUnit(working, actorId);
+      if (actor !== undefined && !isOutOfAction(actor)) {
+        const ticked = tickConditions(actor, working.tempo.tick);
+        working = withUnit(working, ticked.unit);
+        events.push(...ticked.events);
+        phases.push("tickConditions");
+
+        // A tick can knock the soldier out; a dead soldier does not regenerate.
+        if (!isOutOfAction(ticked.unit)) {
+          const settled = settleElan(ticked.unit, working.tempo.tick);
+          working = withUnit(working, settled.unit);
+          events.push(...settled.events);
+        }
+        phases.push("regenerateElan");
+      }
+    }
+
+    if (actorId === null) break;
+    const actor = findUnit(working, actorId);
+    if (actor === undefined || isOutOfAction(actor)) {
+      // Upkeep downed the incoming soldier: skip their lost turn and open the
+      // next one. `skipDownedActors` resolves any charges their skipped turns
+      // elapse and re-runs until a living actor (or none) remains.
+      working = skipDownedActors(working, events);
+      if (working.phase === "finished" || working.currentActorId === null) break;
+      continue;
+    }
+    break;
+  }
+
+  // 5. Objective scoring.
+  if (options.scoreObjective !== false) {
+    working = settleObjective(working, events);
+  }
+  phases.push("scoreObjective");
+
+  return { state: working, events, phases };
+}
+
 /** Emit the opening events and hand the first turn to the current actor. */
 function announceStart(state: BattleState, events: BattleEvent[]): BattleState {
   events.push({ kind: "battleStarted", tick: 0 });
@@ -556,16 +692,23 @@ function announceStart(state: BattleState, events: BattleEvent[]): BattleState {
       side: unit.side,
     });
   }
-  if (state.currentActorId !== null) {
-    events.push({ kind: "turnStarted", tick: state.tempo.tick, unitId: state.currentActorId });
+  // The opening soldier's turn begins here: run the same ordered upkeep as
+  // every later turn, but do not score the objective — no turn has completed
+  // yet, so a `survive` objective must not tick on turn zero (T129).
+  const begun = runTurnUpkeep(state, { scoreObjective: false });
+  const working: BattleState = { ...begun.state, started: true };
+  events.push(...begun.events);
+  if (working.currentActorId !== null) {
+    events.push({ kind: "turnStarted", tick: working.tempo.tick, unitId: working.currentActorId });
   }
-  return { ...state, started: true };
+  return working;
 }
 
 /**
  * Announce the battle's opening events — `battleStarted`, one `unitDeployed`
- * per soldier and the first `turnStarted` — **without** spending a turn.
- * Returns the started state plus those events in order.
+ * per soldier and the first `turnStarted` — running the opening soldier's
+ * ordered upkeep (T129) but **without completing a turn** or scoring the
+ * objective. Returns the started state plus those events in order.
  *
  * {@link step} performs this implicitly on its first call; exposing it lets a
  * UI paint deployment and the opening turn before the first order, and lets
@@ -829,18 +972,17 @@ export function applyCommand(state: BattleState, command: Command): BattleStepRe
   events.push({ kind: "turnEnded", tick, unitId: actor.id });
   // Record which slot the closing order spent: an `act` uses the act slot,
   // while `wait` / `face` / `hold` are free and leave it alone (T127). The
-  // flags are not reset here — `advanceToDecision` clears both exactly once
-  // when it opens the next soldier's turn, so a caller can still inspect the
-  // completed turn's budget in the applied state.
+  // flags are not reset here — `advanceToDecision` clears them, and spends the
+  // next soldier's charge, through the ordered `runTurnUpkeep` pipeline (T129),
+  // so a caller can still inspect the completed turn's budget in this state.
   return {
     state: {
       ...applied,
       hasMovedThisTurn:
         applied.hasMovedThisTurn || (command.kind === "act" && command.move !== undefined),
       hasActedThisTurn: command.kind === "act",
-      // Spend the acting soldier's charge; clearing `currentActorId` marks the
-      // state as mid-advance so `advanceToDecision` surfaces the next actor.
-      tempo: spendTurn(applied.tempo, actor.id),
+      // Clearing `currentActorId` marks the state as mid-advance so
+      // `advanceToDecision` surfaces the next actor and runs its upkeep.
       currentActorId: null,
     },
     events,
@@ -900,19 +1042,20 @@ export function advanceToDecision(state: BattleState): BattleAdvanceResult {
     ...working,
     tempo: advanced.tempo,
     currentActorId: advanced.actorId,
-    hasMovedThisTurn: false,
-    hasActedThisTurn: false,
   };
 
   working = resolveCompletedCharges(working, resolved, events);
-  // Charges resolved above may have downed the soldier who was just handed the
-  // turn; skip any that are, so the battle keeps moving (T117/playability).
-  working = skipDownedActors(working, events);
 
-  // Score the win/lose objective (T031) before opening the next turn. When it
-  // fires, the battle freezes, records the outcome and emits `battleEnded`
-  // instead of a `turnStarted` for a turn that will never be taken.
-  working = settleObjective(working, events);
+  // One explicit, ordered upkeep pipeline for the soldier whose turn begins
+  // (T129, peer lesson L14): spend charge, reset per-turn flags, tick
+  // conditions, regenerate Élan, then score the objective. The pipeline also
+  // skips and spends any casualty it hands the turn to, so the battle keeps
+  // moving (T117/playability). When the objective fires, the battle freezes and
+  // emits `battleEnded` instead of a `turnStarted` for a turn never taken.
+  const upkeep = runTurnUpkeep(working);
+  working = upkeep.state;
+  events.push(...upkeep.events);
+
   if (working.phase === "finished") {
     return { state: working, events, actorId: null, terminal: true };
   }

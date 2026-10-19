@@ -1128,6 +1128,52 @@ describe("combat — tile-anchored charges (T125)", () => {
 });
 
 /* ==========================================================================
+ * Per-turn upkeep pipeline (T129)
+ *
+ * The ordered `runTurnUpkeep` pipeline (charge spend → flags → condition ticks
+ * → Élan regen → objective) is wired into the live `step` loop, so a condition
+ * inflicted by a real action ticks on the victim's next turn.
+ * ======================================================================== */
+
+describe("combat — per-turn upkeep pipeline (T129)", () => {
+  const BLEED_ABILITY = asAbilityId("test-bleeding-shot");
+
+  it("ticks a condition on the victim's turn through step", () => {
+    const spec = ability({
+      id: BLEED_ABILITY,
+      target: "enemy",
+      // No direct damage: isolate the condition tick so the HP loss is the
+      // turn-start upkeep, not the shot.
+      effects: [condition("poison")],
+    });
+    const state = createBattle("t129", {
+      map: MAP,
+      units: [
+        makeUnit(ACTOR_ID, coord(1, 1), "company", { ...ACTOR_STATS, spd: 10 }),
+        makeUnit(FOE_ID, coord(3, 1), "enemy", { ...FOE_STATS, spd: 10 }),
+      ],
+      abilities: [spec],
+    });
+
+    const result = step(state, {
+      kind: "act",
+      unitId: state.currentActorId as UnitId,
+      abilityId: BLEED_ABILITY,
+      target: unitTarget(FOE_ID),
+    });
+
+    expect(result.rejection).toBeUndefined();
+    // The shot applied Bleeding (no HP change), then the victim's own turn
+    // opened and the condition ticked for 12.
+    expect(result.events.some((event) => event.kind === "conditionApplied")).toBe(true);
+    expect(
+      result.events.some((event) => event.kind === "damaged" && event.unitId === FOE_ID),
+    ).toBe(true);
+    expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp - 12);
+  });
+});
+
+/* ==========================================================================
  * Purity & determinism
  * ======================================================================== */
 
