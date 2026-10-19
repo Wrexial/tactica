@@ -1347,7 +1347,7 @@ New spec `tests/e2e/endTurn.spec.ts` should select the actor, press End Turn, an
 assert the tempo advances without a move or action event.
 
 ### T141 — Make the turn budget authoritative (move-once, act-once)
-- status: todo
+- status: done
 - deps: [T138, T139]
 - files: src/engine/battle.ts, src/app/battleController.ts, tests/unit/battle.test.ts, tests/unit/battleController.test.ts
 - verify: npm run test -- --run tests/unit/battle.test.ts tests/unit/battleController.test.ts

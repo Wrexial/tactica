@@ -7,6 +7,7 @@ import {
   TURN_UPKEEP_PHASES,
   advanceToDecision,
   applyCommand,
+  beginBattle,
   createBattle,
   findUnit,
   runTurnUpkeep,
@@ -985,6 +986,142 @@ describe("step — per-turn action budget (T127)", () => {
     expect(moved.hasActedThisTurn).toBe(false);
     const json = serializeBattleState(moved);
     expect(deserializeBattleState(json)).toEqual(moved);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T141 — the turn budget is authoritative
+ *
+ * T127 recorded the move/act slots; T141 makes `validateCommand` enforce them
+ * as the single source of truth. A second action — standalone or folded — is
+ * refused, a folded march still respects move-once, the free orders can always
+ * close a turn without erasing a spent slot, and a mid-turn save restores the
+ * exact budget.
+ * ------------------------------------------------------------------------ */
+
+describe("turn budget — move-once / act-once (T141)", () => {
+  /** A started mid-turn state whose act slot is already spent. */
+  function actedState(): { state: BattleState; actor: UnitId } {
+    const state = beginBattle(createBattle(1815, makeActionSetup([INSTANT_ACTION]))).state;
+    return { state: { ...state, hasActedThisTurn: true }, actor: state.currentActorId as UnitId };
+  }
+
+  it("refuses a second action in the same turn without mutation", () => {
+    const { state, actor } = actedState();
+    const mpBefore = findUnit(state, actor)!.mp;
+
+    expect(validateCommand(state, actCommand(state))?.reason).toBe("already-acted");
+
+    const result = step(state, actCommand(state));
+    expect(result.rejection?.reason).toBe("already-acted");
+    expect(result.state).toBe(state);
+    expect(result.events).toEqual([]);
+    expect(findUnit(result.state, actor)?.mp).toBe(mpBefore);
+    expect(result.state.currentActorId).toBe(actor);
+  });
+
+  it("applies the act-once gate to a folded act.move as well", () => {
+    const { state, actor } = actedState();
+    const folded: Command = {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(2, 1), order: "before" },
+    };
+
+    // Act-once is checked before the folded march, so no slot slips through.
+    const result = step(state, folded);
+    expect(result.rejection?.reason).toBe("already-acted");
+    expect(result.state).toBe(state);
+    expect(result.events).toEqual([]);
+  });
+
+  it("keeps the move-once gate on a folded act.move (but allows a plain act)", () => {
+    const state = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+    const moved = applyCommand(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    }).state;
+
+    const folded: Command = {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(3, 1), order: "before" },
+    };
+    expect(validateCommand(moved, folded)?.reason).toBe("already-moved");
+    expect(step(moved, folded).state).toBe(moved);
+
+    // The same direction is not a false positive: an action with no march is
+    // still legal after the move slot is spent.
+    expect(validateCommand(moved, actCommand(moved))).toBeNull();
+    const acted = step(moved, actCommand(moved));
+    expect(acted.rejection).toBeUndefined();
+    expect(acted.state.hasActedThisTurn).toBe(false); // next actor's fresh budget
+  });
+
+  it("accepts a wait after either slot, without erasing the spent slot", () => {
+    const start = createBattle(1815, makeActionSetup([INSTANT_ACTION]));
+    const actor = start.currentActorId as UnitId;
+
+    // Move then wait: the march stays recorded on the closed turn.
+    const moved = applyCommand(start, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    }).state;
+    expect(validateCommand(moved, wait(moved))).toBeNull();
+    const closedAfterMove = applyCommand(moved, wait(moved));
+    expect(closedAfterMove.rejection).toBeUndefined();
+    expect(closedAfterMove.state.hasMovedThisTurn).toBe(true);
+    expect(closedAfterMove.state.hasActedThisTurn).toBe(false);
+
+    // Act spent then wait: the free order must not reset the act slot.
+    const { state: spent } = actedState();
+    expect(validateCommand(spent, wait(spent))).toBeNull();
+    const closedAfterAct = applyCommand(spent, wait(spent));
+    expect(closedAfterAct.rejection).toBeUndefined();
+    expect(closedAfterAct.state.hasActedThisTurn).toBe(true);
+    expect(closedAfterAct.state.hasMovedThisTurn).toBe(false);
+    expect(closedAfterAct.state.currentActorId).toBeNull();
+
+    // Advancing into the next turn hands out a fresh budget.
+    const advanced = advanceToDecision(closedAfterAct.state);
+    expect(advanced.state.hasMovedThisTurn).toBe(false);
+    expect(advanced.state.hasActedThisTurn).toBe(false);
+    expect(advanced.state.currentActorId).not.toBeNull();
+  });
+
+  it("restores an honest budget from a mid-turn save", () => {
+    const start = beginBattle(createBattle(1815, makeActionSetup([INSTANT_ACTION]))).state;
+    const actor = start.currentActorId as UnitId;
+    const moved = applyCommand(start, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    }).state;
+
+    const restored = deserializeBattleState(serializeBattleState(moved));
+    expect(restored).toEqual(moved);
+    expect(restored.hasMovedThisTurn).toBe(true);
+    expect(
+      validateCommand(restored, {
+        kind: "move",
+        unitId: actor,
+        path: [coord(2, 1), coord(3, 1)],
+      })?.reason,
+    ).toBe("already-moved");
+    expect(validateCommand(restored, actCommand(restored))).toBeNull();
+
+    // The act-spent side of the budget survives too.
+    const { state: spent } = actedState();
+    const restoredSpent = deserializeBattleState(serializeBattleState(spent));
+    expect(restoredSpent.hasActedThisTurn).toBe(true);
+    expect(validateCommand(restoredSpent, actCommand(restoredSpent))?.reason).toBe("already-acted");
   });
 });
 

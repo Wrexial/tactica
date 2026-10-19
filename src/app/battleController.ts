@@ -43,15 +43,20 @@
  * The engine owns the turn bookkeeping (declare → charge → resolve → end-turn →
  * advance tempo) and every intent is a replayable command in the log. The
  * engine's per-turn budget (`hasMovedThisTurn` / `hasActedThisTurn`, T127) is
- * read here so the overlay never offers a march the engine would refuse when a
- * partially-spent turn is handed in (e.g. a mid-turn save).
+ * the single source of truth for both layers (T141): {@link turnBudgetFor}
+ * derives the overlay's `canMove` / `canAct` from the very flags
+ * `validateCommand` enforces, so a partially-spent turn handed in from a
+ * mid-turn save offers exactly the orders the engine would accept — no march
+ * after a march, no action after an action.
  *
  * ## What the UI gets
  *
  * {@link BattleController} is the one value the overlay reads:
  *
  * - {@link BattleController.phase} — which screen to show;
- * - {@link BattleController.selectedUnitId} / `canAct` — whose turn it is;
+ * - {@link BattleController.selectedUnitId} / `canAct` — whose turn it is and
+ *   which half of the budget is still open;
+ * - {@link BattleController.turnBudget} — the move/act slots in one value;
  * - {@link BattleController.moveRange} — the blue reachable tiles (T030);
  * - {@link BattleController.pendingPath} — the planned march to preview;
  * - {@link BattleController.actions} — the available action menu, with cost;
@@ -122,6 +127,21 @@ export interface ActionOption {
 }
 
 /**
+ * One soldier's remaining per-turn budget (T141).
+ *
+ * `hasMoved` / `hasActed` are the engine's recorded slots and `canMove` /
+ * `canAct` fold in turn ownership and fitness. A soldier that does not own the
+ * turn reports an untouched budget, so a read-only selection never looks like a
+ * half-spent turn.
+ */
+export interface TurnBudget {
+  readonly hasMoved: boolean;
+  readonly hasActed: boolean;
+  readonly canMove: boolean;
+  readonly canAct: boolean;
+}
+
+/**
  * The complete controller value. Treat it as immutable: every intent returns a
  * new controller. The overlay may hold this directly in a store (Zustand) and
  * read fields without further derivation.
@@ -134,11 +154,24 @@ export interface BattleController {
   /** The soldier the player picked, or `null` before a selection. */
   readonly selectedUnitId: UnitId | null;
   /**
-   * Whether the selected soldier currently holds the Orders Tempo turn and is
-   * fit to act. A soldier can be selected for *inspection* when this is false,
-   * but no orders are offered.
+   * Whether the selected soldier currently holds the Orders Tempo turn, is fit
+   * to act, **and** still has its act slot. Mirrors
+   * {@link TurnBudget.canAct}; a soldier can be selected for *inspection* when
+   * this is false, but no actions are offered.
    */
   readonly canAct: boolean;
+  /**
+   * Whether the selected soldier still has its move slot: it holds the turn, is
+   * fit, and has not marched yet. Mirrors {@link TurnBudget.canMove}.
+   */
+  readonly canMove: boolean;
+  /**
+   * The selected soldier's remaining turn budget, read straight from the
+   * engine's flags (T141). The overlay derives both the move range and the
+   * action menu from this value, so it can never offer an order the engine
+   * would refuse.
+   */
+  readonly turnBudget: TurnBudget;
   /** Every tile the selected soldier can reach, cheapest cost included (T030). */
   readonly moveRange: readonly ReachableTile[];
   /** The action menu for the selected soldier, in catalogue order. */
@@ -208,6 +241,44 @@ export function actionOptionsFor(state: BattleState, unit: Unit): ActionOption[]
   }));
 }
 
+/**
+ * The per-turn budget for `unitId`, derived from the engine flags that
+ * `validateCommand` enforces (T141). This is the one place the overlay reads
+ * move-once / act-once from, so it can never drift from the engine: a march is
+ * offered only while `hasMovedThisTurn` is false, and an action only while
+ * `hasActedThisTurn` is false.
+ *
+ * A soldier that is not the current actor (or is out of action) reports an
+ * untouched, fully closed budget — no flags and no slots — rather than leaking
+ * the acting soldier's spent slots onto an inspected unit.
+ */
+export function turnBudgetFor(state: BattleState, unitId: UnitId | null): TurnBudget {
+  const unit = unitId === null ? undefined : findUnit(state, unitId);
+  const ownsTurn = unit !== undefined && state.currentActorId === unit.id && !isOutOfAction(unit);
+  if (!ownsTurn) {
+    return { hasMoved: false, hasActed: false, canMove: false, canAct: false };
+  }
+  return {
+    hasMoved: state.hasMovedThisTurn,
+    hasActed: state.hasActedThisTurn,
+    canMove: !state.hasMovedThisTurn,
+    canAct: !state.hasActedThisTurn,
+  };
+}
+
+/**
+ * Whether the selected soldier owns the Orders Tempo turn and can be given any
+ * order at all (including a free `wait` / `face` / `hold`). Distinct from
+ * `canAct`: a turn whose act slot is spent may still be closed, but no action
+ * is offered (T141).
+ */
+function ownsTurn(controller: BattleController): boolean {
+  if (controller.selectedUnitId === null) return false;
+  if (controller.battle.currentActorId !== controller.selectedUnitId) return false;
+  const unit = findUnit(controller.battle, controller.selectedUnitId);
+  return unit !== undefined && !isOutOfAction(unit);
+}
+
 /* --------------------------------------------------------------------------
  * Internal construction helpers
  * ------------------------------------------------------------------------ */
@@ -219,6 +290,8 @@ function idleState(battle: BattleState): BattleController {
     phase: battle.phase === "finished" ? "finished" : "select",
     selectedUnitId: null,
     canAct: false,
+    canMove: false,
+    turnBudget: { hasMoved: false, hasActed: false, canMove: false, canAct: false },
     moveRange: [],
     actions: [],
     pendingPath: null,
@@ -293,8 +366,9 @@ export function createBattleController(battle: BattleState): BattleController {
 
 /**
  * Select a deployed soldier. Selecting the soldier whose Orders Tempo turn it
- * is unlocks the move range and action menu; selecting anyone else shows their
- * information read-only (`canAct` is `false`).
+ * is unlocks the parts of the turn budget still open (T141): the move range
+ * while the move slot is unspent and the action menu while the act slot is
+ * unspent. Selecting anyone else shows their information read-only.
  *
  * Refuses with `unknown-unit` for an id that is not deployed.
  */
@@ -306,17 +380,19 @@ export function selectUnit(controller: BattleController, unitId: UnitId): Battle
     return withRejection(controller, "unknown-unit", `no soldier "${unitId}" is deployed`);
   }
 
-  const canAct = controller.battle.currentActorId === unitId && !isOutOfAction(unit);
+  const budget = turnBudgetFor(controller.battle, unitId);
   return {
     ...clearVerdict(controller),
     phase: "command",
     selectedUnitId: unitId,
-    canAct,
-    // A turn whose march is already spent can still act, but must not be
-    // offered a second move (engine budget, T127).
-    moveRange:
-      canAct && !controller.battle.hasMovedThisTurn ? moveRangeFor(controller.battle, unit) : [],
-    actions: canAct ? actionOptionsFor(controller.battle, unit) : [],
+    canAct: budget.canAct,
+    canMove: budget.canMove,
+    turnBudget: budget,
+    // Both halves of the turn are read from the engine budget (T141): a turn
+    // that already marched hides its move range, and one that already acted
+    // hides its action menu — including when a mid-turn save is loaded here.
+    moveRange: budget.canMove ? moveRangeFor(controller.battle, unit) : [],
+    actions: budget.canAct ? actionOptionsFor(controller.battle, unit) : [],
     pendingPath: null,
     pendingActionId: null,
     pendingTarget: null,
@@ -349,10 +425,10 @@ export function planMove(controller: BattleController, at: Coord): BattleControl
   if (controller.phase === "finished") return controller;
 
   const unit = selectedActor(controller);
-  if (unit === null || !controller.canAct) {
+  if (unit === null || !ownsTurn(controller)) {
     return withRejection(controller, "not-your-turn", "select the soldier whose turn it is first");
   }
-  if (controller.battle.hasMovedThisTurn) {
+  if (!controller.turnBudget.canMove) {
     return withRejection(controller, "already-moved", `${unit.name} has already marched this turn`);
   }
   if (controller.phase !== "command" && controller.phase !== "move") {
@@ -407,7 +483,7 @@ export function chooseAction(controller: BattleController, abilityId: AbilityId)
   if (controller.phase === "finished") return controller;
 
   const unit = selectedActor(controller);
-  if (unit === null || !controller.canAct) {
+  if (unit === null || !ownsTurn(controller)) {
     return withRejection(controller, "not-your-turn", "select the soldier whose turn it is first");
   }
   if (controller.phase === "move") {
@@ -428,6 +504,9 @@ export function chooseAction(controller: BattleController, abilityId: AbilityId)
   const spec = actionSpecOf(controller.battle, abilityId);
   if (spec === undefined) {
     return withRejection(controller, "unknown-ability", `this battle has no action "${abilityId}"`);
+  }
+  if (!controller.turnBudget.canAct) {
+    return withRejection(controller, "already-acted", `${unit.name} has already acted this turn`);
   }
   if (unit.mp < spec.mpCost) {
     return withRejection(
@@ -552,7 +631,7 @@ function dispatchSingle(
 ): BattleController {
   if (controller.phase === "finished") return controller;
   const unit = selectedActor(controller);
-  if (unit === null || !controller.canAct) {
+  if (unit === null || !ownsTurn(controller)) {
     return withRejection(controller, "not-your-turn", "select the soldier whose turn it is first");
   }
   return dispatchCommands(controller, [makeCommand(unit.id)]);
@@ -631,7 +710,7 @@ function dispatchPlan(controller: BattleController): BattleController {
  * confirming, a finished battle, or a read-only selection all refuse it.
  */
 export function canEndTurn(controller: BattleController): boolean {
-  return controller.canAct && (controller.phase === "command" || controller.phase === "move");
+  return ownsTurn(controller) && (controller.phase === "command" || controller.phase === "move");
 }
 
 /** Pass the selected soldier's turn (FFTA `Wait`) — the End Turn control. */
@@ -680,6 +759,8 @@ export function cancel(controller: BattleController): BattleController {
         phase: "select",
         selectedUnitId: null,
         canAct: false,
+        canMove: false,
+        turnBudget: { hasMoved: false, hasActed: false, canMove: false, canAct: false },
         moveRange: [],
         actions: [],
       };

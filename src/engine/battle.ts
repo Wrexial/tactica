@@ -46,6 +46,13 @@
  * {@link BattleRejection} until their tasks land (T061–T062), so a caller can
  * never mistake "not implemented" for a silent success.
  *
+ * T141 makes that budget **authoritative**: {@link validateCommand} enforces
+ * move-once *and* act-once from the recorded flags, so a replay, an AI reply or
+ * an overlay working from a mid-turn save can never spend a slot twice. Free
+ * orders (`wait` / `face` / `hold`) and future extra actions only ever spend
+ * the slot they actually use, because the flags are read back rather than
+ * inferred from "the turn ended".
+ *
  * Invalid commands are **rejected without mutation**: {@link step} returns the
  * *same* state object, an empty event list and a populated
  * {@link BattleStepResult.rejection}. Setup errors (an empty roster, duplicate
@@ -133,6 +140,7 @@ export const BATTLE_REJECTION_REASONS = [
   "invalid-target",
   "illegal-move",
   "already-moved",
+  "already-acted",
 ] as const;
 export type BattleRejectionReason = (typeof BATTLE_REJECTION_REASONS)[number];
 
@@ -492,6 +500,16 @@ export function validateCommand(state: BattleState, command: unknown): BattleRej
   }
 
   if (command.kind === "act") {
+    // The turn budget is the single source of truth (T141): an act slot that is
+    // already spent refuses every further action, folded or standalone. This is
+    // what lets free/extra actions and Volleys land later without reopening the
+    // bundled-order hole.
+    if (state.hasActedThisTurn) {
+      return {
+        reason: "already-acted",
+        message: `${unit.name} has already acted this turn`,
+      };
+    }
     const spec = actionSpecOf(state, command.abilityId);
     if (spec === undefined) {
       return {
@@ -518,6 +536,8 @@ export function validateCommand(state: BattleState, command: unknown): BattleRej
       };
     }
     if (command.move !== undefined) {
+      // A folded march still respects move-once, on top of the act-once check
+      // above (T124/T141).
       if (state.hasMovedThisTurn) {
         return {
           reason: "already-moved",
@@ -978,9 +998,12 @@ export function applyCommand(state: BattleState, command: Command): BattleStepRe
   return {
     state: {
       ...applied,
+      // Accumulate the budget instead of overwriting it: a closing free order
+      // (`wait` / `face` / `hold`) must not erase a slot an earlier command in
+      // the same turn already spent (T141).
       hasMovedThisTurn:
         applied.hasMovedThisTurn || (command.kind === "act" && command.move !== undefined),
-      hasActedThisTurn: command.kind === "act",
+      hasActedThisTurn: applied.hasActedThisTurn || command.kind === "act",
       // Clearing `currentActorId` marks the state as mid-advance so
       // `advanceToDecision` surfaces the next actor and runs its upkeep.
       currentActorId: null,

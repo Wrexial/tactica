@@ -16,10 +16,12 @@ import {
   planMove,
   selectUnit,
   setCursor,
+  turnBudgetFor,
   waitOrder,
   type BattleController,
 } from "../../src/app/battleController";
 import { createBattle, findUnit, step, type BattleState } from "../../src/engine/battle";
+import { deserializeBattleState, serializeBattleState } from "../../src/engine/serialize";
 import type { ActionSpec } from "../../src/engine/actions/resolve";
 import { coord, type Coord } from "../../src/engine/grid";
 import { asAbilityId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
@@ -483,6 +485,113 @@ describe("per-turn action budget (T127)", () => {
     expect(controller.canAct).toBe(true);
     expect(controller.moveRange).toEqual([]);
     expect(planMove(controller, coord(2, 0)).lastRejection?.reason).toBe("already-moved");
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T141 — the controller exposes the engine's turn budget
+ *
+ * The overlay must offer exactly the orders `validateCommand` would accept:
+ * move-once and act-once are derived from the same flags, so a mid-turn save
+ * (after a march or after an extra/free action) can never reopen a spent slot.
+ * ------------------------------------------------------------------------ */
+
+describe("turn budget (T141)", () => {
+  it("reports an untouched budget before a soldier is selected", () => {
+    const controller = createBattleController(makeBattle());
+    expect(controller.turnBudget).toEqual({
+      hasMoved: false,
+      hasActed: false,
+      canMove: false,
+      canAct: false,
+    });
+    expect(turnBudgetFor(controller.battle, null)).toEqual(controller.turnBudget);
+  });
+
+  it("opens both slots on a fresh turn and uses them to build moveRange/actions", () => {
+    const controller = selected();
+    expect(controller.turnBudget).toEqual({
+      hasMoved: false,
+      hasActed: false,
+      canMove: true,
+      canAct: true,
+    });
+    expect(controller.canMove).toBe(true);
+    expect(controller.canAct).toBe(true);
+    expect(controller.moveRange.length).toBeGreaterThan(1);
+    expect(controller.actions.length).toBeGreaterThan(0);
+  });
+
+  it("hides the action menu and refuses an act once the act slot is spent", () => {
+    const battle = createBattleController(makeBattle()).battle;
+    const actor = battle.currentActorId as UnitId;
+    // A mid-turn state whose act slot is already spent — what a free/extra
+    // action or an AI-authored partial turn leaves behind (T141).
+    const spent: BattleState = { ...battle, hasActedThisTurn: true };
+
+    const controller = selectUnit(createBattleController(spent), actor);
+    expect(controller.turnBudget).toEqual({
+      hasMoved: false,
+      hasActed: true,
+      canMove: true,
+      canAct: false,
+    });
+    expect(controller.canAct).toBe(false);
+    expect(controller.actions).toEqual([]);
+    // The move slot is still open, so the range stays visible and the engine
+    // would accept a march.
+    expect(controller.canMove).toBe(true);
+    expect(controller.moveRange.length).toBeGreaterThan(1);
+    expect(chooseAction(controller, RIFLE.id).lastRejection?.reason).toBe("already-acted");
+    expect(act(controller, RIFLE.id, { kind: "unit", unitId: FOE }).lastRejection?.reason).toBe(
+      "already-acted",
+    );
+
+    // The free orders can always close the turn.
+    expect(canEndTurn(controller)).toBe(true);
+    const ended = waitOrder(controller);
+    expect(ended.lastRejection).toBeNull();
+    expect(ended.lastCommands.map((command) => command.kind)).toEqual(["wait"]);
+  });
+
+  it("reports an untouched budget for a soldier whose turn it is not", () => {
+    const controller = selectUnit(createBattleController(makeBattle()), FOE);
+    expect(controller.turnBudget).toEqual({
+      hasMoved: false,
+      hasActed: false,
+      canMove: false,
+      canAct: false,
+    });
+    expect(controller.canMove).toBe(false);
+    expect(controller.canAct).toBe(false);
+  });
+
+  it("restores a mid-turn save with the same budget the engine enforces", () => {
+    const battle = makeBattle();
+    const actor = battle.currentActorId as UnitId;
+    const moved = step(battle, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(0, 0), coord(1, 0)],
+    }).state;
+
+    const restored = deserializeBattleState(serializeBattleState(moved));
+    const controller = selectUnit(createBattleController(restored), actor);
+
+    expect(controller.turnBudget).toEqual({
+      hasMoved: true,
+      hasActed: false,
+      canMove: false,
+      canAct: true,
+    });
+    expect(controller.moveRange).toEqual([]);
+    expect(controller.actions.length).toBeGreaterThan(0);
+    expect(planMove(controller, coord(2, 0)).lastRejection?.reason).toBe("already-moved");
+
+    // The still-open act slot is offered and accepted from the new tile.
+    const acted = act(controller, RIFLE.id, { kind: "unit", unitId: FOE });
+    expect(acted.lastRejection).toBeNull();
+    expect(acted.lastCommands.map((command) => command.kind)).toEqual(["act"]);
   });
 });
 
