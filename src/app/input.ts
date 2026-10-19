@@ -50,7 +50,8 @@
  *
  * - `select`  → a soldier on the tile is selected (the range appears);
  * - `command` → a reachable tile plans the march (path preview);
- * - `move`    → confirming the path's destination commits the march;
+ * - `move`    → confirming the path's destination commits the march and returns
+ *               to the same soldier's `command` so it can still act;
  * - `target`  → the tile (or its soldier) becomes the aimed target;
  * - `confirm` → the staged order is dispatched through the engine.
  *
@@ -66,6 +67,7 @@ import { pickTile, worldFromScreen, type Camera } from "../render/tiles";
 import {
   cancel,
   chooseTarget,
+  commitMarch,
   confirmOrder,
   planMove,
   selectUnit,
@@ -208,7 +210,7 @@ export function activateTile(controller: BattleController, at: Coord): BattleCon
     case "move": {
       const destination = controller.pendingPath?.at(-1);
       if (destination !== undefined && coordEquals(at, destination)) {
-        return confirmOrder(controller);
+        return commitMarch(controller);
       }
       if (controller.moveRange.some((tile) => coordEquals(tile.at, at))) {
         return planMove(controller, at);

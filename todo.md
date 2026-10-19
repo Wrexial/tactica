@@ -1292,7 +1292,7 @@ hold:
    engine, not by hiding a UI button.
 
 ### T138 — Commit a march immediately (moving no longer ends the turn)
-- status: todo
+- status: done
 - deps: []
 - files: src/app/battleController.ts, src/app/input.ts, tests/unit/battleController.test.ts, tests/unit/input.test.ts
 - verify: npm run test -- --run tests/unit/battleController.test.ts tests/unit/input.test.ts

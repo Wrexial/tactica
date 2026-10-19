@@ -22,7 +22,7 @@ import {
   type FocusRect,
   type GamepadFrame,
 } from "../../src/app/input";
-import { createBattle } from "../../src/engine/battle";
+import { createBattle, findUnit } from "../../src/engine/battle";
 import { coord, type Coord } from "../../src/engine/grid";
 import { asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
 import { createTerrainMap } from "../../src/engine/terrain";
@@ -156,14 +156,21 @@ describe("the confirm ladder", () => {
     expect(controller.pendingPath?.at(-1)).toEqual(coord(1, 2));
   });
 
-  it("confirms the march when the destination is confirmed again", () => {
+  it("commits the march and keeps the same soldier in command", () => {
     let controller = clickTile(activateCursor(focused()), coord(2, 1));
     const planned = controller.pendingPath?.length ?? 0;
     controller = pressKey(controller, "Enter");
 
-    expect(controller.phase).toBe("select");
+    expect(controller.phase).toBe("command");
+    expect(controller.selectedUnitId).toBe(ACTOR);
+    expect(controller.canAct).toBe(true);
+    expect(controller.pendingPath).toBeNull();
+    expect(controller.moveRange).toEqual([]);
     expect(controller.lastRejection).toBeNull();
-    expect(controller.lastCommands[0]?.kind).toBe("move");
+    expect(controller.lastCommands.map((command) => command.kind)).toEqual(["move"]);
+    expect(controller.lastEvents.map((event) => event.kind)).toContain("moved");
+    expect(controller.lastEvents.map((event) => event.kind)).not.toContain("turnEnded");
+    expect(findUnit(controller.battle, ACTOR)?.at).toEqual(coord(2, 1));
     expect(planned).toBeGreaterThan(1);
   });
 });
@@ -181,6 +188,9 @@ describe("cancel", () => {
     const cancelled = pressKey(planned, "Escape");
     expect(cancelled.phase).toBe("command");
     expect(cancelled.pendingPath).toBeNull();
+    // Backing out never commits the preview.
+    expect(cancelled.lastCommands).toEqual([]);
+    expect(findUnit(cancelled.battle, ACTOR)?.at).toEqual(coord(1, 1));
   });
 });
 

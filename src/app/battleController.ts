@@ -29,14 +29,14 @@
  *
  * A unit's Orders Tempo turn is the FFTA **move + act** pair, and the engine
  * now models it natively (T115): a `move` command leaves the actor's turn open,
- * so a move-then-act plan is committed as the two real commands `[move, act]`
- * through `step`. A plan with only a move closes the turn with an explicit
- * `wait` (FFTA "end turn"), while a plan with only an action is a single `act`.
- * Either way the engine owns the turn bookkeeping (declare → charge → resolve →
- * end-turn → advance tempo) and every intent is a replayable command in the
- * log. The engine's per-turn budget (`hasMovedThisTurn` / `hasActedThisTurn`,
- * T127) is read here so the overlay never offers a march the engine would
- * refuse when a partially-spent turn is handed in (e.g. a mid-turn save).
+ * so the player commits the march on its own (T138), stays in `command` for the
+ * same soldier, then chooses an action from the committed tile. A passing turn
+ * is an explicit `wait` (the End Turn control), never a synthetic move closer.
+ * The engine owns the turn bookkeeping (declare → charge → resolve → end-turn →
+ * advance tempo) and every intent is a replayable command in the log. The
+ * engine's per-turn budget (`hasMovedThisTurn` / `hasActedThisTurn`, T127) is
+ * read here so the overlay never offers a march the engine would refuse when a
+ * partially-spent turn is handed in (e.g. a mid-turn save).
  *
  * ## What the UI gets
  *
@@ -456,21 +456,61 @@ export function act(
  * ------------------------------------------------------------------------ */
 
 /**
- * Commit the planned order as real engine commands. A move-then-act plan is
- * dispatched as `[move, act]` and resolves as one FFTA turn (the free move
- * leaves the Orders Tempo turn open, T115); a move-only plan dispatches
- * `[move, wait]` to close it; an action-only plan is a single `act`.
+ * Commit the planned order as real engine commands. A previewed march is
+ * committed immediately as a single `move` (T138), leaving the same soldier in
+ * `command` with its action menu; an action plan is dispatched as a single
+ * `act`.
  *
- * On success the machine returns to `select` for the next soldier and records
- * the commands and events for the renderer. A rejected order leaves the battle
- * as it was (or as far as it got) and surfaces the engine's
- * {@link BattleRejection}.
+ * On success the machine either keeps the soldier selected after a march or
+ * returns to `select` after an action, recording the commands and events for
+ * the renderer. A rejected order leaves the battle as it was (or as far as it
+ * got) and surfaces the engine's {@link BattleRejection}.
  */
 export function confirmOrder(controller: BattleController): BattleController {
-  if (controller.phase !== "move" && controller.phase !== "confirm") {
+  if (controller.phase === "move") return commitMarch(controller);
+  if (controller.phase !== "confirm") {
     return withRejection(controller, "unsupported", "no order is ready to confirm");
   }
   return dispatchPlan(controller);
+}
+
+/**
+ * Commit a previewed march and keep the same soldier's turn open (T138). The
+ * destination is dispatched through `step` as exactly one `move` command; the
+ * engine records `hasMovedThisTurn`, so the controller returns to the same
+ * soldier's `command` phase with the march range hidden and the action menu
+ * still available. Cancelling a preview never reaches this intent.
+ */
+export function commitMarch(controller: BattleController): BattleController {
+  if (controller.phase === "finished") return controller;
+  if (controller.phase !== "move" || controller.pendingPath === null) {
+    return withRejection(controller, "unsupported", "no march is ready to commit");
+  }
+
+  const actorId = controller.selectedUnitId;
+  if (actorId === null) {
+    return withRejection(controller, "unknown-unit", "no soldier is selected");
+  }
+
+  const command: Command = {
+    kind: "move",
+    unitId: actorId,
+    path: controller.pendingPath.map((at) => ({ x: at.x, y: at.y })),
+  };
+  const result = step(controller.battle, command);
+  if (result.rejection !== undefined) {
+    return withRejection(controller, result.rejection.reason, result.rejection.message);
+  }
+
+  // Re-select the same soldier from the committed state: `selectUnit` hides the
+  // spent move range (`hasMovedThisTurn`) while keeping the action menu up.
+  const resumed = selectUnit({ ...controller, battle: result.state }, actorId);
+  return {
+    ...resumed,
+    lastCommands: [command],
+    lastEvents: result.events,
+    lastRejection: null,
+  };
 }
 
 /** Apply a single engine command (wait/face/hold) for the selected soldier. */
@@ -509,11 +549,10 @@ function dispatchCommands(
 }
 
 /**
- * Resolve the staged turn plan into a replayable command log and dispatch it
- * through `step`. A move-then-act turn is committed as `[move, act]` — the
- * engine's native free move keeps the turn open (T115) — while a move-only plan
- * closes the turn with an explicit `wait`. An action-only plan is a single
- * `act`.
+ * Resolve a staged action plan into a replayable command log and dispatch it
+ * through `step`. An action-only plan is a single `act`; a plan with a previewed
+ * march still folds it into `[move, act]` for scripted/AI play until T139 makes
+ * the action path state-only.
  */
 function dispatchPlan(controller: BattleController): BattleController {
   const actorId = controller.selectedUnitId;
@@ -540,11 +579,9 @@ function dispatchPlan(controller: BattleController): BattleController {
       abilityId: controller.pendingActionId,
       target: controller.pendingTarget ?? { kind: "self" },
     });
-  } else if (controller.pendingPath !== null) {
-    // The engine's free move leaves the actor's Orders Tempo turn open, so a
-    // move-only plan must close it explicitly. `wait` is the FFTA "end turn".
-    commands.push({ kind: "wait", unitId: actorId });
   } else {
+    // A march is committed on its own by `commitMarch`; never close it with a
+    // synthetic `wait` on the player path (T138).
     return withRejection(controller, "unsupported", "no order is ready to confirm");
   }
 

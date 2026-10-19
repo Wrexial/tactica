@@ -5,6 +5,7 @@ import {
   cancel,
   chooseAction,
   chooseTarget,
+  commitMarch,
   confirmOrder,
   createBattleController,
   faceOrder,
@@ -214,7 +215,7 @@ describe("move range queries", () => {
  * ------------------------------------------------------------------------ */
 
 describe("move planning", () => {
-  it("previews a path and commits it as a move command", () => {
+  it("previews a path and commits it as exactly one move command", () => {
     let controller = selected();
     controller = planMove(controller, coord(2, 0));
 
@@ -223,24 +224,41 @@ describe("move planning", () => {
     expect(controller.pendingPath?.at(-1)).toEqual(coord(2, 0));
     expect(controller.cursor).toEqual(coord(2, 0));
 
-    controller = confirmOrder(controller);
+    controller = commitMarch(controller);
 
     expect(controller.lastRejection).toBeNull();
-    expect(controller.phase).toBe("select");
+    // The march leaves the same soldier's turn open: back in `command`, still
+    // selected, with the move range spent and the action menu available (T138).
+    expect(controller.phase).toBe("command");
+    expect(controller.selectedUnitId).toBe(ACTOR);
+    expect(controller.canAct).toBe(true);
+    expect(controller.pendingPath).toBeNull();
+    expect(controller.moveRange).toEqual([]);
+    expect(controller.actions.map((action) => action.id)).toEqual([RIFLE.id, ADVANCE.id]);
+    expect(controller.battle.currentActorId).toBe(ACTOR);
+    expect(controller.battle.hasMovedThisTurn).toBe(true);
     expect(findUnit(controller.battle, ACTOR)?.at).toEqual(coord(2, 0));
 
+    expect(controller.lastCommands.map((entry) => entry.kind)).toEqual(["move"]);
     const command = controller.lastCommands[0];
     expect(command.kind).toBe("move");
     if (command.kind === "move") {
       expect(command.unitId).toBe(ACTOR);
       expect(command.path.at(-1)).toEqual(coord(2, 0));
     }
-    // A move-only plan leaves the engine turn open, so the controller closes it
-    // with an explicit `wait` rather than composing `applyMove` (T115).
-    expect(controller.lastCommands.map((entry) => entry.kind)).toEqual(["move", "wait"]);
     const kinds = controller.lastEvents.map((event) => event.kind);
     expect(kinds).toContain("moved");
-    expect(kinds).toContain("turnEnded");
+    expect(kinds).not.toContain("turnEnded");
+  });
+
+  it("commits a previewed march through confirmOrder without closing the turn", () => {
+    const controller = confirmOrder(planMove(selected(), coord(2, 0)));
+
+    expect(controller.lastRejection).toBeNull();
+    expect(controller.lastCommands.map((entry) => entry.kind)).toEqual(["move"]);
+    expect(controller.phase).toBe("command");
+    expect(controller.selectedUnitId).toBe(ACTOR);
+    expect(controller.lastEvents.map((event) => event.kind)).not.toContain("turnEnded");
   });
 
   it("refuses a destination blocked by impassable terrain", () => {
