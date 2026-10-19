@@ -419,12 +419,68 @@ function pendingTargetOf(
   return { kind: "unit", unitId: occupant.id };
 }
 
+/* --------------------------------------------------------------------------
+ * RNG draw order (T126, peer lesson L7)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * The order in which one action resolution consumes the battle's seeded PRNG
+ * stream ({@link import("../turn").OrdersTempo.rng}). Every draw belongs to a
+ * roll performed by the T041 executor (`./ability.ts`) or by a reaction hook
+ * (`../reactions.ts`); the pipeline's own bookkeeping — declaration, Élan cost,
+ * charge scheduling, event emission — consumes nothing. This order is part of
+ * the replay contract (`agents.md` §2): inserting or reordering a roll shifts
+ * every later draw, so change this block and the counts asserted in
+ * `tests/unit/determinism.test.ts` together.
+ *
+ * For one resolved action — an instant `abilityResolved` or a matured charge:
+ *
+ * ```text
+ * 1. Targeting / affiliation / line of sight / AoE     0 draws (pure)
+ * 2. Per affected target, in `resolveTargeting` order:
+ *      a. hit roll      1 draw iff hostile and the action has an opposed
+ *                       effect (`rollHit`, T037); 0 for support/ally aims.
+ *                       The executor always draws once for an opposed aim,
+ *                       win or lose.
+ *      b. critical roll 1 draw iff the hit landed and `critRate > 0`; else 0.
+ *      c. effects       0 draws. Conditions (T039) are fully deterministic:
+ *                       applying, refreshing, curing or shielding one never
+ *                       touches the stream, and neither do elements, heals,
+ *                       drains or revives.
+ * 3. Post-damage reactions, once per `damaged` event in event order:
+ *      a. trigger       0 draws. Riposte / Return Fire / Field Dressing decide
+ *                       from a pure predicate, so whether a unit has a
+ *                       reaction never changes the pre-reaction draw count.
+ *      b. reaction swing recursively repeats step 2 for the reaction's target.
+ *                       Riposte / Return Fire are full attacks (1 hit draw,
+ *                       plus 1 crit draw when that reaction authors a
+ *                       `critRate`); a Field Dressing self-heal draws nothing.
+ *                       A reaction is never fed back into step 3, so a counter
+ *                       cannot provoke a counter and the stream stays bounded.
+ * ```
+ *
+ * The practical consequences pinned by the draw-count tests:
+ *
+ * - a plain hostile strike (`critRate` unset) costs exactly **1** draw;
+ * - authoring a `critRate` adds exactly **one** draw when the hit lands, and
+ *   **zero** when it misses (the crit roll is skipped);
+ * - adding, removing or failing a condition effect changes the count by **0**;
+ * - a target with **no** reaction — or one whose trigger does not match —
+ *   consumes exactly the draws the action did before the reaction phase ran;
+ * - a triggering Riposte / Return Fire adds exactly the draws of one extra
+ *   attack (its trigger itself is free).
+ */
+
 /**
  * Run the action executor (T041) and then the reaction hooks (T042), appending
  * every effect event to `events` in order. Reactions fire off the events the
  * executor produced, so a Riposte or Return Fire answers exactly the blows that
  * landed. The same seeded {@link Rng} drives both phases, keeping the whole
  * resolution byte-identical for a fixed seed.
+ *
+ * The exact draw order this function realises is documented above (T126):
+ * per-target hit → crit → condition effects, then reaction trigger → reaction
+ * swing, with the trigger consuming no randomness of its own.
  */
 function applyAbilityEffects(
   state: BattleState,

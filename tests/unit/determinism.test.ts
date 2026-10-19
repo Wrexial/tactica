@@ -1,9 +1,14 @@
 import { describe, expect, it } from "vitest";
 
 import { createBattle, step, type BattleSetup, type BattleState } from "../../src/engine/battle";
-import type { Command } from "../../src/engine/commands";
+import type { AbilitySpec } from "../../src/engine/actions/ability";
+import { declareOrResolveAction } from "../../src/engine/actions/resolve";
+import type { Command, Target } from "../../src/engine/commands";
+import type { BattleEvent } from "../../src/engine/events";
 import { coord } from "../../src/engine/grid";
-import { asAbilityId, asPostId, asUnitId } from "../../src/engine/ids";
+import { asAbilityId, asConditionId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
+import { REACTION_IDS } from "../../src/engine/reactions";
+import { Rng } from "../../src/engine/rng";
 import {
   BattleReplayError,
   BattleSerializationError,
@@ -183,6 +188,189 @@ describe("determinism — effects resolved through step", () => {
     step(state, actCommand);
 
     expect(JSON.stringify(state)).toBe(before);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T126 — The RNG draw order of one action (peer lesson L7)
+ *
+ * The exact order in which the resolution pipeline consumes the battle's
+ * seeded stream is documented on `applyAbilityEffects` in
+ * `src/engine/actions/resolve.ts`. These tests pin the observed draw counts so
+ * an optional roll can never silently shift every later effect:
+ *
+ *   hit (1) → crit (0 or 1) → condition (0) → reaction trigger (0)
+ *   → reaction swing (repeats hit/crit)
+ *
+ * "Pre-reaction" means a target with no reaction, or one whose trigger does
+ * not match: it must consume exactly the draws the action did before the
+ * reaction phase existed.
+ * ------------------------------------------------------------------------ */
+
+describe("determinism — RNG draw order per action (T126)", () => {
+  const ACTOR = asUnitId("draw-actor");
+  const FOE = asUnitId("draw-foe");
+  const BLADE = asAbilityId("draw-blade");
+
+  /** Find a seed whose first to-hit draw falls inside `[min, max)`. */
+  function seedWithFirstRoll(min: number, max: number): string {
+    for (let i = 0; i < 100_000; i++) {
+      const seed = `t126-roll-${i}`;
+      const roll = new Rng(seed).nextInt(100);
+      if (roll >= min && roll < max) return seed;
+    }
+    throw new Error("no seed found in range");
+  }
+
+  function drawSoldier(
+    id: UnitId,
+    at: { x: number; y: number },
+    overrides: Partial<StatBlock> = {},
+    abilities: Unit["abilities"] = [],
+  ): Unit {
+    return createUnit({
+      id,
+      name: `Soldier ${id}`,
+      power: "france",
+      postId: asPostId("fusilier"),
+      side: id === FOE ? "enemy" : "company",
+      level: 1,
+      at,
+      stats: { ...BASE_STATS, spd: 10, ...overrides },
+      abilities: [...abilities],
+    });
+  }
+
+  /** A duel at range 1 (so Riposte is in reach) with a zero-evasion target. */
+  function drawBattle(foeAbilities: Unit["abilities"] = []): BattleState {
+    return createBattle("t126-draws", {
+      map: createTerrainMap(8, 6, "field"),
+      units: [
+        drawSoldier(ACTOR, coord(1, 1), { spd: 1 }),
+        drawSoldier(FOE, coord(2, 1), { spd: 0 }, foeAbilities),
+      ],
+    });
+  }
+
+  /** A guaranteed-hit Steel action; tests override `critRate`/`effects`. */
+  function drawAction(overrides: Partial<AbilitySpec> = {}): AbilitySpec {
+    return {
+      id: BLADE,
+      mpCost: 0,
+      chargeTime: 0,
+      range: 5,
+      power: 100,
+      target: "enemy",
+      hitRate: 100,
+      effects: [{ kind: "steel", power: 100 }],
+      ...overrides,
+    };
+  }
+
+  function unitTarget(unitId: UnitId): Target {
+    return { kind: "unit", unitId };
+  }
+
+  /** Resolve one action and report how many PRNG values it consumed. */
+  function drawsFor(
+    state: BattleState,
+    spec: AbilitySpec,
+    target: Target = unitTarget(FOE),
+  ): { draws: number; events: BattleEvent[] } {
+    const actor = state.units.find((unit) => unit.id === ACTOR);
+    if (actor === undefined) throw new Error("actor missing");
+    const before = state.tempo.rng.calls;
+    const events: BattleEvent[] = [];
+    const result = declareOrResolveAction(state, actor, spec, target, events);
+    return { draws: result.tempo.rng.calls - before, events };
+  }
+
+  /** One mastered reaction, as a unit's learned-ability list. */
+  function reaction(abilityId: typeof REACTION_IDS.riposte): Unit["abilities"] {
+    return [{ abilityId, drill: 0, mastered: true }];
+  }
+
+  it("consumes exactly one draw for a plain Steel strike", () => {
+    const { draws, events } = drawsFor(drawBattle(), drawAction());
+
+    expect(events.some((event) => event.kind === "damaged")).toBe(true);
+    expect(draws).toBe(1);
+  });
+
+  it("adds exactly one draw for a critical roll that lands", () => {
+    // hitRate 100 against evasion 0 → the hit always lands, so crit is rolled.
+    const { draws, events } = drawsFor(drawBattle(), drawAction({ critRate: 50 }));
+
+    expect(events.some((event) => event.kind === "damaged")).toBe(true);
+    expect(draws).toBe(2);
+  });
+
+  it("spends no draw on a condition effect", () => {
+    const plain = drawsFor(drawBattle(), drawAction());
+    const conditioned = drawsFor(
+      drawBattle(),
+      drawAction({
+        effects: [
+          { kind: "steel", power: 100 },
+          { kind: "condition", conditionId: asConditionId("poison") },
+        ],
+      }),
+    );
+
+    expect(conditioned.events.some((event) => event.kind === "conditionApplied")).toBe(true);
+    // The hit is the only draw; conditions are deterministic (T039).
+    expect(conditioned.draws).toBe(1);
+    expect(conditioned.draws).toBe(plain.draws);
+  });
+
+  it("spends no crit draw when the strike misses", () => {
+    // The first draw lands above the 5% accuracy floor, so the hit misses even
+    // though a crit was authored: only the hit draw is consumed.
+    const seed = seedWithFirstRoll(5, 100);
+    const state = createBattle(seed, {
+      map: createTerrainMap(8, 6, "field"),
+      units: [
+        drawSoldier(ACTOR, coord(1, 1), { spd: 1 }),
+        drawSoldier(FOE, coord(2, 1), { spd: 0 }),
+      ],
+    });
+    const { draws, events } = drawsFor(state, drawAction({ hitRate: 0, critRate: 50 }));
+
+    expect(events.some((event) => event.kind === "missed")).toBe(true);
+    expect(draws).toBe(1);
+  });
+
+  it("consumes exactly the pre-reaction draws for a target with no reaction", () => {
+    const noReaction = drawsFor(drawBattle(), drawAction());
+    const inertReaction = drawsFor(
+      drawBattle(reaction(REACTION_IDS.fieldDressing)),
+      drawAction(),
+    );
+
+    // Field Dressing does not trigger at full health, and its predicate draws
+    // nothing, so an inert reaction is free.
+    expect(inertReaction.events.some((event) => event.kind === "reactionTriggered")).toBe(false);
+    expect(inertReaction.draws).toBe(noReaction.draws);
+    expect(inertReaction.draws).toBe(1);
+  });
+
+  it("adds exactly one draw when a Riposte answers the blow", () => {
+    const { draws, events } = drawsFor(drawBattle(reaction(REACTION_IDS.riposte)), drawAction());
+
+    expect(events.some((event) => event.kind === "reactionTriggered")).toBe(true);
+    // 1 attack hit + 1 riposte hit; the trigger itself draws nothing.
+    expect(draws).toBe(2);
+  });
+
+  it("draws hit then crit for the action before the reaction swing", () => {
+    const { draws, events } = drawsFor(
+      drawBattle(reaction(REACTION_IDS.riposte)),
+      drawAction({ critRate: 50 }),
+    );
+
+    expect(events.some((event) => event.kind === "reactionTriggered")).toBe(true);
+    // action: hit + crit = 2; default riposte: hit = 1 (no authored crit).
+    expect(draws).toBe(3);
   });
 });
 

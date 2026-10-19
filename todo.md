@@ -1080,7 +1080,7 @@ risk. Make the labelled target tile authoritative for charged abilities, keep th
 out-of-action caster cancellation already present, and pin the whiff case.
 
 ### T126 — Pin the RNG draw order per action
-- status: todo
+- status: done
 - deps: [T117]
 - files: src/engine/actions/resolve.ts, tests/unit/determinism.test.ts
 - verify: npm run test -- --run tests/unit/determinism.test.ts
