@@ -224,6 +224,18 @@ const BATTLE_MAP_DATA = {
       "..%.%%%%%%",
       "....%%%%%%",
     ],
+    // The boggy rides sit a layer below the wooded hummocks: enough relief for
+    // the climb rules and the isometric block sides, not a hill battle.
+    elevation: [
+      "0000111111",
+      "0010111111",
+      "0000111111",
+      "0000001111",
+      "0000001111",
+      "0000111111",
+      "0010111111",
+      "0000111111",
+    ],
     deployment: [
       {
         side: "company",
@@ -266,6 +278,18 @@ const BATTLE_MAP_DATA = {
       "...xx.....",
       "..xx......",
       "%%........",
+    ],
+    // The camp's earthworks stand a level above the clearing; the timber and
+    // broken ground on the approaches form the lower bank of the redoubt.
+    elevation: [
+      "1110000000",
+      "1100011000",
+      "1000022000",
+      "0000022000",
+      "0000000000",
+      "0001100000",
+      "0011000000",
+      "1100000000",
     ],
     deployment: [
       {
@@ -354,6 +378,18 @@ const BATTLE_MAP_DATA = {
       ",,,,........",
       ",,,,........",
       "............",
+    ],
+    // Dune wood rides above the turnpike; the salt marsh on the shore side is
+    // the lowest ground on the board.
+    elevation: [
+      "000022220000",
+      "000022220000",
+      "111111111111",
+      "111111111111",
+      "111111111111",
+      "000011111111",
+      "000011111111",
+      "111111111111",
     ],
     deployment: [
       {
