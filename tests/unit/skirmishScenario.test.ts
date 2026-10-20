@@ -37,6 +37,23 @@ describe("quick battle scene", () => {
     expect(actor?.name).toBe("Pte. Okafor");
   });
 
+  it("fights over the terraced farmhouse board (T144)", () => {
+    const battle = createSkirmishBattle();
+    const heights = new Set(battle.map.tiles.map((tile) => tile.height));
+    expect(heights.size).toBeGreaterThan(1);
+
+    // Both preset sides deploy on the low approach; the raised core is the
+    // objective ground the Quick Battle fights toward.
+    const deploymentHeights = battle.units.map(
+      (unit) => battle.map.tiles[unit.at.y * battle.map.grid.width + unit.at.x]?.height,
+    );
+    expect(new Set(deploymentHeights)).toEqual(new Set([0]));
+
+    const core = battle.map.tiles[4 * battle.map.grid.width + 6];
+    expect(core?.terrain).toBe("village");
+    expect(core?.height).toBe(2);
+  });
+
   it("is deterministic for a fixed seed", () => {
     const shape = (battle: ReturnType<typeof createSkirmishBattle>) =>
       JSON.stringify(

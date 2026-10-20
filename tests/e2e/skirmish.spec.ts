@@ -36,6 +36,21 @@ test("opens the preset Quick Battle and fights it to a result", async ({ page })
   await expect(page.getByTestId("hud-actor")).toHaveText("Pte. Okafor");
 });
 
+test("reads the raised farmhouse terrace from the low approach", async ({ page }) => {
+  await openBattlefield(page);
+  await page.getByTestId("nav-quick-battle").click();
+  await expect(page.getByTestId("skirmish-battle")).toBeVisible();
+
+  // The cursor begins on Pte. Okafor's low approach tile (0, 4); two steps east
+  // cross the field edge onto the raised farmhouse core at (2, 4).
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByTestId("hud-cursor")).toHaveText("1, 4");
+  await expect(page.getByTestId("hud-elevation")).toHaveText("level");
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByTestId("hud-cursor")).toHaveText("2, 4");
+  await expect(page.getByTestId("hud-elevation")).toHaveText("+2");
+});
+
 test("lets the player move and strike an enemy", async ({ page }) => {
   await openBattlefield(page);
   await page.getByTestId("nav-quick-battle").click();

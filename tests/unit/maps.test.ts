@@ -37,6 +37,7 @@ import { createBattle } from "../../src/engine/battle";
 import { coord } from "../../src/engine/grid";
 import { asAbilityId, asPostId, asUnitId } from "../../src/engine/ids";
 import { assertObjective } from "../../src/engine/objectives";
+import { findPath } from "../../src/engine/pathfinding";
 import {
   MAX_HEIGHT,
   MIN_HEIGHT,
@@ -501,6 +502,124 @@ describe("battle map catalogue (T092)", () => {
       const map = BATTLE_MAPS[key];
       expect(isLocationKey(map.locationId), `${map.id} → ${map.locationId}`).toBe(true);
       expect(getLocation(map.locationId as never).battleMapIds).toContain(key);
+    }
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T144 — Elevation authoring for the authored boards
+ *
+ * The isometric renderer, the climb premium and the high-ground range rule all
+ * read a tile's `height`, but a missing `elevation` layer silently expands to a
+ * level board. These tests pin the audit: the Quick Battle farmhouse carries a
+ * real terrace (low approach → orchard bank → raised core), its deployment and
+ * capture tiles stay valid and reachable, and the deliberately level boards
+ * say so by staying flat.
+ * ------------------------------------------------------------------------ */
+
+describe("battle map elevation (T144)", () => {
+  /** Boards whose terrain is deliberately level; see their descriptions. */
+  const FLAT_BOARDS: ReadonlySet<string> = new Set(["crossroads-skirmish", "duel-at-dawn"]);
+
+  it("raises the quick-battle farmhouse into three height bands", () => {
+    const map = getBattleMap("farmhouse-assault");
+    expect(map.elevation, "farmhouse-assault must author an elevation layer").toBeDefined();
+
+    const heights = [...new Set(expandBattleMap(map).map((tile) => tile.height))].sort(
+      (a, b) => a - b,
+    );
+    expect(heights).toEqual([0, 1, 2]);
+
+    const terrain = battleMapToTerrainMap(map);
+    // Low approach, readable orchard bank, raised farmhouse core.
+    expect(heightAt(terrain, coord(0, 3))).toBe(0);
+    expect(heightAt(terrain, coord(4, 0))).toBe(1);
+    expect(heightAt(terrain, coord(6, 4))).toBe(2);
+  });
+
+  it("keeps the quick-battle deployment tiles and capture objective passable", () => {
+    const map = getBattleMap("farmhouse-assault");
+    const terrain = battleMapToTerrainMap(map);
+    const objective = map.objective;
+    if (objective.kind !== "capture") {
+      throw new Error("the quick-battle farmhouse must be a capture objective");
+    }
+
+    expect(objective.at).toEqual({ x: 6, y: 4 });
+    expect(
+      getTerrainDef(terrainAt(terrain, coord(objective.at.x, objective.at.y))).passable,
+      "farmhouse capture objective must stand on passable ground",
+    ).toBe(true);
+
+    for (const zone of map.deployment) {
+      for (const tile of zone.tiles) {
+        expect(
+          getTerrainDef(terrainAt(terrain, coord(tile.x, tile.y))).passable,
+          `farmhouse ${zone.side} deploy ${tile.x},${tile.y}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("makes the capture objective reachable from every quick-battle deployment tile", () => {
+    const map = getBattleMap("farmhouse-assault");
+    const terrain = battleMapToTerrainMap(map);
+    const objective = map.objective;
+    if (objective.kind !== "capture") {
+      throw new Error("the quick-battle farmhouse must be a capture objective");
+    }
+    const target = coord(objective.at.x, objective.at.y);
+
+    // The quick battle's slowest climbers have Climb 2 (`skirmishScenario`), so
+    // a route at that limit proves the raised core is not cut off.
+    for (const zone of map.deployment) {
+      for (const tile of zone.tiles) {
+        const path = findPath(terrain, coord(tile.x, tile.y), target, { climb: 2 });
+        expect(path.found, `farmhouse ${zone.side} ${tile.x},${tile.y} → objective`).toBe(
+          true,
+        );
+        expect(path.path[0]).toEqual(tile);
+        expect(path.path.at(-1)).toEqual(objective.at);
+      }
+    }
+  });
+
+  it("leaves only the deliberately level boards flat", () => {
+    for (const map of BATTLE_MAP_LIST) {
+      if (FLAT_BOARDS.has(map.id)) {
+        expect(map.elevation, `${map.id} is deliberately flat`).toBeUndefined();
+        continue;
+      }
+      expect(map.elevation, `${map.id} implies relief and must author it`).toBeDefined();
+      const heights = new Set(expandBattleMap(map).map((tile) => tile.height));
+      expect(heights.size, `${map.id} needs more than one height`).toBeGreaterThan(1);
+    }
+  });
+
+  it("keeps every authored elevation step within a Climb-2 stride", () => {
+    for (const map of BATTLE_MAP_LIST) {
+      if (map.elevation === undefined) continue;
+      const tiles = expandBattleMap(map);
+      for (let y = 0; y < map.height; y++) {
+        for (let x = 0; x < map.width; x++) {
+          const here = tiles[y * map.width + x]!;
+          if (!getTerrainDef(here.terrain).passable) continue;
+          for (const [dx, dy] of [
+            [1, 0],
+            [0, 1],
+          ] as const) {
+            const nx = x + dx;
+            const ny = y + dy;
+            if (nx >= map.width || ny >= map.height) continue;
+            const next = tiles[ny * map.width + nx]!;
+            if (!getTerrainDef(next.terrain).passable) continue;
+            expect(
+              Math.abs(next.height - here.height),
+              `${map.id} step ${x},${y} → ${nx},${ny}`,
+            ).toBeLessThanOrEqual(2);
+          }
+        }
+      }
     }
   });
 });
