@@ -1436,7 +1436,7 @@ where their terrain description implies relief; if a board is deliberately
 flat, say so in its description or a focused test.
 
 ### T145 — Tile inspection: terrain, elevation and effects
-- status: todo
+- status: failed
 - deps: []
 - files: src/ui/tileInfo.ts, src/ui/TileCard.tsx, src/ui/App.tsx, src/ui/styles.css, tests/unit/tileInfo.test.ts, tests/e2e/tileInfo.spec.ts
 - verify: npm run test -- --run tests/unit/tileInfo.test.ts && npm run test:e2e -- tests/e2e/tileInfo.spec.ts
