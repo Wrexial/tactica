@@ -41,13 +41,17 @@ test("reads the raised farmhouse terrace from the low approach", async ({ page }
   await page.getByTestId("nav-quick-battle").click();
   await expect(page.getByTestId("skirmish-battle")).toBeVisible();
 
-  // The cursor begins on Pte. Okafor's low approach tile (0, 4); two steps east
-  // cross the field edge onto the raised farmhouse core at (2, 4).
+  // The cursor begins on Pte. Okafor's low approach tile (0, 4). Stepping east
+  // climbs the graded terrace: level approach → orchard bank (+1) → the raised
+  // farmhouse core (+2).
   await page.keyboard.press("ArrowRight");
   await expect(page.getByTestId("hud-cursor")).toHaveText("1, 4");
   await expect(page.getByTestId("hud-elevation")).toHaveText("level");
   await page.keyboard.press("ArrowRight");
   await expect(page.getByTestId("hud-cursor")).toHaveText("2, 4");
+  await expect(page.getByTestId("hud-elevation")).toHaveText("+1");
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByTestId("hud-cursor")).toHaveText("3, 4");
   await expect(page.getByTestId("hud-elevation")).toHaveText("+2");
 });
 

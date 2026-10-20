@@ -518,7 +518,7 @@ describe("battle map catalogue (T092)", () => {
  * ------------------------------------------------------------------------ */
 
 describe("battle map elevation (T144)", () => {
-  /** Boards whose terrain is deliberately level; see their descriptions. */
+  /** Boards deliberately authored level; see their descriptions. */
   const FLAT_BOARDS: ReadonlySet<string> = new Set(["crossroads-skirmish", "duel-at-dawn"]);
 
   it("raises the quick-battle farmhouse into three height bands", () => {
@@ -535,6 +535,10 @@ describe("battle map elevation (T144)", () => {
     expect(heightAt(terrain, coord(0, 3))).toBe(0);
     expect(heightAt(terrain, coord(4, 0))).toBe(1);
     expect(heightAt(terrain, coord(6, 4))).toBe(2);
+
+    // The terrace is graded, not a cliff: the west approach steps up one layer
+    // at a time onto the core, so even a Climb-1 soldier could walk it.
+    expect([1, 2, 3, 4].map((x) => heightAt(terrain, coord(x, 4)))).toEqual([0, 1, 2, 2]);
   });
 
   it("keeps the quick-battle deployment tiles and capture objective passable", () => {
@@ -575,9 +579,7 @@ describe("battle map elevation (T144)", () => {
     for (const zone of map.deployment) {
       for (const tile of zone.tiles) {
         const path = findPath(terrain, coord(tile.x, tile.y), target, { climb: 2 });
-        expect(path.found, `farmhouse ${zone.side} ${tile.x},${tile.y} → objective`).toBe(
-          true,
-        );
+        expect(path.found, `farmhouse ${zone.side} ${tile.x},${tile.y} → objective`).toBe(true);
         expect(path.path[0]).toEqual(tile);
         expect(path.path.at(-1)).toEqual(objective.at);
       }

@@ -1417,7 +1417,7 @@ it; add an e2e assertion (or extend `input.spec.ts`) that the initial Field's
 hostile phase resolves after the player passes.
 
 ### T144 — Author elevation for Quick Battle (and audit the map set)
-- status: doing
+- status: done
 - deps: []
 - files: src/data/maps/farmhouse-assault.json, tests/unit/maps.test.ts, tests/unit/skirmishScenario.test.ts, tests/e2e/skirmish.spec.ts
 - verify: npm run test -- --run tests/unit/maps.test.ts tests/unit/skirmishScenario.test.ts

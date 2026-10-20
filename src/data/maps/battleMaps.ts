@@ -320,7 +320,7 @@ const BATTLE_MAP_DATA = {
   "crossroads-skirmish": {
     name: "The Crossroads Stand",
     description:
-      "An eleven-by-nine junction of post roads. Hold the centre against a rival free company until the stores are clear.",
+      "An eleven-by-nine junction of post roads. Hold the centre against a rival free company until the stores are clear. The junction is level ground; the fight turns on the road edges.",
     flavour: "Two companies, one road, and no gentleman among the officers.",
     locationId: "the-crossroads",
     width: 11,
