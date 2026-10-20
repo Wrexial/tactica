@@ -86,7 +86,7 @@ test("keyboard selects a soldier, reveals the move range and previews the march"
   await expect(page.getByTestId("hud-path")).toHaveText("2 tiles");
 });
 
-test("anchors the focused soldier's card beside it with its vitals", async ({ page }) => {
+test("docks the focused soldier's card bottom-left above the Orders band", async ({ page }) => {
   await openBattlefield(page);
 
   // At rest the field stays clear: the card is an on-demand readout, not a
@@ -94,20 +94,29 @@ test("anchors the focused soldier's card beside it with its vitals", async ({ pa
   const card = page.getByTestId("unit-card");
   await expect(card).toHaveCount(0);
 
-  // Selecting the acting soldier brings the anchored card up beside it with
-  // the vitals strip, and `anchorFor` has picked a side and kept it on screen.
+  // Selecting the acting soldier brings the card up with the vitals strip.
   await page.keyboard.press("Enter");
   await expect(card).toBeVisible();
   await expect(card).toHaveAttribute("data-role", "selected");
   await expect(card).toContainText("Sgt. Aubry");
   await expect(card.getByTestId("hud-chips")).toBeVisible();
-  await expect(card).toHaveAttribute("data-side", /left|right/);
 
-  const box = await card.boundingBox();
-  expect(box).not.toBeNull();
-  if (box === null) return;
-  expect(box.x).toBeGreaterThanOrEqual(0);
-  expect(box.y).toBeGreaterThanOrEqual(0);
+  // T134 — the card lives in the bottom-left of the field, stacked above the
+  // Orders band (and its readout strip) so it never covers the battlefield.
+  const cardBox = await card.boundingBox();
+  const ordersBox = await page.getByTestId("action-menu").boundingBox();
+  const stageBox = await page.locator(".stage").boundingBox();
+  expect(cardBox).not.toBeNull();
+  expect(ordersBox).not.toBeNull();
+  expect(stageBox).not.toBeNull();
+  if (cardBox === null || ordersBox === null || stageBox === null) return;
+
+  // Hugs the left edge (the dock's 18px gutter) rather than centring in it.
+  expect(cardBox.x - stageBox.x).toBeGreaterThanOrEqual(0);
+  expect(cardBox.x - stageBox.x).toBeLessThan(60);
+  // Sits entirely above the Orders band, inside the field.
+  expect(cardBox.y + cardBox.height).toBeLessThanOrEqual(ordersBox.y);
+  expect(cardBox.y - stageBox.y).toBeGreaterThanOrEqual(0);
 });
 
 test("the opening Field runs its hostile phase after the player passes", async ({ page }) => {

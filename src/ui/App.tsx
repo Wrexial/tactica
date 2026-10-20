@@ -596,13 +596,13 @@ export function App() {
     [controller.battle, controller.selectedUnitId],
   );
 
-  // T134 — the soldier whose anchored card is shown. The card is an on-demand
-  // readout: it appears for a **selected** soldier, or for whichever soldier
-  // the cursor is deliberately inspecting (a hovered soldier that is not the
-  // current actor). It is intentionally **not** painted for the acting soldier
-  // merely because the cursor happens to rest on its tile, and it is dismissed
-  // while aiming — otherwise a wide card parks itself over the middle of the
-  // field and hides the very tiles the player is trying to inspect or aim at.
+  // T134 — the soldier whose card is shown. The card is an on-demand
+  // readout docked bottom-left in `.field-dock`, shown for a **selected**
+  // soldier, or for whichever soldier the cursor is deliberately inspecting
+  // (a hovered soldier that is not the current actor). It is intentionally
+  // **not** painted for the acting soldier merely because the cursor happens
+  // to rest on its tile, and it is dismissed while aiming — the Orders band
+  // needs the room and the field must stay clear for targeting.
   const focus = useMemo((): { readonly unit: Unit; readonly role: UnitCardRole } | null => {
     if (controller.phase === "target" || controller.phase === "confirm") return null;
     if (selected !== null) return { unit: selected, role: "selected" };
@@ -801,19 +801,6 @@ export function App() {
           </details>
         )}
 
-        {/* T134 — the per-character card, anchored beside the inspected soldier
-            (selected, or a hovered soldier the player is looking over) through
-            the live camera projection. On demand only, so it stays off the field. */}
-        {view === "battle" && focus !== null && (
-          <UnitCard
-            unit={focus.unit}
-            role={focus.role}
-            sceneRef={sceneRef}
-            canvasRef={canvasRef}
-            ready={inputReady}
-          />
-        )}
-
         {/* T135 — the forecast card, anchored beside the aimed-at soldier
             through the live camera projection (T133) rather than the side
             panel. The engine projection still supplies every number. */}
@@ -836,13 +823,18 @@ export function App() {
             so it never steals a click from the field. */}
         {view === "battle" && (
           <div className="field-dock">
+            {/* T134 — the per-character card for the inspected soldier
+                (selected, or a hovered soldier the player is looking over).
+                Docked bottom-left inside `.field-dock`, above the readout and
+                the Orders band, so it never parks over the field. */}
+            {focus !== null && <UnitCard unit={focus.unit} role={focus.role} />}
             {/* T137 — the compact field readout: phase, cursor, reach, area,
                 danger and elevation. The surviving strip of the old side
                 panel is folded into the bottom band so the field keeps its
                 width; the `hud-*` test ids are unchanged. */}
             <section className="field-readout" aria-label={t("hud.orders")}>
               {/* T134 — the selected soldier is announced to assistive tech;
-                  the visible readout lives on the anchored card. */}
+                  the visible readout lives on the docked card. */}
               <p className="visually-hidden" data-testid="hud-selected">
                 {selected?.name ?? t("common.none")}
               </p>

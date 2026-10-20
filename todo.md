@@ -1173,7 +1173,7 @@ and export it, keeping the utility AI (T095) as the default.
 ## Phase 15 — Battlefield HUD (per-character, FFT Blue style)
 
 Model the battle screen on **FFT Blue** (<https://fft-blue.vercel.app/>, the
-deployed `kuirsan26-lab/fft-phaser`): a hover/selection-anchored unit card
+deployed `kuirsan26-lab/fft-phaser`): a hover/selection unit card
 (`BattleScene.showUnitInfo`), a compact bottom command menu (`ui/ActionMenu.ts`),
 a top turn-order rail (`ui/TurnOrderPanel.ts`) and a near-empty overlay
 (`UIScene.ts`) — instead of our persistent `aside.hud` column. The information is
@@ -1202,7 +1202,7 @@ prefer a pixi-ticker/rAF subscription over a React render per frame.
 - deps: [T133]
 - files: src/ui/App.tsx, src/ui/UnitCard.tsx, src/ui/StatChips.tsx, src/ui/styles.css
 - verify: npm run test:e2e -- tests/e2e/input.spec.ts
-- done: hovering or selecting a soldier — and the acting soldier — shows its `UnitCard` anchored beside it via `anchorFor`, edge-flipped and clamped, instead of in the fixed side-panel column; `hud-actor`, `unit-card`, `hud-selected` and `hud-chips` remain in the DOM and `input.spec.ts` passes.
+- done: hovering or selecting a soldier shows its `UnitCard` in the HUD; the card was originally anchored beside the soldier via `anchorFor`, but is now **docked bottom-left inside `.field-dock`, above the readout and Orders band**, so it never covers the tiles being inspected or aimed at (`anchorFor` still serves the forecast/tile cards); `hud-actor`, `unit-card`, `hud-selected` and `hud-chips` remain in the DOM and `input.spec.ts` passes.
 
 Build on the in-progress `UnitCard.tsx`/`StatChips.tsx`/`unitLabels.ts` (commit
 that WIP first). Reuse the existing hover/selection plumbing in `App.tsx`

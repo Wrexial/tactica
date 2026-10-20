@@ -323,12 +323,19 @@ body {
  * the card is on screen, so the hovered soldier can always change.
  * --------------------------------------------------------------------- */
 
+/* ------------------------------------------------------------------------
+ * Soldier card (T134)
+ *
+ * The per-character readout for the soldier in focus. It is docked in the
+ * bottom-left corner of the field, stacked above the field readout and the
+ * Orders band inside `.field-dock`, rather than anchored beside the soldier —
+ * a card floating over the map covers the tiles the player is inspecting.
+ * --------------------------------------------------------------------- */
+
 .unit-card {
-  position: absolute;
-  z-index: 6;
-  top: 0;
-  left: 0;
-  width: 230px;
+  align-self: flex-start;
+  width: min(230px, calc(100vw - 36px));
+  margin-left: 18px;
   padding: 10px 12px 12px;
   color: var(--ink);
   background: rgba(255, 250, 240, 0.97);
@@ -455,6 +462,12 @@ body {
 
 .field-dock > * {
   pointer-events: auto;
+}
+
+/* The soldier card is a readout, not a control: clicks pass through to the
+   field beneath it. */
+.field-dock > .unit-card {
+  pointer-events: none;
 }
 
 /* The tray keeps its look but is laid out by the dock rather than pinned. */

@@ -83,8 +83,8 @@ export interface ForecastProps {
 
 /**
  * Keep the forecast card glued beside the aimed-at soldier as the camera moves.
- * Mirrors `UnitCard`'s anchor loop (T134) — a frame loop, never a React render,
- * writing `left`/`top`/`data-side` from the pure `anchorFor` (T133).
+ * Mirrors the tile-card anchor pattern (T133) — a frame loop, never a React
+ * render, writing `left`/`top`/`data-side` from the pure `anchorFor`.
  */
 function useAnchoredForecast(
   cardRef: RefObject<HTMLElement | null>,
