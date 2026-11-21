@@ -27,12 +27,16 @@ import { createUnit, type Unit, type UnitSide } from "../engine/unit";
 import {
   advanceFieldBattle,
   fieldAiHoldsTurn,
+  resolveFieldBattle,
   runFieldAiTurn,
   type FieldAiUpdate,
 } from "./skirmishScenario";
 
 /** Fixed seed for the demo action, so replays and screenshots are stable. */
 export const DEMO_SEED = 1809;
+
+/** Display name of the opening sandbox action (the Field panel and result). */
+export const DEMO_NAME = "The River Ford";
 
 /** A line infantryman: sturdy, average pace. */
 const LINE_STATS: StatBlock = {
@@ -150,6 +154,10 @@ export function createDemoBattle(): BattleState {
       makeSoldier("unit-ford", "Ford Watch", "irregular", coord(7, 7), IRREGULAR_STATS, "enemy"),
     ],
     abilities: DEMO_ACTIONS,
+    // T146 — even the opening sandbox is a real action: it ends when either
+    // side is put out of action, so the player can play it to a result rather
+    // than wondering whether the Field has a win condition at all.
+    objective: { kind: "annihilation" },
   });
 }
 
@@ -177,4 +185,13 @@ export function advanceDemoBattle(battle: BattleState): DemoUpdate | null {
 /** Take exactly one hostile picket's turn, for paced Field playback. */
 export function runDemoTurn(battle: BattleState): DemoUpdate | null {
   return runFieldAiTurn(battle);
+}
+
+/**
+ * Hand both sides to the deterministic AI and play the opening sandbox to its
+ * annihilation objective. This is the "Resolve" control on the Field and the
+ * unit-test path that proves the opening battle actually terminates.
+ */
+export function resolveDemoBattle(battle: BattleState): DemoUpdate {
+  return resolveFieldBattle(battle);
 }

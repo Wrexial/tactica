@@ -22,7 +22,7 @@ import {
   startCampaignBattle,
   type CampaignState,
 } from "../app/campaignController";
-import { createDemoBattle } from "../app/demoScenario";
+import { createDemoBattle, DEMO_NAME, resolveDemoBattle } from "../app/demoScenario";
 import {
   createSkirmishBattle,
   fieldAiHoldsTurn,
@@ -68,6 +68,8 @@ import { Saves } from "./Saves";
 import { Settings } from "./Settings";
 import { LobbyScreen } from "./Lobby";
 import { TempoTray } from "./TempoTray";
+import { TileCard } from "./TileCard";
+import { describeTile, tileInfoFor } from "./tileInfo";
 import { Tutorial } from "./Tutorial";
 import { UnitCard, type UnitCardRole } from "./UnitCard";
 import {
@@ -351,6 +353,19 @@ export function App() {
     [applyController, resetFieldActivity],
   );
 
+  // The opening Field: a fresh sandbox action with its own objective, cursor on
+  // the acting soldier. Used for the initial mount and the result's restart.
+  const startDemo = useCallback(() => {
+    resetFieldActivity();
+    setFieldMode("demo");
+    setFieldEpoch((current) => current + 1);
+    setView("battle");
+    if (typeof document !== "undefined") {
+      (document.activeElement as HTMLElement | null)?.blur?.();
+    }
+    applyController(initialController());
+  }, [applyController, resetFieldActivity]);
+
   // Quick Battle: start (or restart) the preset two-team scene on the Field.
   const startSkirmish = useCallback(() => {
     resetFieldActivity();
@@ -368,6 +383,13 @@ export function App() {
   // the result.
   const resolveSkirmish = useCallback(() => {
     const update = resolveSkirmishBattle(controllerRef.current.battle);
+    applyController({ ...createBattleController(update.battle), lastEvents: update.events });
+  }, [applyController]);
+
+  // Opening sandbox: the same deterministic auto-battle, so the initial Field
+  // can also be played out to a result (T146).
+  const resolveDemo = useCallback(() => {
+    const update = resolveDemoBattle(controllerRef.current.battle);
     applyController({ ...createBattleController(update.battle), lastEvents: update.events });
   }, [applyController]);
 
@@ -617,6 +639,23 @@ export function App() {
     return null;
   }, [controller.battle.units, controller.cursor, controller.phase, selected, actor]);
 
+  // T145 — the tile under the cursor, projected for the terrain inspector.
+  // The reference is the selected soldier, or the acting one when nothing is
+  // selected, so the card's elevation delta reads "relative to me".
+  const tileInfo = useMemo(() => {
+    const cursor = controller.cursor;
+    if (cursor === null) return null;
+    const referenceId = controller.selectedUnitId ?? controller.battle.currentActorId;
+    const reference =
+      referenceId === null
+        ? null
+        : (controller.battle.units.find((unit) => unit.id === referenceId)?.at ?? null);
+    return tileInfoFor(controller.battle.map, cursor, reference, controller.battle.units);
+  }, [controller]);
+
+  // The screen-reader / e2e summary mirrors the anchored tile card exactly.
+  const tileSummary = tileInfo === null ? t("common.none") : describeTile(tileInfo, t);
+
   const cursorLabel =
     controller.cursor === null
       ? t("common.none")
@@ -817,6 +856,14 @@ export function App() {
           />
         )}
 
+        {/* T145 — the terrain inspector, anchored to the cursor through the
+            live camera projection (T133). While an order is being aimed the
+            forecast card owns the target tile, so the tile card steps aside;
+            the `hud-tile` readout still mirrors the ground under the cursor. */}
+        {view === "battle" && tileInfo !== null && forecast === null && (
+          <TileCard info={tileInfo} sceneRef={sceneRef} canvasRef={canvasRef} ready={inputReady} />
+        )}
+
         {/* T135 — the field's bottom dock: the compact command band (FFT Blue's
             `ActionMenu`) stacks directly above the Orders Tempo tray so the two
             bottom surfaces never overlap. Pointer events pass through the dock
@@ -949,6 +996,18 @@ export function App() {
                   <dd data-testid="hud-danger-zone">
                     {t("common.tiles", { count: targeting.danger.length })}
                   </dd>
+                </div>
+                <div>
+                  <dt>
+                    {t("hud.tile")}{" "}
+                    <InfoTip
+                      testId="hud-help-tile"
+                      side="left"
+                      title={t("tip.moreInfo")}
+                      label={t("hud.help.tile")}
+                    />
+                  </dt>
+                  <dd data-testid="hud-tile">{tileSummary}</dd>
                 </div>
                 <div>
                   <dt>
@@ -1154,6 +1213,31 @@ export function App() {
           </section>
         )}
 
+        {view === "battle" && fieldMode === "demo" && controller.battle.phase !== "finished" && (
+          <section
+            className="campaign-action"
+            data-testid="demo-battle"
+            aria-label={t("demo.label")}
+          >
+            <p className="kicker">{t("demo.label")}</p>
+            <h2 data-testid="demo-name">{DEMO_NAME}</h2>
+            <p className="muted" data-testid="demo-objective">
+              {t("contract.battle.objectiveLabel")}:{" "}
+              {objectiveLabel(controller.battle.objective?.objective, t)}
+            </p>
+            <div className="campaign-action__buttons">
+              <button
+                type="button"
+                className="button button--ghost"
+                data-testid="demo-resolve"
+                onClick={resolveDemo}
+              >
+                {t("contract.battle.resolve")}
+              </button>
+            </div>
+          </section>
+        )}
+
         {view === "battle" &&
           fieldMode === "skirmish" &&
           controller.battle.phase !== "finished" && (
@@ -1180,6 +1264,36 @@ export function App() {
               </div>
             </section>
           )}
+
+        {view === "battle" && fieldMode === "demo" && controller.battle.phase === "finished" && (
+          <section
+            className="campaign-result"
+            data-testid="demo-result"
+            role="dialog"
+            aria-label={t("demo.resultLabel")}
+          >
+            <p className="kicker">{t("demo.resultLabel")}</p>
+            <h2 data-testid="demo-result-name">{DEMO_NAME}</h2>
+            <p
+              className={
+                controller.battle.outcome === "companyVictory"
+                  ? "campaign-result__outcome is-victory"
+                  : "campaign-result__outcome is-defeat"
+              }
+              data-testid="demo-result-outcome"
+            >
+              {outcomeLabel(controller.battle.outcome ?? "draw", t)}
+            </p>
+            <button
+              type="button"
+              className="button"
+              data-testid="demo-result-restart"
+              onClick={startDemo}
+            >
+              {t("demo.restart")}
+            </button>
+          </section>
+        )}
 
         {fieldMode === "skirmish" && controller.battle.phase === "finished" && (
           <section

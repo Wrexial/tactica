@@ -1436,11 +1436,11 @@ where their terrain description implies relief; if a board is deliberately
 flat, say so in its description or a focused test.
 
 ### T145 — Tile inspection: terrain, elevation and effects
-- status: failed
+- status: done
 - deps: []
 - files: src/ui/tileInfo.ts, src/ui/TileCard.tsx, src/ui/App.tsx, src/ui/styles.css, tests/unit/tileInfo.test.ts, tests/e2e/tileInfo.spec.ts
 - verify: npm run test -- --run tests/unit/tileInfo.test.ts && npm run test:e2e -- tests/e2e/tileInfo.spec.ts
-- done: Hovering or selecting any in-bounds tile, empty or occupied, shows an anchored `tile-card` with the terrain name, description/category, absolute elevation, elevation delta relative to the selected/acting soldier, move cost, passable/blocked and sight/water flags; the data comes from a pure `tileInfoFor(map, at, reference)` helper covered by `tests/unit/tileInfo.test.ts`, and the card reuses `scene.project` + `anchorFor` without mutating engine state.
+- done: Hovering or selecting any in-bounds tile, empty or occupied, shows an anchored `tile-card` with the terrain name, description/category, absolute elevation, elevation delta relative to the selected/acting soldier, move cost, passable/blocked and sight/water flags; the data comes from a pure `tileInfoFor(map, at, reference, units)` helper covered by `tests/unit/tileInfo.test.ts`, and the card reuses `scene.project` + `anchorFor` without mutating engine state. `hud-tile` mirrors the same summary; the card steps aside while a forecast is aimed so the two never cover each other.
 
 The cursor already tracks hover and click (`controller.cursor`), and the HUD
 shows only its coordinate plus a relative elevation chevron. Add a pure tile
@@ -1453,6 +1453,36 @@ card beside the cursor using T133's projector and `anchorFor`, following the
 offset or merge the terrain line rather than covering it. Keep the card visible
 on empty tiles and while browsing orders; expose a stable
 `data-testid="tile-card"` and `hud-tile` text for the e2e contract.
+
+### T146 — Make the opening Field a resolvable action
+- status: done
+- deps: [T143, T145]
+- files: src/app/demoScenario.ts, src/app/skirmishScenario.ts, src/ui/App.tsx, src/i18n/index.ts, tests/unit/demoScenario.test.ts, tests/e2e/demoBattle.spec.ts
+- verify: npm run test -- --run tests/unit/demoScenario.test.ts && npm run test:e2e -- tests/e2e/demoBattle.spec.ts
+- done: The initial demo Field carries an annihilation objective, shows its objective in a Field panel with a deterministic Resolve control, freezes at a terminal outcome and offers a restart; `resolveDemoBattle` shares the generic `resolveFieldBattle` auto-battle path with Quick Battle, and the opening action now visibly plays out and resolves instead of running forever.
+
+Playtesting kept hitting the first screen, which looked like a playable battle
+but had no objective: the opening demo could never finish, so the only way to
+see a resolved action was to discover Quick Battle. Give `createDemoBattle` an
+authored annihilation objective, expose a small Field panel (`demo-battle`) with
+the objective and a **Resolve** button, and show a `demo-result` card with the
+outcome and a restart when the battle freezes. Reuse the same deterministic
+auto-battle path as Quick Battle rather than authoring a second AI resolver.
+
+### T147 — Out-of-action soldiers stop blocking movement
+- status: done
+- deps: [T025, T146]
+- files: src/engine/actions/move.ts, src/engine/battle.ts, src/app/battleController.ts, src/ai/utility.ts, src/ai/naive.ts, tests/unit/move.test.ts
+- verify: npm run test -- --run tests/unit/move.test.ts tests/unit/demoScenario.test.ts
+- done: A soldier at 0 HP no longer occupies their tile for the move validator, folded `act.move` pathfinder, controller move range, or either AI; a march may cross the tile a fallen soldier held, so a body on the only bridge cannot seal the route or stall an annihilation objective.
+
+T146 surfaced a real engine bug: `occupiedTiles` counted every deployed soldier,
+including those out of action, so the first soldier to fall on the demo's single
+bridge blocked both surviving sides from ever reaching each other. The
+auto-battle loop then stalled with the objective still active. Filter
+out-of-action soldiers from every occupancy source (engine validator, folded
+move pathfinder, controller, utility AI, naive AI) so corpses do not hold
+ground, and pin a march across a fallen soldier's tile.
 
 ---
 

@@ -4,6 +4,7 @@ import {
   advanceDemoBattle,
   createDemoBattle,
   demoAiHoldsTurn,
+  resolveDemoBattle,
   runDemoTurn,
 } from "../../src/app/demoScenario";
 import { createSkirmishBattle, fieldAiHoldsTurn } from "../../src/app/skirmishScenario";
@@ -111,5 +112,20 @@ describe("demo scenario Field AI", () => {
     const skirmish = passUntilAiHoldsTurn(createSkirmishBattle());
     expect(fieldAiHoldsTurn(demo)).toBe(true);
     expect(fieldAiHoldsTurn(skirmish)).toBe(true);
+  });
+});
+
+describe("demo scenario objective (T146)", () => {
+  it("fields a real win/lose objective, not an endless sandbox", () => {
+    const battle = createDemoBattle();
+    expect(battle.objective?.objective.kind).toBe("annihilation");
+  });
+
+  it("resolves the opening action to a terminal result", () => {
+    const update = resolveDemoBattle(createDemoBattle());
+
+    expect(update.battle.phase).toBe("finished");
+    expect(update.battle.outcome).not.toBeNull();
+    expect(update.events.some((event) => event.kind === "battleEnded")).toBe(true);
   });
 });

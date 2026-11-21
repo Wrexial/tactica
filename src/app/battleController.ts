@@ -198,10 +198,14 @@ export interface BattleController {
  * Queries shared with the input/render layers
  * ------------------------------------------------------------------------ */
 
-/** Every tile another soldier currently occupies; the mover's own is ignored. */
+/**
+ * Every tile another **in-action** soldier currently occupies; the mover's own
+ * is ignored. Out-of-action soldiers do not block ground (T146), matching the
+ * engine's move validator so the overlay and the rules agree.
+ */
 function occupiedByOthers(state: BattleState, mover: Unit): Coord[] {
   return state.units
-    .filter((unit) => unit.id !== mover.id)
+    .filter((unit) => unit.id !== mover.id && !isOutOfAction(unit))
     .map((unit) => ({ x: unit.at.x, y: unit.at.y }));
 }
 

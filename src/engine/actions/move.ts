@@ -47,7 +47,7 @@ import {
   type Facing,
 } from "../grid";
 import { canClimb, getTerrainDef, stepCost, terrainTileAt } from "../terrain";
-import { withPosition, type Unit } from "../unit";
+import { isOutOfAction, withPosition, type Unit } from "../unit";
 
 /* --------------------------------------------------------------------------
  * Errors
@@ -141,11 +141,16 @@ function reject(
   return { valid: false, rejection: at === undefined ? { reason, message } : { reason, message, at } };
 }
 
-/** Every tile of the map another soldier currently stands on. */
+/**
+ * Every tile of the map another **in-action** soldier currently stands on.
+ * Soldiers who are out of action (HP 0) no longer block a tile — otherwise a
+ * body on a bridge or in a doorway would seal the only route across the board
+ * and stall an objective forever (T146).
+ */
 function occupiedTiles(state: BattleState, mover: Unit): ReadonlySet<string> {
   const keys = new Set<string>();
   for (const unit of state.units) {
-    if (unit.id !== mover.id) keys.add(coordKey(unit.at));
+    if (unit.id !== mover.id && !isOutOfAction(unit)) keys.add(coordKey(unit.at));
   }
   return keys;
 }

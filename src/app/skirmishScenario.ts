@@ -309,12 +309,13 @@ export function runSkirmishTurn(battle: BattleState): SkirmishUpdate | null {
 }
 
 /**
- * Auto-battle the rest of the quick battle: hand both sides to the deterministic
- * AI (with {@link AGGRESSIVE_FIELD_AI}) and play until the annihilation
- * objective resolves. A convenience for a hands-off "commit the company" order
- * and a stable test path; pure and deterministic like any other AI turn.
+ * Auto-battle the rest of any Field action: hand both sides to the deterministic
+ * AI (with {@link AGGRESSIVE_FIELD_AI}) and play until the objective resolves.
+ * Shared by Quick Battle, the opening sandbox and the campaign's "commit the
+ * company" order (T098/T119/T146); pure and deterministic like any other AI
+ * turn.
  */
-export function resolveSkirmishBattle(battle: BattleState): SkirmishUpdate {
+export function resolveFieldBattle(battle: BattleState): SkirmishUpdate {
   const policy = autoBattleAllies(DEFAULT_CONTROL_POLICY, "all");
   let working = battle;
   const events: BattleEvent[] = [];
@@ -325,4 +326,9 @@ export function resolveSkirmishBattle(battle: BattleState): SkirmishUpdate {
     working = run.state;
   }
   return { battle: working, events };
+}
+
+/** Quick Battle's name for {@link resolveFieldBattle}. */
+export function resolveSkirmishBattle(battle: BattleState): SkirmishUpdate {
+  return resolveFieldBattle(battle);
 }

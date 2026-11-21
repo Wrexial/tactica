@@ -436,8 +436,10 @@ function isSupportedCommandKind(kind: Command["kind"]): boolean {
  */
 function foldedMovePath(state: BattleState, unit: Unit, to: Coord): Coord[] | null {
   if (!inBounds(state.map.grid, to)) return null;
+  // Out-of-action soldiers no longer hold ground (T146): a body on the only
+  // bridge must not seal the route the AI or a folded order needs.
   const occupied = state.units
-    .filter((candidate) => candidate.id !== unit.id)
+    .filter((candidate) => candidate.id !== unit.id && !isOutOfAction(candidate))
     .map((candidate) => ({ x: candidate.at.x, y: candidate.at.y }));
   const result = findPath(state.map, unit.at, to, {
     climb: unit.stats.jump,

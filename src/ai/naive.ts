@@ -295,10 +295,10 @@ function hostileTargets(state: BattleState, actor: Unit): Unit[] {
   );
 }
 
-/** Tiles occupied by any soldier other than `actor`. */
+/** Tiles occupied by any in-action soldier other than `actor` (T146). */
 function occupiedByOthers(state: BattleState, actor: Unit): Coord[] {
   return state.units
-    .filter((unit) => unit.id !== actor.id)
+    .filter((unit) => unit.id !== actor.id && !isOutOfAction(unit))
     .map((unit) => ({ x: unit.at.x, y: unit.at.y }));
 }
 

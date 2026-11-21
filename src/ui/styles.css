@@ -757,6 +757,119 @@ body {
 }
 
 /* ------------------------------------------------------------------------
+ * Tile inspector (T145)
+ *
+ * Anchored to the cursor via T133's projector, like the forecast card. It is
+ * a passive readout (`pointer-events: none`) so aiming and marching still
+ * receive every click; the forecast steps in front of it while an order is
+ * being aimed.
+ * --------------------------------------------------------------------- */
+
+.tile-card {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 236px;
+  max-width: calc(100vw - 24px);
+  padding: 9px 11px 10px;
+  color: var(--ink);
+  background: rgba(255, 250, 240, 0.96);
+  border: 1px solid var(--line);
+  border-left: 4px solid #4d6b4a;
+  border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.36);
+  pointer-events: none;
+}
+
+.tile-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.tile-card__name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.tile-card__category {
+  color: var(--ink-soft);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tile-card__description {
+  margin: 0 0 7px;
+  color: var(--ink-soft);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.tile-card__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px 10px;
+  margin: 0 0 7px;
+  font-size: 11px;
+}
+
+.tile-card__stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tile-card__stats dt {
+  color: var(--ink-soft);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.tile-card__stats dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.tile-card__flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+}
+
+.tile-flag {
+  padding: 2px 6px;
+  color: #2f4a2d;
+  font-size: 10px;
+  background: rgba(77, 107, 74, 0.12);
+  border: 1px solid rgba(77, 107, 74, 0.35);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.tile-flag.is-warning {
+  color: #7a2418;
+  background: rgba(184, 60, 37, 0.12);
+  border-color: rgba(184, 60, 37, 0.38);
+}
+
+.tile-card__occupant {
+  margin: 7px 0 0;
+  padding-top: 6px;
+  color: var(--ink-soft);
+  font-size: 11px;
+  border-top: 1px solid var(--line);
+}
+
+/* ------------------------------------------------------------------------
  * Orders Tempo tray (T083)
  * --------------------------------------------------------------------- */
 

@@ -460,10 +460,14 @@ function withUnitAt(state: BattleState, unit: Unit, at: Coord): BattleState {
   return { ...state, units: state.units.map((entry) => (entry.id === unit.id ? placed : entry)) };
 }
 
-/** Every tile another soldier currently occupies; the mover's own is ignored. */
+/**
+ * Every tile another **in-action** soldier currently occupies; the mover's own
+ * is ignored. Out-of-action soldiers do not block ground (T146), so the AI and
+ * the engine's move validator plan through the same map.
+ */
 function occupiedByOthers(state: BattleState, mover: Unit): Coord[] {
   return state.units
-    .filter((unit) => unit.id !== mover.id)
+    .filter((unit) => unit.id !== mover.id && !isOutOfAction(unit))
     .map((unit) => ({ x: unit.at.x, y: unit.at.y }));
 }
 

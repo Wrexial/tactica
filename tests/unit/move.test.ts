@@ -231,6 +231,19 @@ describe("validateMove — rejects illegal paths", () => {
     expect(result.rejection.at).toEqual(coord(2, 0));
   });
 
+  it("lets a march cross a tile held by an out-of-action soldier", () => {
+    // T146 — a body on a bridge must not seal the only route. Out-of-action
+    // soldiers are no longer obstacles for the pathfinder or the validator.
+    const state = makeState([
+      makeUnit(MARCHER, coord(0, 0)),
+      makeUnit(BLOCKER, coord(2, 0), { hp: 0 }),
+    ]);
+    const result = validate(state, [coord(0, 0), coord(1, 0), coord(2, 0), coord(3, 0)]);
+    expect(result.valid).toBe(true);
+    if (!result.valid) return;
+    expect(result.to).toEqual(coord(3, 0));
+  });
+
   it("rejects a march longer than the Move budget", () => {
     const state = makeState([
       makeUnit(MARCHER, coord(0, 0), { stats: { ...BASE_STATS, move: 2 } }),
