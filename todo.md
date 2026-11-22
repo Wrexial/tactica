@@ -1682,6 +1682,22 @@ deps, `npm run test:e2e`). Use `actions/setup-node` with `node-version-file:
 `actions/upload-artifact` for `playwright-report` on failure. Keep the deploy
 workflow unchanged.
 
+### T157 — Repair the Pages deployment
+- status: doing
+- deps: [T156]
+- files: .github/workflows/deploy.yml, README.md
+- verify: —
+- done: The deploy workflow enables GitHub Pages for the repository on its first run (`enablement: true` on `configure-pages`) instead of failing at that step, the README states the one-time Pages prerequisite and that the workflow requests it, and a push to `main` reaches the publish step.
+
+The new CI workflow exposed a pre-existing failure: every `Deploy static build`
+run since the Pages workflow was added stops at **Configure Pages**, because the
+repository has `has_pages: false` — Pages was never switched on, so the
+`wrexial.github.io/tactica` link in the README serves a 404. `configure-pages`
+can create the site itself when given `enablement: true` and a token with
+`pages: write` (which the workflow already has), so request enablement there and
+document the prerequisite. If the token lacks the right to enable it, the
+workflow should say so plainly rather than leaving a bare 404 link.
+
 ---
 
 ## Research & open questions

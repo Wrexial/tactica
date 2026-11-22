@@ -12,8 +12,12 @@ content.
 > measured baseline are recorded in [`docs/BALANCE.md`](docs/BALANCE.md).
 > Content breadth is still being filled in.
 
-**▶ [Play in your browser](https://wrexial.github.io/tactica/)** — the latest
-`main` build is deployed to GitHub Pages. Or run it locally (see [Quickstart](#quickstart)).
+**▶ [Play in your browser](https://wrexial.github.io/tactica/)** — every push to
+`main` builds and publishes to GitHub Pages via
+[`deploy.yml`](.github/workflows/deploy.yml) (which requests Pages enablement on
+its first run; a 404 means the repository's Pages source still needs to be set
+to **GitHub Actions** under Settings → Pages). Or run it locally (see
+[Quickstart](#quickstart)).
 
 ## What it is
 
@@ -134,6 +138,13 @@ npm run lint         # eslint
 npm run test         # vitest (watch);  npm run test -- --run for one-shot
 npm run test:e2e     # playwright (needs: npx playwright install chromium)
 ```
+
+### Checks and deployment
+
+`.github/workflows/ci.yml` runs lint, format check, type-check, the unit suite,
+the production build and the Playwright e2e suite on every push and pull
+request. A push to `main` additionally deploys `dist/` to GitHub Pages;
+`netlify.toml` remains configured as an alternative host.
 
 ## Documentation
 

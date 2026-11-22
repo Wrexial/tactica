@@ -47,6 +47,13 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          # The repository's Pages site may not exist yet (it reported
+          # has_pages: false, which made every deploy fail here). With
+          # `pages: write` this action can create the site with the GitHub
+          # Actions source on the first run, so a fork or a fresh clone does
+          # not need a manual Settings → Pages step.
+          enablement: true
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
