@@ -226,6 +226,17 @@ describe("buildBattleFromContract (T118)", () => {
     }
   });
 
+  it("never asks for more routs than the garrison can supply (T167)", () => {
+    for (const map of Object.values(BATTLE_MAPS)) {
+      if (map.objective.kind !== "rout") continue;
+      const garrison = hasOrderOfBattle(map.id) ? orderOfBattleFor(map.id).units.length : 0;
+      expect(
+        map.objective.defeated,
+        `${map.id} needs ${map.objective.defeated} defeats from a ${garrison}-troop garrison`,
+      ).toBeLessThanOrEqual(garrison);
+    }
+  });
+
   it("builds a battle from a contract that names a reused board (T164)", () => {
     const mill = CONTRACTS["take-the-mill"];
     const map = battleMapFor(mill);

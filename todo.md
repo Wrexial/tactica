@@ -1905,7 +1905,7 @@ contracts (`carry-the-pass`, `silence-the-battery`) an assault board or objectiv
 rather than a defend map. Re-run the sweep and record the new rows.
 
 ### T167 — Reconcile recommended levels with the company's growth
-- status: todo
+- status: done
 - deps: [T165]
 - files: src/engine/stats.ts, src/data/posts/*.ts, src/data/maps/*.json, docs/BALANCE.md, tests/unit/stats.test.ts, tests/unit/campaignBaseline.test.ts
 - verify: npm run test -- --run tests/unit/stats.test.ts tests/unit/campaignBaseline.test.ts

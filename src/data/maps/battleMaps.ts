@@ -418,9 +418,13 @@ const BATTLE_MAP_DATA = {
           { x: 9, y: 4 },
           { x: 10, y: 4 },
           { x: 11, y: 4 },
+          { x: 9, y: 3 },
         ],
       },
     ],
+    // Four enemies are deployed (see the order of battle), so routing four is
+    // possible; a threshold above the garrison would make the objective
+    // unsatisfiable (pinned by a test).
     objective: { kind: "rout", defeated: 4 },
     recommendedLevel: 3,
     contractId: "pacify-the-coast-road",

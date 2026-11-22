@@ -6,6 +6,7 @@ import { asPostId, asUnitId } from "../../src/engine/ids";
 import {
   STAT_KEYS,
   addStatMods,
+  POST_BASELINE_STATS,
   deriveStats,
   deriveUnitStats,
   sumStatMods,
@@ -65,26 +66,27 @@ const BASE_STATS: StatBlock = {
 
 describe("deriveStats", () => {
   it("scales the seven growth stats by level, truncating fractions", () => {
+    // Each growth term is added to the level-1 baseline (T167).
     expect(deriveStats({ level: 1, growth: GROWTH })).toEqual({
-      hp: 7, // floor(7.2 × 1)
-      mp: 1, // floor(1.1 × 1)
-      atk: 7,
-      def: 7,
-      mag: 6, // floor(6.4 × 1)
-      res: 8, // floor(8.1 × 1)
-      spd: 1,
+      hp: POST_BASELINE_STATS.hp + 7, // baseline + floor(7.2 × 1)
+      mp: POST_BASELINE_STATS.mp + 1, // floor(1.1 × 1)
+      atk: POST_BASELINE_STATS.atk + 7,
+      def: POST_BASELINE_STATS.def + 7,
+      mag: POST_BASELINE_STATS.mag + 6, // floor(6.4 × 1)
+      res: POST_BASELINE_STATS.res + 8, // floor(8.1 × 1)
+      spd: POST_BASELINE_STATS.spd + 1,
       move: 0, // movement rates do not grow
       jump: 0,
     });
 
     expect(deriveStats({ level: 10, growth: GROWTH })).toEqual({
-      hp: 72,
-      mp: 11,
-      atk: 72,
-      def: 72,
-      mag: 64,
-      res: 81,
-      spd: 14,
+      hp: 102,
+      mp: 21,
+      atk: 82,
+      def: 81,
+      mag: 69,
+      res: 87,
+      spd: 40,
       move: 0,
       jump: 0,
     });
@@ -92,13 +94,13 @@ describe("deriveStats", () => {
 
   it("adds flat post modifiers, including movement rates and penalties", () => {
     expect(deriveStats({ level: 10, growth: GROWTH, postMods: POST_MODS })).toEqual({
-      hp: 122,
-      mp: 16,
-      atk: 82,
-      def: 76,
-      mag: 64,
-      res: 81,
-      spd: 12,
+      hp: 152,
+      mp: 26,
+      atk: 92,
+      def: 85,
+      mag: 69,
+      res: 87,
+      spd: 38,
       move: 4,
       jump: 2,
     });
@@ -113,13 +115,13 @@ describe("deriveStats", () => {
         equipment: EQUIP,
       }),
     ).toEqual({
-      hp: 122,
-      mp: 16,
-      atk: 94, // 72 + 10 + 12
-      def: 82, // 72 + 4 + 6
-      mag: 64,
-      res: 84, // 81 + 3
-      spd: 14, // 14 − 2 + 2
+      hp: 152,
+      mp: 26,
+      atk: 104, // 82 growth+base + 10 post + 12 kit
+      def: 91, // 81 + 4 + 6
+      mag: 69,
+      res: 90, // 87 + 3
+      spd: 40, // 40 − 2 + 2
       move: 5, // 0 + 4 + 1
       jump: 2,
     });
@@ -128,10 +130,10 @@ describe("deriveStats", () => {
   it("keeps the equipment contribution independent of level", () => {
     const low = deriveStats({ level: 1, growth: GROWTH, equipment: EQUIP });
     const high = deriveStats({ level: 5, growth: GROWTH, equipment: EQUIP });
-    expect(low.atk).toBe(7 + 12);
-    expect(high.atk).toBe(36 + 12); // floor(7.2 × 5) = 36
-    expect(low.def).toBe(7 + 6);
-    expect(high.def).toBe(36 + 6);
+    expect(low.atk).toBe(10 + 7 + 12);
+    expect(high.atk).toBe(10 + 36 + 12); // floor(7.2 × 5) = 36
+    expect(low.def).toBe(9 + 7 + 6);
+    expect(high.def).toBe(9 + 36 + 6);
   });
 
   it("clamps so no stat is negative and max HP is at least 1", () => {
@@ -143,8 +145,8 @@ describe("deriveStats", () => {
     expect(derived.hp).toBe(1);
     expect(derived.atk).toBe(0);
     expect(derived.move).toBe(0);
-    // Untouched stats are unaffected.
-    expect(derived.mp).toBe(1);
+    // Untouched stats are unaffected: baseline + floor(1.1 × 1).
+    expect(derived.mp).toBe(10 + 1);
   });
 
   it("returns a full, integer block with exactly the nine stats", () => {

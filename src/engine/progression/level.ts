@@ -29,8 +29,9 @@
  *   gain[stat] = floor(growth[stat] × (level + 1)) − floor(growth[stat] × level)
  * ```
  *
- * Summed over levels this telescopes to `floor(growth × level)`, so a soldier
- * leveled here matches one derived at the same level by `deriveStats`. Working
+ * Summed over levels this telescopes to `floor(growth × level)` (the level-1
+ * baseline, T167, is a constant and cancels), so a soldier leveled here matches
+ * one derived at the same level by `deriveStats`. Working
  * incrementally (rather than re-deriving from scratch) also preserves any flat
  * modifiers the soldier already carries — a post baseline, a prior post's
  * legacy, kit and attached-post deltas — without this module needing to know

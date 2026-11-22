@@ -166,13 +166,17 @@ Decision ids continue `docs/NAPOLEONIC_MAPPING.md` §14 (`D0`–`D15`).
 
 - **Reference:** ❌ absent — `Stat_growth.md`'s FFTA section is an empty stub;
   the job tables give growth **values and ranks**, not the applied formula.
-- **Decision:** `effective[stat] = floor(growth[stat] × level) + flat mods +
-  kit`, truncating each growth term **once**. A level-up applies the increment
-  `floor(growth × (level+1)) − floor(growth × level)`, so incremental growth
-  telescopes to the same value as a from-scratch derivation. Level cap **50**,
-  **100** Experience per level, action XP **10 ± 2 per level of difference**
-  clamped **1..99** (all reference values).
-- **Lives in:** `deriveStats` in `src/engine/stats.ts`; `MAX_LEVEL`,
+- **Decision:** `effective[stat] = POST_BASELINE_STATS[stat] +
+  floor(growth[stat] × level) + flat mods + kit`, truncating each growth term
+  **once**. The level-1 baseline was added by T167 (below): without it a level-2
+  soldier had ~16 HP and ~17 ATK, an order of magnitude below the authored
+  irregulars. A level-up applies the increment
+  `floor(growth × (level+1)) − floor(growth × level)`, so the constant baseline
+  cancels and incremental growth telescopes to the same value as a from-scratch
+  derivation. Level cap **50**, **100** Experience per level, action XP
+  **10 ± 2 per level of difference** clamped **1..99** (all reference values).
+- **Lives in:** `POST_BASELINE_STATS` and `deriveStats` in
+  `src/engine/stats.ts`; `MAX_LEVEL`,
   `EXPERIENCE_PER_LEVEL`, `ACTION_EXPERIENCE`,
   `EXPERIENCE_PER_LEVEL_DIFFERENCE`, `MIN_EXPERIENCE_AWARD`,
   `MAX_EXPERIENCE_AWARD` in `src/engine/progression/level.ts`.
@@ -332,6 +336,35 @@ Defend boards now run their clock instead of losing on turn one. The remaining
 defeats are finding 2 (recommended levels versus the flat enemy stat line) and
 finding 3 (the finale), tracked in T167.
 
+## Recommended levels and the level-1 baseline (T167)
+
+T165's second finding: a level-2 post-derived soldier had **~16 HP and ~17 ATK**
+against authored irregulars at **50–70 HP and ~30 ATK**, and a Speed of ~4
+against their 27–44. The derived and authored stat lines were on different
+scales, so the early actions could not be won at their advertised levels. The
+company now starts from an authored level-1 line (`POST_BASELINE_STATS`: 30 HP,
+10 Élan, 10 ATK, 9 DEF, 5 MAG, 6 RES, **26 SPD**) with the per-level growth on
+top, putting both scales on one footing. Movement rates stay out of the baseline
+so they keep coming from the post/deployment layer.
+
+Re-running the T165 sweep at each map's recommended level:
+
+| result | count | notes                                                                 |
+| ------ | ----: | --------------------------------------------------------------------- |
+| A wins |    17 | every defend clock, the finale (`take-the-headquarters`, lvl 7) and 4 of the 6 routs |
+| B wins |     7 | `storm-the-farmhouse`, `clear-the-orchard`, `the-rival-foragers`, `the-deserters-camp`, `clear-the-forest-bands`, `break-the-guerrilla-camp` — all level 2–3, the narrowest part of the curve |
+
+The sweep also caught an **unsatisfiable objective**: `orchard-skirmish` and
+`coast-road-ambush` asked for `rout 4` from a three-troop garrison, so a company
+that killed everything could never finish (a stall once the baseline let it
+survive). Both boards now deploy a fourth troop, and a test requires every rout
+threshold to be no greater than its garrison.
+
+The company is now the favourite on most of the board — the six losses cluster
+at levels 2–3, so a later pass may nudge a few `recommendedLevel`s up rather
+than change the formula again. This is the "after" T165 table for comparison;
+reproduce it with the command above.
+
 ## Still open
 
 - **Tune the baseline.** The D16–D24 values are a defensible starting point,
@@ -341,6 +374,7 @@ finding 3 (the finale), tracked in T167.
   section remains a stub, so D20 is ours; revisit if the reference expands.
 - **Content breadth.** Formula decisions do not fix the thin campaign data
   (contracts, maps, enemies); that is future content work, not balance.
-- **Campaign action balance.** T165's table is the "before" for defend-board
-  orientation, recommended levels and the finale garrison.
+- **Campaign action balance.** T165's table is the "before"; T166 fixed the
+  defend orientation, T167 the stat scale. The six remaining losses are the next
+  tuning target.
 

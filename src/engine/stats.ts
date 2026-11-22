@@ -9,7 +9,8 @@
  * the sum of those layers:
  *
  * ```
- * effective[stat] = floor(growth[stat] × level)   // base growth
+ * effective[stat] = POST_BASELINE_STATS[stat]     // level-1 stat line (T167)
+ *                 + floor(growth[stat] × level)   // base growth
  *                 + postMods[stat]                // flat post / attached-post mods
  *                 + Σ equipment[i].stats[stat]    // kit
  * ```
@@ -35,6 +36,41 @@
 
 import type { StatBlock, StatGrowth, StatMods } from "../data/schema";
 import type { Unit } from "./unit";
+
+/**
+ * The **level-1 baseline** every post-derived stat block starts from (T167).
+ *
+ * The growth tables are per-level increments (`src/data/posts/`), so without a
+ * base a level-2 soldier has ~16 HP and ~17 ATK — an order of magnitude below
+ * the authored irregulars, whose stat lines (including Speed 27–44) are on the
+ * Quick Battle scale. FFTA's own level-1 characters likewise start with a real
+ * stat line rather than one level's increment. This block puts the derived
+ * scale on the same footing:
+ *
+ * ```
+ * effective[stat] = POST_BASELINE_STATS[stat]
+ *                 + floor(growth[stat] × level)
+ *                 + postMods[stat] + Σ equipment[i].stats[stat]
+ * ```
+ *
+ * Movement rates stay at 0 here: `move`/`jump` are supplied by the post's
+ * movement layer at deployment (`derivePostStats`'s `postMods`), not by the
+ * baseline, so a unit never gains phantom movement.
+ *
+ * Authored balance data, like the damage and hit formulas (`agents.md` §3):
+ * the numbers are ours, sized against the authored enemy and preset stat lines.
+ */
+export const POST_BASELINE_STATS: StatBlock = {
+  hp: 30,
+  mp: 10,
+  atk: 10,
+  def: 9,
+  mag: 5,
+  res: 6,
+  spd: 26,
+  move: 0,
+  jump: 0,
+};
 
 /* --------------------------------------------------------------------------
  * Types
@@ -176,12 +212,14 @@ function assertModifiers(mods: StatModifiers, label: string): void {
  *   postMods: { hp: 50, move: 4, jump: 2 },
  *   equipment: [{ atk: 12 }, { def: 6, spd: 2 }],
  * });
- * // { hp: 122, mp: 11, atk: 84, def: 78, mag: 64, res: 81, spd: 16, move: 4, jump: 2 }
+ * // baseline + growth + flats:
+ * // { hp: 152, mp: 26, atk: 104, def: 91, mag: 69, res: 90, spd: 40, move: 5, jump: 2 }
  * ```
  *
- * Growth terms are truncated individually (`Math.floor`), matching FFTA's
- * handling of fractional growth. The result is clamped so no stat is negative
- * and max HP is always at least 1.
+ * The level-1 baseline ({@link POST_BASELINE_STATS}) is added first, then each
+ * growth term is truncated (`Math.floor`), matching FFTA's handling of
+ * fractional growth. The result is clamped so no stat is negative and max HP is
+ * always at least 1.
  */
 export function deriveStats(input: DeriveStatsInput): StatBlock {
   const { level, growth, postMods = {}, equipment = [] } = input;
@@ -195,10 +233,13 @@ export function deriveStats(input: DeriveStatsInput): StatBlock {
 
   const equipmentMods = sumStatMods(equipment);
 
-  // Accumulate the "base growth × level" term, then the flat layers.
+  // Start from the level-1 baseline, accumulate growth × level, then the flats.
   const totals = zeroStatMods();
+  for (const key of STAT_KEYS) {
+    totals[key] = POST_BASELINE_STATS[key];
+  }
   for (const key of GROWTH_STAT_KEYS) {
-    totals[key] = Math.floor(growth[key] * level);
+    totals[key] += Math.floor(growth[key] * level);
   }
   for (const key of STAT_KEYS) {
     totals[key] += (postMods[key] ?? 0) + equipmentMods[key];

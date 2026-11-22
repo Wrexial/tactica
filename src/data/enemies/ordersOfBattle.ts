@@ -143,6 +143,7 @@ export const ORDERS_OF_BATTLE: Readonly<Partial<Record<BattleMapKey, OrderOfBatt
       { enemyId: "line-deserter", at: { x: 9, y: 4 } },
       { enemyId: "blackwood-guerrilla", at: { x: 10, y: 4 } },
       { enemyId: "pass-sniper", level: 4, at: { x: 11, y: 4 } },
+      { enemyId: "town-levy", at: { x: 9, y: 3 } },
     ],
   },
 
@@ -178,6 +179,7 @@ export const ORDERS_OF_BATTLE: Readonly<Partial<Record<BattleMapKey, OrderOfBatt
       { enemyId: "town-levy", at: { x: 10, y: 3 } },
       { enemyId: "town-levy", at: { x: 10, y: 4 } },
       { enemyId: "scout-hounds", at: { x: 9, y: 4 } },
+      { enemyId: "town-levy", at: { x: 9, y: 3 } },
     ],
   },
 
