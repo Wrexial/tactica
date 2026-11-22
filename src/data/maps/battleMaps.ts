@@ -50,6 +50,7 @@ import churchyardStandJson from "./churchyard-stand.json";
 import duelAtDawnJson from "./duel-at-dawn.json";
 import farmhouseAssaultJson from "./farmhouse-assault.json";
 import greenValleyForageJson from "./green-valley-forage.json";
+import headquartersRaidJson from "./headquarters-raid.json";
 import millfordCrossingJson from "./millford-crossing.json";
 import orchardSkirmishJson from "./orchard-skirmish.json";
 import payChestEscortJson from "./pay-chest-escort.json";
@@ -83,6 +84,7 @@ export const BATTLE_MAP_KEYS = [
   "millford-crossing",
   "sunken-lane",
   "churchyard-stand",
+  "headquarters-raid",
 ] as const;
 
 /** The stable id of every authored battle map. */
@@ -111,6 +113,7 @@ export const JSON_BATTLE_MAP_KEYS = [
   "millford-crossing",
   "sunken-lane",
   "churchyard-stand",
+  "headquarters-raid",
 ] as const;
 
 /** The stable id of a JSON-authored battle map. */
@@ -148,6 +151,7 @@ const JSON_BATTLE_MAP_DATA: Record<JsonBattleMapKey, BattleMapData> = {
   "millford-crossing": parseJsonBattleMap("millford-crossing", millfordCrossingJson),
   "sunken-lane": parseJsonBattleMap("sunken-lane", sunkenLaneJson),
   "churchyard-stand": parseJsonBattleMap("churchyard-stand", churchyardStandJson),
+  "headquarters-raid": parseJsonBattleMap("headquarters-raid", headquartersRaidJson),
 };
 
 /**

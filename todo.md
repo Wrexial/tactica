@@ -1781,6 +1781,23 @@ term bounded so a good attack still outranks a pointless tile, pin it with unit
 tests (capture, defend, and no pull on annihilation), then re-run the
 churchyard probe and the T152 baseline and record the new table.
 
+### T161 — Chapter 9, the campaign's closing beat
+- status: done
+- deps: [T160]
+- files: src/data/maps/headquarters-raid.json, src/data/maps/battleMaps.ts, src/data/maps/locations.ts, src/data/enemies/ordersOfBattle.ts, src/data/contracts/battles.ts, src/data/story.ts, tests/unit/maps.test.ts, tests/unit/story.test.ts
+- verify: npm run test -- --run tests/unit/maps.test.ts tests/unit/story.test.ts tests/unit/content.test.ts tests/unit/battleSetup.test.ts
+- done: The campaign ends on a deliberate note: a 12×8 billet village whose flat street threads between raised houses, a walled headquarters compound with one gate, a six-troop command garrison (general, captain, Old Guard detachment and aides), a `capture` objective on the headquarters, a chapter-9 contract triggered by holding the churchyard, and a matching location and story chapter; the board validates, the raid resolves headlessly, and the objective pull carries the company to the HQ.
+
+After the churchyard defence the column is gone and the enemy headquarters is
+exposed in its billet village. The closing beat is a **street raid**: the
+company comes up a flat street between houses raised a layer above it, takes the
+one gate in the headquarters compound and seizes the HQ tile. The garrison is a
+command group — `enemy-general`, `enemy-captain`, `old-guard-detachment` and
+three aides — so the fight is against quality rather than numbers. Keep the
+`capture` objective (T160's objective pull now makes both sides fight for the
+tile), add the location and chapter, trigger chapter 9 on completing
+`hold-the-churchyard`, and update the story test's completion facts.
+
 ---
 
 ## Research & open questions

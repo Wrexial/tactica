@@ -207,6 +207,20 @@ export const ORDERS_OF_BATTLE: Readonly<Partial<Record<BattleMapKey, OrderOfBatt
     ],
   },
 
+  /* ----- The headquarters ------------------------------------------------ */
+
+  "headquarters-raid": {
+    mapId: "headquarters-raid",
+    units: [
+      { enemyId: "enemy-captain", level: 6, at: { x: 8, y: 4 } },
+      { enemyId: "enemy-general", level: 6, at: { x: 9, y: 4 } },
+      { enemyId: "old-guard-detachment", level: 6, at: { x: 8, y: 5 } },
+      { enemyId: "veteran-serjeant", level: 6, at: { x: 9, y: 5 } },
+      { enemyId: "line-deserter", level: 6, at: { x: 7, y: 4 } },
+      { enemyId: "pass-sniper", level: 6, at: { x: 6, y: 4 } },
+    ],
+  },
+
   /* ----- The dawn duel --------------------------------------------------- */
 
   "duel-at-dawn": {

@@ -176,6 +176,27 @@ describe("buildBattleFromContract (T118)", () => {
     });
   });
 
+  it("deploys the headquarters command garrison (T161)", () => {
+    const raidContract = CONTRACTS["take-the-headquarters"];
+    const raidMap = BATTLE_MAPS["headquarters-raid"];
+    const battle = buildBattleFromContract(SEED, companyOf(6), raidContract, raidMap);
+
+    const companies = battle.units.filter((unit) => unit.side === "company");
+    const enemies = battle.units.filter((unit) => unit.side === "enemy");
+    expect(companies).toHaveLength(6);
+    expect(enemies.map((unit) => unit.name).sort()).toEqual(
+      [
+        "Enemy Captain",
+        "Enemy General",
+        "Line Deserter",
+        "Old Guard Detachment",
+        "Pass Sniper",
+        "Veteran Serjeant",
+      ].sort(),
+    );
+    expect(battle.objective?.objective).toEqual({ kind: "capture", at: { x: 8, y: 4 } });
+  });
+
   it("re-derives company stats from the primary post and deploys at full strength", () => {
     const source = member("unit-0", "Soldier 0", "fusilier");
     const wounded = createUnit({

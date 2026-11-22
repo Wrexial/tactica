@@ -146,6 +146,22 @@ export const BATTLE_CONTRACTS = parseContracts({
     regionId: "crossroads",
     chapter: 8,
   },
+  "take-the-headquarters": {
+    name: "Take the Headquarters",
+    description:
+      "The enemy staff is billeted in a village at the crossroads. Force the compound gate and take the headquarters itself to end the campaign.",
+    flavour:
+      "Every campaign ends in a room somewhere: a table, a map, and a man who has run out of couriers.",
+    kind: "battle",
+    fee: 400,
+    requires: [
+      { kind: "post", id: "intelligence-officer" },
+      { kind: "unit", count: 5 },
+    ],
+    reward: { crowns: 2600, ap: 120, experience: 100, honours: 3, itemIds: ["spyglass"] },
+    regionId: "crossroads",
+    chapter: 9,
+  },
   "carry-the-pass": {
     name: "Carry the Pass",
     description:

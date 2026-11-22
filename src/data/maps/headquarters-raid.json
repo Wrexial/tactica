@@ -1,0 +1,98 @@
+{
+  "id": "headquarters-raid",
+  "name": "The Headquarters Raid",
+  "description": "The enemy headquarters is billeted in a village whose flat main street runs between raised houses to a walled compound. Take the one gate and seize the headquarters itself.",
+  "flavour": "Every campaign ends in a room somewhere: a table, a map, and a man who has run out of couriers.",
+  "locationId": "the-billet",
+  "width": 12,
+  "height": 8,
+  "layout": [
+    "..%%....%%..",
+    "..##....##..",
+    "..##....##..",
+    "..##...WWWW.",
+    "========##W.",
+    "..##...W##W.",
+    "..##...WWWW.",
+    "..%%....%%.."
+  ],
+  "elevation": [
+    "111111111111",
+    "111111111111",
+    "111111111111",
+    "111111111111",
+    "000000001111",
+    "111111111111",
+    "111111111111",
+    "111111111111"
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        {
+          "x": 0,
+          "y": 3
+        },
+        {
+          "x": 1,
+          "y": 3
+        },
+        {
+          "x": 0,
+          "y": 4
+        },
+        {
+          "x": 1,
+          "y": 4
+        },
+        {
+          "x": 0,
+          "y": 5
+        },
+        {
+          "x": 1,
+          "y": 5
+        }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        {
+          "x": 8,
+          "y": 4
+        },
+        {
+          "x": 9,
+          "y": 4
+        },
+        {
+          "x": 8,
+          "y": 5
+        },
+        {
+          "x": 9,
+          "y": 5
+        },
+        {
+          "x": 7,
+          "y": 4
+        },
+        {
+          "x": 6,
+          "y": 4
+        }
+      ]
+    }
+  ],
+  "objective": {
+    "kind": "capture",
+    "at": {
+      "x": 8,
+      "y": 4
+    }
+  },
+  "recommendedLevel": 7,
+  "contractId": "take-the-headquarters"
+}

@@ -151,6 +151,7 @@ export const STORY_CHAPTER_KEYS = [
   "the-kaisers-bombardiers",
   "the-sunken-lane",
   "the-churchyard",
+  "the-last-muster",
 ] as const;
 export type StoryChapterKey = (typeof STORY_CHAPTER_KEYS)[number];
 
@@ -245,6 +246,16 @@ const STORY_CHAPTER_DATA = {
     number: 8,
     trigger: { kind: "complete-contract", contractId: "clear-the-sunken-lane" },
     contractIds: ["hold-the-churchyard"],
+  },
+  "the-last-muster": {
+    name: "The Last Muster",
+    description:
+      "The column is away and the enemy staff is caught in its billet. The company takes the headquarters, and with it the campaign.",
+    flavour:
+      "Every campaign ends in a room somewhere: a table, a map, and a man who has run out of couriers.",
+    number: 9,
+    trigger: { kind: "complete-contract", contractId: "hold-the-churchyard" },
+    contractIds: ["take-the-headquarters"],
   },
 } satisfies Record<StoryChapterKey, StoryChapterData>;
 

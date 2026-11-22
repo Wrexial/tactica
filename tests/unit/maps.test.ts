@@ -883,3 +883,116 @@ describe("the Churchyard (T159)", () => {
     });
   });
 });
+
+/* --------------------------------------------------------------------------
+ * T161 — Chapter 9: the headquarters raid
+ *
+ * The closing beat is a street fight: a flat main street between raised houses
+ * running to a walled compound with one gate, and a command garrison holding
+ * the headquarters tile itself. These tests pin the street, the compound, the
+ * deployment/objective validity, the garrison and the content wiring.
+ * ------------------------------------------------------------------------ */
+
+describe("the Headquarters raid (T161)", () => {
+  it("threads a flat street between raised houses to a one-gate compound", () => {
+    const map = getBattleMap("headquarters-raid");
+    expect(map.elevation, "headquarters-raid must author an elevation layer").toBeDefined();
+
+    const terrain = battleMapToTerrainMap(map);
+    // The street is flat at height 0; the houses and the compound sit a layer up.
+    expect([0, 1, 2, 3, 4, 5, 6, 7].map((x) => heightAt(terrain, coord(x, 4)))).toEqual([
+      0, 0, 0, 0, 0, 0, 0, 0,
+    ]);
+    expect(heightAt(terrain, coord(2, 1))).toBe(1);
+    expect(heightAt(terrain, coord(8, 4))).toBe(1);
+
+    // The compound's west wall has exactly one opening: the gate.
+    expect(getTerrainDef(terrainAt(terrain, coord(7, 4))).passable).toBe(true);
+    for (const wall of [coord(7, 3), coord(7, 5)]) {
+      expect(getTerrainDef(terrainAt(terrain, wall)).passable, `${wall.x},${wall.y}`).toBe(false);
+    }
+    expect(getTerrainDef(terrainAt(terrain, coord(10, 4))).passable).toBe(false);
+
+    const heights = [...new Set(expandBattleMap(map).map((tile) => tile.height))].sort(
+      (a, b) => a - b,
+    );
+    expect(heights).toEqual([0, 1]);
+  });
+
+  it("keeps deployment, the headquarters objective and the approach valid", () => {
+    const map = getBattleMap("headquarters-raid");
+    const terrain = battleMapToTerrainMap(map);
+    const objective = map.objective;
+    if (objective.kind !== "capture") {
+      throw new Error("the headquarters raid must be a capture objective");
+    }
+
+    expect(objective.at).toEqual({ x: 8, y: 4 });
+    expect(getTerrainDef(terrainAt(terrain, coord(8, 4))).passable).toBe(true);
+
+    for (const zone of map.deployment) {
+      for (const tile of zone.tiles) {
+        expect(
+          getTerrainDef(terrainAt(terrain, coord(tile.x, tile.y))).passable,
+          `headquarters ${zone.side} deploy ${tile.x},${tile.y}`,
+        ).toBe(true);
+      }
+    }
+
+    // The company can reach the headquarters from every deployment tile at
+    // Climb 1: up the flat street, through the gate, one step onto the HQ.
+    const company = map.deployment.find((zone) => zone.side === "company")?.tiles ?? [];
+    expect(company.length).toBeGreaterThanOrEqual(5);
+    for (const from of company) {
+      const path = findPath(terrain, coord(from.x, from.y), coord(objective.at.x, objective.at.y), {
+        climb: 1,
+      });
+      expect(path.found, `headquarters ${from.x},${from.y} → HQ`).toBe(true);
+    }
+  });
+
+  it("stations a six-troop command garrison inside the enemy zone", () => {
+    expect(hasOrderOfBattle("headquarters-raid")).toBe(true);
+    const order = orderOfBattleFor("headquarters-raid");
+    const map = getBattleMap("headquarters-raid");
+    const enemyTiles = map.deployment.find((zone) => zone.side === "enemy")?.tiles ?? [];
+
+    expect(order.mapId).toBe("headquarters-raid");
+    expect(order.units).toHaveLength(6);
+    expect(order.units.every((unit) => unit.level === 6)).toBe(true);
+    expect(order.units.map((unit) => unit.enemyId)).toEqual(
+      expect.arrayContaining(["enemy-general", "enemy-captain", "old-guard-detachment"]),
+    );
+    for (const unit of order.units) {
+      expect(
+        enemyTiles.some((tile) => tile.x === unit.at.x && tile.y === unit.at.y),
+        `${unit.enemyId} at ${unit.at.x},${unit.at.y} is in the enemy zone`,
+      ).toBe(true);
+    }
+  });
+
+  it("wires the contract, map, location and chapter together", () => {
+    const map = getBattleMap("headquarters-raid");
+    expect(map.contractId).toBe("take-the-headquarters");
+    expect(map.objective).toEqual({ kind: "capture", at: { x: 8, y: 4 } });
+    expect(combatMapForContract("take-the-headquarters").id).toBe("headquarters-raid");
+
+    const contract = CONTRACTS["take-the-headquarters"];
+    expect(contract.kind).toBe("battle");
+    expect(contract.chapter).toBe(9);
+    expect(contract.regionId).toBe("crossroads");
+
+    const location = getLocation("the-billet");
+    expect(location.regionId).toBe("crossroads");
+    expect(location.chapter).toBe(9);
+    expect(location.battleMapIds).toContain("headquarters-raid");
+
+    const chapter = STORY_CHAPTERS["the-last-muster"];
+    expect(chapter.number).toBe(9);
+    expect(chapter.contractIds).toEqual(["take-the-headquarters"]);
+    expect(chapter.trigger).toEqual({
+      kind: "complete-contract",
+      contractId: "hold-the-churchyard",
+    });
+  });
+});

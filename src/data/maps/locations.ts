@@ -65,6 +65,7 @@ export const LOCATION_KEYS = [
   "the-millford",
   "the-sunken-lane",
   "the-churchyard",
+  "the-billet",
 ] as const;
 
 /** The stable id of every authored location. */
@@ -215,6 +216,17 @@ const LOCATION_DATA = {
     terrain: "village",
     battleMapIds: ["churchyard-stand"],
     chapter: 8,
+  },
+  "the-billet": {
+    name: "The Billet Village",
+    description:
+      "A straggling village of raised houses over a flat main street, chosen by the enemy staff for its one walled compound and its one gate.",
+    flavour:
+      "Every campaign ends in a room somewhere: a table, a map, and a man who has run out of couriers.",
+    regionId: "crossroads",
+    terrain: "village",
+    battleMapIds: ["headquarters-raid"],
+    chapter: 9,
   },
   "the-millford": {
     name: "The Millford",
