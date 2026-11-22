@@ -73,15 +73,25 @@ function companyAt(level: number, size = COMPANY_POSTS.length): Company {
 /** The field AI on both sides: what the Resolve control actually runs. */
 const FIELD: GauntletPolicy = { id: "field-ai", ai: AGGRESSIVE_FIELD_AI };
 
-/** One row of the measured table. */
+/**
+ * Fixed seeds per action. Two seeds keep the read from being a one-off while
+ * the whole sweep still runs in seconds.
+ */
+const SEED_COUNT = 2;
+
+/** One row of the measured table, aggregated over the fixed seeds. */
 interface ActionRow {
   readonly contract: string;
   readonly map: string;
   readonly level: number;
   readonly objective: string;
-  readonly winner: string;
+  /** Company wins across the seeds, as `A/B`. */
+  readonly wins: string;
+  /** Mean turns to a result, across the seeds. */
   readonly turns: number;
+  /** Mean company losses, across the seeds. */
   readonly companyLost: number;
+  /** Mean enemy losses, across the seeds. */
   readonly enemyLost: number;
 }
 
@@ -95,42 +105,31 @@ function setupOf(battle: ReturnType<typeof buildBattleFromContract>): BattleSetu
   };
 }
 
-/** Play one contract once and flatten the summary into a table row. */
-function play(
-  contractId: string,
-  map: BattleMapDef,
-  seed: string,
-): { row: ActionRow; summary: GauntletSummary } {
+/** Play one contract on one seed. */
+function play(contractId: string, map: BattleMapDef, seed: string): GauntletSummary {
   const battle = buildBattleFromContract(
     seed,
     companyAt(map.recommendedLevel),
     CONTRACT_LIST.find((entry) => entry.id === contractId)!,
     map,
   );
-  const summary = runGauntlet(setupOf(battle), seed, FIELD, FIELD);
-  return {
-    summary,
-    row: {
-      contract: contractId,
-      map: map.id,
-      level: map.recommendedLevel,
-      objective: map.objective.kind,
-      winner: summary.winner ?? "—",
-      turns: summary.turns,
-      companyLost: summary.unitsLost.company,
-      enemyLost: summary.unitsLost.enemy,
-    },
-  };
+  return runGauntlet(setupOf(battle), seed, FIELD, FIELD);
+}
+
+/** Mean of some integer readings, rounded (the table is a summary). */
+function mean(values: readonly number[]): number {
+  if (values.length === 0) return 0;
+  return Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
 }
 
 /** A compact fixed-width table for the test log / docs. */
 function table(rows: readonly ActionRow[]): string {
   const header =
-    "contract                    map                   lvl  obj          win  turns  lost(A/B)";
+    "contract                    map                   lvl  obj          wins  turns  lost(A/B)";
   const lines = rows.map(
     (row) =>
       `${row.contract.padEnd(28)}${row.map.padEnd(22)}${String(row.level).padEnd(5)}` +
-      `${row.objective.padEnd(13)}${row.winner.padEnd(5)}${String(row.turns).padStart(5)}  ` +
+      `${row.objective.padEnd(13)}${row.wins.padEnd(6)}${String(row.turns).padStart(5)}  ` +
       `${row.companyLost}/${row.enemyLost}`,
   );
   return [header, "-".repeat(header.length), ...lines].join("\n");
@@ -149,17 +148,31 @@ describe("campaign actions resolve (T165)", () => {
     for (const contract of contracts) {
       const map = battleMapFor(contract);
       expect(map, `${contract.id} must resolve a board`).not.toBeNull();
-      const { row, summary } = play(contract.id, map as BattleMapDef, `baseline-${contract.id}`);
+      const board = map as BattleMapDef;
 
-      expect(summary.stop, `${contract.id} must finish, not ${summary.stop}`).toBe("finished");
-      expect(summary.finished, contract.id).toBe(true);
-      expect(summary.outcome, contract.id).not.toBeNull();
-      expect(summary.turns, contract.id).toBeGreaterThan(0);
-      expect(summary.turns, contract.id).toBeLessThanOrEqual(DEFAULT_MAX_GAUNTLET_TURNS);
-      // Casualties are *recorded*, not required: a `defend`/`survive` clock can
-      // run out with nobody down, and that is a result, not a failure.
+      const summaries: GauntletSummary[] = [];
+      for (let index = 0; index < SEED_COUNT; index++) {
+        const summary = play(contract.id, board, `baseline-${contract.id}-${index}`);
+        expect(summary.stop, `${contract.id} must finish, not ${summary.stop}`).toBe("finished");
+        expect(summary.finished, contract.id).toBe(true);
+        expect(summary.outcome, contract.id).not.toBeNull();
+        expect(summary.turns, contract.id).toBeGreaterThan(0);
+        expect(summary.turns, contract.id).toBeLessThanOrEqual(DEFAULT_MAX_GAUNTLET_TURNS);
+        summaries.push(summary);
+      }
 
-      rows.push(row);
+      const companyWins = summaries.filter((summary) => summary.winner === "A").length;
+      const enemyWins = summaries.filter((summary) => summary.winner === "B").length;
+      rows.push({
+        contract: contract.id,
+        map: board.id,
+        level: board.recommendedLevel,
+        objective: board.objective.kind,
+        wins: `${companyWins}/${enemyWins}`,
+        turns: mean(summaries.map((summary) => summary.turns)),
+        companyLost: mean(summaries.map((summary) => summary.unitsLost.company)),
+        enemyLost: mean(summaries.map((summary) => summary.unitsLost.enemy)),
+      });
     }
 
     // Printed for the record and for copying into docs/BALANCE.md.

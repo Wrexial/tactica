@@ -1920,6 +1920,19 @@ starting line) or raise the map `recommendedLevel`s to where the company's
 linear growth matches the flat enemy line — implement it consistently, and
 re-measure. This is a D24-level decision; record it in `docs/BALANCE.md`.
 
+### T168 — A stable campaign baseline and the last level retune
+- status: done
+- deps: [T167]
+- files: tests/unit/campaignBaseline.test.ts, src/data/maps/orchard-skirmish.json, src/data/maps/battleMaps.ts, docs/BALANCE.md
+- verify: npm run test -- --run tests/unit/campaignBaseline.test.ts
+- done: The sweep plays each action on two fixed seeds and reports the win split, the two boards whose actions lost consistently at their hint are retuned (`orchard-skirmish` 3, `guerrilla-camp` 4), and the after-table is recorded.
+
+T167 left six low-level losses, but a single seed is a noisy read: re-running the
+same actions on a second seed flipped several results. Play each action twice,
+report the split, and retune only the boards that lost both seeds — the orchard
+(where every action is level 3 now) and the guerrilla camp (level 4). The coast
+road remains a genuine 1–1 split, which is a contest rather than a fault.
+
 ---
 
 ## Research & open questions

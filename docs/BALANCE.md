@@ -360,10 +360,42 @@ that killed everything could never finish (a stall once the baseline let it
 survive). Both boards now deploy a fourth troop, and a test requires every rout
 threshold to be no greater than its garrison.
 
-The company is now the favourite on most of the board — the six losses cluster
-at levels 2–3, so a later pass may nudge a few `recommendedLevel`s up rather
-than change the formula again. This is the "after" T165 table for comparison;
-reproduce it with the command above.
+**T168 re-ran the sweep on two fixed seeds per action**, because a single seed
+was a noisy read: several results flipped on the second seed. Two boards lost
+both seeds at their hint and were retuned — `orchard-skirmish` to level 3 (all
+three orchard actions now win both seeds) and `guerrilla-camp` to level 4 (both
+camp actions win both seeds). Every action is a contest or a win now, with only
+`pacify-the-coast-road` splitting 1–1 across the seeds:
+
+| contract                 | map                   | lvl | wins (A/B) | turns | lost (A/B) |
+| ------------------------ | --------------------- | --: | ---------: | ----: | ---------: |
+| break-the-bridge         | sainte-colombe-bridge |   1 |        2/0 |     8 |        0/0 |
+| storm-the-farmhouse      | farmhouse-assault     |   3 |        2/0 |    94 |        3/4 |
+| hold-the-redoubt         | redoubt-stand         |   4 |        2/0 |     5 |        0/0 |
+| take-the-mill            | millford-crossing     |   4 |        2/0 |    27 |        0/3 |
+| clear-the-orchard        | orchard-skirmish      |   3 |        2/0 |    41 |        1/4 |
+| silence-the-battery      | churchyard-stand      |   6 |        2/0 |    13 |        0/0 |
+| clear-the-sunken-lane    | sunken-lane           |   6 |        2/0 |    62 |        0/3 |
+| hold-the-churchyard      | churchyard-stand      |   6 |        2/0 |    13 |        0/0 |
+| take-the-headquarters    | headquarters-raid     |   7 |        2/0 |   111 |        0/3 |
+| carry-the-pass           | highland-pass         |   4 |        2/0 |    16 |        0/3 |
+| crossed-sabres           | crossroads-skirmish   |   2 |        2/0 |     6 |        0/0 |
+| the-rival-foragers       | orchard-skirmish      |   3 |        2/0 |    34 |        1/4 |
+| pistols-at-dawn          | duel-at-dawn          |   2 |        2/0 |    34 |        1/3 |
+| the-roadside-ambush      | coast-road-ambush     |   3 |        2/0 |    46 |        2/4 |
+| the-deserters-camp       | guerrilla-camp        |   4 |        2/0 |    43 |        1/4 |
+| the-foragers-quarrel     | orchard-skirmish      |   3 |        2/0 |    44 |        1/4 |
+| pacify-the-coast-road    | coast-road-ambush     |   3 |        1/1 |    41 |        2/3 |
+| clear-the-forest-bands   | blackwood-picket      |   2 |        2/0 |    39 |        1/3 |
+| break-the-guerrilla-camp | guerrilla-camp        |   4 |        2/0 |    43 |        1/4 |
+| pacify-the-highlands     | highland-pass         |   4 |        2/0 |    13 |        0/3 |
+| clear-the-green-valley   | green-valley-forage   |   3 |        2/0 |    40 |        0/3 |
+| sweep-the-ridge          | ridge-reconnaissance  |   4 |        2/0 |     4 |        0/0 |
+| open-the-crossroads      | crossroads-skirmish   |   2 |        2/0 |     6 |        0/0 |
+
+The company is the favourite across the board, which is acceptable for the
+protagonist's campaign and much healthier than the 3–21 "before". Reproduce the
+table with the sweep command above.
 
 ## Still open
 
@@ -375,6 +407,7 @@ reproduce it with the command above.
 - **Content breadth.** Formula decisions do not fix the thin campaign data
   (contracts, maps, enemies); that is future content work, not balance.
 - **Campaign action balance.** T165's table is the "before"; T166 fixed the
-  defend orientation, T167 the stat scale. The six remaining losses are the next
-  tuning target.
+  defend orientation, T167 the stat scale and T168 the two misleading hints.
+  `pacify-the-coast-road` remains a 1–1 split; re-check it if the coastline
+  garrison changes.
 

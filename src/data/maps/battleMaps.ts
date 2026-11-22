@@ -323,7 +323,7 @@ const BATTLE_MAP_DATA = {
       },
     ],
     objective: { kind: "annihilation" },
-    recommendedLevel: 3,
+    recommendedLevel: 4,
     contractId: "break-the-guerrilla-camp",
   },
 
