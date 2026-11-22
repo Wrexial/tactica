@@ -86,10 +86,7 @@ function tempoBattle(
 describe("runAiTurn (T119)", () => {
   it("plans and commits a non-company actor's turn through step", () => {
     const battle = tempoBattle(
-      [
-        makeUnit(ENEMY_ID, coord(0, 0), "enemy"),
-        makeUnit(COMPANY_ID, coord(0, 3), "company"),
-      ],
+      [makeUnit(ENEMY_ID, coord(0, 0), "enemy"), makeUnit(COMPANY_ID, coord(0, 3), "company")],
       { [ENEMY_ID]: 100 },
     );
     expect(battle.currentActorId).toBe(ENEMY_ID);
@@ -138,10 +135,7 @@ describe("runAiTurn (T119)", () => {
     expect(() => runAiTurn(downed, ENEMY_ID)).toThrow(BattleRunnerError);
 
     const playerTurn = tempoBattle(
-      [
-        makeUnit(COMPANY_ID, coord(0, 0), "company"),
-        makeUnit(ENEMY_ID, coord(4, 4), "enemy"),
-      ],
+      [makeUnit(COMPANY_ID, coord(0, 0), "company"), makeUnit(ENEMY_ID, coord(4, 4), "enemy")],
       { [COMPANY_ID]: 100 },
     );
     expect(() => runAiTurn(playerTurn, COMPANY_ID)).toThrow(BattleRunnerError);
@@ -162,10 +156,7 @@ describe("runAiTurn (T119)", () => {
 
   it("accepts a company ally delegated with autoBattleAllies (T098)", () => {
     const battle = tempoBattle(
-      [
-        makeUnit(ALLY_ID, coord(0, 0), "company"),
-        makeUnit(ENEMY_ID, coord(0, 3), "enemy"),
-      ],
+      [makeUnit(ALLY_ID, coord(0, 0), "company"), makeUnit(ENEMY_ID, coord(0, 3), "enemy")],
       { [ALLY_ID]: 100 },
     );
 
@@ -187,10 +178,7 @@ describe("runAiTurn (T119)", () => {
 describe("runAiUntilPlayer (T119)", () => {
   it("runs consecutive AI turns, then stops at the company soldier", () => {
     const battle = tempoBattle(
-      [
-        makeUnit(ENEMY_ID, coord(0, 0), "enemy"),
-        makeUnit(COMPANY_ID, coord(0, 3), "company"),
-      ],
+      [makeUnit(ENEMY_ID, coord(0, 0), "enemy"), makeUnit(COMPANY_ID, coord(0, 3), "company")],
       { [ENEMY_ID]: 100, [COMPANY_ID]: 99 },
     );
     expect(battle.currentActorId).toBe(ENEMY_ID);
@@ -210,10 +198,7 @@ describe("runAiUntilPlayer (T119)", () => {
 
   it("returns control immediately when the player acts first", () => {
     const battle = tempoBattle(
-      [
-        makeUnit(COMPANY_ID, coord(0, 0), "company"),
-        makeUnit(ENEMY_ID, coord(4, 4), "enemy"),
-      ],
+      [makeUnit(COMPANY_ID, coord(0, 0), "company"), makeUnit(ENEMY_ID, coord(4, 4), "enemy")],
       { [COMPANY_ID]: 100 },
     );
 
@@ -247,10 +232,7 @@ describe("runAiUntilPlayer (T119)", () => {
 
   it("auto-battles a delegated ally, then stops at the player", () => {
     const battle = tempoBattle(
-      [
-        makeUnit(ALLY_ID, coord(0, 0), "company"),
-        makeUnit(PLAYER_ID, coord(4, 4), "company"),
-      ],
+      [makeUnit(ALLY_ID, coord(0, 0), "company"), makeUnit(PLAYER_ID, coord(4, 4), "company")],
       { [ALLY_ID]: 100, [PLAYER_ID]: 99 },
     );
 
@@ -284,10 +266,7 @@ describe("runAiUntilPlayer (T119)", () => {
 
   it("caps an all-AI run at maxTurns", () => {
     const battle = tempoBattle(
-      [
-        makeUnit(ENEMY_ID, coord(0, 0), "enemy"),
-        makeUnit(ENEMY_B_ID, coord(2, 0), "enemy"),
-      ],
+      [makeUnit(ENEMY_ID, coord(0, 0), "enemy"), makeUnit(ENEMY_B_ID, coord(2, 0), "enemy")],
       { [ENEMY_ID]: 100 },
     );
 

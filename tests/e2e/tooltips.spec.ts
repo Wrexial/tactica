@@ -20,10 +20,7 @@ test("explains the HUD terms on hover and on focus", async ({ page }) => {
   // Keyboard focus reveals the bubble too, and the trigger points at it.
   await page.getByTestId("hud-help-danger-zone").focus();
   await expect(page.getByTestId("hud-help-danger-zone-bubble")).toBeVisible();
-  await expect(page.getByTestId("hud-help-danger-zone")).toHaveAttribute(
-    "aria-describedby",
-    /.+/,
-  );
+  await expect(page.getByTestId("hud-help-danger-zone")).toHaveAttribute("aria-describedby", /.+/);
 });
 
 test("explains an Orders action with its rules text and numbers", async ({ page }) => {

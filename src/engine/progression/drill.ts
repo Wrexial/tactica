@@ -156,9 +156,7 @@ export function equippedTeaches(unit: Unit): readonly EquippedTeach[] {
 
 /** Whether `abilityId` is already permanently mastered by `unit`. */
 export function isMastered(unit: Unit, abilityId: AbilityId): boolean {
-  return unit.abilities.some(
-    (learned) => learned.abilityId === abilityId && learned.mastered,
-  );
+  return unit.abilities.some((learned) => learned.abilityId === abilityId && learned.mastered);
 }
 
 /** The unit's Drill record for `abilityId`, or `undefined` when never drilled. */
@@ -297,8 +295,6 @@ function assertNonNegativeInteger(value: number, label: string): void {
 
 function assertTick(tick: number): void {
   if (!Number.isInteger(tick) || tick < 0) {
-    throw new RangeError(
-      `drill.tick must be a non-negative integer, received ${String(tick)}`,
-    );
+    throw new RangeError(`drill.tick must be a non-negative integer, received ${String(tick)}`);
   }
 }

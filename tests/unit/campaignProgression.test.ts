@@ -198,9 +198,7 @@ describe("applyBattleOutcome — victory", () => {
 
     // The learner banked the reward's 50 Drill toward Riposte (80 required)…
     const learner = after.company.roster.find((member) => member.unit.id === asUnitId("unit-1"));
-    expect(learner?.unit.abilities).toEqual([
-      { abilityId: "riposte", drill: 50, mastered: false },
-    ]);
+    expect(learner?.unit.abilities).toEqual([{ abilityId: "riposte", drill: 50, mastered: false }]);
     expect(learner?.unit.experience).toBe(40);
 
     // …and the soldier left in reserve trained for nothing.

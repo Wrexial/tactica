@@ -213,12 +213,7 @@ describe("reactions — identity", () => {
 describe("reactions — trigger builders", () => {
   it("classifies an incoming attack and measures the gap", () => {
     const state = makeBattle(coord(1, 4));
-    const incoming = incomingTrigger(
-      state,
-      ATTACKER_ID,
-      REACTOR_ID,
-      ability("powder"),
-    );
+    const incoming = incomingTrigger(state, ATTACKER_ID, REACTOR_ID, ability("powder"));
 
     expect(incoming).toBeDefined();
     expect(incoming).toMatchObject({
@@ -235,9 +230,7 @@ describe("reactions — trigger builders", () => {
 
   it("returns undefined for a soldier who is not deployed", () => {
     const state = makeBattle();
-    expect(
-      incomingTrigger(state, asUnitId("ghost"), REACTOR_ID, ability("steel")),
-    ).toBeUndefined();
+    expect(incomingTrigger(state, asUnitId("ghost"), REACTOR_ID, ability("steel"))).toBeUndefined();
   });
 
   it("builds an after-damage trigger from a landed damaged event", () => {
@@ -332,9 +325,9 @@ describe("reactions — trigger hooks", () => {
     expect(equippedReaction(soldier, { loadout: { [REACTOR_ID]: "returnFire" } })).toBe(
       "returnFire",
     );
-    expect(
-      equippedReaction(soldier, { reactionOf: () => REACTION_IDS.fieldDressing }),
-    ).toBe("fieldDressing");
+    expect(equippedReaction(soldier, { reactionOf: () => REACTION_IDS.fieldDressing })).toBe(
+      "fieldDressing",
+    );
   });
 });
 
@@ -392,9 +385,9 @@ describe("resolveReactionDefense — Dodge", () => {
   it("rejects a malformed dodge chance", () => {
     const state = makeBattle();
     const incoming = incomingTrigger(state, ATTACKER_ID, REACTOR_ID, ability("steel"))!;
-    expect(() =>
-      resolveReactionDefense(state, incoming, new Rng(1), { dodgeChance: 101 }),
-    ).toThrow(RangeError);
+    expect(() => resolveReactionDefense(state, incoming, new Rng(1), { dodgeChance: 101 })).toThrow(
+      RangeError,
+    );
   });
 });
 
@@ -518,12 +511,9 @@ describe("reactions — purity & determinism", () => {
     const provoked = provoke(state);
     const before = JSON.stringify(provoked.state);
 
-    resolveReactionResponses(
-      provoked.state,
-      provoked.events,
-      new Rng("purity"),
-      { loadout: { [REACTOR_ID]: "riposte" } },
-    );
+    resolveReactionResponses(provoked.state, provoked.events, new Rng("purity"), {
+      loadout: { [REACTOR_ID]: "riposte" },
+    });
 
     expect(JSON.stringify(provoked.state)).toBe(before);
   });
@@ -546,12 +536,9 @@ describe("reactions — purity & determinism", () => {
   it("every emitted event is a well-formed battle event", () => {
     const state = makeBattle();
     const provoked = provoke(state);
-    const result = resolveReactionResponses(
-      provoked.state,
-      provoked.events,
-      new Rng("valid"),
-      { loadout: { [REACTOR_ID]: "riposte" } },
-    );
+    const result = resolveReactionResponses(provoked.state, provoked.events, new Rng("valid"), {
+      loadout: { [REACTOR_ID]: "riposte" },
+    });
     for (const event of result.events) {
       expect(isBattleEvent(event)).toBe(true);
     }

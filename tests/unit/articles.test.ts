@@ -28,13 +28,7 @@ import {
   type ArticleDef,
   type ArticleTarget,
 } from "../../src/data/schema";
-import {
-  asArticleId,
-  asPostId,
-  asRegionId,
-  asUnitId,
-  type RegionId,
-} from "../../src/engine/ids";
+import { asArticleId, asPostId, asRegionId, asUnitId, type RegionId } from "../../src/engine/ids";
 import { isBattleEvent } from "../../src/engine/events";
 import { coord } from "../../src/engine/grid";
 import { Rng } from "../../src/engine/rng";
@@ -59,10 +53,7 @@ import {
   type ArticleFrequencyStep,
   type ArticleRecord,
 } from "../../src/engine/rules/articles";
-import {
-  canPlayOrderCard,
-  standingOrderCard,
-} from "../../src/engine/actions/orders";
+import { canPlayOrderCard, standingOrderCard } from "../../src/engine/actions/orders";
 import { HONOUR_LEGAL_KO } from "../../src/engine/rules/honour";
 import {
   BATTLEFIELD_REGIMES,
@@ -805,9 +796,7 @@ describe("card escalation (T057)", () => {
   });
 
   it("refuses a commended Article or a malformed record", () => {
-    expect(() => escalateBreach(ARTICLES["commend-musket"], { reprimands: 0 })).toThrow(
-      RangeError,
-    );
+    expect(() => escalateBreach(ARTICLES["commend-musket"], { reprimands: 0 })).toThrow(RangeError);
     expect(() => escalateBreach(noFire, { reprimands: -1 })).toThrow(RangeError);
     expect(() => escalateBreach(noFire, { reprimands: 1.5 })).toThrow(RangeError);
   });
@@ -877,7 +866,10 @@ describe("court-martial removal (T058)", () => {
     const c = soldier("c", 2, 0);
     const units = [a, b, c];
 
-    const result = applyCourtMartial({ units }, { unitId: b.id, articleId: asArticleId("no-fire") });
+    const result = applyCourtMartial(
+      { units },
+      { unitId: b.id, articleId: asArticleId("no-fire") },
+    );
 
     expect(units).toEqual([a, b, c]);
     expect(result.units.map((unit) => unit.id)).toEqual([a.id, c.id]);
@@ -921,10 +913,7 @@ describe("court-martial removal (T058)", () => {
     expect(result.commander).toBe(false);
     expect(result.finished).toBe(false);
     expect(result.outcome).toBeNull();
-    expect(result.events.map((event) => event.kind)).toEqual([
-      "courtMartialIssued",
-      "unitRemoved",
-    ]);
+    expect(result.events.map((event) => event.kind)).toEqual(["courtMartialIssued", "unitRemoved"]);
   });
 
   it("emits only well-formed battle events", () => {
@@ -941,10 +930,13 @@ describe("court-martial removal (T058)", () => {
 
   it("defaults the tick to zero and rejects a malformed tick", () => {
     const offender = soldier("offender", 1, 1);
-    const result = applyCourtMartial({ units: [offender] }, {
-      unitId: offender.id,
-      articleId: asArticleId("no-fire"),
-    });
+    const result = applyCourtMartial(
+      { units: [offender] },
+      {
+        unitId: offender.id,
+        articleId: asArticleId("no-fire"),
+      },
+    );
     expect(result.events[0]?.tick).toBe(0);
     expect(() =>
       applyCourtMartial(
@@ -1024,9 +1016,10 @@ describe("commissions (T059)", () => {
   });
 
   it("caps an illegal KO at a Reprimand for a commissioned soldier", () => {
-    expect(
-      escalateBreach(noFire, { reprimands: 0, illegalKo: true, commissioned: true }),
-    ).toEqual({ severity: "reprimand", reprimands: 1 });
+    expect(escalateBreach(noFire, { reprimands: 0, illegalKo: true, commissioned: true })).toEqual({
+      severity: "reprimand",
+      reprimands: 1,
+    });
   });
 
   it("caps a grave Article at a Reprimand for a commissioned soldier", () => {
@@ -1140,9 +1133,9 @@ describe("No-Man's Land (T065)", () => {
 
     it("rejects a malformed region or lawless flag", () => {
       expect(() => createNoMansLand("" as RegionId)).toThrow(RangeError);
-      expect(() =>
-        createBattlefield(asRegionId("peninsula"), "yes" as unknown as boolean),
-      ).toThrow(RangeError);
+      expect(() => createBattlefield(asRegionId("peninsula"), "yes" as unknown as boolean)).toThrow(
+        RangeError,
+      );
     });
   });
 
@@ -1168,9 +1161,7 @@ describe("No-Man's Land (T065)", () => {
 
     it("refuses an order card in the lawless posting", () => {
       const orders = createFieldOrders(jagd, ARTICLE_LIST);
-      expect(canPlayOrderCard(orders, standingOrderCard(ARTICLES["no-rifle"]))).toBe(
-        "lawless",
-      );
+      expect(canPlayOrderCard(orders, standingOrderCard(ARTICLES["no-rifle"]))).toBe("lawless");
     });
   });
 

@@ -190,12 +190,12 @@ describe("createUnit", () => {
 
 describe("createUnit validation", () => {
   it("rejects an unknown power or side", () => {
-    expect(() =>
-      createUnit({ ...baseInit(), power: "spain" as unknown as PowerKey }),
-    ).toThrow(RangeError);
-    expect(() =>
-      createUnit({ ...baseInit(), side: "rebels" as unknown as UnitSide }),
-    ).toThrow(RangeError);
+    expect(() => createUnit({ ...baseInit(), power: "spain" as unknown as PowerKey })).toThrow(
+      RangeError,
+    );
+    expect(() => createUnit({ ...baseInit(), side: "rebels" as unknown as UnitSide })).toThrow(
+      RangeError,
+    );
   });
 
   it("rejects a non-positive level or negative experience", () => {
@@ -209,27 +209,21 @@ describe("createUnit validation", () => {
   });
 
   it("rejects an invalid facing", () => {
-    expect(() =>
-      createUnit({ ...baseInit(), facing: "up" as unknown as Facing }),
-    ).toThrow(RangeError);
+    expect(() => createUnit({ ...baseInit(), facing: "up" as unknown as Facing })).toThrow(
+      RangeError,
+    );
   });
 
   it("rejects negative stats and zero max HP", () => {
-    expect(() =>
-      createUnit({ ...baseInit(), stats: { ...STATS, atk: -1 } }),
-    ).toThrow(RangeError);
-    expect(() =>
-      createUnit({ ...baseInit(), stats: { ...STATS, hp: 0 } }),
-    ).toThrow(RangeError);
+    expect(() => createUnit({ ...baseInit(), stats: { ...STATS, atk: -1 } })).toThrow(RangeError);
+    expect(() => createUnit({ ...baseInit(), stats: { ...STATS, hp: 0 } })).toThrow(RangeError);
   });
 
   it("rejects current HP, Élan or Honour above their caps", () => {
     expect(() => createUnit({ ...baseInit(), hp: STATS.hp + 1 })).toThrow(RangeError);
     expect(() => createUnit({ ...baseInit(), hp: -1 })).toThrow(RangeError);
     expect(() => createUnit({ ...baseInit(), mp: STATS.mp + 1 })).toThrow(RangeError);
-    expect(() => createUnit({ ...baseInit(), judgePoints: HONOUR_MAX + 1 })).toThrow(
-      RangeError,
-    );
+    expect(() => createUnit({ ...baseInit(), judgePoints: HONOUR_MAX + 1 })).toThrow(RangeError);
   });
 
   it("rejects malformed conditions and learned abilities", () => {
@@ -242,9 +236,7 @@ describe("createUnit validation", () => {
     expect(() =>
       createUnit({
         ...baseInit(),
-        abilities: [
-          { abilityId: asAbilityId("volley"), drill: -1, mastered: false },
-        ],
+        abilities: [{ abilityId: asAbilityId("volley"), drill: -1, mastered: false }],
       }),
     ).toThrow(RangeError);
     expect(() =>

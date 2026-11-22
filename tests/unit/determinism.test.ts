@@ -342,10 +342,7 @@ describe("determinism — RNG draw order per action (T126)", () => {
 
   it("consumes exactly the pre-reaction draws for a target with no reaction", () => {
     const noReaction = drawsFor(drawBattle(), drawAction());
-    const inertReaction = drawsFor(
-      drawBattle(reaction(REACTION_IDS.fieldDressing)),
-      drawAction(),
-    );
+    const inertReaction = drawsFor(drawBattle(reaction(REACTION_IDS.fieldDressing)), drawAction());
 
     // Field Dressing does not trigger at full health, and its predicate draws
     // nothing, so an inert reaction is free.

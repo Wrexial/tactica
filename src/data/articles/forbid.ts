@@ -271,7 +271,8 @@ export const FORBID_ARTICLES = parseArticles({
 
   "no-cavalry": {
     name: "No Horse",
-    description: "The horse is to stay held; an action taken by a Hussar breaks the standing order.",
+    description:
+      "The horse is to stay held; an action taken by a Hussar breaks the standing order.",
     flavour: "Cavalry in a firefight is a liability, not a reserve.",
     kind: "forbid",
     target: "post",
@@ -298,7 +299,8 @@ export const FORBID_ARTICLES = parseArticles({
   },
   "no-madness": {
     name: "No Confusion",
-    description: "Drugging or confounding the enemy is forbidden; inflicting Bewildered is a breach.",
+    description:
+      "Drugging or confounding the enemy is forbidden; inflicting Bewildered is a breach.",
     flavour: "We want their wits about them when they see our colours come on.",
     kind: "forbid",
     target: "condition",

@@ -62,7 +62,8 @@ export const FRANCE_POSTS = parsePosts({
     name: "Colour Guard",
     description:
       "The standard-bearer's escort; shields comrades with steadying orders and defensive traits.",
-    flavour: "While the colours stand, the line stands — and the colour guard does not let them fall.",
+    flavour:
+      "While the colours stand, the line stands — and the colour guard does not let them fall.",
     power: "france",
     equipSlots: FULL_KIT,
     weaponTypes: ["blade", "shield"],
@@ -104,7 +105,8 @@ export const FRANCE_POSTS = parsePosts({
     name: "Intelligence Officer",
     description:
       "Gathers the enemy's methods from the field and turns them back on their author; learns foreign drill.",
-    flavour: "A captured order is worth a battery — an intelligence officer knows how to read it aloud.",
+    flavour:
+      "A captured order is worth a battery — an intelligence officer knows how to read it aloud.",
     power: "france",
     equipSlots: FULL_KIT,
     weaponTypes: ["sabre", "staff"],
@@ -118,7 +120,8 @@ export const FRANCE_POSTS = parsePosts({
     name: "Bombardier",
     description:
       "Incendiary shells and carcass shot that fall on a whole class of target at once, at field range.",
-    flavour: "The bombardier does not aim at a man; he aims at a place and lets the place do the work.",
+    flavour:
+      "The bombardier does not aim at a man; he aims at a place and lets the place do the work.",
     power: "france",
     equipSlots: SHOULDER_KIT,
     weaponTypes: ["gun"],

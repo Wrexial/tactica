@@ -28,8 +28,7 @@ export const PACIFICATION_CONTRACTS = parseContracts({
 
   "pacify-the-coast-road": {
     name: "Pacify the Coast Road",
-    description:
-      "Clear the coast road of raiders and deserters so the convoys can move again.",
+    description: "Clear the coast road of raiders and deserters so the convoys can move again.",
     flavour: "The road is the region. Hold the road and the rest follows.",
     kind: "pacification",
     fee: 300,

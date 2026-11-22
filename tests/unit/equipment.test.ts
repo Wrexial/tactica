@@ -75,10 +75,9 @@ describe("authored equipment (data/equipment)", () => {
   it("authors weapons, uniforms/armour, headgear and accessories", () => {
     expect(EQUIPMENT_LIST.length).toBeGreaterThanOrEqual(20);
     for (const slot of EQUIP_SLOTS) {
-      expect(
-        equipmentForSlot(slot).length,
-        `no authored kit for the ${slot} slot`,
-      ).toBeGreaterThan(0);
+      expect(equipmentForSlot(slot).length, `no authored kit for the ${slot} slot`).toBeGreaterThan(
+        0,
+      );
     }
   });
 
@@ -131,9 +130,7 @@ describe("slots & weapon families", () => {
 
   it("covers every weapon family (T035)", () => {
     const covered = new Set(
-      EQUIPMENT_LIST.filter((item) => item.weaponType !== undefined).map(
-        (item) => item.weaponType,
-      ),
+      EQUIPMENT_LIST.filter((item) => item.weaponType !== undefined).map((item) => item.weaponType),
     );
     for (const weaponType of WEAPON_TYPES) {
       expect(covered.has(weaponType), `no kit uses the ${weaponType} family`).toBe(true);

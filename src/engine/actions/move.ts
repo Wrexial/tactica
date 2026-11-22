@@ -38,14 +38,7 @@
 
 import type { BattleState } from "../battle";
 import type { BattleEvent } from "../events";
-import {
-  coordEquals,
-  coordKey,
-  facingTo,
-  inBounds,
-  type Coord,
-  type Facing,
-} from "../grid";
+import { coordEquals, coordKey, facingTo, inBounds, type Coord, type Facing } from "../grid";
 import { canClimb, getTerrainDef, stepCost, terrainTileAt } from "../terrain";
 import { isOutOfAction, withPosition, type Unit } from "../unit";
 
@@ -133,12 +126,11 @@ function isCoordLike(value: unknown): value is Coord {
   return Number.isInteger(at.x) && Number.isInteger(at.y);
 }
 
-function reject(
-  reason: MoveRejectionReason,
-  message: string,
-  at?: Coord,
-): RejectedMove {
-  return { valid: false, rejection: at === undefined ? { reason, message } : { reason, message, at } };
+function reject(reason: MoveRejectionReason, message: string, at?: Coord): RejectedMove {
+  return {
+    valid: false,
+    rejection: at === undefined ? { reason, message } : { reason, message, at },
+  };
 }
 
 /**

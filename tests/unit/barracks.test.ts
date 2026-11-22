@@ -51,13 +51,7 @@ import {
   type IrregularDef,
 } from "../../src/engine/barracks";
 import { coord } from "../../src/engine/grid";
-import {
-  asAbilityId,
-  asEnemyId,
-  asPostId,
-  asUnitId,
-  type UnitId,
-} from "../../src/engine/ids";
+import { asAbilityId, asEnemyId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
 import { Rng } from "../../src/engine/rng";
 import type { TraitOptions } from "../../src/engine/traits";
 import { createUnit, type Unit, type UnitInit } from "../../src/engine/unit";
@@ -179,9 +173,7 @@ describe("irregulars — the engine-facing projection of an EnemyDef", () => {
         stats: { ...STATS, hp: 0 },
       }),
     ).toThrow();
-    expect(() =>
-      createIrregularDef({ id: BAND_ID, name: "x", level: 0, stats: STATS }),
-    ).toThrow();
+    expect(() => createIrregularDef({ id: BAND_ID, name: "x", level: 0, stats: STATS })).toThrow();
     expect(() =>
       createIrregularDef({
         id: BAND_ID,
@@ -259,7 +251,9 @@ describe("createBarracks — the pen", () => {
   });
 
   it("rejects an out-of-range willingness", () => {
-    expect(() => createCaptive({ id: asUnitId("b"), irregular: makeBand(), willingness: -1 })).toThrow();
+    expect(() =>
+      createCaptive({ id: asUnitId("b"), irregular: makeBand(), willingness: -1 }),
+    ).toThrow();
     expect(() =>
       createCaptive({ id: asUnitId("b"), irregular: makeBand(), willingness: CAJOLE_MAX + 1 }),
     ).toThrow();
@@ -298,9 +292,7 @@ describe("capture — taking an irregular prisoner", () => {
     const full = makeBarracks(
       Array.from({ length: BARRACKS_CAPACITY }, (_, index) => makeCaptiveInit(`held-${index + 1}`)),
     );
-    expect(captureBlockers(full, makeBand(), { id: asUnitId("fresh") })).toEqual([
-      "barracks-full",
-    ]);
+    expect(captureBlockers(full, makeBand(), { id: asUnitId("fresh") })).toEqual(["barracks-full"]);
   });
 
   it("pens a captured band at zero willingness", () => {
@@ -322,9 +314,7 @@ describe("capture — taking an irregular prisoner", () => {
     expect(captureChance(green, 0.1)).toBeCloseTo(CAPTURE_BASE_CHANCE + CAPTURE_WEAK_BONUS);
 
     const veteran = makeBand({ level: 6 });
-    expect(captureChance(veteran, 1)).toBeCloseTo(
-      CAPTURE_BASE_CHANCE - 5 * CAPTURE_LEVEL_PENALTY,
-    );
+    expect(captureChance(veteran, 1)).toBeCloseTo(CAPTURE_BASE_CHANCE - 5 * CAPTURE_LEVEL_PENALTY);
 
     const ancient = makeBand({ level: 50 });
     expect(captureChance(ancient, 1)).toBe(CAPTURE_MIN_CHANCE);
@@ -364,7 +354,13 @@ describe("capture — taking an irregular prisoner", () => {
   it("replays the same seed to the same pen", () => {
     const band = makeBand({ level: 1 });
     const first = attemptCapture(makeBarracks(), band, { id: asUnitId("band-1") }, new Rng(7), 0.1);
-    const second = attemptCapture(makeBarracks(), band, { id: asUnitId("band-1") }, new Rng(7), 0.1);
+    const second = attemptCapture(
+      makeBarracks(),
+      band,
+      { id: asUnitId("band-1") },
+      new Rng(7),
+      0.1,
+    );
     expect(first.captured).toBe(second.captured);
     expect(first.barracks).toEqual(second.barracks);
   });
@@ -416,13 +412,14 @@ describe("deploy — fielding a cajoled band", () => {
     expect(deployBlockers(pen, asUnitId("missing"))).toEqual(["unknown-captive"]);
     expect(deployBlockers(pen, asUnitId("band-1"))).toEqual(["not-cajoled"]);
     expect(canDeploy(pen, asUnitId("band-1"))).toBe(false);
-    expect(() =>
-      deployIrregular(pen, { id: asUnitId("band-1"), at: coord(0, 0) }),
-    ).toThrow();
+    expect(() => deployIrregular(pen, { id: asUnitId("band-1"), at: coord(0, 0) })).toThrow();
   });
 
   it("fields a willing captive with the band's stats, level and actions", () => {
-    const pen = makeWilling(makeBarracks([makeCaptiveInit("band-1", { name: "The Blackwood Boys" })]), asUnitId("band-1"));
+    const pen = makeWilling(
+      makeBarracks([makeCaptiveInit("band-1", { name: "The Blackwood Boys" })]),
+      asUnitId("band-1"),
+    );
     const unit = deployIrregular(pen, { id: asUnitId("band-1"), at: coord(3, 4) });
     expect(unit.id).toBe("band-1");
     expect(unit.name).toBe("The Blackwood Boys");
@@ -481,7 +478,9 @@ describe("deploy — fielding a cajoled band", () => {
     const party = deployParty(pen, requests);
     expect(party.map((unit) => unit.id)).toEqual(["band-1", "band-2", "band-3"]);
 
-    expect(() => deployParty(pen, [...requests, { id: asUnitId("band-4"), at: coord(3, 0) }])).toThrow();
+    expect(() =>
+      deployParty(pen, [...requests, { id: asUnitId("band-4"), at: coord(3, 0) }]),
+    ).toThrow();
     expect(() => deployParty(pen, [])).toThrow();
     expect(() =>
       deployParty(pen, [
@@ -506,7 +505,12 @@ describe("Foreign Drill — copying an enemy action", () => {
   it("blocks an action the band never uses", () => {
     const officer = makeUnit();
     expect(
-      foreignDrillBlockers(officer, makeBand(), asAbilityId("cavalry-charge"), foreignDrillFor(officer)),
+      foreignDrillBlockers(
+        officer,
+        makeBand(),
+        asAbilityId("cavalry-charge"),
+        foreignDrillFor(officer),
+      ),
     ).toEqual(["not-an-enemy-action"]);
   });
 

@@ -447,11 +447,7 @@ export function placementBlockers(
 }
 
 /** `true` when {@link placeMarker} would accept `marker` at `at`. */
-export function canPlaceMarker(
-  map: CampaignMapState,
-  marker: CampaignMarker,
-  at: Coord,
-): boolean {
+export function canPlaceMarker(map: CampaignMapState, marker: CampaignMarker, at: Coord): boolean {
   return placementBlockers(map, marker, at).length === 0;
 }
 

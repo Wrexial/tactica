@@ -167,12 +167,7 @@ describe("cardinal facing", () => {
   });
 
   it("returns four neighbours in facing order", () => {
-    expect(neighbours(coord(1, 1))).toEqual([
-      coord(1, 0),
-      coord(2, 1),
-      coord(1, 2),
-      coord(0, 1),
-    ]);
+    expect(neighbours(coord(1, 1))).toEqual([coord(1, 0), coord(2, 1), coord(1, 2), coord(0, 1)]);
   });
 
   it("filters neighbours to those inside the grid", () => {

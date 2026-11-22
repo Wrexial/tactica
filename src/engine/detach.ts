@@ -367,7 +367,9 @@ export function resolveDetachment(
   assertId(dispatch.id, "dispatch.id");
   assertId(dispatch.contractId, "dispatch.contractId");
   if (!Number.isInteger(tick) || tick < 0) {
-    throw new RangeError(`detachment tick must be a non-negative integer, received ${String(tick)}`);
+    throw new RangeError(
+      `detachment tick must be a non-negative integer, received ${String(tick)}`,
+    );
   }
 
   const contract = detachmentOf(dispatch.contractId);

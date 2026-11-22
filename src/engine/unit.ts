@@ -28,11 +28,7 @@
  * `src/data/` may be imported by the engine, never the reverse (data README).
  */
 
-import {
-  isFacing,
-  type Coord,
-  type Facing,
-} from "./grid";
+import { isFacing, type Coord, type Facing } from "./grid";
 import {
   assertId,
   type AbilityId,
@@ -299,9 +295,7 @@ function clamp(value: number, min: number, max: number): number {
  * Build a full equip loadout, filling any omitted slot with `null`. Accepts a
  * partial so fixtures can name only the kit they care about.
  */
-export function createEquipmentLoadout(
-  partial: Partial<EquipmentLoadout> = {},
-): EquipmentLoadout {
+export function createEquipmentLoadout(partial: Partial<EquipmentLoadout> = {}): EquipmentLoadout {
   return {
     // Listed explicitly (rather than looping) so adding an `EquipSlot` is a
     // compile error here, not a silently missing slot.
@@ -406,10 +400,7 @@ export function hasCondition(unit: Unit, conditionId: ConditionId): boolean {
 }
 
 /** The active instance of `conditionId`, or `undefined` when absent. */
-export function getCondition(
-  unit: Unit,
-  conditionId: ConditionId,
-): ActiveCondition | undefined {
+export function getCondition(unit: Unit, conditionId: ConditionId): ActiveCondition | undefined {
   return unit.conditions.find((condition) => condition.conditionId === conditionId);
 }
 
@@ -480,19 +471,13 @@ export function addCondition(unit: Unit, condition: ActiveCondition): Unit {
 
 /** Remove every instance of `conditionId`; a no-op when absent. */
 export function removeCondition(unit: Unit, conditionId: ConditionId): Unit {
-  const conditions = unit.conditions.filter(
-    (condition) => condition.conditionId !== conditionId,
-  );
+  const conditions = unit.conditions.filter((condition) => condition.conditionId !== conditionId);
   if (conditions.length === unit.conditions.length) return unit;
   return { ...unit, conditions };
 }
 
 /** Replace one equipment slot (or clear it with `null`). */
-export function withEquipment(
-  unit: Unit,
-  slot: EquipSlot,
-  itemId: EquipmentId | null,
-): Unit {
+export function withEquipment(unit: Unit, slot: EquipSlot, itemId: EquipmentId | null): Unit {
   if (!(EQUIP_SLOTS as readonly string[]).includes(slot)) {
     throw new RangeError(`unknown equipment slot: ${String(slot)}`);
   }
@@ -506,9 +491,7 @@ export function withEquipment(
  */
 export function learnAbility(unit: Unit, ability: LearnedAbility): Unit {
   const validated = validateLearnedAbility(ability);
-  const existing = unit.abilities.findIndex(
-    (current) => current.abilityId === validated.abilityId,
-  );
+  const existing = unit.abilities.findIndex((current) => current.abilityId === validated.abilityId);
   if (existing === -1) {
     return { ...unit, abilities: [...unit.abilities, validated] };
   }

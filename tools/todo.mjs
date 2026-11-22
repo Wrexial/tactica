@@ -578,7 +578,9 @@ function main() {
       if (!plan.length) return console.log("No done task maps to the uncommitted files.");
       console.log(`Split plan (${plan.length} commit(s)):`);
       for (const p of plan) {
-        console.log(`  ${p.label.padEnd(6)} ${String(p.files.length).padStart(3)} file(s)  ${p.message}`);
+        console.log(
+          `  ${p.label.padEnd(6)} ${String(p.files.length).padStart(3)} file(s)  ${p.message}`,
+        );
       }
       if (dryRun) return console.log("\nDry run — re-run with --yes to commit.");
       let made = 0;
@@ -603,11 +605,17 @@ function main() {
     const candidates = tasks.filter(isDone);
     const plan = buildSplitPlan(candidates, changed);
 
-    console.log(`Rewrite plan for ${base}..HEAD (${changed.length} files → ${plan.length} commit(s)):`);
+    console.log(
+      `Rewrite plan for ${base}..HEAD (${changed.length} files → ${plan.length} commit(s)):`,
+    );
     for (const p of plan) {
-      console.log(`  ${p.label.padEnd(6)} ${String(p.files.length).padStart(3)} file(s)  ${p.message}`);
+      console.log(
+        `  ${p.label.padEnd(6)} ${String(p.files.length).padStart(3)} file(s)  ${p.message}`,
+      );
     }
-    console.log("\nAfter rewriting, the runner force-pushes with --force-with-lease (disable with --no-push).");
+    console.log(
+      "\nAfter rewriting, the runner force-pushes with --force-with-lease (disable with --no-push).",
+    );
     if (dryRun) return console.log("Dry run — re-run with --yes to rewrite history.");
 
     if (!git(["reset", "--soft", base]).ok) return fail("git reset failed.");

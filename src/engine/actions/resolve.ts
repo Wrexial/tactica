@@ -43,12 +43,7 @@
  * scheduler (mapping §12).
  */
 
-import {
-  ABILITY_TARGETS,
-  AOE_SHAPES,
-  type AbilityTarget,
-  type AoeShape,
-} from "../../data/schema";
+import { ABILITY_TARGETS, AOE_SHAPES, type AbilityTarget, type AoeShape } from "../../data/schema";
 import type { BattleState } from "../battle";
 import type { Target } from "../commands";
 import type { BattleEvent } from "../events";
@@ -161,7 +156,10 @@ export function buildActionCatalogue(specs: readonly ActionSpec[] = []): ActionC
     if (spec.aoeSize !== undefined) {
       assertNonNegativeInteger(spec.aoeSize, `action ${spec.id} aoeSize`);
     }
-    if (spec.target !== undefined && !(ABILITY_TARGETS as readonly string[]).includes(spec.target)) {
+    if (
+      spec.target !== undefined &&
+      !(ABILITY_TARGETS as readonly string[]).includes(spec.target)
+    ) {
       throw new RangeError(`action ${spec.id} target is invalid: ${String(spec.target)}`);
     }
     for (const [label, value] of [
@@ -669,9 +667,7 @@ export function resolveCompletedCharges(
   return {
     ...working,
     tempo: { ...working.tempo, rng: rng.getState() },
-    pendingActions: working.pendingActions.filter(
-      (pending) => !consumed.has(pending.chargeId),
-    ),
+    pendingActions: working.pendingActions.filter((pending) => !consumed.has(pending.chargeId)),
   };
 }
 

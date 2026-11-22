@@ -65,10 +65,7 @@ import type { ContractDef } from "../data/schema";
 import { advanceChapter } from "../data/story";
 
 import type { BattleState } from "../engine/battle";
-import {
-  articlesForDay,
-  type CampaignCalendar,
-} from "../engine/calendar";
+import { articlesForDay, type CampaignCalendar } from "../engine/calendar";
 import {
   addCrowns,
   awardHonours,
@@ -201,9 +198,7 @@ export function dailyArticlesFor(
 
 /** Why a contract cannot be posted right now (an empty array ⇒ it can). */
 export type ContractAcceptanceBlocker =
-  | "unknown-contract"
-  | "already-active"
-  | "insufficient-crowns";
+  "unknown-contract" | "already-active" | "insufficient-crowns";
 
 /**
  * Every reason `contractId` cannot be accepted from `save`, in a stable order.
@@ -255,9 +250,7 @@ export function canAcceptContract(save: CampaignSave, contractId: ContractId): b
 export function acceptContract(save: CampaignSave, contractId: ContractId): CampaignSave {
   const blockers = contractAcceptanceBlockers(save, contractId);
   if (blockers.length > 0) {
-    throw new RangeError(
-      `cannot accept contract ${String(contractId)}: ${blockers.join(", ")}`,
-    );
+    throw new RangeError(`cannot accept contract ${String(contractId)}: ${blockers.join(", ")}`);
   }
 
   const contract = requireContract(contractId);
@@ -461,9 +454,7 @@ export function applyBattleOutcome(save: CampaignSave, report: BattleReport): Ca
       ]
     : save.progress.completedContractIds;
   const activeContractId =
-    save.progress.activeContractId === report.contractId
-      ? null
-      : save.progress.activeContractId;
+    save.progress.activeContractId === report.contractId ? null : save.progress.activeContractId;
   const progress = withAdvancedStory(
     createCampaignProgress({
       chapter: save.progress.chapter,

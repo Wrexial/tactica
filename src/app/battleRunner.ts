@@ -246,8 +246,7 @@ export function runAiUntilPlayer(
     // finish the battle). If it did neither, the same actor would be planned
     // forever, so stop rather than spin.
     const yielded =
-      working.phase === "finished" ||
-      turn.events.some((event) => event.kind === "turnEnded");
+      working.phase === "finished" || turn.events.some((event) => event.kind === "turnEnded");
     if (!yielded) return finish("stalled");
   }
 }

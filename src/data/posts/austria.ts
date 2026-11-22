@@ -57,8 +57,7 @@ export const AUSTRIA_POSTS = parsePosts({
   /** FFTA Juggler. */
   juggler: {
     name: "Grenadier",
-    description:
-      "Thrown charges and knives, with gambits that misfire as often as they astonish.",
+    description: "Thrown charges and knives, with gambits that misfire as often as they astonish.",
     flavour: "A grenadier's pouch is a promise; which way it lands is left to the day.",
     power: "austria",
     equipSlots: FULL_KIT,

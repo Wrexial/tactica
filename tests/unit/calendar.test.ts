@@ -393,9 +393,11 @@ describe("advanceCampaign", () => {
 describe("calendar determinism", () => {
   it("produces identical dispatches for identical inputs", () => {
     const build = (): readonly DispatchId[] =>
-      createCalendar({ seed: 8, day: 1, dispatches: [dispatchInit({ duration: 7 })] }).dispatches.map(
-        (dispatch) => dispatch.id,
-      );
+      createCalendar({
+        seed: 8,
+        day: 1,
+        dispatches: [dispatchInit({ duration: 7 })],
+      }).dispatches.map((dispatch) => dispatch.id);
     expect(build()).toEqual(build());
   });
 });

@@ -4,7 +4,13 @@ import { POSTS } from "../../src/data/posts";
 import { CONTRACTS } from "../../src/data/contracts";
 
 import { createCalendar, scheduleDispatch, type CampaignCalendar } from "../../src/engine/calendar";
-import { createCompany, memberOf, travelTo, type Company, type RosterMemberInit } from "../../src/engine/company";
+import {
+  createCompany,
+  memberOf,
+  travelTo,
+  type Company,
+  type RosterMemberInit,
+} from "../../src/engine/company";
 import {
   advanceDetachments,
   canSendDetachment,
@@ -170,11 +176,13 @@ describe("sendDetachment", () => {
       unitIds: [unitId("unit-1")],
     });
     expect(sent.dispatch.duration).toBe(3);
-    expect(canSendDetachment(sent.company, sent.calendar, {
-      dispatchId: asDispatchId("dispatch-2"),
-      contractId: RECONNOITRE,
-      unitIds: [unitId("unit-2")],
-    })).toBe(true);
+    expect(
+      canSendDetachment(sent.company, sent.calendar, {
+        dispatchId: asDispatchId("dispatch-2"),
+        contractId: RECONNOITRE,
+        unitIds: [unitId("unit-2")],
+      }),
+    ).toBe(true);
   });
 });
 
@@ -274,9 +282,7 @@ describe("resolveDetachment", () => {
     expect(resolved.units.map((unit) => unit.unitId)).toEqual([unitId("unit-1"), unitId("unit-2")]);
     // The third soldier did not go and gains nothing.
     expect(resolved.units).toHaveLength(2);
-    expect(
-      memberOf(resolved.company, unitId("unit-3"))?.unit.experience,
-    ).toBe(0);
+    expect(memberOf(resolved.company, unitId("unit-3"))?.unit.experience).toBe(0);
     expect(resolved.company.roster[0]?.unit.experience).toBe(
       CONTRACTS["forage-the-valley"].reward.experience,
     );
@@ -352,9 +358,9 @@ describe("resolveDetachment", () => {
       duration: 3,
       returnDay: 4,
     };
-    expect(() =>
-      resolveDetachment(makeCompany(), createDepotInventory(), dispatch),
-    ).toThrowError(/not a detachment/);
+    expect(() => resolveDetachment(makeCompany(), createDepotInventory(), dispatch)).toThrowError(
+      /not a detachment/,
+    );
   });
 
   it("is deterministic and does not mutate its inputs", () => {
@@ -391,9 +397,7 @@ describe("resolveDetachments", () => {
     });
 
     const company = makeCompany(3, 0);
-    const result = resolveDetachments(company, createDepotInventory(), [
-      ...calendar.dispatches,
-    ]);
+    const result = resolveDetachments(company, createDepotInventory(), [...calendar.dispatches]);
 
     expect(result.resolved).toHaveLength(2);
     expect(result.company.crowns).toBe(300 + 250);

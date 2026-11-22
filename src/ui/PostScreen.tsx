@@ -145,11 +145,7 @@ function postLabel(postId: string): string {
  * A human-readable summary of a post's unlock requirements, with progress:
  * `Requires 2 from Fusilier (1/2)`. Returns `null` for a starting post.
  */
-function requirementSummary(
-  post: PostDef,
-  mastered: MasteredByPost,
-  t: Translator,
-): string | null {
+function requirementSummary(post: PostDef, mastered: MasteredByPost, t: Translator): string | null {
   if (post.requires.length === 0) return null;
   return post.requires
     .map((requirement) => {
@@ -323,9 +319,7 @@ export function PostScreen({ soldier = DEMO_SOLDIER, onAssignmentChange }: PostS
 
       <div className="post-screen__body">
         <section className="post-screen__tree" aria-label={t("posts.roleTree")}>
-          <h3>
-            {t("posts.roleTreeHeading", { power: t(POWER_LABEL_KEYS[soldier.power]) })}
-          </h3>
+          <h3>{t("posts.roleTreeHeading", { power: t(POWER_LABEL_KEYS[soldier.power]) })}</h3>
           <ul className="post-list">
             {powerPosts.map((post) => {
               const unlocked = meetsPostRequirements(post, soldier.mastered);

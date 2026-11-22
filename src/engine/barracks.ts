@@ -70,7 +70,13 @@
  * Napoleonic Wars, not a port of FFTA's bank data.
  */
 
-import { ELEMENT_KEYS, type ElementKey, type EnemyDef, type PowerKey, type StatBlock } from "../data/schema";
+import {
+  ELEMENT_KEYS,
+  type ElementKey,
+  type EnemyDef,
+  type PowerKey,
+  type StatBlock,
+} from "../data/schema";
 import { CAMPAIGN_DAY_MIN } from "./company";
 import { coord, isFacing, type Coord, type Facing } from "./grid";
 import {
@@ -349,9 +355,7 @@ export function createIrregularDef(init: IrregularDefInit): IrregularDef {
   if (init.element !== undefined) assertElement(init.element, "irregular.element");
   const power = init.power ?? DEFAULT_IRREGULAR_POWER;
   if (!isPowerKey(power)) {
-    throw new RangeError(
-      `irregular.power must be a great-power school, received ${String(power)}`,
-    );
+    throw new RangeError(`irregular.power must be a great-power school, received ${String(power)}`);
   }
   const capturable = init.capturable ?? false;
   if (typeof capturable !== "boolean") {
@@ -410,10 +414,7 @@ export function isIrregularDef(value: unknown): value is IrregularDef {
  * @throws RangeError when the id, the irregular, the day or the willingness is
  *   malformed.
  */
-export function createCaptive(
-  init: CaptiveInit,
-  defaultDay: number = CAMPAIGN_DAY_MIN,
-): Captive {
+export function createCaptive(init: CaptiveInit, defaultDay: number = CAMPAIGN_DAY_MIN): Captive {
   assertIntegerAtLeast(defaultDay, CAMPAIGN_DAY_MIN, "defaultDay");
   assertId(init.id, "captive.id");
 
@@ -491,10 +492,7 @@ export function isBarracks(value: unknown): value is AuxiliaryBarracks {
 }
 
 /** The captive with `captiveId`, or `undefined` when the pen does not hold it. */
-export function captiveOf(
-  barracks: AuxiliaryBarracks,
-  captiveId: UnitId,
-): Captive | undefined {
+export function captiveOf(barracks: AuxiliaryBarracks, captiveId: UnitId): Captive | undefined {
   return barracks.captives.find((captive) => captive.id === captiveId);
 }
 
@@ -514,10 +512,7 @@ export function isBarracksFull(barracks: AuxiliaryBarracks): boolean {
 }
 
 /** Every captive taken from the authored band `enemyId`, in acquisition order. */
-export function captivesOfEnemy(
-  barracks: AuxiliaryBarracks,
-  enemyId: EnemyId,
-): readonly Captive[] {
+export function captivesOfEnemy(barracks: AuxiliaryBarracks, enemyId: EnemyId): readonly Captive[] {
   return barracks.captives.filter((captive) => captive.irregular.id === enemyId);
 }
 
@@ -600,9 +595,7 @@ export function captureIrregular(
       id: request.id,
       irregular,
       ...(request.name !== undefined ? { name: request.name } : {}),
-      ...(request.capturedOnDay !== undefined
-        ? { capturedOnDay: request.capturedOnDay }
-        : {}),
+      ...(request.capturedOnDay !== undefined ? { capturedOnDay: request.capturedOnDay } : {}),
     },
     request.capturedOnDay ?? CAMPAIGN_DAY_MIN,
   );
@@ -621,9 +614,7 @@ export function captureIrregular(
  */
 export function captureChance(irregular: IrregularDef, hpFraction = 1): number {
   if (!Number.isFinite(hpFraction) || hpFraction < 0 || hpFraction > 1) {
-    throw new RangeError(
-      `hpFraction must be within [0, 1], received ${String(hpFraction)}`,
-    );
+    throw new RangeError(`hpFraction must be within [0, 1], received ${String(hpFraction)}`);
   }
   const weakened = hpFraction <= CAPTURE_WEAK_HP_FRACTION;
   const penalty = Math.max(0, irregular.level - 1) * CAPTURE_LEVEL_PENALTY;
@@ -795,10 +786,7 @@ export interface DeployRequest {
  * @throws RangeError when `captiveId` is unknown, is not yet cajoled, or the
  *   placed coordinates/facing are malformed.
  */
-export function deployIrregular(
-  barracks: AuxiliaryBarracks,
-  request: DeployRequest,
-): Unit {
+export function deployIrregular(barracks: AuxiliaryBarracks, request: DeployRequest): Unit {
   const blockers = deployBlockers(barracks, request.id);
   if (blockers.length > 0) {
     throw new RangeError(`cannot deploy: ${blockers.join(", ")}`);
@@ -858,7 +846,9 @@ export function deployParty(
     seenIds.add(request.id);
     const tile = `${request.at.x},${request.at.y}`;
     if (seenTiles.has(tile)) {
-      throw new RangeError(`two auxiliaries may not share tile { x: ${request.at.x}, y: ${request.at.y} }`);
+      throw new RangeError(
+        `two auxiliaries may not share tile { x: ${request.at.x}, y: ${request.at.y} }`,
+      );
     }
     seenTiles.add(tile);
   }
@@ -870,16 +860,11 @@ export function deployParty(
  * ------------------------------------------------------------------------ */
 
 /** Why a soldier cannot learn an enemy action (empty ⇒ it can). */
-export type ForeignDrillBlocker =
-  | "not-an-enemy-action"
-  | "no-foreign-drill"
-  | "already-mastered";
+export type ForeignDrillBlocker = "not-an-enemy-action" | "no-foreign-drill" | "already-mastered";
 
 /** `true` when the soldier has already mastered `abilityId` (T048). */
 export function hasMasteredAbility(unit: Unit, abilityId: AbilityId): boolean {
-  return unit.abilities.some(
-    (learned) => learned.abilityId === abilityId && learned.mastered,
-  );
+  return unit.abilities.some((learned) => learned.abilityId === abilityId && learned.mastered);
 }
 
 /**

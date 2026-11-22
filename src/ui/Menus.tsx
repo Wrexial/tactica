@@ -657,7 +657,11 @@ function CompanyMenu({
   const stats = selected === undefined ? null : statsWithKit(selected);
 
   return (
-    <section className="menu-company" data-testid="company-screen" aria-label={t("menu.company.label")}>
+    <section
+      className="menu-company"
+      data-testid="company-screen"
+      aria-label={t("menu.company.label")}
+    >
       <header className="menu-panel__header">
         <p className="kicker">{t("menu.companyRoll")}</p>
         <h2>{company.name}</h2>
@@ -760,7 +764,11 @@ function EquipmentMenu({
   const equippedId = soldier.unit.equipment[openSlot];
 
   return (
-    <section className="menu-equipment" data-testid="equipment-screen" aria-label={t("menu.kit.label")}>
+    <section
+      className="menu-equipment"
+      data-testid="equipment-screen"
+      aria-label={t("menu.kit.label")}
+    >
       <header className="menu-panel__header">
         <p className="kicker">{t("menu.equipment")}</p>
         <h2>{soldier.unit.name}</h2>
@@ -888,7 +896,11 @@ function AbilitiesMenu({ soldier }: { readonly soldier: MenuSoldier }) {
   const learnedById = new Map(soldier.drill.map((entry) => [entry.abilityId, entry] as const));
 
   return (
-    <section className="menu-abilities" data-testid="abilities-screen" aria-label={t("menu.drill.label")}>
+    <section
+      className="menu-abilities"
+      data-testid="abilities-screen"
+      aria-label={t("menu.drill.label")}
+    >
       <header className="menu-panel__header">
         <p className="kicker">{t("menu.abilities")}</p>
         <h2>{soldier.unit.name}</h2>

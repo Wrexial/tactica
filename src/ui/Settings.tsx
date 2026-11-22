@@ -189,7 +189,11 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
   const palette = COLOUR_BLIND_PALETTES[settings.colourBlind];
 
   return (
-    <section className="settings-screen" data-testid="settings-screen" aria-label={t("settings.label")}>
+    <section
+      className="settings-screen"
+      data-testid="settings-screen"
+      aria-label={t("settings.label")}
+    >
       <header className="settings-screen__header">
         <div>
           <p className="kicker">{t("settings.header.kicker")}</p>
@@ -203,7 +207,9 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
           </div>
           <div>
             <dt>{t("settings.textSpeed")}</dt>
-            <dd data-testid="settings-summary-text-speed">{t(TEXT_SPEED_LABEL_KEYS[settings.textSpeed])}</dd>
+            <dd data-testid="settings-summary-text-speed">
+              {t(TEXT_SPEED_LABEL_KEYS[settings.textSpeed])}
+            </dd>
           </div>
           <div>
             <dt>{t("settings.damageNumbers")}</dt>
@@ -344,7 +350,10 @@ export function Settings({ store: storeProp, initial, onChange }: SettingsProps)
           </p>
         </section>
 
-        <section className="settings-panel settings-panel--wide" aria-label={t("settings.keybinds")}>
+        <section
+          className="settings-panel settings-panel--wide"
+          aria-label={t("settings.keybinds")}
+        >
           <h3>{t("settings.keybinds")}</h3>
           <p className="muted">{t("settings.keybindsNote")}</p>
           <table className="settings-table" data-testid="settings-keybinds">

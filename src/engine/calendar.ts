@@ -393,10 +393,7 @@ export function isUnitDispatched(calendar: CampaignCalendar, unitId: UnitId): bo
 }
 
 /** The dispatch holding `unitId` away, or `undefined` when the soldier is present. */
-export function dispatchForUnit(
-  calendar: CampaignCalendar,
-  unitId: UnitId,
-): Dispatch | undefined {
+export function dispatchForUnit(calendar: CampaignCalendar, unitId: UnitId): Dispatch | undefined {
   return calendar.dispatches.find((dispatch) => dispatch.unitIds.includes(unitId));
 }
 
@@ -464,10 +461,7 @@ export function canScheduleDispatch(calendar: CampaignCalendar, init: DispatchIn
  * @throws RangeError when any {@link DispatchBlocker} applies or the timer is
  *   malformed.
  */
-export function scheduleDispatch(
-  calendar: CampaignCalendar,
-  init: DispatchInit,
-): CampaignCalendar {
+export function scheduleDispatch(calendar: CampaignCalendar, init: DispatchInit): CampaignCalendar {
   const blockers = dispatchBlockers(calendar, init);
   if (blockers.length > 0) {
     throw new RangeError(`cannot schedule dispatch ${init.id}: ${blockers.join(", ")}`);
@@ -529,7 +523,10 @@ export function advanceDays(calendar: CampaignCalendar, days = 1): DispatchTick 
 }
 
 /** Move the calendar to `regionId` (or `null`) so region Articles rotate with the company. */
-export function withRegion(calendar: CampaignCalendar, regionId: RegionId | null): CampaignCalendar {
+export function withRegion(
+  calendar: CampaignCalendar,
+  regionId: RegionId | null,
+): CampaignCalendar {
   if (regionId !== null) assertId(regionId, "regionId");
   return { ...calendar, regionId };
 }

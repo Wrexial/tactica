@@ -106,9 +106,9 @@ describe("relativeFacing", () => {
 
   it("rejects malformed coordinates and facing at the boundary", () => {
     expect(() => relativeFacing({ x: 1.5, y: 5 }, "north", { x: 5, y: 5 })).toThrow(RangeError);
-    expect(() => relativeFacing({ x: 5, y: 5 }, "north", { x: 5, y: "5" as unknown as number })).toThrow(
-      RangeError,
-    );
+    expect(() =>
+      relativeFacing({ x: 5, y: 5 }, "north", { x: 5, y: "5" as unknown as number }),
+    ).toThrow(RangeError);
     expect(() => relativeFacing({ x: 5, y: 5 }, "northwest" as Facing, { x: 5, y: 4 })).toThrow(
       RangeError,
     );
@@ -209,9 +209,9 @@ describe("computeHitChance", () => {
 
     const narrow: HitFormula = { minChance: 25, maxChance: 75 };
     expect(computeHitChance(chanceInput({ accuracy: 200, formula: narrow })).chance).toBe(75);
-    expect(computeHitChance(chanceInput({ accuracy: 0, evasion: 200, formula: narrow })).chance).toBe(
-      25,
-    );
+    expect(
+      computeHitChance(chanceInput({ accuracy: 0, evasion: 200, formula: narrow })).chance,
+    ).toBe(25);
   });
 
   it("is deterministic and does not mutate its inputs", () => {
@@ -233,18 +233,18 @@ describe("computeHitChance", () => {
   });
 
   it("rejects a malformed clamp band", () => {
-    expect(() => computeHitChance(chanceInput({ formula: { minChance: -1, maxChance: 100 } }))).toThrow(
-      RangeError,
-    );
-    expect(() => computeHitChance(chanceInput({ formula: { minChance: 0, maxChance: 101 } }))).toThrow(
-      RangeError,
-    );
-    expect(() => computeHitChance(chanceInput({ formula: { minChance: 80, maxChance: 20 } }))).toThrow(
-      RangeError,
-    );
-    expect(() => computeHitChance(chanceInput({ formula: { minChance: 1.5, maxChance: 100 } }))).toThrow(
-      RangeError,
-    );
+    expect(() =>
+      computeHitChance(chanceInput({ formula: { minChance: -1, maxChance: 100 } })),
+    ).toThrow(RangeError);
+    expect(() =>
+      computeHitChance(chanceInput({ formula: { minChance: 0, maxChance: 101 } })),
+    ).toThrow(RangeError);
+    expect(() =>
+      computeHitChance(chanceInput({ formula: { minChance: 80, maxChance: 20 } })),
+    ).toThrow(RangeError);
+    expect(() =>
+      computeHitChance(chanceInput({ formula: { minChance: 1.5, maxChance: 100 } })),
+    ).toThrow(RangeError);
   });
 
   it("rejects malformed facing modifiers", () => {

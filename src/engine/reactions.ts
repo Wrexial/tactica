@@ -65,11 +65,7 @@
  */
 
 import type { ElementKey } from "../data/schema";
-import {
-  executeAbility,
-  type AbilityExecutionOptions,
-  type AbilitySpec,
-} from "./actions/ability";
+import { executeAbility, type AbilityExecutionOptions, type AbilitySpec } from "./actions/ability";
 import type { BattleState } from "./battle";
 import type { BattleEvent, DamagedEvent, DamageType } from "./events";
 import { manhattanDistance } from "./grid";
@@ -365,9 +361,7 @@ export function triggerFromDamage(
     reactorMaxHp: maxHpOf(reactor),
     fatal: damage.fatal,
     distance:
-      source === undefined
-        ? Number.POSITIVE_INFINITY
-        : manhattanDistance(source.at, reactor.at),
+      source === undefined ? Number.POSITIVE_INFINITY : manhattanDistance(source.at, reactor.at),
   };
 }
 
@@ -671,13 +665,7 @@ export function resolveReactionDefense(
     reactionId: REACTIONS.dodge.id,
     state,
     events: [
-      reactionEvent(
-        state.tempo.tick,
-        reactor.id,
-        REACTIONS.dodge.id,
-        reactor.at,
-        trigger.sourceId,
-      ),
+      reactionEvent(state.tempo.tick, reactor.id, REACTIONS.dodge.id, reactor.at, trigger.sourceId),
     ],
   };
 }
@@ -742,28 +730,13 @@ export function resolveReactionResponses(
 
     const spec = abilityFor(kind, options);
     const target: { kind: "unit"; unitId: UnitId } | { kind: "self" } =
-      kind === "fieldDressing"
-        ? { kind: "self" }
-        : { kind: "unit", unitId: source.id };
+      kind === "fieldDressing" ? { kind: "self" } : { kind: "unit", unitId: source.id };
 
-    const execution = executeAbility(
-      working,
-      reactor,
-      spec,
-      target,
-      rng,
-      options.execution ?? {},
-    );
+    const execution = executeAbility(working, reactor, spec, target, rng, options.execution ?? {});
     if (!execution.ok) continue;
 
     events.push(
-      reactionEvent(
-        working.tempo.tick,
-        reactor.id,
-        REACTIONS[kind].id,
-        reactor.at,
-        source.id,
-      ),
+      reactionEvent(working.tempo.tick, reactor.id, REACTIONS[kind].id, reactor.at, source.id),
     );
     events.push(...execution.events);
     triggered.push(REACTIONS[kind].id);
@@ -779,8 +752,6 @@ export function resolveReactionResponses(
 
 function assertChance(value: number, label: string): void {
   if (!Number.isInteger(value) || value < 0 || value > 100) {
-    throw new RangeError(
-      `${label} must be an integer within [0, 100], received ${String(value)}`,
-    );
+    throw new RangeError(`${label} must be an integer within [0, 100], received ${String(value)}`);
   }
 }

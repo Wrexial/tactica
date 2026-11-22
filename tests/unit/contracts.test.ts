@@ -28,7 +28,12 @@ import { CONTRACT_KINDS, ContractDefSchema } from "../../src/data/schema";
 const PLACEHOLDER = /\b(TBD|TBC|TODO|FIXME|XXX)\b|placeholder|lorem\s+ipsum|\?{3,}/i;
 
 /** Every authored contract must carry authored, non-placeholder display prose. */
-function expectCleanDisplay(contract: { id: string; name: string; description: string; flavour: string }) {
+function expectCleanDisplay(contract: {
+  id: string;
+  name: string;
+  description: string;
+  flavour: string;
+}) {
   for (const field of ["name", "description", "flavour"] as const) {
     const text = contract[field];
     expect(text.trim(), `${contract.id}.${field} must be non-empty`).not.toBe("");
@@ -106,11 +111,17 @@ describe("contracts — requirement & reward references (T070)", () => {
         expect(requirement.count, `${contract.id} requirement count`).toBeGreaterThanOrEqual(1);
         if (requirement.kind === "item") {
           expect(requirement.id, `${contract.id} item id`).toBeDefined();
-          expect(items.has(requirement.id as string), `${contract.id}: unknown item ${requirement.id}`).toBe(true);
+          expect(
+            items.has(requirement.id as string),
+            `${contract.id}: unknown item ${requirement.id}`,
+          ).toBe(true);
         }
         if (requirement.kind === "post") {
           expect(requirement.id, `${contract.id} post id`).toBeDefined();
-          expect(posts.has(requirement.id as string), `${contract.id}: unknown post ${requirement.id}`).toBe(true);
+          expect(
+            posts.has(requirement.id as string),
+            `${contract.id}: unknown post ${requirement.id}`,
+          ).toBe(true);
         }
         if (requirement.kind === "unit" || requirement.kind === "honour") {
           expect(requirement.id, `${contract.id} ${requirement.kind} has no id`).toBeUndefined();
@@ -193,9 +204,12 @@ describe("contracts — lookups and filters (T070)", () => {
 describe("contracts — schema enforcement (T070)", () => {
   it("rejects an unknown kind and a negative fee", () => {
     const display = { name: "Raid", description: "A raid.", flavour: "Steal the stores." };
-    expect(ContractDefSchema.safeParse({ id: "x", kind: "raid", reward: {}, ...display }).success).toBe(false);
     expect(
-      ContractDefSchema.safeParse({ id: "x", kind: "battle", fee: -1, reward: {}, ...display }).success,
+      ContractDefSchema.safeParse({ id: "x", kind: "raid", reward: {}, ...display }).success,
+    ).toBe(false);
+    expect(
+      ContractDefSchema.safeParse({ id: "x", kind: "battle", fee: -1, reward: {}, ...display })
+        .success,
     ).toBe(false);
   });
 

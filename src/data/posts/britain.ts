@@ -68,7 +68,8 @@ export const BRITAIN_POSTS = parsePosts({
     name: "Rocketeer",
     description:
       "Congreve-style rockets that carry an element across a wide area; smoke, fire and concussive blast.",
-    flavour: "The rocket is a wild, screaming thing — the rocketeer's trade is to make it land true.",
+    flavour:
+      "The rocket is a wild, screaming thing — the rocketeer's trade is to make it land true.",
     power: "britain",
     equipSlots: SHOULDER_KIT,
     weaponTypes: ["gun", "tool"],
@@ -96,7 +97,8 @@ export const BRITAIN_POSTS = parsePosts({
     name: "Commodore",
     description:
       "Naval signals and off-map bombardment; calls in a heavy fire mission that lands across the field.",
-    flavour: "The commodore's flags reach a ship of the line, and the horizon answers with thunder.",
+    flavour:
+      "The commodore's flags reach a ship of the line, and the horizon answers with thunder.",
     power: "britain",
     equipSlots: SHOULDER_KIT,
     weaponTypes: ["staff", "instrument"],

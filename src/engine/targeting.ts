@@ -669,10 +669,7 @@ export function unitsInAoe<T extends PositionedTarget>(
  * ------------------------------------------------------------------------ */
 
 /** Why {@link canTargetUnit} or {@link resolveTargeting} rejected a target. */
-export type TargetingFailReason =
-  | TargetFailReason
-  | "wrong-affiliation"
-  | "unknown-target";
+export type TargetingFailReason = TargetFailReason | "wrong-affiliation" | "unknown-target";
 
 /** The detailed outcome of a single-soldier target check. */
 export interface UnitTargetResult {

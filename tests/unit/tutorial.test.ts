@@ -20,7 +20,13 @@ import {
   createTutorialRecruit,
   observeTutorialFacts,
 } from "../../src/app/tutorial";
-import { act, confirmOrder, createBattleController, planMove, selectUnit } from "../../src/app/battleController";
+import {
+  act,
+  confirmOrder,
+  createBattleController,
+  planMove,
+  selectUnit,
+} from "../../src/app/battleController";
 import { createDemoBattle } from "../../src/app/demoScenario";
 import { unitTarget } from "../../src/engine/commands";
 import { coord } from "../../src/engine/grid";

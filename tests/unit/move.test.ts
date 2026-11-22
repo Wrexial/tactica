@@ -20,7 +20,13 @@ import type { ActionSpec } from "../../src/engine/actions/resolve";
 import type { Command } from "../../src/engine/commands";
 import { asAbilityId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
 import { createTerrainMap, withTile, type TerrainMap } from "../../src/engine/terrain";
-import { createUnit, getCondition, hasCondition, type Unit, type UnitInit } from "../../src/engine/unit";
+import {
+  createUnit,
+  getCondition,
+  hasCondition,
+  type Unit,
+  type UnitInit,
+} from "../../src/engine/unit";
 import type { StatBlock } from "../../src/data/schema";
 
 /* --------------------------------------------------------------------------
@@ -119,12 +125,7 @@ describe("validateMove — legal marches", () => {
 
   it("faces the direction of the final step after an L-shaped march", () => {
     const state = makeState(defaultUnits());
-    const result = validate(state, [
-      coord(0, 0),
-      coord(1, 0),
-      coord(1, 1),
-      coord(1, 2),
-    ]);
+    const result = validate(state, [coord(0, 0), coord(1, 0), coord(1, 1), coord(1, 2)]);
 
     expect(result.valid).toBe(true);
     if (!result.valid) return;
@@ -151,9 +152,14 @@ describe("validateMove — legal marches", () => {
     let map = createTerrainMap(4, 1, "field");
     map = withTile(map, coord(1, 0), "wood");
     map = withTile(map, coord(2, 0), "marsh");
-    const state = makeState([makeUnit(MARCHER, coord(0, 0), {
-      stats: { ...BASE_STATS, move: 6 },
-    })], map);
+    const state = makeState(
+      [
+        makeUnit(MARCHER, coord(0, 0), {
+          stats: { ...BASE_STATS, move: 6 },
+        }),
+      ],
+      map,
+    );
 
     const result = validate(state, [coord(0, 0), coord(1, 0), coord(2, 0), coord(3, 0)]);
     expect(result.valid).toBe(true);
@@ -220,10 +226,7 @@ describe("validateMove — rejects illegal paths", () => {
   });
 
   it("rejects a tile another soldier holds", () => {
-    const state = makeState([
-      makeUnit(MARCHER, coord(0, 0)),
-      makeUnit(BLOCKER, coord(2, 0)),
-    ]);
+    const state = makeState([makeUnit(MARCHER, coord(0, 0)), makeUnit(BLOCKER, coord(2, 0))]);
     const result = validate(state, [coord(0, 0), coord(1, 0), coord(2, 0)]);
     expect(result.valid).toBe(false);
     if (result.valid) return;

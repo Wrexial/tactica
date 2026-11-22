@@ -58,12 +58,7 @@
  *   lockstep regardless of the outcome.
  */
 
-import {
-  FACING_OFFSETS,
-  isFacing,
-  type Coord,
-  type Facing,
-} from "../grid";
+import { FACING_OFFSETS, isFacing, type Coord, type Facing } from "../grid";
 import { Rng } from "../rng";
 
 /* --------------------------------------------------------------------------

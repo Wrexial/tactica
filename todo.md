@@ -1646,6 +1646,44 @@ and record whether the line actually stays together.
 
 ---
 
+## Phase 22 — Engineering safeguards
+
+The last few phases added a lot of surface (engine rules, AI, authored numbers)
+backed by 2332 unit tests and 81 e2e specs — all run by hand. This phase makes
+the repository defend itself: one CI gate and a format baseline so the checks
+are meaningful.
+
+### T155 — Normalise formatting, then gate it
+- status: done
+- deps: []
+- files: src/, tests/, tools/, scripts/, package.json
+- verify: npm run format:check
+- done: `npm run format:check` passes on a clean checkout: the whole code surface is formatted with the committed Prettier config, no behavioural file changes are included beyond whitespace/wrapping, and the unit and e2e suites still pass.
+
+`npm run format` and `format:check` are documented commands, but `format:check`
+currently fails on 57 files (line wrapping and multi-line literals written
+without running Prettier). A format gate that is red on `main` cannot be added
+to CI, so normalise the surface first. Keep this commit mechanical: run the
+script, confirm the diff is formatting only, and re-run the suite.
+
+### T156 — Add a CI workflow for lint, types, tests and e2e
+- status: todo
+- deps: [T155]
+- files: .github/workflows/ci.yml
+- verify: npm run lint
+- done: A push or pull request runs `lint`, `typecheck`, `format:check`, the unit suite and the production build in one job, and the Playwright e2e suite (with a cached Chromium) in a second, using the Node version pinned by `.nvmrc` and failing the run on any step; the workflow mirrors the existing deploy job's conventions and uploads the Playwright report on failure.
+
+Nothing currently runs the 2332 unit tests or 81 e2e specs on push — only the
+deploy workflow, which just builds. Add `.github/workflows/ci.yml` on
+`push`/`pull_request`: a `verify` job (`npm ci`, lint, typecheck, format check,
+unit tests, build) and an `e2e` job (`npm ci`, install Chromium with its OS
+deps, `npm run test:e2e`). Use `actions/setup-node` with `node-version-file:
+.nvmrc` and npm caching, `concurrency` keyed by workflow + ref, and
+`actions/upload-artifact` for `playwright-report` on failure. Keep the deploy
+workflow unchanged.
+
+---
+
 ## Research & open questions
 
 Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**

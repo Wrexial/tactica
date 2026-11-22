@@ -280,7 +280,9 @@ export function Saves({
 
   const pushLedger = useCallback(
     (kind: StatusKind, key: MessageKey, vars?: TranslationVars): void => {
-      setLedger((current) => [{ kind, key, ...(vars !== undefined ? { vars } : {}) }, ...current].slice(0, 12));
+      setLedger((current) =>
+        [{ kind, key, ...(vars !== undefined ? { vars } : {}) }, ...current].slice(0, 12),
+      );
     },
     [],
   );

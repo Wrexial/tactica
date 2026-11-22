@@ -291,7 +291,11 @@ export function CampaignMap({
   };
 
   return (
-    <section className="map-screen" data-testid="campaign-map-screen" aria-label={t("campaign.label")}>
+    <section
+      className="map-screen"
+      data-testid="campaign-map-screen"
+      aria-label={t("campaign.label")}
+    >
       <header className="map-screen__header">
         <div>
           <p className="kicker">{t("campaign.kicker")}</p>

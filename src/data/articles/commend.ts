@@ -151,7 +151,8 @@ export const COMMEND_ARTICLES = parseArticles({
 
   "commend-artillery": {
     name: "Commended: Gunnery",
-    description: "Good practice with the guns is rewarded; an action taken by an Artilleryman earns Honour.",
+    description:
+      "Good practice with the guns is rewarded; an action taken by an Artilleryman earns Honour.",
     flavour: "A battery that finds its range quickly wins the half-hour that decides the day.",
     kind: "commend",
     target: "post",
@@ -199,7 +200,8 @@ export const COMMEND_ARTICLES = parseArticles({
   },
   "commend-braced": {
     name: "Commended: Braced",
-    description: "Steeling the men against fire is rewarded; an action that grants Braced earns Honour.",
+    description:
+      "Steeling the men against fire is rewarded; an action that grants Braced earns Honour.",
     flavour: "Shellfire breaks the body; discipline keeps the mind from following.",
     kind: "commend",
     target: "condition",

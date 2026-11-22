@@ -510,11 +510,7 @@ export function evaluateAbility(
       }
     }
 
-    if (
-      classification.role === "cleanse" ||
-      facts.cleanses.length > 0 ||
-      facts.generalCleanse
-    ) {
+    if (classification.role === "cleanse" || facts.cleanses.length > 0 || facts.generalCleanse) {
       cleanseValue += cleansePriority(target, facts);
     }
 

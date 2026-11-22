@@ -134,12 +134,7 @@ export interface SaveStore {
 }
 
 /** Machine-readable cause for a {@link SaveStoreError}. */
-export type SaveStoreErrorCode =
-  | "unavailable"
-  | "invalid-slot"
-  | "version"
-  | "corrupt"
-  | "backend";
+export type SaveStoreErrorCode = "unavailable" | "invalid-slot" | "version" | "corrupt" | "backend";
 
 /** Thrown when a slot cannot be read or written. */
 export class SaveStoreError extends Error {
@@ -249,9 +244,7 @@ function buildSaveStore(
     async save<T>(slot: string, data: T, options: SaveOptions = {}): Promise<SaveEnvelope<T>> {
       const key = assertSlot(slot);
       const label =
-        typeof options.label === "string" && options.label.trim().length > 0
-          ? options.label
-          : key;
+        typeof options.label === "string" && options.label.trim().length > 0 ? options.label : key;
       const envelope: SaveEnvelope<T> = {
         version,
         savedAt: now(),
@@ -300,8 +293,7 @@ function buildSaveStore(
         });
       }
       infos.sort(
-        (a, b) =>
-          b.savedAt - a.savedAt || (a.slot < b.slot ? -1 : a.slot > b.slot ? 1 : 0),
+        (a, b) => b.savedAt - a.savedAt || (a.slot < b.slot ? -1 : a.slot > b.slot ? 1 : 0),
       );
       return infos;
     },
@@ -425,8 +417,7 @@ function openDatabase(
  * lazily on first use and reused until {@link SaveStore.close}.
  */
 export function createIndexedDbSaveStore(options: IndexedDbSaveStoreOptions = {}): SaveStore {
-  const factory =
-    options.factory ?? (typeof indexedDB === "undefined" ? undefined : indexedDB);
+  const factory = options.factory ?? (typeof indexedDB === "undefined" ? undefined : indexedDB);
   if (factory === undefined) {
     throw new SaveStoreError(
       "unavailable",

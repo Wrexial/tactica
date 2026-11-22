@@ -2,12 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { coord } from "../../src/engine/grid";
 import { isBattleEvent, type BattleEvent } from "../../src/engine/events";
-import {
-  asAbilityId,
-  asEquipmentId,
-  asPostId,
-  asUnitId,
-} from "../../src/engine/ids";
+import { asAbilityId, asEquipmentId, asPostId, asUnitId } from "../../src/engine/ids";
 import {
   awardBattleDrill,
   awardDrill,
@@ -345,9 +340,7 @@ describe("mastery is permanent", () => {
 
     expect(learnedAbilityOf(disarmed, asAbilityId("parry"))?.drill).toBe(40);
     expect(isMastered(disarmed, asAbilityId("parry"))).toBe(false);
-    expect(unmasteredEquippedTeaches(disarmed).map((t) => t.abilityId)).not.toContain(
-      "parry",
-    );
+    expect(unmasteredEquippedTeaches(disarmed).map((t) => t.abilityId)).not.toContain("parry");
   });
 
   it("resumes banked Drill when the item is re-equipped", () => {

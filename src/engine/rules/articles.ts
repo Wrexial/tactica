@@ -706,10 +706,7 @@ export function commission(unitId: UnitId): Commission {
  * (no Commissions recorded) and the empty list alike, so a battle that predates
  * the award needs no special case.
  */
-export function isCommissioned(
-  commissions: Commissions | undefined,
-  unitId: UnitId,
-): boolean {
+export function isCommissioned(commissions: Commissions | undefined, unitId: UnitId): boolean {
   return commissions?.some((held) => held.unitId === unitId) ?? false;
 }
 

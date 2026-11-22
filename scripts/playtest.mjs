@@ -65,8 +65,7 @@ const key = async (k, ms = 200) => {
   await page.keyboard.press(k);
   await page.waitForTimeout(ms);
 };
-const logText = () =>
-  page.getByTestId("animation-log").locator("li").allInnerTexts();
+const logText = () => page.getByTestId("animation-log").locator("li").allInnerTexts();
 async function step(name, fn) {
   console.log(`\n▸ ${name}`);
   await fn();
@@ -76,10 +75,7 @@ async function step(name, fn) {
 
 await step("boot the game", async () => {
   await page.goto(URL);
-  await page
-    .getByTestId("battle-canvas")
-    .and(page.locator('[data-input-ready="true"]'))
-    .waitFor();
+  await page.getByTestId("battle-canvas").and(page.locator('[data-input-ready="true"]')).waitFor();
   await page.waitForTimeout(400);
   console.log(`   actor: ${await read("hud-actor")} | phase: ${await read("hud-phase")}`);
   await shot("boot");

@@ -29,7 +29,8 @@ export const RUSSIA_POSTS = parsePosts({
     name: "Sapper",
     description:
       "Grenades, charges and tools; throws items, undermines works and sabotages enemy ground.",
-    flavour: "A sapper measures success in inches of earth moved and in what the enemy no longer has.",
+    flavour:
+      "A sapper measures success in inches of earth moved and in what the enemy no longer has.",
     power: "russia",
     equipSlots: FULL_KIT,
     weaponTypes: ["tool", "gun"],

@@ -713,9 +713,9 @@ describe("applyMigrations", () => {
     const gapped: MigrationTable = [
       { from: 2, to: 3, summary: "gap", migrate: (payload) => payload },
     ];
-    expect(migrationErrorCode(() => applyMigrations({ version: 1 }, { table: gapped, target: 3 }))).toBe(
-      "no-migration",
-    );
+    expect(
+      migrationErrorCode(() => applyMigrations({ version: 1 }, { table: gapped, target: 3 })),
+    ).toBe("no-migration");
   });
 
   it("rejects a step that returns a non-object", () => {
@@ -727,9 +727,9 @@ describe("applyMigrations", () => {
         migrate: () => null as unknown as Record<string, unknown>,
       },
     ];
-    expect(migrationErrorCode(() => applyMigrations({ version: 1 }, { table: bad, target: 2 }))).toBe(
-      "corrupt",
-    );
+    expect(
+      migrationErrorCode(() => applyMigrations({ version: 1 }, { table: bad, target: 2 })),
+    ).toBe("corrupt");
   });
 
   it("reads a version field or explains what is wrong", () => {

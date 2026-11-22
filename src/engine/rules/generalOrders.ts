@@ -139,9 +139,7 @@ export interface GeneralOrders {
  * remainingUses(board, ROYAL_WARRANT.id); // 1
  * ```
  */
-export function createGeneralOrders(
-  orders: readonly GeneralOrder[] = [],
-): GeneralOrders {
+export function createGeneralOrders(orders: readonly GeneralOrder[] = []): GeneralOrders {
   if (!Array.isArray(orders)) {
     throw new RangeError("general orders must be an array");
   }
@@ -164,10 +162,7 @@ export function createGeneralOrders(
  * returned. Throws a `RangeError` when the privilege is malformed or when the
  * company already holds that id (a privilege is granted once).
  */
-export function grantGeneralOrder(
-  board: GeneralOrders,
-  order: GeneralOrder,
-): GeneralOrders {
+export function grantGeneralOrder(board: GeneralOrders, order: GeneralOrder): GeneralOrders {
   assertGeneralOrder(order);
   if (board.holdings.some((holding) => holding.order.id === order.id)) {
     throw new RangeError(`general order already held: ${order.id}`);
@@ -218,8 +213,7 @@ export type GeneralOrderFailReason = (typeof GENERAL_ORDER_FAIL_REASONS)[number]
 /** Runtime guard for untrusted failure reasons (replays, logs). */
 export function isGeneralOrderFailReason(value: unknown): value is GeneralOrderFailReason {
   return (
-    typeof value === "string" &&
-    (GENERAL_ORDER_FAIL_REASONS as readonly string[]).includes(value)
+    typeof value === "string" && (GENERAL_ORDER_FAIL_REASONS as readonly string[]).includes(value)
   );
 }
 

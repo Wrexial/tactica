@@ -89,7 +89,10 @@ function companyOf(size: number): Company {
 }
 
 /** The zoned deployment tiles of a map side. */
-function tilesFor(map: BattleMapDef, side: "company" | "enemy"): readonly { x: number; y: number }[] {
+function tilesFor(
+  map: BattleMapDef,
+  side: "company" | "enemy",
+): readonly { x: number; y: number }[] {
   return map.deployment.find((zone) => zone.side === side)?.tiles ?? [];
 }
 

@@ -46,7 +46,10 @@ const POST_MODS = {
 } as const;
 
 /** Two pieces of kit, summed in order. */
-const EQUIP = [{ atk: 12, spd: 2 }, { def: 6, res: 3, move: 1 }] as const;
+const EQUIP = [
+  { atk: 12, spd: 2 },
+  { def: 6, res: 3, move: 1 },
+] as const;
 
 const BASE_STATS: StatBlock = {
   hp: 60,
@@ -176,24 +179,20 @@ describe("deriveStats validation", () => {
   });
 
   it("rejects negative or non-finite growth values", () => {
-    expect(() => deriveStats({ level: 1, growth: { ...GROWTH, hp: -1 } })).toThrow(
+    expect(() => deriveStats({ level: 1, growth: { ...GROWTH, hp: -1 } })).toThrow(RangeError);
+    expect(() => deriveStats({ level: 1, growth: { ...GROWTH, spd: NaN } })).toThrow(RangeError);
+    expect(() => deriveStats({ level: 1, growth: { ...GROWTH, atk: Infinity } })).toThrow(
       RangeError,
     );
-    expect(() => deriveStats({ level: 1, growth: { ...GROWTH, spd: NaN } })).toThrow(
-      RangeError,
-    );
-    expect(() =>
-      deriveStats({ level: 1, growth: { ...GROWTH, atk: Infinity } }),
-    ).toThrow(RangeError);
   });
 
   it("rejects fractional modifiers (post or equipment)", () => {
-    expect(() =>
-      deriveStats({ level: 1, growth: GROWTH, postMods: { atk: 1.5 } }),
-    ).toThrow(RangeError);
-    expect(() =>
-      deriveStats({ level: 1, growth: GROWTH, equipment: [{ move: 0.5 }] }),
-    ).toThrow(RangeError);
+    expect(() => deriveStats({ level: 1, growth: GROWTH, postMods: { atk: 1.5 } })).toThrow(
+      RangeError,
+    );
+    expect(() => deriveStats({ level: 1, growth: GROWTH, equipment: [{ move: 0.5 }] })).toThrow(
+      RangeError,
+    );
   });
 });
 

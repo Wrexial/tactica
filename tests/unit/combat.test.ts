@@ -9,10 +9,7 @@ import {
   type ConditionEffect,
   type SteelEffect,
 } from "../../src/engine/actions/ability";
-import {
-  declareOrResolveAction,
-  resolveCompletedCharges,
-} from "../../src/engine/actions/resolve";
+import { declareOrResolveAction, resolveCompletedCharges } from "../../src/engine/actions/resolve";
 import { createBattle, findUnit, step, type BattleState } from "../../src/engine/battle";
 import { isBattleEvent, type BattleEvent } from "../../src/engine/events";
 import { coord, type Coord } from "../../src/engine/grid";
@@ -1078,10 +1075,7 @@ describe("combat — tile-anchored charges (T125)", () => {
     const result = resolveCharge(moved, chargeId);
 
     // The declaration still matures; only its effect is lost.
-    expect(result.events.map((event) => event.kind)).toEqual([
-      "chargeResolved",
-      "abilityResolved",
-    ]);
+    expect(result.events.map((event) => event.kind)).toEqual(["chargeResolved", "abilityResolved"]);
     expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp);
   });
 
@@ -1119,10 +1113,7 @@ describe("combat — tile-anchored charges (T125)", () => {
 
     const result = resolveCharge(wounded, chargeId);
 
-    expect(result.events.map((event) => event.kind)).toEqual([
-      "chargeResolved",
-      "abilityResolved",
-    ]);
+    expect(result.events.map((event) => event.kind)).toEqual(["chargeResolved", "abilityResolved"]);
     expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp);
   });
 });
@@ -1166,9 +1157,9 @@ describe("combat — per-turn upkeep pipeline (T129)", () => {
     // The shot applied Bleeding (no HP change), then the victim's own turn
     // opened and the condition ticked for 12.
     expect(result.events.some((event) => event.kind === "conditionApplied")).toBe(true);
-    expect(
-      result.events.some((event) => event.kind === "damaged" && event.unitId === FOE_ID),
-    ).toBe(true);
+    expect(result.events.some((event) => event.kind === "damaged" && event.unitId === FOE_ID)).toBe(
+      true,
+    );
     expect(findUnit(result.state, FOE_ID)?.hp).toBe(FOE_STATS.hp - 12);
   });
 });

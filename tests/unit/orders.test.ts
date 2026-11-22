@@ -428,15 +428,13 @@ describe("general order board", () => {
   });
 
   it("rejects malformed privileges at the boundary", () => {
-    expect(() =>
-      createGeneralOrders([{ id: "" } as unknown as GeneralOrder]),
-    ).toThrow(/non-empty id/);
-    expect(() =>
-      createGeneralOrders([{ ...ROYAL_WARRANT, uses: 1.5 }]),
-    ).toThrow(/positive integer/);
-    expect(() =>
-      createGeneralOrders([{ ...ROYAL_WARRANT, uses: 0 }]),
-    ).toThrow(/positive integer/);
+    expect(() => createGeneralOrders([{ id: "" } as unknown as GeneralOrder])).toThrow(
+      /non-empty id/,
+    );
+    expect(() => createGeneralOrders([{ ...ROYAL_WARRANT, uses: 1.5 }])).toThrow(
+      /positive integer/,
+    );
+    expect(() => createGeneralOrders([{ ...ROYAL_WARRANT, uses: 0 }])).toThrow(/positive integer/);
     expect(() => createGeneralOrders([ROYAL_WARRANT, ROYAL_WARRANT])).toThrow(/duplicate/);
   });
 
@@ -479,12 +477,7 @@ describe("general order invocation", () => {
   it("waives a named Article, preserving the rest", () => {
     const orders = createBattleOrders([NO_FIRE, NO_RIFLE, NO_SABRE]);
     const board = createGeneralOrders([ROYAL_WARRANT]);
-    const result = invokeGeneralOrder(
-      board,
-      orders,
-      ROYAL_WARRANT.id,
-      asArticleId("no-rifle"),
-    );
+    const result = invokeGeneralOrder(board, orders, ROYAL_WARRANT.id, asArticleId("no-rifle"));
     expect(result.ok).toBe(true);
     expect(result.change?.article).toBe(NO_RIFLE);
     expect(result.orders.articles).toEqual([NO_FIRE, NO_SABRE]);
@@ -535,12 +528,7 @@ describe("general order invocation", () => {
   it("refuses a named Article that is not active", () => {
     const orders = createBattleOrders([NO_FIRE]);
     const board = createGeneralOrders([ROYAL_WARRANT]);
-    const reason = canInvokeGeneralOrder(
-      board,
-      orders,
-      ROYAL_WARRANT.id,
-      asArticleId("no-rifle"),
-    );
+    const reason = canInvokeGeneralOrder(board, orders, ROYAL_WARRANT.id, asArticleId("no-rifle"));
     expect(reason).toBe("not-active");
   });
 

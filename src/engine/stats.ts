@@ -147,9 +147,7 @@ function assertGrowth(growth: StatGrowth): void {
   for (const key of GROWTH_STAT_KEYS) {
     const value = growth[key];
     if (!Number.isFinite(value) || value < 0) {
-      throw new RangeError(
-        `growth.${key} must be a finite number >= 0, received ${String(value)}`,
-      );
+      throw new RangeError(`growth.${key} must be a finite number >= 0, received ${String(value)}`);
     }
   }
 }

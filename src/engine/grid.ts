@@ -240,7 +240,9 @@ export function coordToIndex(grid: Grid, at: Coord): number {
 export function indexToCoord(grid: Grid, index: number): Coord {
   const count = tileCount(grid);
   if (!Number.isInteger(index) || index < 0 || index >= count) {
-    throw new RangeError(`index must be an integer within [0, ${count}), received ${String(index)}`);
+    throw new RangeError(
+      `index must be an integer within [0, ${count}), received ${String(index)}`,
+    );
   }
   return { x: index % grid.width, y: Math.floor(index / grid.width) };
 }

@@ -251,11 +251,7 @@ function movementMods(member: RosterMember): { readonly move: number; readonly j
  * through `createUnit` (T017) with stats re-derived from its **primary post**
  * (T018/T051), full health and Élan, and no carried-in Honour or conditions.
  */
-function deployCompany(
-  company: Company,
-  tiles: readonly Coord[],
-  focus: Coord,
-): CompanyDeployment {
+function deployCompany(company: Company, tiles: readonly Coord[], focus: Coord): CompanyDeployment {
   if (company.roster.length === 0) {
     throw new BattleDeploymentError(`company "${company.id}" has no soldiers on its roster`);
   }
@@ -355,9 +351,7 @@ function deployEnemies(
   });
 
   if (units.length === 0) {
-    throw new BattleDeploymentError(
-      `order of battle for "${order.mapId}" fields no troops`,
-    );
+    throw new BattleDeploymentError(`order of battle for "${order.mapId}" fields no troops`);
   }
 
   return { defs, units };
@@ -368,9 +362,7 @@ function deployEnemies(
  * ------------------------------------------------------------------------ */
 
 /** Deduplicate abilities by id, preserving first-seen order. */
-function collectActions(
-  abilities: readonly (AbilityDef | undefined)[],
-): readonly AbilityDef[] {
+function collectActions(abilities: readonly (AbilityDef | undefined)[]): readonly AbilityDef[] {
   const byId = new Map<string, AbilityDef>();
   for (const ability of abilities) {
     if (ability === undefined) continue;
@@ -429,9 +421,7 @@ function assertDeployable(contract: ContractDef, map: BattleMapDef): void {
     );
   }
   if (battleMapsForContract(contract.id).length === 0) {
-    throw new BattleDeploymentError(
-      `combat contract "${contract.id}" posts no battle map`,
-    );
+    throw new BattleDeploymentError(`combat contract "${contract.id}" posts no battle map`);
   }
   if (map.contractId !== contract.id) {
     throw new BattleDeploymentError(
@@ -439,9 +429,7 @@ function assertDeployable(contract: ContractDef, map: BattleMapDef): void {
     );
   }
   if (!hasOrderOfBattle(map.id)) {
-    throw new BattleDeploymentError(
-      `battle map "${map.id}" has no authored order of battle`,
-    );
+    throw new BattleDeploymentError(`battle map "${map.id}" has no authored order of battle`);
   }
 }
 

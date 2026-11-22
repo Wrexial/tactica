@@ -427,10 +427,7 @@ describe("target predicates (T028)", () => {
 
   it("filters a roster while preserving field order", () => {
     const roster = [HERO, FOE, ALLY, PROVOST];
-    expect(filterTargets(roster, "ally", HERO).map((unit) => unit.id)).toEqual([
-      HERO.id,
-      ALLY.id,
-    ]);
+    expect(filterTargets(roster, "ally", HERO).map((unit) => unit.id)).toEqual([HERO.id, ALLY.id]);
     expect(filterTargets(roster, "enemy", HERO).map((unit) => unit.id)).toEqual([FOE.id]);
     expect(filterTargets(roster, "any", HERO)).toHaveLength(3);
   });
