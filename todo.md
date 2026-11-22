@@ -1948,6 +1948,27 @@ under-strength case so a fresh company can see which posts are out of reach.
 
 ---
 
+## Phase 28 — The player guide
+
+The repository has design docs (mapping, balance, combat loop) but no
+player-facing explanation of the build as it plays today.
+
+### T170 — Write the player guide
+- status: done
+- deps: [T169]
+- files: docs/HOW_TO_PLAY.md, README.md
+- verify: —
+- done: `docs/HOW_TO_PLAY.md` covers quick start, controls, the turn, combat maths, the company, the camp, the campaign loop, numbers at a glance and tips, states plainly which designed systems are not yet wired into live battles, and is linked from the README's how-to-play section and docs table.
+
+Written against the live code rather than the design intent: the turn loop and
+its tempo costs, the hit/damage/Élan rules, the campaign reducer's rewards and
+day advance, and the camp screens were read from the implementation. The guide
+also records the honest gap the review found — the Articles/Provost, in-battle
+Honour, Volleys/Guard Sorties, speed conditions and Jagd aftermath have modules
+and tests but no live path yet.
+
+---
+
 ## Research & open questions
 
 Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**

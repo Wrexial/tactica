@@ -35,7 +35,17 @@ fought on a square-isometric grid, with:
 Everything is grounded — no literal magic; artillery, medicine, signals and
 morale stand in for spells.
 
+The **[player guide](docs/HOW_TO_PLAY.md)** explains what is live in the current
+build: Orders Tempo, Élan and morale, Drill and posts, objectives and the whole
+campaign loop are playable; the Articles/Provost, Honour earned in battle,
+Volleys and Guard Sorties exist as engine modules and tests but are not yet
+wired into live battles (the guide lists them explicitly).
+
 ## How to play
+
+> **New to the game? Start with the [player guide](docs/HOW_TO_PLAY.md).** It
+> covers the turn, the combat maths, the campaign loop, the camp screens and
+> the exact live/designed split in one place.
 
 You command a **free company** fighting small, decisive detachment actions.
 Your job is to complete the contract's objective while keeping your soldiers
@@ -52,9 +62,9 @@ contract from the Officers' Mess to begin a persisted campaign.
 | ------ | ------------------ |
 | Move the cursor | Arrow keys / `WASD` / D-pad |
 | Select or confirm | `Enter` / gamepad **A** |
-| Open **Orders** (action menu) | `O` |
+| Open **Orders** (action menu) | `O` / gamepad **X** |
 | Back out / cancel | `Esc` / gamepad **B** |
-| End the turn | **End Turn** in the Orders band |
+| End the turn | `T` / gamepad **Y** (or **End Turn** in the Orders band) |
 | Open the camp menus | `M` / gamepad **Start** |
 | Pan the field | click-drag |
 | Zoom | mouse wheel |
@@ -150,6 +160,7 @@ request. A push to `main` additionally deploys `dist/` to GitHub Pages;
 
 | Document | Purpose |
 | -------- | ------- |
+| [`docs/HOW_TO_PLAY.md`](docs/HOW_TO_PLAY.md) | **Player guide** — controls, turns, combat, campaign, live/designed systems |
 | [`agents.md`](agents.md) | Working agreement, architecture, locked theme constraints |
 | [`todo.md`](todo.md) | Task board (169 tasks) — parsed by the runner |
 | [`docs/NAPOLEONIC_MAPPING.md`](docs/NAPOLEONIC_MAPPING.md) | Full FFTA → Napoleonic mapping (decisions D0–D15 locked) |
