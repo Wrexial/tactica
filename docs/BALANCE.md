@@ -238,6 +238,15 @@ recruit-vs-elite run finishes 3–5 for the company, so the difficulty tiers mov
 the result but do not flip it. The spec asserts only that **both sides win at
 least twice** across the fixed seeds — a walkover tripwire, not a target split.
 
+T160 added the missing mission term: for `capture` and `defend` objectives every
+AI candidate is scored by how far its march closes on the objective tile (plus a
+holding bonus for standing on it, for both sides). The Quick Battle table above
+is an **annihilation** board, so it is unchanged by that term — verified by
+re-running the spec. It does change `capture`/`defend` actions: the chapter-8
+churchyard siege (company holding a walled plateau for six turns) now resolves
+on every seed at company levels 5–8 instead of stalling at the turn cap when the
+company killed the garrison without standing on the altar.
+
 **Treat this as a baseline, not an equilibrium.** The result is extremely
 sensitive to Speed and to AI weights: shifting the same line by a single point
 (34/33/35/34) flipped the eight seeds from 4–4 to 1–7, making the marksman

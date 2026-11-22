@@ -1757,6 +1757,32 @@ spine's reachability rule holds) and update the story test's completion facts.
 
 ---
 
+## Phase 24 — The AI plays the mission
+
+The chapter-8 siege exposed a gap that affects every `capture` and `defend`
+battle: the utility AI scores damage, threat, position and exposure, but **never
+the mission objective**, so a company that wipes the garrison can still fail to
+stand on the point and stall the clock.
+
+### T160 — Score the objective tile
+- status: done
+- deps: [T159]
+- files: src/ai/utility.ts, tests/unit/ai.test.ts, tests/unit/balanceBaseline.test.ts, docs/BALANCE.md
+- verify: npm run test -- --run tests/unit/ai.test.ts tests/unit/balanceBaseline.test.ts
+- done: Every candidate destination is scored by its distance to a `capture`/`defend` objective tile (a bounded `objective` term for both sides), so the company walks onto the point and the enemy contests it; annihilation/rout/survive boards are unchanged, the churchyard siege resolves on every seed instead of hitting the turn cap, and the Quick Battle baseline is re-measured and recorded.
+
+`scoreCandidate` already values ground for its own sake (`cover`, `elevation`,
+`advance`), but nothing in the AI knows *why* the detachment is on the field.
+Add an `objective` weight (default on) and a small integer pull — 4 on the tile,
+decreasing by one per tile of distance, zero beyond four — read from
+`state.objective` for `capture` and `defend` only. Apply it to both sides:
+the attacker must take or deny the point, the defender must hold it. Keep the
+term bounded so a good attack still outranks a pointless tile, pin it with unit
+tests (capture, defend, and no pull on annihilation), then re-run the
+churchyard probe and the T152 baseline and record the new table.
+
+---
+
 ## Research & open questions
 
 Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**

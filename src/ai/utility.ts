@@ -200,6 +200,12 @@ export interface UtilityWeights {
    * Discourages a fast soldier from feeding into a held position alone.
    */
   readonly isolation: number;
+  /**
+   * Value of standing on, or closing to, the mission's objective tile (T160).
+   * Scored for `capture` and `defend` only, for both sides: the company must
+   * take or hold the point and the enemy must contest it.
+   */
+  readonly objective: number;
   /** Small bonus for bracing in place when no attack presents itself. */
   readonly brace: number;
 }
@@ -228,6 +234,7 @@ export const DEFAULT_UTILITY_WEIGHTS: UtilityWeights = {
   moveCost: 1,
   advance: 3,
   isolation: 1,
+  objective: 6,
   brace: 2,
   charge: 12,
 };
@@ -581,6 +588,47 @@ export function isolationAt(state: BattleState, actor: Unit, at: Coord): number 
   return Math.max(0, threats - support);
 }
 
+/** How far from the objective tile the pull still scores (T160). */
+export const OBJECTIVE_PULL_RANGE = 4;
+
+/**
+ * The tile a `capture` or `defend` objective is fought over, or `null` when
+ * the battle's objective has no point to hold (annihilation, rout, survive, or
+ * no objective at all). Exposed so the scorer and tests share one definition.
+ */
+export function objectiveTileOf(state: BattleState): Coord | null {
+  const objective = state.objective?.objective;
+  if (objective === undefined) return null;
+  if (objective.kind === "capture" || objective.kind === "defend") {
+    return { x: objective.at.x, y: objective.at.y };
+  }
+  return null;
+}
+
+/**
+ * The integer pull of an objective tile for a plan that moves from `from` to
+ * `destination` (T160). It is the number of tiles the march closes on the point
+ * (signed, clamped to ±{@link OBJECTIVE_PULL_RANGE}) plus a holding bonus of
+ * {@link OBJECTIVE_PULL_RANGE} for ending on the tile itself.
+ *
+ * Closing rather than raw distance keeps a gradient at any range: a soldier on
+ * the far side of the map still scores for marching toward the point, and the
+ * final step onto it is worth the most.
+ *
+ * ```ts
+ * // 12 tiles away, stepping 4 closer → +4.
+ * objectivePull(coord(0, 0), coord(4, 4), coord(6, 6)); // 4
+ * // Standing on the point → +4 closing +4 holding = +8.
+ * objectivePull(coord(4, 4), coord(6, 6), coord(6, 6)); // 8
+ * ```
+ */
+export function objectivePull(from: Coord, destination: Coord, tile: Coord): number {
+  const closed = manhattanDistance(from, tile) - manhattanDistance(destination, tile);
+  const clamped = Math.max(-OBJECTIVE_PULL_RANGE, Math.min(OBJECTIVE_PULL_RANGE, closed));
+  const holding = manhattanDistance(destination, tile) === 0 ? OBJECTIVE_PULL_RANGE : 0;
+  return clamped + holding;
+}
+
 function nearestHostileDistance(state: BattleState, actor: Unit, at: Coord): number {
   let best = Number.POSITIVE_INFINITY;
   for (const unit of state.units) {
@@ -645,6 +693,13 @@ export interface CandidateScore {
    * {@link ISOLATION_SUPPORT_RADIUS}, floored at zero.
    */
   readonly isolation: number;
+  /**
+   * Pull toward the mission objective tile (T160): how many tiles closer to the
+   * point the destination stands (signed, clamped to
+   * {@link OBJECTIVE_PULL_RANGE}), plus a holding bonus for standing on it.
+   * `0` for objectives that have no point to hold.
+   */
+  readonly objective: number;
   /** Active forbidding Articles the plan would break, in posting order. */
   readonly breaches: readonly ArticleId[];
   /** `true` when at least one active forbidding Article would be broken. */
@@ -678,6 +733,8 @@ export interface UtilityCandidate {
 interface ScoreInputs {
   readonly state: BattleState;
   readonly actor: Unit;
+  /** Where the soldier started the turn (before the candidate march). */
+  readonly origin: Coord;
   readonly destination: Coord;
   readonly moveCost: number;
   readonly exposure: number;
@@ -757,6 +814,9 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     expectedDamage > 0 || healing > 0 || buffValue > 0 || cleanseValue > 0 || reviveValue > 0;
   const proximity = engaged ? 0 : nearestHostileDistance(state, actor, destination);
   const isolation = isolationAt(state, actor, destination);
+  const objectiveTile = objectiveTileOf(state);
+  const objective =
+    objectiveTile === null ? 0 : objectivePull(inputs.origin, destination, objectiveTile);
 
   const total =
     weights.damage * expectedDamage +
@@ -778,6 +838,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     weights.moveCost * moveCost -
     weights.advance * proximity -
     weights.isolation * isolation +
+    weights.objective * objective +
     (intent === "hold" ? weights.brace : 0);
 
   return {
@@ -801,6 +862,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     moveCost,
     proximity,
     isolation,
+    objective,
     breaches: breachedArticleIds(breaches),
     unlawful: breaches.length > 0,
     total,
@@ -1116,6 +1178,7 @@ export function chooseTurn(
           score: scoreCandidate({
             state: placedState,
             actor: placedActor,
+            origin,
             destination: destination.at,
             moveCost: destination.cost,
             exposure,
@@ -1150,6 +1213,7 @@ export function chooseTurn(
           score: scoreCandidate({
             state: placedState,
             actor: placedActor,
+            origin,
             destination: destination.at,
             moveCost: destination.cost,
             exposure,
@@ -1179,6 +1243,7 @@ export function chooseTurn(
     score: scoreCandidate({
       state,
       actor,
+      origin,
       destination: origin,
       moveCost: 0,
       exposure: exposureAt(state, actor, origin, options),
@@ -1207,6 +1272,7 @@ export function chooseTurn(
       score: scoreCandidate({
         state,
         actor,
+        origin,
         destination: origin,
         moveCost: 0,
         exposure: 0,

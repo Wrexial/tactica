@@ -8,8 +8,11 @@ import {
   chooseCommand,
   chooseTurn,
   ISOLATION_SUPPORT_RADIUS,
+  OBJECTIVE_PULL_RANGE,
   exposureAt,
   isolationAt,
+  objectivePull,
+  objectiveTileOf,
   targetThreat,
   weightsFromProfile,
   type UtilityAbilitySpec,
@@ -284,6 +287,115 @@ describe("isolationAt (T154)", () => {
         ISOLATION_SUPPORT_RADIUS,
     );
     expect(support).toBe(true);
+  });
+});
+
+describe("objective awareness (T160)", () => {
+  const MAP_8 = MAP;
+
+  it("reads the point a capture or defend objective is fought over", () => {
+    const actor = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS);
+    const capture = createBattle(1815, {
+      map: MAP_8,
+      units: [actor],
+      objective: { kind: "capture", at: coord(6, 6) },
+    });
+    expect(objectiveTileOf(capture)).toEqual({ x: 6, y: 6 });
+
+    const defend = createBattle(1815, {
+      map: MAP_8,
+      units: [actor],
+      objective: { kind: "defend", at: coord(2, 5), turns: 4 },
+    });
+    expect(objectiveTileOf(defend)).toEqual({ x: 2, y: 5 });
+
+    for (const objective of [
+      { kind: "annihilation" as const },
+      { kind: "rout" as const, defeated: 2 },
+      { kind: "survive" as const, turns: 3 },
+    ]) {
+      const battle = createBattle(1815, { map: MAP_8, units: [actor], objective });
+      expect(objectiveTileOf(battle)).toBeNull();
+    }
+  });
+
+  it("scores closing on the point and holding it", () => {
+    const tile = coord(6, 6);
+    expect(OBJECTIVE_PULL_RANGE).toBe(4);
+    // Marches four tiles closer from the far corner.
+    expect(objectivePull(coord(0, 0), coord(4, 4), tile)).toBe(4);
+    // Steps away from six tiles out to seven.
+    expect(objectivePull(coord(4, 2), coord(3, 2), tile)).toBe(-1);
+    // Stands on the point: closing bonus plus the holding bonus.
+    expect(objectivePull(coord(4, 4), tile, tile)).toBe(OBJECTIVE_PULL_RANGE + 4);
+    expect(objectivePull(coord(0, 0), tile, tile)).toBe(OBJECTIVE_PULL_RANGE * 2);
+  });
+
+  it("marches the company toward a capture point", () => {
+    const actor = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS);
+    const tile = coord(6, 6);
+    const battle = createBattle(1815, {
+      map: MAP_8,
+      units: [actor],
+      objective: { kind: "capture", at: tile },
+    });
+    const plan = chooseTurn({ ...battle, currentActorId: actor.id }, actor.id, {
+      abilities: {},
+      weights: {
+        ...DEFAULT_UTILITY_WEIGHTS,
+        objective: 1000,
+        advance: 0,
+        isolation: 0,
+        moveCost: 0,
+        cover: 0,
+        brace: 0,
+      },
+    });
+
+    const distance = (at: Coord): number => Math.abs(at.x - tile.x) + Math.abs(at.y - tile.y);
+    // Move 4, so the best a single turn can do is close four tiles.
+    expect(distance(plan.destination)).toBe(distance(actor.at) - 4);
+    expect(plan.score.objective).toBeGreaterThan(0);
+  });
+
+  it("marches an enemy onto a defended point too", () => {
+    const defender = makeUnit(GUARD_ID, coord(6, 6), "company", ACTOR_STATS);
+    const attacker = makeUnit(ACTOR_ID, coord(0, 0), "enemy", ENEMY_STATS);
+    const tile = coord(6, 6);
+    const battle = createBattle(1815, {
+      map: MAP_8,
+      units: [defender, attacker],
+      objective: { kind: "defend", at: tile, turns: 4 },
+    });
+    const plan = chooseTurn({ ...battle, currentActorId: attacker.id }, attacker.id, {
+      abilities: {},
+      weights: {
+        ...DEFAULT_UTILITY_WEIGHTS,
+        objective: 1000,
+        advance: 0,
+        isolation: 0,
+        moveCost: 0,
+        cover: 0,
+        brace: 0,
+      },
+    });
+
+    const distance = (at: Coord): number => Math.abs(at.x - tile.x) + Math.abs(at.y - tile.y);
+    expect(distance(plan.destination)).toBe(distance(attacker.at) - 4);
+  });
+
+  it("leaves objectives with no point to hold alone", () => {
+    const actor = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS);
+    const battle = createBattle(1815, {
+      map: MAP_8,
+      units: [actor],
+      objective: { kind: "annihilation" },
+    });
+    const plan = chooseTurn({ ...battle, currentActorId: actor.id }, actor.id, {
+      abilities: {},
+      weights: { ...DEFAULT_UTILITY_WEIGHTS, objective: 1000 },
+    });
+    expect(plan.score.objective).toBe(0);
   });
 });
 
