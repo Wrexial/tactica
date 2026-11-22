@@ -25,6 +25,11 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    # The deploy job only runs when Pages is actually available (see the
+    # "Configure Pages" step). A repository that has never enabled Pages would
+    # otherwise fail this workflow on every push with an opaque action error.
+    outputs:
+      pages-ready: ${{ steps.pages.outcome == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,16 +51,23 @@ jobs:
         run: npm run build
 
       - name: Configure Pages
+        id: pages
+        # A repository whose Pages site does not exist yet fails here: the
+        # token can request enablement, but only an administrator may create
+        # the site. Keep the run green and explain the one-time fix instead of
+        # failing every push with an opaque action error.
+        continue-on-error: true
         uses: actions/configure-pages@v5
         with:
-          # The repository's Pages site may not exist yet (it reported
-          # has_pages: false, which made every deploy fail here). With
-          # `pages: write` this action can create the site with the GitHub
-          # Actions source on the first run, so a fork or a fresh clone does
-          # not need a manual Settings → Pages step.
           enablement: true
 
+      - name: Report Pages unavailable
+        if: steps.pages.outcome == 'failure'
+        run: |
+          echo "::warning title=GitHub Pages is not enabled::Skipping the deploy. Open Settings → Pages, set Source to \"GitHub Actions\", then re-run this workflow (or push again). See README → Checks and deployment."
+
       - name: Upload build artifact
+        if: steps.pages.outcome == 'success'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -63,6 +75,8 @@ jobs:
   deploy:
     name: Deploy
     needs: build
+    # Skipped (not failed) until Pages is enabled for the repository.
+    if: needs.build.outputs.pages-ready == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

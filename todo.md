@@ -1683,11 +1683,19 @@ deps, `npm run test:e2e`). Use `actions/setup-node` with `node-version-file:
 workflow unchanged.
 
 ### T157 — Repair the Pages deployment
-- status: doing
+- status: blocked
 - deps: [T156]
 - files: .github/workflows/deploy.yml, README.md
 - verify: —
 - done: The deploy workflow enables GitHub Pages for the repository on its first run (`enablement: true` on `configure-pages`) instead of failing at that step, the README states the one-time Pages prerequisite and that the workflow requests it, and a push to `main` reaches the publish step.
+
+**Blocked on a repository setting the agent cannot change.** The workflow now
+tries `enablement: true`, and when the token is not allowed to create the site
+it emits a warning and skips the publish instead of failing every push. To
+finish: open **Settings → Pages**, set **Source: GitHub Actions**, then re-run
+the Deploy workflow (or push). Confirm `has_pages` is true on the repository and
+that <https://wrexial.github.io/tactica/> serves the build; only then flip this
+task to done.
 
 The new CI workflow exposed a pre-existing failure: every `Deploy static build`
 run since the Pages workflow was added stops at **Configure Pages**, because the

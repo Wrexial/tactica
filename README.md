@@ -15,8 +15,8 @@ content.
 **▶ [Play in your browser](https://wrexial.github.io/tactica/)** — every push to
 `main` builds and publishes to GitHub Pages via
 [`deploy.yml`](.github/workflows/deploy.yml) (which requests Pages enablement on
-its first run; a 404 means the repository's Pages source still needs to be set
-to **GitHub Actions** under Settings → Pages). Or run it locally (see
+its first run; if Pages is not enabled, the workflow warns and skips publishing
+— set Settings → Pages → Source to **GitHub Actions** once, then re-run it). Or run it locally (see
 [Quickstart](#quickstart)).
 
 ## What it is
