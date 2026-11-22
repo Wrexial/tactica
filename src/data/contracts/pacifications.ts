@@ -71,6 +71,7 @@ export const PACIFICATION_CONTRACTS = parseContracts({
   /* ----- The T093 expansion --------------------------------------------- */
 
   "pacify-the-highlands": {
+    mapId: "highland-pass",
     name: "Pacify the Highlands",
     description:
       "The highland bands have grown bold; a Partisan party must clear the passes and hold them.",
@@ -85,6 +86,7 @@ export const PACIFICATION_CONTRACTS = parseContracts({
     regionId: "the-highlands",
   },
   "clear-the-green-valley": {
+    mapId: "green-valley-forage",
     name: "Clear the Green Valley",
     description:
       "Deserters are living off the valley farms; clear them out before the harvest is lost.",
@@ -96,6 +98,7 @@ export const PACIFICATION_CONTRACTS = parseContracts({
     regionId: "the-green-valley",
   },
   "sweep-the-ridge": {
+    mapId: "ridge-reconnaissance",
     name: "Sweep the Ridge",
     description:
       "Enemy pickets have been watching the ridge for weeks; a Marksman and Scout party must clear it.",
@@ -111,6 +114,7 @@ export const PACIFICATION_CONTRACTS = parseContracts({
     regionId: "the-ridge",
   },
   "open-the-crossroads": {
+    mapId: "crossroads-skirmish",
     name: "Open the Crossroads",
     description:
       "The junction is closed by enemy outposts; clear them and the three roads are ours again.",

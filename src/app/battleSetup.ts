@@ -64,7 +64,12 @@
 import { actionAbilitiesForSkillset, findAbility } from "../data/abilities";
 import { findEnemy, hasOrderOfBattle, orderOfBattleFor } from "../data/enemies";
 import type { OrderOfBattleDef } from "../data/enemies/ordersOfBattle";
-import { battleMapsForContract, type BattleMapDef } from "../data/maps";
+import {
+  battleMapsForContract,
+  getBattleMap,
+  isBattleMapKey,
+  type BattleMapDef,
+} from "../data/maps";
 import { battleMapToTerrainMap } from "../data/maps/layout";
 import type { AbilityDef, ContractDef, EnemyDef } from "../data/schema";
 import type { AbilityEffect } from "../engine/actions/ability";
@@ -413,6 +418,27 @@ function enemyActions(defs: readonly EnemyDef[]): readonly AbilityDef[] {
  * Deployment
  * ------------------------------------------------------------------------ */
 
+/**
+ * The battlefield a contract is fought on (T164). A contract either **posts** a
+ * map — the map names the contract in its own `contractId` — or **names** one
+ * to reuse in `ContractDef.mapId`, so several missions can share a board the
+ * way FFTA revisits its maps. Returns `null` when a combat contract has neither,
+ * which the campaign treats as "no action to open".
+ *
+ * @throws BattleDeploymentError when `mapId` names no authored map.
+ */
+export function battleMapFor(contract: ContractDef): BattleMapDef | null {
+  if (contract.mapId !== undefined) {
+    if (!isBattleMapKey(contract.mapId)) {
+      throw new BattleDeploymentError(
+        `contract "${contract.id}" names unknown battle map "${contract.mapId}"`,
+      );
+    }
+    return getBattleMap(contract.mapId);
+  }
+  return battleMapsForContract(contract.id)[0] ?? null;
+}
+
 /** Guard the contract/map pairing before any unit is built. */
 function assertDeployable(contract: ContractDef, map: BattleMapDef): void {
   if (!isCombatContract(contract)) {
@@ -420,13 +446,21 @@ function assertDeployable(contract: ContractDef, map: BattleMapDef): void {
       `contract "${contract.id}" is a ${contract.kind}; only ${COMBAT_CONTRACT_KINDS.join(", ")} contracts field a detachment`,
     );
   }
-  if (battleMapsForContract(contract.id).length === 0) {
-    throw new BattleDeploymentError(`combat contract "${contract.id}" posts no battle map`);
-  }
-  if (map.contractId !== contract.id) {
-    throw new BattleDeploymentError(
-      `battle map "${map.id}" is not posted by contract "${contract.id}" (it names ${map.contractId ?? "no contract"})`,
-    );
+  if (contract.mapId !== undefined) {
+    if (map.id !== contract.mapId) {
+      throw new BattleDeploymentError(
+        `contract "${contract.id}" names battle map "${contract.mapId}", not "${map.id}"`,
+      );
+    }
+  } else {
+    if (battleMapsForContract(contract.id).length === 0) {
+      throw new BattleDeploymentError(`combat contract "${contract.id}" posts no battle map`);
+    }
+    if (map.contractId !== contract.id) {
+      throw new BattleDeploymentError(
+        `battle map "${map.id}" is not posted by contract "${contract.id}" (it names ${map.contractId ?? "no contract"})`,
+      );
+    }
   }
   if (!hasOrderOfBattle(map.id)) {
     throw new BattleDeploymentError(`battle map "${map.id}" has no authored order of battle`);

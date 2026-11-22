@@ -65,6 +65,7 @@ export const SKIRMISH_CONTRACTS = parseContracts({
   /* ----- The T093 expansion --------------------------------------------- */
 
   "the-roadside-ambush": {
+    mapId: "coast-road-ambush",
     name: "The Roadside Ambush",
     description:
       "A rival company is lying up in the Blackwood to rob the next convoy; spring their ambush first.",
@@ -76,6 +77,7 @@ export const SKIRMISH_CONTRACTS = parseContracts({
     regionId: "blackwood",
   },
   "the-deserters-camp": {
+    mapId: "guerrilla-camp",
     name: "The Deserters' Camp",
     description:
       "Deserters from three armies have banded together in the hills; break the camp before it grows.",
@@ -87,6 +89,7 @@ export const SKIRMISH_CONTRACTS = parseContracts({
     regionId: "the-highlands",
   },
   "sabres-at-the-ford": {
+    mapId: "millford-crossing",
     name: "Sabres at the Ford",
     description:
       "Two troops of horse want the same crossing; the matter will be settled at the water's edge.",
@@ -101,6 +104,7 @@ export const SKIRMISH_CONTRACTS = parseContracts({
     regionId: "sainte-colombe",
   },
   "the-foragers-quarrel": {
+    mapId: "orchard-skirmish",
     name: "The Foragers' Quarrel",
     description:
       "Two foraging parties meet in the same field with the same orders; settle who leaves with the hay.",

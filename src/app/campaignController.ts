@@ -53,7 +53,7 @@
  */
 
 import { getContract, isContractKey } from "../data/contracts";
-import { combatMapForContract, hasCombatMap } from "../data/maps";
+
 import type { EquipSlot, PowerKey } from "../data/schema";
 
 import { createCalendar } from "../engine/calendar";
@@ -80,7 +80,7 @@ import { createCampaignProgress, createCampaignSave, type CampaignSave } from ".
 import { DEFAULT_CONTROL_POLICY, autoBattleAllies, isAiControlled } from "./autoBattle";
 import { createBattleController, type BattleController } from "./battleController";
 import { AGGRESSIVE_FIELD_AI, runAiUntilPlayer } from "./battleRunner";
-import { buildBattleFromContract, isCombatContract } from "./battleSetup";
+import { battleMapFor, buildBattleFromContract, isCombatContract } from "./battleSetup";
 import {
   acceptContract,
   advanceCampaignDay,
@@ -333,11 +333,11 @@ export function startCampaignBattle(state: CampaignState, contractId: ContractId
   const contract = requireContract(contractId);
   const save = acceptContract(state.save, contractId);
 
-  if (!isCombatContract(contract) || !hasCombatMap(contract.id)) {
+  const map = isCombatContract(contract) ? battleMapFor(contract) : null;
+  if (map === null) {
     return { save, contractId: null, battle: null, result: null };
   }
 
-  const map = combatMapForContract(contract.id);
   const battle = buildBattleFromContract(
     battleSeedFor(save, contractId),
     save.company,

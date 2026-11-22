@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { CONTRACTS } from "../../src/data/contracts";
+import { CONTRACT_LIST, CONTRACTS } from "../../src/data/contracts";
 import { hasOrderOfBattle, orderOfBattleFor } from "../../src/data/enemies";
 import { STORY_CHAPTERS } from "../../src/data/story";
 import {
@@ -35,6 +35,7 @@ import {
   locationsForChapter,
   terrainFromChar,
   type BattleMapDef,
+  type BattleMapKey,
 } from "../../src/data/maps";
 import { createBattle } from "../../src/engine/battle";
 import { coord } from "../../src/engine/grid";
@@ -994,5 +995,19 @@ describe("the Headquarters raid (T161)", () => {
       kind: "complete-contract",
       contractId: "hold-the-churchyard",
     });
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T164 — contracts may name a reused battlefield
+ * ------------------------------------------------------------------------ */
+
+describe("contract battle-map references (T164)", () => {
+  it("names only authored maps from a contract's mapId", () => {
+    for (const contract of CONTRACT_LIST) {
+      if (contract.mapId === undefined) continue;
+      expect(isBattleMapKey(contract.mapId), contract.id).toBe(true);
+      expect(getBattleMap(contract.mapId as BattleMapKey).id).toBe(contract.mapId);
+    }
   });
 });

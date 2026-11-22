@@ -407,6 +407,13 @@ export const ContractDefSchema = z.object({
   reward: ContractRewardSchema,
   /** Campaign-map region/marker the contract belongs to. */
   regionId: IdSchema.optional(),
+  /**
+   * Battle map this contract is fought on, when the board is **reused** rather
+   * than posted by a map's own `contractId` (T164). FFTA revisits maps for
+   * different missions; a contract without `mapId` must be posted by a map that
+   * names it in `BattleMapDef.contractId`.
+   */
+  mapId: IdSchema.optional(),
   /** Days a Detachment is away (kind === "detachment"). */
   duration: z.number().int().positive().optional(),
   /** Story chapter that gates the contract (T077). */

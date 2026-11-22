@@ -1839,6 +1839,35 @@ that a day advanced in Saves is still the day after leaving the screen.
 
 ---
 
+## Phase 26 — Every contract can be fought
+
+The campaign board has 24 combat contracts but only 12 authored battle maps, and
+`startCampaignBattle` quietly accepts a map-less contract and returns no battle:
+the player pays the fee for an action that never happens. This phase makes every
+postable combat contract deploy.
+
+### T164 — Let a contract name its battlefield, and make the board playable
+- status: done
+- deps: [T161]
+- files: src/data/schema.ts, src/data/contracts/battles.ts, src/data/contracts/skirmishes.ts, src/data/contracts/pacifications.ts, src/data/enemies/ordersOfBattle.ts, src/app/battleSetup.ts, src/app/campaignController.ts, tests/unit/battleSetup.test.ts, tests/unit/maps.test.ts, tests/unit/content.test.ts
+- verify: npm run test -- --run tests/unit/battleSetup.test.ts tests/unit/maps.test.ts tests/unit/content.test.ts tests/unit/campaignController.test.ts
+- done: A combat contract may either **post** a map (the map's `contractId`) or **name** one to fight on (`ContractDef.mapId`), `battleMapFor` resolves both, and every combat contract in the authored board resolves to a map **with an order of battle** — pinned by a test that iterates the whole board, with a built-battle assertion for a named-map contract.
+
+Twelve combat contracts (`take-the-mill`, `clear-the-orchard`,
+`silence-the-battery`, `carry-the-pass`, `the-roadside-ambush`,
+`the-deserters-camp`, `sabres-at-the-ford`, `the-foragers-quarrel`,
+`pacify-the-highlands`, `clear-the-green-valley`, `sweep-the-ridge`,
+`open-the-crossroads`) post no map, so taking one charges the fee and opens
+nothing. Add an optional `mapId` to `ContractDef` so a contract can reuse a
+board (FFTA revisits maps for different missions), resolve it in
+`src/app/battleSetup.ts`, relax the map/contract identity check for that case,
+and point the twelve at suitable existing boards. Author the missing orders of
+battle for the boards that gain a combat contract (`millford-crossing`,
+`highland-pass`, `green-valley-forage`, `ridge-reconnaissance`). Then pin the
+invariant: every combat contract resolves to a map with a garrison.
+
+---
+
 ## Research & open questions
 
 Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**

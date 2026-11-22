@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { ABILITIES } from "../../src/data/abilities";
-import { CONTRACTS } from "../../src/data/contracts";
+import { CONTRACT_LIST, CONTRACTS } from "../../src/data/contracts";
 import {
   ORDER_OF_BATTLE_MAP_IDS,
   findEnemy,
@@ -20,6 +20,7 @@ import {
 import {
   BattleDeploymentError,
   actionSpecFromAbility,
+  battleMapFor,
   buildBattleFromContract,
   isCombatContract,
 } from "../../src/app/battleSetup";
@@ -197,6 +198,45 @@ describe("buildBattleFromContract (T118)", () => {
     expect(battle.objective?.objective).toEqual({ kind: "capture", at: { x: 8, y: 4 } });
   });
 
+  it("resolves a battlefield and a garrison for every combat contract (T164)", () => {
+    const combat = CONTRACT_LIST.filter(isCombatContract);
+    expect(combat.length).toBeGreaterThan(0);
+    for (const entry of combat) {
+      const map = battleMapFor(entry);
+      expect(map, `${entry.id} must resolve a battle map`).not.toBeNull();
+      const resolved = map as BattleMapDef;
+      expect(
+        hasOrderOfBattle(resolved.id),
+        `${entry.id} fights on ${resolved.id}, which needs a garrison`,
+      ).toBe(true);
+
+      // The whole board deploys: a company and the authored garrison.
+      const battle = buildBattleFromContract(SEED, companyOf(4), entry, resolved);
+      expect(
+        battle.units.filter((unit) => unit.side === "company").length,
+        `${entry.id} fields a company`,
+      ).toBeGreaterThan(0);
+      expect(
+        battle.units.filter((unit) => unit.side === "enemy"),
+        `${entry.id} fields its garrison`,
+      ).toHaveLength(orderOfBattleFor(resolved.id).units.length);
+      expect(battle.objective?.objective, `${entry.id} carries an objective`).toEqual(
+        resolved.objective,
+      );
+    }
+  });
+
+  it("builds a battle from a contract that names a reused board (T164)", () => {
+    const mill = CONTRACTS["take-the-mill"];
+    const map = battleMapFor(mill);
+    expect(map?.id).toBe("millford-crossing");
+
+    const battle = buildBattleFromContract(SEED, companyOf(3), mill, map as BattleMapDef);
+    expect(battle.units.filter((unit) => unit.side === "company")).toHaveLength(3);
+    expect(battle.units.filter((unit) => unit.side === "enemy")).toHaveLength(3);
+    expect(battle.objective?.objective).toEqual(map?.objective);
+  });
+
   it("re-derives company stats from the primary post and deploys at full strength", () => {
     const source = member("unit-0", "Soldier 0", "fusilier");
     const wounded = createUnit({
@@ -338,18 +378,21 @@ describe("buildBattleFromContract failures (T118)", () => {
 
   it("refuses a map with no authored order of battle", () => {
     const noGarrison: BattleMapDef = {
-      ...getBattleMap("millford-crossing"),
+      ...getBattleMap("pay-chest-escort"),
       contractId: "break-the-bridge",
     };
-    expect(hasOrderOfBattle("millford-crossing")).toBe(false);
+    expect(hasOrderOfBattle("pay-chest-escort")).toBe(false);
     expect(() =>
       buildBattleFromContract(SEED, company, CONTRACTS["break-the-bridge"], noGarrison),
     ).toThrow(BattleDeploymentError);
-    expect(() => orderOfBattleFor("millford-crossing")).toThrow(RangeError);
+    expect(() => orderOfBattleFor("pay-chest-escort")).toThrow(RangeError);
   });
 
   it("resolves a contract's map, or throws a lookup error", () => {
     expect(combatMapForContract("break-the-bridge").id).toBe("sainte-colombe-bridge");
+    // A contract that **names** its board resolves through `battleMapFor`, while
+    // the "posted by a map" lookup still has nothing for it (T164).
+    expect(battleMapFor(CONTRACTS["carry-the-pass"])?.id).toBe("highland-pass");
     expect(() => combatMapForContract("carry-the-pass")).toThrow(BattleMapLookupError);
   });
 });

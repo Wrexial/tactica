@@ -221,6 +221,50 @@ export const ORDERS_OF_BATTLE: Readonly<Partial<Record<BattleMapKey, OrderOfBatt
     ],
   },
 
+  /* ----- The Millford (shared by two actions) ---------------------------- */
+
+  "millford-crossing": {
+    mapId: "millford-crossing",
+    units: [
+      { enemyId: "veteran-serjeant", level: 3, at: { x: 8, y: 3 } },
+      { enemyId: "line-deserter", level: 3, at: { x: 8, y: 4 } },
+      { enemyId: "town-levy", level: 2, at: { x: 7, y: 4 } },
+    ],
+  },
+
+  /* ----- The Highland Pass (shared by two actions) ----------------------- */
+
+  "highland-pass": {
+    mapId: "highland-pass",
+    units: [
+      { enemyId: "pass-sniper", level: 4, at: { x: 4, y: 2 } },
+      { enemyId: "partisan-band", level: 4, at: { x: 5, y: 2 } },
+      { enemyId: "pass-sniper", level: 3, at: { x: 4, y: 3 } },
+    ],
+  },
+
+  /* ----- The Green Valley ------------------------------------------------ */
+
+  "green-valley-forage": {
+    mapId: "green-valley-forage",
+    units: [
+      { enemyId: "town-levy", level: 3, at: { x: 11, y: 4 } },
+      { enemyId: "partisan-band", level: 4, at: { x: 10, y: 4 } },
+      { enemyId: "town-levy", level: 3, at: { x: 11, y: 3 } },
+    ],
+  },
+
+  /* ----- The Ridge ------------------------------------------------------- */
+
+  "ridge-reconnaissance": {
+    mapId: "ridge-reconnaissance",
+    units: [
+      { enemyId: "powder-team", level: 4, at: { x: 4, y: 0 } },
+      { enemyId: "six-pounder-section", level: 4, at: { x: 5, y: 0 } },
+      { enemyId: "veteran-serjeant", level: 4, at: { x: 6, y: 0 } },
+    ],
+  },
+
   /* ----- The dawn duel --------------------------------------------------- */
 
   "duel-at-dawn": {

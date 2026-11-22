@@ -75,6 +75,7 @@ export const BATTLE_CONTRACTS = parseContracts({
   /* ----- Ungated side battles ------------------------------------------- */
 
   "take-the-mill": {
+    mapId: "millford-crossing",
     name: "Take the Mill",
     description:
       "The mill ford is held by a stubborn rearguard; an Engineer party must carry the crossing.",
@@ -89,6 +90,7 @@ export const BATTLE_CONTRACTS = parseContracts({
     regionId: "sainte-colombe",
   },
   "clear-the-orchard": {
+    mapId: "orchard-skirmish",
     name: "Clear the Orchard",
     description:
       "Skirmishers have turned the old orchard into a nest of loopholes; clear it lane by lane.",
@@ -100,6 +102,7 @@ export const BATTLE_CONTRACTS = parseContracts({
     regionId: "crossroads",
   },
   "silence-the-battery": {
+    mapId: "redoubt-stand",
     name: "Silence the Battery",
     description:
       "Enemy guns on the ridge are ranging the column; carry the crest and spike the pieces.",
@@ -163,6 +166,7 @@ export const BATTLE_CONTRACTS = parseContracts({
     chapter: 9,
   },
   "carry-the-pass": {
+    mapId: "highland-pass",
     name: "Carry the Pass",
     description:
       "A narrow highland pass is blocked by regulars; scouts must find the track that turns their flank.",
