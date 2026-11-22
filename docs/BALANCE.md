@@ -316,6 +316,22 @@ Three findings, each tracked as a follow-up:
 None of these is a stall or a broken deployment; they are balance and scenario
 orientation work, now measured instead of guessed.
 
+**T166 fixed finding 1.** The company now starts on or beside every defended
+tile, and the assault contracts that reused a defend board moved to an assault
+one. Re-running the sweep:
+
+| contract              | change                                          |
+| --------------------- | ----------------------------------------------- |
+| hold-the-redoubt      | **A**, 5 turns, 0/0 (was B in 3 with no fight)  |
+| sweep-the-ridge       | **A**, 4 turns, 0/0 (was B in 7)                |
+| silence-the-battery   | **A** on `churchyard-stand`, 56 turns           |
+| carry-the-pass        | B, 33 turns, 3/0 (was B in 1; now a real fight) |
+| pacify-the-highlands  | B, 33 turns, 3/0 (was B in 1; now a real fight) |
+
+Defend boards now run their clock instead of losing on turn one. The remaining
+defeats are finding 2 (recommended levels versus the flat enemy stat line) and
+finding 3 (the finale), tracked in T167.
+
 ## Still open
 
 - **Tune the baseline.** The D16–D24 values are a defensible starting point,

@@ -102,7 +102,7 @@ export const BATTLE_CONTRACTS = parseContracts({
     regionId: "crossroads",
   },
   "silence-the-battery": {
-    mapId: "redoubt-stand",
+    mapId: "churchyard-stand",
     name: "Silence the Battery",
     description:
       "Enemy guns on the ridge are ranging the column; carry the crest and spike the pieces.",

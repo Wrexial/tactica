@@ -431,7 +431,7 @@ const BATTLE_MAP_DATA = {
   "highland-pass": {
     name: "The Highland Pass",
     description:
-      "A ten-by-ten pass walled by high ground. Hold the track for four turns; no Provost rides this far, so a downed soldier is a lost one.",
+      "A ten-by-ten pass walled by high ground. Carry the track against the band holding it; no Provost rides this far, so a downed soldier is a lost one.",
     flavour: "Beyond the last picket there is no law but the weather and the enemy.",
     locationId: "the-highlands",
     width: 10,
@@ -478,7 +478,7 @@ const BATTLE_MAP_DATA = {
         ],
       },
     ],
-    objective: { kind: "defend", at: { x: 4, y: 4 }, turns: 4 },
+    objective: { kind: "rout", defeated: 3 },
     recommendedLevel: 4,
   },
 

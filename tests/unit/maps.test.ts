@@ -1011,3 +1011,33 @@ describe("contract battle-map references (T164)", () => {
     }
   });
 });
+
+/* --------------------------------------------------------------------------
+ * T166 — defend boards put the defender on the ground
+ * ------------------------------------------------------------------------ */
+
+describe("defend boards (T166)", () => {
+  it("starts the company on or beside the point, nearer than any enemy", () => {
+    const defendMaps = BATTLE_MAP_LIST.filter((map) => map.objective.kind === "defend");
+    expect(defendMaps.length).toBeGreaterThanOrEqual(3);
+
+    for (const map of defendMaps) {
+      const objective = map.objective;
+      if (objective.kind !== "defend") continue;
+      const distance = (tile: { x: number; y: number }): number =>
+        Math.abs(tile.x - objective.at.x) + Math.abs(tile.y - objective.at.y);
+      const company = map.deployment.find((zone) => zone.side === "company")?.tiles ?? [];
+      const enemy = map.deployment.find((zone) => zone.side === "enemy")?.tiles ?? [];
+      expect(company.length, map.id).toBeGreaterThan(0);
+      expect(enemy.length, map.id).toBeGreaterThan(0);
+
+      // The company holds the ground: someone is on or beside the point, and no
+      // enemy starts closer to it than the company does. Otherwise an enemy can
+      // step onto the tile and trigger the defeat rule before the fight begins.
+      expect(Math.min(...company.map(distance)), map.id).toBeLessThanOrEqual(1);
+      expect(Math.min(...company.map(distance)), map.id).toBeLessThan(
+        Math.min(...enemy.map(distance)),
+      );
+    }
+  });
+});

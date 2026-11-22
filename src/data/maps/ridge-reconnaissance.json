@@ -32,21 +32,46 @@
     {
       "side": "company",
       "tiles": [
-        { "x": 4, "y": 7 },
-        { "x": 5, "y": 7 },
-        { "x": 6, "y": 7 }
+        {
+          "x": 4,
+          "y": 3
+        },
+        {
+          "x": 5,
+          "y": 3
+        },
+        {
+          "x": 6,
+          "y": 3
+        }
       ]
     },
     {
       "side": "enemy",
       "tiles": [
-        { "x": 4, "y": 0 },
-        { "x": 5, "y": 0 },
-        { "x": 6, "y": 0 }
+        {
+          "x": 4,
+          "y": 0
+        },
+        {
+          "x": 5,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "y": 0
+        }
       ]
     }
   ],
-  "objective": { "kind": "defend", "at": { "x": 5, "y": 3 }, "turns": 4 },
+  "objective": {
+    "kind": "defend",
+    "at": {
+      "x": 5,
+      "y": 3
+    },
+    "turns": 4
+  },
   "recommendedLevel": 4,
   "contractId": "reconnoitre-the-ridge"
 }

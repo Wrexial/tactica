@@ -1889,7 +1889,7 @@ T165 measured every action and found three orientation/balance faults. Each is
 its own task so the fixes can be measured one at a time.
 
 ### T166 — Put the defender on the ground it defends
-- status: todo
+- status: done
 - deps: [T165]
 - files: src/data/maps/redoubt-stand.json, src/data/maps/battleMaps.ts, src/data/contracts/battles.ts, src/data/contracts/pacifications.ts, tests/unit/maps.test.ts, tests/unit/campaignBaseline.test.ts
 - verify: npm run test -- --run tests/unit/maps.test.ts tests/unit/campaignBaseline.test.ts

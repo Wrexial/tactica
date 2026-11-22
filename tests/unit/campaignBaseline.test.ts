@@ -125,7 +125,8 @@ function play(
 
 /** A compact fixed-width table for the test log / docs. */
 function table(rows: readonly ActionRow[]): string {
-  const header = "contract                    map                   lvl  obj          win  turns  lost(A/B)";
+  const header =
+    "contract                    map                   lvl  obj          win  turns  lost(A/B)";
   const lines = rows.map(
     (row) =>
       `${row.contract.padEnd(28)}${row.map.padEnd(22)}${String(row.level).padEnd(5)}` +

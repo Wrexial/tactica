@@ -32,22 +32,50 @@
     {
       "side": "company",
       "tiles": [
-        { "x": 4, "y": 6 },
-        { "x": 5, "y": 6 },
-        { "x": 6, "y": 6 }
+        {
+          "x": 4,
+          "y": 4
+        },
+        {
+          "x": 5,
+          "y": 4
+        },
+        {
+          "x": 6,
+          "y": 4
+        }
       ]
     },
     {
       "side": "enemy",
       "tiles": [
-        { "x": 4, "y": 1 },
-        { "x": 5, "y": 1 },
-        { "x": 6, "y": 1 },
-        { "x": 5, "y": 2 }
+        {
+          "x": 4,
+          "y": 1
+        },
+        {
+          "x": 5,
+          "y": 1
+        },
+        {
+          "x": 6,
+          "y": 1
+        },
+        {
+          "x": 5,
+          "y": 2
+        }
       ]
     }
   ],
-  "objective": { "kind": "defend", "at": { "x": 5, "y": 4 }, "turns": 5 },
+  "objective": {
+    "kind": "defend",
+    "at": {
+      "x": 5,
+      "y": 4
+    },
+    "turns": 5
+  },
   "recommendedLevel": 4,
   "contractId": "hold-the-redoubt"
 }
