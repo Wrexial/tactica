@@ -1708,6 +1708,38 @@ workflow should say so plainly rather than leaving a bare 404 link.
 
 ---
 
+## Phase 23 — Chapter 7: the Sunken Lane
+
+The campaign's story spine ends at chapter 6 and its last authored board is the
+guerrilla camp. This phase adds one more late-game beat with a board that plays
+differently from the farmhouse: low ground with cover, high banks, and a single
+long approach.
+
+### T158 — Author chapter 7, "The Sunken Lane"
+- status: done
+- deps: []
+- files: src/data/maps/sunken-lane.json, src/data/maps/battleMaps.ts, src/data/maps/locations.ts, src/data/enemies/ordersOfBattle.ts, src/data/contracts/battles.ts, src/data/story.ts, tests/unit/maps.test.ts
+- verify: npm run test -- --run tests/unit/maps.test.ts tests/unit/story.test.ts tests/unit/content.test.ts tests/unit/battleSetup.test.ts
+- done: A chapter-7 battle is playable end to end: a 13×9 authored board whose lane sits at height 0 between height-2 banks with a mill yard at the far end, a five-troop order of battle of late-game irregulars, a chapter-7 contract that posts it, a matching location and a reachable story chapter; the deployment validates, the rout objective is reachable, and the maps/story/content/deployment tests pass.
+
+Fiction: with the guerrilla camp broken, a rearguard bars the sunken lane off the
+crossroads so the column behind it can escape. The company must clear the lane
+and the mill beyond it. Mechanically the board inverts the farmhouse: the
+**lane is the low ground** (height 0) with the banks two layers above it, so
+units inside it are covered from the flanks but cannot see over the banks, and
+the only approach is a long straight road — a natural place for a ranged
+rearguard (`pass-sniper`) and a gun at the mill (`six-pounder-section`).
+
+Author it as JSON beside `farmhouse-assault.json`, add it to
+`JSON_BATTLE_MAP_KEYS`/`BATTLE_MAP_KEYS` and the merged table, add the location
+and its region, the order of battle, a `battle` contract gated to chapter 7, and
+a chapter-7 story entry triggered by reaching a later day (`reach-day`), since
+chapter 6 opens no contract that could trigger it. Keep every deployment tile
+passable and every objective tile reachable, and pin the height inversion in the
+map tests.
+
+---
+
 ## Research & open questions
 
 Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**

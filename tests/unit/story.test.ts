@@ -349,7 +349,8 @@ describe("story spine — chapter triggers (T077)", () => {
         "storm-the-farmhouse",
         "break-the-guerrilla-camp",
       ],
-      day: 30,
+      // Day 45 reaches chapter 7's clock trigger (chapter 6 opens no contract).
+      day: 45,
     };
     expect(advanceChapter(STORY_CHAPTER_MIN, facts)).toBe(MAX_STORY_CHAPTER);
     expect(advanceChapter(0, facts)).toBe(MAX_STORY_CHAPTER);

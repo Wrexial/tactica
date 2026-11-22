@@ -149,6 +149,7 @@ export const STORY_CHAPTER_KEYS = [
   "the-deaths-head",
   "the-grand-battery",
   "the-kaisers-bombardiers",
+  "the-sunken-lane",
 ] as const;
 export type StoryChapterKey = (typeof STORY_CHAPTER_KEYS)[number];
 
@@ -221,6 +222,18 @@ const STORY_CHAPTER_DATA = {
     number: 6,
     trigger: { kind: "complete-contract", contractId: "break-the-guerrilla-camp" },
     guardSortieIds: ["kaisers-bombardiers"],
+  },
+  "the-sunken-lane": {
+    name: "The Sunken Lane",
+    description:
+      "A rearguard bars the sunken lane off the crossroads so the column behind it can slip away; the company is ordered to clear the lane and the mill beyond it.",
+    flavour:
+      "A sunken lane is a trench that nature dug, and every army in Europe has learned to dread the man who holds one.",
+    number: 7,
+    // Chapter 6 opens no contract, so no completion can trigger this beat:
+    // the column's retreat is on a clock, not on a mission.
+    trigger: { kind: "reach-day", day: 45 },
+    contractIds: ["clear-the-sunken-lane"],
   },
 } satisfies Record<StoryChapterKey, StoryChapterData>;
 

@@ -63,6 +63,7 @@ export const LOCATION_KEYS = [
   "the-pay-chest-road",
   "the-ridge",
   "the-millford",
+  "the-sunken-lane",
 ] as const;
 
 /** The stable id of every authored location. */
@@ -191,6 +192,17 @@ const LOCATION_DATA = {
     regionId: "the-ridge",
     terrain: "hill",
     battleMapIds: ["ridge-reconnaissance"],
+  },
+  "the-sunken-lane": {
+    name: "The Sunken Lane",
+    description:
+      "A lane worn deep between high banks, running from the crossroads to an old mill; its floor is hidden from the fields on either side.",
+    flavour:
+      "A sunken lane is a trench that nature dug, and every army in Europe has learned to dread the man who holds one.",
+    regionId: "crossroads",
+    terrain: "road",
+    battleMapIds: ["sunken-lane"],
+    chapter: 7,
   },
   "the-millford": {
     name: "The Millford",

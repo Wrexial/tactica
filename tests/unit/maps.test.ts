@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import { CONTRACTS } from "../../src/data/contracts";
+import { hasOrderOfBattle, orderOfBattleFor } from "../../src/data/enemies";
+import { STORY_CHAPTERS } from "../../src/data/story";
 import {
   BATTLE_MAP_KEYS,
   BATTLE_MAP_LIST,
@@ -22,6 +24,7 @@ import {
   battleMapObjective,
   battleMapToTerrainMap,
   battleMapsForContract,
+  combatMapForContract,
   battleMapsForLocation,
   expandBattleMap,
   getBattleMap,
@@ -650,5 +653,117 @@ describe("map bundle (T074)", () => {
     const map: BattleMapDef = getBattleMap("guerrilla-camp");
     const roundTripped = BattleMapDefSchema.parse(JSON.parse(JSON.stringify(map)));
     expect(roundTripped).toEqual(map);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T158 — Chapter 7: the Sunken Lane
+ *
+ * The board inverts the farmhouse: the lane is the low ground (height 0)
+ * between banks two layers above it, with the mill yard at the far end. These
+ * tests pin the inversion, the deployment/objective validity, the garrison and
+ * the content wiring (contract → map → location → story chapter).
+ * ------------------------------------------------------------------------ */
+
+describe("the Sunken Lane (T158)", () => {
+  it("sinks the lane between two-layer banks and a mill yard", () => {
+    const map = getBattleMap("sunken-lane");
+    expect(map.elevation, "sunken-lane must author an elevation layer").toBeDefined();
+
+    const terrain = battleMapToTerrainMap(map);
+    // Lane floor, bank, hill above the bank, mill yard.
+    expect(heightAt(terrain, coord(6, 4))).toBe(0);
+    expect(heightAt(terrain, coord(6, 2))).toBe(2);
+    expect(heightAt(terrain, coord(6, 0))).toBe(3);
+    expect(heightAt(terrain, coord(10, 4))).toBe(1);
+
+    // The lane is a long clear approach, and the banks are walls, not slopes.
+    expect([2, 3, 4, 5, 6, 7, 8, 9].map((x) => heightAt(terrain, coord(x, 4)))).toEqual([
+      0, 0, 0, 0, 0, 0, 0, 0,
+    ]);
+    expect(getTerrainDef(terrainAt(terrain, coord(6, 2))).passable).toBe(false);
+
+    // Two collapsed stretches of bank (rubble at height 1) give the attacker a
+    // flank over the bank instead of a pure corridor.
+    for (const breach of [coord(5, 2), coord(7, 6)]) {
+      expect(heightAt(terrain, breach)).toBe(1);
+      const surface = getTerrainDef(terrainAt(terrain, breach));
+      expect(surface.passable, `breach ${breach.x},${breach.y}`).toBe(true);
+      expect(surface.blocksSight).toBe(false);
+    }
+
+    const heights = [...new Set(expandBattleMap(map).map((tile) => tile.height))].sort(
+      (a, b) => a - b,
+    );
+    expect(heights).toEqual([0, 1, 2, 3]);
+  });
+
+  it("keeps deployment and the mill objective passable and connected", () => {
+    const map = getBattleMap("sunken-lane");
+    const terrain = battleMapToTerrainMap(map);
+
+    for (const zone of map.deployment) {
+      for (const tile of zone.tiles) {
+        expect(
+          getTerrainDef(terrainAt(terrain, coord(tile.x, tile.y))).passable,
+          `sunken-lane ${zone.side} deploy ${tile.x},${tile.y}`,
+        ).toBe(true);
+      }
+    }
+
+    // Every company soldier can reach every enemy post down the lane (the
+    // mill yard included); Climb 2 covers the one-layer descent into it.
+    const company = map.deployment.find((zone) => zone.side === "company")?.tiles ?? [];
+    const enemy = map.deployment.find((zone) => zone.side === "enemy")?.tiles ?? [];
+    expect(company.length).toBeGreaterThanOrEqual(4);
+    expect(enemy.length).toBeGreaterThanOrEqual(4);
+    for (const from of company) {
+      for (const to of enemy) {
+        const path = findPath(terrain, coord(from.x, from.y), coord(to.x, to.y), { climb: 2 });
+        expect(path.found, `sunken-lane ${from.x},${from.y} → ${to.x},${to.y}`).toBe(true);
+      }
+    }
+  });
+
+  it("stations a four-troop late-game garrison inside the enemy zone", () => {
+    expect(hasOrderOfBattle("sunken-lane")).toBe(true);
+    const order = orderOfBattleFor("sunken-lane");
+    const map = getBattleMap("sunken-lane");
+    const enemyTiles = map.deployment.find((zone) => zone.side === "enemy")?.tiles ?? [];
+
+    expect(order.mapId).toBe("sunken-lane");
+    expect(order.units).toHaveLength(4);
+    expect(order.units.every((unit) => unit.level === 4)).toBe(true);
+    for (const unit of order.units) {
+      expect(
+        enemyTiles.some((tile) => tile.x === unit.at.x && tile.y === unit.at.y),
+        `${unit.enemyId} at ${unit.at.x},${unit.at.y} is in the enemy zone`,
+      ).toBe(true);
+    }
+    // The lane floor and the mill yard are both held.
+    expect(order.units.filter((unit) => unit.at.x === 8)).toHaveLength(3);
+    expect(order.units.filter((unit) => unit.at.x >= 10)).toHaveLength(1);
+  });
+
+  it("wires the contract, map, location and chapter together", () => {
+    const map = getBattleMap("sunken-lane");
+    expect(map.contractId).toBe("clear-the-sunken-lane");
+    expect(map.objective).toEqual({ kind: "rout", defeated: 3 });
+    expect(combatMapForContract("clear-the-sunken-lane").id).toBe("sunken-lane");
+
+    const contract = CONTRACTS["clear-the-sunken-lane"];
+    expect(contract.kind).toBe("battle");
+    expect(contract.chapter).toBe(7);
+    expect(contract.regionId).toBe("crossroads");
+
+    const location = getLocation("the-sunken-lane");
+    expect(location.regionId).toBe("crossroads");
+    expect(location.chapter).toBe(7);
+    expect(location.battleMapIds).toContain("sunken-lane");
+
+    const chapter = STORY_CHAPTERS["the-sunken-lane"];
+    expect(chapter.number).toBe(7);
+    expect(chapter.contractIds).toEqual(["clear-the-sunken-lane"]);
+    expect(chapter.trigger).toEqual({ kind: "reach-day", day: 45 });
   });
 });

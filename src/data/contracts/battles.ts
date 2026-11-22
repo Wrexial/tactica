@@ -114,6 +114,22 @@ export const BATTLE_CONTRACTS = parseContracts({
     reward: { crowns: 1150, ap: 60, experience: 45, honours: 2, itemIds: ["spyglass"] },
     regionId: "the-ridge",
   },
+  "clear-the-sunken-lane": {
+    name: "Clear the Sunken Lane",
+    description:
+      "A rearguard has dug in along the sunken lane and the mill beyond it; carry the banks and clear the road before the column behind them escapes.",
+    flavour:
+      "A sunken lane is a trench that nature dug, and every army in Europe has learned to dread the man who holds one.",
+    kind: "battle",
+    fee: 340,
+    requires: [
+      { kind: "post", id: "grenadier" },
+      { kind: "unit", count: 5 },
+    ],
+    reward: { crowns: 1650, ap: 80, experience: 60, honours: 2, itemIds: ["tower-shield"] },
+    regionId: "crossroads",
+    chapter: 7,
+  },
   "carry-the-pass": {
     name: "Carry the Pass",
     description:

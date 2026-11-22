@@ -54,6 +54,7 @@ import orchardSkirmishJson from "./orchard-skirmish.json";
 import payChestEscortJson from "./pay-chest-escort.json";
 import redoubtStandJson from "./redoubt-stand.json";
 import ridgeReconnaissanceJson from "./ridge-reconnaissance.json";
+import sunkenLaneJson from "./sunken-lane.json";
 import { BattleMapDefSchema, type BattleMapDef, type BattleMapObjective } from "./schema";
 
 /* --------------------------------------------------------------------------
@@ -79,6 +80,7 @@ export const BATTLE_MAP_KEYS = [
   "pay-chest-escort",
   "ridge-reconnaissance",
   "millford-crossing",
+  "sunken-lane",
 ] as const;
 
 /** The stable id of every authored battle map. */
@@ -105,6 +107,7 @@ export const JSON_BATTLE_MAP_KEYS = [
   "pay-chest-escort",
   "ridge-reconnaissance",
   "millford-crossing",
+  "sunken-lane",
 ] as const;
 
 /** The stable id of a JSON-authored battle map. */
@@ -140,6 +143,7 @@ const JSON_BATTLE_MAP_DATA: Record<JsonBattleMapKey, BattleMapData> = {
   "pay-chest-escort": parseJsonBattleMap("pay-chest-escort", payChestEscortJson),
   "ridge-reconnaissance": parseJsonBattleMap("ridge-reconnaissance", ridgeReconnaissanceJson),
   "millford-crossing": parseJsonBattleMap("millford-crossing", millfordCrossingJson),
+  "sunken-lane": parseJsonBattleMap("sunken-lane", sunkenLaneJson),
 };
 
 /**

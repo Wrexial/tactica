@@ -1,0 +1,93 @@
+{
+  "id": "sunken-lane",
+  "name": "The Sunken Lane",
+  "description": "A lane cut deep between high banks, running from the crossroads to the old mill. The rearguard holds the low ground; carry the banks and clear the way to the yard.",
+  "flavour": "A sunken lane is a trench that nature dug, and every army in Europe has learned to dread the man who holds one.",
+  "locationId": "the-sunken-lane",
+  "width": 13,
+  "height": 9,
+  "layout": [
+    ".....^^^.....",
+    ".....^^^.....",
+    "..%WWxWWWW%..",
+    "..========##.",
+    "..========##.",
+    "..========##.",
+    "..%WWWWxWW%..",
+    ".....^^^.....",
+    ".....^^^....."
+  ],
+  "elevation": [
+    "1111133311111",
+    "1111133311111",
+    "1122212222211",
+    "1100000000111",
+    "1100000000111",
+    "1100000000111",
+    "1122222122211",
+    "1111133311111",
+    "1111133311111"
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        {
+          "x": 0,
+          "y": 2
+        },
+        {
+          "x": 1,
+          "y": 2
+        },
+        {
+          "x": 0,
+          "y": 3
+        },
+        {
+          "x": 1,
+          "y": 3
+        },
+        {
+          "x": 0,
+          "y": 4
+        },
+        {
+          "x": 1,
+          "y": 4
+        }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        {
+          "x": 8,
+          "y": 3
+        },
+        {
+          "x": 8,
+          "y": 4
+        },
+        {
+          "x": 8,
+          "y": 5
+        },
+        {
+          "x": 10,
+          "y": 4
+        },
+        {
+          "x": 11,
+          "y": 4
+        }
+      ]
+    }
+  ],
+  "objective": {
+    "kind": "rout",
+    "defeated": 3
+  },
+  "recommendedLevel": 6,
+  "contractId": "clear-the-sunken-lane"
+}

@@ -181,6 +181,18 @@ export const ORDERS_OF_BATTLE: Readonly<Partial<Record<BattleMapKey, OrderOfBatt
     ],
   },
 
+  /* ----- The sunken lane ------------------------------------------------- */
+
+  "sunken-lane": {
+    mapId: "sunken-lane",
+    units: [
+      { enemyId: "line-deserter", level: 4, at: { x: 8, y: 3 } },
+      { enemyId: "veteran-serjeant", level: 4, at: { x: 8, y: 4 } },
+      { enemyId: "pioneer-section", level: 4, at: { x: 8, y: 5 } },
+      { enemyId: "pass-sniper", level: 4, at: { x: 10, y: 4 } },
+    ],
+  },
+
   /* ----- The dawn duel --------------------------------------------------- */
 
   "duel-at-dawn": {

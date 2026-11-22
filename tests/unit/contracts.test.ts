@@ -178,14 +178,17 @@ describe("contracts — lookups and filters (T070)", () => {
   });
 
   it("unlocks ungated contracts plus those at or below the story chapter", () => {
-    // The four story battles and the highland pacification are chapter-gated;
-    // every other contract is posted from the start.
+    // The story battles and the highland pacification are chapter-gated; every
+    // other contract is posted from the start. Derive the last gated chapter
+    // from the board so new chapters do not silently break this test.
     const ungated = CONTRACT_LIST.filter((contract) => contract.chapter === undefined).length;
+    const maxChapter = Math.max(0, ...CONTRACT_LIST.map((contract) => contract.chapter ?? 0));
+    const atMaxChapter = CONTRACT_LIST.filter((c) => c.chapter === maxChapter).length;
     expect(contractsForChapter(0)).toHaveLength(ungated);
     expect(contractsForChapter(1).map((c) => c.id)).toContain("break-the-bridge");
     expect(contractsForChapter(1)).toHaveLength(ungated + 1);
-    expect(contractsForChapter(4)).toHaveLength(CONTRACT_LIST.length - 1);
-    expect(contractsForChapter(5)).toHaveLength(CONTRACT_LIST.length);
+    expect(contractsForChapter(maxChapter - 1)).toHaveLength(CONTRACT_LIST.length - atMaxChapter);
+    expect(contractsForChapter(maxChapter)).toHaveLength(CONTRACT_LIST.length);
 
     expect(() => contractsForChapter(-1)).toThrow(RangeError);
     expect(() => contractsForChapter(1.5)).toThrow(RangeError);

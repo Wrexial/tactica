@@ -146,6 +146,20 @@ describe("buildBattleFromContract (T118)", () => {
     expect(battle.abilities["riposte"]).toBeUndefined();
   });
 
+  it("deploys the Sunken Lane's late-game garrison (T158)", () => {
+    const laneContract = CONTRACTS["clear-the-sunken-lane"];
+    const laneMap = BATTLE_MAPS["sunken-lane"];
+    const battle = buildBattleFromContract(SEED, companyOf(5), laneContract, laneMap);
+
+    const companies = battle.units.filter((unit) => unit.side === "company");
+    const enemies = battle.units.filter((unit) => unit.side === "enemy");
+    expect(companies).toHaveLength(5);
+    expect(enemies.map((unit) => unit.name).sort()).toEqual(
+      ["Line Deserter", "Pass Sniper", "Pioneer Section", "Veteran Serjeant"].sort(),
+    );
+    expect(battle.objective?.objective).toEqual({ kind: "rout", defeated: 3 });
+  });
+
   it("re-derives company stats from the primary post and deploys at full strength", () => {
     const source = member("unit-0", "Soldier 0", "fusilier");
     const wounded = createUnit({

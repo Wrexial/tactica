@@ -277,7 +277,8 @@ describe("campaign — contract gating", () => {
       expect(contractsForChapter(contract.chapter - 1)).not.toContain(contract);
     }
 
-    expect(contractsForChapter(5)).toHaveLength(CONTRACT_LIST.length);
+    const maxChapter = Math.max(0, ...CONTRACT_LIST.map((contract) => contract.chapter ?? 0));
+    expect(contractsForChapter(maxChapter)).toHaveLength(CONTRACT_LIST.length);
     expect(contractsForChapter(99)).toHaveLength(CONTRACT_LIST.length);
   });
 
