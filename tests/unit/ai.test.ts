@@ -7,7 +7,9 @@ import {
   articleSubjectForCandidate,
   chooseCommand,
   chooseTurn,
+  ISOLATION_SUPPORT_RADIUS,
   exposureAt,
+  isolationAt,
   targetThreat,
   weightsFromProfile,
   type UtilityAbilitySpec,
@@ -208,6 +210,80 @@ describe("exposureAt", () => {
     // The only soldier on the field is the one being asked about, and it does
     // not threaten itself.
     expect(exposureAt(battle, enemy, coord(0, 1), { abilities: { canister: CANISTER } })).toBe(0);
+  });
+});
+
+describe("isolationAt (T154)", () => {
+  it("counts only the excess of reachable enemies over supporting allies", () => {
+    const actor = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS);
+    const ally = makeUnit(asUnitId("unit-ally"), coord(1, 0), "company", ACTOR_STATS);
+    const secondAlly = makeUnit(asUnitId("unit-ally-2"), coord(0, 1), "company", ACTOR_STATS);
+    const nearEnemy = makeUnit(asUnitId("unit-enemy-near"), coord(2, 0), "enemy", ENEMY_STATS);
+
+    // One threat within its Move+1, two supporters inside the radius: sheltered.
+    const safe = makeBattle([actor, ally, secondAlly, nearEnemy]);
+    expect(isolationAt(safe, actor, coord(0, 0))).toBe(0);
+
+    // Alone against the same threat: one point of exposure.
+    const alone = makeBattle([actor, nearEnemy]);
+    expect(isolationAt(alone, actor, coord(0, 0))).toBe(1);
+  });
+
+  it("ignores enemies that cannot reach the tile and soldiers out of action", () => {
+    const actor = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS);
+    const distant = makeUnit(asUnitId("unit-enemy-far"), coord(7, 7), "enemy", ENEMY_STATS);
+    const downedAlly = makeUnit(asUnitId("unit-ally-down"), coord(1, 0), "company", ACTOR_STATS, {
+      hp: 0,
+    });
+    const battle = makeBattle([actor, distant, downedAlly]);
+
+    expect(isolationAt(battle, actor, coord(0, 0))).toBe(0);
+    expect(ISOLATION_SUPPORT_RADIUS).toBe(3);
+
+    // The ally is inside the radius but out of action, so it supports nobody.
+    const withEnemy = makeBattle([
+      actor,
+      distant,
+      downedAlly,
+      makeUnit(asUnitId("unit-enemy-near"), coord(2, 0), "enemy", ENEMY_STATS),
+    ]);
+    expect(isolationAt(withEnemy, actor, coord(0, 0))).toBe(1);
+  });
+
+  it("steers the AI away from an isolated advance", () => {
+    const actor = makeUnit(ACTOR_ID, coord(0, 0), "company", ACTOR_STATS);
+    const allies = [
+      makeUnit(asUnitId("unit-ally-a"), coord(0, 1), "company", ACTOR_STATS),
+      makeUnit(asUnitId("unit-ally-b"), coord(1, 1), "company", ACTOR_STATS),
+    ];
+    const enemies = [
+      makeUnit(asUnitId("unit-enemy-a"), coord(7, 4), "enemy", ENEMY_STATS),
+      makeUnit(asUnitId("unit-enemy-b"), coord(7, 5), "enemy", ENEMY_STATS),
+      makeUnit(asUnitId("unit-enemy-c"), coord(7, 6), "enemy", ENEMY_STATS),
+    ];
+    // No action catalogue: the enemies cannot shoot, so position is the only
+    // thing left to score. Isolation is made decisive and every other
+    // positional term is switched off.
+    const battle = makeBattle([actor, ...allies, ...enemies], []);
+    const plan = chooseTurn({ ...battle, currentActorId: actor.id }, actor.id, {
+      abilities: {},
+      weights: {
+        ...DEFAULT_UTILITY_WEIGHTS,
+        isolation: 1000,
+        advance: 0,
+        moveCost: 0,
+        cover: 0,
+        brace: 0,
+      },
+    });
+
+    const destination = plan.destination;
+    const support = allies.some(
+      (ally) =>
+        Math.abs(ally.at.x - destination.x) + Math.abs(ally.at.y - destination.y) <=
+        ISOLATION_SUPPORT_RADIUS,
+    );
+    expect(support).toBe(true);
   });
 });
 

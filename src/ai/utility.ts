@@ -194,6 +194,12 @@ export interface UtilityWeights {
   readonly moveCost: number;
   /** Penalty per tile of distance from the nearest hostile (advance plans only). */
   readonly advance: number;
+  /**
+   * Penalty per point of **isolation** at the destination (T154): enemies that
+   * could reach the tile next turn beyond the allies that could support it.
+   * Discourages a fast soldier from feeding into a held position alone.
+   */
+  readonly isolation: number;
   /** Small bonus for bracing in place when no attack presents itself. */
   readonly brace: number;
 }
@@ -221,6 +227,7 @@ export const DEFAULT_UTILITY_WEIGHTS: UtilityWeights = {
   exposure: 3,
   moveCost: 1,
   advance: 3,
+  isolation: 1,
   brace: 2,
   charge: 12,
 };
@@ -541,6 +548,39 @@ export function exposureAt(
 }
 
 /** Chebyshev-free distance from `at` to the nearest standing hostile, or `0`. */
+/**
+ * How many tiles away an ally can be and still count as **support** (T154).
+ * Three tiles is roughly one turn of movement for the reference Speed/Move
+ * range, so a soldier inside it can be reinforced before the enemy finishes
+ * the argument.
+ */
+export const ISOLATION_SUPPORT_RADIUS = 3;
+
+/**
+ * Numerical exposure at `at` (T154): hostiles that could reach the tile on
+ * their next turn minus living allies within
+ * {@link ISOLATION_SUPPORT_RADIUS}, floored at zero. Reach is the enemy's Move
+ * plus one, since it may move *and* strike. Neutral arbiters are not hostiles,
+ * and out-of-action soldiers count for neither side.
+ *
+ * Exposed so the scoring breakdown can show the term and a test can pin it
+ * without running a whole turn.
+ */
+export function isolationAt(state: BattleState, actor: Unit, at: Coord): number {
+  let threats = 0;
+  let support = 0;
+  for (const unit of state.units) {
+    if (isOutOfAction(unit) || unit.id === actor.id) continue;
+    const distance = manhattanDistance(at, unit.at);
+    if (areHostile(unit.side, actor.side)) {
+      if (distance <= unit.stats.move + 1) threats += 1;
+    } else if (unit.side === actor.side && distance <= ISOLATION_SUPPORT_RADIUS) {
+      support += 1;
+    }
+  }
+  return Math.max(0, threats - support);
+}
+
 function nearestHostileDistance(state: BattleState, actor: Unit, at: Coord): number {
   let best = Number.POSITIVE_INFINITY;
   for (const unit of state.units) {
@@ -599,6 +639,12 @@ export interface CandidateScore {
   readonly moveCost: number;
   /** Tiles to the nearest hostile (advance plans only; `0` when engaged). */
   readonly proximity: number;
+  /**
+   * Numerical exposure at the destination (T154): enemies that could reach it
+   * next turn minus allies standing within
+   * {@link ISOLATION_SUPPORT_RADIUS}, floored at zero.
+   */
+  readonly isolation: number;
   /** Active forbidding Articles the plan would break, in posting order. */
   readonly breaches: readonly ArticleId[];
   /** `true` when at least one active forbidding Article would be broken. */
@@ -710,6 +756,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
   const engaged =
     expectedDamage > 0 || healing > 0 || buffValue > 0 || cleanseValue > 0 || reviveValue > 0;
   const proximity = engaged ? 0 : nearestHostileDistance(state, actor, destination);
+  const isolation = isolationAt(state, actor, destination);
 
   const total =
     weights.damage * expectedDamage +
@@ -729,7 +776,8 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     weights.cover * cover -
     weights.exposure * exposure -
     weights.moveCost * moveCost -
-    weights.advance * proximity +
+    weights.advance * proximity -
+    weights.isolation * isolation +
     (intent === "hold" ? weights.brace : 0);
 
   return {
@@ -752,6 +800,7 @@ function scoreCandidate(inputs: ScoreInputs): CandidateScore {
     exposure,
     moveCost,
     proximity,
+    isolation,
     breaches: breachedArticleIds(breaches),
     unlawful: breaches.length > 0,
     total,

@@ -1619,6 +1619,33 @@ spec, and record the new table. Do **not** assert a specific split beyond
 
 ---
 
+## Phase 21 — Keep the line together
+
+The T152/T153 baseline exposed a systemic AI habit: each soldier advances on its
+own, so the fastest reaches the enemy first and is focus-fired. Tightening the
+Quick Battle's Speeds hid the symptom; this phase fixes the cause in the utility
+AI so every roster — campaign included — behaves sensibly.
+
+### T154 — Isolation-aware positioning in the utility AI
+- status: done
+- deps: [T095, T153]
+- files: src/ai/utility.ts, tests/unit/ai.test.ts, tests/unit/balanceBaseline.test.ts, docs/BALANCE.md
+- verify: npm run test -- --run tests/unit/ai.test.ts tests/unit/balanceBaseline.test.ts
+- done: Every candidate destination carries an `isolation` score — hostiles who could reach the tile next turn minus living allies within supporting distance — weighted by a new `isolation` term (enabled in the default and field weights), so a soldier with the line behind it prefers ground that is not surrounded; unit tests pin the term and the Quick Battle baseline is re-measured and recorded.
+
+`scoreCandidate` already values exposure at the destination, but that term is
+per-target expected damage, not numbers on the ground: a soldier stepping into
+three enemies with no ally within reach can score the same as one stepping into
+a single enemy. Add a support/threat count term: an enemy counts as threatening
+if it could reach the tile within its movement next turn, an ally counts as
+supporting if it is within a short radius, and only the excess of threats over
+supporters is penalised. Keep it data-driven (weight + radii exported), keep the
+existing weights' meaning, and prove with a focused test that the same soldier
+scores an isolated advance below a supporting one. Then re-run the T152 baseline
+and record whether the line actually stays together.
+
+---
+
 ## Research & open questions
 
 Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**
