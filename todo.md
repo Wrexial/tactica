@@ -1866,6 +1866,60 @@ battle for the boards that gain a combat contract (`millford-crossing`,
 `highland-pass`, `green-valley-forage`, `ridge-reconnaissance`). Then pin the
 invariant: every combat contract resolves to a map with a garrison.
 
+### T165 — Measure every campaign action
+- status: done
+- deps: [T164]
+- files: tests/unit/campaignBaseline.test.ts, docs/BALANCE.md
+- verify: npm run test -- --run tests/unit/campaignBaseline.test.ts
+- done: Every combat contract is built from its resolved board and played headlessly at the map's recommended level on a fixed seed set, the test asserts each run reaches a terminal state, and `docs/BALANCE.md` records the outcome/length/casualty table with the command that reproduces it.
+
+T164 proved every combat contract **deploys**; this proves every one **resolves**.
+Some actions now share boards and others reuse garrisons, and the objective term
+(T160) changed how capture/defend missions play, so a full sweep is the cheapest
+way to catch a stall or a broken pairing before content grows. Use the field AI
+on both sides, one seed per contract, the map's `recommendedLevel` for the
+company, and assert only the structural contract (finished, terminal, under the
+turn cap) — the numbers go in the document, not the test.
+
+---
+
+## Phase 27 — Make the campaign's actions fair
+
+T165 measured every action and found three orientation/balance faults. Each is
+its own task so the fixes can be measured one at a time.
+
+### T166 — Put the defender on the ground it defends
+- status: todo
+- deps: [T165]
+- files: src/data/maps/redoubt-stand.json, src/data/maps/battleMaps.ts, src/data/contracts/battles.ts, src/data/contracts/pacifications.ts, tests/unit/maps.test.ts, tests/unit/campaignBaseline.test.ts
+- verify: npm run test -- --run tests/unit/maps.test.ts tests/unit/campaignBaseline.test.ts
+- done: On every `defend` board the company deploys on or adjacent to the defended tile and no enemy starts as close to it, so the defeat rule cannot fire before the company can contest the ground; contracts that describe an assault no longer reuse a `defend` board, a map test pins the orientation, and the T165 sweep shows those actions lasting long enough to be fights.
+
+T165 showed `carry-the-pass` and `pacify-the-highlands` ending after **one**
+turn and `hold-the-redoubt`/`silence-the-battery` after three: on
+`redoubt-stand` and `highland-pass` the company starts two-plus tiles from the
+point while the enemy is as close or closer, and an enemy on the tile is an
+immediate defeat. Move the company deployment onto the defended ground (the
+redoubt crest, the pass track) and push the enemy back, then give the assault
+contracts (`carry-the-pass`, `silence-the-battery`) an assault board or objective
+rather than a defend map. Re-run the sweep and record the new rows.
+
+### T167 — Reconcile recommended levels with the company's growth
+- status: todo
+- deps: [T165]
+- files: src/engine/stats.ts, src/data/posts/*.ts, src/data/maps/*.json, docs/BALANCE.md, tests/unit/stats.test.ts, tests/unit/campaignBaseline.test.ts
+- verify: npm run test -- --run tests/unit/stats.test.ts tests/unit/campaignBaseline.test.ts
+- done: A level-1 company is a plausible starting detachment (not an order of magnitude weaker than the authored irregulars), each map's `recommendedLevel` reflects the level at which that action is a contest, and the T165 table records the after-state.
+
+A level-2 post-derived soldier has ~16 HP and ~17 ATK while every authored
+irregular carries 50–70 HP and ~30 ATK at any level, so the actions recommending
+levels 1–3 cannot be won by the field AI and all five chapter battles lose at
+their advertised level. Decide the level-1 baseline — either add a per-post
+**base stat block** to `deriveStats` (so growth multiplies on top of a
+starting line) or raise the map `recommendedLevel`s to where the company's
+linear growth matches the flat enemy line — implement it consistently, and
+re-measure. This is a D24-level decision; record it in `docs/BALANCE.md`.
+
 ---
 
 ## Research & open questions

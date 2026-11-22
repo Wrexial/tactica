@@ -256,6 +256,75 @@ cohesive line converts turns into focus fire, so small differences compound.
 Expect any future roster or AI change to require a fresh baseline run, not a
 local tweak.
 
+## Campaign actions (T165)
+
+`tests/unit/campaignBaseline.test.ts` builds **every** combat contract through
+the deployment path with a company at the map's `recommendedLevel` and plays it
+once headlessly with the shipped field AI on both sides. Reproduce with:
+
+```bash
+npm run test -- --run tests/unit/campaignBaseline.test.ts
+```
+
+**Every one of the 24 actions resolves** — no stalls, no turn-cap runs — which
+is the structural guarantee the test asserts. The measured outcomes, however,
+are a clear to-do list:
+
+| contract                 | map                   | lvl | objective    | win | turns | lost (A/B) |
+| ------------------------ | --------------------- | --: | ------------ | --- | ----: | ---------: |
+| break-the-bridge         | sainte-colombe-bridge |   1 | capture      | B   |    13 |        4/0 |
+| storm-the-farmhouse      | farmhouse-assault     |   3 | capture      | B   |    60 |        4/0 |
+| hold-the-redoubt         | redoubt-stand         |   4 | defend       | B   |     3 |        0/0 |
+| take-the-mill            | millford-crossing     |   4 | annihilation | B   |    48 |        3/0 |
+| clear-the-orchard        | orchard-skirmish      |   2 | rout         | B   |    17 |        3/0 |
+| silence-the-battery      | redoubt-stand         |   4 | defend       | B   |     3 |        0/0 |
+| clear-the-sunken-lane    | sunken-lane           |   6 | rout         | B   |   138 |        6/2 |
+| hold-the-churchyard      | churchyard-stand      |   6 | defend       | A   |    56 |        1/1 |
+| take-the-headquarters    | headquarters-raid     |   7 | capture      | B   |   118 |        6/0 |
+| carry-the-pass           | highland-pass         |   4 | defend       | B   |     1 |        0/0 |
+| crossed-sabres           | crossroads-skirmish   |   2 | survive      | A   |     6 |        1/0 |
+| the-rival-foragers       | orchard-skirmish      |   2 | rout         | B   |    17 |        3/0 |
+| pistols-at-dawn          | duel-at-dawn          |   2 | annihilation | B   |    12 |        3/0 |
+| the-roadside-ambush      | coast-road-ambush     |   3 | rout         | B   |    20 |        3/0 |
+| the-deserters-camp       | guerrilla-camp        |   3 | annihilation | B   |    12 |        3/0 |
+| the-foragers-quarrel     | orchard-skirmish      |   2 | rout         | B   |    17 |        3/0 |
+| pacify-the-coast-road    | coast-road-ambush     |   3 | rout         | B   |    18 |        3/0 |
+| clear-the-forest-bands   | blackwood-picket      |   2 | rout         | B   |    20 |        3/0 |
+| break-the-guerrilla-camp | guerrilla-camp        |   3 | annihilation | B   |    12 |        3/0 |
+| pacify-the-highlands     | highland-pass         |   4 | defend       | B   |     1 |        0/0 |
+| clear-the-green-valley   | green-valley-forage   |   3 | capture      | B   |    19 |        3/0 |
+| sweep-the-ridge          | ridge-reconnaissance  |   4 | defend       | B   |     7 |        0/0 |
+| open-the-crossroads      | crossroads-skirmish   |   2 | survive      | A   |     6 |        1/0 |
+
+Three findings, each tracked as a follow-up:
+
+1. **Defend boards are inverted.** On `redoubt-stand` and `highland-pass` the
+   company deploys two or more tiles from the point while the enemy starts as
+   close or closer, so an enemy walks onto it and the defeat rule fires in 1–3
+   turns without a fight (`carry-the-pass`, `pacify-the-highlands`,
+   `hold-the-redoubt`, `silence-the-battery`). A defending company should start
+   holding the ground it is defending.
+2. **Recommended levels are far below the authored enemy line.** A level-2
+   company has roughly 16 HP and 17 ATK; the authored irregulars have 50–70 HP
+   and ~30 ATK regardless of level. Actions recommending levels 1–3 are
+   therefore not winnable by the field AI at their advertised level, and all
+   five chapter battles lose. Either the map levels or the level-1 stat baseline
+   needs a pass (D24 gives `floor(growth × level)` with no base).
+3. **The finale is out of reach.** `take-the-headquarters` wipes a level-7
+   company 6–0 against the command garrison; the AI only wins it at level 8.
+
+None of these is a stall or a broken deployment; they are balance and scenario
+orientation work, now measured instead of guessed.
+
+## Still open
+
+- **Tune the baseline.** The D16–D24 values are a defensible starting point,
+  not a verdict; run the headless gauntlet (T130) and playtests, then record any
+  change here.
+- **FFTA's own MP regeneration is still undocumented.** `MP_(stat).md`'s FFTA
+  section remains a stub, so D20 is ours; revisit if the reference expands.
 - **Content breadth.** Formula decisions do not fix the thin campaign data
   (contracts, maps, enemies); that is future content work, not balance.
+- **Campaign action balance.** T165's table is the "before" for defend-board
+  orientation, recommended levels and the finale garrison.
 
