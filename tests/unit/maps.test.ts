@@ -767,3 +767,119 @@ describe("the Sunken Lane (T158)", () => {
     expect(chapter.trigger).toEqual({ kind: "reach-day", day: 45 });
   });
 });
+
+/* --------------------------------------------------------------------------
+ * T159 — Chapter 8: the Churchyard
+ *
+ * The finale inverts the Sunken Lane: the company holds a walled churchyard on
+ * a height-3 plateau while the enemy comes uphill through one gate and two
+ * collapsed breaches. These tests pin the plateau, the entrances, the
+ * deployment/objective validity, the garrison and the content wiring.
+ * ------------------------------------------------------------------------ */
+
+describe("the Churchyard (T159)", () => {
+  it("crowns a hill with a walled plateau reachable only through the gate or breaches", () => {
+    const map = getBattleMap("churchyard-stand");
+    expect(map.elevation, "churchyard-stand must author an elevation layer").toBeDefined();
+
+    const terrain = battleMapToTerrainMap(map);
+    // Low road, slope, plateau, and the altar itself.
+    expect(heightAt(terrain, coord(0, 4))).toBe(0);
+    expect(heightAt(terrain, coord(3, 4))).toBe(2);
+    expect(heightAt(terrain, coord(6, 3))).toBe(3);
+    expect(heightAt(terrain, coord(7, 4))).toBe(3);
+
+    // The west gate is a road gap in an otherwise solid wall.
+    expect(getTerrainDef(terrainAt(terrain, coord(5, 4))).passable).toBe(true);
+    for (const wall of [coord(5, 3), coord(5, 5)]) {
+      const surface = getTerrainDef(terrainAt(terrain, wall));
+      expect(surface.passable, `wall ${wall.x},${wall.y}`).toBe(false);
+    }
+
+    // Two collapsed stretches of wall are the only other ways in.
+    for (const breach of [coord(6, 2), coord(7, 6)]) {
+      const surface = getTerrainDef(terrainAt(terrain, breach));
+      expect(surface.passable, `breach ${breach.x},${breach.y}`).toBe(true);
+      expect(surface.blocksSight).toBe(false);
+    }
+
+    const heights = [...new Set(expandBattleMap(map).map((tile) => tile.height))].sort(
+      (a, b) => a - b,
+    );
+    expect(heights).toEqual([0, 1, 2, 3]);
+  });
+
+  it("keeps deployment, the altar objective and the approaches valid", () => {
+    const map = getBattleMap("churchyard-stand");
+    const terrain = battleMapToTerrainMap(map);
+    const objective = map.objective;
+    if (objective.kind !== "defend") {
+      throw new Error("the churchyard must be a defend objective");
+    }
+
+    expect(objective.at).toEqual({ x: 7, y: 4 });
+    expect(getTerrainDef(terrainAt(terrain, coord(7, 4))).passable).toBe(true);
+
+    for (const zone of map.deployment) {
+      for (const tile of zone.tiles) {
+        expect(
+          getTerrainDef(terrainAt(terrain, coord(tile.x, tile.y))).passable,
+          `churchyard ${zone.side} deploy ${tile.x},${tile.y}`,
+        ).toBe(true);
+      }
+    }
+
+    // Every attacker can reach the altar at Climb 2: up the road, through the
+    // gate or a breach, then across the yard.
+    const enemy = map.deployment.find((zone) => zone.side === "enemy")?.tiles ?? [];
+    expect(enemy.length).toBeGreaterThanOrEqual(5);
+    for (const from of enemy) {
+      const path = findPath(terrain, coord(from.x, from.y), coord(objective.at.x, objective.at.y), {
+        climb: 2,
+      });
+      expect(path.found, `churchyard ${from.x},${from.y} → altar`).toBe(true);
+    }
+  });
+
+  it("stations a six-troop late-game garrison inside the enemy zone", () => {
+    expect(hasOrderOfBattle("churchyard-stand")).toBe(true);
+    const order = orderOfBattleFor("churchyard-stand");
+    const map = getBattleMap("churchyard-stand");
+    const enemyTiles = map.deployment.find((zone) => zone.side === "enemy")?.tiles ?? [];
+
+    expect(order.mapId).toBe("churchyard-stand");
+    expect(order.units).toHaveLength(6);
+    expect(order.units.every((unit) => unit.level === 5)).toBe(true);
+    for (const unit of order.units) {
+      expect(
+        enemyTiles.some((tile) => tile.x === unit.at.x && tile.y === unit.at.y),
+        `${unit.enemyId} at ${unit.at.x},${unit.at.y} is in the enemy zone`,
+      ).toBe(true);
+    }
+  });
+
+  it("wires the contract, map, location and chapter together", () => {
+    const map = getBattleMap("churchyard-stand");
+    expect(map.contractId).toBe("hold-the-churchyard");
+    expect(map.objective).toEqual({ kind: "defend", at: { x: 7, y: 4 }, turns: 6 });
+    expect(combatMapForContract("hold-the-churchyard").id).toBe("churchyard-stand");
+
+    const contract = CONTRACTS["hold-the-churchyard"];
+    expect(contract.kind).toBe("battle");
+    expect(contract.chapter).toBe(8);
+    expect(contract.regionId).toBe("crossroads");
+
+    const location = getLocation("the-churchyard");
+    expect(location.regionId).toBe("crossroads");
+    expect(location.chapter).toBe(8);
+    expect(location.battleMapIds).toContain("churchyard-stand");
+
+    const chapter = STORY_CHAPTERS["the-churchyard"];
+    expect(chapter.number).toBe(8);
+    expect(chapter.contractIds).toEqual(["hold-the-churchyard"]);
+    expect(chapter.trigger).toEqual({
+      kind: "complete-contract",
+      contractId: "clear-the-sunken-lane",
+    });
+  });
+});

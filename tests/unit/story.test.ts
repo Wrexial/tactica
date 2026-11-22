@@ -348,6 +348,7 @@ describe("story spine — chapter triggers (T077)", () => {
         "crossed-sabres",
         "storm-the-farmhouse",
         "break-the-guerrilla-camp",
+        "clear-the-sunken-lane",
       ],
       // Day 45 reaches chapter 7's clock trigger (chapter 6 opens no contract).
       day: 45,

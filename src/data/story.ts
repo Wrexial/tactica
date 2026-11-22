@@ -150,6 +150,7 @@ export const STORY_CHAPTER_KEYS = [
   "the-grand-battery",
   "the-kaisers-bombardiers",
   "the-sunken-lane",
+  "the-churchyard",
 ] as const;
 export type StoryChapterKey = (typeof STORY_CHAPTER_KEYS)[number];
 
@@ -234,6 +235,16 @@ const STORY_CHAPTER_DATA = {
     // the column's retreat is on a clock, not on a mission.
     trigger: { kind: "reach-day", day: 45 },
     contractIds: ["clear-the-sunken-lane"],
+  },
+  "the-churchyard": {
+    name: "The Churchyard",
+    description:
+      "The lane is cleared and the column is withdrawing. The company takes the churchyard above the crossroads and holds it through the afternoon while the last wagons pass.",
+    flavour:
+      "The church is the only stone for a mile, and every man on the hill knows what that makes it.",
+    number: 8,
+    trigger: { kind: "complete-contract", contractId: "clear-the-sunken-lane" },
+    contractIds: ["hold-the-churchyard"],
   },
 } satisfies Record<StoryChapterKey, StoryChapterData>;
 

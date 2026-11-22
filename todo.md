@@ -1738,6 +1738,23 @@ chapter 6 opens no contract that could trigger it. Keep every deployment tile
 passable and every objective tile reachable, and pin the height inversion in the
 map tests.
 
+### T159 — Chapter 8, "Hold the Churchyard"
+- status: done
+- deps: [T158]
+- files: src/data/maps/churchyard-stand.json, src/data/maps/battleMaps.ts, src/data/maps/locations.ts, src/data/enemies/ordersOfBattle.ts, src/data/contracts/battles.ts, src/data/story.ts, tests/unit/maps.test.ts, tests/unit/story.test.ts
+- verify: npm run test -- --run tests/unit/maps.test.ts tests/unit/story.test.ts tests/unit/content.test.ts tests/unit/battleSetup.test.ts
+- done: The campaign has a defending finale: a 13×9 hilltop churchyard on a height-3 plateau with a single gate and two breaches, the company deployed around the altar and six late-game irregulars on the low road, a `defend` objective for six turns, a chapter-8 contract gated behind clearing the Sunken Lane, a matching location and a story chapter triggered by that completion; the board validates and the siege resolves headlessly.
+
+Where the Sunken Lane made the company assault low ground, the finale inverts
+the roles: the company holds the **high ground** while the column withdraws.
+The walled churchyard sits on a height-3 plateau reachable only through a
+one-tile west gate or two collapsed breaches (rubble), so the enemy must funnel
+uphill under fire while the company's job is simply to stand on the altar tile
+for six turns. Keep the Totema structure intact — all five Guard Sorties are
+already unlocked by chapter 6, so chapter 8 opens a battle, not a formation.
+Trigger the chapter on completing `clear-the-sunken-lane` (chapter 7, so the
+spine's reachability rule holds) and update the story test's completion facts.
+
 ---
 
 ## Research & open questions

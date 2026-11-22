@@ -64,6 +64,7 @@ export const LOCATION_KEYS = [
   "the-ridge",
   "the-millford",
   "the-sunken-lane",
+  "the-churchyard",
 ] as const;
 
 /** The stable id of every authored location. */
@@ -203,6 +204,17 @@ const LOCATION_DATA = {
     terrain: "road",
     battleMapIds: ["sunken-lane"],
     chapter: 7,
+  },
+  "the-churchyard": {
+    name: "The Churchyard",
+    description:
+      "A walled churchyard on a bare hill above the crossroads, its stone the only cover for a mile and its gate the only way in for a cart.",
+    flavour:
+      "The church is the only stone for a mile, and every man on the hill knows what that makes it.",
+    regionId: "crossroads",
+    terrain: "village",
+    battleMapIds: ["churchyard-stand"],
+    chapter: 8,
   },
   "the-millford": {
     name: "The Millford",

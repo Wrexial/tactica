@@ -1,0 +1,58 @@
+{
+  "id": "churchyard-stand",
+  "name": "The Churchyard Stand",
+  "description": "A walled churchyard crowns a bare hill above the crossroads. The company holds the high ground while the column withdraws; the rearguard must break in through the gate or the breaches to take the altar.",
+  "flavour": "The church is the only stone for a mile, and every man on the hill knows what that makes it.",
+  "locationId": "the-churchyard",
+  "width": 13,
+  "height": 9,
+  "layout": [
+    ".....%%%.....",
+    "....%%%%%....",
+    "...%%WxWWW%..",
+    "...%%W###W%..",
+    "======###W%..",
+    "...%%W###W%..",
+    "...%%WWxWW%..",
+    "....%%%%%....",
+    ".....%%%....."
+  ],
+  "elevation": [
+    "0000111110000",
+    "0001222221000",
+    "0012233332100",
+    "0012233332100",
+    "0012233332100",
+    "0012233332100",
+    "0012233332100",
+    "0001222221000",
+    "0000111110000"
+  ],
+  "deployment": [
+    {
+      "side": "company",
+      "tiles": [
+        { "x": 6, "y": 3 },
+        { "x": 7, "y": 3 },
+        { "x": 8, "y": 3 },
+        { "x": 6, "y": 4 },
+        { "x": 8, "y": 4 },
+        { "x": 7, "y": 5 }
+      ]
+    },
+    {
+      "side": "enemy",
+      "tiles": [
+        { "x": 0, "y": 3 },
+        { "x": 1, "y": 3 },
+        { "x": 0, "y": 4 },
+        { "x": 1, "y": 4 },
+        { "x": 0, "y": 5 },
+        { "x": 1, "y": 5 }
+      ]
+    }
+  ],
+  "objective": { "kind": "defend", "at": { "x": 7, "y": 4 }, "turns": 6 },
+  "recommendedLevel": 6,
+  "contractId": "hold-the-churchyard"
+}

@@ -160,6 +160,22 @@ describe("buildBattleFromContract (T118)", () => {
     expect(battle.objective?.objective).toEqual({ kind: "rout", defeated: 3 });
   });
 
+  it("deploys the Churchyard siege (T159)", () => {
+    const siegeContract = CONTRACTS["hold-the-churchyard"];
+    const siegeMap = BATTLE_MAPS["churchyard-stand"];
+    const battle = buildBattleFromContract(SEED, companyOf(6), siegeContract, siegeMap);
+
+    const companies = battle.units.filter((unit) => unit.side === "company");
+    const enemies = battle.units.filter((unit) => unit.side === "enemy");
+    expect(companies).toHaveLength(6);
+    expect(enemies).toHaveLength(6);
+    expect(battle.objective?.objective).toEqual({
+      kind: "defend",
+      at: { x: 7, y: 4 },
+      turns: 6,
+    });
+  });
+
   it("re-derives company stats from the primary post and deploys at full strength", () => {
     const source = member("unit-0", "Soldier 0", "fusilier");
     const wounded = createUnit({

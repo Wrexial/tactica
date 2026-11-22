@@ -130,6 +130,22 @@ export const BATTLE_CONTRACTS = parseContracts({
     regionId: "crossroads",
     chapter: 7,
   },
+  "hold-the-churchyard": {
+    name: "Hold the Churchyard",
+    description:
+      "The column is withdrawing through the crossroads and the rearguard is coming up the hill. Hold the churchyard and the altar for six turns until the last wagon is past.",
+    flavour:
+      "The church is the only stone for a mile, and every man on the hill knows what that makes it.",
+    kind: "battle",
+    fee: 360,
+    requires: [
+      { kind: "post", id: "colour-guard" },
+      { kind: "unit", count: 5 },
+    ],
+    reward: { crowns: 2200, ap: 100, experience: 80, honours: 3, itemIds: ["tower-shield"] },
+    regionId: "crossroads",
+    chapter: 8,
+  },
   "carry-the-pass": {
     name: "Carry the Pass",
     description:

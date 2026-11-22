@@ -193,6 +193,20 @@ export const ORDERS_OF_BATTLE: Readonly<Partial<Record<BattleMapKey, OrderOfBatt
     ],
   },
 
+  /* ----- The churchyard -------------------------------------------------- */
+
+  "churchyard-stand": {
+    mapId: "churchyard-stand",
+    units: [
+      { enemyId: "veteran-serjeant", level: 5, at: { x: 0, y: 3 } },
+      { enemyId: "line-deserter", level: 5, at: { x: 1, y: 3 } },
+      { enemyId: "pioneer-section", level: 5, at: { x: 0, y: 4 } },
+      { enemyId: "sapper-party", level: 5, at: { x: 1, y: 4 } },
+      { enemyId: "partisan-band", level: 5, at: { x: 0, y: 5 } },
+      { enemyId: "pass-sniper", level: 5, at: { x: 1, y: 5 } },
+    ],
+  },
+
   /* ----- The dawn duel --------------------------------------------------- */
 
   "duel-at-dawn": {
