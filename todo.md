@@ -1667,7 +1667,7 @@ to CI, so normalise the surface first. Keep this commit mechanical: run the
 script, confirm the diff is formatting only, and re-run the suite.
 
 ### T156 — Add a CI workflow for lint, types, tests and e2e
-- status: todo
+- status: done
 - deps: [T155]
 - files: .github/workflows/ci.yml
 - verify: npm run lint

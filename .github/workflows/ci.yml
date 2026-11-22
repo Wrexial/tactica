@@ -1,0 +1,96 @@
+name: CI
+
+# Every push and pull request runs the checks the project documents: lint,
+# formatting, types, the unit suite and the production build, plus the
+# Playwright e2e suite. Deployment is handled separately by deploy.yml.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Read-only: CI never writes to the repository.
+permissions:
+  contents: read
+
+# A newer push supersedes an in-flight run for the same ref, so the latest
+# commit is always the one reported.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Lint, format, types, unit tests, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # Same pin as the deploy workflow (.nvmrc), so CI and the release
+          # build use one Node version.
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Unit tests
+        # The one-shot form used in CI; `npm run test` alone is the watcher.
+        run: npm run test -- --run
+
+      - name: Production build
+        run: npm run build
+
+  e2e:
+    name: End-to-end (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        # Keyed on the lockfile, which pins the Playwright version; a cached
+        # Chromium avoids re-downloading it on every run.
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: End-to-end tests
+        # playwright.config.ts boots `npm run build && npm run preview`, retries
+        # once under CI and reports through the GitHub annotations.
+        run: npm run test:e2e
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
