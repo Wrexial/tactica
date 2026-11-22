@@ -32,6 +32,19 @@
  * = more damage"). Only the **initiator's** pool is considered, matching the
  * reference; linkers spend nothing.
  *
+ * ## The firing line
+ *
+ * The reference also says more characters joining a combo increases its damage
+ * but gives no number. T150 authors a per-linker term:
+ *
+ * ```text
+ *   FinalMultiplier = (10 + 4 × honour + 2 × min(linkers, 4)) / 10
+ * ```
+ *
+ * Each chaining ally is worth `2/10` (20%) on every shot, capped at four
+ * allies so a crowd cannot dwarf the Honour commitment. At zero linkers the
+ * formula is exactly FFTA's `(10 + 4×JP)/10`, so this is a pure addition.
+ *
  * ## Chain range
  *
  * The reference gives each combo ability its own join range (1 to 6 tiles). The
@@ -101,6 +114,23 @@ export const VOLHONOUR_DIVISOR = 10;
  * `Bow Combo`, …) set {@link VolleySpec.linkRange} explicitly.
  */
 export const DEFAULT_VOLLEY_LINK_RANGE = 1;
+
+/**
+ * Multiplier points each chaining ally adds (T150). The reference says more
+ * characters joining a combo increases its damage
+ * (`docs/wiki/pages/Combo_(Tactics_Advance).md`) without giving a number, so
+ * this is **authored balance data**: every linker adds `2/10` to the multiplier,
+ * i.e. +20% power on every shot. Two linkers therefore add as much as two
+ * committed Honour.
+ */
+export const VOLHONOUR_PER_LINKER = 2;
+
+/**
+ * Largest firing line that still adds multiplier points (T150). Beyond this the
+ * line still fires, but the bonus plateaus so a crowd cannot dwarf the Honour
+ * commitment (10 Honour is worth +400%, the cap is worth +80%).
+ */
+export const VOLHONOUR_MAX_LINKERS = 4;
 
 /* --------------------------------------------------------------------------
  * Authored action data
@@ -173,40 +203,70 @@ export function volleyHonourNumerator(honour: number): number {
 }
 
 /**
- * The FFTA combo multiplier as an exact rational, for a UI forecast:
- * `{ numerator, denominator }` = `(10 + 4×honour) / 10`. Floating point is
- * deliberately avoided (`agents.md` §2: integer determinism).
+ * The multiplier points contributed by `linkers` chaining allies (T150):
+ * `VOLHONOUR_PER_LINKER × min(linkers, VOLHONOUR_MAX_LINKERS)`. Negative counts
+ * are rejected; counts above the cap are clamped rather than throwing, because
+ * a crowded volley is a legal battlefield state.
  */
-export function volleyHonourMultiplier(honour: number): {
-  readonly numerator: number;
-  readonly denominator: number;
-} {
-  return { numerator: volleyHonourNumerator(honour), denominator: VOLHONOUR_DIVISOR };
+export function volleyLinkerNumerator(linkers: number): number {
+  if (!Number.isInteger(linkers) || linkers < 0) {
+    throw new RangeError(
+      `volley.linkers must be a non-negative integer, received ${String(linkers)}`,
+    );
+  }
+  return VOLHONOUR_PER_LINKER * Math.min(linkers, VOLHONOUR_MAX_LINKERS);
 }
 
 /**
- * Scale an ability's authored `power` term by the committed Honour:
- * `floor(power × (10 + 4×honour) / 10)`. This is how the multiplier reaches the
- * damage rules (T033–T036) without duplicating their arithmetic — the executor
- * (T041) already reads each effect's `power`.
+ * The full multiplier numerator for a volley: `10 + 4×honour + 2×linkers`
+ * (capped), keeping the FFTA shape intact at zero linkers. Composed from
+ * {@link volleyHonourNumerator} and {@link volleyLinkerNumerator} so a forecast
+ * can show the two halves separately.
+ */
+export function volleyMultiplierNumerator(honour: number, linkers = 0): number {
+  return volleyHonourNumerator(honour) + volleyLinkerNumerator(linkers);
+}
+
+/**
+ * The Volley multiplier as an exact rational, for a UI forecast:
+ * `{ numerator, denominator }` = `(10 + 4×honour + 2×min(linkers, cap)) / 10`.
+ * Floating point is deliberately avoided (`agents.md` §2: integer
+ * determinism).
+ */
+export function volleyHonourMultiplier(
+  honour: number,
+  linkers = 0,
+): {
+  readonly numerator: number;
+  readonly denominator: number;
+} {
+  return { numerator: volleyMultiplierNumerator(honour, linkers), denominator: VOLHONOUR_DIVISOR };
+}
+
+/**
+ * Scale an ability's authored `power` term for a volley:
+ * `floor(power × (10 + 4×honour + 2×min(linkers, cap)) / 10)`. This is how the
+ * multiplier reaches the damage rules (T033–T036) without duplicating their
+ * arithmetic — the executor (T041) already reads each effect's `power`.
  *
  * Truncation happens once, at the boundary, so the same honest integer enters
  * the damage formula on every replay.
  *
  * ```ts
- * scaleVolleyPower(100, 1);  // 140
- * scaleVolleyPower(100, 5);  // 300
- * scaleVolleyPower(100, 10); // 500
+ * scaleVolleyPower(100, 1);     // 140  (honour only)
+ * scaleVolleyPower(100, 0, 2);  // 140  (two linkers, no honour)
+ * scaleVolleyPower(100, 5);     // 300
+ * scaleVolleyPower(100, 10);    // 500
  * ```
  *
- * Throws a `RangeError` when `power` is not an integer or `honour` is not a
- * non-negative integer.
+ * Throws a `RangeError` when `power` is not an integer, `honour` is not a
+ * non-negative integer, or `linkers` is malformed.
  */
-export function scaleVolleyPower(power: number, honour: number): number {
+export function scaleVolleyPower(power: number, honour: number, linkers = 0): number {
   if (!Number.isInteger(power)) {
     throw new RangeError(`volley.power must be an integer, received ${String(power)}`);
   }
-  const numerator = volleyHonourNumerator(honour);
+  const numerator = volleyMultiplierNumerator(honour, linkers);
   return Math.floor((power * numerator) / VOLHONOUR_DIVISOR);
 }
 
@@ -270,8 +330,8 @@ export function volleyLinkers(
  * Effect scaling
  * ------------------------------------------------------------------------ */
 
-/** Apply the honour multiplier to whichever power term an effect carries. */
-function scaleVolleyEffect(effect: AbilityEffect, honour: number): AbilityEffect {
+/** Apply the volley multiplier to whichever power term an effect carries. */
+function scaleVolleyEffect(effect: AbilityEffect, honour: number, linkers: number): AbilityEffect {
   switch (effect.kind) {
     case "steel":
     case "powder":
@@ -279,7 +339,7 @@ function scaleVolleyEffect(effect: AbilityEffect, honour: number): AbilityEffect
     case "drain":
     case "heal":
     case "revive":
-      return { ...effect, power: scaleVolleyPower(effect.power, honour) };
+      return { ...effect, power: scaleVolleyPower(effect.power, honour, linkers) };
     case "condition":
     case "cleanse":
       // Conditions and cleanses carry no power term; massed fire does not make
@@ -289,15 +349,15 @@ function scaleVolleyEffect(effect: AbilityEffect, honour: number): AbilityEffect
 }
 
 /**
- * A copy of `spec` whose power terms are scaled by the committed Honour. The
- * original is never mutated; the returned spec is what each participant's shot
- * is resolved against.
+ * A copy of `spec` whose power terms are scaled by the committed Honour and the
+ * number of chaining allies. The original is never mutated; the returned spec
+ * is what each participant's shot is resolved against.
  */
-export function scaleVolleySpec(spec: VolleySpec, honour: number): AbilitySpec {
+export function scaleVolleySpec(spec: VolleySpec, honour: number, linkers = 0): AbilitySpec {
   return {
     ...spec,
-    power: scaleVolleyPower(spec.power, honour),
-    effects: spec.effects.map((effect) => scaleVolleyEffect(effect, honour)),
+    power: scaleVolleyPower(spec.power, honour, linkers),
+    effects: spec.effects.map((effect) => scaleVolleyEffect(effect, honour, linkers)),
   };
 }
 
@@ -424,7 +484,9 @@ export function executeVolley(
   };
 
   const linkers = volleyLinkers(working, spent.unit, targeting.center, linkRange);
-  const scaled = scaleVolleySpec(spec, honour);
+  // T150 — the firing line strengthens the volley, so scale with its size (the
+  // same list that is about to fire) as well as the committed Honour.
+  const scaled = scaleVolleySpec(spec, honour, linkers.length);
 
   const fire = (participant: Unit): void => {
     const shot = executeAbility(working, participant, scaled, target, rng, options);

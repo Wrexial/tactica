@@ -5,9 +5,13 @@ import {
   executeVolley,
   scaleVolleyPower,
   scaleVolleySpec,
+  VOLHONOUR_MAX_LINKERS,
+  VOLHONOUR_PER_LINKER,
   volleyHonourMultiplier,
   volleyHonourNumerator,
+  volleyLinkerNumerator,
   volleyLinkers,
+  volleyMultiplierNumerator,
   volleyLinkRange,
   type VolleySpec,
 } from "../../src/engine/actions/volley";
@@ -25,10 +29,11 @@ import { createUnit, type Unit, type UnitInit } from "../../src/engine/unit";
  * T061 — Volleys (combos)
  *
  * Pins the task's "done when": **the initiator spends Honour; adjacent allies
- * chain in; damage scales with Honour spent.** A Volley is the retheme's FFTA
- * Combo (`docs/wiki/pages/Combo_(Tactics_Advance).md`): the initiator commits
- * Judge Points, eligible neighbours fire too, and the FFTA multiplier
- * `(10 + 4×JP)/10` scales the damage. The tests also pin purity and
+ * chain in; damage scales with Honour spent** — and, since T150, with the size
+ * of the firing line. A Volley is the retheme's FFTA Combo
+ * (`docs/wiki/pages/Combo_(Tactics_Advance).md`): the initiator commits Judge
+ * Points, eligible neighbours fire too, and the multiplier
+ * `(10 + 4×JP + 2×min(linkers, 4))/10` scales the damage. The tests also pin purity and
  * determinism, because a battle replays from a seed plus a command log
  * (`agents.md` §2).
  * ------------------------------------------------------------------------ */
@@ -187,6 +192,30 @@ describe("Volley honour multiplier", () => {
     expect(scaleVolleyPower(55, 1)).toBe(77); // floor(55 × 14 / 10)
   });
 
+  it("adds a bounded term per chaining ally (T150)", () => {
+    expect(VOLHONOUR_PER_LINKER).toBe(2);
+    expect(VOLHONOUR_MAX_LINKERS).toBe(4);
+
+    expect(volleyLinkerNumerator(0)).toBe(0);
+    expect(volleyLinkerNumerator(1)).toBe(2);
+    expect(volleyLinkerNumerator(2)).toBe(4);
+    expect(volleyLinkerNumerator(VOLHONOUR_MAX_LINKERS)).toBe(8);
+    // The bonus plateaus; a bigger line still fires but adds no more multiplier.
+    expect(volleyLinkerNumerator(9)).toBe(8);
+
+    // Zero linkers is exactly FFTA's curve.
+    expect(volleyMultiplierNumerator(3)).toBe(22);
+    expect(volleyMultiplierNumerator(3, 2)).toBe(26);
+    expect(volleyHonourMultiplier(3, 2)).toEqual({ numerator: 26, denominator: 10 });
+
+    // Honour and linkers compose in the power term.
+    expect(scaleVolleyPower(100, 0, 1)).toBe(120);
+    expect(scaleVolleyPower(100, 0, 2)).toBe(140);
+    expect(scaleVolleyPower(100, 0, 10)).toBe(180);
+    expect(scaleVolleyPower(100, 1, 2)).toBe(180);
+    expect(scaleVolleyPower(100, 5, 2)).toBe(340);
+  });
+
   it("scales every damaging effect but leaves conditions alone", () => {
     const scaled = scaleVolleySpec(
       volleyFire({
@@ -201,11 +230,13 @@ describe("Volley honour multiplier", () => {
     expect(volleyFire().effects[0]).toMatchObject({ power: 100 });
   });
 
-  it("rejects malformed powers and honours", () => {
+  it("rejects malformed powers, honours and linker counts", () => {
     expect(() => scaleVolleyPower(1.5, 1)).toThrow(RangeError);
     expect(() => scaleVolleyPower(100, -1)).toThrow(RangeError);
     expect(() => scaleVolleyPower(100, 1.5)).toThrow(RangeError);
     expect(() => volleyHonourNumerator(-2)).toThrow(RangeError);
+    expect(() => volleyLinkerNumerator(-1)).toThrow(RangeError);
+    expect(() => volleyLinkerNumerator(1.5)).toThrow(RangeError);
   });
 });
 
@@ -393,11 +424,32 @@ describe("executeVolley — damage scales with Honour spent", () => {
     const low = run(state, volleyFire(), 1);
     const high = run(state, volleyFire(), 5);
 
-    // Honour 1 → ×1.4: initiator 21, each ally 7. Honour 5 → ×3.0: 45 / 15.
-    expect(totalDamage(low.events)).toBe(21 + 7 + 7);
-    expect(totalDamage(high.events)).toBe(45 + 15 + 15);
+    // Two linkers add 4 points: Honour 1 → ×1.8 (27 + 9 + 9), Honour 5 → ×3.4
+    // (51 + 17 + 17).
+    expect(totalDamage(low.events)).toBe(27 + 9 + 9);
+    expect(totalDamage(high.events)).toBe(51 + 17 + 17);
     expect(totalDamage(high.events)).toBeGreaterThan(totalDamage(low.events));
     expect(findUnit(high.state, ENEMY_ID)!.hp).toBeLessThan(findUnit(low.state, ENEMY_ID)!.hp);
+  });
+
+  it("deals more damage when more allies join the firing line (T150)", () => {
+    const linked = makeBattle();
+    const aloneUnits = [
+      makeUnit(ACTOR_ID, coord(3, 3), "company", ACTOR_STATS, { judgePoints: 8 }),
+      makeUnit(ALLY_A_ID, coord(1, 1), "company", ALLY_STATS),
+      makeUnit(ALLY_B_ID, coord(1, 2), "company", ALLY_STATS),
+      makeUnit(ENEMY_ID, coord(4, 3), "enemy", ENEMY_STATS),
+    ];
+    const alone = makeBattle(aloneUnits);
+
+    const withLine = run(linked, volleyFire(), 1);
+    const withoutLine = run(alone, volleyFire(), 1);
+
+    expect(withLine.linkers).toEqual([ALLY_A_ID, ALLY_B_ID]);
+    expect(withoutLine.linkers).toEqual([]);
+    // Same Honour, more shooters *and* a heavier multiplier: 27 + 9 + 9 vs 21.
+    expect(totalDamage(withLine.events)).toBe(45);
+    expect(totalDamage(withoutLine.events)).toBe(21);
   });
 
   it("scales the opening shot even before anyone joins", () => {

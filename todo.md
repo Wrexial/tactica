@@ -1533,7 +1533,7 @@ soldier's maximum (authored, floor, minimum 1), keep `amount` for explicit
 schedules, and pin both paths plus the Shaken/Routed interaction in tests.
 
 ### T150 — Volley damage counts the firing line
-- status: todo
+- status: done
 - deps: []
 - files: src/engine/actions/volley.ts, tests/unit/volley.test.ts
 - verify: npm run test -- --run tests/unit/volley.test.ts
