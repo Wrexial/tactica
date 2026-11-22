@@ -1521,7 +1521,7 @@ describe("runTurnUpkeep — ordered per-turn upkeep (T129)", () => {
 
     const actor = findUnit(result.state, actorId)!;
     expect(actor.hp).toBe(BASE_STATS.hp - 12); // Bleeding ticked.
-    expect(actor.mp).toBe(15); // 10 + the 5-point regen step.
+    expect(actor.mp).toBe(14); // 10 + 20% of the 20-point pool (T149).
     expect(hasActiveCondition(actor, "poison")).toBe(true);
     // Charge spent (threshold deducted) and the per-turn budget cleared.
     expect(chargeOf(result.state.tempo, actorId)).toBe(
@@ -1557,7 +1557,7 @@ describe("runTurnUpkeep — ordered per-turn upkeep (T129)", () => {
     const actor = findUnit(result.state, actorId)!;
 
     expect(actor.hp).toBe(BASE_STATS.hp - 12);
-    expect(actor.mp).toBe(15);
+    expect(actor.mp).toBe(14); // 20% of the 20-point pool (T149).
     expect(
       result.events.some((event) => event.kind === "damaged" && event.unitId === actorId),
     ).toBe(true);

@@ -1517,7 +1517,7 @@ round-trip the new field in `serialize.ts`. Pin the ordering in unit tests and
 update the combat-loop contract.
 
 ### T149 — Élan regeneration scales with the pool
-- status: todo
+- status: done
 - deps: []
 - files: src/engine/rules/elan.ts, tests/unit/elan.test.ts
 - verify: npm run test -- --run tests/unit/elan.test.ts

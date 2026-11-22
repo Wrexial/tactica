@@ -38,10 +38,11 @@
  *   a byte-identical unit and event list.
  * - **State in, state out** — inputs are never mutated; every helper returns a
  *   new unit plus the ordered {@link BattleEvent}s describing the change.
- * - **Data-driven** — the regeneration amount, interval and morale threshold
+ * - **Data-driven** — the regeneration rule, interval and morale threshold
  *   live here as named constants ({@link ElanRegenSchedule},
  *   {@link SHAKEN_ELAN_RATIO}) rather than being buried in logic, per the
- *   "all tunables in data" rule. Phase 13 owns the final balance pass.
+ *   "all tunables in data" rule. T149 settled the default: recovery is a
+ *   share of the soldier's maximum pool, not a flat amount.
  * - **Integer in, integer out** — malformed costs, amounts and ticks are
  *   rejected at the boundary rather than silently rounded.
  *
@@ -76,17 +77,23 @@ export const ROUTED_CONDITION: ConditionId = asConditionId("routed");
  * ------------------------------------------------------------------------ */
 
 /**
- * Élan restored each regeneration step. Authored balance data: the scraped
- * `MP_(stat)` page does not document FFTA's regeneration rule, so this is our
- * own value, kept deliberately small so Élan is a real constraint.
+ * Share of a soldier's **maximum** Élan restored each regeneration step, in
+ * percent (T149). Authored balance data: the scraped `MP_(stat)` page does not
+ * document FFTA's regeneration rule, so this is our own value.
+ *
+ * A proportional recovery is the right shape because Élan doubles as morale and
+ * is derived from each post's `mp` growth: a flat amount would refill a small
+ * pool far faster, in relative terms, than a large one, and the Shaken/Routed
+ * thresholds would fire at different rates for the same play. Twenty percent
+ * restores a 20-Élan soldier by 4 and a 40-Élan officer by 8 per step.
  */
-export const ELAN_REGEN_AMOUNT = 5;
+export const ELAN_REGEN_RATIO_PERCENT = 20;
 
 /**
- * Tempo ticks between regeneration steps. Together with
- * {@link ELAN_REGEN_AMOUNT} this is the "tunable schedule" the task calls for:
- * a battle calls {@link regenerateElan} every tick and recovery lands only on
- * the interval.
+ * Tempo ticks between regeneration steps. Together with the amount rule this is
+ * the "tunable schedule" the task calls for: a battle calls
+ * {@link regenerateElan} every tick and recovery lands only on the interval.
+ * At the reference Speed range this is roughly one step per soldier turn.
  */
 export const ELAN_REGEN_INTERVAL_TICKS = 10;
 
@@ -98,22 +105,54 @@ export const ELAN_REGEN_INTERVAL_TICKS = 10;
 export const SHAKEN_ELAN_RATIO = 0.5;
 
 /**
- * The regeneration schedule. Passing a schedule (rather than reading the
- * constants directly) keeps the balance numbers swappable in tests and future
- * content without touching this module.
+ * The regeneration schedule. Exactly one amount rule must be present:
+ *
+ * - `ratioPercent` — restore that share of the soldier's **maximum** pool
+ *   (floor, minimum 1). This is the default and the shape T149 settled on.
+ * - `amount` — restore a flat number of points. Kept for content and tests that
+ *   want a fixed recovery.
+ *
+ * Passing a schedule (rather than reading the constants directly) keeps the
+ * balance numbers swappable in tests and future content without touching this
+ * module.
  */
 export interface ElanRegenSchedule {
-  /** Élan restored per regeneration step (`>= 0`). */
-  readonly amount: number;
+  /** Flat Élan restored per regeneration step (`>= 0`). */
+  readonly amount?: number;
+  /** Percentage of the maximum pool restored per step (`0..100`). */
+  readonly ratioPercent?: number;
   /** Ticks between regeneration steps (`>= 1`). */
   readonly intervalTicks: number;
 }
 
-/** The default schedule: {@link ELAN_REGEN_AMOUNT} every {@link ELAN_REGEN_INTERVAL_TICKS} ticks. */
+/**
+ * The default schedule: {@link ELAN_REGEN_RATIO_PERCENT} of the soldier's
+ * maximum pool every {@link ELAN_REGEN_INTERVAL_TICKS} ticks.
+ */
 export const DEFAULT_ELAN_REGEN_SCHEDULE: ElanRegenSchedule = {
-  amount: ELAN_REGEN_AMOUNT,
+  ratioPercent: ELAN_REGEN_RATIO_PERCENT,
   intervalTicks: ELAN_REGEN_INTERVAL_TICKS,
 };
+
+/**
+ * How much Élan `unit` restores for one regeneration step of `schedule`
+ * (before the pool cap is applied): the flat `amount`, or
+ * `max(1, floor(max × ratioPercent / 100))` for a proportional schedule. A
+ * soldier with no Élan pool still evaluates to 1, but restores nothing because
+ * there is no room — see {@link regenerateElan}.
+ *
+ * Exposed so the UI can show "this step restores N" without duplicating the
+ * rule, and pinned by the T149 tests.
+ */
+export function regenAmountFor(
+  unit: Unit,
+  schedule: ElanRegenSchedule = DEFAULT_ELAN_REGEN_SCHEDULE,
+): number {
+  assertSchedule(schedule);
+  const ratio = schedule.ratioPercent;
+  if (ratio !== undefined) return Math.max(1, Math.floor((unit.stats.mp * ratio) / 100));
+  return schedule.amount ?? 0;
+}
 
 /* --------------------------------------------------------------------------
  * Morale states
@@ -277,7 +316,7 @@ export function regenerateElan(
   if (!isRegenTick(tick, schedule)) return { unit, amount: 0, events: [] };
 
   const room = unit.stats.mp - unit.mp;
-  const gained = Math.min(schedule.amount, room);
+  const gained = Math.min(regenAmountFor(unit, schedule), room);
   if (gained <= 0) return { unit, amount: 0, events: [] };
 
   const updated = withMp(unit, unit.mp + gained);
@@ -401,7 +440,21 @@ function assertAmount(amount: number, label: string): void {
 }
 
 function assertSchedule(schedule: ElanRegenSchedule): void {
-  assertAmount(schedule.amount, "elan.schedule.amount");
+  const hasAmount = schedule.amount !== undefined;
+  const hasRatio = schedule.ratioPercent !== undefined;
+  if (hasAmount === hasRatio) {
+    throw new RangeError("elan.schedule must define exactly one of amount or ratioPercent");
+  }
+  if (hasAmount) {
+    assertAmount(schedule.amount as number, "elan.schedule.amount");
+  } else {
+    const ratio = schedule.ratioPercent as number;
+    if (!Number.isInteger(ratio) || ratio < 0 || ratio > 100) {
+      throw new RangeError(
+        `elan.schedule.ratioPercent must be an integer 0..100, received ${String(ratio)}`,
+      );
+    }
+  }
   if (!Number.isInteger(schedule.intervalTicks) || schedule.intervalTicks < 1) {
     throw new RangeError(
       `elan.schedule.intervalTicks must be a positive integer, received ${String(schedule.intervalTicks)}`,

@@ -6,8 +6,8 @@ import { coord } from "../../src/engine/grid";
 import { asPostId, asUnitId } from "../../src/engine/ids";
 import {
   DEFAULT_ELAN_REGEN_SCHEDULE,
-  ELAN_REGEN_AMOUNT,
   ELAN_REGEN_INTERVAL_TICKS,
+  ELAN_REGEN_RATIO_PERCENT,
   MORALE_STATES,
   ROUTED_CONDITION,
   SHAKEN_CONDITION,
@@ -18,6 +18,7 @@ import {
   isRouted,
   isShaken,
   moraleStateOf,
+  regenAmountFor,
   regenerateElan,
   settleElan,
   shakenThreshold,
@@ -201,8 +202,9 @@ describe("spendElan — actions pay their cost", () => {
 describe("regenerateElan — the tunable schedule", () => {
   it("restores Élan on schedule ticks only", () => {
     expect(ELAN_REGEN_INTERVAL_TICKS).toBe(10);
-    expect(ELAN_REGEN_AMOUNT).toBe(5);
+    expect(ELAN_REGEN_RATIO_PERCENT).toBe(20);
 
+    // 20% of a 20-point pool is 4 per step.
     const unit = makeUnit({ mp: 4 });
 
     expect(isRegenTick(0)).toBe(false);
@@ -214,15 +216,35 @@ describe("regenerateElan — the tunable schedule", () => {
     expect(regenerateElan(unit, 5).events).toEqual([]);
 
     const onCycle = regenerateElan(unit, 10);
-    expect(onCycle.amount).toBe(ELAN_REGEN_AMOUNT);
-    expect(onCycle.unit.mp).toBe(9);
+    expect(onCycle.amount).toBe(4);
+    expect(onCycle.unit.mp).toBe(8);
     expect(onCycle.events[0]).toMatchObject({
       kind: "mpChanged",
       tick: 10,
-      delta: ELAN_REGEN_AMOUNT,
-      mpAfter: 9,
+      delta: 4,
+      mpAfter: 8,
       reason: "regenerated",
     });
+  });
+
+  it("restores a share of each soldier's own maximum pool (T149)", () => {
+    const small = makeUnit({ stats: { ...STATS, mp: 15 }, mp: 0 });
+    const large = makeUnit({ stats: { ...STATS, mp: 45 }, mp: 0 });
+
+    expect(regenAmountFor(small)).toBe(3);
+    expect(regenAmountFor(large)).toBe(9);
+    expect(regenerateElan(small, 10).amount).toBe(3);
+    expect(regenerateElan(large, 10).amount).toBe(9);
+
+    // Morale stays proportional too: Shaken at half of each pool.
+    expect(shakenThreshold(small)).toBe(7);
+    expect(shakenThreshold(large)).toBe(22);
+  });
+
+  it("restores at least one point for a tiny pool", () => {
+    const tiny = makeUnit({ stats: { ...STATS, mp: 4 }, mp: 0 });
+    expect(regenAmountFor(tiny)).toBe(1);
+    expect(regenerateElan(tiny, 10).amount).toBe(1);
   });
 
   it("never regenerates past the maximum", () => {
@@ -252,7 +274,7 @@ describe("regenerateElan — the tunable schedule", () => {
 
   it("uses the documented default schedule", () => {
     expect(DEFAULT_ELAN_REGEN_SCHEDULE).toEqual({
-      amount: ELAN_REGEN_AMOUNT,
+      ratioPercent: ELAN_REGEN_RATIO_PERCENT,
       intervalTicks: ELAN_REGEN_INTERVAL_TICKS,
     });
   });
@@ -260,6 +282,13 @@ describe("regenerateElan — the tunable schedule", () => {
   it("rejects malformed schedules and ticks", () => {
     expect(() => isRegenTick(10, { amount: 5, intervalTicks: 0 })).toThrow(RangeError);
     expect(() => isRegenTick(10, { amount: -1, intervalTicks: 10 })).toThrow(RangeError);
+    expect(() => isRegenTick(10, { ratioPercent: 101, intervalTicks: 10 })).toThrow(RangeError);
+    expect(() => isRegenTick(10, { ratioPercent: 2.5, intervalTicks: 10 })).toThrow(RangeError);
+    // Exactly one amount rule: neither or both are authoring errors.
+    expect(() => isRegenTick(10, { intervalTicks: 10 })).toThrow(/exactly one/);
+    expect(() => isRegenTick(10, { amount: 3, ratioPercent: 10, intervalTicks: 10 })).toThrow(
+      /exactly one/,
+    );
     expect(() => regenerateElan(makeUnit(), -1)).toThrow(RangeError);
   });
 });
@@ -349,9 +378,9 @@ describe("settleElan — regenerate then reconcile morale", () => {
     const routed = applyMorale(makeUnit({ mp: 0 })).unit;
     const settled = settleElan(routed, 10);
 
-    expect(settled.regenerated).toBe(ELAN_REGEN_AMOUNT);
-    expect(settled.unit.mp).toBe(ELAN_REGEN_AMOUNT);
-    expect(settled.morale).toBe("shaken"); // 5 ≤ half of 20
+    expect(settled.regenerated).toBe(4);
+    expect(settled.unit.mp).toBe(4);
+    expect(settled.morale).toBe("shaken"); // 4 ≤ half of 20
     expect(settled.events.map((event) => event.kind)).toEqual([
       "mpChanged",
       "conditionRemoved",
