@@ -4,9 +4,11 @@ A browser-based, **Napoleonic Wars-era** small-squad tactics RPG, built on the
 core mechanics of *Final Fantasy Tactics Advance* (FFTA) with entirely original
 content.
 
-> **Status:** Phase 10 — persistence & release. The deterministic engine, battle
-> layer, campaign and camp screens are implemented; content and balance are
-> still being filled in.
+> **Status:** Phases 0–17 complete (foundation through field AI, elevation and
+> tile inspection). The deterministic engine, battle layer, campaign and camp
+> screens are implemented and the combat loop is locked by
+> [`docs/COMBAT_LOOP.md`](docs/COMBAT_LOOP.md); content and balance are still
+> being filled in.
 
 **▶ [Play in your browser](https://wrexial.github.io/tactica/)** — the latest
 `main` build is deployed to GitHub Pages. Or run it locally (see [Quickstart](#quickstart)).
@@ -33,6 +35,11 @@ You command a **free company** fighting small, decisive detachment actions.
 Your job is to complete the contract's objective while keeping your soldiers
 (and their careers) alive.
 
+The game opens on a sandbox **Field action**: command your soldiers, then press
+**Resolve** in the Field panel (or **Quick Battle** in the camp) to hand the
+rest of the action to the deterministic AI and see it fought out. Accept a
+contract from the Officers' Mess to begin a persisted campaign.
+
 ### Controls
 
 | Action | Keyboard / gamepad |
@@ -41,6 +48,7 @@ Your job is to complete the contract's objective while keeping your soldiers
 | Select or confirm | `Enter` / gamepad **A** |
 | Open **Orders** (action menu) | `O` |
 | Back out / cancel | `Esc` / gamepad **B** |
+| End the turn | **End Turn** in the Orders band |
 | Open the camp menus | `M` / gamepad **Start** |
 | Pan the field | click-drag |
 | Zoom | mouse wheel |
@@ -50,7 +58,7 @@ Your job is to complete the contract's objective while keeping your soldiers
 Turns are **not round-robin**. Every soldier builds up *tempo* in proportion to
 Speed; the tray at the bottom shows who acts next. When your soldier's turn
 comes up you may **move and then act** — moving does not spend the turn. The
-turn ends when you resolve an **Order** (an action), or choose **Wait** / **Hold**.
+turn ends when you resolve an **Order** (an action) or press **End Turn**.
 
 Before you commit, the UI previews the move range, the target reach and area,
 the enemy's **danger zone**, and the elevation change. The **forecast** shows
@@ -130,7 +138,7 @@ npm run test:e2e     # playwright (needs: npx playwright install chromium)
 | Document | Purpose |
 | -------- | ------- |
 | [`agents.md`](agents.md) | Working agreement, architecture, locked theme constraints |
-| [`todo.md`](todo.md) | Task board (114 tasks) — parsed by the runner |
+| [`todo.md`](todo.md) | Task board (147 tasks) — parsed by the runner |
 | [`docs/NAPOLEONIC_MAPPING.md`](docs/NAPOLEONIC_MAPPING.md) | Full FFTA → Napoleonic mapping (decisions D0–D15 locked) |
 | [`site/index.html`](site/index.html) | Single-file visual reference of the mapping |
 | [`docs/wiki/INDEX.md`](docs/wiki/INDEX.md) | Scraped FFTA reference mirror |
