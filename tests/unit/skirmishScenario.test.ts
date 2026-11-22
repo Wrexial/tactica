@@ -2,7 +2,12 @@ import { describe, expect, it } from "vitest";
 
 import { DEFAULT_CONTROL_POLICY, autoBattleAllies } from "../../src/app/autoBattle";
 import { AGGRESSIVE_FIELD_AI, runAiUntilPlayer } from "../../src/app/battleRunner";
-import { advanceSkirmishBattle, createSkirmishBattle, runSkirmishTurn, skirmishAiHoldsTurn } from "../../src/app/skirmishScenario";
+import {
+  advanceSkirmishBattle,
+  createSkirmishBattle,
+  runSkirmishTurn,
+  skirmishAiHoldsTurn,
+} from "../../src/app/skirmishScenario";
 import { step } from "../../src/engine/battle";
 
 /**
@@ -34,7 +39,12 @@ describe("quick battle scene", () => {
     const battle = createSkirmishBattle();
     const actor = battle.units.find((unit) => unit.id === battle.currentActorId);
     expect(actor?.side).toBe("company");
-    expect(actor?.name).toBe("Pte. Okafor");
+    // The company's Speeds are tightly grouped (35/32/34/33), so the fastest
+    // soldier in the line opens — whichever name that is.
+    const company = battle.units.filter((unit) => unit.side === "company");
+    expect(actor?.id).toBe(
+      company.reduce((fastest, unit) => (unit.stats.spd > fastest.stats.spd ? unit : fastest)).id,
+    );
   });
 
   it("fights over the terraced farmhouse board (T144)", () => {
@@ -69,7 +79,11 @@ describe("quick battle scene", () => {
   it("takes exactly one hostile turn at a time", () => {
     // Pass the company's opening turns until an enemy holds the turn.
     let battle = createSkirmishBattle();
-    for (let guard = 0; guard < 8 && battle.phase === "active" && !skirmishAiHoldsTurn(battle); guard++) {
+    for (
+      let guard = 0;
+      guard < 8 && battle.phase === "active" && !skirmishAiHoldsTurn(battle);
+      guard++
+    ) {
       const actor = battle.units.find((unit) => unit.id === battle.currentActorId)!;
       battle = step(battle, { kind: "wait", unitId: actor.id }).state;
     }

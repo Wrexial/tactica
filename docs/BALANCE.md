@@ -203,29 +203,42 @@ enemy. Reproduce with:
 npm run test -- --run tests/unit/balanceBaseline.test.ts
 ```
 
-The first run is the "before" picture: every seed finished (115–203 turns) but
-the **enemy won 8/8**, losing only 0–3 soldiers. A later seed stalled at the
-512-turn cap on three mutually Shaken soldiers who could each deal exactly 0
-damage — that is what produced the Shaken change in D20 above.
+The **first** run was the "before" picture: every seed finished (115–203 turns)
+but the **enemy won 8/8**, losing only 0–3 soldiers. One seed also stalled at
+the 512-turn cap on three mutually Shaken soldiers who could each deal exactly
+0 damage — that is what produced the Shaken change in D20 above. T153 traced
+the lopsided result to the roster's **Speed spread** (40/36/30/32): the fastest
+soldier committed alone and was focus-fired. Holding every other stat fixed and
+tightening the line to 35/32/34/33 turned the same eight seeds into a 4–4
+split; raising HP changed nothing and raising attack made it 8–0, so Speed
+cohesion is the lever.
+
+The table below is the **after** picture, and the values the scenarios ship:
 
 | seed        | winner | outcome        | turns | lost (company/enemy) |
 | ----------- | ------ | -------------- | ----: | -------------------: |
-| baseline-1  | B      | companyDefeat  |   122 |                  4/1 |
-| baseline-2  | B      | companyDefeat  |   123 |                  4/0 |
-| baseline-3  | B      | companyDefeat  |   129 |                  4/1 |
-| baseline-4  | B      | companyDefeat  |   142 |                  4/2 |
-| baseline-5  | B      | companyDefeat  |   132 |                  4/1 |
-| baseline-6  | B      | companyDefeat  |   115 |                  4/3 |
-| baseline-7  | B      | companyDefeat  |   129 |                  4/1 |
-| baseline-8  | B      | companyDefeat  |   138 |                  4/2 |
+| baseline-1  | A      | companyVictory |   103 |                  1/4 |
+| baseline-2  | A      | companyVictory |   100 |                  3/4 |
+| baseline-3  | B      | companyDefeat  |   110 |                  4/1 |
+| baseline-4  | B      | companyDefeat  |   113 |                  4/3 |
+| baseline-5  | A      | companyVictory |   107 |                  3/4 |
+| baseline-6  | A      | companyVictory |    97 |                  2/4 |
+| baseline-7  | B      | companyDefeat  |   114 |                  4/1 |
+| baseline-8  | B      | companyDefeat  |   118 |                  4/2 |
 
-The recruit-vs-elite run finished 3–5 for the company, so the scenario was not
-randomly hopeless — it was the field-AI company that lost. T153 traced that to
-the roster's **Speed spread** (40/36/30/32): the fastest soldier committed
-alone and was focus-fired. Holding every other stat fixed and tightening the
-line to 35/32/34/33 turned the same eight seeds into a 4–4 split; raising HP
-changed nothing and raising attack made it 8–0, so Speed cohesion is the lever.
-The table above is kept as the "before" that motivated that change.
+Average length is ~108 turns with 3.75 casualties a side: a decisive firefight,
+not a grind. The recruit-vs-elite run finishes 3–5 for the company, so the
+difficulty tiers move the result but do not flip it. The spec asserts only that
+**both sides win at least twice** across the fixed seeds — a walkover tripwire,
+not a target split.
+
+**Treat this as a baseline, not an equilibrium.** The result is extremely
+sensitive to Speed: shifting the same line by a single point (34/33/35/34)
+flipped the eight seeds from 4–4 to 1–7, and making the marksman fastest again
+(36/35/37/36) made it 7–1. Speed buys extra turns, and the field AI converts an
+extra turn into focus fire, so small tempo differences compound. The systemic
+fix is an AI that keeps the line together (see "Still open"), not more roster
+micro-tuning.
 
 ---
 
@@ -240,3 +253,9 @@ These are genuinely undecided, as opposed to merely unrecorded:
   reference is ever expanded, revisit it rather than assuming ours is FFTA's.
 - **Content breadth.** Formula decisions do not fix the thin campaign data
   (contracts, maps, enemies); that is future content work, not balance.
+- **Line cohesion in the field AI.** The T152/T153 baseline showed that the
+  utility AI advances each soldier independently, so the fastest soldier
+  arrives alone and is focus-fired. The Quick Battle roster now compensates
+  with tight Speeds, but the real fix is for the AI to value keeping its line
+  together (group advance/defensive line), which would also make the campaign's
+  mixed-speed rosters behave sensibly.

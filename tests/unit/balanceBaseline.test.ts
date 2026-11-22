@@ -132,9 +132,15 @@ describe("balance baseline — authored Quick Battle (T152)", () => {
       rows.push(row);
     }
 
-    // Printed for the record and for copying into docs/BALANCE.md. Win rates
-    // are deliberately not asserted: they are the measurement, not the contract.
+    // Printed for the record and for copying into docs/BALANCE.md. The exact
+    // split is not asserted; the tripwire only fails if the authored Quick
+    // Battle becomes a walkover for either side (T153).
     console.log(`\nCompany vs enemy, same field AI (${SEEDS.length} seeds):\n${table(rows)}\n`);
+
+    const companyWins = rows.filter((row) => row.winner === "A").length;
+    const enemyWins = rows.filter((row) => row.winner === "B").length;
+    expect(companyWins).toBeGreaterThanOrEqual(2);
+    expect(enemyWins).toBeGreaterThanOrEqual(2);
   });
 
   it("finishes every recruit-vs-elite seed and prints the table", () => {

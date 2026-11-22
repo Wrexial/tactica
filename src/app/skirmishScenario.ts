@@ -83,11 +83,17 @@ interface PresetFighter {
  */
 const COMPANY_ROSTER: readonly PresetFighter[] = [
   {
+    // T153 — the Speeds are deliberately close (35/32/34/33). The first
+    // authored spread (36/30/40/32) let the marksman outrun the line, and the
+    // field AI committed him alone, so the defenders focus-fired him down: the
+    // T152 baseline had the company losing all eight seeds. Tightening only the
+    // Speeds turns the same seeds into a genuine contest; raising HP changed
+    // nothing and raising attack made it 8–0, so cohesion is the lever.
     id: "skirmish-aubry",
     name: "Sgt. Aubry",
     power: "france",
     postId: "fusilier",
-    stats: { hp: 62, mp: 24, atk: 13, def: 9, mag: 4, res: 6, spd: 36, move: 4, jump: 2 },
+    stats: { hp: 62, mp: 24, atk: 13, def: 9, mag: 4, res: 6, spd: 35, move: 4, jump: 2 },
     abilities: ["bayonet-charge", "volley-fire"],
   },
   {
@@ -95,7 +101,7 @@ const COMPANY_ROSTER: readonly PresetFighter[] = [
     name: "Cpl. Bouvet",
     power: "france",
     postId: "grenadier",
-    stats: { hp: 70, mp: 18, atk: 15, def: 10, mag: 3, res: 5, spd: 30, move: 4, jump: 2 },
+    stats: { hp: 70, mp: 18, atk: 15, def: 10, mag: 3, res: 5, spd: 32, move: 4, jump: 2 },
     abilities: ["crushing-blow", "bayonet-charge"],
   },
   {
@@ -103,7 +109,7 @@ const COMPANY_ROSTER: readonly PresetFighter[] = [
     name: "Pte. Okafor",
     power: "britain",
     postId: "marksman",
-    stats: { hp: 54, mp: 22, atk: 12, def: 7, mag: 4, res: 6, spd: 40, move: 5, jump: 3 },
+    stats: { hp: 54, mp: 22, atk: 12, def: 7, mag: 4, res: 6, spd: 34, move: 5, jump: 3 },
     abilities: ["aimed-shot", "leading-shot"],
   },
   {
@@ -111,7 +117,7 @@ const COMPANY_ROSTER: readonly PresetFighter[] = [
     name: "Dr. Marchand",
     power: "france",
     postId: "surgeon",
-    stats: { hp: 50, mp: 30, atk: 9, def: 6, mag: 8, res: 8, spd: 32, move: 4, jump: 2 },
+    stats: { hp: 50, mp: 30, atk: 9, def: 6, mag: 8, res: 8, spd: 33, move: 4, jump: 2 },
     abilities: ["surgical-dressing", "bayonet-charge"],
   },
 ];
@@ -196,9 +202,10 @@ function tilesFor(side: "company" | "enemy"): Coord[] {
 /**
  * The preset two-team `BattleSetup`: the authored rosters deployed on the
  * farmhouse board with their action catalogue and an annihilation objective.
- * Four company specialists face four enemy irregulars; the first company
- * soldier (Pte. Okafor, Speed 40) out-speeds every enemy, so the player always
- * takes the opening turn.
+ * Four company specialists face four enemy irregulars. The company's Speeds are
+ * grouped tightly (35/32/34/33) so the line arrives together rather than
+ * feeding in one soldier at a time — the T153 fix for the T152 baseline — and
+ * Sgt. Aubry (Speed 35) opens the action.
  *
  * Exposed separately from {@link createSkirmishBattle} so a headless harness
  * (the T152 balance baseline) can replay the same authored matchup from a

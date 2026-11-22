@@ -19,8 +19,8 @@ test("opens the preset Quick Battle and fights it to a result", async ({ page })
   await expect(page.getByTestId("skirmish-name")).toHaveText("The Farmhouse");
   await expect(page.getByTestId("skirmish-objective")).toContainText("Defeat every hostile");
 
-  // The company takes the opening turn (Pte. Okafor, Speed 40).
-  await expect(page.getByTestId("hud-actor")).toHaveText("Pte. Okafor");
+  // The company takes the opening turn (Sgt. Aubry, the fastest of the line).
+  await expect(page.getByTestId("hud-actor")).toHaveText("Sgt. Aubry");
   await expect(page.getByTestId("hud-phase")).toHaveText("select");
 
   // Commit the company: the deterministic Field AI fights both sides out.
@@ -33,7 +33,7 @@ test("opens the preset Quick Battle and fights it to a result", async ({ page })
   // Fight again resets to a fresh board on the opening turn.
   await page.getByTestId("skirmish-result-restart").click();
   await expect(page.getByTestId("skirmish-battle")).toBeVisible();
-  await expect(page.getByTestId("hud-actor")).toHaveText("Pte. Okafor");
+  await expect(page.getByTestId("hud-actor")).toHaveText("Sgt. Aubry");
 });
 
 test("reads the raised farmhouse terrace from the low approach", async ({ page }) => {
@@ -41,17 +41,17 @@ test("reads the raised farmhouse terrace from the low approach", async ({ page }
   await page.getByTestId("nav-quick-battle").click();
   await expect(page.getByTestId("skirmish-battle")).toBeVisible();
 
-  // The cursor begins on Pte. Okafor's low approach tile (0, 4). Stepping east
-  // climbs the graded terrace: level approach → orchard bank (+1) → the raised
-  // farmhouse core (+2).
+  // The cursor begins on the opening soldier's low approach tile (0, 3).
+  // Stepping east climbs the graded terrace: level approach → orchard bank
+  // (+1) → the raised farmhouse core (+2).
   await page.keyboard.press("ArrowRight");
-  await expect(page.getByTestId("hud-cursor")).toHaveText("1, 4");
+  await expect(page.getByTestId("hud-cursor")).toHaveText("1, 3");
   await expect(page.getByTestId("hud-elevation")).toHaveText("level");
   await page.keyboard.press("ArrowRight");
-  await expect(page.getByTestId("hud-cursor")).toHaveText("2, 4");
+  await expect(page.getByTestId("hud-cursor")).toHaveText("2, 3");
   await expect(page.getByTestId("hud-elevation")).toHaveText("+1");
   await page.keyboard.press("ArrowRight");
-  await expect(page.getByTestId("hud-cursor")).toHaveText("3, 4");
+  await expect(page.getByTestId("hud-cursor")).toHaveText("3, 3");
   await expect(page.getByTestId("hud-elevation")).toHaveText("+2");
 });
 
@@ -64,12 +64,12 @@ test("lets the player move and strike an enemy", async ({ page }) => {
   // leaves the same soldier in command to act or choose End Turn.
   await page.keyboard.press("Enter"); // select
   await expect(page.getByTestId("hud-phase")).toHaveText("command");
-  await page.keyboard.press("ArrowDown"); // cursor to a free tile south
+  await page.keyboard.press("ArrowUp"); // cursor to a free tile north
   await page.keyboard.press("Enter"); // plan the march
   await expect(page.getByTestId("hud-phase")).toHaveText("move");
   await page.keyboard.press("Enter"); // commit the march
   await expect(page.getByTestId("hud-phase")).toHaveText("command");
-  await expect(page.getByTestId("hud-actor")).toHaveText("Pte. Okafor");
+  await expect(page.getByTestId("hud-actor")).toHaveText("Sgt. Aubry");
   await expect(page.getByTestId("end-turn")).toBeVisible();
   await expect(page.getByTestId("animation-log")).toContainText("marches");
 });

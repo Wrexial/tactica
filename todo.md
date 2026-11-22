@@ -1601,7 +1601,7 @@ same field AI on both sides the enemy won every seed. This phase fixes the
 roster from that measurement rather than from intuition.
 
 ### T153 — Make the Quick Battle a contest, not a walkover
-- status: todo
+- status: done
 - deps: [T152]
 - files: src/app/skirmishScenario.ts, tests/unit/balanceBaseline.test.ts, docs/BALANCE.md
 - verify: npm run test -- --run tests/unit/balanceBaseline.test.ts
