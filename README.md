@@ -4,10 +4,11 @@ A browser-based, **Napoleonic Wars-era** small-squad tactics RPG, built on the
 core mechanics of *Final Fantasy Tactics Advance* (FFTA) with entirely original
 content.
 
-> **Status:** Phases 0–17 complete (foundation through field AI, elevation and
-> tile inspection). The deterministic engine, battle layer, campaign and camp
-> screens are implemented and the combat loop is locked by
-> [`docs/COMBAT_LOOP.md`](docs/COMBAT_LOOP.md); content and balance are still
+> **Status:** Phases 0–18 complete (foundation through field AI, elevation, tile
+> inspection and the first balance pass). The deterministic engine, battle
+> layer, campaign and camp screens are implemented; the combat loop is locked by
+> [`docs/COMBAT_LOOP.md`](docs/COMBAT_LOOP.md) and the authored numbers are
+> recorded in [`docs/BALANCE.md`](docs/BALANCE.md). Content breadth is still
 > being filled in.
 
 **▶ [Play in your browser](https://wrexial.github.io/tactica/)** — the latest
@@ -138,8 +139,9 @@ npm run test:e2e     # playwright (needs: npx playwright install chromium)
 | Document | Purpose |
 | -------- | ------- |
 | [`agents.md`](agents.md) | Working agreement, architecture, locked theme constraints |
-| [`todo.md`](todo.md) | Task board (147 tasks) — parsed by the runner |
+| [`todo.md`](todo.md) | Task board (151 tasks) — parsed by the runner |
 | [`docs/NAPOLEONIC_MAPPING.md`](docs/NAPOLEONIC_MAPPING.md) | Full FFTA → Napoleonic mapping (decisions D0–D15 locked) |
+| [`docs/BALANCE.md`](docs/BALANCE.md) | Authored balance decisions D16–D25, with reference status and retune notes |
 | [`site/index.html`](site/index.html) | Single-file visual reference of the mapping |
 | [`docs/wiki/INDEX.md`](docs/wiki/INDEX.md) | Scraped FFTA reference mirror |
 | [`tools/README.md`](tools/README.md) | Task-board format + runner usage |

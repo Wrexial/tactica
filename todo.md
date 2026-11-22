@@ -1548,7 +1548,7 @@ from the executor's own linker list, and pin the exact integer curve. This keeps
 the FFTA shape (10 + 4×JP)/10 intact at zero linkers.
 
 ### T151 — Record the balance decisions
-- status: todo
+- status: done
 - deps: [T148, T149, T150]
 - files: docs/BALANCE.md, README.md, todo.md
 - verify: —
@@ -1568,12 +1568,19 @@ design questions on the list.
 
 ## Research & open questions
 
-- [ ] Physical/magical damage formulas — documented (see `Attack_(command).md`, `Magic_(command).md`); only the ambiguous secondary line and the healing formula need decisions (T033/T036).
-- [ ] FFTA MP regeneration — `MP_(stat).md` FFTA section is a stub; T040 authored a default schedule (`ELAN_REGEN_AMOUNT` every `ELAN_REGEN_INTERVAL_TICKS`) and morale thresholds, still pending a later balance pass.
-- [ ] Exact Orders Tempo charge values, per-action tempo and Speed scaling (T019).
-- [x] Drill-to-mastery thresholds per ability — authored as `EquipmentDef.teaches[].ap` and resolved by `src/engine/progression/drill.ts` (T048); a later balance pass may retune the per-item costs.
-- [ ] Post-unlock thresholds (T046).
-- [ ] Article generation frequency/pool and commended-action weighting (T055).
-- [ ] Volley damage scaling with Honour and number of linkers (T061).
-- [ ] FFTA-specific stat-growth formula (job tables give values + ranks) (T018/T049).
+Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**
+(D16–D25); the numbers live in named constants and authored data, never in
+logic.
+
+- [x] Physical/magical damage formulas — step-wise reading kept, garbled secondary line rejected, healing authored (**D16/D17**, T033/T034/T036).
+- [x] Élan (MP) regeneration — authored as 20% of each soldier's maximum pool per 10 ticks, with Shaken at 50% and Routed at 0 (**D20**, T040/T149).
+- [x] Orders Tempo charge values, per-action tempo and Speed scaling — threshold 100; act 80% / move 70% / hold 50%; Haste ×2, Slow ÷2; first turn full (**D19**, T019/T148).
+- [x] Drill-to-mastery thresholds per ability — authored as `EquipmentDef.teaches[].ap` and resolved by `src/engine/progression/drill.ts` (**D25**, T048).
+- [x] Post-unlock thresholds — two abilities for a branch post, three for a deeper one, authored per post (**D21**, T046).
+- [x] Article generation frequency/pool and commended-action weighting — day schedule 1+1 → 2+1 → 2+2 → 3+2 at days 1/8/16/32, weighted draw without replacement, Article `honour` paid on a commended act (**D22**, T055).
+- [x] Volley damage scaling with Honour and number of linkers — `(10 + 4×honour + 2×min(linkers, 4))/10` (**D23**, T061/T150).
+- [x] FFTA-specific stat-growth formula — `floor(growth × level)` truncated once, incremental level-ups, cap 50 and 100 XP per level (**D24**, T018/T049).
+- [ ] **Tune the baseline.** The D16–D24 values are a defensible starting point, not a verdict; run the headless gauntlet (T130) and playtests, then record any change in `docs/BALANCE.md`.
+- [ ] **FFTA's own MP regeneration is still undocumented** — `MP_(stat).md`'s FFTA section remains a stub, so D20 is ours; revisit if the reference expands.
+- [ ] **Campaign content breadth** — contracts, maps and enemies are thin for a full campaign; that is content work, not a formula question.
 - [x] **Ability effects are wired into `step` (T117).** `declareOrResolveAction` (`src/engine/actions/resolve.ts`) now composes `executeAbility` (T041), reactions (T042) and support traits (T043) into both instant and charged resolution, drawing all randomness from the battle's seeded PRNG stream (`tempo.rng`). A live `act` reduces HP and can KO, so T113's headless skirmish reaches a decision instead of a ceasefire; replays stay byte-identical.

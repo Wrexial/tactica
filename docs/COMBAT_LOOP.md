@@ -98,7 +98,9 @@ command closes the turn and deducted when that soldier's next turn opens, so:
 - the first turn of a battle always costs the full threshold.
 
 The costs live in `TEMPO_TURN_COSTS` (`src/engine/turn.ts`) as percentages, so an
-authored `threshold` scales them without touching the logic. The Orders Tempo
+authored `threshold` scales them without touching the logic; the reasoning and
+the reference reading are recorded as **D19** in
+[`docs/BALANCE.md`](BALANCE.md). The Orders Tempo
 tray projects the future assuming every soldier **holds**, which makes its first
 entry exact and later entries the earliest each soldier could return.
 
