@@ -1486,6 +1486,86 @@ ground, and pin a march across a fallen soldier's tile.
 
 ---
 
+## Phase 18 — Balance pass I (the authored numbers)
+
+Four of the open questions below are really *decisions we never recorded*: the
+reference mirror documents the shape but not the numbers, or documents neither.
+This phase closes them with authored, named, tested values and a written
+rationale, so later content work has a baseline instead of a guess. Each task
+owns one system; the final task writes the decisions down and checks the
+questions off.
+
+### T148 — Per-action Orders Tempo costs
+- status: done
+- deps: []
+- files: src/engine/turn.ts, src/engine/battle.ts, src/engine/serialize.ts, tests/unit/turn.test.ts, tests/unit/battle.test.ts, docs/COMBAT_LOOP.md
+- verify: npm run test -- --run tests/unit/turn.test.ts tests/unit/battle.test.ts
+- done: A closed turn's charge cost depends on what it spent — acting 80%, a move-only turn 70%, a hold/wait 50% of the threshold — authored as `TEMPO_TURN_COSTS`, carried per soldier in `TempoEntry.turnCost`, and spent when that soldier's next turn opens, so a soldier who acts returns later than one who merely holds; the cost survives a save/load round-trip and `previewTurns` projects with the stored costs.
+
+The FFTA charge-time reference is explicit about the *post-turn* CT
+(`docs/wiki/pages/Charge_time.md`, "Final Fantasy Tactics Advance"): after a
+turn CT is set to 500 of the 1000 threshold, then lowered by 300 if the soldier
+**acted** or 200 if they **moved**. In our 100-threshold model that is a turn
+cost of 80% for acting, 70% for a move-only turn and 50% for a hold. Today
+`spendTurn` always deducts a full threshold, so acting and waiting pace the
+turn order identically and waiting has no tempo value. Add the authored cost
+ratios to `turn.ts`, store the last closed turn's cost on the `TempoEntry`, make
+`spendTurn`'s default read it, and have `battle.ts` record it when a command
+closes a turn (`act` → act, move + close → move, `wait`/`face`/`hold` → wait).
+Keep the first turn at the full threshold, keep `recordTurnCost` state-pure, and
+round-trip the new field in `serialize.ts`. Pin the ordering in unit tests and
+update the combat-loop contract.
+
+### T149 — Élan regeneration scales with the pool
+- status: todo
+- deps: []
+- files: src/engine/rules/elan.ts, tests/unit/elan.test.ts
+- verify: npm run test -- --run tests/unit/elan.test.ts
+- done: The default Élan schedule restores a share of each soldier's maximum pool (`ELAN_REGEN_RATIO_PERCENT`) rather than a flat amount, so a 40-Élan officer recovers more per step than a 15-Élan fusilier while every soldier still recovers at least one point; flat `amount` schedules remain supported for content and tests, and morale thresholds are unchanged.
+
+`MP_(stat).md`'s FFTA section is an empty stub (`agents.md` §10), so T040
+authored a flat `ELAN_REGEN_AMOUNT` (5) every `ELAN_REGEN_INTERVAL_TICKS` (10).
+That is the wrong shape: Élan doubles as morale and is derived from each post's
+`mp` growth, so a flat rate recovers a 15-point fusilier at three times the
+relative pace of a 45-point officer, and the morale thresholds fire at
+different rates for the same play. Make the recovery a percentage of the
+soldier's maximum (authored, floor, minimum 1), keep `amount` for explicit
+schedules, and pin both paths plus the Shaken/Routed interaction in tests.
+
+### T150 — Volley damage counts the firing line
+- status: todo
+- deps: []
+- files: src/engine/actions/volley.ts, tests/unit/volley.test.ts
+- verify: npm run test -- --run tests/unit/volley.test.ts
+- done: A Volley's power multiplier now reads `(10 + 4×Honour + 2×linkers) / 10`, capped by an authored `VOLHONOUR_MAX_LINKERS`, so chaining allies add damage on top of the committed Honour; the linker count is taken from the same `volleyLinkers` list the executor fires, `scaleVolleyPower` stays backwards compatible, and the curve is pinned for 0, 1 and capped linkers.
+
+`Combo_(Tactics_Advance).md` says a combo's damage grows with the initiator's
+Judge Points **and** that more characters joining increases it, but only the
+Honour half is implemented: the firing line adds shots, never force. Add an
+authored per-linker term to the multiplier (each chaining ally adds a little
+weight, capped so a large line cannot dwarf the Honour commitment), compute it
+from the executor's own linker list, and pin the exact integer curve. This keeps
+the FFTA shape (10 + 4×JP)/10 intact at zero linkers.
+
+### T151 — Record the balance decisions
+- status: todo
+- deps: [T148, T149, T150]
+- files: docs/BALANCE.md, README.md, todo.md
+- verify: —
+- done: `docs/BALANCE.md` states every authored balance decision with its reference status (documented, garbled, or absent) and the chosen value; the resolved questions in `todo.md` are checked off with a pointer to the section that answers them, and the README docs table links the new page.
+
+Seven systems now carry authored numbers whose rationale lives in code
+comments scattered across `turn.ts`, `elan.ts`, `volley.ts`, `damage.ts` and
+`level.ts`. Write one page that states, per system, what the reference actually
+documents (with the wiki page), what we chose and why, and what a later pass
+may retune. Then check off the open questions that are now answered — damage
+formula resolution and healing (T033/T036), Élan regeneration (T040), Orders
+Tempo costs (T019), post-unlock thresholds (T046), Articles (T055), Volley
+scaling (T061) and stat growth (T018/T049) — leaving only genuinely open
+design questions on the list.
+
+---
+
 ## Research & open questions
 
 - [ ] Physical/magical damage formulas — documented (see `Attack_(command).md`, `Magic_(command).md`); only the ambiguous secondary line and the healing formula need decisions (T033/T036).

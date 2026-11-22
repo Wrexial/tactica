@@ -4,6 +4,7 @@ import { asUnitId } from "../../src/engine/ids";
 import type { UnitId } from "../../src/engine/ids";
 import {
   TEMPO_THRESHOLD,
+  TEMPO_TURN_COSTS,
   advanceTick,
   advanceToNextTurn,
   cancelCharge,
@@ -11,13 +12,15 @@ import {
   createOrdersTempo,
   previewTurns,
   readyActorIds,
+  recordTurnCost,
   scheduleCharge,
   speedLookup,
   spendTurn,
   takeTurn,
   tempoSpeed,
+  turnCostFor,
 } from "../../src/engine/turn";
-import type { OrdersTempo, TempoSpeedOf, TempoTurn } from "../../src/engine/turn";
+import type { OrdersTempo, TempoSpeedOf, TempoTurn, TempoTurnKind } from "../../src/engine/turn";
 
 /* --------------------------------------------------------------------------
  * T019 — Orders Tempo (CTB scheduler)
@@ -226,6 +229,86 @@ describe("Orders Tempo — Speed decides when and how often", () => {
     const speedOf = speedLookup({ [A]: 1 });
     expect(advanceToNextTurn(state, speedOf, 10)).toBeNull();
     expect(advanceToNextTurn(state, speedOf, 100)?.actorId).toBe(A);
+  });
+});
+
+describe("Orders Tempo — per-turn costs (T148)", () => {
+  it("prices acting, marching and holding from the FFTA post-turn CT", () => {
+    expect(TEMPO_TURN_COSTS).toEqual({ act: 80, move: 70, wait: 50 });
+    expect(turnCostFor("act", TEMPO_THRESHOLD)).toBe(80);
+    expect(turnCostFor("move", TEMPO_THRESHOLD)).toBe(70);
+    expect(turnCostFor("wait", TEMPO_THRESHOLD)).toBe(50);
+  });
+
+  it("scales the percentages with an authored threshold, truncating once", () => {
+    // 250 × 80% = 200 exactly; 250 × 70% = 175; 250 × 50% = 125.
+    expect(turnCostFor("act", 250)).toBe(200);
+    expect(turnCostFor("move", 250)).toBe(175);
+    expect(turnCostFor("wait", 250)).toBe(125);
+    // 99 × 70% = 69.3 → 69 (integer charge only).
+    expect(turnCostFor("move", 99)).toBe(69);
+  });
+
+  it("rejects a malformed kind, percentage or threshold", () => {
+    expect(() => turnCostFor("dance" as TempoTurnKind)).toThrow(/turn kind/);
+    expect(() => turnCostFor("act", 100, { act: 101, move: 70, wait: 50 })).toThrow(/0..100/);
+    expect(() => turnCostFor("act", 100, { act: -1, move: 70, wait: 50 })).toThrow(/0..100/);
+    expect(() => turnCostFor("act", 0)).toThrow(/threshold/);
+  });
+
+  it("spends the soldier's last closed-turn cost by default", () => {
+    const state = createOrdersTempo([A], { initialCharge: { [A]: 100 } });
+    const recorded = recordTurnCost(state, A, 50);
+    expect(chargeOf(spendTurn(recorded, A), A)).toBe(50);
+    // An explicit cost still wins for callers that price a spend themselves.
+    expect(chargeOf(spendTurn(recorded, A, 100), A)).toBe(0);
+    // Recording nothing keeps the first-turn behaviour: one full threshold.
+    expect(chargeOf(spendTurn(state, A), A)).toBe(0);
+  });
+
+  it("records costs purely and rejects unknown soldiers", () => {
+    const state = createOrdersTempo([A]);
+    const before = JSON.stringify(state);
+    const recorded = recordTurnCost(state, A, 70);
+    expect(JSON.stringify(state)).toBe(before);
+    expect(recorded.entries[0]?.turnCost).toBe(70);
+    expect(() => recordTurnCost(state, B, 70)).toThrow(/unknown unit/);
+    expect(() => recordTurnCost(state, A, -1)).toThrow(/turnCost/);
+    expect(() => recordTurnCost(state, A, 1.5)).toThrow(/turnCost/);
+  });
+
+  it("makes a soldier who held come back sooner than one who acted", () => {
+    const speedOf = speedLookup({ [A]: 30 });
+    const base = createOrdersTempo([A], { initialCharge: { [A]: 100 } });
+
+    const held = takeTurn(recordTurnCost(base, A, turnCostFor("wait")), speedOf);
+    const acted = takeTurn(recordTurnCost(base, A, turnCostFor("act")), speedOf);
+    expect(held?.ticks).toBe(0);
+    expect(acted?.ticks).toBe(0);
+
+    // After the first: holding leaves 50 charge (2 ticks at Speed 30), acting
+    // leaves 20 (3 ticks). Waiting really is faster than acting.
+    const secondHold = takeTurn(held?.state as OrdersTempo, speedOf);
+    const secondAct = takeTurn(acted?.state as OrdersTempo, speedOf);
+    expect(secondHold?.ticks).toBe(2);
+    expect(secondAct?.ticks).toBe(3);
+  });
+
+  it("projects the tray from the stored costs, then assumes every soldier holds", () => {
+    // A holds the ready turn but will spend 80 on it; B pays nothing for its
+    // last turn, so it stays ready after acting. With a default threshold cost
+    // B would have to recharge and A would take the third slot instead.
+    const state = recordTurnCost(
+      recordTurnCost(
+        createOrdersTempo([A, B], { initialCharge: { [A]: 100, [B]: 60 } }),
+        A,
+        turnCostFor("act"),
+      ),
+      B,
+      0,
+    );
+    const speedOf = speedLookup({ [A]: 10, [B]: 10 });
+    expect(previewTurns(state, speedOf, 3)).toEqual([A, B, B]);
   });
 });
 

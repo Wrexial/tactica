@@ -18,7 +18,13 @@ import {
 } from "../../src/engine/battle";
 import { buildActionCatalogue, type ActionSpec } from "../../src/engine/actions/resolve";
 import type { Command } from "../../src/engine/commands";
-import { asAbilityId, asGuardSortieId, asPostId, asUnitId, type UnitId } from "../../src/engine/ids";
+import {
+  asAbilityId,
+  asGuardSortieId,
+  asPostId,
+  asUnitId,
+  type UnitId,
+} from "../../src/engine/ids";
 import { deserializeBattleState, serializeBattleState } from "../../src/engine/serialize";
 import { createTerrainMap } from "../../src/engine/terrain";
 import {
@@ -28,7 +34,14 @@ import {
   previewTurns,
   speedLookup,
 } from "../../src/engine/turn";
-import { createUnit, withHp, withMp, withPosition, type Unit, type UnitInit } from "../../src/engine/unit";
+import {
+  createUnit,
+  withHp,
+  withMp,
+  withPosition,
+  type Unit,
+  type UnitInit,
+} from "../../src/engine/unit";
 import type { Objective } from "../../src/engine/objectives";
 import { applyCondition, hasActiveCondition } from "../../src/engine/rules/conditions";
 import type { StatBlock } from "../../src/data/schema";
@@ -395,7 +408,11 @@ describe("step — rejection without mutation", () => {
     };
     expect(validateCommand(state, volley)?.reason).toBe("unsupported");
 
-    const guardSortie: Command = { kind: "guardSortie", unitId: actor, guardSortieId: asGuardSortieId("old-guard") };
+    const guardSortie: Command = {
+      kind: "guardSortie",
+      unitId: actor,
+      guardSortieId: asGuardSortieId("old-guard"),
+    };
     expect(validateCommand(state, guardSortie)?.reason).toBe("unsupported");
   });
 });
@@ -1545,9 +1562,7 @@ describe("runTurnUpkeep — ordered per-turn upkeep (T129)", () => {
       result.events.some((event) => event.kind === "damaged" && event.unitId === actorId),
     ).toBe(true);
     expect(
-      result.events.some(
-        (event) => event.kind === "mpChanged" && event.reason === "regenerated",
-      ),
+      result.events.some((event) => event.kind === "mpChanged" && event.reason === "regenerated"),
     ).toBe(true);
   });
 
@@ -1566,5 +1581,87 @@ describe("runTurnUpkeep — ordered per-turn upkeep (T129)", () => {
     runTurnUpkeep(prepared);
 
     expect(JSON.stringify(prepared)).toBe(before);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T148 — per-action Orders Tempo costs
+ * ------------------------------------------------------------------------ */
+
+describe("Orders Tempo — closing a turn records its cost (T148)", () => {
+  /** The recorded cost of the soldier's last closed turn. */
+  const turnCostOf = (state: BattleState, id: UnitId): number | undefined =>
+    state.tempo.entries.find((entry) => entry.unitId === id)?.turnCost;
+
+  it("prices a plain wait at half the threshold", () => {
+    const state = createBattle(1, makeSetup());
+    const actor = state.currentActorId as UnitId;
+    const result = step(state, wait(state));
+    expect(result.rejection).toBeUndefined();
+    expect(turnCostOf(result.state, actor)).toBe(50);
+  });
+
+  it("prices a march closed with a wait at 70", () => {
+    const state = createBattle(1, makeSetup());
+    const actor = state.currentActorId as UnitId;
+
+    const moved = step(state, {
+      kind: "move",
+      unitId: actor,
+      path: [coord(1, 1), coord(2, 1)],
+    });
+    expect(moved.rejection).toBeUndefined();
+
+    const closed = step(moved.state, wait(moved.state, actor));
+    expect(closed.rejection).toBeUndefined();
+    expect(turnCostOf(closed.state, actor)).toBe(70);
+  });
+
+  it("prices an act at 80, whether marched into or not", () => {
+    const state = createBattle(1, makeActionSetup([INSTANT_ACTION]));
+    const actor = state.currentActorId as UnitId;
+
+    const acted = step(state, actCommand(state));
+    expect(acted.rejection).toBeUndefined();
+    expect(turnCostOf(acted.state, actor)).toBe(80);
+
+    const folded = step(state, {
+      kind: "act",
+      unitId: actor,
+      abilityId: INSTANT_ACTION.id,
+      target: { kind: "self" },
+      move: { to: coord(2, 1), order: "before" },
+    });
+    expect(folded.rejection).toBeUndefined();
+    expect(turnCostOf(folded.state, actor)).toBe(80);
+  });
+
+  it("spends the recorded cost when the soldier's next turn opens", () => {
+    // One soldier, Speed 10: waiting leaves 100 − 50 = 50 charge, acting leaves
+    // 100 − 80 = 20. The cost is spent at the start of the *next* turn, so the
+    // state `step` returns already shows the difference.
+    const speed = { ...BASE_STATS, spd: 10 };
+    const solo = (abilities: readonly ActionSpec[] = []): BattleState => {
+      const unit = makeUnit(FAST, coord(1, 1), { stats: speed });
+      return createBattle(1, makeActionSetup(abilities, [unit]));
+    };
+
+    const waited = step(solo(), { kind: "wait", unitId: FAST });
+    expect(waited.rejection).toBeUndefined();
+    expect(chargeOf(waited.state.tempo, FAST)).toBe(50);
+
+    const acted = step(solo([INSTANT_ACTION]), actCommand(solo([INSTANT_ACTION])));
+    expect(acted.rejection).toBeUndefined();
+    expect(chargeOf(acted.state.tempo, FAST)).toBe(20);
+  });
+
+  it("round-trips the recorded cost through a save", () => {
+    const state = createBattle(1, makeSetup());
+    const actor = state.currentActorId as UnitId;
+    const closed = step(state, wait(state));
+
+    const restored = deserializeBattleState(serializeBattleState(closed.state));
+    expect(turnCostOf(restored, actor)).toBe(50);
+    expect(chargeOf(restored.tempo, actor)).toBe(chargeOf(closed.state.tempo, actor));
   });
 });

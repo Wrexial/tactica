@@ -43,11 +43,7 @@ import { parseCommand, serializeCommand, type Command } from "./commands";
 import { BATTLE_OUTCOMES } from "./events";
 import { coordKey, inBounds, isFacing, type Coord, type Grid } from "./grid";
 import { isValidId, type EquipmentId } from "./ids";
-import {
-  copyObjective,
-  isObjectiveTracker,
-  type ObjectiveTracker,
-} from "./objectives";
+import { copyObjective, isObjectiveTracker, type ObjectiveTracker } from "./objectives";
 import type { RngState, Seed } from "./rng";
 import {
   MAX_HEIGHT,
@@ -418,7 +414,9 @@ function isTempoEntry(value: unknown): value is TempoEntry {
     isValidId(value.unitId) &&
     isNonNegativeInteger(value.charge) &&
     Array.isArray(value.pending) &&
-    value.pending.every(isTempoCharge)
+    value.pending.every(isTempoCharge) &&
+    // T148 — optional until the soldier has closed a turn.
+    (value.turnCost === undefined || isNonNegativeInteger(value.turnCost))
   );
 }
 
@@ -538,6 +536,7 @@ function toOrdersTempo(tempo: OrdersTempo): OrdersTempo {
         unitId: charge.unitId,
         remaining: charge.remaining,
       })),
+      ...(entry.turnCost === undefined ? {} : { turnCost: entry.turnCost }),
     })),
     rng: { ...tempo.rng },
   };
@@ -588,8 +587,7 @@ export function parseBattleState(value: unknown, label = "battle state"): Battle
     hasActedThisTurn: value.hasActedThisTurn,
     phase: value.phase,
     outcome: value.outcome,
-    objective:
-      value.objective === null ? null : toObjectiveTracker(value.objective),
+    objective: value.objective === null ? null : toObjectiveTracker(value.objective),
     started: value.started,
   };
 }

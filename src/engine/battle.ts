@@ -99,10 +99,13 @@ import {
   TEMPO_THRESHOLD,
   advanceToNextTurn,
   createOrdersTempo,
+  recordTurnCost,
   spendTurn,
+  turnCostFor,
   type OrdersTempo,
   type ResolvedCharge,
   type TempoSpeedOf,
+  type TempoTurnKind,
 } from "./turn";
 import { isOutOfAction, type Unit } from "./unit";
 
@@ -393,8 +396,7 @@ export function createBattle(seed: Seed, setup: BattleSetup): BattleState {
     hasActedThisTurn: false,
     phase: "active",
     outcome: null,
-    objective:
-      setup.objective === undefined ? null : createObjectiveTracker(setup.objective),
+    objective: setup.objective === undefined ? null : createObjectiveTracker(setup.objective),
     started: false,
   };
 
@@ -418,13 +420,7 @@ export function createBattle(seed: Seed, setup: BattleSetup): BattleState {
  * T061–T062.
  */
 function isSupportedCommandKind(kind: Command["kind"]): boolean {
-  return (
-    kind === "wait" ||
-    kind === "move" ||
-    kind === "act" ||
-    kind === "face" ||
-    kind === "hold"
-  );
+  return kind === "wait" || kind === "move" || kind === "act" || kind === "face" || kind === "hold";
 }
 
 /**
@@ -997,9 +993,22 @@ export function applyCommand(state: BattleState, command: Command): BattleStepRe
   // flags are not reset here — `advanceToDecision` clears them, and spends the
   // next soldier's charge, through the ordered `runTurnUpkeep` pipeline (T129),
   // so a caller can still inspect the completed turn's budget in this state.
+  //
+  // T148 — the closing order also prices this turn for the Orders Tempo
+  // scheduler: acting costs 80% of the threshold, a move-only turn 70% and a
+  // hold 50% (the FFTA post-turn CT reading), charged when this soldier's next
+  // turn opens rather than immediately.
+  const closedKind: TempoTurnKind =
+    command.kind === "act" ? "act" : applied.hasMovedThisTurn ? "move" : "wait";
+  const tempo = recordTurnCost(
+    applied.tempo,
+    actor.id,
+    turnCostFor(closedKind, applied.tempo.threshold),
+  );
   return {
     state: {
       ...applied,
+      tempo,
       // Accumulate the budget instead of overwriting it: a closing free order
       // (`wait` / `face` / `hold`) must not erase a slot an earlier command in
       // the same turn already spent (T141).

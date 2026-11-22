@@ -14,11 +14,14 @@
  * Design choices for this engine (see `agents.md` §2 determinism, §7):
  * - **Integer ticks only.** Charge, tick and remaining charge times are all
  *   plain non-negative integers, so replays never drift on floating point.
- * - **Threshold spend, not reset.** Acting deducts one threshold of charge and
+ * - **Threshold spend, not reset.** Acting deducts the turn's charge cost and
  *   keeps the *excess* as progress toward the next turn. A literal reset to
  *   zero would quantise small Speed differences away (Speed 25 and 30 would
  *   both act every 4 ticks); carrying the remainder keeps turns proportional
- *   to Speed, which is what "acts sooner/more often" requires.
+ *   to Speed, which is what "acts sooner/more often" requires. The cost itself
+ *   is per-turn (T148): acting costs 80% of the threshold, a move-only turn
+ *   70% and a hold 50%, mirroring FFTA's post-turn CT (`Charge_time.md`), so
+ *   waiting is a real tempo choice rather than an identical no-op.
  * - **Pinned, RNG-free tie-breaks.** When two ready soldiers hold the *same*
  *   charge the winner is chosen by a stable total order: charge descending,
  *   then **unit id ascending** (a locale-independent lexicographic compare).
@@ -62,6 +65,76 @@ import { Rng, type RngState, type Seed } from "./rng";
 export const TEMPO_THRESHOLD = 100;
 
 /* --------------------------------------------------------------------------
+ * Per-turn costs (T148)
+ * ------------------------------------------------------------------------ */
+
+/**
+ * How a soldier closed their previous turn. Each kind has its own post-turn
+ * charge cost, so waiting is a genuinely cheaper way to reach the next turn
+ * than acting.
+ */
+export const TEMPO_TURN_KINDS = ["act", "move", "wait"] as const;
+export type TempoTurnKind = (typeof TEMPO_TURN_KINDS)[number];
+
+/**
+ * The charge cost of each closed-turn kind, as integer **percentages of the
+ * threshold**. Combined with {@link turnCostFor} they stay integer-exact at the
+ * reference threshold (100 → 80/70/50) and scale with any authored threshold.
+ *
+ * The numbers are the FFTA reading of `docs/wiki/pages/Charge_time.md`
+ * ("Final Fantasy Tactics Advance"): after a turn CT is set to 500 of the 1000
+ * threshold and then lowered by 300 if the soldier **acted** or 200 if they
+ * **moved**. In a 100-point threshold that is a remaining 20% after acting, 30%
+ * after a move-only turn and 50% after a hold — i.e. costs of 80%, 70% and 50%.
+ * They are re-authored balance data (`agents.md` §3), not scraped values.
+ */
+export interface TempoTurnCosts {
+  /** Cost of a turn that spent an action, in percent of the threshold. */
+  readonly act: number;
+  /** Cost of a turn that only marched (and then closed), in percent. */
+  readonly move: number;
+  /** Cost of a turn closed with no move and no action (`wait`/`face`/`hold`). */
+  readonly wait: number;
+}
+
+/** The authored per-turn costs; see {@link TempoTurnCosts} for the reasoning. */
+export const TEMPO_TURN_COSTS: TempoTurnCosts = {
+  act: 80,
+  move: 70,
+  wait: 50,
+};
+
+/**
+ * The charge a closed {@link TempoTurnKind} costs at a given threshold:
+ * `floor(threshold × percent / 100)`. Pure and integer-only, so a turn cost can
+ * never introduce a fractional charge into a replay.
+ *
+ * ```ts
+ * turnCostFor("act", 100);  // 80
+ * turnCostFor("wait", 100); // 50
+ * ```
+ */
+export function turnCostFor(
+  kind: TempoTurnKind,
+  threshold: number = TEMPO_THRESHOLD,
+  costs: TempoTurnCosts = TEMPO_TURN_COSTS,
+): number {
+  assertPositiveInteger(threshold, "threshold");
+  if (!(TEMPO_TURN_KINDS as readonly string[]).includes(kind)) {
+    throw new RangeError(`unknown Orders Tempo turn kind: ${String(kind)}`);
+  }
+  const percent = costs[kind];
+  if (!Number.isInteger(percent) || percent < 0 || percent > 100) {
+    throw new RangeError(
+      `Orders Tempo turn cost for ${kind} must be an integer percentage 0..100, received ${String(
+        percent,
+      )}`,
+    );
+  }
+  return Math.floor((threshold * percent) / 100);
+}
+
+/* --------------------------------------------------------------------------
  * State
  * ------------------------------------------------------------------------ */
 
@@ -93,6 +166,12 @@ export interface TempoEntry {
   readonly charge: number;
   /** Effects this soldier is currently charging, in scheduling order. */
   readonly pending: readonly TempoCharge[];
+  /**
+   * Charge cost of this soldier's **last closed turn** (T148), charged when
+   * their next turn opens. Absent on a soldier who has not yet closed a turn,
+   * which costs a full threshold.
+   */
+  readonly turnCost?: number;
 }
 
 /**
@@ -278,7 +357,7 @@ export function advanceTick(state: OrdersTempo, speedOf: TempoSpeedOf): TempoTic
       }
     }
 
-    return { unitId: entry.unitId, charge: entry.charge + speed, pending };
+    return { ...entry, charge: entry.charge + speed, pending };
   });
 
   return {
@@ -378,18 +457,14 @@ export function advanceToNextTurn(
 }
 
 /**
- * End `unitId`'s turn by deducting `cost` charge (default one
- * {@link OrdersTempo.threshold}). The excess is kept, so a soldier whose Speed
- * overshoots the threshold carries the remainder toward their next turn. The
- * charge never drops below zero.
+ * End `unitId`'s turn by deducting `cost` charge. Without an explicit `cost`
+ * the soldier's own last closed-turn cost is used (T148), falling back to one
+ * {@link OrdersTempo.threshold} for their first turn. The excess is kept, so a
+ * soldier whose Speed overshoots the threshold carries the remainder toward
+ * their next turn. The charge never drops below zero.
  */
-export function spendTurn(
-  state: OrdersTempo,
-  unitId: UnitId,
-  cost: number = state.threshold,
-): OrdersTempo {
+export function spendTurn(state: OrdersTempo, unitId: UnitId, cost?: number): OrdersTempo {
   assertId(unitId, "unitId");
-  assertNonNegativeInteger(cost, "cost");
 
   const index = state.entries.findIndex((entry) => entry.unitId === unitId);
   if (index === -1) {
@@ -398,7 +473,27 @@ export function spendTurn(
 
   const entries = state.entries.slice();
   const entry = entries[index];
-  entries[index] = { ...entry, charge: Math.max(0, entry.charge - cost) };
+  const amount = cost ?? entry.turnCost ?? state.threshold;
+  assertNonNegativeInteger(amount, "cost");
+  entries[index] = { ...entry, charge: Math.max(0, entry.charge - amount) };
+  return { ...state, entries };
+}
+
+/**
+ * Remember how much `unitId`'s just-closed turn costs (T148). The battle layer
+ * calls this when a command ends a turn; the cost is charged the next time that
+ * soldier's turn opens, so acting, marching and holding return to the order at
+ * different intervals. Pure: the entry list is copied, never mutated.
+ */
+export function recordTurnCost(state: OrdersTempo, unitId: UnitId, cost: number): OrdersTempo {
+  assertId(unitId, "unitId");
+  assertNonNegativeInteger(cost, "turnCost");
+  const index = state.entries.findIndex((entry) => entry.unitId === unitId);
+  if (index === -1) {
+    throw new RangeError(`unknown unit in Orders Tempo: ${unitId}`);
+  }
+  const entries = state.entries.slice();
+  entries[index] = { ...entries[index], turnCost: cost };
   return { ...state, entries };
 }
 
@@ -416,7 +511,7 @@ export function takeTurn(
   const advance = advanceToNextTurn(state, speedOf);
   if (advance === null) return null;
   return {
-    state: spendTurn(advance.state, advance.actorId, cost ?? advance.state.threshold),
+    state: spendTurn(advance.state, advance.actorId, cost),
     actorId: advance.actorId,
     ticks: advance.ticks,
     resolved: advance.resolved,
@@ -431,6 +526,13 @@ export function takeTurn(
  * Project the next `count` actors without advancing the caller's state. Used by
  * the Orders Tempo tray (T083) to paint the upcoming order and by tests to
  * assert Speed ordering. Stops early if the order stalls.
+ *
+ * Because a turn's cost depends on what it spent (T148), the projection has to
+ * assume something about the future. It assumes every soldier from here on
+ * simply **holds**: each simulated turn is priced at the wait cost. The first
+ * entry is always exact (the soldier's next turn is already paid for at their
+ * stored cost); later entries are the earliest each soldier could return. This
+ * is why a wait-only battle's real order matches `previewTurns` exactly.
  */
 export function previewTurns(state: OrdersTempo, speedOf: TempoSpeedOf, count: number): UnitId[] {
   assertNonNegativeInteger(count, "count");
@@ -441,7 +543,9 @@ export function previewTurns(state: OrdersTempo, speedOf: TempoSpeedOf, count: n
     const turn = takeTurn(current, speedOf);
     if (turn === null) break;
     actors.push(turn.actorId);
-    current = turn.state;
+    // Assume the projected soldier holds, so the projection stays a pure,
+    // reproducible answer rather than a guess at what they will do.
+    current = recordTurnCost(turn.state, turn.actorId, turnCostFor("wait", turn.state.threshold));
   }
   return actors;
 }

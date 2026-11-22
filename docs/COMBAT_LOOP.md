@@ -84,6 +84,24 @@ single dispatch. In particular:
   reads a retained path and never folds a move into the command.
 - End Turn uses `waitOrder`, never a synthetic move or a bundled order.
 
+### What a turn costs
+
+Closing a turn prices it for the Orders Tempo scheduler (T148), following the
+FFTA post-turn CT (`docs/wiki/pages/Charge_time.md`): a soldier who **acted**
+pays 80% of the threshold, a soldier who only **marched** and then closed pays
+70%, and a soldier who simply **held** pays 50%. The cost is recorded when the
+command closes the turn and deducted when that soldier's next turn opens, so:
+
+- waiting is a real tempo choice — a hold returns you to the order sooner than
+  an action does;
+- a march is cheaper than an action but not free;
+- the first turn of a battle always costs the full threshold.
+
+The costs live in `TEMPO_TURN_COSTS` (`src/engine/turn.ts`) as percentages, so an
+authored `threshold` scales them without touching the logic. The Orders Tempo
+tray projects the future assuming every soldier **holds**, which makes its first
+entry exact and later entries the earliest each soldier could return.
+
 ### The folded `move` clause is AI/replay-only
 
 `ActCommand.move` (`src/engine/commands.ts`, T124) can carry
@@ -119,8 +137,11 @@ menu and forecast from the tile they actually occupy.
 - `tests/unit/battleController.test.ts` — the controller's dispatch records:
   march confirmation, action-from-committed-tile, End Turn, and the absence of
   bundled `[move, act]` / `[move, wait]`.
-- `tests/unit/battle.test.ts` — the engine's own move-once / act-once budget and
-  the AI-only folded `ActCommand.move`.
+- `tests/unit/battle.test.ts` — the engine's own move-once / act-once budget,
+  the AI-only folded `ActCommand.move`, and the per-turn Orders Tempo cost each
+  closing command records (T148).
+- `tests/unit/turn.test.ts` — the authored act/move/hold cost percentages, the
+  stored-cost spend, and the tray projection's hold assumption (T148).
 - `tests/e2e/turnLoop.spec.ts` — the loop through the real canvas: command band
   after a march, targeting/forecast from the new tile, explicit End Turn, and
   one command per confirm.
