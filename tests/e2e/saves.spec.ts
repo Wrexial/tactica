@@ -20,13 +20,24 @@ test.beforeEach(async ({ page }) => {
 test("opens on the working campaign with an automatic autosave", async ({ page }) => {
   await expect(page.getByTestId("saves-current-company")).toHaveText("The Greycoats");
   await expect(page.getByTestId("saves-current-day")).toHaveText("12");
-  await expect(page.getByTestId("saves-current-roster")).toHaveText("2 soldiers");
+  await expect(page.getByTestId("saves-current-roster")).toHaveText("5 soldiers");
   await expect(page.getByTestId("saves-current-seed")).toHaveText("campaign-1815");
   await expect(page.getByTestId("saves-current-version")).toHaveText("v1");
 
   // The rolling autosave is written without the player asking.
   await expect(page.getByTestId("saves-autosave")).toHaveAttribute("data-filled", "true");
   await expect(page.getByTestId("saves-autosave-state")).toContainText("The Greycoats");
+});
+
+test("keeps the day advanced in the camp keep when leaving and returning", async ({ page }) => {
+  // T163 — the Saves screen edits the working campaign, not a private copy.
+  await page.getByTestId("saves-advance-day").click();
+  await expect(page.getByTestId("saves-current-day")).toHaveText("13");
+
+  await page.getByTestId("nav-battle").click();
+  await page.getByTestId("nav-saves").click();
+  await expect(page.getByTestId("saves-screen")).toBeVisible();
+  await expect(page.getByTestId("saves-current-day")).toHaveText("13");
 });
 
 test("files multiple slots, restores one, and strikes one", async ({ page }) => {

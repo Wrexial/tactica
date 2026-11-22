@@ -1800,6 +1800,45 @@ tile), add the location and chapter, trigger chapter 9 on completing
 
 ---
 
+## Phase 25 — Closing the campaign in the UI
+
+The story spine now ends at chapter 9, but the Officers' Mess still gates its
+board on a hard-coded chapter (`5`) because the app never passes the campaign's
+real chapter. That makes late contracts appear too early and leaves the
+completion of the finale invisible.
+
+### T162 — Show the campaign chapter and conclusion in the Mess
+- status: doing
+- deps: [T161]
+- files: src/data/story.ts, src/app/campaign.ts, src/ui/Mess.tsx, src/ui/App.tsx, src/i18n/index.ts, src/ui/styles.css, tests/unit/story.test.ts, tests/unit/campaign.test.ts, tests/e2e/mess.spec.ts
+- verify: npm run test -- --run tests/unit/story.test.ts tests/unit/campaign.test.ts && npm run test:e2e -- tests/e2e/mess.spec.ts
+- done: The Mess gates on the campaign's real chapter — derived with `advanceChapter`, so a fresh save opens at chapter 1 — shows that chapter's name, and displays a `campaign-concluded` panel once the last chapter's contract is completed; story/campaign unit tests pin `campaignConcluded` and the helpers, and the mess e2e proves gating, the chapter line and the conclusion from an imported save.
+
+Add `campaignConcluded(facts)` to the story module (last chapter reached **and**
+every contract it opens completed — derived, no new save field), plus
+`campaignChapter(save)` / `isCampaignConcluded(save)` in `src/app/campaign.ts`.
+Pass both into `<Mess>`: the chapter gates the board for real, the header shows
+"Chapter N — Name", and a concluded panel appears above the board once the
+finale is done (the contract sandbox stays open). Fix `Mess`'s default chapter
+to `MAX_STORY_CHAPTER` so standalone rendering still shows the whole board.
+
+### T163 — Make the Saves screen work on the working campaign
+- status: doing
+- deps: []
+- files: src/ui/App.tsx, src/ui/Saves.tsx, tests/e2e/saves.spec.ts
+- verify: npm run test:e2e -- tests/e2e/saves.spec.ts
+- done: The camp keep shows and edits the **working** campaign rather than a fresh demo copy: App passes `campaign.save` and adopts every load/import via a new `onChange`, an imported record becomes the campaign the Mess and Field use, and the saves e2e proves an import changes the day seen outside the screen.
+
+The Saves screen renders `<Saves />` with no props, so it initialises its own
+`createDemoCampaign()` and autosaves that over the working campaign's slot:
+importing or loading a record only changes the Saves screen's local copy, while
+the Mess and Field keep the old campaign. Pass the working save in and adopt
+`onChange` (`createCampaignState(save)`) so the camp keep, the board and the
+field share one campaign. Verify with the existing saves e2e plus one assertion
+that a day advanced in Saves is still the day after leaving the screen.
+
+---
+
 ## Research & open questions
 
 Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**

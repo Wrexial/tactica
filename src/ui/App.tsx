@@ -1330,7 +1330,12 @@ export function App() {
         {view === "mess" && <Mess company={campaign.save.company} onAccept={acceptContract} />}
         {view === "map" && <CampaignMap />}
         {view === "depot" && <Depot />}
-        {view === "saves" && <Saves />}
+        {view === "saves" && (
+          <Saves
+            campaign={campaign.save}
+            onChange={(save) => setCampaign(createCampaignState(save))}
+          />
+        )}
         {view === "settings" && <Settings />}
         {view === "lobby" && <LobbyScreen />}
       </main>
