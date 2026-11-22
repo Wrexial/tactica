@@ -4,9 +4,9 @@ A browser-based, **Napoleonic Wars-era** small-squad tactics RPG, built on the
 core mechanics of *Final Fantasy Tactics Advance* (FFTA) with entirely original
 content.
 
-> **Status:** Phases 0–21 complete (foundation through field AI, elevation, tile
-> inspection, the first balance pass, a measured baseline and an
-> isolation-aware AI). The deterministic engine, battle layer, campaign and
+> **Status:** Phases 0–27 complete (foundation through field AI, elevation, tile
+> inspection, the balance passes, measured baselines, a campaign-wide battle
+> sweep and the campaign's closing beats). The deterministic engine, battle layer, campaign and
 > camp screens are implemented; the combat loop is locked by
 > [`docs/COMBAT_LOOP.md`](docs/COMBAT_LOOP.md) and the authored numbers and
 > measured baseline are recorded in [`docs/BALANCE.md`](docs/BALANCE.md).
@@ -151,7 +151,7 @@ request. A push to `main` additionally deploys `dist/` to GitHub Pages;
 | Document | Purpose |
 | -------- | ------- |
 | [`agents.md`](agents.md) | Working agreement, architecture, locked theme constraints |
-| [`todo.md`](todo.md) | Task board (154 tasks) — parsed by the runner |
+| [`todo.md`](todo.md) | Task board (169 tasks) — parsed by the runner |
 | [`docs/NAPOLEONIC_MAPPING.md`](docs/NAPOLEONIC_MAPPING.md) | Full FFTA → Napoleonic mapping (decisions D0–D15 locked) |
 | [`docs/BALANCE.md`](docs/BALANCE.md) | Authored balance decisions D16–D25, reference status, retune notes and the measured baseline |
 | [`site/index.html`](site/index.html) | Single-file visual reference of the mapping |

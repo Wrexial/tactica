@@ -147,3 +147,16 @@ test("gates on the campaign's chapter and concludes after the finale (T162)", as
   await expect(page.getByTestId("campaign-concluded")).toBeVisible();
   await expect(page.getByTestId("campaign-concluded")).toContainText("The Last Muster is won");
 });
+
+test("shows each combat contract's recommended level (T169)", async ({ page }) => {
+  // The board's hint comes from the map the contract is fought on.
+  await expect(page.getByTestId("contract-break-the-bridge-level")).toHaveText("Lv 1");
+  await expect(page.getByTestId("contract-clear-the-orchard-level")).toHaveText("Lv 3");
+  await expect(page.getByTestId("contract-hold-the-churchyard-level")).toContainText("Lv 6");
+
+  // Detachments field no board, so they carry no level.
+  await expect(page.getByTestId("contract-gather-the-harvest-level")).toHaveCount(0);
+
+  // The demo company is level 30: nothing on the board is out of reach.
+  await expect(page.getByTestId("contract-hold-the-churchyard-under-level")).toHaveCount(0);
+});

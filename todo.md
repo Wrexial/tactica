@@ -1933,6 +1933,19 @@ report the split, and retune only the boards that lost both seeds — the orchar
 (where every action is level 3 now) and the guerrilla camp (level 4). The coast
 road remains a genuine 1–1 split, which is a contest rather than a fault.
 
+### T169 — Show a contract's recommended level in the Mess
+- status: done
+- deps: [T168]
+- files: src/ui/contractLevel.ts, src/ui/Mess.tsx, src/i18n/index.ts, src/ui/styles.css, tests/unit/contractLevel.test.ts, tests/e2e/mess.spec.ts
+- verify: npm run test -- --run tests/unit/contractLevel.test.ts && npm run test:e2e -- tests/e2e/mess.spec.ts
+- done: Each combat contract's card shows its board's recommended level, and a company below that level sees an under-strength note; the pure helpers are unit-tested and the mess e2e pins the line for a level-1 and a level-6 action.
+
+`recommendedLevel` is authored on every map (and T168 made it honest) but the
+player never sees it: the board shows fee, requirements and reward only. Add the
+hint to the card from `battleMapFor`, with a plain `isUnderLevel(company,
+contract)` comparison against the roster's average level, and style the
+under-strength case so a fresh company can see which posts are out of reach.
+
 ---
 
 ## Research & open questions

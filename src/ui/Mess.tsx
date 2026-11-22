@@ -55,6 +55,7 @@ import {
 } from "../data/schema";
 
 import { createDemoCompany } from "../app/campaignController";
+import { companyLevelOf, isUnderLevel, recommendedLevelOf } from "./contractLevel";
 import { spendCrowns, type Company } from "../engine/company";
 import { useTranslation, type MessageKey, type Translator } from "../i18n";
 
@@ -338,6 +339,8 @@ export function Mess({
           const isPosted = posted.has(contract.id);
           const canAccept = chapterOpen && requirementsMet && affordable && !isPosted;
           const blocked = !chapterOpen || !requirementsMet || !affordable;
+          const recommendedLevel = recommendedLevelOf(contract);
+          const underLevel = isUnderLevel(company, contract);
 
           return (
             <li
@@ -383,6 +386,22 @@ export function Mess({
                     <dt>{t("mess.detachment")}</dt>
                     <dd data-testid={`contract-${contract.id}-duration`}>
                       {t("common.days", { count: contract.duration })}
+                    </dd>
+                  </div>
+                )}
+                {recommendedLevel !== null && (
+                  <div className={underLevel ? "contract-level is-under" : "contract-level"}>
+                    <dt>{t("mess.recommendedLevel")}</dt>
+                    <dd data-testid={`contract-${contract.id}-level`}>
+                      {t("mess.levelValue", { level: recommendedLevel })}
+                      {underLevel && (
+                        <span
+                          className="contract-level__warning"
+                          data-testid={`contract-${contract.id}-under-level`}
+                        >
+                          {t("mess.underLevel", { level: companyLevelOf(company) })}
+                        </span>
+                      )}
                     </dd>
                   </div>
                 )}
