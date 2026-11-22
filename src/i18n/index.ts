@@ -143,6 +143,7 @@ const en = {
   "nav.settings": "Settings",
   "nav.lobby": "Skirmish",
   "nav.drillSquare": "Drill Square",
+  "nav.guide": "Field Manual",
   "screen.battlefield": "Battlefield",
   "screen.campOrders": "Camp orders",
   "screen.barracks": "Barracks and posts",
@@ -152,6 +153,7 @@ const en = {
   "screen.saves": "Saves",
   "screen.settings": "Settings",
   "screen.lobby": "Lobby",
+  "screen.guide": "Field Manual",
   "screen.fallback": "Screen",
 
   /* ---------------------------------------------------------------------- */
@@ -345,6 +347,36 @@ const en = {
   "menu.kitInstruction": "Kit instruction",
   "menu.noKit": "No kit carried.",
   "menu.noSoldiers": "No soldiers on the roll.",
+
+  /* ---------------------------------------------------------------------- */
+  /* Field Manual (in-game player guide, T171)                              */
+  /* ---------------------------------------------------------------------- */
+  "guide.kicker": "Field Manual",
+  "guide.title": "How to play",
+  "guide.blurb":
+    "The essentials of a detachment action and the campaign. The full guide, with numbers and tips, is docs/HOW_TO_PLAY.md in the repository.",
+  "guide.field.title": "The field",
+  "guide.field.body":
+    "You command the free company; the enemy is played by the AI. Each action has one objective: destroy every enemy, rout N of them, survive N turns, capture a tile, or defend a tile for N turns. Lose every company soldier — or the tile you are defending — and the action is lost.",
+  "guide.controls.title": "Controls",
+  "guide.controls.body":
+    "Arrows / WASD / D-pad move the cursor. Enter / Space / gamepad A confirms. O / gamepad X opens Orders. T / gamepad Y ends the turn. Esc / gamepad B backs out. M / gamepad Start opens the camp. Drag to pan, wheel to zoom. Click or tap a tile, then confirm.",
+  "guide.turn.title": "Your turn",
+  "guide.turn.body":
+    "Select the soldier whose Orders Tempo turn it is. March if you like — a march never ends the turn — then give an order or press End Turn. Acting costs 80% of your next turn's charge, marching and holding 70%, and a plain hold 50%, so waiting brings you back sooner. Orders with a wind-up resolve later; if the target moves or the caster falls before then, they whiff.",
+  "guide.fighting.title": "Fighting",
+  "guide.fighting.body":
+    "Read the forecast before you confirm: chance to hit, expected damage, the area (friends included) and reactions. Flanking adds +15 to hit and a rear strike +30. High ground and line of sight matter. Orders spend Élan, which also sets morale: at half your pool or less you are Shaken (−3 ATK/RES, −15 aim), at zero Routed. Élan recovers 20% of your maximum every ten tempo ticks.",
+  "guide.company.title": "Your company",
+  "guide.company.body":
+    "A soldier has a primary post (stats and kit) and an attached post (a second skillset). Abilities are learned by earning Drill with equipped kit; mastering 2 abilities unlocks a branch post and 3 a deeper one. Experience levels soldiers to 50. Change posts and abilities at the Barracks; buy and sell kit at the Quartermaster.",
+  "guide.campaign.title": "The campaign",
+  "guide.campaign.body":
+    "Take a contract at the Officers' Mess — it lists the fee, the requirements, the reward and a recommended level. The Field deploys your roster on the contract's map. Win to be paid Crowns, Drill, Experience, Honour and kit; one day passes after every action. Chapters 1–9 open new contracts; win the finale to conclude the story, and the contract sandbox stays open.",
+  "guide.pending.title": "Not yet in live battles",
+  "guide.pending.body":
+    "The Articles of War and the Provost Marshal, Honour earned from knockouts and commended acts, Volleys and Guard Sorties, speed conditions and No-Man's Land losses are implemented as rules and data, but the live battle loop does not route them yet. docs/BALANCE.md records the design.",
+  "guide.close": "Return to the field",
 
   /* ---------------------------------------------------------------------- */
   /* Officers' Mess                                                         */

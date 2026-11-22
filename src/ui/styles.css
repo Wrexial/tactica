@@ -2796,6 +2796,58 @@ body {
  * one piece: a header with the working company, then a grid of panels.
  * --------------------------------------------------------------------- */
 
+.guide-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: auto;
+  padding: 20px 24px 48px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #efe6cf, var(--parchment));
+}
+
+.guide-screen__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--gold);
+  margin-bottom: 18px;
+}
+
+.guide-screen__header h2 {
+  margin: 2px 0 4px;
+  font-size: 1.5rem;
+}
+
+.guide-screen__sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 14px;
+  max-width: 1100px;
+}
+
+.guide-section {
+  padding: 14px 16px;
+  border: 1px solid rgba(90, 70, 40, 0.35);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+  background: rgba(255, 251, 240, 0.65);
+}
+
+.guide-section h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.guide-section p {
+  margin: 0;
+  line-height: 1.55;
+}
+
 .saves-screen {
   position: absolute;
   inset: 0;

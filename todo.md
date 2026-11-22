@@ -1967,6 +1967,19 @@ also records the honest gap the review found — the Articles/Provost, in-battle
 Honour, Volleys/Guard Sorties, speed conditions and Jagd aftermath have modules
 and tests but no live path yet.
 
+### T171 — Put the guide in the game
+- status: done
+- deps: [T170]
+- files: src/ui/Guide.tsx, src/ui/App.tsx, src/i18n/index.ts, src/ui/styles.css, tests/e2e/guide.spec.ts
+- verify: npm run test:e2e -- tests/e2e/guide.spec.ts
+- done: A **Field Manual** tab opens an in-game guide with sections for the field, controls, the turn, fighting, the company, the campaign and the not-yet-wired systems; it closes with a button or Escape, returns to the battlefield, and the e2e pins the sections and the return path.
+
+The written guide (`docs/HOW_TO_PLAY.md`, T170) is not reachable while playing.
+Add a Field Manual screen driven by the i18n catalogue, reachable from the
+navigation bar, so a player can read the controls and the turn loop without
+leaving the game; the long-form guide stays the reference with the numbers and
+tips.
+
 ---
 
 ## Research & open questions

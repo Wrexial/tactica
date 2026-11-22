@@ -59,6 +59,7 @@ import { announce, describeEvents, installAccessibility } from "./a11y";
 import { CampaignMap } from "./CampaignMap";
 import { Depot } from "./Depot";
 import { Forecast } from "./Forecast";
+import { Guide } from "./Guide";
 import { AbilityInfo } from "./AbilityInfo";
 import { InfoTip, Tooltip } from "./Tooltip";
 import { targetForCursor } from "./battleForecast";
@@ -93,6 +94,7 @@ const SCREEN_KEYS: Readonly<Record<string, MessageKey>> = {
   saves: "screen.saves",
   settings: "screen.settings",
   lobby: "screen.lobby",
+  guide: "screen.guide",
 };
 
 /** A controller for the demo action, with the cursor on the acting soldier. */
@@ -192,7 +194,16 @@ export function App() {
   const [previewActionId, setPreviewActionId] = useState<AbilityId | null>(null);
   const [inputReady, setInputReady] = useState(false);
   const [view, setView] = useState<
-    "battle" | "menus" | "posts" | "mess" | "map" | "depot" | "saves" | "settings" | "lobby"
+    | "battle"
+    | "menus"
+    | "posts"
+    | "mess"
+    | "map"
+    | "depot"
+    | "saves"
+    | "settings"
+    | "lobby"
+    | "guide"
   >("battle");
   // T110 — the drill-square overlay runs on top of the battlefield; it does not
   // change the view, so the field stays the source of truth while it is open.
@@ -797,6 +808,15 @@ export function App() {
         >
           {t("nav.drillSquare")}
         </button>
+        <button
+          type="button"
+          className={view === "guide" ? "viewnav__button is-active" : "viewnav__button"}
+          data-testid="nav-guide"
+          aria-pressed={view === "guide"}
+          onClick={() => setView("guide")}
+        >
+          {t("nav.guide")}
+        </button>
       </nav>
 
       <main className="stage" id="main-content" tabIndex={-1} aria-label={t("stage.label")}>
@@ -1346,6 +1366,7 @@ export function App() {
         )}
         {view === "settings" && <Settings />}
         {view === "lobby" && <LobbyScreen />}
+        {view === "guide" && <Guide onClose={() => setView("battle")} />}
       </main>
     </div>
   );

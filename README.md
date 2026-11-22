@@ -43,9 +43,10 @@ wired into live battles (the guide lists them explicitly).
 
 ## How to play
 
-> **New to the game? Start with the [player guide](docs/HOW_TO_PLAY.md).** It
-> covers the turn, the combat maths, the campaign loop, the camp screens and
-> the exact live/designed split in one place.
+> **New to the game?** Open the **Field Manual** tab in the game for the
+> essentials, or read the [full player guide](docs/HOW_TO_PLAY.md) — the turn,
+> the combat maths, the campaign loop, the camp screens and the exact
+> live/designed split in one place.
 
 You command a **free company** fighting small, decisive detachment actions.
 Your job is to complete the contract's objective while keeping your soldiers

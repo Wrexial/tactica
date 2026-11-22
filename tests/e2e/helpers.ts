@@ -11,5 +11,10 @@ import { expect, type Page } from "@playwright/test";
  */
 export async function openBattlefield(page: Page): Promise<void> {
   await page.goto("/");
-  await expect(page.getByTestId("battle-canvas")).toHaveAttribute("data-input-ready", "true");
+  // The WebGL init can take longer than the default 5s when several workers
+  // cold-start at once (and on CI); the ready flag is what matters, not the
+  // clock, so give it a generous window instead of flaking the whole spec.
+  await expect(page.getByTestId("battle-canvas")).toHaveAttribute("data-input-ready", "true", {
+    timeout: 20_000,
+  });
 }
