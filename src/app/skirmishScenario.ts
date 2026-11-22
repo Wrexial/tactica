@@ -42,7 +42,7 @@ import { BATTLE_MAPS } from "../data/maps";
 import { battleMapToTerrainMap } from "../data/maps/layout";
 import type { AbilityDef, PowerKey, StatBlock } from "../data/schema";
 import type { ActionSpec } from "../engine/actions/resolve";
-import { createBattle, findUnit, type BattleState } from "../engine/battle";
+import { createBattle, findUnit, type BattleSetup, type BattleState } from "../engine/battle";
 import type { BattleEvent } from "../engine/events";
 import { coord, type Coord, type Facing } from "../engine/grid";
 import { asAbilityId, asPostId, asUnitId } from "../engine/ids";
@@ -194,12 +194,17 @@ function tilesFor(side: "company" | "enemy"): Coord[] {
 }
 
 /**
- * Build the preset two-team battle. Four company specialists face four enemy
- * irregulars on the farmhouse board under an annihilation objective; the first
- * company soldier (Pte. Okafor, Speed 40) out-speeds every enemy, so the player
- * always takes the opening turn.
+ * The preset two-team `BattleSetup`: the authored rosters deployed on the
+ * farmhouse board with their action catalogue and an annihilation objective.
+ * Four company specialists face four enemy irregulars; the first company
+ * soldier (Pte. Okafor, Speed 40) out-speeds every enemy, so the player always
+ * takes the opening turn.
+ *
+ * Exposed separately from {@link createSkirmishBattle} so a headless harness
+ * (the T152 balance baseline) can replay the same authored matchup from a
+ * different seed without duplicating the rosters.
  */
-export function createSkirmishBattle(): BattleState {
+export function skirmishSetup(): BattleSetup {
   const map = BATTLE_MAPS[SKIRMISH_MAP_ID];
   const companyTiles = tilesFor("company");
   const enemyTiles = tilesFor("enemy");
@@ -224,12 +229,17 @@ export function createSkirmishBattle(): BattleState {
   }
   const actions: ActionSpec[] = [...seen.values()].map(actionSpecFromAbility);
 
-  return createBattle(SKIRMISH_SEED, {
+  return {
     map: battleMapToTerrainMap(map),
     units,
     abilities: actions,
     objective: { kind: "annihilation" },
-  });
+  };
+}
+
+/** Build the preset two-team battle from {@link skirmishSetup}. */
+export function createSkirmishBattle(): BattleState {
+  return createBattle(SKIRMISH_SEED, skirmishSetup());
 }
 
 /* --------------------------------------------------------------------------

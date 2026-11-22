@@ -1566,6 +1566,59 @@ design questions on the list.
 
 ---
 
+## Phase 19 — Measure the baseline
+
+The balance pass (Phase 18) recorded *what* the numbers are. This phase records
+*what they do*: play the authored Quick Battle headlessly at those values over a
+fixed seed set, and write the observed outcome, length and casualty baseline
+next to the decisions it comes from.
+
+### T152 — Measure the balance baseline with the gauntlet
+- status: done
+- deps: [T130, T148, T149, T150, T151]
+- files: src/app/skirmishScenario.ts, src/data/conditions.ts, tests/unit/balanceBaseline.test.ts, docs/BALANCE.md
+- verify: npm run test -- --run tests/unit/balanceBaseline.test.ts
+- done: The Quick Battle roster is exposed as a reusable `BattleSetup`, a headless baseline test plays it over a fixed seed set with the shipped field AI and a recruit-vs-elite match, asserts every run reaches a terminal state deterministically, and `docs/BALANCE.md` records the measured outcome/length/casualty baseline with the exact command that reproduces it; the first run exposed (and fixed) a zero-damage deadlock in the Shaken morale penalty.
+
+`runGauntlet` (T130) plays a full AI-vs-AI battle headlessly, but no test drives
+it against the **authored** Quick Battle roster: the current gauntlet specs use
+a synthetic two-soldier duel. Extract `skirmishSetup()` from
+`createSkirmishBattle()` (same roster, board, actions and objective, returned as
+a `BattleSetup`) and use it in a new `tests/unit/balanceBaseline.test.ts` that
+runs a fixed seed set twice — a mirror match and a `recruit` company against an
+`elite` enemy — asserting every run finishes, stays under the turn cap, and
+replays identically. Print the summary table in the test output and record it in
+`docs/BALANCE.md` under the D16–D24 decisions, so a later tuning pass has a
+"before" to compare against. Do not assert specific win rates: the test guards
+the harness and determinism, the document holds the numbers.
+
+---
+
+## Phase 20 — Rebalance from the baseline
+
+T152 measured the authored Quick Battle and found a lopsided action: under the
+same field AI on both sides the enemy won every seed. This phase fixes the
+roster from that measurement rather than from intuition.
+
+### T153 — Make the Quick Battle a contest, not a walkover
+- status: todo
+- deps: [T152]
+- files: src/app/skirmishScenario.ts, tests/unit/balanceBaseline.test.ts, docs/BALANCE.md
+- verify: npm run test -- --run tests/unit/balanceBaseline.test.ts
+- done: Under the shipped field AI across the fixed baseline seeds the company wins at least two and loses at least two of the eight, the roster change is explained from the baseline (Speed cohesion, not stat inflation), the public scenario and its tests still pass, and the "after" table replaces the "before" in `docs/BALANCE.md`.
+
+The baseline showed the company losing 8/8 while the enemy lost 0–3. The cause
+is the **Speed spread**, not raw power: the marksman's Speed 40 outruns the rest
+of the line (36/30/32), so the AI commits him alone and the defenders focus him
+down. Trial runs confirmed the lever: holding every other stat fixed and
+tightening the company's Speeds to 35/32/34/33 turns the matchup into a 4–4
+split, while raising HP changed nothing and raising attack made it 8–0. Author
+the cohesive line, add the "not a foregone conclusion" tripwire to the baseline
+spec, and record the new table. Do **not** assert a specific split beyond
+"both sides win at least twice".
+
+---
+
 ## Research & open questions
 
 Resolved decisions are recorded with their reasoning in **`docs/BALANCE.md`**

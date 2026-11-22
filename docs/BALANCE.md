@@ -102,6 +102,12 @@ Decision ids continue `docs/NAPOLEONIC_MAPPING.md` §14 (`D0`–`D15`).
   same play. Élan starts **full**.
 - **Morale:** **Routed** at 0 Élan; **Shaken** at or below **50%** of maximum;
   otherwise steady. Morale is derived from the pool, never stored separately.
+- **Shaken penalty:** `atk −3`, `res −3`, `hitModifier −15`. The first authored
+  value was `atk −10`, which the T152 baseline caught zeroing a low-strength
+  soldier's damage entirely (`atk 15 − 10` vs `def 8` → `1 × 90/100 = 0`), so
+  two Shaken soldiers could never hurt each other and the battle stalled at the
+  turn cap. The smaller flat penalty still bites, but a landed blow is not
+  erased.
 - **Lives in:** `ELAN_REGEN_RATIO_PERCENT`, `ELAN_REGEN_INTERVAL_TICKS`,
   `SHAKEN_ELAN_RATIO`, `DEFAULT_ELAN_REGEN_SCHEDULE`, `regenAmountFor` in
   `src/engine/rules/elan.ts`.
@@ -182,6 +188,44 @@ Decision ids continue `docs/NAPOLEONIC_MAPPING.md` §14 (`D0`–`D15`).
   item's pending teaches.
 - **Lives in:** `EquipmentDef.teaches[].ap` in `src/data/equipment/`;
   `src/engine/progression/drill.ts`.
+
+---
+
+## Baseline measurement (T152)
+
+`tests/unit/balanceBaseline.test.ts` plays the authored **Quick Battle**
+(`skirmishSetup()`) through the headless gauntlet on eight fixed seeds, with
+both sides on the shipped field AI (`AGGRESSIVE_FIELD_AI`, the policy the
+Resolve control uses) and again with a `recruit` company against an `elite`
+enemy. Reproduce with:
+
+```bash
+npm run test -- --run tests/unit/balanceBaseline.test.ts
+```
+
+The first run is the "before" picture: every seed finished (115–203 turns) but
+the **enemy won 8/8**, losing only 0–3 soldiers. A later seed stalled at the
+512-turn cap on three mutually Shaken soldiers who could each deal exactly 0
+damage — that is what produced the Shaken change in D20 above.
+
+| seed        | winner | outcome        | turns | lost (company/enemy) |
+| ----------- | ------ | -------------- | ----: | -------------------: |
+| baseline-1  | B      | companyDefeat  |   122 |                  4/1 |
+| baseline-2  | B      | companyDefeat  |   123 |                  4/0 |
+| baseline-3  | B      | companyDefeat  |   129 |                  4/1 |
+| baseline-4  | B      | companyDefeat  |   142 |                  4/2 |
+| baseline-5  | B      | companyDefeat  |   132 |                  4/1 |
+| baseline-6  | B      | companyDefeat  |   115 |                  4/3 |
+| baseline-7  | B      | companyDefeat  |   129 |                  4/1 |
+| baseline-8  | B      | companyDefeat  |   138 |                  4/2 |
+
+The recruit-vs-elite run finished 3–5 for the company, so the scenario was not
+randomly hopeless — it was the field-AI company that lost. T153 traced that to
+the roster's **Speed spread** (40/36/30/32): the fastest soldier committed
+alone and was focus-fired. Holding every other stat fixed and tightening the
+line to 35/32/34/33 turned the same eight seeds into a 4–4 split; raising HP
+changed nothing and raising attack made it 8–0, so Speed cohesion is the lever.
+The table above is kept as the "before" that motivated that change.
 
 ---
 

@@ -481,7 +481,11 @@ const CONDITION_DATA = {
     flavour: "The man beside you is looking at the road behind, not the enemy ahead.",
     kind: "debuff",
     duration: 0,
-    statMods: { atk: -10, res: -10 },
+    // T152 — a flat −10 was enough to zero a low-strength soldier's damage
+    // (atk 15 − 10 vs def 8 → 0 after the Power/100 step), so two Shaken
+    // soldiers could never hurt each other and the battle stalled. The penalty
+    // now bites without erasing the ability to fight back.
+    statMods: { atk: -3, res: -3 },
     hitModifier: -15,
   },
   routed: {
