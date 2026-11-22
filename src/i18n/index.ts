@@ -354,6 +354,11 @@ const en = {
   "mess.blurb": "Contracts of the free company, posted by the officers of the garrison.",
   "mess.all": "All",
   "mess.chapter": "Chapter",
+  "mess.chapterLine": "Chapter {chapter} — {name}",
+  "mess.concludedKicker": "The campaign is decided",
+  "mess.concludedTitle": "The Last Muster is won",
+  "mess.concludedBody":
+    "The enemy headquarters has fallen and the company's colours are its own. The board stays open for further contracts.",
   "mess.detachment": "Detachment",
   "mess.requirements": "Requirements",
   "mess.noRequirements": "None — any company may take this contract.",

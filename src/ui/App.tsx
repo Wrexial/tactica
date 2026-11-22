@@ -22,6 +22,7 @@ import {
   startCampaignBattle,
   type CampaignState,
 } from "../app/campaignController";
+import { campaignChapter, isCampaignConcluded } from "../app/campaign";
 import { createDemoBattle, DEMO_NAME, resolveDemoBattle } from "../app/demoScenario";
 import {
   createSkirmishBattle,
@@ -1327,7 +1328,14 @@ export function App() {
 
         {view === "menus" && <Menus onClose={() => setView("battle")} />}
         {view === "posts" && <PostScreen />}
-        {view === "mess" && <Mess company={campaign.save.company} onAccept={acceptContract} />}
+        {view === "mess" && (
+          <Mess
+            company={campaign.save.company}
+            chapter={campaignChapter(campaign.save)}
+            concluded={isCampaignConcluded(campaign.save)}
+            onAccept={acceptContract}
+          />
+        )}
         {view === "map" && <CampaignMap />}
         {view === "depot" && <Depot />}
         {view === "saves" && (

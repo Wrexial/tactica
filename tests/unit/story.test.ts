@@ -22,6 +22,7 @@ import {
   STORY_CHAPTER_MIN,
   STORY_TRIGGER_KINDS,
   advanceChapter,
+  campaignConcluded,
   allGuardSortieIds,
   allStoryContractIds,
   assertStorySpine,
@@ -488,5 +489,42 @@ describe("story spine — schema enforcement (T077)", () => {
     });
     expect(parsed.contractIds).toEqual([]);
     expect(parsed.guardSortieIds).toEqual([]);
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * T162 — the campaign's conclusion
+ * ------------------------------------------------------------------------ */
+
+describe("campaignConcluded (T162)", () => {
+  /** The contracts needed to reach chapter 9: triggers and openers in order. */
+  const SPINE: readonly string[] = [
+    "break-the-bridge",
+    "crossed-sabres",
+    "storm-the-farmhouse",
+    "break-the-guerrilla-camp",
+    "clear-the-sunken-lane",
+    "hold-the-churchyard",
+  ];
+
+  it("is not concluded while the finale is unfought", () => {
+    // Chapter 9 is reachable by day 45 with the spine complete, but its own
+    // contract (`take-the-headquarters`) has not been completed yet.
+    expect(campaignConcluded({ completedContractIds: [...SPINE], day: 45 })).toBe(false);
+  });
+
+  it("is concluded once the last chapter's contract is complete", () => {
+    const facts = { completedContractIds: [...SPINE, "take-the-headquarters"], day: 45 };
+    expect(campaignConcluded(facts)).toBe(true);
+    expect(advanceChapter(STORY_CHAPTER_MIN, facts)).toBe(MAX_STORY_CHAPTER);
+  });
+
+  it("is never concluded from a partial or early campaign", () => {
+    expect(campaignConcluded({ completedContractIds: [], day: 1 })).toBe(false);
+    expect(campaignConcluded({ completedContractIds: ["break-the-bridge"], day: 1 })).toBe(false);
+    // The finale's contract alone, without the spine, cannot reach chapter 9.
+    expect(campaignConcluded({ completedContractIds: ["take-the-headquarters"], day: 45 })).toBe(
+      false,
+    );
   });
 });

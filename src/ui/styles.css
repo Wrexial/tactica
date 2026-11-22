@@ -1367,6 +1367,30 @@ body {
   background: linear-gradient(180deg, #efe6cf, var(--parchment));
 }
 
+.mess-screen__chapter {
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft, #5b4a33);
+}
+
+.campaign-concluded {
+  margin: 18px 0 6px;
+  padding: 14px 18px;
+  border: 1px solid #b08d3f;
+  border-left-width: 5px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #f6e9c9, #efe0bb);
+  box-shadow: 0 2px 0 rgba(60, 44, 20, 0.15);
+}
+
+.campaign-concluded h3 {
+  margin: 2px 0 6px;
+  font-size: 1.05rem;
+  color: #4a3512;
+}
+
 .mess-screen__header {
   display: flex;
   align-items: flex-start;

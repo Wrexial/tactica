@@ -43,6 +43,7 @@
 import { useMemo, useState } from "react";
 
 import { CONTRACT_LIST } from "../data/contracts";
+import { MAX_STORY_CHAPTER, storyChapterByNumber } from "../data/story";
 import { getEquipment, isEquipmentKey } from "../data/equipment";
 import { getPost, isPostKey } from "../data/posts";
 import {
@@ -197,10 +198,15 @@ export interface MessProps {
   readonly company?: Company;
   /**
    * The story chapter in progress (T077); it gates contracts that carry a
-   * `chapter`. Defaults to the last authored chapter so the demo board shows
-   * every contract.
+   * `chapter`. Defaults to the last authored chapter so a standalone board
+   * shows every contract; the app passes the campaign's real chapter (T162).
    */
   readonly chapter?: number;
+  /**
+   * Whether the campaign's story is finished (T162). Shows a concluded panel
+   * above the board; the contract sandbox itself stays open.
+   */
+  readonly concluded?: boolean;
   /** Called after a contract is accepted (its fee paid and it marked posted). */
   readonly onAccept?: (contract: ContractDef) => void;
 }
@@ -214,7 +220,12 @@ export interface MessProps {
  * the company (T068), evaluates each contract's fee / requirements / reward,
  * and lets the player take a contract whose gates are open.
  */
-export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps) {
+export function Mess({
+  company: companyProp,
+  chapter = MAX_STORY_CHAPTER,
+  concluded = false,
+  onAccept,
+}: MessProps) {
   const { t } = useTranslation();
   const [localCompany, setLocalCompany] = useState<Company>(
     () => companyProp ?? createDemoCompany(),
@@ -254,6 +265,12 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
           <h2>{t("mess.title")}</h2>
           <p className="muted">{t("mess.blurb")}</p>
         </div>
+        <p className="mess-screen__chapter" data-testid="mess-chapter">
+          {t("mess.chapterLine", {
+            chapter,
+            name: storyChapterByNumber(chapter)?.name ?? t("mess.chapter"),
+          })}
+        </p>
         <dl className="mess-screen__company" data-testid="mess-company">
           <div>
             <dt>{t("common.company")}</dt>
@@ -275,6 +292,18 @@ export function Mess({ company: companyProp, chapter = 5, onAccept }: MessProps)
           </div>
         </dl>
       </header>
+
+      {concluded && (
+        <section
+          className="campaign-concluded"
+          data-testid="campaign-concluded"
+          aria-label={t("mess.concludedTitle")}
+        >
+          <p className="kicker">{t("mess.concludedKicker")}</p>
+          <h3>{t("mess.concludedTitle")}</h3>
+          <p className="muted">{t("mess.concludedBody")}</p>
+        </section>
+      )}
 
       <nav className="mess-filter" aria-label={t("mess.contractKind")}>
         <button

@@ -380,6 +380,32 @@ export function assertStorySpine(chapters: readonly StoryChapterDef[] = STORY_CH
 assertStorySpine();
 
 /* --------------------------------------------------------------------------
+ * Conclusion
+ * ------------------------------------------------------------------------ */
+
+/**
+ * Whether the campaign's story is **concluded**: the last chapter has been
+ * reached and every contract that chapter opens has been completed (T162).
+ *
+ * Derived from the same {@link StoryFacts} `advanceChapter` reads, so no extra
+ * save field can drift out of step with the spine. A campaign with no completed
+ * contracts is never concluded; neither is one that has reached the final
+ * chapter but not fought its last battle.
+ *
+ * ```ts
+ * campaignConcluded({ completedContractIds: [...all eight contracts], day: 60 }); // true
+ * ```
+ */
+export function campaignConcluded(facts: StoryFacts): boolean {
+  const chapter = advanceChapter(STORY_CHAPTER_MIN, facts);
+  if (chapter < MAX_STORY_CHAPTER) return false;
+  const last = storyChapterByNumber(MAX_STORY_CHAPTER);
+  if (last === undefined) return false;
+  const completed = new Set<string>(facts.completedContractIds);
+  return last.contractIds.every((contractId) => completed.has(contractId));
+}
+
+/* --------------------------------------------------------------------------
  * Lookups
  * ------------------------------------------------------------------------ */
 

@@ -1808,7 +1808,7 @@ real chapter. That makes late contracts appear too early and leaves the
 completion of the finale invisible.
 
 ### T162 — Show the campaign chapter and conclusion in the Mess
-- status: doing
+- status: done
 - deps: [T161]
 - files: src/data/story.ts, src/app/campaign.ts, src/ui/Mess.tsx, src/ui/App.tsx, src/i18n/index.ts, src/ui/styles.css, tests/unit/story.test.ts, tests/unit/campaign.test.ts, tests/e2e/mess.spec.ts
 - verify: npm run test -- --run tests/unit/story.test.ts tests/unit/campaign.test.ts && npm run test:e2e -- tests/e2e/mess.spec.ts
@@ -1823,7 +1823,7 @@ finale is done (the contract sandbox stays open). Fix `Mess`'s default chapter
 to `MAX_STORY_CHAPTER` so standalone rendering still shows the whole board.
 
 ### T163 — Make the Saves screen work on the working campaign
-- status: doing
+- status: done
 - deps: []
 - files: src/ui/App.tsx, src/ui/Saves.tsx, tests/e2e/saves.spec.ts
 - verify: npm run test:e2e -- tests/e2e/saves.spec.ts

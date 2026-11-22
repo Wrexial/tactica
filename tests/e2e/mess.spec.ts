@@ -103,3 +103,47 @@ test("filters the board by contract kind", async ({ page }) => {
   await page.getByTestId("mess-filter-all").click();
   await expect(page.getByTestId("contract-break-the-bridge")).toBeVisible();
 });
+
+test("gates on the campaign's chapter and concludes after the finale (T162)", async ({ page }) => {
+  // A fresh campaign is at chapter 1 (derived from the `start` trigger), not
+  // the stored 0, and the chapter line names the beat.
+  await expect(page.getByTestId("mess-chapter")).toHaveText("Chapter 1 — A Company of Fortune");
+
+  // The finale is posted by chapter 9, so it is visible but closed.
+  await expect(page.getByTestId("contract-take-the-headquarters-chapter")).toBeVisible();
+  await expect(page.getByTestId("contract-take-the-headquarters-accept")).toBeDisabled();
+
+  // Import a finished campaign: export the working save, advance its clock and
+  // ledger to the end of the spine, and adopt it through the camp keep (T163).
+  await page.getByTestId("nav-saves").click();
+  await page.getByTestId("saves-export").click();
+  const exported = await page.getByTestId("saves-export-json").inputValue();
+  const save = JSON.parse(exported) as {
+    calendar: { day: number };
+    company: { theatre: { day: number } };
+    progress: { chapter: number; completedContractIds: string[] };
+  };
+  save.progress.chapter = 9;
+  save.progress.completedContractIds = [
+    "break-the-bridge",
+    "crossed-sabres",
+    "storm-the-farmhouse",
+    "break-the-guerrilla-camp",
+    "clear-the-sunken-lane",
+    "hold-the-churchyard",
+    "take-the-headquarters",
+  ];
+  save.calendar.day = 60;
+  save.company.theatre.day = 60;
+
+  await page.getByTestId("saves-import-json").fill(JSON.stringify(save));
+  await page.getByTestId("saves-import").click();
+  await expect(page.getByTestId("saves-current-day")).toHaveText("60");
+
+  // The Mess now shows the last beat and the concluded panel.
+  await page.getByTestId("nav-mess").click();
+  await expect(page.getByTestId("mess-screen")).toBeVisible();
+  await expect(page.getByTestId("mess-chapter")).toHaveText("Chapter 9 — The Last Muster");
+  await expect(page.getByTestId("campaign-concluded")).toBeVisible();
+  await expect(page.getByTestId("campaign-concluded")).toContainText("The Last Muster is won");
+});

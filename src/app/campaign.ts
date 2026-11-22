@@ -62,7 +62,7 @@
 import { getContract, isContractKey } from "../data/contracts";
 import { isEquipmentKey } from "../data/equipment";
 import type { ContractDef } from "../data/schema";
-import { advanceChapter } from "../data/story";
+import { advanceChapter, campaignConcluded } from "../data/story";
 
 import type { BattleState } from "../engine/battle";
 import { articlesForDay, type CampaignCalendar } from "../engine/calendar";
@@ -155,6 +155,25 @@ function uniqueIds(ids: readonly UnitId[]): UnitId[] {
     unique.push(id);
   }
   return unique;
+}
+
+/**
+ * The story chapter the campaign has actually reached (T162). A fresh save
+ * stores chapter `0` ("not started"); the opening `start` trigger means chapter
+ * 1 is already reachable, so the UI asks this rather than reading the stored
+ * number. Pure: the same save always yields the same chapter.
+ */
+export function campaignChapter(save: CampaignSave): number {
+  return advanceChapter(save.progress.chapter, storyFactsOf(save.progress, save.calendar.day));
+}
+
+/**
+ * Whether the campaign's story is finished (T162): the last chapter is reached
+ * and its contract completed. The contract sandbox stays open afterwards; this
+ * only answers "is the spine done?".
+ */
+export function isCampaignConcluded(save: CampaignSave): boolean {
+  return campaignConcluded(storyFactsOf(save.progress, save.calendar.day));
 }
 
 /** Open any story chapter the campaign's facts now reach (T077). Pure. */
